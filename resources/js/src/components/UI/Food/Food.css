@@ -1,0 +1,3 @@
+.Food .addon-limit {
+    max-width: calc(var(--app-width) - 288px);
+}

@@ -1,0 +1,75 @@
+.Product .content {
+    transform: scale(1);
+    transition: all 0.25s;
+}
+
+.Product:hover .content {
+    transform: scale(1);
+}
+
+.Product .img {
+    transform: rotate(0deg) scale(0.88);
+    transform-origin: center;
+    transition: all 0.25s;
+}
+
+.Product:hover .img {
+    transform: rotate(-14deg) scale(1);
+}
+
+.Product .with-half-circles {
+    width: 100%;
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.Product .with-half-circles div:not(.separator) {
+    height: calc(0.5rem - 0.264px);
+}
+
+.Product .with-half-circles div.separator {
+    height: 0.528px;
+    background-image: linear-gradient(to right, var(--border) 50%, rgba(255, 255, 255, 0) 0%);
+    background-size: 10px 3px;
+}
+
+.Product .with-half-circles::after,
+.Product .with-half-circles::before {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    content: "";
+    box-shadow: inset 0 0 0.125rem 0.125rem rgba(0, 0, 0, 0.075);
+    top: 0;
+    left: -0.5rem;
+}
+
+.Product .with-half-circles:before {
+    left: unset;
+    right: -0.5rem;
+}
+
+.Product .btns {
+    opacity: 0;
+    transition: all 0.25s;
+}
+
+.Product .btns:hover {
+    opacity: 1;
+}
+
+.Product .btn .text {
+    max-width: 0;
+    opacity: 0;
+    padding: 0;
+    transition: all 0.5s;
+}
+
+.Product .btn:hover .text {
+    max-width: 500px;
+    opacity: 1;
+    padding-left: 0.5rem;
+}

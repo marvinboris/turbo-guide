@@ -1,0 +1,42 @@
+.Layout .NavItem {
+    background-color: var(--orange-25);
+    color: var(--orange);
+    padding: 6px 13px;
+    transition: all 0.25s;
+}
+
+.Layout .NavItem.active {
+    background-color: var(--orange);
+    color: white;
+}
+
+.Layout .NavItem .line {
+    height: 12px;
+    width: 0.5px;
+    background-color: var(--orange);
+    transition: all 0.25s;
+}
+
+.Layout .NavItem.active .line {
+    background-color: white;
+}
+
+.Layout .price-block {
+    position: absolute;
+    right: 12px;
+    top: -26px;
+}
+
+.Layout .price-block .ticket {
+    z-index: 2;
+}
+
+.Layout .price-block > div {
+    z-index: 1;
+}
+
+
+.Layout .price-block .quantity {
+    position: relative;
+    right: 6px;
+}

@@ -21,7 +21,7 @@ export default ({ img, name, description, reference, meal, addon, qty, add, sub,
             <div className="flex-fill">
                 <div className="pb-1 position-relative">
                     <div className="d-flex align-items-center">
-                        <div className={`text-12 text-500 text-truncate ${addon ? "addon-limit" : ""}`}>
+                        <div className={`text-12 text-500 text-truncate ${addon ? "addon-limit" : ""} ${meal ? "meal-limit" : ""}`}>
                             {name}
                         </div>
 

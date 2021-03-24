@@ -44,7 +44,7 @@ var appreciations = [{
     return c.lt >= mark;
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-    className: "mb-2 pb-3 border-bottom border-soft",
+    className: "mb-3 pb-2 border-bottom border-soft",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       className: "mb-2 pb-1 position-relative",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {

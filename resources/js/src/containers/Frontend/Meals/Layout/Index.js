@@ -11,7 +11,7 @@ import './Layout.css';
 
 import * as actionTypes from '../../../../store/actions/frontend';
 
-const Wrapper = ({ children, className, style }) => <div className={className} style={{ padding: '12px 33px', ...style }}>
+const Wrapper = ({ children, className, style }) => <div className={className} style={{ padding: '12px 22px', ...style }}>
     {children}
 </div>;
 
@@ -135,7 +135,7 @@ class Layout extends Component {
                 <NavItem to={`/meals/${meal.id}/comments`} icon={faComment}>Comments</NavItem>
             </Wrapper>
 
-            <div style={{ padding: '15px 22px' }}>
+            <div style={{ padding: '15px 11px' }}>
                 {errors}
                 {loading ? <div className="text-center">Loading...</div> : children}
             </div>

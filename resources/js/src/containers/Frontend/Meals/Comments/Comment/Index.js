@@ -13,7 +13,7 @@ const appreciations = [
 export default ({ name, mark = 0, body }) => {
     const appreciation = appreciations.find(c => c.lt >= mark);
 
-    return <div className="mb-2 pb-3 border-bottom border-soft">
+    return <div className="mb-3 pb-2 border-bottom border-soft">
         <div className="mb-2 pb-1 position-relative">
             <div className="d-flex align-items-center">
                 <div className="text-12 text-500">

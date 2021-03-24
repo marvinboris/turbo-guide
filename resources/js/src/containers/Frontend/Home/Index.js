@@ -16,11 +16,11 @@ import './Home.css';
 
 import ImgKfcBanner from '../../../assets/images/99ab5f2205ea31485b0126edbc8e1682.jpg';
 
-const Wrapper = ({ children, className, style }) => <div className={className} style={{ padding: '12px 33px', ...style }}>
+const Wrapper = ({ children, className, style }) => <div className={className} style={{ padding: '12px 22px', ...style }}>
     {children}
 </div>;
 
-const Category = ({ children, title }) => <div style={{ padding: '15px 22px' }}>
+const Category = ({ children, title }) => <div style={{ padding: '15px 11px' }}>
     {title && <div className="mb-3 d-flex justify-content-end">
         <div className="text-13 text-500 px-4 py-2 bg-orange-30 text-orange rounded-pill">
             <div className="px-1">{title}</div>

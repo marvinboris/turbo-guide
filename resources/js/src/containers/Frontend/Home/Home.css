@@ -11,6 +11,16 @@
     z-index: 10;
 }
 
+.Home .category-select {
+    max-width: calc(var(--app-width) - 178px);
+}
+
+@media (max-width: 412px) {
+    .Home .category-select {
+        max-width: calc(100vw - 178px);
+    }
+}
+
 .Home .carousel-indicators li {
     width: 27px;
     height: 8px;

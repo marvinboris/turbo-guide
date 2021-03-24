@@ -1,16 +1,16 @@
 .Food .addon-limit {
-    max-width: calc(var(--app-width) - 266px);
+    max-width: calc(var(--app-width) - 250px);
 }
 .Food .meal-limit {
-    max-width: calc(var(--app-width) - 266px);
+    max-width: calc(var(--app-width) - 180px);
 }
 
-@media (max-width: var(--app-width)) {
+@media (max-width: 412px) {
     .Food .addon-limit {
-        max-width: calc(100vw - 266px);
+        max-width: calc(100vw - 250px);
     }
 
     .Food .meal-limit {
-        max-width: calc(100vw - 266px);
+        max-width: calc(100vw - 180px);
     }
   }

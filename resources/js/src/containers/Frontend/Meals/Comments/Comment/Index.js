@@ -48,7 +48,7 @@ export default ({ name, mark = 0, body }) => {
 
         <div className="text-10 text-300 mb-2">{body}</div>
 
-        <div className="text-9">
+        <div className="text-14 text-right d-none">
             <FontAwesomeIcon icon={faThumbsUp} className="text-green mr-2" />
 
             <FontAwesomeIcon icon={faThumbsDown} className="text-red mr-2" />

@@ -120,6 +120,11 @@ var Addons = /*#__PURE__*/function (_Component) {
   }
 
   _createClass(Addons, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      window.scrollTo(0, 0);
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this = this;

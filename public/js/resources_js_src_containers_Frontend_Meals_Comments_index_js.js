@@ -98,7 +98,7 @@ var appreciations = [{
       className: "text-10 text-300 mb-2",
       children: body
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-      className: "text-9",
+      className: "text-14 text-right d-none",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_0__.FontAwesomeIcon, {
         icon: _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faThumbsUp,
         className: "text-green mr-2"

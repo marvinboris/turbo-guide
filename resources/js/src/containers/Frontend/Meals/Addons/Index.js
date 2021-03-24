@@ -11,6 +11,10 @@ import Addon from '../../../../components/UI/Food/Addon';
 import * as actionTypes from '../../../../store/actions/frontend';
 
 class Addons extends Component {
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
+
     render() {
         const { frontend: { meals: { total = 0, addons = [] } } } = this.props;
 

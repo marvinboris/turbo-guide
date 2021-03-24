@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircle, faFilter, faLocationArrow, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faCircle, faFilter, faPhone, faSearchLocation } from '@fortawesome/free-solid-svg-icons';
 import { faCalendar, faClock } from '@fortawesome/free-regular-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
@@ -62,7 +62,7 @@ class Home extends Component {
                         <div>
                             <Stack icon={faPhone} color="primary" />
                             <Stack icon={faWhatsapp} color="green" />
-                            <Stack icon={faLocationArrow} color="yellow" />
+                            <Stack icon={faSearchLocation} color="yellow" />
                         </div>
                     </div>
 
@@ -93,11 +93,15 @@ class Home extends Component {
                             Carrefour Akwa, Derrière la station Total
                         </div>
 
-                        <div className="d-flex">
-                            <div className="mr-2 text-8">Ratings</div>
+                        <div className="d-flex align-items-center">
+                            <div className="text-8">Ratings</div>
 
-                            <div>
+                            <div className="mx-1">
                                 <Stars readOnly lg mark={4} />
+                            </div>
+
+                            <div className="text-orange text-6 text-700">
+                                ({(4).toFixed(1)})
                             </div>
                         </div>
                     </div>

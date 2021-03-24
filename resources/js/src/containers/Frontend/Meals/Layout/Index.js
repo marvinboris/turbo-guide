@@ -15,7 +15,7 @@ const Wrapper = ({ children, className, style }) => <div className={className} s
     {children}
 </div>;
 
-const NavItem = ({ to, icon, children }) => <NavLink to={to} exact activeClassName="active" className="NavItem d-flex align-items-center text-decoration-none rounded-pill">
+const NavItem = ({ to, icon, children, className = '' }) => <NavLink to={to} exact activeClassName="active" className={"NavItem d-flex align-items-center text-decoration-none rounded-pill " + className}>
     <div className="text-7"><FontAwesomeIcon icon={icon} /></div>
 
     <div className="mx-1"><div className="line" /></div>
@@ -27,7 +27,7 @@ class Layout extends Component {
     componentDidMount() {
         this.props.get(this.props.match.params.id);
     }
-    
+
     componentWillUnmount() {
         this.props.reset();
     }
@@ -92,15 +92,21 @@ class Layout extends Component {
                     <div className="d-flex align-items-center">
                         <div className="mr-2 text-8">Ratings</div>
 
-                        {meal && <div>
+                        {meal.mark && <div>
                             <Stars readOnly mark={meal.mark} lg />
                         </div>}
+
+                        <div className="ml-1 text-6 text-700 text-orange">{meal.mark && <>({meal.mark.toFixed(1)})</>}</div>
+                    </div>
+
+                    <div className="ml-auto text-8">
+                        Compose your meal to know the cost
                     </div>
                 </div>
 
                 <div className="price-block text-montserrat text-white">
                     <div className="ticket">
-                        <div className="rounded-6 bg-orange py-2 px-3 shadow" style={{ width: 140 }}>
+                        <div className="rounded-6 bg-orange py-2 px-3" style={{ width: 140 }}>
                             <div className="text-6">Price :</div>
 
                             <div>
@@ -129,9 +135,9 @@ class Layout extends Component {
                 </div>
             </Wrapper>
 
-            <Wrapper className="border-bottom border-soft d-flex justify-content-between">
+            <Wrapper className="border-bottom border-soft d-flex justify-content-center">
                 <NavItem to={`/meals/${meal.id}/addons`} icon={faList}>Food addons</NavItem>
-                <NavItem to={`/meals/${meal.id}/description`} icon={faBook}>Description</NavItem>
+                <NavItem to={`/meals/${meal.id}/description`} icon={faBook} className="mx-2">Description</NavItem>
                 <NavItem to={`/meals/${meal.id}/comments`} icon={faComment}>Comments</NavItem>
             </Wrapper>
 

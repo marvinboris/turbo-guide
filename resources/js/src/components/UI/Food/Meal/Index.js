@@ -21,10 +21,14 @@ export default props => <Food meal {...props}>
         </div>
 
         <div className="d-flex align-items-center">
-            <div className="mr-2 text-8">Ratings</div>
+            <div className="text-8">Ratings</div>
 
-            <div>
-                <Stars readOnly mark={props.mark} />
+            <div className="mx-1">
+                <Stars readOnly lg mark={props.mark} />
+            </div>
+
+            <div className="text-orange text-6 text-700">
+                ({props.mark.toFixed(1)})
             </div>
         </div>
     </div>

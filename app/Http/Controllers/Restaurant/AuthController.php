@@ -66,13 +66,6 @@ class AuthController extends Controller
 
         $restaurant = Restaurant::whereToken($request->input('token'))->first();
 
-        return response()->json([
-            'message' => [
-                'type' => 'info',
-                'content' => 'Test'
-            ]
-        ]);
-
         if ($restaurant->is_active === 0) return response()->json([
             'message' => [
                 'type' => 'danger',
@@ -84,9 +77,16 @@ class AuthController extends Controller
             return response()->json([
                 'message' => [
                     'type' => 'danger',
-                    'content' => 'Unauthorized'
+                    'content' => 'Incorrect token or password.'
                 ]
             ], 401);
+
+        return response()->json([
+            'message' => [
+                'type' => 'danger',
+                'content' => 'Test'
+            ]
+        ]);
 
         $tokenResult = $restaurant->createToken('Restaurant Personal Access Token');
         $token = $tokenResult->token;

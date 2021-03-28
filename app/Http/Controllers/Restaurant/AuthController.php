@@ -64,6 +64,13 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
 
+        return response()->json([
+            'message' => [
+                'type' => 'info',
+                'content' => 'Test'
+            ]
+        ]);
+
         $restaurant = Restaurant::whereToken($request->input('token'))->first();
 
         if ($restaurant->is_active === 0) return response()->json([

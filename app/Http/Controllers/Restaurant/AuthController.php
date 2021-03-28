@@ -81,17 +81,17 @@ class AuthController extends Controller
                 ]
             ], 401);
 
+        $tokenResult = $restaurant->createToken('Restaurant Personal Access Token');
+        $token = $tokenResult->token;
+        $token->expires_at = Carbon::now()->addWeeks(1);
+        $token->save();
+
         return response()->json([
             'message' => [
                 'type' => 'danger',
                 'content' => 'Test'
             ]
         ]);
-
-        $tokenResult = $restaurant->createToken('Restaurant Personal Access Token');
-        $token = $tokenResult->token;
-        $token->expires_at = Carbon::now()->addWeeks(1);
-        $token->save();
 
         return response()->json([
             'access_token' => $tokenResult->accessToken,

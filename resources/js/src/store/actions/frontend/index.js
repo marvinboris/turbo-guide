@@ -1,8 +1,9 @@
 export {
     addAddon,
     addMeal,
-    getMeal,
-    resetMeals,
+    getRestaurant,
+    getRestaurantsMeal,
+    resetRestaurants,
     subAddon,
     subMeal,
-} from './meals';
+} from './restaurants';

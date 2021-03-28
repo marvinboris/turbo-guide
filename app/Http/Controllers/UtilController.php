@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Restaurant;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,9 @@ class UtilController extends Controller
         switch ($user->token()->name) {
             case 'User Personal Access Token':
                 $user = User::find($user->id);
+                break;
+            case 'Restaurant Personal Access Token':
+                $user = Restaurant::find($user->id);
                 break;
             case 'Admin Personal Access Token':
                 $user = Admin::find($user->id);
@@ -37,6 +41,9 @@ class UtilController extends Controller
             case 'User Personal Access Token':
                 $user = User::find($user->id);
                 break;
+            case 'Restaurant Personal Access Token':
+                $user = Restaurant::find($user->id);
+                break;
             case 'Admin Personal Access Token':
                 $user = Admin::find($user->id);
                 break;
@@ -54,8 +61,11 @@ class UtilController extends Controller
     {
         $rules = [];
         foreach ($rule_list as $key => $rule) {
-            $check = request()->input($key) !== $model->toArray()[$key];
-            if ($check) $rules[] = $rule;
+            if (strpos($rule, 'file') > 0) {
+                $rule = str_replace('required', 'nullable', $rule);
+                $check = true;
+            } else $check = request()->input($key) !== $model->toArray()[$key];
+            if ($check) $rules[$key] = $rule;
         }
         return $rules;
     }
@@ -101,6 +111,7 @@ class UtilController extends Controller
                 'role' => $role
             ];
         } else if ($type === 'admin') $data = array_merge($data, []);
+        else if ($type === 'restaurant') $data = array_merge($data, []);
         return response()->json(['data' => $data, 'role' => $type,]);
     }
 

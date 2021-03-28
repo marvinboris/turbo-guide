@@ -1,0 +1,34 @@
+.Meal .hover {
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: all .25s;
+}
+
+.Meal .hover:hover {
+    opacity: 1;
+}
+
+@media (min-width: 1000px) {
+    .Meal {
+        width: calc(50% - 15px);
+    }
+}
+
+@media (min-width: 1400px) {
+    .Meal {
+        width: calc(33.33% - 15px);
+    }
+}
+
+@media (min-width: 1600px) {
+    .Meal {
+        width: calc(25% - 15px);
+    }
+}
+
+@media (min-width: 1900px) {
+    .Meal {
+        width: calc(20% - 15px);
+    }
+}

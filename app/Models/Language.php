@@ -22,4 +22,9 @@ class Language extends Model
     {
         return $this->hasMany(Admin::class);
     }
+
+    public function restaurants()
+    {
+        return $this->hasMany(Restaurant::class);
+    }
 }

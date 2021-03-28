@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import $ from 'jquery';
 
 import Backend from '../../containers/Backend/Layout';
+import BackendRestaurant from '../../containers/Backend/Restaurant/Layout';
 import Frontend from '../../containers/Frontend/Layout';
-import AuthUser from '../../containers/Auth/User/Layout'
-import AuthAdmin from '../../containers/Auth/Admin/Layout'
+import AuthRestaurant from '../../containers/Auth/Restaurant/Layout';
+import AuthUser from '../../containers/Auth/User/Layout';
+import AuthAdmin from '../../containers/Auth/Admin/Layout';
 
 import * as actions from '../../store/actions';
 
@@ -47,9 +49,11 @@ class Layout extends Component {
         let content = null;
         if (url.includes('auth/user')) content = <AuthUser>{children}</AuthUser>;
         else if (url.includes('auth/admin')) content = <AuthAdmin>{children}</AuthAdmin>;
-        else if (url.includes('user') || url.includes('admin')) content = <Backend>{children}</Backend>;
-        else content = <Frontend sideDrawerToggleHandler={this.sideDrawerToggleHandler}>{children}</Frontend>;
-        // else content = children;
+        else if (url.includes('/auth')) content = <AuthRestaurant>{children}</AuthRestaurant>;
+        else if (url.includes('/restaurant/')) content = <BackendRestaurant>{children}</BackendRestaurant>;
+        else if (url.includes('/user/') || url.includes('/admin/')) content = <Backend>{children}</Backend>;
+        else if (url.includes('/restaurants/')) content = <Frontend sideDrawerToggleHandler={this.sideDrawerToggleHandler}>{children}</Frontend>;
+        else content = children;
 
         return content;
     }

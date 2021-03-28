@@ -20,7 +20,7 @@ $white: #ffffff;
 $gray: #aaa;
 $black: #000000;
 $light: #cacaca;
-$soft: #f6f6f6;
+$soft: #eff0f4;
 $darklight: #1b223f;
 $darkhead: #292929;
 $darkfoot: #484848;
@@ -96,12 +96,13 @@ $colors: "green" $mygreen $white, "grayblue" $grayblue $white, "lightgreen" $myl
   .btn-#{$name} {
     background-color: $color;
     border-color: $color;
-    color: $font !important;
+    color: $font;
 
     &:hover,
     &:focus,
     &.focus {
       border-color: darken($color, 10%);
+      color: $font;
     }
 
     &:focus,

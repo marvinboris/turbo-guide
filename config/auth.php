@@ -42,8 +42,20 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
+            'driver' => 'passport',
             'provider' => 'users',
+            'hash' => false,
+        ],
+
+        'admin' => [
+            'driver' => 'passport',
+            'provider' => 'admins',
+            'hash' => false,
+        ],
+
+        'restaurant' => [
+            'driver' => 'passport',
+            'provider' => 'restaurants',
             'hash' => false,
         ],
     ],
@@ -71,10 +83,15 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
+
+        'restaurants' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Restaurant::class,
+        ],
     ],
 
     /*

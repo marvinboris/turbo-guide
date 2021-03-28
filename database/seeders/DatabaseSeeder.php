@@ -19,6 +19,11 @@ class DatabaseSeeder extends Seeder
             FeatureSeeder::class,
             AdminSeeder::class,
             UserSeeder::class,
+            RestaurantSeeder::class,
+            CategorySeeder::class,
+            MealSeeder::class,
+            AddonSeeder::class,
+            DrinkSeeder::class,
         ]);
     }
 }

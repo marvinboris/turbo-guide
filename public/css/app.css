@@ -13129,10 +13129,11 @@ h3 {
 .btn-green {
   background-color: #009c1a;
   border-color: #009c1a;
-  color: #ffffff !important;
+  color: #ffffff;
 }
 .btn-green:hover, .btn-green:focus, .btn-green.focus {
   border-color: #006912;
+  color: #ffffff;
 }
 .btn-green:focus, .btn-green.focus {
   box-shadow: 0 0 0 0.2rem rgba(0, 156, 26, 0.5);
@@ -13543,10 +13544,11 @@ h3 {
 .btn-grayblue {
   background-color: #1b223f;
   border-color: #1b223f;
-  color: #ffffff !important;
+  color: #ffffff;
 }
 .btn-grayblue:hover, .btn-grayblue:focus, .btn-grayblue.focus {
   border-color: #0c0f1b;
+  color: #ffffff;
 }
 .btn-grayblue:focus, .btn-grayblue.focus {
   box-shadow: 0 0 0 0.2rem rgba(27, 34, 63, 0.5);
@@ -13957,10 +13959,11 @@ h3 {
 .btn-lightgreen {
   background-color: #97c300;
   border-color: #97c300;
-  color: #343a40 !important;
+  color: #343a40;
 }
 .btn-lightgreen:hover, .btn-lightgreen:focus, .btn-lightgreen.focus {
   border-color: #709000;
+  color: #343a40;
 }
 .btn-lightgreen:focus, .btn-lightgreen.focus {
   box-shadow: 0 0 0 0.2rem rgba(151, 195, 0, 0.5);
@@ -14371,10 +14374,11 @@ h3 {
 .btn-darkgreen {
   background-color: #405202;
   border-color: #405202;
-  color: #ffffff !important;
+  color: #ffffff;
 }
 .btn-darkgreen:hover, .btn-darkgreen:focus, .btn-darkgreen.focus {
   border-color: #192001;
+  color: #ffffff;
 }
 .btn-darkgreen:focus, .btn-darkgreen.focus {
   box-shadow: 0 0 0 0.2rem rgba(64, 82, 2, 0.5);
@@ -14785,10 +14789,11 @@ h3 {
 .btn-yellow {
   background-color: #edbc03;
   border-color: #edbc03;
-  color: #ffffff !important;
+  color: #ffffff;
 }
 .btn-yellow:hover, .btn-yellow:focus, .btn-yellow.focus {
   border-color: #ba9403;
+  color: #ffffff;
 }
 .btn-yellow:focus, .btn-yellow.focus {
   box-shadow: 0 0 0 0.2rem rgba(237, 188, 3, 0.5);
@@ -15199,10 +15204,11 @@ h3 {
 .btn-gold {
   background-color: #d1b853;
   border-color: #d1b853;
-  color: #ffffff !important;
+  color: #ffffff;
 }
 .btn-gold:hover, .btn-gold:focus, .btn-gold.focus {
   border-color: #bea333;
+  color: #ffffff;
 }
 .btn-gold:focus, .btn-gold.focus {
   box-shadow: 0 0 0 0.2rem rgba(209, 184, 83, 0.5);
@@ -15613,10 +15619,11 @@ h3 {
 .btn-lightyellow {
   background-color: #fcd027;
   border-color: #fcd027;
-  color: #ffffff !important;
+  color: #ffffff;
 }
 .btn-lightyellow:hover, .btn-lightyellow:focus, .btn-lightyellow.focus {
   border-color: #edbc03;
+  color: #ffffff;
 }
 .btn-lightyellow:focus, .btn-lightyellow.focus {
   box-shadow: 0 0 0 0.2rem rgba(252, 208, 39, 0.5);
@@ -16027,10 +16034,11 @@ h3 {
 .btn-red {
   background-color: #ff0b33;
   border-color: #ff0b33;
-  color: #ffffff !important;
+  color: #ffffff;
 }
 .btn-red:hover, .btn-red:focus, .btn-red.focus {
   border-color: #d70023;
+  color: #ffffff;
 }
 .btn-red:focus, .btn-red.focus {
   box-shadow: 0 0 0 0.2rem rgba(255, 11, 51, 0.5);
@@ -16441,10 +16449,11 @@ h3 {
 .btn-purered {
   background-color: #f60929;
   border-color: #f60929;
-  color: #ffffff !important;
+  color: #ffffff;
 }
 .btn-purered:hover, .btn-purered:focus, .btn-purered.focus {
   border-color: #c50721;
+  color: #ffffff;
 }
 .btn-purered:focus, .btn-purered.focus {
   box-shadow: 0 0 0 0.2rem rgba(246, 9, 41, 0.5);
@@ -16855,10 +16864,11 @@ h3 {
 .btn-orange {
   background-color: #e98809;
   border-color: #e98809;
-  color: #ffffff !important;
+  color: #ffffff;
 }
 .btn-orange:hover, .btn-orange:focus, .btn-orange.focus {
   border-color: #b86b07;
+  color: #ffffff;
 }
 .btn-orange:focus, .btn-orange.focus {
   box-shadow: 0 0 0 0.2rem rgba(233, 136, 9, 0.5);
@@ -17269,10 +17279,11 @@ h3 {
 .btn-oranger {
   background-color: #f67e09;
   border-color: #f67e09;
-  color: #ffffff !important;
+  color: #ffffff;
 }
 .btn-oranger:hover, .btn-oranger:focus, .btn-oranger.focus {
   border-color: #c56507;
+  color: #ffffff;
 }
 .btn-oranger:focus, .btn-oranger.focus {
   box-shadow: 0 0 0 0.2rem rgba(246, 126, 9, 0.5);
@@ -17683,10 +17694,11 @@ h3 {
 .btn-brown {
   background-color: #880015;
   border-color: #880015;
-  color: #ffffff !important;
+  color: #ffffff;
 }
 .btn-brown:hover, .btn-brown:focus, .btn-brown.focus {
   border-color: #55000d;
+  color: #ffffff;
 }
 .btn-brown:focus, .btn-brown.focus {
   box-shadow: 0 0 0 0.2rem rgba(136, 0, 21, 0.5);
@@ -18097,10 +18109,11 @@ h3 {
 .btn-scarlet {
   background-color: #8d004b;
   border-color: #8d004b;
-  color: #ffffff !important;
+  color: #ffffff;
 }
 .btn-scarlet:hover, .btn-scarlet:focus, .btn-scarlet.focus {
   border-color: #5a0030;
+  color: #ffffff;
 }
 .btn-scarlet:focus, .btn-scarlet.focus {
   box-shadow: 0 0 0 0.2rem rgba(141, 0, 75, 0.5);
@@ -18511,10 +18524,11 @@ h3 {
 .btn-blue {
   background-color: #0054a6;
   border-color: #0054a6;
-  color: #ffffff !important;
+  color: #ffffff;
 }
 .btn-blue:hover, .btn-blue:focus, .btn-blue.focus {
   border-color: #003a73;
+  color: #ffffff;
 }
 .btn-blue:focus, .btn-blue.focus {
   box-shadow: 0 0 0 0.2rem rgba(0, 84, 166, 0.5);
@@ -18925,10 +18939,11 @@ h3 {
 .btn-lightblue {
   background-color: #62bafe;
   border-color: #62bafe;
-  color: #ffffff !important;
+  color: #ffffff;
 }
 .btn-lightblue:hover, .btn-lightblue:focus, .btn-lightblue.focus {
   border-color: #2fa4fe;
+  color: #ffffff;
 }
 .btn-lightblue:focus, .btn-lightblue.focus {
   box-shadow: 0 0 0 0.2rem rgba(98, 186, 254, 0.5);
@@ -19339,10 +19354,11 @@ h3 {
 .btn-pink {
   background-color: #ea0d68;
   border-color: #ea0d68;
-  color: #ffffff !important;
+  color: #ffffff;
 }
 .btn-pink:hover, .btn-pink:focus, .btn-pink.focus {
   border-color: #ba0a53;
+  color: #ffffff;
 }
 .btn-pink:focus, .btn-pink.focus {
   box-shadow: 0 0 0 0.2rem rgba(234, 13, 104, 0.5);
@@ -19753,10 +19769,11 @@ h3 {
 .btn-darkblue {
   background-color: #0c2340;
   border-color: #0c2340;
-  color: #ffffff !important;
+  color: #ffffff;
 }
 .btn-darkblue:hover, .btn-darkblue:focus, .btn-darkblue.focus {
   border-color: #040c15;
+  color: #ffffff;
 }
 .btn-darkblue:focus, .btn-darkblue.focus {
   box-shadow: 0 0 0 0.2rem rgba(12, 35, 64, 0.5);
@@ -20167,10 +20184,11 @@ h3 {
 .btn-white {
   background-color: #ffffff;
   border-color: #ffffff;
-  color: #000000 !important;
+  color: #000000;
 }
 .btn-white:hover, .btn-white:focus, .btn-white.focus {
   border-color: #e6e6e6;
+  color: #000000;
 }
 .btn-white:focus, .btn-white.focus {
   box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
@@ -20581,10 +20599,11 @@ h3 {
 .btn-black {
   background-color: #000000;
   border-color: #000000;
-  color: #ffffff !important;
+  color: #ffffff;
 }
 .btn-black:hover, .btn-black:focus, .btn-black.focus {
   border-color: black;
+  color: #ffffff;
 }
 .btn-black:focus, .btn-black.focus {
   box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.5);
@@ -20995,10 +21014,11 @@ h3 {
 .btn-gray {
   background-color: #aaa;
   border-color: #aaa;
-  color: #ffffff !important;
+  color: #ffffff;
 }
 .btn-gray:hover, .btn-gray:focus, .btn-gray.focus {
   border-color: #919191;
+  color: #ffffff;
 }
 .btn-gray:focus, .btn-gray.focus {
   box-shadow: 0 0 0 0.2rem rgba(170, 170, 170, 0.5);
@@ -21409,10 +21429,11 @@ h3 {
 .btn-darklight {
   background-color: #1b223f;
   border-color: #1b223f;
-  color: #ffffff !important;
+  color: #ffffff;
 }
 .btn-darklight:hover, .btn-darklight:focus, .btn-darklight.focus {
   border-color: #0c0f1b;
+  color: #ffffff;
 }
 .btn-darklight:focus, .btn-darklight.focus {
   box-shadow: 0 0 0 0.2rem rgba(27, 34, 63, 0.5);
@@ -21823,10 +21844,11 @@ h3 {
 .btn-darkhead {
   background-color: #292929;
   border-color: #292929;
-  color: #ffffff !important;
+  color: #ffffff;
 }
 .btn-darkhead:hover, .btn-darkhead:focus, .btn-darkhead.focus {
   border-color: #101010;
+  color: #ffffff;
 }
 .btn-darkhead:focus, .btn-darkhead.focus {
   box-shadow: 0 0 0 0.2rem rgba(41, 41, 41, 0.5);
@@ -22237,10 +22259,11 @@ h3 {
 .btn-darkfoot {
   background-color: #484848;
   border-color: #484848;
-  color: #ffffff !important;
+  color: #ffffff;
 }
 .btn-darkfoot:hover, .btn-darkfoot:focus, .btn-darkfoot.focus {
   border-color: #2f2f2f;
+  color: #ffffff;
 }
 .btn-darkfoot:focus, .btn-darkfoot.focus {
   box-shadow: 0 0 0 0.2rem rgba(72, 72, 72, 0.5);
@@ -22651,10 +22674,11 @@ h3 {
 .btn-border {
   background-color: #606060;
   border-color: #606060;
-  color: #ffffff !important;
+  color: #ffffff;
 }
 .btn-border:hover, .btn-border:focus, .btn-border.focus {
   border-color: #474747;
+  color: #ffffff;
 }
 .btn-border:focus, .btn-border.focus {
   box-shadow: 0 0 0 0.2rem rgba(96, 96, 96, 0.5);
@@ -23065,10 +23089,11 @@ h3 {
 .btn-light {
   background-color: #cacaca;
   border-color: #cacaca;
-  color: #000000 !important;
+  color: #000000;
 }
 .btn-light:hover, .btn-light:focus, .btn-light.focus {
   border-color: #b1b1b1;
+  color: #000000;
 }
 .btn-light:focus, .btn-light.focus {
   box-shadow: 0 0 0 0.2rem rgba(202, 202, 202, 0.5);
@@ -23479,10 +23504,11 @@ h3 {
 .btn-input {
   background-color: #28324c;
   border-color: #28324c;
-  color: #ffffff !important;
+  color: #ffffff;
 }
 .btn-input:hover, .btn-input:focus, .btn-input.focus {
   border-color: #161c2b;
+  color: #ffffff;
 }
 .btn-input:focus, .btn-input.focus {
   box-shadow: 0 0 0 0.2rem rgba(40, 50, 76, 0.5);
@@ -23893,10 +23919,11 @@ h3 {
 .btn-transparent {
   background-color: transparent;
   border-color: transparent;
-  color: #000000 !important;
+  color: #000000;
 }
 .btn-transparent:hover, .btn-transparent:focus, .btn-transparent.focus {
   border-color: rgba(0, 0, 0, 0);
+  color: #000000;
 }
 .btn-transparent:focus, .btn-transparent.focus {
   box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.5);
@@ -23947,403 +23974,404 @@ h3 {
 }
 
 .text-soft {
-  color: #f6f6f6 !important;
+  color: #eff0f4 !important;
 }
 
 :root {
-  --soft: #f6f6f6;
+  --soft: #eff0f4;
 }
 
 .nav-link.text-soft:not(.active) {
-  color: rgba(246, 246, 246, 0.5) !important;
+  color: rgba(239, 240, 244, 0.5) !important;
   transition: all 0.25s;
 }
 
 .nav-link.text-soft:not(.active):hover {
-  color: #f6f6f6 !important;
+  color: #eff0f4 !important;
 }
 
 .badge-soft {
-  background-color: #f6f6f6 !important;
+  background-color: #eff0f4 !important;
   color: #000000 !important;
 }
 
 .bg-soft {
-  background-color: #f6f6f6 !important;
+  background-color: #eff0f4 !important;
 }
 
 .bg-soft-5 {
-  background-color: rgba(246, 246, 246, 0.05) !important;
+  background-color: rgba(239, 240, 244, 0.05) !important;
 }
 
 .border-soft-5 {
-  border-color: rgba(246, 246, 246, 0.05) !important;
+  border-color: rgba(239, 240, 244, 0.05) !important;
 }
 
 .text-soft-5 {
-  color: rgba(246, 246, 246, 0.05);
+  color: rgba(239, 240, 244, 0.05);
 }
 
 :root {
-  --soft-5: rgba(246, 246, 246, 0.05);
+  --soft-5: rgba(239, 240, 244, 0.05);
 }
 
 .bg-soft-10 {
-  background-color: rgba(246, 246, 246, 0.1) !important;
+  background-color: rgba(239, 240, 244, 0.1) !important;
 }
 
 .border-soft-10 {
-  border-color: rgba(246, 246, 246, 0.1) !important;
+  border-color: rgba(239, 240, 244, 0.1) !important;
 }
 
 .text-soft-10 {
-  color: rgba(246, 246, 246, 0.1);
+  color: rgba(239, 240, 244, 0.1);
 }
 
 :root {
-  --soft-10: rgba(246, 246, 246, 0.1);
+  --soft-10: rgba(239, 240, 244, 0.1);
 }
 
 .bg-soft-15 {
-  background-color: rgba(246, 246, 246, 0.15) !important;
+  background-color: rgba(239, 240, 244, 0.15) !important;
 }
 
 .border-soft-15 {
-  border-color: rgba(246, 246, 246, 0.15) !important;
+  border-color: rgba(239, 240, 244, 0.15) !important;
 }
 
 .text-soft-15 {
-  color: rgba(246, 246, 246, 0.15);
+  color: rgba(239, 240, 244, 0.15);
 }
 
 :root {
-  --soft-15: rgba(246, 246, 246, 0.15);
+  --soft-15: rgba(239, 240, 244, 0.15);
 }
 
 .bg-soft-20 {
-  background-color: rgba(246, 246, 246, 0.2) !important;
+  background-color: rgba(239, 240, 244, 0.2) !important;
 }
 
 .border-soft-20 {
-  border-color: rgba(246, 246, 246, 0.2) !important;
+  border-color: rgba(239, 240, 244, 0.2) !important;
 }
 
 .text-soft-20 {
-  color: rgba(246, 246, 246, 0.2);
+  color: rgba(239, 240, 244, 0.2);
 }
 
 :root {
-  --soft-20: rgba(246, 246, 246, 0.2);
+  --soft-20: rgba(239, 240, 244, 0.2);
 }
 
 .bg-soft-25 {
-  background-color: rgba(246, 246, 246, 0.25) !important;
+  background-color: rgba(239, 240, 244, 0.25) !important;
 }
 
 .border-soft-25 {
-  border-color: rgba(246, 246, 246, 0.25) !important;
+  border-color: rgba(239, 240, 244, 0.25) !important;
 }
 
 .text-soft-25 {
-  color: rgba(246, 246, 246, 0.25);
+  color: rgba(239, 240, 244, 0.25);
 }
 
 :root {
-  --soft-25: rgba(246, 246, 246, 0.25);
+  --soft-25: rgba(239, 240, 244, 0.25);
 }
 
 .bg-soft-30 {
-  background-color: rgba(246, 246, 246, 0.3) !important;
+  background-color: rgba(239, 240, 244, 0.3) !important;
 }
 
 .border-soft-30 {
-  border-color: rgba(246, 246, 246, 0.3) !important;
+  border-color: rgba(239, 240, 244, 0.3) !important;
 }
 
 .text-soft-30 {
-  color: rgba(246, 246, 246, 0.3);
+  color: rgba(239, 240, 244, 0.3);
 }
 
 :root {
-  --soft-30: rgba(246, 246, 246, 0.3);
+  --soft-30: rgba(239, 240, 244, 0.3);
 }
 
 .bg-soft-35 {
-  background-color: rgba(246, 246, 246, 0.35) !important;
+  background-color: rgba(239, 240, 244, 0.35) !important;
 }
 
 .border-soft-35 {
-  border-color: rgba(246, 246, 246, 0.35) !important;
+  border-color: rgba(239, 240, 244, 0.35) !important;
 }
 
 .text-soft-35 {
-  color: rgba(246, 246, 246, 0.35);
+  color: rgba(239, 240, 244, 0.35);
 }
 
 :root {
-  --soft-35: rgba(246, 246, 246, 0.35);
+  --soft-35: rgba(239, 240, 244, 0.35);
 }
 
 .bg-soft-40 {
-  background-color: rgba(246, 246, 246, 0.4) !important;
+  background-color: rgba(239, 240, 244, 0.4) !important;
 }
 
 .border-soft-40 {
-  border-color: rgba(246, 246, 246, 0.4) !important;
+  border-color: rgba(239, 240, 244, 0.4) !important;
 }
 
 .text-soft-40 {
-  color: rgba(246, 246, 246, 0.4);
+  color: rgba(239, 240, 244, 0.4);
 }
 
 :root {
-  --soft-40: rgba(246, 246, 246, 0.4);
+  --soft-40: rgba(239, 240, 244, 0.4);
 }
 
 .bg-soft-45 {
-  background-color: rgba(246, 246, 246, 0.45) !important;
+  background-color: rgba(239, 240, 244, 0.45) !important;
 }
 
 .border-soft-45 {
-  border-color: rgba(246, 246, 246, 0.45) !important;
+  border-color: rgba(239, 240, 244, 0.45) !important;
 }
 
 .text-soft-45 {
-  color: rgba(246, 246, 246, 0.45);
+  color: rgba(239, 240, 244, 0.45);
 }
 
 :root {
-  --soft-45: rgba(246, 246, 246, 0.45);
+  --soft-45: rgba(239, 240, 244, 0.45);
 }
 
 .bg-soft-50 {
-  background-color: rgba(246, 246, 246, 0.5) !important;
+  background-color: rgba(239, 240, 244, 0.5) !important;
 }
 
 .border-soft-50 {
-  border-color: rgba(246, 246, 246, 0.5) !important;
+  border-color: rgba(239, 240, 244, 0.5) !important;
 }
 
 .text-soft-50 {
-  color: rgba(246, 246, 246, 0.5);
+  color: rgba(239, 240, 244, 0.5);
 }
 
 :root {
-  --soft-50: rgba(246, 246, 246, 0.5);
+  --soft-50: rgba(239, 240, 244, 0.5);
 }
 
 .bg-soft-55 {
-  background-color: rgba(246, 246, 246, 0.55) !important;
+  background-color: rgba(239, 240, 244, 0.55) !important;
 }
 
 .border-soft-55 {
-  border-color: rgba(246, 246, 246, 0.55) !important;
+  border-color: rgba(239, 240, 244, 0.55) !important;
 }
 
 .text-soft-55 {
-  color: rgba(246, 246, 246, 0.55);
+  color: rgba(239, 240, 244, 0.55);
 }
 
 :root {
-  --soft-55: rgba(246, 246, 246, 0.55);
+  --soft-55: rgba(239, 240, 244, 0.55);
 }
 
 .bg-soft-60 {
-  background-color: rgba(246, 246, 246, 0.6) !important;
+  background-color: rgba(239, 240, 244, 0.6) !important;
 }
 
 .border-soft-60 {
-  border-color: rgba(246, 246, 246, 0.6) !important;
+  border-color: rgba(239, 240, 244, 0.6) !important;
 }
 
 .text-soft-60 {
-  color: rgba(246, 246, 246, 0.6);
+  color: rgba(239, 240, 244, 0.6);
 }
 
 :root {
-  --soft-60: rgba(246, 246, 246, 0.6);
+  --soft-60: rgba(239, 240, 244, 0.6);
 }
 
 .bg-soft-65 {
-  background-color: rgba(246, 246, 246, 0.65) !important;
+  background-color: rgba(239, 240, 244, 0.65) !important;
 }
 
 .border-soft-65 {
-  border-color: rgba(246, 246, 246, 0.65) !important;
+  border-color: rgba(239, 240, 244, 0.65) !important;
 }
 
 .text-soft-65 {
-  color: rgba(246, 246, 246, 0.65);
+  color: rgba(239, 240, 244, 0.65);
 }
 
 :root {
-  --soft-65: rgba(246, 246, 246, 0.65);
+  --soft-65: rgba(239, 240, 244, 0.65);
 }
 
 .bg-soft-70 {
-  background-color: rgba(246, 246, 246, 0.7) !important;
+  background-color: rgba(239, 240, 244, 0.7) !important;
 }
 
 .border-soft-70 {
-  border-color: rgba(246, 246, 246, 0.7) !important;
+  border-color: rgba(239, 240, 244, 0.7) !important;
 }
 
 .text-soft-70 {
-  color: rgba(246, 246, 246, 0.7);
+  color: rgba(239, 240, 244, 0.7);
 }
 
 :root {
-  --soft-70: rgba(246, 246, 246, 0.7);
+  --soft-70: rgba(239, 240, 244, 0.7);
 }
 
 .bg-soft-75 {
-  background-color: rgba(246, 246, 246, 0.75) !important;
+  background-color: rgba(239, 240, 244, 0.75) !important;
 }
 
 .border-soft-75 {
-  border-color: rgba(246, 246, 246, 0.75) !important;
+  border-color: rgba(239, 240, 244, 0.75) !important;
 }
 
 .text-soft-75 {
-  color: rgba(246, 246, 246, 0.75);
+  color: rgba(239, 240, 244, 0.75);
 }
 
 :root {
-  --soft-75: rgba(246, 246, 246, 0.75);
+  --soft-75: rgba(239, 240, 244, 0.75);
 }
 
 .bg-soft-80 {
-  background-color: rgba(246, 246, 246, 0.8) !important;
+  background-color: rgba(239, 240, 244, 0.8) !important;
 }
 
 .border-soft-80 {
-  border-color: rgba(246, 246, 246, 0.8) !important;
+  border-color: rgba(239, 240, 244, 0.8) !important;
 }
 
 .text-soft-80 {
-  color: rgba(246, 246, 246, 0.8);
+  color: rgba(239, 240, 244, 0.8);
 }
 
 :root {
-  --soft-80: rgba(246, 246, 246, 0.8);
+  --soft-80: rgba(239, 240, 244, 0.8);
 }
 
 .bg-soft-85 {
-  background-color: rgba(246, 246, 246, 0.85) !important;
+  background-color: rgba(239, 240, 244, 0.85) !important;
 }
 
 .border-soft-85 {
-  border-color: rgba(246, 246, 246, 0.85) !important;
+  border-color: rgba(239, 240, 244, 0.85) !important;
 }
 
 .text-soft-85 {
-  color: rgba(246, 246, 246, 0.85);
+  color: rgba(239, 240, 244, 0.85);
 }
 
 :root {
-  --soft-85: rgba(246, 246, 246, 0.85);
+  --soft-85: rgba(239, 240, 244, 0.85);
 }
 
 .bg-soft-90 {
-  background-color: rgba(246, 246, 246, 0.9) !important;
+  background-color: rgba(239, 240, 244, 0.9) !important;
 }
 
 .border-soft-90 {
-  border-color: rgba(246, 246, 246, 0.9) !important;
+  border-color: rgba(239, 240, 244, 0.9) !important;
 }
 
 .text-soft-90 {
-  color: rgba(246, 246, 246, 0.9);
+  color: rgba(239, 240, 244, 0.9);
 }
 
 :root {
-  --soft-90: rgba(246, 246, 246, 0.9);
+  --soft-90: rgba(239, 240, 244, 0.9);
 }
 
 .bg-soft-95 {
-  background-color: rgba(246, 246, 246, 0.95) !important;
+  background-color: rgba(239, 240, 244, 0.95) !important;
 }
 
 .border-soft-95 {
-  border-color: rgba(246, 246, 246, 0.95) !important;
+  border-color: rgba(239, 240, 244, 0.95) !important;
 }
 
 .text-soft-95 {
-  color: rgba(246, 246, 246, 0.95);
+  color: rgba(239, 240, 244, 0.95);
 }
 
 :root {
-  --soft-95: rgba(246, 246, 246, 0.95);
+  --soft-95: rgba(239, 240, 244, 0.95);
 }
 
 .bg-soft-100 {
-  background-color: #f6f6f6 !important;
+  background-color: #eff0f4 !important;
 }
 
 .border-soft-100 {
-  border-color: #f6f6f6 !important;
+  border-color: #eff0f4 !important;
 }
 
 .text-soft-100 {
-  color: #f6f6f6;
+  color: #eff0f4;
 }
 
 :root {
-  --soft-100: #f6f6f6;
+  --soft-100: #eff0f4;
 }
 
 .shadow-soft {
-  box-shadow: 0 0.5rem 1rem rgba(246, 246, 246, 0.15) !important;
+  box-shadow: 0 0.5rem 1rem rgba(239, 240, 244, 0.15) !important;
 }
 
 .shadow-soft-lg {
-  box-shadow: 0 1rem 3rem rgba(246, 246, 246, 0.175) !important;
+  box-shadow: 0 1rem 3rem rgba(239, 240, 244, 0.175) !important;
 }
 
 .shadow-soft-circle {
-  box-shadow: 0 0 0 0.75rem rgba(246, 246, 246, 0.1) !important;
+  box-shadow: 0 0 0 0.75rem rgba(239, 240, 244, 0.1) !important;
 }
 
 .btn-soft {
-  background-color: #f6f6f6;
-  border-color: #f6f6f6;
-  color: #000000 !important;
+  background-color: #eff0f4;
+  border-color: #eff0f4;
+  color: #000000;
 }
 .btn-soft:hover, .btn-soft:focus, .btn-soft.focus {
-  border-color: #dddddd;
+  border-color: #d1d4df;
+  color: #000000;
 }
 .btn-soft:focus, .btn-soft.focus {
-  box-shadow: 0 0 0 0.2rem rgba(246, 246, 246, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(239, 240, 244, 0.5);
 }
 .btn-soft:hover, .btn-soft:focus, .btn-soft.active {
-  background-color: #e9e9e9;
+  background-color: #e0e2ea;
 }
 .btn-soft.disabled, .btn-soft:disabled {
-  background-color: rgba(246, 246, 246, 0.5);
+  background-color: rgba(239, 240, 244, 0.5);
 }
 
 .btn-outline-soft {
-  border-color: #f6f6f6;
-  color: #f6f6f6;
+  border-color: #eff0f4;
+  color: #eff0f4;
 }
 .btn-outline-soft:hover {
-  background-color: #f6f6f6;
+  background-color: #eff0f4;
   color: #000000;
 }
 .btn-outline-soft:focus, .btn-outline-soft.focus {
-  box-shadow: 0 0 0 0.2rem rgba(246, 246, 246, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(239, 240, 244, 0.5);
 }
 .btn-outline-soft.disabled, .btn-outline-soft:disabled {
   background-color: transparent;
-  color: #f6f6f6;
+  color: #eff0f4;
 }
 
 .border-soft {
-  border-color: #f6f6f6 !important;
+  border-color: #eff0f4 !important;
 }
 
 .scrollbar-soft {
-  scrollbar-color: #f6f6f6;
+  scrollbar-color: #eff0f4;
   scrollbar-width: 3px;
 }
 .scrollbar-soft::-webkit-scrollbar-track {
@@ -24356,7 +24384,7 @@ h3 {
   background-color: #f5f5f5;
 }
 .scrollbar-soft::-webkit-scrollbar-thumb {
-  background-color: #f6f6f6;
+  background-color: #eff0f4;
   border-radius: 3px;
 }
 
@@ -24588,6 +24616,126 @@ h3 {
 
 .text-50 {
   font-size: 50px !important;
+}
+
+.text-51 {
+  font-size: 51px !important;
+}
+
+.text-52 {
+  font-size: 52px !important;
+}
+
+.text-53 {
+  font-size: 53px !important;
+}
+
+.text-54 {
+  font-size: 54px !important;
+}
+
+.text-55 {
+  font-size: 55px !important;
+}
+
+.text-56 {
+  font-size: 56px !important;
+}
+
+.text-57 {
+  font-size: 57px !important;
+}
+
+.text-58 {
+  font-size: 58px !important;
+}
+
+.text-59 {
+  font-size: 59px !important;
+}
+
+.text-60 {
+  font-size: 60px !important;
+}
+
+.text-61 {
+  font-size: 61px !important;
+}
+
+.text-62 {
+  font-size: 62px !important;
+}
+
+.text-63 {
+  font-size: 63px !important;
+}
+
+.text-64 {
+  font-size: 64px !important;
+}
+
+.text-65 {
+  font-size: 65px !important;
+}
+
+.text-66 {
+  font-size: 66px !important;
+}
+
+.text-67 {
+  font-size: 67px !important;
+}
+
+.text-68 {
+  font-size: 68px !important;
+}
+
+.text-69 {
+  font-size: 69px !important;
+}
+
+.text-70 {
+  font-size: 70px !important;
+}
+
+.text-71 {
+  font-size: 71px !important;
+}
+
+.text-72 {
+  font-size: 72px !important;
+}
+
+.text-73 {
+  font-size: 73px !important;
+}
+
+.text-74 {
+  font-size: 74px !important;
+}
+
+.text-75 {
+  font-size: 75px !important;
+}
+
+.text-76 {
+  font-size: 76px !important;
+}
+
+.text-77 {
+  font-size: 77px !important;
+}
+
+.text-78 {
+  font-size: 78px !important;
+}
+
+.text-79 {
+  font-size: 79px !important;
+}
+
+.text-80 {
+  font-size: 80px !important;
 }
 
 .text-ellipsis-1 {
@@ -26915,6 +27063,8 @@ body {
 
 :root {
   --app-width: 412px;
+  --restaurant-sidebar-width: 335px;
+  --flex-container-height: 650px;
 }
 
 .badge-block {

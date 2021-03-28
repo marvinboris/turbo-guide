@@ -62,116 +62,69 @@ export {
 
 
 export {
-    deleteClassrooms,
-    getClassroom,
-    getClassrooms,
-    getClassroomsInfo,
-    patchClassrooms,
-    postClassrooms,
-    resetClassrooms
-} from './classrooms';
+    deleteRestaurants,
+    getRestaurant,
+    getRestaurants,
+    patchRestaurants,
+    postRestaurants,
+    resetRestaurants
+} from './restaurants';
 
 export {
-    deleteCycles,
-    getCycle,
-    getCycles,
-    patchCycles,
-    postCycles,
-    resetCycles
-} from './cycles';
+    deleteCategories,
+    getCategory,
+    getCategoriesInfo,
+    getCategories,
+    patchCategories,
+    postCategories,
+    resetCategories
+} from './categories';
 
 export {
-    deleteExamTypes,
-    getExamType,
-    getExamTypes,
-    patchExamTypes,
-    postExamTypes,
-    resetExamTypes
-} from './exam_types';
+    deleteMeals,
+    getMeal,
+    getMeals,
+    getMealsInfo,
+    patchMeals,
+    postMeals,
+    resetMeals
+} from './meals';
 
 export {
-    deleteExams,
-    getExam,
-    getExams,
-    getExamsInfo,
-    patchExams,
-    postExams,
-    resetExams
-} from './exams';
+    deleteAddons,
+    getAddon,
+    getAddons,
+    getAddonsInfo,
+    patchAddons,
+    postAddons,
+    resetAddons
+} from './addons';
 
 export {
-    deleteLevels,
-    getLevel,
-    getLevels,
-    getLevelsInfo,
-    patchLevels,
-    postLevels,
-    resetLevels
-} from './levels';
+    deleteDrinks,
+    getDrink,
+    getDrinks,
+    getDrinksInfo,
+    patchDrinks,
+    postDrinks,
+    resetDrinks
+} from './drinks';
 
 export {
-    deleteMarks,
-    getMark,
-    getMarks,
-    getMarksInfo,
-    patchMarks,
-    postMarks,
-    resetMarks
-} from './marks';
+    deleteComments,
+    getComment,
+    getComments,
+    getCommentsInfo,
+    patchComments,
+    postComments,
+    resetComments
+} from './comments';
 
 export {
-    deleteSequences,
-    getSequence,
-    getSequences,
-    getSequencesInfo,
-    patchSequences,
-    postSequences,
-    resetSequences
-} from './sequences';
-
-export {
-    deleteSessions,
-    getSession,
-    getSessions,
-    getSessionsInfo,
-    patchSessions,
-    postSessions,
-    resetSessions
-} from './sessions';
-
-export {
-    deleteStudents,
-    getStudent,
-    getStudents,
-    patchStudents,
-    postStudents,
-    resetStudents
-} from './students';
-
-export {
-    deleteSubjects,
-    getSubject,
-    getSubjects,
-    patchSubjects,
-    postSubjects,
-    resetSubjects
-} from './subjects';
-
-export {
-    deleteTrimesters,
-    getTrimester,
-    getTrimesters,
-    getTrimestersInfo,
-    patchTrimesters,
-    postTrimesters,
-    resetTrimesters
-} from './trimesters';
-
-export {
-    deleteYears,
-    getYear,
-    getYears,
-    patchYears,
-    postYears,
-    resetYears
-} from './years';
+    accountSettings,
+    calendarSettings,
+    cmsSettings,
+    getSettings,
+    resetSettings,
+    restaurantSettings
+} from './settings';

@@ -13,7 +13,7 @@ $fonts: "montserrat" Montserrat, "poppins" Poppins, "bahnschrift" Bahnschrift, "
   }
 }
 
-@for $i from 4 through 50 {
+@for $i from 4 through 80 {
   .text-#{$i} {
     font-size: $i * 1px !important;
   }

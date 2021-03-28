@@ -1,7 +1,6 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default ({ icon, children, className, user, dark = false }) =>
-    <div className={`${user ? "h4" : "h2"} mb-2 text-${dark ? "light" : "secondary"} ${className}`}>
-        <FontAwesomeIcon icon={icon} className={`mr-2 text-${dark ? "orange" : "reset"}`} fixedWidth />{children}
+export default ({ children, className, dark = false }) =>
+    <div className={`text-30 mb-1 text-${dark ? "light" : "secondary"} ${className}`}>
+        {children}
     </div>;

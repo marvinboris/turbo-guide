@@ -1,0 +1,7 @@
+.Meals .flex-container {
+    display: flex;
+    flex-flow: column wrap;
+    max-height: 750px;
+    align-content: flex-start;
+    padding-bottom: 50px;
+}

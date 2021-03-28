@@ -6,13 +6,32 @@ import { init } from 'aos';
 import Layout from './hoc/Layout/Layout';
 import asyncComponent from './hoc/asyncComponent/asyncComponent';
 
-import Home from './containers/Frontend/Home';
-
-import FrontendMeals from './containers/Frontend/Meals/Layout';
+import FrontendMeals from './containers/Frontend/Restaurants/Meals/Layout';
 
 import * as actions from './store/actions';
 
 import 'aos/dist/aos.css';
+
+// Restaurant routes
+const asyncRestaurantCategories = asyncComponent(() => import('./containers/Backend/Restaurant/Categories'));
+const asyncRestaurantCategoriesAdd = asyncComponent(() => import('./containers/Backend/Restaurant/Categories/Add'));
+const asyncRestaurantCategoriesEdit = asyncComponent(() => import('./containers/Backend/Restaurant/Categories/Edit'));
+
+const asyncRestaurantMeals = asyncComponent(() => import('./containers/Backend/Restaurant/Meals'));
+const asyncRestaurantMealsAdd = asyncComponent(() => import('./containers/Backend/Restaurant/Meals/Add'));
+const asyncRestaurantMealsEdit = asyncComponent(() => import('./containers/Backend/Restaurant/Meals/Edit'));
+
+const asyncRestaurantAddons = asyncComponent(() => import('./containers/Backend/Restaurant/Addons'));
+const asyncRestaurantAddonsAdd = asyncComponent(() => import('./containers/Backend/Restaurant/Addons/Add'));
+const asyncRestaurantAddonsEdit = asyncComponent(() => import('./containers/Backend/Restaurant/Addons/Edit'));
+
+const asyncRestaurantDrinks = asyncComponent(() => import('./containers/Backend/Restaurant/Drinks'));
+const asyncRestaurantDrinksAdd = asyncComponent(() => import('./containers/Backend/Restaurant/Drinks/Add'));
+const asyncRestaurantDrinksEdit = asyncComponent(() => import('./containers/Backend/Restaurant/Drinks/Edit'));
+
+const asyncRestaurantSettings = asyncComponent(() => import('./containers/Backend/Restaurant/Settings'));
+
+const asyncRestaurantDashboard = asyncComponent(() => import('./containers/Backend/Restaurant/Dashboard/Dashboard'));
 
 // User routes
 const asyncUserCmsGlobal = asyncComponent(() => import('./containers/Backend/User/Cms/Global'));
@@ -75,15 +94,21 @@ const asyncAdminUsersAdd = asyncComponent(() => import('./containers/Backend/Adm
 const asyncAdminUsersEdit = asyncComponent(() => import('./containers/Backend/Admin/Users/Edit'));
 
 // Auth routes
+const asyncRestaurantLogin = asyncComponent(() => import('./containers/Auth/Restaurant/Login/Login'));
+const asyncRestaurantRegister = asyncComponent(() => import('./containers/Auth/Restaurant/Register/Register'));
+const asyncRestaurantSuccess = asyncComponent(() => import('./containers/Auth/Restaurant/Success'));
+
 const asyncUserLogin = asyncComponent(() => import('./containers/Auth/User/Login/Login'));
 
 const asyncAdminLogin = asyncComponent(() => import('./containers/Auth/Admin/Login/Login'));
 const asyncAdminVerify = asyncComponent(() => import('./containers/Auth/Admin/Verify/Verify'));
 
 // Frontend routes
-const asyncMealsAddons = asyncComponent(() => import('./containers/Frontend/Meals/Addons'));
-const asyncMealsDescription = asyncComponent(() => import('./containers/Frontend/Meals/Description'));
-const asyncMealsComments = asyncComponent(() => import('./containers/Frontend/Meals/Comments'));
+const asyncRestaurantsMealsAddons = asyncComponent(() => import('./containers/Frontend/Restaurants/Meals/Addons'));
+const asyncRestaurantsMealsDescription = asyncComponent(() => import('./containers/Frontend/Restaurants/Meals/Description'));
+const asyncRestaurantsMealsComments = asyncComponent(() => import('./containers/Frontend/Restaurants/Meals/Comments'));
+
+const asyncRestaurantsHome = asyncComponent(() => import('./containers/Frontend/Restaurants/Home'));
 
 class App extends Component {
     componentDidMount() {
@@ -104,24 +129,55 @@ class App extends Component {
                 <Redirect path="/admin" to="/auth/admin/login" />
 
                 <Route path="/auth/user/login" component={asyncUserLogin} />
+                <Redirect path="/user" to="/auth/user/login" />
 
-                <Route path="/meals/:id">
+                <Route path="/auth/register/success" component={asyncRestaurantSuccess} />
+                {/* <Route path="/auth/reset/:id/:code" component={Reset} /> */}
+                <Route path="/auth/register" component={asyncRestaurantRegister} />
+                <Route path="/auth/login" component={asyncRestaurantLogin} />
+                <Redirect path="/restaurant" to="/auth/login" />
+                <Redirect path="/auth" to="/auth/login" />
+
+                <Route path="/restaurants/:md5/meals/:id">
                     <FrontendMeals>
                         <Switch>
-                            <Route path="/meals/:id/addons" component={asyncMealsAddons} />
-                            <Route path="/meals/:id/description" component={asyncMealsDescription} />
-                            <Route path="/meals/:id/comments" component={asyncMealsComments} />
+                            <Route path="/restaurants/:md5/meals/:id/addons" component={asyncRestaurantsMealsAddons} />
+                            <Route path="/restaurants/:md5/meals/:id/description" component={asyncRestaurantsMealsDescription} />
+                            <Route path="/restaurants/:md5/meals/:id/comments" component={asyncRestaurantsMealsComments} />
                         </Switch>
                     </FrontendMeals>
                 </Route>
+                <Route path="/restaurants/:md5" component={asyncRestaurantsHome} />
 
-                <Route path="/" component={Home} />
+                <Redirect path="/" to="/auth" />
             </Switch>
         );
 
         if (isAuthenticated) {
             routes = (
                 <Switch>
+                    <Route path="/restaurant/categories/:id/edit" component={asyncRestaurantCategoriesEdit} />
+                    <Route path="/restaurant/categories/add" component={asyncRestaurantCategoriesAdd} />
+                    <Route path="/restaurant/categories" component={asyncRestaurantCategories} />
+
+                    <Route path="/restaurant/meals/:id/edit" component={asyncRestaurantMealsEdit} />
+                    <Route path="/restaurant/meals/add" component={asyncRestaurantMealsAdd} />
+                    <Route path="/restaurant/meals" component={asyncRestaurantMeals} />
+
+                    <Route path="/restaurant/addons/:id/edit" component={asyncRestaurantAddonsEdit} />
+                    <Route path="/restaurant/addons/add" component={asyncRestaurantAddonsAdd} />
+                    <Route path="/restaurant/addons" component={asyncRestaurantAddons} />
+
+                    <Route path="/restaurant/drinks/:id/edit" component={asyncRestaurantDrinksEdit} />
+                    <Route path="/restaurant/drinks/add" component={asyncRestaurantDrinksAdd} />
+                    <Route path="/restaurant/drinks" component={asyncRestaurantDrinks} />
+
+                    <Route path="/restaurant/settings" component={asyncRestaurantSettings} />
+
+                    <Route path="/restaurant/dashboard" component={asyncRestaurantDashboard} />
+
+
+
                     <Route path="/user/cms/global" component={asyncUserCmsGlobal} />
                     <Route path="/user/cms/general" component={asyncUserCmsGeneral} />
                     <Route path="/user/cms/messages" component={asyncUserCmsMessages} />
@@ -131,7 +187,7 @@ class App extends Component {
 
                     <Route path="/user/dashboard" component={asyncUserDashboard} />
 
-                    <Route path="/user/features/:featureId/edit" component={asyncUserFeaturesEdit} />
+                    <Route path="/user/features/:id/edit" component={asyncUserFeaturesEdit} />
                     <Route path="/user/features/add" component={asyncUserFeaturesAdd} />
                     <Route path="/user/features" component={asyncUserFeatures} />
 
@@ -185,7 +241,18 @@ class App extends Component {
                     <Redirect path="/dashboard" to={`/${role}/dashboard`} />
                     <Redirect path="/auth" to={`/${role}/dashboard`} />
 
-                    <Route path="/" component={Home} />
+                    <Route path="/restaurants/:md5/meals/:id">
+                        <FrontendMeals>
+                            <Switch>
+                                <Route path="/restaurants/:md5/meals/:id/addons" component={asyncRestaurantsMealsAddons} />
+                                <Route path="/restaurants/:md5/meals/:id/description" component={asyncRestaurantsMealsDescription} />
+                                <Route path="/restaurants/:md5/meals/:id/comments" component={asyncRestaurantsMealsComments} />
+                            </Switch>
+                        </FrontendMeals>
+                    </Route>
+                    <Route path="/restaurants/:md5" component={asyncRestaurantsHome} />
+
+                    <Redirect path="/" to="/auth" />
                 </Switch>
             );
         }

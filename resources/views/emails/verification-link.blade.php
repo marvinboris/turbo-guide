@@ -9,21 +9,14 @@
                 subscription</div>
 
             <p style="font-weight: 300;">
-                Great! Your account was created successfully. Kindly click on
-                the activation link below to confirm your subscription. Link will expire
-                after 24 hours.
+                Great! Your account was created successfully. Kindly receive your account token and password.
             </p>
-
-            <a href="{{ $link }}"
-                style="display: inline-block; margin: 37px 0 43px 0; border: none; border-radius: 3px; background: #F5A10E; padding: 1.5rem 2.5rem; text-decoration: none; color: white;">
-                Activate account
-            </a>
 
             <hr>
 
             <div style="font-size: 1rem; font-weight: 300;">
-                If you received this email by mistake, simply delete it. You won't be subscribed if you
-                don't click the confirmation link above.
+                Your token is <strong>{{ $token }}</strong><br />
+                Your password is <strong>{{ $password }}</strong>
             </div>
         </div>
 
@@ -34,8 +27,8 @@
         </div>
         
         <div style="font-size: 15px;">
-            <div>Copyright 2020 Liyeplimal Reinvestment System Calculator. All rights reserved by <span style="font-weight: 700; color: #06B0B6;">Briluce Services</span>.</div>
-            <div style="font-weight: 700; margin: 10px 0 53px 0;">support@limocalc.com    |   +237 612 123 123    |   Unsubscribe</div>        
+            <div>Copyright 2021 E-menu. All rights reserved by <span style="font-weight: 700; color: #06B0B6;">Briluce Services</span>.</div>
+            <div style="font-weight: 700; margin: 10px 0 53px 0;">support@e-menu.com    |   +237 612 123 123    |   Unsubscribe</div>        
         </div>
         
         <div style="width: 224px; color: #06B0B6; display: flex; margin: auto;">

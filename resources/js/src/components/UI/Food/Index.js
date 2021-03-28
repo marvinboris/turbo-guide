@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 
 import './Food.css';
 
-export default ({ img, name, description, reference, meal, addon, qty, add, sub, id, children }) => {
+export default ({ photo, name, description, reference, meal, addon, qty, add, sub, id, md5, children }) => {
     const content = <>
         <div className="pb-1 d-flex">
             <div className="pr-2">
                 <div className="mr-1 position-relative">
-                    <div className="embed-responsive embed-responsive-1by1 rounded-8 shadow" style={{ width: 83, background: `url("${img}") no-repeat center`, backgroundSize: 'cover' }} />
+                    <div className="embed-responsive embed-responsive-1by1 rounded-8 shadow" style={{ width: 83, background: `url("${photo}") no-repeat center`, backgroundSize: 'cover' }} />
 
                     {addon && qty > 0 && <div className="position-absolute" style={{ top: 0, right: 0, transform: 'translate(50%,-50%)' }}>
                         <div className="rounded-circle border border-2 border-green bg-white d-flex justify-content-center align-items-center text-green text-300 text-8" style={{ width: 18, height: 18 }}>{qty}</div>
@@ -75,7 +75,7 @@ export default ({ img, name, description, reference, meal, addon, qty, add, sub,
     </>;
 
     return <div className={`Food pb-3 px-3 mb-3 border-bottom border-${addon ? "orange-10" : "soft"}`}>
-        {meal ? <Link to={`/meals/${id}/addons`} className="d-block text-decoration-none text-reset">
+        {meal ? <Link to={`/restaurants/${md5}/meals/${id}/addons`} className="d-block text-decoration-none text-reset">
             {content}
         </Link> : content}
     </div>;

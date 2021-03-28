@@ -916,26 +916,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (_ref) {
-  var icon = _ref.icon,
-      children = _ref.children,
+  var children = _ref.children,
       className = _ref.className,
-      user = _ref.user,
       _ref$dark = _ref.dark,
       dark = _ref$dark === void 0 ? false : _ref$dark;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    className: "".concat(user ? "h4" : "h2", " mb-2 text-").concat(dark ? "light" : "secondary", " ").concat(className),
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-      icon: icon,
-      className: "mr-2 text-".concat(dark ? "orange" : "reset"),
-      fixedWidth: true
-    }), children]
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    className: "text-30 mb-1 text-".concat(dark ? "light" : "secondary", " ").concat(className),
+    children: children
   });
 });
 
@@ -962,7 +953,7 @@ __webpack_require__.r(__webpack_exports__);
       _ref$dark = _ref.dark,
       dark = _ref$dark === void 0 ? false : _ref$dark;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    className: "text-".concat(dark ? "light" : "secondary", " lead small ml-4 pl-3 ").concat(className),
+    className: "text-".concat(dark ? "light" : "secondary", " text-18 text-300 ").concat(className),
     children: children
   });
 });

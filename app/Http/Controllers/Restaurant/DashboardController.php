@@ -34,6 +34,7 @@ class DashboardController extends Controller
         $mostViewed = [];
         foreach ($restaurant->meals()->orderBy('views', 'DESC')->limit(4)->get() as $meal) {
             $mostViewed[] = array_merge($meal->toArray(), [
+                'comments' => $meal->comments()->count(),
                 'price' => number_format($meal->price, 2),
             ]);
         }

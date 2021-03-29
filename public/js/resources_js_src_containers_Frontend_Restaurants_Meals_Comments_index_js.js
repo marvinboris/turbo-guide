@@ -200,7 +200,7 @@ var appreciations = [{
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_UI_Stars__WEBPACK_IMPORTED_MODULE_2__.default, {
                 readOnly: true,
-                mark: 4
+                mark: mark
               })
             })]
           })

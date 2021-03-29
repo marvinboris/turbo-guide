@@ -964,7 +964,7 @@ var Dashboard = /*#__PURE__*/function (_Component) {
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
                           className: "px-2 flex-fill",
                           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
-                            className: "rounded-pill bg-soft",
+                            className: "rounded-pill bg-soft overflow-hidden",
                             style: {
                               height: 20
                             },
@@ -972,12 +972,12 @@ var Dashboard = /*#__PURE__*/function (_Component) {
                               className: "bg-orange",
                               style: {
                                 height: 20,
-                                width: "".concat(marks[value], "%")
+                                width: "".concat(Math.round(comments > 0 ? marks[value] * 100 / comments : 0), "%")
                               }
                             })
                           })
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
-                          children: [marks[value], "%"]
+                          children: [Math.round(comments > 0 ? marks[value] * 100 / comments : 0), "%"]
                         })]
                       }, Math.random());
                     })

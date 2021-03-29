@@ -676,7 +676,7 @@ var Index = /*#__PURE__*/function (_Component) {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
                 icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_13__.faStar,
                 className: "text-yellow mr-1"
-              }), meal.views >= 1000 ? "".concat((meals.views / 1000).toFixed(1), "k") : meal.views, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+              }), meal.mark.toFixed(1), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
                 icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_13__.faCommentAlt,
                 className: "text-orange mr-1 ml-2"
               }), meal.comments >= 1000 ? "".concat((meals.comments / 1000).toFixed(1), "k") : meal.comments]

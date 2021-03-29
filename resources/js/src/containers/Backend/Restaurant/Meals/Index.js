@@ -86,7 +86,7 @@ class Index extends Component {
 
                 <div className="text-12">
                     <FontAwesomeIcon icon={faStar} className="text-yellow mr-1" />
-                    {meal.views >= 1000 ? `${(meals.views / 1000).toFixed(1)}k` : meal.views}
+                    {meal.mark.toFixed(1)}
 
                     <FontAwesomeIcon icon={faCommentAlt} className="text-orange mr-1 ml-2" />
                     {meal.comments >= 1000 ? `${(meals.comments / 1000).toFixed(1)}k` : meal.comments}

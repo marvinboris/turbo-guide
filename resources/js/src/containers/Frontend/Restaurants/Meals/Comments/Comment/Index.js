@@ -33,7 +33,7 @@ export default ({ name, mark = 0, body }) => {
                         <div className="mr-2 text-8">Ratings</div>
 
                         <div>
-                            <Stars readOnly mark={4} />
+                            <Stars readOnly mark={mark} />
                         </div>
                     </div>
                 </div>

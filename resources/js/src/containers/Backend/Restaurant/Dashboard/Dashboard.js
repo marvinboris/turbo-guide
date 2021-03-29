@@ -211,12 +211,12 @@ class Dashboard extends Component {
                                             <div className="text-primary" style={{ width: 41 }}>{value} {value > 1 ? plural : singular}</div>
 
                                             <div className="px-2 flex-fill">
-                                                <div className="rounded-pill bg-soft" style={{ height: 20 }}>
-                                                    <div className="bg-orange" style={{ height: 20, width: `${marks[value]}%` }} />
+                                                <div className="rounded-pill bg-soft overflow-hidden" style={{ height: 20 }}>
+                                                    <div className="bg-orange" style={{ height: 20, width: `${Math.round(comments > 0 ? marks[value] * 100 / comments : 0)}%` }} />
                                                 </div>
                                             </div>
 
-                                            <div>{marks[value]}%</div>
+                                            <div>{Math.round(comments > 0 ? marks[value] * 100 / comments : 0)}%</div>
                                         </div>)}
                                     </div>
 

@@ -59,7 +59,11 @@ class MealController extends Controller
             if (array_key_exists($i, $keys)) $filteredKeys[] = $keys[$i];
         }
         foreach ($filteredKeys as $id) {
-            $mostLiked[] = $restaurant->meals()->find($id);
+            $meal = $restaurant->meals()->find($id);
+            $mostLiked[] = array_merge($meal->toArray(), [
+                'comments' => $meal->comments()->count(),
+                'price' => number_format($meal->price, 2),
+            ]);
         }
 
         return [

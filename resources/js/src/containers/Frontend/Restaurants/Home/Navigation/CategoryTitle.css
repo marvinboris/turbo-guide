@@ -1,12 +1,12 @@
-.CategoryTitle a {
+.CategoryTitle div {
     color: var(--secondary);
     background-color: white;
     padding: 9px 18px;
     transition: all .25s;
 }
 
-.CategoryTitle a:hover,
-.CategoryTitle a.active {
+.CategoryTitle div:hover,
+.CategoryTitle div.active {
     color: white;
     background-color: var(--orange);
 }

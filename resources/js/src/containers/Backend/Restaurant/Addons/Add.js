@@ -104,7 +104,6 @@ class Add extends Component {
                                                     <option value={1}>{active}</option>
                                                     <option value={0}>{inactive}</option>
                                                 </FormInput>
-                                                <input type="file" id="photo" name="photo" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" />
                                             </Row>
                                         </div>
 
@@ -154,6 +153,7 @@ class Add extends Component {
                 </TitleWrapper>
                 <div>
                     {errors}
+                    <input type="file" id="photo" name="photo" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" />
                     {content}
                 </div>
             </>

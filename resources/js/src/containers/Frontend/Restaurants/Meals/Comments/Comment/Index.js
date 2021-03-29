@@ -2,7 +2,7 @@ import { faCheckCircle, faHeart, faThumbsDown, faThumbsUp } from '@fortawesome/f
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
-import Stars from '../../../../../components/UI/Stars';
+import Stars from '../../../../../../components/UI/Stars';
 
 const appreciations = [
     { color: 'green', lt: 5, text: 'Positive' },

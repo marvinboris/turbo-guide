@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { Col } from 'reactstrap';
-import { faTachometerAlt, faDrumstickBite, faStar, faCookie, faWineBottle, faMoneyBillWave, faDownload, faBox } from '@fortawesome/free-solid-svg-icons';
+import { faTachometerAlt, faDrumstickBite, faStar, faCookie, faWineBottle, faMoneyBillWave, faDownload, faBox, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // Components
@@ -31,7 +31,7 @@ class Dashboard extends Component {
         let {
             content: {
                 cms: {
-                    pages: { backend: { pages: { dashboard: { restaurant: { welcome, subtitle, blocks: { customer_review, total_meals, total_addons, total_drinks, credit_balance, recharge }, most_viewed, qr_code, download, subscription_plan, monthly, yearly, customer_reviews, customer_ratings, stars: { singular, plural }, general_overview } } } } }
+                    pages: { backend: { pages: { dashboard: { restaurant: { welcome, subtitle, blocks: { customer_review, total_meals, total_addons, total_drinks, credit_balance, recharge }, go_live, most_viewed, qr_code, download, subscription_plan, monthly, yearly, customer_reviews, customer_ratings, stars: { singular, plural }, general_overview } } } } }
                 }
             },
             backend: { dashboard: { loading, error, blocksData = {}, mostViewed = [], comments = 0, marks = {} } },
@@ -86,6 +86,14 @@ class Dashboard extends Component {
 
                 content = (
                     <>
+                        <div className="position-fixed pt-3 pr-5" style={{ top: 0, right: 0, zIndex: 1100 }}>
+                            <a href={`/restaurants/${md5}`} target="_blank" className="btn btn-green text-18 text-montserrat text-700 text-decoration-none py-3 px-4 rounded-4">
+                                {go_live}
+
+                                <FontAwesomeIcon icon={faExternalLinkAlt} className="ml-3" />
+                            </a>
+                        </div>
+
                         <div className="row mb-5">
                             <div className="col-lg-8">
                                 <div className="row">

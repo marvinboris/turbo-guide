@@ -29,7 +29,26 @@ export const getRestaurantsMeal = (md5, id) => async dispatch => {
         resData.addons = resData.addons.map(a => ({ ...a, qty: 0 }))
         resData.qty = 1;
         resData.total = resData.meal.price;
-        
+
+        dispatch(restaurantsSuccess(resData));
+    } catch (error) {
+        console.log(error);
+        dispatch(restaurantsFail(error));
+    }
+}
+
+export const postComment = (md5, id, data) => async dispatch => {
+    dispatch(restaurantsStart());
+
+    try {
+        const form = new FormData(data);
+        const res = await fetch(`${prefix}restaurants/${md5}/meals/${id}/comment`, {
+            method: 'POST',
+            body: form,
+        });
+        const resData = await res.json();
+        if (res.status === 422) throw new Error(Object.values(resData.errors).join('\n'));
+        else if (res.status !== 200 && res.status !== 201) throw new Error(resData.error.message);
         dispatch(restaurantsSuccess(resData));
     } catch (error) {
         console.log(error);

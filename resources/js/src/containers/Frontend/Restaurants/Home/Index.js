@@ -12,6 +12,7 @@ import Stars from '../../../../components/UI/Stars';
 import Navigation from './Navigation';
 
 import * as actions from '../../../../store/actions';
+import { updateObject } from '../../../../shared/utility';
 
 import './Home.css';
 
@@ -19,8 +20,8 @@ const Wrapper = ({ children, className, style }) => <div className={className} s
     {children}
 </div>;
 
-const Category = ({ children, name }) => <div style={{ padding: '15px 0px' }}>
-    {name && <div className="mb-3 d-flex justify-content-end" style={{ paddingRight: 11 }}>
+const Category = ({ children, name, id, active }) => <div id={`category-${id}`} className="category" style={{ padding: '15px 0px' }}>
+    {!active && <div className="mb-3 d-flex justify-content-end" style={{ paddingRight: 11 }}>
         <div className="text-13 text-500 px-4 py-2 bg-orange-30 text-orange rounded-pill">
             <div className="px-1">{name}</div>
         </div>
@@ -31,20 +32,75 @@ const Category = ({ children, name }) => <div style={{ padding: '15px 0px' }}>
     </div>
 </div>;
 
-const Stack = ({ icon, color, link, className = '' }) => <a href={link} target="__blank" className={`fa-stack fa-2x text-${color} text-10 ${className}`}>
+const Stack = ({ icon, color, link, className = '' }) => <a href={link} target="_blank" className={`fa-stack fa-2x text-${color} text-10 ${className}`}>
     <FontAwesomeIcon icon={faCircle} className="fa-stack-2x" />
     <FontAwesomeIcon icon={icon} className="fa-stack-1x fa-inverse" />
 </a>;
 
 class Home extends Component {
+    state = {
+        id: '',
+        categoryOffsets: [],
+    }
+
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (nextProps.frontend.restaurants.restaurant && prevState.id === '') {
+            const { categories } = nextProps.frontend.restaurants;
+            if (categories.length > 0) return updateObject(prevState, { id: categories[0].id });
+        }
+        return prevState;
+    }
+
     componentDidMount() {
         this.props.get(this.props.match.params.md5);
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.id === '' && this.state.id !== '') {
+            const categoryElts = document.getElementsByClassName("category");
+            const categoryOffsets = [];
+            let i = 0;
+            for (const categoryElt of categoryElts) {
+                categoryOffsets.push({ id: this.props.frontend.restaurants.categories[i].id, top: categoryElt.offsetTop, height: categoryElt.offsetHeight });
+                i++;
+            }
+            this.setState({ categoryOffsets }, () => document.addEventListener('scroll', this.scrollHandler));
+        }
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('scroll', this.scrollHandler);
+    }
+
+    scrollHandler = () => {
+        const stickyBlockHeight = document.querySelector(".sticky-top").offsetHeight;
+        const scrollTop = window.scrollY;
+
+        const { categoryOffsets, id } = this.state;
+        const activeCategory = categoryOffsets.find(el => scrollTop >= el.top - stickyBlockHeight + 51.5 && scrollTop < el.top + el.height - stickyBlockHeight + 51.5);
+
+        if (activeCategory && activeCategory.id !== id) this.setState({ id: activeCategory.id });
+        else if (!activeCategory && id !== categoryOffsets[0].id) this.setState({ id: categoryOffsets[0].id });
+    }
+
+    onClick = id => {
+        this.setState({ id }, () => {
+            const stickyBlockHeight = document.querySelector(".sticky-top").offsetHeight;
+            const { categoryOffsets } = this.state;
+            let index = 0;
+            const category = categoryOffsets.find((el, i) => {
+                index = i;
+                return el.id === id;
+            });
+            if (category) window.scrollTo(0, category.top - stickyBlockHeight + (index === 0 ? 0 : 51.5));
+        });
+    }
+
     render() {
         const { frontend: { restaurants: { restaurant = {}, categories = [] } } } = this.props;
+        const { id } = this.state;
 
-        const categoriesContent = categories.map(category => <Category key={JSON.stringify(category) + Math.random()} name={category.name}>
+        const categoriesContent = categories.map(category => <Category id={category.id} active={category.id === id} key={JSON.stringify(category) + Math.random()} name={category.name}>
             {category.meals && category.meals.map(meal => <Meal key={JSON.stringify(meal) + Math.random()} {...meal} md5={this.props.match.params.md5} />)}
         </Category>);
 
@@ -107,7 +163,7 @@ class Home extends Component {
                             <div className="text-8">Ratings</div>
 
                             <div className="mx-1">
-                                <Stars readOnly lg mark={+restaurant.mark} />
+                                {restaurant.mark && <Stars readOnly lg mark={+restaurant.mark} />}
                             </div>
 
                             <div className="text-orange text-6 text-700">
@@ -119,7 +175,7 @@ class Home extends Component {
 
                 <Wrapper className="navigation scrollbar-orange" style={{ paddingTop: 18 }}>
                     <div className="text-truncate" style={{ overflow: 'visible' }}>
-                        <Navigation categories={categories} />
+                        <Navigation categories={categories.map(c => updateObject(c, { active: id === c.id }))} onClick={this.onClick} />
                     </div>
                 </Wrapper>
 
@@ -136,7 +192,7 @@ class Home extends Component {
                         <div className="bg-orange-30 rounded-pill py-2 px-2 text-500 text-orange text-13 position-relative category-select">
                             <div className="d-flex mx-1">
                                 <div className="text-truncate">
-                                    {categories.length > 0 && categories[0].name}
+                                    {categories.length > 0 && categories.find(c => c.id === id).name}
                                 </div>
 
                                 <div className="position-relative">
@@ -154,7 +210,7 @@ class Home extends Component {
                 </Wrapper>
             </div>
 
-            <div>
+            <div style={{ marginBottom: 250 }}>
                 {categoriesContent}
             </div>
         </div>;

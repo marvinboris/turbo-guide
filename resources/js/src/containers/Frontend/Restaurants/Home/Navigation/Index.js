@@ -2,11 +2,11 @@ import React from 'react';
 
 import './CategoryTitle.css';
 
-const CategoryTitle = ({ children, active }) => <div className="CategoryTitle pr-2 text-truncate d-inline-block">
-    <a href="#" className={`rounded-pill d-block border border-orange text-decoration-none text-10 text-truncate ${active ? "active" : ""}`}>{children}</a>
+const CategoryTitle = ({ children, onClick, active }) => <div className="CategoryTitle pr-2 text-truncate d-inline-block">
+    <div style={{ cursor: 'pointer' }} onClick={onClick} className={`rounded-pill d-block border border-orange text-decoration-none text-10 text-truncate ${active ? "active" : ""}`}>{children}</div>
 </div>;
 
-export default ({ categories = [] }) => <>
-    {categories.map(({ name, active }) => <CategoryTitle key={name + Math.random()} active={active}>{name}</CategoryTitle>)}
+export default ({ categories = [], onClick }) => <>
+    {categories.map(({ name, id, active }) => <CategoryTitle key={name + Math.random()} onClick={() => onClick(id)} active={active}>{name}</CategoryTitle>)}
 </>;
 

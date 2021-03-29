@@ -14,7 +14,7 @@ class Layout extends Component {
 
         return <div className="Frontend bg-soft">
             <div className="content min-vh-100 d-flex flex-column mx-auto shadow">
-                <main className="flex-fill bg-white text-secondary overflow-hidden">
+                <main className="flex-fill bg-white text-secondary">
                     {children}
                 </main>
 

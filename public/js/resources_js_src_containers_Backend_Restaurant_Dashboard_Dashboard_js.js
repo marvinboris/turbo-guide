@@ -684,6 +684,7 @@ var Dashboard = /*#__PURE__*/function (_Component) {
           total_drinks = _this$props$content$c2.total_drinks,
           credit_balance = _this$props$content$c2.credit_balance,
           recharge = _this$props$content$c2.recharge,
+          go_live = _this$props$content$c.go_live,
           most_viewed = _this$props$content$c.most_viewed,
           qr_code = _this$props$content$c.qr_code,
           download = _this$props$content$c.download,
@@ -771,7 +772,23 @@ var Dashboard = /*#__PURE__*/function (_Component) {
             }, JSON.stringify(meal) + Math.random());
           });
           content = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.Fragment, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
+              className: "position-fixed pt-3 pr-5",
+              style: {
+                top: 0,
+                right: 0,
+                zIndex: 1100
+              },
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("a", {
+                href: "/restaurants/".concat(md5),
+                target: "_blank",
+                className: "btn btn-green text-18 text-montserrat text-700 text-decoration-none py-3 px-4 rounded-4",
+                children: [go_live, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+                  icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faExternalLinkAlt,
+                  className: "ml-3"
+                })]
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
               className: "row mb-5",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
                 className: "col-lg-8",

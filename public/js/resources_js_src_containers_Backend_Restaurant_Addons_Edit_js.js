@@ -774,13 +774,6 @@ var Add = /*#__PURE__*/function (_Component) {
                             value: 0,
                             children: inactive
                           })]
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("input", {
-                          type: "file",
-                          id: "photo",
-                          name: "photo",
-                          className: "d-none",
-                          onChange: this.inputChangeHandler,
-                          accept: ".png,.jpg,.jpeg"
                         })]
                       })
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
@@ -866,7 +859,14 @@ var Add = /*#__PURE__*/function (_Component) {
             children: this.props.edit ? edit : add
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-          children: [errors, content]
+          children: [errors, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("input", {
+            type: "file",
+            id: "photo",
+            name: "photo",
+            className: "d-none",
+            onChange: this.inputChangeHandler,
+            accept: ".png,.jpg,.jpeg"
+          }), content]
         })]
       });
     }

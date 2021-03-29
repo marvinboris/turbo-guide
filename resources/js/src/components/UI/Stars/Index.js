@@ -14,7 +14,6 @@ export default class Stars extends Component {
             useGradient: false,
             callback: function (currentRating) {
                 $('input[name="mark"]').val(currentRating);
-                console.log(currentRating);
             }
         });
 
@@ -43,8 +42,8 @@ export default class Stars extends Component {
     render() {
         const { mark, readOnly, lg } = this.props;
 
-        return <div className="overflow-hidden" style={{ height: 15 }}>
-            <div style={{ top: -6 }} className={`position-relative ${lg ? "stars-14" : "stars-10"} ${readOnly ? "stars" : "ranking-stars"}`} data-rating={mark} />
+        return <div className="overflow-hidden" style={readOnly && { height: 15 }}>
+            <div style={readOnly && { top: -6 }} className={`position-relative ${lg ? "stars-14" : "stars-10"} ${readOnly ? "stars" : "ranking-stars"}`} data-rating={mark} />
         </div>;
     }
-} 
+}

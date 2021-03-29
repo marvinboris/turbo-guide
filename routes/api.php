@@ -227,6 +227,7 @@ Route::middleware('auth:admin,restaurant,api')->group(function () {
 });
 
 Route::prefix('restaurants')->name('restaurants.')->group(function () {
+    Route::post('{restaurant}/meals/{meal}/comment', 'FrontendController@comment')->name('comment');
     Route::get('{restaurant}/meals/{meal}', 'FrontendController@meal')->name('meal');
     Route::get('{restaurant}', 'FrontendController@show')->name('show');
 });

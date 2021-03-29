@@ -93,11 +93,11 @@ class Layout extends Component {
                     <div className="d-flex align-items-center">
                         <div className="mr-2 text-8">Ratings</div>
 
-                        {meal.mark && <div>
+                        {meal.mark !== undefined && <div>
                             <Stars readOnly mark={meal.mark} lg />
                         </div>}
 
-                        <div className="ml-1 text-6 text-700 text-orange">{meal.mark && <>({meal.mark.toFixed(1)})</>}</div>
+                        <div className="ml-1 text-6 text-700 text-orange">{meal.mark !== undefined && <>({meal.mark.toFixed(1)})</>}</div>
                     </div>
 
                     <div className="ml-auto text-8">
@@ -142,7 +142,7 @@ class Layout extends Component {
                 <NavItem to={`/restaurants/${md5}/meals/${meal.id}/comments`} icon={faComment}>Comments</NavItem>
             </Wrapper>
 
-            <div style={{ padding: '15px 0px' }}>
+            <div className="overflow-hidden" style={{ padding: '15px 0px' }}>
                 {errors}
                 {loading ? <div className="text-center">Loading...</div> : children}
             </div>

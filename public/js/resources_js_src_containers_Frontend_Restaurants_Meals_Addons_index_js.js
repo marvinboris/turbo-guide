@@ -33,7 +33,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
           className: "text-700",
-          children: props.price.toFixed(2)
+          children: props.formattedPrice
         }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
           className: "text-8",
           children: "XAF / Portion"

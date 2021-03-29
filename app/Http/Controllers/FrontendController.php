@@ -18,9 +18,17 @@ class FrontendController extends Controller
 
         $categories = [];
         foreach ($restaurant->categories as $category) {
-            if ($category->meals()->count() > 0) $categories[] = $category->toArray() + [
-                'meals' => $category->meals,
-            ];
+            if ($category->meals()->count() > 0) {
+                $meals = [];
+                foreach ($category->meals as $meal) {
+                    $meals[] = array_merge($meal->toArray(), [
+                        'price' => number_format($meal->price, 2,),
+                    ]);
+                }
+                $categories[] = array_merge($category->toArray(), [
+                    'meals' => $meals,
+                ]);
+            }
         }
 
         return response()->json([
@@ -38,7 +46,6 @@ class FrontendController extends Controller
             ],
             'categories' => $categories,
             'addons' => $restaurant->addons,
-            'comments' => $restaurant->comments,
         ]);
     }
 
@@ -54,9 +61,44 @@ class FrontendController extends Controller
             'message' => 'Meal not found.'
         ]);
 
+        $addons = [];
+        foreach ($restaurant->addons as $addon) {
+            $addons[] = $addon->toArray() + [
+                'formattedPrice' => number_format($addon->price, 2),
+            ];
+        }
+
         return response()->json([
             'meal' => $meal->toArray(),
-            'addons' => $restaurant->addons,
+            'addons' => $addons,
+            'comments' => $meal->comments,
+        ]);
+    }
+
+    public function comment(Request $request, $md5, $id)
+    {
+        $restaurant = Restaurant::whereMd5($md5)->first();
+        if (!$restaurant) return response()->json([
+            'message' => UtilController::message('Restaurant not found.'),
+        ]);
+
+        $meal = $restaurant->meals()->find($id);
+        if (!$meal) return response()->json([
+            'message' => UtilController::message('Meal not found.'),
+        ]);
+
+        $input = $request->validate([
+            'name' => 'required|string',
+            'mark' => 'required|integer',
+            'body' => 'required|string',
+            'country' => 'required|string',
+        ]);
+
+        $meal->comments()->create($input);
+
+        return response()->json([
+            'message' => UtilController::message('Comment successfully posted.'),
+            'comments' => $meal->comments,
         ]);
     }
 }

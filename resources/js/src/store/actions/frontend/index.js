@@ -6,4 +6,5 @@ export {
     resetRestaurants,
     subAddon,
     subMeal,
+    postComment,
 } from './restaurants';

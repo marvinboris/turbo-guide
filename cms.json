@@ -352,6 +352,7 @@
                         "restaurant": {
                             "welcome": "Welcome",
                             "subtitle": "Dashboard",
+                            "go_live": "Go Live",
                             "customer_reviews": "Customer reviews",
                             "customer_ratings": "customer ratings",
                             "most_viewed": "Most Viewed Meals",

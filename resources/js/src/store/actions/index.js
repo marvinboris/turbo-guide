@@ -103,14 +103,6 @@ export {
     patchMeals,
     deleteMeals,
     
-    resetDrinks,
-    getDrinks,
-    getDrinksInfo,
-    getDrink,
-    postDrinks,
-    patchDrinks,
-    deleteDrinks,
-    
     resetAddons,
     getAddons,
     getAddonsInfo,

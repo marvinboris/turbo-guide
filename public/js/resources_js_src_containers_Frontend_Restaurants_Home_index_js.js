@@ -3718,7 +3718,7 @@ var Home = /*#__PURE__*/function (_Component) {
           categoryOffsets = _this$state.categoryOffsets,
           id = _this$state.id;
       var activeCategory = categoryOffsets.find(function (el) {
-        return scrollTop >= el.top - stickyBlockHeight + 51.5 && scrollTop < el.top + el.height - stickyBlockHeight + 51.5;
+        return el.top - stickyBlockHeight + 51.5 < scrollTop && scrollTop <= el.top + el.height - stickyBlockHeight + 51.5;
       });
       if (activeCategory && activeCategory.id !== id) _this.setState({
         id: activeCategory.id
@@ -3728,18 +3728,28 @@ var Home = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "onClick", function (id) {
-      _this.setState({
-        id: id
-      }, function () {
-        var stickyBlockHeight = document.querySelector(".sticky-top").offsetHeight;
-        var categoryOffsets = _this.state.categoryOffsets;
-        var index = 0;
-        var category = categoryOffsets.find(function (el, i) {
-          index = i;
-          return el.id === id;
-        });
-        if (category) window.scrollTo(0, category.top - stickyBlockHeight + (index === 0 ? 0 : 51.5));
+      var stickyBlockHeight = document.querySelector(".sticky-top").offsetHeight;
+      var categoryOffsets = _this.state.categoryOffsets;
+      var index = 0;
+      var category = categoryOffsets.find(function (el, i) {
+        index = i;
+        return el.id === id;
       });
+
+      if (category) {
+        window.scroll({
+          top: category.top - stickyBlockHeight + (index === 0 ? 0 : 53),
+          behavior: 'smooth'
+        });
+        setTimeout(function () {
+          _this.setState({
+            id: id
+          }, function () {
+            return document.addEventListener('scroll', _this.scrollHandler);
+          });
+        }, 1000);
+        ;
+      }
     });
 
     return _this;
@@ -3972,9 +3982,7 @@ var Home = /*#__PURE__*/function (_Component) {
             })]
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
-          style: {
-            marginBottom: 250
-          },
+          className: "categories",
           children: categoriesContent
         })]
       });
@@ -4053,7 +4061,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".Home .carousel-inner {\r\n    height: 100% !important;\r\n}\r\n\r\n.Home .navigation {\r\n    overflow-x: auto;\r\n}\r\n\r\n.Home #banner {\r\n    position: relative;\r\n    z-index: 10;\r\n}\r\n\r\n.Home .category-select {\r\n    max-width: calc(var(--app-width) - 178px);\r\n}\r\n\r\n@media (max-width: 412px) {\r\n    .Home .category-select {\r\n        max-width: calc(100vw - 178px);\r\n    }\r\n}\r\n\r\n.Home .carousel-indicators li {\r\n    width: 27px;\r\n    height: 8px;\r\n    border-radius: 0.75rem;\r\n    overflow: hidden;\r\n    background-color: var(--border);\r\n    opacity: 0.39;\r\n    transition: all 0.25s;\r\n}\r\n\r\n.Home .carousel-indicators li.active {\r\n    width: 43px;\r\n    opacity: 1;\r\n    background-color: var(--blue);\r\n}\r\n\r\n.Home .carousel-control-prev,\r\n.Home .carousel-control-next {\r\n    width: 51px !important;\r\n    opacity: 1;\r\n    bottom: 40px;\r\n    top: auto;\r\n}\r\n\r\n.Home .carousel-control-prev {\r\n    height: 30px !important;\r\n    border-top-right-radius: 0 !important;\r\n    border-bottom-right-radius: 0 !important;\r\n    left: auto;\r\n    right: 91px;\r\n}\r\n\r\n.Home .carousel-control-next {\r\n    height: 40px !important;\r\n    border-top-left-radius: 0 !important;\r\n    border-bottom-left-radius: 0 !important;\r\n    right: 40px;\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".Home .categories {\r\n    padding-bottom: calc(100vh - 280px);\r\n}\r\n\r\n.Home .carousel-inner {\r\n    height: 100% !important;\r\n}\r\n\r\n.Home .navigation {\r\n    overflow-x: auto;\r\n}\r\n\r\n.Home #banner {\r\n    position: relative;\r\n    z-index: 10;\r\n}\r\n\r\n.Home .category-select {\r\n    max-width: calc(var(--app-width) - 178px);\r\n}\r\n\r\n@media (max-width: 412px) {\r\n    .Home .category-select {\r\n        max-width: calc(100vw - 178px);\r\n    }\r\n}\r\n\r\n.Home .carousel-indicators li {\r\n    width: 27px;\r\n    height: 8px;\r\n    border-radius: 0.75rem;\r\n    overflow: hidden;\r\n    background-color: var(--border);\r\n    opacity: 0.39;\r\n    transition: all 0.25s;\r\n}\r\n\r\n.Home .carousel-indicators li.active {\r\n    width: 43px;\r\n    opacity: 1;\r\n    background-color: var(--blue);\r\n}\r\n\r\n.Home .carousel-control-prev,\r\n.Home .carousel-control-next {\r\n    width: 51px !important;\r\n    opacity: 1;\r\n    bottom: 40px;\r\n    top: auto;\r\n}\r\n\r\n.Home .carousel-control-prev {\r\n    height: 30px !important;\r\n    border-top-right-radius: 0 !important;\r\n    border-bottom-right-radius: 0 !important;\r\n    left: auto;\r\n    right: 91px;\r\n}\r\n\r\n.Home .carousel-control-next {\r\n    height: 40px !important;\r\n    border-top-left-radius: 0 !important;\r\n    border-bottom-left-radius: 0 !important;\r\n    right: 40px;\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

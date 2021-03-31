@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Button, Col, FormGroup, Row } from 'reactstrap';
-import { faCalendar, faCheckCircle, faClock, faCog, faEdit, faEnvelope, faHome, faLocationArrow, faLock, faPhone, faSearchLocation, faUser, faUserTie } from '@fortawesome/free-solid-svg-icons';
+import { faArrowsAlt, faArrowsAltH, faCalendar, faCheckCircle, faClock, faCog, faEdit, faEnvelope, faHome, faLocationArrow, faLock, faPhone, faSearchLocation, faUser, faUserTie } from '@fortawesome/free-solid-svg-icons';
 import { faSave } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
@@ -59,6 +59,8 @@ class Settings extends Component {
         whatsapp: '',
         location: '',
         address: '',
+        currency: 'XAF',
+        position: '1',
 
         email: '',
         country: '',
@@ -68,10 +70,15 @@ class Settings extends Component {
         new_password_confirmation: '',
         photo: '',
 
+        banner_1: '',
+        banner_2: '',
+        banner_3: '',
+
         days: '',
         hours: '',
 
         countries: [],
+        currencies: [],
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
@@ -94,7 +101,11 @@ class Settings extends Component {
 
         const countries = Object.keys(phone).map(key => ({ country: key, code: phone[key], name: names[key] })).sort((a, b) => a.country > b.country);
 
-        this.setState({ countries });
+        const currenciesRes = await fetch(CORS + 'https://raw.githubusercontent.com/mhs/world-currencies/master/currencies.json', { method: 'GET', mode: 'cors' });
+
+        const currencies = await currenciesRes.json();
+
+        this.setState({ countries, currencies });
     }
 
     componentWillUnmount() {
@@ -131,7 +142,7 @@ class Settings extends Component {
         this.setState({ [name]: files ? files[0] : value });
     }
 
-    fileUpload = () => document.getElementById('photo').click()
+    fileUpload = id => document.getElementById(id).click()
 
     render() {
         let {
@@ -143,77 +154,106 @@ class Settings extends Component {
             backend: { settings: { loading, error, message, restaurant } },
         } = this.props;
         let {
-            name, owner, phone, whatsapp, location, address,
+            name, owner, phone, whatsapp, location, address, currency, position,
             email, country, token, password, new_password, new_password_confirmation, photo,
+            banner_1, banner_2, banner_3,
             days, hours,
-            countries,
+            countries, currencies
         } = this.state;
-        let content = null;
+        let restaurantContent, accountContent, cmsContent, calendarContent;
         let errors = null;
 
         const countriesOptions = countries.map(({ country, code, name }) => <option key={country} value={country} code={code}>{name}</option>);
+        const currenciesOptions = currencies.map(({ cc, symbol, name }) => <option key={cc} value={cc} symbol={symbol}>{name}</option>);
 
-        if (countries.length === 0 || loading) content = <Col xs={12}>
+        if (countries.length === 0 || currencies.length === 0 || loading) restaurantContent = <Col xs={12}>
             <CustomSpinner />
         </Col>;
         else {
             errors = <>
                 <Error err={error} />
             </>;
-            content = (
-                <>
-                    <Row>
-                        <Form disabled icon={faCog} title={title} subtitle={subtitle} innerClassName="row">
-                            <div className="col-12">
-                                <Feedback message={message} />
-                            </div>
+            let symbol;
+            const selectedCurrency = currencies.find(c => c.cc === currency);
+            if (selectedCurrency) symbol = selectedCurrency.symbol;
 
-                            <Block icon={faHome} save={save} onSubmit={this.restaurantSettingsSubmitHandler} title={form.restaurant_settings}>
-                                <FormInput type="text" icon={faHome} onChange={this.inputChangeHandler} value={name} name="name" required placeholder={form.name} />
-                                <FormInput type="text" icon={faUserTie} onChange={this.inputChangeHandler} value={owner} name="owner" required placeholder={form.owner} />
-                                <FormInput type="tel" icon={faPhone} onChange={this.inputChangeHandler} value={phone} name="phone" required placeholder={form.phone} />
-                                <FormInput type="tel" icon={faWhatsapp} onChange={this.inputChangeHandler} value={whatsapp} name="whatsapp" placeholder={form.whatsapp} />
-                                <FormInput type="text" icon={faLocationArrow} onChange={this.inputChangeHandler} value={location} name="location" placeholder={form.location} />
-                                <FormInput type="text" icon={faSearchLocation} onChange={this.inputChangeHandler} value={address} name="address" placeholder={form.address} />
-                            </Block>
+            restaurantContent = <>
+                <FormInput type="text" icon={faHome} onChange={this.inputChangeHandler} value={name} name="name" required placeholder={form.name} />
+                <FormInput type="text" icon={faUserTie} onChange={this.inputChangeHandler} value={owner} name="owner" required placeholder={form.owner} />
+                <FormInput type="tel" icon={faPhone} onChange={this.inputChangeHandler} value={phone} name="phone" required placeholder={form.phone} />
+                <FormInput type="tel" icon={faWhatsapp} onChange={this.inputChangeHandler} value={whatsapp} name="whatsapp" placeholder={form.whatsapp} />
+                <FormInput type="text" icon={faLocationArrow} onChange={this.inputChangeHandler} value={location} name="location" placeholder={form.location} />
+                <FormInput type="text" icon={faSearchLocation} onChange={this.inputChangeHandler} value={address} name="address" placeholder={form.address} />
+                <FormInput type="select" addon={<div className="text-center text-light" style={{ margin: '0 -10px' }}>{symbol}</div>} onChange={this.inputChangeHandler} value={currency} name="currency" required>
+                    <option>{form.select_currency}</option>
+                    {currenciesOptions}
+                </FormInput>
+                <FormInput type="select" icon={faArrowsAltH} onChange={this.inputChangeHandler} value={position} name="position" required>
+                    <option>{form.select_position}</option>
+                    <option value={0}>{form.left}</option>
+                    <option value={1}>{form.right}</option>
+                </FormInput>
+            </>;
 
-                            <Block icon={faUser} save={save} onSubmit={this.accountSettingsSubmitHandler} title={form.account_settings}>
-                                <FormInput type="email" icon={faEnvelope} onChange={this.inputChangeHandler} value={email} name="email" required placeholder={form.email} />
-                                <FormInput type="select" addon={<div>
-                                    <div className="rounded-circle mx-auto overflow-hidden position-relative d-flex justify-content-center align-items-center" style={{ width: 18, height: 18 }}>
-                                        <span className={`flag-icon text-large position-absolute flag-icon-${country.toLowerCase()}`} />
-                                    </div>
-                                </div>} onChange={this.inputChangeHandler} value={country} name="country" required>
-                                    <option>{form.select_country}</option>
-                                    {countriesOptions}
-                                </FormInput>
-                                <FormInput type="text" icon={faEdit} onChange={this.inputChangeHandler} value={token} name="token" readonly placeholder={form.token} />
-                                <FormInput type="password" icon={faLock} onChange={this.inputChangeHandler} value={password} name="password" placeholder={form.password} />
-                                <FormInput type="password" icon={faLock} onChange={this.inputChangeHandler} value={new_password} name="new_password" placeholder={form.new_password} />
-                                <FormInput type="password" icon={faLock} onChange={this.inputChangeHandler} value={new_password_confirmation} name="new_password_confirmation" placeholder={form.new_password_confirmation} />
-                                <input type="file" id="photo" name="photo" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" />
-                                <FormGroup>
-                                    <div className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', background: photo && `url("${photo}") no-repeat center`, backgroundSize: 'cover' }} onClick={this.fileUpload}>
-                                        {photo && (photo !== restaurant.photo) && <div className="text-center text-green">
-                                            <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
+            accountContent = <>
+                <FormInput type="email" icon={faEnvelope} onChange={this.inputChangeHandler} value={email} name="email" required placeholder={form.email} />
+                <FormInput type="select" addon={<div>
+                    <div className="rounded-circle mx-auto overflow-hidden position-relative d-flex justify-content-center align-items-center" style={{ width: 18, height: 18 }}>
+                        <span className={`flag-icon text-large position-absolute flag-icon-${country.toLowerCase()}`} />
+                    </div>
+                </div>} onChange={this.inputChangeHandler} value={country} name="country" required>
+                    <option>{form.select_country}</option>
+                    {countriesOptions}
+                </FormInput>
+                <FormInput type="text" icon={faEdit} onChange={this.inputChangeHandler} value={token} name="token" readonly placeholder={form.token} />
+                <FormInput type="password" icon={faLock} onChange={this.inputChangeHandler} value={password} name="password" placeholder={form.password} />
+                <FormInput type="password" icon={faLock} onChange={this.inputChangeHandler} value={new_password} name="new_password" placeholder={form.new_password} />
+                <FormInput type="password" icon={faLock} onChange={this.inputChangeHandler} value={new_password_confirmation} name="new_password_confirmation" placeholder={form.new_password_confirmation} />
+                <FormGroup>
+                    <div className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', background: photo && `url("${photo}") no-repeat center`, backgroundSize: 'cover' }} onClick={() => this.fileUpload("photo")}>
+                        {photo && (photo !== restaurant.photo) && <div className="text-center text-green">
+                            <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
 
-                                            <div className="mt-3">{selected_file}</div>
-                                        </div>}
-                                    </div>
-                                </FormGroup>
-                            </Block>
+                            <div className="mt-3">{selected_file}</div>
+                        </div>}
+                    </div>
+                </FormGroup>
+            </>;
 
-                            <Block icon={faCog} save={save} onSubmit={this.cmsSettingsSubmitHandler} title={form.cms_settings}>
-                            </Block>
+            cmsContent = <>
+                <FormGroup>
+                    <div className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', background: photo && `url("${banner_1}") no-repeat center`, backgroundSize: 'cover' }} onClick={() => this.fileUpload("banner-1")}>
+                        {banner_1 && (banner_1 !== restaurant.banner_1) && <div className="text-center text-green">
+                            <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
 
-                            <Block icon={faCalendar} save={save} onSubmit={this.calendarSettingsSubmitHandler} title={form.calendar_settings}>
-                                <FormInput type="text" icon={faCalendar} onChange={this.inputChangeHandler} value={days} name="days" required placeholder={form.days} />
-                                <FormInput type="text" icon={faClock} onChange={this.inputChangeHandler} value={hours} name="hours" required placeholder={form.hours} />
-                            </Block>
-                        </Form>
-                    </Row>
-                </>
-            );
+                            <div className="mt-3">{selected_file}</div>
+                        </div>}
+                    </div>
+                </FormGroup>
+                <FormGroup>
+                    <div className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', background: banner_2 && `url("${banner_2}") no-repeat center`, backgroundSize: 'cover' }} onClick={() => this.fileUpload("banner-2")}>
+                        {banner_2 && (banner_2 !== restaurant.banner_2) && <div className="text-center text-green">
+                            <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
+
+                            <div className="mt-3">{selected_file}</div>
+                        </div>}
+                    </div>
+                </FormGroup>
+                <FormGroup>
+                    <div className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', background: banner_3 && `url("${banner_3}") no-repeat center`, backgroundSize: 'cover' }} onClick={() => this.fileUpload("banner-3")}>
+                        {banner_3 && (banner_3 !== restaurant.banner_3) && <div className="text-center text-green">
+                            <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
+
+                            <div className="mt-3">{selected_file}</div>
+                        </div>}
+                    </div>
+                </FormGroup>
+            </>;
+
+            calendarContent = <>
+                <FormInput type="text" icon={faCalendar} onChange={this.inputChangeHandler} value={days} name="days" required placeholder={form.days} />
+                <FormInput type="text" icon={faClock} onChange={this.inputChangeHandler} value={hours} name="hours" required placeholder={form.hours} />
+            </>;
         }
 
         return (
@@ -225,7 +265,33 @@ class Settings extends Component {
                 </TitleWrapper>
                 <div>
                     {errors}
-                    {content}
+                    <Row>
+                        <Form disabled icon={faCog} title={title} subtitle={subtitle} innerClassName="row">
+                            <div className="col-12">
+                                <Feedback message={message} />
+                            </div>
+
+                            <Block icon={faHome} save={save} onSubmit={this.restaurantSettingsSubmitHandler} title={form.restaurant_settings}>
+                                {restaurantContent}
+                            </Block>
+
+                            <Block icon={faUser} save={save} onSubmit={this.accountSettingsSubmitHandler} title={form.account_settings}>
+                                <input type="file" id="photo" name="photo" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" />
+                                {accountContent}
+                            </Block>
+
+                            <Block icon={faCog} save={save} onSubmit={this.cmsSettingsSubmitHandler} title={form.cms_settings}>
+                                <input type="file" id="banner-1" name="banner_1" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" />
+                                <input type="file" id="banner-2" name="banner_2" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" />
+                                <input type="file" id="banner-3" name="banner_3" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" />
+                                {cmsContent}
+                            </Block>
+
+                            <Block icon={faCalendar} save={save} onSubmit={this.calendarSettingsSubmitHandler} title={form.calendar_settings}>
+                                {calendarContent}
+                            </Block>
+                        </Form>
+                    </Row>
                 </div>
             </>
         );

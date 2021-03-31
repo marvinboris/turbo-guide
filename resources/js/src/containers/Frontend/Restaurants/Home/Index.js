@@ -77,23 +77,26 @@ class Home extends Component {
         const scrollTop = window.scrollY;
 
         const { categoryOffsets, id } = this.state;
-        const activeCategory = categoryOffsets.find(el => scrollTop >= el.top - stickyBlockHeight + 51.5 && scrollTop < el.top + el.height - stickyBlockHeight + 51.5);
+        const activeCategory = categoryOffsets.find(el => el.top - stickyBlockHeight + 51.5 < scrollTop && scrollTop <= el.top + el.height - stickyBlockHeight + 51.5);
 
         if (activeCategory && activeCategory.id !== id) this.setState({ id: activeCategory.id });
         else if (!activeCategory && id !== categoryOffsets[0].id) this.setState({ id: categoryOffsets[0].id });
     }
 
     onClick = id => {
-        this.setState({ id }, () => {
-            const stickyBlockHeight = document.querySelector(".sticky-top").offsetHeight;
-            const { categoryOffsets } = this.state;
-            let index = 0;
-            const category = categoryOffsets.find((el, i) => {
-                index = i;
-                return el.id === id;
-            });
-            if (category) window.scrollTo(0, category.top - stickyBlockHeight + (index === 0 ? 0 : 51.5));
+        const stickyBlockHeight = document.querySelector(".sticky-top").offsetHeight;
+        const { categoryOffsets } = this.state;
+        let index = 0;
+        const category = categoryOffsets.find((el, i) => {
+            index = i;
+            return el.id === id;
         });
+        if (category) {
+            window.scroll({ top: category.top - stickyBlockHeight + (index === 0 ? 0 : 53), behavior: 'smooth' });
+            setTimeout(() => {
+                this.setState({ id }, () => document.addEventListener('scroll', this.scrollHandler))
+            }, 1000);;
+        }
     }
 
     render() {
@@ -210,7 +213,7 @@ class Home extends Component {
                 </Wrapper>
             </div>
 
-            <div style={{ marginBottom: 250 }}>
+            <div className="categories">
                 {categoriesContent}
             </div>
         </div>;

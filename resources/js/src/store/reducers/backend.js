@@ -119,11 +119,6 @@ const addonsStart = (state) => updateObject(state, { addons: updateObject(state.
 const addonsSuccess = (state, action) => updateObject(state, { addons: updateObject(state.addons, { loading: false, error: null, ...action }) });
 const addonsFail = (state, action) => updateObject(state, { addons: updateObject(state.addons, { loading: false, ...action }) });
 
-const drinksReset = (state) => updateObject(state, { drinks: initialState.drinks });
-const drinksStart = (state) => updateObject(state, { drinks: updateObject(state.drinks, { loading: true, message: null }) });
-const drinksSuccess = (state, action) => updateObject(state, { drinks: updateObject(state.drinks, { loading: false, error: null, ...action }) });
-const drinksFail = (state, action) => updateObject(state, { drinks: updateObject(state.drinks, { loading: false, ...action }) });
-
 const commentsReset = (state) => updateObject(state, { comments: initialState.comments });
 const commentsStart = (state) => updateObject(state, { comments: updateObject(state.comments, { loading: true, message: null }) });
 const commentsSuccess = (state, action) => updateObject(state, { comments: updateObject(state.comments, { loading: false, error: null, ...action }) });
@@ -197,11 +192,6 @@ export default (state = initialState, action) => {
         case actionTypes.ADDONS_START: return addonsStart(state, action);
         case actionTypes.ADDONS_SUCCESS: return addonsSuccess(state, action);
         case actionTypes.ADDONS_FAIL: return addonsFail(state, action);
-
-        case actionTypes.DRINKS_RESET: return drinksReset(state, action);
-        case actionTypes.DRINKS_START: return drinksStart(state, action);
-        case actionTypes.DRINKS_SUCCESS: return drinksSuccess(state, action);
-        case actionTypes.DRINKS_FAIL: return drinksFail(state, action);
 
         case actionTypes.COMMENTS_RESET: return commentsReset(state, action);
         case actionTypes.COMMENTS_START: return commentsStart(state, action);

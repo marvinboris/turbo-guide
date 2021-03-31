@@ -80,62 +80,58 @@ class Add extends Component {
             </>;
             content = (
                 <>
-                    <Row>
-                        <Form onSubmit={this.submitHandler} icon={faListAlt} title={this.props.edit ? edit : add} subtitle={subtitle} list={index} link="/restaurant/categories" innerClassName="row justify-content-center">
-                            <Col lg={9}>
-                                <Feedback message={message} />
+                    <Col lg={9}>
+                        <Feedback message={message} />
 
-                                {this.props.edit && <input type="hidden" name="_method" defaultValue="PATCH" />}
+                        {this.props.edit && <input type="hidden" name="_method" defaultValue="PATCH" />}
 
-                                <div className="shadow-lg rounded-8 bg-white px-5 py-4">
-                                    <Row className="my-3">
-                                        <div className="mb-3 text-14 col-12">{instructions}</div>
+                        <div className="shadow-lg rounded-8 bg-white px-5 py-4">
+                            <Row className="my-3">
+                                <div className="mb-3 text-14 col-12">{instructions}</div>
 
-                                        <div className="col-lg-9">
-                                            <Row>
-                                                <FormInput type="text" className="col-md-6" icon={faBook} onChange={this.inputChangeHandler} value={name} name="name" required placeholder={form.name} />
-                                                <FormInput type="text" className="col-md-6" icon={faPencilAlt} onChange={this.inputChangeHandler} value={description} name="description" required placeholder={form.description} />
-                                                <FormInput type="select" className="col-md-6" icon={faPencilAlt} onChange={this.inputChangeHandler} value={is_active} name="is_active" required>
-                                                    <option>{form.select_status}</option>
-                                                    <option value={1}>{active}</option>
-                                                    <option value={0}>{inactive}</option>
-                                                </FormInput>
-                                            </Row>
-                                        </div>
-
-                                        <div className="col-lg-3">
-                                            <div className="embed-responsive embed-responsive-1by1 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', background: photo && `url("${photo}") no-repeat center`, backgroundSize: 'cover' }} onClick={this.fileUpload}>
-                                                {this.props.edit
-                                                    ? photo && (photo !== category.photo) && <div className="text-center text-green">
-                                                        <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
-
-                                                        <div className="mt-3">{selected_file}</div>
-                                                    </div>
-                                                    : photo ? <div className="text-center text-green">
-                                                        <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
-
-                                                        <div className="mt-3">{selected_file}</div>
-                                                    </div> : <div className="text-center text-light overflow-hidden px-4">
-                                                        <div><FontAwesomeIcon icon={faFileImage} fixedWidth size="5x" /></div>
-
-                                                        <div className="mt-3 mb-1 text-center text-12 text-truncate">{form.upload}</div>
-
-                                                        <div className="text-center text-12 text-truncate">{form.size}</div>
-                                                    </div>}
-                                            </div>
-                                        </div>
-
-                                        <div className="col-12">
-                                            <Button color="orange" className="text-20 rounded-4 py-3 px-4">
-                                                <div className="mx-3">{save}<FontAwesomeIcon icon={faSave} className="ml-4" /></div>
-                                            </Button>
-                                        </div>
+                                <div className="col-lg-9">
+                                    <Row>
+                                        <FormInput type="text" className="col-md-6" icon={faBook} onChange={this.inputChangeHandler} value={name} name="name" required placeholder={form.name} />
+                                        <FormInput type="text" className="col-md-6" icon={faPencilAlt} onChange={this.inputChangeHandler} value={description} name="description" required placeholder={form.description} />
+                                        <FormInput type="select" className="col-md-6" icon={faPencilAlt} onChange={this.inputChangeHandler} value={is_active} name="is_active" required>
+                                            <option>{form.select_status}</option>
+                                            <option value={1}>{active}</option>
+                                            <option value={0}>{inactive}</option>
+                                        </FormInput>
                                     </Row>
                                 </div>
 
-                            </Col>
-                        </Form>
-                    </Row>
+                                <div className="col-lg-3">
+                                    <div className="embed-responsive embed-responsive-1by1 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', background: photo && `url("${photo}") no-repeat center`, backgroundSize: 'cover' }} onClick={this.fileUpload}>
+                                        {this.props.edit
+                                            ? photo && (photo !== category.photo) && <div className="text-center text-green">
+                                                <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
+
+                                                <div className="mt-3">{selected_file}</div>
+                                            </div>
+                                            : photo ? <div className="text-center text-green">
+                                                <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
+
+                                                <div className="mt-3">{selected_file}</div>
+                                            </div> : <div className="text-center text-light overflow-hidden px-4">
+                                                <div><FontAwesomeIcon icon={faFileImage} fixedWidth size="5x" /></div>
+
+                                                <div className="mt-3 mb-1 text-center text-12 text-truncate">{form.upload}</div>
+
+                                                <div className="text-center text-12 text-truncate">{form.size}</div>
+                                            </div>}
+                                    </div>
+                                </div>
+
+                                <div className="col-12">
+                                    <Button color="orange" className="text-20 rounded-4 py-3 px-4">
+                                        <div className="mx-3">{save}<FontAwesomeIcon icon={faSave} className="ml-4" /></div>
+                                    </Button>
+                                </div>
+                            </Row>
+                        </div>
+
+                    </Col>
                 </>
             );
         }
@@ -149,8 +145,12 @@ class Add extends Component {
                 </TitleWrapper>
                 <div>
                     {errors}
-                    <input type="file" id="photo" name="photo" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" />
-                    {content}
+                    <Row>
+                        <Form onSubmit={this.submitHandler} icon={faListAlt} title={this.props.edit ? edit : add} subtitle={subtitle} list={index} link="/restaurant/categories" innerClassName="row justify-content-center">
+                            <input type="file" id="photo" name="photo" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" />
+                            {content}
+                        </Form>
+                    </Row>
                 </div>
             </>
         );

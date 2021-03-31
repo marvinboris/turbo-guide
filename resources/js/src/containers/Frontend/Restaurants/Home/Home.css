@@ -1,3 +1,7 @@
+.Home .categories {
+    padding-bottom: calc(100vh - 280px);
+}
+
 .Home .carousel-inner {
     height: 100% !important;
 }

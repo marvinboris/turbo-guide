@@ -299,7 +299,7 @@
                             "add": "Add drink",
                             "index": "Drink list"
                         },
-                        "review": "Customer Review",
+                        "comments": "Customer Review",
                         "history": "Order History"
                     }
                 },
@@ -477,6 +477,10 @@
                             "whatsapp": "Restaurant's WhatsApp NO",
                             "location": "Restaurant's Location (Gmaps)",
                             "address": "Restaurant's Address",
+                            "currency": "Restaurant's Currency",
+                            "select_position": "Select currency position",
+                            "left": "Left",
+                            "right": "Right",
                             "email": "Email Address",
                             "country": "Country",
                             "token": "Restaurant Token",
@@ -567,6 +571,18 @@
                             "upload": "Upload Drink Image",
                             "size": "Max Size : 3 MB Format : 250 x 250",
                             "select_status": "Please select drink status"
+                        }
+                    },
+                    "comments": {
+                        "title": "Customer Review",
+                        "subtitle": "Here are your customers comments",
+                        "index": "Review list",
+                        "form": {
+                            "name": "Customer's Name",
+                            "body": "Comment's Body",
+                            "meal": "Meal's Name",
+                            "mark": "Assigned Mark",
+                            "created_at": "Posted On"
                         }
                     }
                 }

@@ -25,7 +25,7 @@ export default ({ data, toggle, logoutHandler, isOpen, selectItem, selectedItem,
                 header: { logout, close: close_, sure_logout },
                 sidebar: {
                     menu: {
-                        dashboard, meals, categories, addons, drinks, settings, review, history }
+                        dashboard, meals, categories, addons, settings, comments, history }
                 }
             }
         }
@@ -63,10 +63,9 @@ export default ({ data, toggle, logoutHandler, isOpen, selectItem, selectedItem,
         {sideDrawerItem(meals.title, null, faDrumstickBite, "/restaurant/meals")}
         {sideDrawerItem(categories.title, null, faListAlt, "/restaurant/categories")}
         {sideDrawerItem(addons.title, null, faCookie, "/restaurant/addons")}
-        {sideDrawerItem(drinks.title, null, faWineBottle, "/restaurant/drinks")}
 
         <div className="text-border text-16 px-3 py-2 mb-1 mt-4">OTHERS</div>
-        {sideDrawerItem(review, null, faThLarge, "/restaurant/review")}
+        {sideDrawerItem(comments, null, faThLarge, "/restaurant/comments")}
         {sideDrawerItem(history, null, faList, "/restaurant/history")}
         {sideDrawerItem(settings.title, null, faCog, "/restaurant/settings")}
 
@@ -104,7 +103,7 @@ export default ({ data, toggle, logoutHandler, isOpen, selectItem, selectedItem,
                     </div>
 
                     <div className="text-14 text-300 mb-5">
-                        Your Plan : <span className="text-500 text-orange">{plan && plan.name}</span>
+                        {plan ? <>Your Plan : <span className="text-500 text-orange">{plan && plan.name}</span></> : <>No Plan</>}
                     </div>
 
                     <div className="mb-5">

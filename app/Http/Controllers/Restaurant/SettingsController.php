@@ -14,7 +14,9 @@ class SettingsController extends Controller
         $restaurant = UtilController::get(request());
 
         return response()->json([
-            'restaurant' => $restaurant->toArray(),
+            'restaurant' => $restaurant->toArray() + [
+                'banners' => []
+            ],
         ]);
     }
 

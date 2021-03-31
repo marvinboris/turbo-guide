@@ -3734,12 +3734,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Button.js");
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Col.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Row.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/FormGroup.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/FormGroup.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Row.js");
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
 /* harmony import */ var _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @fortawesome/free-regular-svg-icons */ "./node_modules/@fortawesome/free-regular-svg-icons/index.es.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-/* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "./node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "./node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
 /* harmony import */ var _components_Backend_UI_Breadcrumb_Breadcrumb__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../components/Backend/UI/Breadcrumb/Breadcrumb */ "./resources/js/src/components/Backend/UI/Breadcrumb/Breadcrumb.js");
 /* harmony import */ var _components_Backend_UI_TitleWrapper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../components/Backend/UI/TitleWrapper */ "./resources/js/src/components/Backend/UI/TitleWrapper/index.js");
 /* harmony import */ var _components_UI_Titles_SpecialTitle_SpecialTitle__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../components/UI/Titles/SpecialTitle/SpecialTitle */ "./resources/js/src/components/UI/Titles/SpecialTitle/SpecialTitle.js");
@@ -3885,6 +3885,8 @@ var Settings = /*#__PURE__*/function (_Component) {
       whatsapp: '',
       location: '',
       address: '',
+      currency: 'XAF',
+      position: '1',
       email: '',
       country: '',
       token: '',
@@ -3892,9 +3894,13 @@ var Settings = /*#__PURE__*/function (_Component) {
       new_password: '',
       new_password_confirmation: '',
       photo: '',
+      banner_1: '',
+      banner_2: '',
+      banner_3: '',
       days: '',
       hours: '',
-      countries: []
+      countries: [],
+      currencies: []
     });
 
     _defineProperty(_assertThisInitialized(_this), "submitHandler", function (e) {
@@ -3934,8 +3940,8 @@ var Settings = /*#__PURE__*/function (_Component) {
       _this.setState(_defineProperty({}, name, files ? files[0] : value));
     });
 
-    _defineProperty(_assertThisInitialized(_this), "fileUpload", function () {
-      return document.getElementById('photo').click();
+    _defineProperty(_assertThisInitialized(_this), "fileUpload", function (id) {
+      return document.getElementById(id).click();
     });
 
     return _this;
@@ -3945,7 +3951,7 @@ var Settings = /*#__PURE__*/function (_Component) {
     key: "componentDidMount",
     value: function () {
       var _componentDidMount = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var phoneRes, namesRes, phone, names, countries;
+        var phoneRes, namesRes, phone, names, countries, currenciesRes, currencies;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -3987,11 +3993,25 @@ var Settings = /*#__PURE__*/function (_Component) {
                 }).sort(function (a, b) {
                   return a.country > b.country;
                 });
-                this.setState({
-                  countries: countries
+                _context.next = 17;
+                return fetch(CORS + 'https://raw.githubusercontent.com/mhs/world-currencies/master/currencies.json', {
+                  method: 'GET',
+                  mode: 'cors'
                 });
 
-              case 16:
+              case 17:
+                currenciesRes = _context.sent;
+                _context.next = 20;
+                return currenciesRes.json();
+
+              case 20:
+                currencies = _context.sent;
+                this.setState({
+                  countries: countries,
+                  currencies: currencies
+                });
+
+              case 22:
               case "end":
                 return _context.stop();
             }
@@ -4014,6 +4034,8 @@ var Settings = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var _this$props = this.props,
           _this$props$content$c = _this$props.content.cms.pages,
           _this$props$content$c2 = _this$props$content$c.components.form,
@@ -4037,6 +4059,8 @@ var Settings = /*#__PURE__*/function (_Component) {
           whatsapp = _this$state.whatsapp,
           location = _this$state.location,
           address = _this$state.address,
+          currency = _this$state.currency,
+          position = _this$state.position,
           email = _this$state.email,
           country = _this$state.country,
           token = _this$state.token,
@@ -4044,10 +4068,14 @@ var Settings = /*#__PURE__*/function (_Component) {
           new_password = _this$state.new_password,
           new_password_confirmation = _this$state.new_password_confirmation,
           photo = _this$state.photo,
+          banner_1 = _this$state.banner_1,
+          banner_2 = _this$state.banner_2,
+          banner_3 = _this$state.banner_3,
           days = _this$state.days,
           hours = _this$state.hours,
-          countries = _this$state.countries;
-      var content = null;
+          countries = _this$state.countries,
+          currencies = _this$state.currencies;
+      var restaurantContent, accountContent, cmsContent, calendarContent;
       var errors = null;
       var countriesOptions = countries.map(function (_ref2) {
         var country = _ref2.country,
@@ -4059,7 +4087,17 @@ var Settings = /*#__PURE__*/function (_Component) {
           children: name
         }, country);
       });
-      if (countries.length === 0 || loading) content = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_19__.default, {
+      var currenciesOptions = currencies.map(function (_ref3) {
+        var cc = _ref3.cc,
+            symbol = _ref3.symbol,
+            name = _ref3.name;
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("option", {
+          value: cc,
+          symbol: symbol,
+          children: name
+        }, cc);
+      });
+      if (countries.length === 0 || currencies.length === 0 || loading) restaurantContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_19__.default, {
         xs: 12,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_CustomSpinner_CustomSpinner__WEBPACK_IMPORTED_MODULE_9__.default, {})
       });else {
@@ -4068,194 +4106,273 @@ var Settings = /*#__PURE__*/function (_Component) {
             err: error
           })
         });
-        content = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.Fragment, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_20__.default, {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(_components_Backend_UI_Food_Form__WEBPACK_IMPORTED_MODULE_10__.default, {
-              disabled: true,
-              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faCog,
-              title: title,
-              subtitle: subtitle,
-              innerClassName: "row",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                className: "col-12",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_Feedback_Feedback__WEBPACK_IMPORTED_MODULE_12__.default, {
-                  message: message
+        var symbol;
+        var selectedCurrency = currencies.find(function (c) {
+          return c.cc === currency;
+        });
+        if (selectedCurrency) symbol = selectedCurrency.symbol;
+        restaurantContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+            type: "text",
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faHome,
+            onChange: this.inputChangeHandler,
+            value: name,
+            name: "name",
+            required: true,
+            placeholder: form.name
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+            type: "text",
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faUserTie,
+            onChange: this.inputChangeHandler,
+            value: owner,
+            name: "owner",
+            required: true,
+            placeholder: form.owner
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+            type: "tel",
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faPhone,
+            onChange: this.inputChangeHandler,
+            value: phone,
+            name: "phone",
+            required: true,
+            placeholder: form.phone
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+            type: "tel",
+            icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_20__.faWhatsapp,
+            onChange: this.inputChangeHandler,
+            value: whatsapp,
+            name: "whatsapp",
+            placeholder: form.whatsapp
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+            type: "text",
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faLocationArrow,
+            onChange: this.inputChangeHandler,
+            value: location,
+            name: "location",
+            placeholder: form.location
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+            type: "text",
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faSearchLocation,
+            onChange: this.inputChangeHandler,
+            value: address,
+            name: "address",
+            placeholder: form.address
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+            type: "select",
+            addon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+              className: "text-center text-light",
+              style: {
+                margin: '0 -10px'
+              },
+              children: symbol
+            }),
+            onChange: this.inputChangeHandler,
+            value: currency,
+            name: "currency",
+            required: true,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("option", {
+              children: form.select_currency
+            }), currenciesOptions]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+            type: "select",
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faArrowsAltH,
+            onChange: this.inputChangeHandler,
+            value: position,
+            name: "position",
+            required: true,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("option", {
+              children: form.select_position
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("option", {
+              value: 0,
+              children: form.left
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("option", {
+              value: 1,
+              children: form.right
+            })]
+          })]
+        });
+        accountContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+            type: "email",
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faEnvelope,
+            onChange: this.inputChangeHandler,
+            value: email,
+            name: "email",
+            required: true,
+            placeholder: form.email
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+            type: "select",
+            addon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                className: "rounded-circle mx-auto overflow-hidden position-relative d-flex justify-content-center align-items-center",
+                style: {
+                  width: 18,
+                  height: 18
+                },
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("span", {
+                  className: "flag-icon text-large position-absolute flag-icon-".concat(country.toLowerCase())
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(Block, {
-                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faHome,
-                save: save,
-                onSubmit: this.restaurantSettingsSubmitHandler,
-                title: form.restaurant_settings,
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
-                  type: "text",
-                  icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faHome,
-                  onChange: this.inputChangeHandler,
-                  value: name,
-                  name: "name",
-                  required: true,
-                  placeholder: form.name
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
-                  type: "text",
-                  icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faUserTie,
-                  onChange: this.inputChangeHandler,
-                  value: owner,
-                  name: "owner",
-                  required: true,
-                  placeholder: form.owner
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
-                  type: "tel",
-                  icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faPhone,
-                  onChange: this.inputChangeHandler,
-                  value: phone,
-                  name: "phone",
-                  required: true,
-                  placeholder: form.phone
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
-                  type: "tel",
-                  icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_21__.faWhatsapp,
-                  onChange: this.inputChangeHandler,
-                  value: whatsapp,
-                  name: "whatsapp",
-                  placeholder: form.whatsapp
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
-                  type: "text",
-                  icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faLocationArrow,
-                  onChange: this.inputChangeHandler,
-                  value: location,
-                  name: "location",
-                  placeholder: form.location
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
-                  type: "text",
-                  icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faSearchLocation,
-                  onChange: this.inputChangeHandler,
-                  value: address,
-                  name: "address",
-                  placeholder: form.address
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(Block, {
-                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faUser,
-                save: save,
-                onSubmit: this.accountSettingsSubmitHandler,
-                title: form.account_settings,
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
-                  type: "email",
-                  icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faEnvelope,
-                  onChange: this.inputChangeHandler,
-                  value: email,
-                  name: "email",
-                  required: true,
-                  placeholder: form.email
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
-                  type: "select",
-                  addon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                      className: "rounded-circle mx-auto overflow-hidden position-relative d-flex justify-content-center align-items-center",
-                      style: {
-                        width: 18,
-                        height: 18
-                      },
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("span", {
-                        className: "flag-icon text-large position-absolute flag-icon-".concat(country.toLowerCase())
-                      })
-                    })
-                  }),
-                  onChange: this.inputChangeHandler,
-                  value: country,
-                  name: "country",
-                  required: true,
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("option", {
-                    children: form.select_country
-                  }), countriesOptions]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
-                  type: "text",
-                  icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faEdit,
-                  onChange: this.inputChangeHandler,
-                  value: token,
-                  name: "token",
-                  readonly: true,
-                  placeholder: form.token
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
-                  type: "password",
-                  icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faLock,
-                  onChange: this.inputChangeHandler,
-                  value: password,
-                  name: "password",
-                  placeholder: form.password
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
-                  type: "password",
-                  icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faLock,
-                  onChange: this.inputChangeHandler,
-                  value: new_password,
-                  name: "new_password",
-                  placeholder: form.new_password
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
-                  type: "password",
-                  icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faLock,
-                  onChange: this.inputChangeHandler,
-                  value: new_password_confirmation,
-                  name: "new_password_confirmation",
-                  placeholder: form.new_password_confirmation
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("input", {
-                  type: "file",
-                  id: "photo",
-                  name: "photo",
-                  className: "d-none",
-                  onChange: this.inputChangeHandler,
-                  accept: ".png,.jpg,.jpeg"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_22__.default, {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                    className: "embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center",
-                    style: {
-                      cursor: 'pointer',
-                      background: photo && "url(\"".concat(photo, "\") no-repeat center"),
-                      backgroundSize: 'cover'
-                    },
-                    onClick: this.fileUpload,
-                    children: photo && photo !== restaurant.photo && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-                      className: "text-center text-green",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-                          icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faCheckCircle,
-                          fixedWidth: true,
-                          size: "5x"
-                        })
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                        className: "mt-3",
-                        children: selected_file
-                      })]
-                    })
+              })
+            }),
+            onChange: this.inputChangeHandler,
+            value: country,
+            name: "country",
+            required: true,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("option", {
+              children: form.select_country
+            }), countriesOptions]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+            type: "text",
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faEdit,
+            onChange: this.inputChangeHandler,
+            value: token,
+            name: "token",
+            readonly: true,
+            placeholder: form.token
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+            type: "password",
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faLock,
+            onChange: this.inputChangeHandler,
+            value: password,
+            name: "password",
+            placeholder: form.password
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+            type: "password",
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faLock,
+            onChange: this.inputChangeHandler,
+            value: new_password,
+            name: "new_password",
+            placeholder: form.new_password
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+            type: "password",
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faLock,
+            onChange: this.inputChangeHandler,
+            value: new_password_confirmation,
+            name: "new_password_confirmation",
+            placeholder: form.new_password_confirmation
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_21__.default, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+              className: "embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center",
+              style: {
+                cursor: 'pointer',
+                background: photo && "url(\"".concat(photo, "\") no-repeat center"),
+                backgroundSize: 'cover'
+              },
+              onClick: function onClick() {
+                return _this2.fileUpload("photo");
+              },
+              children: photo && photo !== restaurant.photo && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+                className: "text-center text-green",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+                    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faCheckCircle,
+                    fixedWidth: true,
+                    size: "5x"
                   })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                  className: "mt-3",
+                  children: selected_file
                 })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(Block, {
-                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faCog,
-                save: save,
-                onSubmit: this.cmsSettingsSubmitHandler,
-                title: form.cms_settings
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(Block, {
-                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faCalendar,
-                save: save,
-                onSubmit: this.calendarSettingsSubmitHandler,
-                title: form.calendar_settings,
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
-                  type: "text",
-                  icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faCalendar,
-                  onChange: this.inputChangeHandler,
-                  value: days,
-                  name: "days",
-                  required: true,
-                  placeholder: form.days
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
-                  type: "text",
-                  icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faClock,
-                  onChange: this.inputChangeHandler,
-                  value: hours,
-                  name: "hours",
-                  required: true,
-                  placeholder: form.hours
-                })]
-              })]
+              })
             })
-          })
+          })]
+        });
+        cmsContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_21__.default, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+              className: "embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center",
+              style: {
+                cursor: 'pointer',
+                background: photo && "url(\"".concat(banner_1, "\") no-repeat center"),
+                backgroundSize: 'cover'
+              },
+              onClick: function onClick() {
+                return _this2.fileUpload("banner-1");
+              },
+              children: banner_1 && banner_1 !== restaurant.banner_1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+                className: "text-center text-green",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+                    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faCheckCircle,
+                    fixedWidth: true,
+                    size: "5x"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                  className: "mt-3",
+                  children: selected_file
+                })]
+              })
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_21__.default, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+              className: "embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center",
+              style: {
+                cursor: 'pointer',
+                background: banner_2 && "url(\"".concat(banner_2, "\") no-repeat center"),
+                backgroundSize: 'cover'
+              },
+              onClick: function onClick() {
+                return _this2.fileUpload("banner-2");
+              },
+              children: banner_2 && banner_2 !== restaurant.banner_2 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+                className: "text-center text-green",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+                    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faCheckCircle,
+                    fixedWidth: true,
+                    size: "5x"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                  className: "mt-3",
+                  children: selected_file
+                })]
+              })
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_21__.default, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+              className: "embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center",
+              style: {
+                cursor: 'pointer',
+                background: banner_3 && "url(\"".concat(banner_3, "\") no-repeat center"),
+                backgroundSize: 'cover'
+              },
+              onClick: function onClick() {
+                return _this2.fileUpload("banner-3");
+              },
+              children: banner_3 && banner_3 !== restaurant.banner_3 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+                className: "text-center text-green",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+                    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faCheckCircle,
+                    fixedWidth: true,
+                    size: "5x"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                  className: "mt-3",
+                  children: selected_file
+                })]
+              })
+            })
+          })]
+        });
+        calendarContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+            type: "text",
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faCalendar,
+            onChange: this.inputChangeHandler,
+            value: days,
+            name: "days",
+            required: true,
+            placeholder: form.days
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+            type: "text",
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faClock,
+            onChange: this.inputChangeHandler,
+            value: hours,
+            name: "hours",
+            required: true,
+            placeholder: form.hours
+          })]
         });
       }
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.Fragment, {
@@ -4269,7 +4386,73 @@ var Settings = /*#__PURE__*/function (_Component) {
             children: title
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-          children: [errors, content]
+          children: [errors, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_22__.default, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(_components_Backend_UI_Food_Form__WEBPACK_IMPORTED_MODULE_10__.default, {
+              disabled: true,
+              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faCog,
+              title: title,
+              subtitle: subtitle,
+              innerClassName: "row",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                className: "col-12",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_Feedback_Feedback__WEBPACK_IMPORTED_MODULE_12__.default, {
+                  message: message
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(Block, {
+                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faHome,
+                save: save,
+                onSubmit: this.restaurantSettingsSubmitHandler,
+                title: form.restaurant_settings,
+                children: restaurantContent
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(Block, {
+                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faUser,
+                save: save,
+                onSubmit: this.accountSettingsSubmitHandler,
+                title: form.account_settings,
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("input", {
+                  type: "file",
+                  id: "photo",
+                  name: "photo",
+                  className: "d-none",
+                  onChange: this.inputChangeHandler,
+                  accept: ".png,.jpg,.jpeg"
+                }), accountContent]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(Block, {
+                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faCog,
+                save: save,
+                onSubmit: this.cmsSettingsSubmitHandler,
+                title: form.cms_settings,
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("input", {
+                  type: "file",
+                  id: "banner-1",
+                  name: "banner_1",
+                  className: "d-none",
+                  onChange: this.inputChangeHandler,
+                  accept: ".png,.jpg,.jpeg"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("input", {
+                  type: "file",
+                  id: "banner-2",
+                  name: "banner_2",
+                  className: "d-none",
+                  onChange: this.inputChangeHandler,
+                  accept: ".png,.jpg,.jpeg"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("input", {
+                  type: "file",
+                  id: "banner-3",
+                  name: "banner_3",
+                  className: "d-none",
+                  onChange: this.inputChangeHandler,
+                  accept: ".png,.jpg,.jpeg"
+                }), cmsContent]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(Block, {
+                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faCalendar,
+                save: save,
+                onSubmit: this.calendarSettingsSubmitHandler,
+                title: form.calendar_settings,
+                children: calendarContent
+              })]
+            })
+          })]
         })]
       });
     }

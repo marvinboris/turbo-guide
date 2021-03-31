@@ -178,6 +178,7 @@ Route::namespace('Restaurant')->prefix('restaurant')->name('restaurant.')->group
             'addons' => 'AddonController',
             'drinks' => 'DrinkController',
             'meals' => 'MealController',
+            'comments' => 'CommentController',
         ]);
     });
 });

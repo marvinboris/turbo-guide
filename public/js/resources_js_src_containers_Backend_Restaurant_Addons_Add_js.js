@@ -694,157 +694,146 @@ var Add = /*#__PURE__*/function (_Component) {
           })
         });
         content = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.Fragment, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_17__.default, {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_Backend_UI_Food_Form__WEBPACK_IMPORTED_MODULE_10__.default, {
-              onSubmit: this.submitHandler,
-              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faCookie,
-              title: this.props.edit ? edit : add,
-              subtitle: subtitle,
-              list: index,
-              link: "/restaurant/addons",
-              innerClassName: "row justify-content-center",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_16__.default, {
-                lg: 9,
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_Feedback_Feedback__WEBPACK_IMPORTED_MODULE_12__.default, {
-                  message: message
-                }), this.props.edit && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("input", {
-                  type: "hidden",
-                  name: "_method",
-                  defaultValue: "PATCH"
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_16__.default, {
+            lg: 9,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_Feedback_Feedback__WEBPACK_IMPORTED_MODULE_12__.default, {
+              message: message
+            }), this.props.edit && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("input", {
+              type: "hidden",
+              name: "_method",
+              defaultValue: "PATCH"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+              className: "shadow-lg rounded-8 bg-white px-5 py-4",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_17__.default, {
+                className: "my-3",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                  className: "mb-3 text-14 col-12",
+                  children: instructions
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                  className: "shadow-lg rounded-8 bg-white px-5 py-4",
+                  className: "col-lg-9",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_17__.default, {
-                    className: "my-3",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                      className: "mb-3 text-14 col-12",
-                      children: instructions
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                      className: "col-lg-9",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_17__.default, {
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
-                          type: "text",
-                          className: "col-md-6",
-                          icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faBook,
-                          onChange: this.inputChangeHandler,
-                          value: name,
-                          name: "name",
-                          required: true,
-                          placeholder: form.name
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
-                          type: "text",
-                          className: "col-md-6",
-                          icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faPencilAlt,
-                          onChange: this.inputChangeHandler,
-                          value: description,
-                          name: "description",
-                          required: true,
-                          placeholder: form.description
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
-                          type: "number",
-                          className: "col-md-6",
-                          icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faMoneyBillWave,
-                          onChange: this.inputChangeHandler,
-                          value: price,
-                          name: "price",
-                          required: true,
-                          placeholder: form.price
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
-                          type: "text",
-                          className: "col-md-6",
-                          icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faPencilAlt,
-                          onChange: this.inputChangeHandler,
-                          value: reference,
-                          name: "reference",
-                          required: true,
-                          placeholder: form.reference
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
-                          type: "select",
-                          className: "col-md-6",
-                          icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faPencilAlt,
-                          onChange: this.inputChangeHandler,
-                          value: is_active,
-                          name: "is_active",
-                          required: true,
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("option", {
-                            children: form.select_status
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("option", {
-                            value: 1,
-                            children: active
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("option", {
-                            value: 0,
-                            children: inactive
-                          })]
-                        })]
-                      })
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                      className: "col-lg-3",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                        className: "embed-responsive embed-responsive-1by1 bg-soft rounded-8 d-flex justify-content-center align-items-center",
-                        style: {
-                          cursor: 'pointer',
-                          background: photo && "url(\"".concat(photo, "\") no-repeat center"),
-                          backgroundSize: 'cover'
-                        },
-                        onClick: this.fileUpload,
-                        children: this.props.edit ? photo && photo !== addon.photo && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-                          className: "text-center text-green",
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-                              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faCheckCircle,
-                              fixedWidth: true,
-                              size: "5x"
-                            })
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                            className: "mt-3",
-                            children: selected_file
-                          })]
-                        }) : photo ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-                          className: "text-center text-green",
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-                              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faCheckCircle,
-                              fixedWidth: true,
-                              size: "5x"
-                            })
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                            className: "mt-3",
-                            children: selected_file
-                          })]
-                        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-                          className: "text-center text-light overflow-hidden px-4",
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-                              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faFileImage,
-                              fixedWidth: true,
-                              size: "5x"
-                            })
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                            className: "mt-3 mb-1 text-center text-12 text-truncate",
-                            children: form.upload
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                            className: "text-center text-12 text-truncate",
-                            children: form.size
-                          })]
-                        })
-                      })
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                      className: "col-12",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_19__.default, {
-                        color: "orange",
-                        className: "text-20 rounded-4 py-3 px-4",
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-                          className: "mx-3",
-                          children: [save, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-                            icon: _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_20__.faSave,
-                            className: "ml-4"
-                          })]
-                        })
-                      })
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+                      type: "text",
+                      className: "col-md-6",
+                      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faBook,
+                      onChange: this.inputChangeHandler,
+                      value: name,
+                      name: "name",
+                      required: true,
+                      placeholder: form.name
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+                      type: "text",
+                      className: "col-md-6",
+                      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faPencilAlt,
+                      onChange: this.inputChangeHandler,
+                      value: description,
+                      name: "description",
+                      required: true,
+                      placeholder: form.description
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+                      type: "number",
+                      className: "col-md-6",
+                      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faMoneyBillWave,
+                      onChange: this.inputChangeHandler,
+                      value: price,
+                      name: "price",
+                      required: true,
+                      placeholder: form.price
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+                      type: "text",
+                      className: "col-md-6",
+                      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faPencilAlt,
+                      onChange: this.inputChangeHandler,
+                      value: reference,
+                      name: "reference",
+                      required: true,
+                      placeholder: form.reference
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+                      type: "select",
+                      className: "col-md-6",
+                      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faPencilAlt,
+                      onChange: this.inputChangeHandler,
+                      value: is_active,
+                      name: "is_active",
+                      required: true,
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("option", {
+                        children: form.select_status
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("option", {
+                        value: 1,
+                        children: active
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("option", {
+                        value: 0,
+                        children: inactive
+                      })]
                     })]
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                  className: "col-lg-3",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                    className: "embed-responsive embed-responsive-1by1 bg-soft rounded-8 d-flex justify-content-center align-items-center",
+                    style: {
+                      cursor: 'pointer',
+                      background: photo && "url(\"".concat(photo, "\") no-repeat center"),
+                      backgroundSize: 'cover'
+                    },
+                    onClick: this.fileUpload,
+                    children: this.props.edit ? photo && photo !== addon.photo && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+                      className: "text-center text-green",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+                          icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faCheckCircle,
+                          fixedWidth: true,
+                          size: "5x"
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                        className: "mt-3",
+                        children: selected_file
+                      })]
+                    }) : photo ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+                      className: "text-center text-green",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+                          icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faCheckCircle,
+                          fixedWidth: true,
+                          size: "5x"
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                        className: "mt-3",
+                        children: selected_file
+                      })]
+                    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+                      className: "text-center text-light overflow-hidden px-4",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+                          icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faFileImage,
+                          fixedWidth: true,
+                          size: "5x"
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                        className: "mt-3 mb-1 text-center text-12 text-truncate",
+                        children: form.upload
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                        className: "text-center text-12 text-truncate",
+                        children: form.size
+                      })]
+                    })
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                  className: "col-12",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_19__.default, {
+                    color: "orange",
+                    className: "text-20 rounded-4 py-3 px-4",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+                      className: "mx-3",
+                      children: [save, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+                        icon: _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_20__.faSave,
+                        className: "ml-4"
+                      })]
+                    })
                   })
                 })]
               })
-            })
+            })]
           })
         });
       }
@@ -859,14 +848,25 @@ var Add = /*#__PURE__*/function (_Component) {
             children: this.props.edit ? edit : add
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-          children: [errors, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("input", {
-            type: "file",
-            id: "photo",
-            name: "photo",
-            className: "d-none",
-            onChange: this.inputChangeHandler,
-            accept: ".png,.jpg,.jpeg"
-          }), content]
+          children: [errors, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_17__.default, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(_components_Backend_UI_Food_Form__WEBPACK_IMPORTED_MODULE_10__.default, {
+              onSubmit: this.submitHandler,
+              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faCookie,
+              title: this.props.edit ? edit : add,
+              subtitle: subtitle,
+              list: index,
+              link: "/restaurant/addons",
+              innerClassName: "row justify-content-center",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("input", {
+                type: "file",
+                id: "photo",
+                name: "photo",
+                className: "d-none",
+                onChange: this.inputChangeHandler,
+                accept: ".png,.jpg,.jpeg"
+              }), content]
+            })
+          })]
         })]
       });
     }

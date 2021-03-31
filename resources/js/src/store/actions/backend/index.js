@@ -101,16 +101,6 @@ export {
 } from './addons';
 
 export {
-    deleteDrinks,
-    getDrink,
-    getDrinks,
-    getDrinksInfo,
-    patchDrinks,
-    postDrinks,
-    resetDrinks
-} from './drinks';
-
-export {
     deleteComments,
     getComment,
     getComments,

@@ -98,7 +98,7 @@ class SettingsController extends Controller
         $restaurant = UtilController::get(request());
 
         $input = $request->validate([
-            'dates' => 'required|string',
+            'days' => 'required|string',
             'hours' => 'required|string',
         ]);
 

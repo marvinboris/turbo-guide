@@ -35,7 +35,9 @@ class FrontendController extends Controller
             'restaurant' => [
                 'name' => $restaurant->name,
                 'mark' => $mark,
-                'photo' => $restaurant->photo,
+                'banner1' => $restaurant->banner1,
+                'banner2' => $restaurant->banner2,
+                'banner3' => $restaurant->banner3,
                 'days' => $restaurant->days,
                 'hours' => $restaurant->hours,
                 'address' => $restaurant->address,
@@ -43,9 +45,11 @@ class FrontendController extends Controller
                 'whatsapp' => $restaurant->whatsapp,
                 'location' => $restaurant->location,
                 'meals' => $restaurant->meals,
+                'plan' => $restaurant->plan,
             ],
             'categories' => $categories,
-            'addons' => $restaurant->addons,
+            'currency' => $restaurant->currency,
+            'position' => $restaurant->position,
         ]);
     }
 
@@ -62,7 +66,7 @@ class FrontendController extends Controller
         ]);
 
         $addons = [];
-        foreach ($restaurant->addons as $addon) {
+        foreach ($meal->addons as $addon) {
             $addons[] = $addon->toArray() + [
                 'formattedPrice' => number_format($addon->price, 2),
             ];
@@ -72,6 +76,8 @@ class FrontendController extends Controller
             'meal' => $meal->toArray(),
             'addons' => $addons,
             'comments' => $meal->comments,
+            'currency' => $restaurant->currency,
+            'position' => $restaurant->position,
         ]);
     }
 

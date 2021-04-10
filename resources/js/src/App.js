@@ -25,6 +25,13 @@ const asyncRestaurantAddons = asyncComponent(() => import('./containers/Backend/
 const asyncRestaurantAddonsAdd = asyncComponent(() => import('./containers/Backend/Restaurant/Addons/Add'));
 const asyncRestaurantAddonsEdit = asyncComponent(() => import('./containers/Backend/Restaurant/Addons/Edit'));
 
+const asyncRestaurantComments = asyncComponent(() => import('./containers/Backend/Restaurant/Comments'));
+
+const asyncRestaurantPlans = asyncComponent(() => import('./containers/Backend/Restaurant/Plans'));
+const asyncRestaurantPlansPurchase = asyncComponent(() => import('./containers/Backend/Restaurant/Plans/Purchase'));
+
+const asyncRestaurantRecharges = asyncComponent(() => import('./containers/Backend/Restaurant/Recharges'));
+
 const asyncRestaurantSettings = asyncComponent(() => import('./containers/Backend/Restaurant/Settings'));
 
 const asyncRestaurantDashboard = asyncComponent(() => import('./containers/Backend/Restaurant/Dashboard/Dashboard'));
@@ -165,6 +172,13 @@ class App extends Component {
                     <Route path="/restaurant/addons" component={asyncRestaurantAddons} />
 
                     <Route path="/restaurant/settings" component={asyncRestaurantSettings} />
+
+                    <Route path="/restaurant/comments" component={asyncRestaurantComments} />
+                    
+                    <Route path="/restaurant/plans/purchase" component={asyncRestaurantPlansPurchase} />
+                    <Route path="/restaurant/plans" component={asyncRestaurantPlans} />
+
+                    <Route path="/restaurant/recharges" component={asyncRestaurantRecharges} />
 
                     <Route path="/restaurant/dashboard" component={asyncRestaurantDashboard} />
 

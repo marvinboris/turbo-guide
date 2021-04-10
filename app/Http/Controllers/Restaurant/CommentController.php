@@ -16,32 +16,44 @@ class CommentController extends Controller
 
         $total = 0;
 
-        $data = [];
-        $filteredData = $restaurant->comments()->latest();
-
-        $filteredData = $filteredData
-            ->join('meals', 'meals.id', '=', 'comments.meal_id')
-            ->select('comments.*')
-            ->when($search, function ($query, $search) {
-                if ($search !== "")
-                    $query
-                        ->where('name', 'LIKE', "%$search%")
-                        ->orWhere('meals.name', 'LIKE', "%$search%")
-                        ->orWhere('body', 'LIKE', "%$search%");
-            });
-
-        $total = $filteredData->count();
-
-        $filteredData = $filteredData->get();
-
-        foreach ($filteredData as $comment) {
-            $data[] = array_merge($comment->toArray(), [
-                'meal' => $comment->meal->name,
-            ]);
+        // $data = [];
+        // $filteredData = $restaurant->meals()->latest();
+        $meals = $restaurant->meals;
+        $comments = [];
+        foreach ($meals as $meal) {
+            $meal_comments = [];
+            foreach ($meal->comments as $comment) {
+                $meal_comments[] = $comment->toArray() + [
+                    'meal' => $comment->meal->name,
+                ];
+            }
+            $comments = array_merge($comments, $meal_comments);
+            $total += $meal->comments()->count();
         }
 
+        // $filteredData = $filteredData
+        //     ->join('meals', 'meals.id', '=', 'comments.meal_id')
+        //     ->select('comments.*')
+        //     ->when($search, function ($query, $search) {
+        //         if ($search !== "")
+        //             $query
+        //                 ->where('name', 'LIKE', "%$search%")
+        //                 ->orWhere('meals.name', 'LIKE', "%$search%")
+        //                 ->orWhere('body', 'LIKE', "%$search%");
+        //     });
+
+        // $total = $filteredData->count();
+
+        // $filteredData = $filteredData->get();
+
+        // foreach ($filteredData as $comment) {
+        //     $data[] = array_merge($comment->toArray(), [
+        //         'meal' => $comment->meal->name,
+        //     ]);
+        // }
+
         return [
-            'comments' => $data,
+            'comments' => $comments,
             'total' => $total,
         ];
     }

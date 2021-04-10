@@ -29,13 +29,14 @@ class Meal extends Model
         return $value ? $this->directory . $value : null;
     }
 
-    public function getMarkAttribute() {
+    public function getMarkAttribute()
+    {
         $comments = $this->comments;
         $mark = 0;
 
         $count = count($comments);
         if ($count === 0) return $mark;
-        
+
         foreach ($comments as $comment) {
             $mark += $comment->mark;
         }
@@ -43,7 +44,13 @@ class Meal extends Model
         return $mark / $count;
     }
 
-    public function comments() {
+    public function comments()
+    {
         return $this->hasMany(Comment::class);
+    }
+
+    public function addons()
+    {
+        return $this->belongsToMany(Addon::class, 'meal_addon');
     }
 }

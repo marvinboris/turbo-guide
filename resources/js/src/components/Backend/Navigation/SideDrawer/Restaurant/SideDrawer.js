@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button, Collapse, Modal, ModalBody, ModalHeader } from 'reactstrap';
-import { faCog, faPlus, faThLarge, faListAlt, faDrumstickBite, faCookie, faWineBottle, faList, faPowerOff, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faCog, faPlus, faThLarge, faListAlt, faDrumstickBite, faCookie, faWineBottle, faList, faPowerOff, faTimes, faComment, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 import SideDrawerItem from './SideDrawerItem/SideDrawerItem';
 import Logo from '../../../../UI/Logo/Logo';
@@ -65,7 +65,7 @@ export default ({ data, toggle, logoutHandler, isOpen, selectItem, selectedItem,
         {sideDrawerItem(addons.title, null, faCookie, "/restaurant/addons")}
 
         <div className="text-border text-16 px-3 py-2 mb-1 mt-4">OTHERS</div>
-        {sideDrawerItem(comments, null, faThLarge, "/restaurant/comments")}
+        {plan && plan.slug === 'premium' && sideDrawerItem(comments, null, faComment, "/restaurant/comments")}
         {sideDrawerItem(history, null, faList, "/restaurant/history")}
         {sideDrawerItem(settings.title, null, faCog, "/restaurant/settings")}
 
@@ -103,7 +103,11 @@ export default ({ data, toggle, logoutHandler, isOpen, selectItem, selectedItem,
                     </div>
 
                     <div className="text-14 text-300 mb-5">
-                        {plan ? <>Your Plan : <span className="text-500 text-orange">{plan && plan.name}</span></> : <>No Plan</>}
+                        {plan ? <>Your Plan : <span className="text-500 text-orange">{plan.name}</span></> : <>No Plan</>}
+
+                        <Link to="/restaurant/plans/purchase" className="text-decoration-none text-reset text-16 ml-3">
+                            <FontAwesomeIcon icon={faEdit} />
+                        </Link>
                     </div>
 
                     <div className="mb-5">

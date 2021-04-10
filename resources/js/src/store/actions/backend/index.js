@@ -118,3 +118,19 @@ export {
     resetSettings,
     restaurantSettings
 } from './settings';
+
+export {
+    deletePlans,
+    getPlans,
+    getPlansInfo,
+    purchasePlan,
+    resetPlans,
+} from './plans';
+
+export {
+    deleteRecharges,
+    getRecharges,
+    getRechargesInfo,
+    postRecharges,
+    resetRecharges,
+} from './recharges';

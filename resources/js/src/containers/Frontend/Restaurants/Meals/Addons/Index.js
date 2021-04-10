@@ -11,14 +11,17 @@ import Addon from '../../../../../components/UI/Food/Addon';
 import * as actionTypes from '../../../../../store/actions/frontend';
 
 class Addons extends Component {
-    componentDidMount() {
+    async componentDidMount() {
         window.scrollTo(0, 0);
     }
 
     render() {
-        const { frontend: { restaurants: { total = 0, addons = [] } } } = this.props;
+        const { content: { currencies }, frontend: { restaurants: { total = 0, addons = [], currency, position } } } = this.props;
 
-        const addonsContent = addons.map(addon => <Addon key={addon.id + Math.random()} {...addon} add={() => this.props.add(addon.id)} sub={() => this.props.sub(addon.id)} />);
+        const currencyObj = currencies.find(c => c.cc === currency);
+        const symbol = currencyObj && currencyObj.symbol;
+
+        const addonsContent = addons.map(addon => <Addon key={addon.id + Math.random()} symbol={symbol} position={position} {...addon} add={() => this.props.add(addon.id)} sub={() => this.props.sub(addon.id)} />);
 
         return <>
             <Wrapper className="pb-4 mb-2">
@@ -42,7 +45,9 @@ class Addons extends Component {
                         <div className="col-6 rounded-4 bg-green text-white p-4 rounded-right-0 text-20 text-montserrat">
                             <FontAwesomeIcon icon={faShoppingBasket} className="mr-3" />
 
-                            <span className="text-700">{total.toFixed(2)}</span> <span className="text-10">XAF</span>
+                            {position == 0 && <span className="text-10 mr-1">{symbol}</span>}
+                            <span className="text-700">{total.toFixed(2)}</span>
+                            {position == 1 && <span className="text-10 ml-1">{symbol}</span>}
                         </div>
                     </div>
                 </div>

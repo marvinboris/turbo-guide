@@ -26,40 +26,13 @@
 }
 
 .Home .carousel-indicators li {
-    width: 27px;
+    width: 8px;
     height: 8px;
-    border-radius: 0.75rem;
-    overflow: hidden;
-    background-color: var(--border);
-    opacity: 0.39;
+    border-radius: 100%;
+    background-color: var(--white-50);
     transition: all 0.25s;
 }
 
 .Home .carousel-indicators li.active {
-    width: 43px;
-    opacity: 1;
-    background-color: var(--blue);
-}
-
-.Home .carousel-control-prev,
-.Home .carousel-control-next {
-    width: 51px !important;
-    opacity: 1;
-    bottom: 40px;
-    top: auto;
-}
-
-.Home .carousel-control-prev {
-    height: 30px !important;
-    border-top-right-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
-    left: auto;
-    right: 91px;
-}
-
-.Home .carousel-control-next {
-    height: 40px !important;
-    border-top-left-radius: 0 !important;
-    border-bottom-left-radius: 0 !important;
-    right: 40px;
+    background-color: var(--white-80);
 }

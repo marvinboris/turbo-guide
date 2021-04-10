@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export default ({ children, icon, link, color, details }) => <div className="col-lg-3 col-md-6">
     <Link to={link} className={`bg-${color}-10 rounded-8 text-decoration-none text-${color} px-4 py-4 d-flex align-items-center`}>
         <div className="mr-4">
-            <FontAwesomeIcon icon={icon} className="text-33" />
+            <FontAwesomeIcon icon={icon} className={`text-33 text-${color}-50`} />
         </div>
 
         <div>

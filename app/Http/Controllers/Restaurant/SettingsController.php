@@ -14,9 +14,7 @@ class SettingsController extends Controller
         $restaurant = UtilController::get(request());
 
         return response()->json([
-            'restaurant' => $restaurant->toArray() + [
-                'banners' => []
-            ],
+            'restaurant' => $restaurant->toArray(),
         ]);
     }
 
@@ -32,6 +30,8 @@ class SettingsController extends Controller
             'whatsapp' => 'nullable|string',
             'location' => 'nullable',
             'address' => 'nullable|string',
+            'currency' => 'nullable|string',
+            'position' => 'nullable|integer',
         ]);
 
         $restaurant->update($input);
@@ -82,8 +82,31 @@ class SettingsController extends Controller
         $restaurant = UtilController::get(request());
 
         $input = $request->validate([
-            'banners.*' => 'nullable|file|image',
+            'banner1' => 'nullable|file|image',
+            'banner2' => 'nullable|file|image',
+            'banner3' => 'nullable|file|image',
         ]);
+
+        if ($file = $request->file('banner1')) {
+            if ($restaurant->banner1) unlink(public_path($restaurant->banner1));
+            $fileName = time() . $file->getClientOriginalName();
+            $file->move('images/restaurants', $fileName);
+            $input['banner1'] = htmlspecialchars($fileName);
+        }
+
+        if ($file = $request->file('banner2')) {
+            if ($restaurant->banner2) unlink(public_path($restaurant->banner2));
+            $fileName = time() . $file->getClientOriginalName();
+            $file->move('images/restaurants', $fileName);
+            $input['banner2'] = htmlspecialchars($fileName);
+        }
+
+        if ($file = $request->file('banner3')) {
+            if ($restaurant->banner3) unlink(public_path($restaurant->banner3));
+            $fileName = time() . $file->getClientOriginalName();
+            $file->move('images/restaurants', $fileName);
+            $input['banner3'] = htmlspecialchars($fileName);
+        }
 
         $restaurant->update($input);
 

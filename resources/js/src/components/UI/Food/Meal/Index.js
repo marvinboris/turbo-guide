@@ -9,7 +9,9 @@ import Stars from '../../Stars';
 export default props => <Food meal {...props}>
     <div className="d-flex align-items-center">
         <div>
-            <span className="text-700">{props.price}</span> <span className="text-8">XAF</span>
+            {props.position == 0 && <span className="text-8 mr-1">{props.symbol}</span>}
+            <span className="text-700">{props.price}</span>
+            {props.position == 1 && <span className="text-8 ml-1">{props.symbol}</span>}
         </div>
 
         <div className="mx-2">

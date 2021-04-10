@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
@@ -13,7 +14,7 @@ class Restaurant extends Authenticatable
     protected $directory = '/images/restaurants/';
 
     protected $fillable = [
-        'plan_id', 'language_id', 'name', 'owner', 'token', 'md5', 'email', 'photo', 'phone', 'country', 'whatsapp', 'address', 'days', 'hours', 'location', 'balance', 'password', 'is_active',
+        'plan_id', 'language_id', 'name', 'owner', 'token', 'md5', 'email', 'photo', 'phone', 'country', 'whatsapp', 'address', 'days', 'hours', 'location', 'balance', 'password', 'is_active', 'currency', 'position', 'banner1', 'banner2', 'banner3'
     ];
 
     /**
@@ -26,17 +27,12 @@ class Restaurant extends Authenticatable
     ];
 
     protected $appends = [
-        'mark',
+        'mark', 'plan',
     ];
 
     public function type()
     {
         return 'restaurant';
-    }
-
-    public function plan()
-    {
-        return $this->belongsTo(Plan::class);
     }
 
     public function language()
@@ -45,6 +41,21 @@ class Restaurant extends Authenticatable
     }
 
     public function getPhotoAttribute($value)
+    {
+        return $value ? $this->directory . $value : null;
+    }
+
+    public function getBanner1Attribute($value)
+    {
+        return $value ? $this->directory . $value : null;
+    }
+
+    public function getBanner2Attribute($value)
+    {
+        return $value ? $this->directory . $value : null;
+    }
+
+    public function getBanner3Attribute($value)
     {
         return $value ? $this->directory . $value : null;
     }
@@ -60,6 +71,13 @@ class Restaurant extends Authenticatable
             }
         }
         return $count > 0 ? $mark / $count : $mark;
+    }
+
+    public function getPlanAttribute()
+    {
+        $plan = $this->plans()->whereDate('expiry_date', '>=', Carbon::now())->orderBy('id', 'DESC')->first();
+
+        return $plan;
     }
 
     public function categories()
@@ -80,6 +98,21 @@ class Restaurant extends Authenticatable
     public function drinks()
     {
         return $this->hasMany(Drink::class);
+    }
+
+    public function plans()
+    {
+        return $this->belongsToMany(Plan::class, 'plan_restaurant')->withPivot(['id', 'expiry_date']);
+    }
+
+    public function recharges()
+    {
+        return $this->hasMany(Recharge::class);
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
     }
 
     public static function generateNewToken()

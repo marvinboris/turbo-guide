@@ -51,6 +51,8 @@ const Block = ({ children, icon, title, save, onSubmit }) => children ? <form cl
     </div>
 </form> : null;
 
+const Conditional = ({ condition = false, children }) => condition ? children : null;
+
 class Settings extends Component {
     state = {
         name: '',
@@ -70,15 +72,12 @@ class Settings extends Component {
         new_password_confirmation: '',
         photo: '',
 
-        banner_1: '',
-        banner_2: '',
-        banner_3: '',
+        banner1: '',
+        banner2: '',
+        banner3: '',
 
         days: '',
         hours: '',
-
-        countries: [],
-        currencies: [],
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
@@ -92,20 +91,6 @@ class Settings extends Component {
     async componentDidMount() {
         this.props.reset();
         this.props.get();
-
-        const phoneRes = await fetch(CORS + 'http://country.io/phone.json', { method: 'GET', mode: 'cors' });
-        const namesRes = await fetch(CORS + 'http://country.io/names.json', { method: 'GET', mode: 'cors' });
-
-        const phone = await phoneRes.json();
-        const names = await namesRes.json();
-
-        const countries = Object.keys(phone).map(key => ({ country: key, code: phone[key], name: names[key] })).sort((a, b) => a.country > b.country);
-
-        const currenciesRes = await fetch(CORS + 'https://raw.githubusercontent.com/mhs/world-currencies/master/currencies.json', { method: 'GET', mode: 'cors' });
-
-        const currencies = await currenciesRes.json();
-
-        this.setState({ countries, currencies });
     }
 
     componentWillUnmount() {
@@ -148,25 +133,30 @@ class Settings extends Component {
         let {
             content: {
                 cms: {
-                    pages: { components: { form: { save, selected_file, active, inactive } }, backend: { pages: { settings: { title, subtitle, form } } } }
-                }
+                    pages: { components: { form: { save, selected_file } }, backend: { pages: { settings: { title, subtitle, form } } } }
+                },
+                currencies, countries,
             },
             backend: { settings: { loading, error, message, restaurant } },
+            auth: { data: { plan } }
         } = this.props;
         let {
             name, owner, phone, whatsapp, location, address, currency, position,
             email, country, token, password, new_password, new_password_confirmation, photo,
-            banner_1, banner_2, banner_3,
+            banner1, banner2, banner3,
             days, hours,
-            countries, currencies
         } = this.state;
         let restaurantContent, accountContent, cmsContent, calendarContent;
         let errors = null;
 
+        const basic = plan;
+        const standard = plan && plan.slug === 'standard';
+        const premium = plan && plan.slug === 'premium';
+
         const countriesOptions = countries.map(({ country, code, name }) => <option key={country} value={country} code={code}>{name}</option>);
         const currenciesOptions = currencies.map(({ cc, symbol, name }) => <option key={cc} value={cc} symbol={symbol}>{name}</option>);
 
-        if (countries.length === 0 || currencies.length === 0 || loading) restaurantContent = <Col xs={12}>
+        if (loading) restaurantContent = <Col xs={12}>
             <CustomSpinner />
         </Col>;
         else {
@@ -180,9 +170,15 @@ class Settings extends Component {
             restaurantContent = <>
                 <FormInput type="text" icon={faHome} onChange={this.inputChangeHandler} value={name} name="name" required placeholder={form.name} />
                 <FormInput type="text" icon={faUserTie} onChange={this.inputChangeHandler} value={owner} name="owner" required placeholder={form.owner} />
-                <FormInput type="tel" icon={faPhone} onChange={this.inputChangeHandler} value={phone} name="phone" required placeholder={form.phone} />
-                <FormInput type="tel" icon={faWhatsapp} onChange={this.inputChangeHandler} value={whatsapp} name="whatsapp" placeholder={form.whatsapp} />
-                <FormInput type="text" icon={faLocationArrow} onChange={this.inputChangeHandler} value={location} name="location" placeholder={form.location} />
+                <Conditional condition={basic}>
+                    <FormInput type="tel" icon={faPhone} onChange={this.inputChangeHandler} value={phone} name="phone" required placeholder={form.phone} />
+                </Conditional>
+                <Conditional condition={standard || premium}>
+                    <FormInput type="tel" icon={faWhatsapp} onChange={this.inputChangeHandler} value={whatsapp} name="whatsapp" placeholder={form.whatsapp} />
+                </Conditional>
+                <Conditional condition={premium}>
+                    <FormInput type="text" icon={faLocationArrow} onChange={this.inputChangeHandler} value={location} name="location" placeholder={form.location} />
+                </Conditional>
                 <FormInput type="text" icon={faSearchLocation} onChange={this.inputChangeHandler} value={address} name="address" placeholder={form.address} />
                 <FormInput type="select" addon={<div className="text-center text-light" style={{ margin: '0 -10px' }}>{symbol}</div>} onChange={this.inputChangeHandler} value={currency} name="currency" required>
                     <option>{form.select_currency}</option>
@@ -221,33 +217,39 @@ class Settings extends Component {
             </>;
 
             cmsContent = <>
-                <FormGroup>
-                    <div className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', background: photo && `url("${banner_1}") no-repeat center`, backgroundSize: 'cover' }} onClick={() => this.fileUpload("banner-1")}>
-                        {banner_1 && (banner_1 !== restaurant.banner_1) && <div className="text-center text-green">
-                            <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
+                <Conditional condition={basic}>
+                    <FormGroup>
+                        <div className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', background: photo && `url("${banner1}") no-repeat center`, backgroundSize: 'cover' }} onClick={() => this.fileUpload("banner-1")}>
+                            {banner1 && (banner1 !== restaurant.banner1) && <div className="text-center text-green">
+                                <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
 
-                            <div className="mt-3">{selected_file}</div>
-                        </div>}
-                    </div>
-                </FormGroup>
-                <FormGroup>
-                    <div className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', background: banner_2 && `url("${banner_2}") no-repeat center`, backgroundSize: 'cover' }} onClick={() => this.fileUpload("banner-2")}>
-                        {banner_2 && (banner_2 !== restaurant.banner_2) && <div className="text-center text-green">
-                            <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
+                                <div className="mt-3">{selected_file}</div>
+                            </div>}
+                        </div>
+                    </FormGroup>
+                </Conditional>
+                <Conditional condition={standard || premium}>
+                    <FormGroup>
+                        <div className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', background: banner2 && `url("${banner2}") no-repeat center`, backgroundSize: 'cover' }} onClick={() => this.fileUpload("banner-2")}>
+                            {banner2 && (banner2 !== restaurant.banner2) && <div className="text-center text-green">
+                                <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
 
-                            <div className="mt-3">{selected_file}</div>
-                        </div>}
-                    </div>
-                </FormGroup>
-                <FormGroup>
-                    <div className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', background: banner_3 && `url("${banner_3}") no-repeat center`, backgroundSize: 'cover' }} onClick={() => this.fileUpload("banner-3")}>
-                        {banner_3 && (banner_3 !== restaurant.banner_3) && <div className="text-center text-green">
-                            <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
+                                <div className="mt-3">{selected_file}</div>
+                            </div>}
+                        </div>
+                    </FormGroup>
+                </Conditional>
+                <Conditional condition={premium}>
+                    <FormGroup>
+                        <div className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', background: banner3 && `url("${banner3}") no-repeat center`, backgroundSize: 'cover' }} onClick={() => this.fileUpload("banner-3")}>
+                            {banner3 && (banner3 !== restaurant.banner3) && <div className="text-center text-green">
+                                <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
 
-                            <div className="mt-3">{selected_file}</div>
-                        </div>}
-                    </div>
-                </FormGroup>
+                                <div className="mt-3">{selected_file}</div>
+                            </div>}
+                        </div>
+                    </FormGroup>
+                </Conditional>
             </>;
 
             calendarContent = <>
@@ -281,9 +283,9 @@ class Settings extends Component {
                             </Block>
 
                             <Block icon={faCog} save={save} onSubmit={this.cmsSettingsSubmitHandler} title={form.cms_settings}>
-                                <input type="file" id="banner-1" name="banner_1" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" />
-                                <input type="file" id="banner-2" name="banner_2" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" />
-                                <input type="file" id="banner-3" name="banner_3" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" />
+                                <input type="file" id="banner-1" name="banner1" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" />
+                                <input type="file" id="banner-2" name="banner2" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" />
+                                <input type="file" id="banner-3" name="banner3" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" />
                                 {cmsContent}
                             </Block>
 

@@ -212,6 +212,14 @@
                     "created": "Drink successfully created.",
                     "updated": "Drink successfully updated.",
                     "deleted": "Drink successfully deleted."
+                },
+                "plans": {
+                    "not_found": "Plan not found.",
+                    "balance": "Insufficient balance.",
+                    "purchased": "Plan successfully purchased.",
+                    "created": "Plan successfully created.",
+                    "updated": "Plan successfully updated.",
+                    "deleted": "Plan successfully deleted."
                 }
             },
             "backend": {
@@ -371,7 +379,7 @@
                                 "credit_balance": "Credit Balance",
                                 "recharge": "Recharge",
                                 "total_meals": "Total Meals",
-                                "total_drinks": "Total Drinks",
+                                "total_categories": "Total Categories",
                                 "total_addons": "Total Addons"
                             }
                         }
@@ -535,9 +543,11 @@
                             "price": "Meal's Price",
                             "reference": "Meal's ID Number",
                             "time": "Meal's Preparation Time (in minutes)",
+                            "total_addons": "Total Addons Selected",
                             "upload": "Upload Meal Image",
                             "size": "Max Size : 3 MB Format : 250 x 250",
                             "select_category": "Select category",
+                            "select_addon": "Select addon",
                             "select_status": "Please select meal status"
                         }
                     },
@@ -583,6 +593,43 @@
                             "meal": "Meal's Name",
                             "mark": "Assigned Mark",
                             "created_at": "Posted On"
+                        }
+                    },
+                    "plans": {
+                        "title": "Subscription Plan",
+                        "subtitle": "Purchase Plan",
+                        "instructions": "Please fill the form below to purchase or upgrade plan",
+                        "add": "Purchase Plan",
+                        "edit": "Edit meal",
+                        "index": "Purchase List",
+                        "form": {
+                            "purchase": "Purchase Plan",
+                            "name": "Plan Name",
+                            "amount": "Amount",
+                            "status": "Status",
+                            "type": "Purchase Type",
+                            "terms": "Accept terms and conditions & Privacy policies",
+                            "price": "Cost",
+                            "created_at": "Purchase Date",
+                            "select_plan_id": "Select plan",
+                            "select_type": "Purchase Type"
+                        }
+                    },
+                    "recharges": {
+                        "title": "Recharge Balance",
+                        "subtitle": "Deposit funds in your E-menu account to purchase plans",
+                        "instructions": "Please fill the form below to recharge balance",
+                        "add": "Purchase Plan",
+                        "edit": "Edit meal",
+                        "index": "Recharge",
+                        "form": {
+                            "process": "Process Payment",
+                            "amount": "Amount",
+                            "status": "Status",
+                            "method": "Payment Gateway",
+                            "terms": "Accept terms and conditions & Privacy policies",
+                            "created_at": "Date",
+                            "select_method": "Select payment gateway"
                         }
                     }
                 }

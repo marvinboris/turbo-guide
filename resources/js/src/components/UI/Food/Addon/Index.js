@@ -5,9 +5,10 @@ import Food from '..';
 export default props => <Food addon {...props}>
     <div className="d-flex align-items-center">
         <div>
-            <span className="text-700">{props.formattedPrice}</span> <span className="text-8">XAF / Portion</span>{' '}
-
-            {props.free && <span className="text-green text-300 text-8">Free portion included</span>}
+            {props.position == 0 && <span className="text-8 mr-1">{props.symbol}</span>}
+            <span className="text-700">{props.formattedPrice}</span>
+            {props.position == 1 && <span className="text-8 ml-1">{props.symbol}</span>}
+            <span className="text-8 ml-1">/ Portion</span>
         </div>
     </div>
 </Food>;

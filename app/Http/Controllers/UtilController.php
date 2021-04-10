@@ -64,7 +64,8 @@ class UtilController extends Controller
             if (strpos($rule, 'file') > 0) {
                 $rule = str_replace('required', 'nullable', $rule);
                 $check = true;
-            } else $check = request()->input($key) !== $model->toArray()[$key];
+            } else if (strpos($rule, 'array') >= 0) $check = true; 
+            else $check = request()->input($key) !== $model->toArray()[$key];
             if ($check) $rules[$key] = $rule;
         }
         return $rules;

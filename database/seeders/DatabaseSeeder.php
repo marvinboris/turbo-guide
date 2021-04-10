@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             MealSeeder::class,
             AddonSeeder::class,
-            DrinkSeeder::class,
+            PlanSeeder::class,
         ]);
     }
 }

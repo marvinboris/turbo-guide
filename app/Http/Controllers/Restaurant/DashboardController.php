@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Restaurant;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\UtilController;
+use App\Models\Plan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class DashboardController extends Controller
 
         $totalMealsNumber = $restaurant->meals()->count();
         $totalAddonsNumber = $restaurant->addons()->count();
-        $totalDrinksNumber = $restaurant->drinks()->count();
+        $totalCategoriesNumber = $restaurant->categories()->count();
         $creditBalance = $restaurant->balance ? number_format($restaurant->balance, 2) : number_format(0, 2);
         $customerReview = 0;
         $count = 0;
@@ -39,18 +40,24 @@ class DashboardController extends Controller
             ]);
         }
 
+        $plans = [
+            'monthly' => Plan::whereMonths(1)->get(),
+            'yearly' => Plan::whereMonths(12)->get(),
+        ];
+
         return response()->json([
             'blocksData' => [
                 'customerReview' => number_format((float)$customerReview, 1),
                 'totalMeals' => $totalMealsNumber,
                 'totalAddons' => $totalAddonsNumber,
-                'totalDrinks' => $totalDrinksNumber,
+                'totalCategories' => $totalCategoriesNumber,
                 'creditBalance' => $creditBalance,
             ],
 
             'mostViewed' => $mostViewed,
             'comments' => $count,
             'marks' => $marks,
+            'plans' => $plans,
         ]);
     }
 }

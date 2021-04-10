@@ -2,7 +2,7 @@ import * as actionTypes from '../actionTypes';
 
 const prefix = '/api/';
 
-export const resetRestaurants = () => ({ type: actionTypes.RESTAURANTS_RESET });
+export const resetRestaurants = (meal = false) => ({ type: actionTypes.RESTAURANTS_RESET, meal });
 const restaurantsStart = () => ({ type: actionTypes.RESTAURANTS_START });
 const restaurantsSuccess = data => ({ type: actionTypes.RESTAURANTS_SUCCESS, ...data });
 const restaurantsFail = error => ({ type: actionTypes.RESTAURANTS_FAIL, error });

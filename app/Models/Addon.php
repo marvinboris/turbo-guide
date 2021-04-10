@@ -24,4 +24,9 @@ class Addon extends Model
     {
         return $value ? $this->directory . $value : null;
     }
+
+    public function meals()
+    {
+        return $this->belongsToMany(Meal::class, 'meal_addon');
+    }
 }

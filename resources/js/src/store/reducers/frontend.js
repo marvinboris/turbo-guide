@@ -8,7 +8,7 @@ const initialState = {
     }
 };
 
-const restaurantsReset = (state, action) => updateObject(state, { restaurants: initialState.restaurants });
+const restaurantsReset = (state, action) => !action.meal ? updateObject(state, { restaurants: initialState.restaurants }) : updateObject(state, { restaurants: updateObject(state.restaurants, { meal: {}, total: 0, qty: 1, addons: [], comments: [] }) });
 const restaurantsStart = (state, action) => updateObject(state, { restaurants: updateObject(state.restaurants, { loading: true, message: null }) });
 const restaurantsSuccess = (state, action) => updateObject(state, { restaurants: updateObject(state.restaurants, { loading: false, error: null, ...action }) });
 const restaurantsFail = (state, action) => updateObject(state, { restaurants: updateObject(state.restaurants, { loading: false, ...action }) });

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Button, Col, Row } from 'reactstrap';
-import { faBook, faCheckCircle, faClock, faDrumstickBite, faFileImage, faMoneyBillWave, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { Button, Col, FormGroup, Row } from 'reactstrap';
+import { faBook, faCheckCircle, faClock, faCookie, faDrumstickBite, faFileImage, faMinusCircle, faMoneyBillWave, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { faSave } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -30,6 +30,8 @@ class Add extends Component {
         reference: '',
         is_active: '',
         photo: '',
+
+        addons: []
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
@@ -58,8 +60,16 @@ class Add extends Component {
 
     inputChangeHandler = e => {
         const { name, value, files } = e.target;
+        if (name === 'select_addon') {
+            const { addons } = this.state;
+            const addon = this.props.backend.meals.allAddons.find(a => +a.id === +value);
+            addons.push(addon);
+            return this.setState({ addons });
+        }
         this.setState({ [name]: files ? files[0] : value });
     }
+
+    onClick = id => this.setState(prevState => ({ addons: prevState.addons.filter(a => +a.id !== +id) }))
 
     fileUpload = () => document.getElementById('photo').click()
 
@@ -70,14 +80,16 @@ class Add extends Component {
                     pages: { components: { form: { save, selected_file, active, inactive } }, backend: { pages: { meals: { title, subtitle, instructions, add, edit, index, form } } } }
                 }
             },
-            backend: { meals: { loading, error, message, meal, categories = [] } },
+            backend: { meals: { loading, error, message, meal, categories = [], allAddons = [] } },
         } = this.props;
-        let { name, category_id, description, price, reference, time, is_active, photo } = this.state;
+        let { name, category_id, description, price, reference, time, is_active, photo, addons } = this.state;
         let content = null;
         let errors = null;
 
         if (!categories) categories = [];
         const categoriesOptions = categories.sort((a, b) => a.name > b.name).map(category => <option key={JSON.stringify(category)} value={category.id}>{category.name}</option>);
+
+        const addonsOptions = allAddons.sort((a, b) => a.name > b.name).filter(addon => !addons.map(a => a.id).includes(addon.id)).map(addon => <option key={JSON.stringify(addon)} value={addon.id}>{addon.name}</option>);
 
         if (loading) content = <Col xs={12}>
             <CustomSpinner />
@@ -104,6 +116,23 @@ class Add extends Component {
                                             <option>{form.select_category}</option>
                                             {categoriesOptions}
                                         </FormInput>
+                                        <FormInput type="select" className="col-md-6" icon={faCookie} onChange={this.inputChangeHandler} name="select_addon" required>
+                                            <option>{form.select_addon}</option>
+                                            {addonsOptions}
+                                        </FormInput>
+                                        <FormGroup className="col-md-6">
+                                            <div className="border border-soft rounded-6 p-1" style={{ height: 53.33 }}>
+                                                {addons.map(addon => <div className="mr-1 bg-blue-10 rounded-4 p-2 position-relative h-100 d-inline-flex align-items-center" key={Math.random() + JSON.stringify(addon)}>
+                                                    <div className="mx-3 text-300 text-12">{addon.name}</div>
+                                                    <input type="hidden" name="addons[]" defaultValue={addon.id} />
+
+                                                    <FontAwesomeIcon icon={faMinusCircle} className="text-red text-10 position-absolute" style={{ top: 6, right: 6, cursor: 'pointer' }} onClick={() => this.onClick(addon.id)} />
+                                                </div>)}
+                                            </div>
+                                        </FormGroup>
+                                        <FormGroup className="col-12 text-14">
+                                            {form.total_addons}: <span className="text-700 text-orange">{addons.length}</span>
+                                        </FormGroup>
                                         <FormInput type="text" className="col-md-6" icon={faPencilAlt} onChange={this.inputChangeHandler} value={description} name="description" required placeholder={form.description} />
                                         <FormInput type="number" className="col-md-6" icon={faMoneyBillWave} onChange={this.inputChangeHandler} value={price} name="price" required placeholder={form.price} />
                                         <FormInput type="text" className="col-md-6" icon={faPencilAlt} onChange={this.inputChangeHandler} value={reference} name="reference" required placeholder={form.reference} />

@@ -10,6 +10,7 @@ import Meal from '../../../../components/UI/Food/Meal';
 import Stars from '../../../../components/UI/Stars';
 
 import Navigation from './Navigation';
+import Carousel from './Carousel';
 
 import * as actions from '../../../../store/actions';
 import { updateObject } from '../../../../shared/utility';
@@ -37,6 +38,8 @@ const Stack = ({ icon, color, link, className = '' }) => <a href={link} target="
     <FontAwesomeIcon icon={icon} className="fa-stack-1x fa-inverse" />
 </a>;
 
+const Conditional = ({ condition, children }) => condition ? children : null;
+
 class Home extends Component {
     state = {
         id: '',
@@ -51,7 +54,7 @@ class Home extends Component {
         return prevState;
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         this.props.get(this.props.match.params.md5);
     }
 
@@ -100,25 +103,37 @@ class Home extends Component {
     }
 
     render() {
-        const { frontend: { restaurants: { restaurant = {}, categories = [] } } } = this.props;
+        const { content: { currencies }, frontend: { restaurants: { restaurant = {}, categories = [], currency, position } } } = this.props;
         const { id } = this.state;
 
+        const currencyObj = currencies.find(c => c.cc === currency);
+
         const categoriesContent = categories.map(category => <Category id={category.id} active={category.id === id} key={JSON.stringify(category) + Math.random()} name={category.name}>
-            {category.meals && category.meals.map(meal => <Meal key={JSON.stringify(meal) + Math.random()} {...meal} md5={this.props.match.params.md5} />)}
+            {category.meals && category.meals.map(meal => <Meal symbol={currencyObj && currencyObj.symbol} position={position} key={JSON.stringify(meal) + Math.random()} {...meal} md5={this.props.match.params.md5} />)}
         </Category>);
 
         const bannerStyle = {
             top: 0,
             left: 0,
-            backgroundImage: `url('${restaurant.photo}')`,
+            backgroundImage: `url('${restaurant.banner1}')`,
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
             backgroundSize: 'cover'
         };
 
+        const items = [restaurant.banner1];
+        if (restaurant.banner2) items.push(restaurant.banner2);
+        if (restaurant.banner3) items.push(restaurant.banner3);
+
+        const basic = restaurant.plan;
+        const standard = restaurant.plan && restaurant.plan.slug === 'standard';
+        const premium = restaurant.plan && restaurant.plan.slug === 'premium';
+
         return <div className="Home">
             <div className="embed-responsive embed-responsive-16by9 position-relative">
-                <div className="position-absolute w-100 h-100" style={bannerStyle} />
+                <div className="position-absolute w-100 h-100" style={{ top: 0, left: 0 }}>
+                    {items.length > 1 ? <Carousel items={items} /> : <div className="h-100" style={bannerStyle} />}
+                </div>
             </div>
 
             <div className="sticky-top border-bottom border-soft bg-white">
@@ -129,9 +144,9 @@ class Home extends Component {
                         </div>
 
                         <div>
-                            <Stack link={`tel:+${restaurant.phone}`} icon={faPhone} color="primary" />
-                            <Stack link={`//wa.me/${restaurant.whatsapp}`} icon={faWhatsapp} color="green" />
-                            <Stack link="#" icon={faSearchLocation} color="yellow" />
+                            <Conditional condition={(premium || standard || basic) && restaurant.phone}><Stack link={`tel:+${restaurant.phone}`} icon={faPhone} color="primary" /></Conditional>
+                            <Conditional condition={(premium || standard) && restaurant.whatsapp}><Stack link={`//wa.me/${restaurant.whatsapp}`} icon={faWhatsapp} color="green" /></Conditional>
+                            <Conditional condition={premium && restaurant.location}><Stack link={restaurant.location} icon={faSearchLocation} color="yellow" /></Conditional>
                         </div>
                     </div>
 

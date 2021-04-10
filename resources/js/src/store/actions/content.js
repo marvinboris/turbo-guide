@@ -16,7 +16,19 @@ export const getContent = () => async dispatch => {
         }
         const res = await fetch(`${prefix}content/${lang}`);
         const resData = await res.json();
-        dispatch(contentSuccess(resData));
+
+        const currenciesRes = await fetch(CORS + 'https://raw.githubusercontent.com/mhs/world-currencies/master/currencies.json', { method: 'GET', mode: 'cors' });
+        const currencies = await currenciesRes.json();
+
+        const phoneRes = await fetch(CORS + 'http://country.io/phone.json', { method: 'GET', mode: 'cors' });
+        const namesRes = await fetch(CORS + 'http://country.io/names.json', { method: 'GET', mode: 'cors' });
+
+        const phone = await phoneRes.json();
+        const names = await namesRes.json();
+
+        const countries = Object.keys(phone).map(key => ({ country: key, code: phone[key], name: names[key] })).sort((a, b) => a.country > b.country);
+
+        dispatch(contentSuccess({ ...resData, currencies, countries }));
     } catch (error) {
         console.log(error);
         dispatch(contentFail(error));

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { Col } from 'reactstrap';
-import { faTachometerAlt, faDrumstickBite, faStar, faCookie, faWineBottle, faMoneyBillWave, faDownload, faBox, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { Col, Row } from 'reactstrap';
+import { faTachometerAlt, faDrumstickBite, faStar, faCookie, faWineBottle, faMoneyBillWave, faDownload, faBox, faExternalLinkAlt, faListAlt, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import OwlCarousel from 'react-owl-carousel2';
 
 // Components
 import Breadcrumb from '../../../../components/Backend/UI/Breadcrumb/Breadcrumb';
@@ -15,10 +16,21 @@ import Error from '../../../../components/Error/Error';
 import CustomSpinner from '../../../../components/UI/CustomSpinner/CustomSpinner';
 import Meal from '../../../../components/Backend/UI/Food/Meal';
 import Stars from '../../../../components/UI/Stars';
+import Plan from '../../../../components/UI/Plan';
 
 import * as actions from '../../../../store/actions';
 
+const appreciations = [
+    { color: 'green', lt: 5, text: 'Positive' },
+    { color: 'orange', lt: 3.5, text: 'Average' },
+    { color: 'red', lt: 2.5, text: 'Negative' },
+];
+
 class Dashboard extends Component {
+    state = {
+        duration: 1,
+    }
+
     componentDidMount() {
         this.props.get();
     }
@@ -27,16 +39,19 @@ class Dashboard extends Component {
         this.props.reset();
     }
 
+    switchDuration = duration => this.setState({ duration });
+
     render() {
         let {
             content: {
                 cms: {
-                    pages: { backend: { pages: { dashboard: { restaurant: { welcome, subtitle, blocks: { customer_review, total_meals, total_addons, total_drinks, credit_balance, recharge }, go_live, most_viewed, qr_code, download, subscription_plan, monthly, yearly, customer_reviews, customer_ratings, stars: { singular, plural }, general_overview } } } } }
+                    pages: { backend: { pages: { dashboard: { restaurant: { welcome, subtitle, blocks: { customer_review, total_meals, total_addons, total_categories, credit_balance, recharge }, go_live, most_viewed, qr_code, download, subscription_plan, monthly, yearly, customer_reviews, customer_ratings, stars: { singular, plural }, general_overview } } } } }
                 }
             },
-            backend: { dashboard: { loading, error, blocksData = {}, mostViewed = [], comments = 0, marks = {} } },
-            auth: { data: { md5, name } }
+            backend: { dashboard: { loading, error, blocksData, mostViewed = [], comments = 0, marks = {}, plans = {} } },
+            auth: { data: { md5, name, plan } }
         } = this.props;
+        const { duration } = this.state;
 
         let content = null;
         let errors = null;
@@ -65,34 +80,48 @@ class Dashboard extends Component {
                         details: total_addons,
                     },
                     {
-                        children: blocksData.totalDrinks,
-                        icon: faWineBottle,
-                        link: '/restaurant/drinks/',
+                        children: blocksData.totalCategories,
+                        icon: faListAlt,
+                        link: '/restaurant/categories/',
                         color: 'blue',
-                        details: total_drinks,
+                        details: total_categories,
                     },
                     {
                         children: blocksData.customerReview,
                         icon: faStar,
-                        link: '/restaurant/review/',
+                        link: '/restaurant/comments/',
                         color: 'orange',
                         details: customer_review,
                     },
                 ];
 
+                const appreciation = appreciations.find(c => c.lt >= blocksData.customerReview);
+
                 const cards = data.map(({ children, icon, link, color, details }, index) => <Card color={color} key={index} details={details} icon={icon} link={link}>{children}</Card>);
 
                 const mealsContent = mostViewed.map(meal => <div key={JSON.stringify(meal) + Math.random()} className="col-lg-3"><Meal className="w-100 m-0" {...meal} /></div>);
 
+                let plansContent = [];
+                if (plans.monthly) {
+                    plans = plans[duration === 1 ? "monthly" : "yearly"];
+                    plans[0].basic = true;
+                    plans[1].standard = true;
+                    plans[2].premium = true;
+                    plans = [plans[0], plans[2], plans[1]];
+                    plansContent = plans.map((plan, index) => <Col key={index} xl={4}>
+                        <Plan {...plan} />
+                    </Col>);
+                }
+
                 content = (
                     <>
-                        <div className="position-fixed pt-3 pr-5" style={{ top: 0, right: 0, zIndex: 1100 }}>
+                        {plan && <div className="position-fixed pt-3 pr-5" style={{ top: 0, right: 0, zIndex: 1100 }}>
                             <a href={`/restaurants/${md5}`} target="_blank" className="btn btn-green text-18 text-montserrat text-700 text-decoration-none py-3 px-4 rounded-4">
                                 {go_live}
 
                                 <FontAwesomeIcon icon={faExternalLinkAlt} className="ml-3" />
                             </a>
-                        </div>
+                        </div>}
 
                         <div className="row mb-5">
                             <div className="col-lg-8">
@@ -112,7 +141,7 @@ class Dashboard extends Component {
                                     </div>
 
                                     <div>
-                                        <Link to="/restaurant/recharge" className="btn btn-white text-decoration-none text-green py-2 px-3">
+                                        <Link to="/restaurant/recharges" className="btn btn-white text-decoration-none text-green py-2 px-3">
                                             <FontAwesomeIcon icon={faMoneyBillWave} className="mr-3" />
 
                                             {recharge}
@@ -124,7 +153,7 @@ class Dashboard extends Component {
 
                         <div className="row">
                             <div className="col-lg-8 pb-4 bg-white">
-                                <div className="p-4 rounded-15 bg-green-10 h-100 d-flex flex-column">
+                                <div className="p-4 rounded-15 bg-green-5 h-100 d-flex flex-column">
                                     <div className="pb-4 mb-4 px-4 border-bottom border-light text-18">
                                         <FontAwesomeIcon icon={faDrumstickBite} className="mr-3 text-orange" />
 
@@ -138,7 +167,7 @@ class Dashboard extends Component {
                             </div>
 
                             <div className="col-lg-4 pb-4 bg-white">
-                                <div className="p-4 rounded-15 bg-orange-10">
+                                <div className="p-4 rounded-15 bg-orange-20">
                                     <div className="pb-4 mb-4 px-4 border-bottom border-light text-18">
                                         {qr_code}
                                     </div>
@@ -162,7 +191,7 @@ class Dashboard extends Component {
                             </div>
 
                             <div className="col-lg-8 pb-4 bg-white">
-                                <div className="p-4 rounded-15 bg-green-10 h-100 d-flex flex-column">
+                                <div className="p-4 rounded-15 bg-green-5 h-100 d-flex flex-column">
                                     <div className="pb-4 mb-4 px-4 d-flex align-items-center border-bottom border-light text-18">
                                         <div>
                                             <FontAwesomeIcon icon={faBox} className="mr-3 text-orange" />
@@ -171,19 +200,38 @@ class Dashboard extends Component {
                                         </div>
 
                                         <div className="ml-auto mr-3">
-                                            <div className="py-2 px-4 rounded-4 text-green bg-green-20">
+                                            <div className="py-2 px-4 rounded-4 text-green bg-green-20 position-relative" onClick={() => this.switchDuration(1)} style={{ cursor: 'pointer' }}>
                                                 <div className="px-3">{monthly}</div>
+
+                                                <div style={{ top: 0, right: 0, transform: 'translate(50%,-50%)' }} className={`position-absolute ${duration === 1 ? "d-block" : "d-none"}`}>
+                                                    <div className="rounded-circle text-white bg-green d-flex justify-content-center align-items-center text-6" style={{ width: 20, height: 20 }}>
+                                                        <FontAwesomeIcon icon={faCheck} fixedWidth />
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div>
-                                            <div className="py-2 px-4 rounded-4 text-green bg-green-10">
+                                            <div className="py-2 px-4 rounded-4 text-orange bg-orange-20 position-relative" onClick={() => this.switchDuration(12)} style={{ cursor: 'pointer' }}>
                                                 <div className="px-3">{yearly}</div>
+
+                                                <div style={{ top: 0, right: 0, transform: 'translate(50%,-50%)' }} className={`position-absolute ${duration === 12 ? "d-block" : "d-none"}`}>
+                                                    <div className="rounded-circle text-white bg-orange d-flex justify-content-center align-items-center text-6" style={{ width: 20, height: 20 }}>
+                                                        <FontAwesomeIcon icon={faCheck} fixedWidth />
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div className="flex-fill d-flex align-items-center">
+                                    <div className="flex-fill">
+                                        <Row className="d-none d-sm-flex align-items-center">{plansContent}</Row>
+
+                                        <div className="d-sm-none">
+                                            <OwlCarousel options={{ responsive: { 0: { items: 1 }, 600: { items: 2 }, 1200: { items: 3 } }, center: true, loop: true, dots: false }}>
+                                                {plansContent}
+                                            </OwlCarousel>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -223,7 +271,7 @@ class Dashboard extends Component {
                                     <div className="mt-3 mb-3 text-center text-14">{general_overview}</div>
 
                                     <div className="d-flex justify-content-center">
-                                        <div className="rounded-pill bg-green py-3 px-5 text-white text-18 text-montserrat">Positive</div>
+                                        <div className={`rounded-pill bg-${appreciation.color} py-3 px-5 text-white text-18 text-montserrat`}>{appreciation.text}</div>
                                     </div>
                                 </div>
                             </div>

@@ -20,6 +20,7 @@ class MealController extends Controller
         'time' => 'required|numeric',
         'photo' => 'required|file|image',
         'is_active' => 'required|integer',
+        'addons' => 'array|exists:addons,id',
     ];
 
     private function data()
@@ -83,8 +84,14 @@ class MealController extends Controller
             $categories[] = $category->toArray() + [];
         }
 
+        $addons = [];
+        foreach ($restaurant->addons as $addon) {
+            $addons[] = $addon->toArray() + [];
+        }
+
         return [
             'categories' => $categories,
+            'allAddons' => $addons,
         ];
     }
 
@@ -172,7 +179,9 @@ class MealController extends Controller
         }
 
         $category = $restaurant->categories()->find($input['category_id']);
-        $category->meals()->create($input);
+        $meal = $category->meals()->create($input);
+
+        $meal->addons()->sync($request->addons);
 
         return response()->json([
             'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['meals']['created'], 'success'),
@@ -183,6 +192,13 @@ class MealController extends Controller
     {
         $cms = UtilController::cms();
         $restaurant = UtilController::get(request());
+        
+        // return response()->json([
+        //     'message' => [
+        //         'type' => 'success',
+        //         'content' => json_encode($request->input('addons')),
+        //     ],
+        // ]);
 
         $category = $this->validation($request, $id);
         if ($category instanceof JsonResponse) return $category;
@@ -202,6 +218,8 @@ class MealController extends Controller
         }
 
         $meal->update($input);
+
+        $meal->addons()->sync($request->addons);
 
         return response()->json([
             'message' => [

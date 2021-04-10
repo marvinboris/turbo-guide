@@ -9,7 +9,7 @@ import Error from '../../../../../components/Error/Error';
 
 import './Layout.css';
 
-import * as actionTypes from '../../../../../store/actions/frontend';
+import * as actions from '../../../../../store/actions/frontend';
 
 const Wrapper = ({ children, className, style }) => <div className={className} style={{ padding: '12px 11px', ...style }}>
     {children}
@@ -34,8 +34,9 @@ class Layout extends Component {
 
     render() {
         const {
+            content: { currencies },
             frontend: {
-                restaurants: { loading, error, meal = {}, total = 0, qty = 1 }
+                restaurants: { loading, error, meal = {}, total = 0, qty = 1, currency, position }
             },
             match: { params: { md5 } },
             children
@@ -45,6 +46,9 @@ class Layout extends Component {
         if (error) errors = <>
             <Error err={error} />
         </>;
+        
+        const currencyObj = currencies.find(c => c.cc === currency);
+        const symbol = currencyObj && currencyObj.symbol;
 
         const bannerStyle = {
             top: 0,
@@ -111,7 +115,9 @@ class Layout extends Component {
                             <div className="text-6">Price :</div>
 
                             <div>
-                                <span className="text-700">{total.toFixed(2)}</span> <span className="text-8">XAF</span>
+                            {position == 0 && <span className="text-8 mr-1">{symbol}</span>}
+                            <span className="text-700">{total.toFixed(2)}</span>
+                            {position == 1 && <span className="text-8 ml-1">{symbol}</span>}
                             </div>
                         </div>
                     </div>
@@ -153,10 +159,10 @@ class Layout extends Component {
 const mapStateToProps = state => ({ ...state });
 
 const mapDispatchToProps = dispatch => ({
-    add: () => dispatch(actionTypes.addMeal()),
-    sub: () => dispatch(actionTypes.subMeal()),
-    get: (md5, id) => dispatch(actionTypes.getRestaurantsMeal(md5, id)),
-    reset: () => dispatch(actionTypes.resetRestaurants()),
+    add: () => dispatch(actions.addMeal()),
+    sub: () => dispatch(actions.subMeal()),
+    get: (md5, id) => dispatch(actions.getRestaurantsMeal(md5, id)),
+    reset: () => dispatch(actions.resetRestaurants(true)),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Layout));

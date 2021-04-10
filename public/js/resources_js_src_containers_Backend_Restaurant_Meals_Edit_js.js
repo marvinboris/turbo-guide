@@ -500,12 +500,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Col.js");
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Row.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Button.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/FormGroup.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Button.js");
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
-/* harmony import */ var _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @fortawesome/free-regular-svg-icons */ "./node_modules/@fortawesome/free-regular-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @fortawesome/free-regular-svg-icons */ "./node_modules/@fortawesome/free-regular-svg-icons/index.es.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 /* harmony import */ var _components_Backend_UI_Breadcrumb_Breadcrumb__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../components/Backend/UI/Breadcrumb/Breadcrumb */ "./resources/js/src/components/Backend/UI/Breadcrumb/Breadcrumb.js");
 /* harmony import */ var _components_Backend_UI_TitleWrapper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../components/Backend/UI/TitleWrapper */ "./resources/js/src/components/Backend/UI/TitleWrapper/index.js");
@@ -600,7 +601,8 @@ var Add = /*#__PURE__*/function (_Component) {
       time: '',
       reference: '',
       is_active: '',
-      photo: ''
+      photo: '',
+      addons: []
     });
 
     _defineProperty(_assertThisInitialized(_this), "submitHandler", function (e) {
@@ -614,7 +616,30 @@ var Add = /*#__PURE__*/function (_Component) {
           value = _e$target.value,
           files = _e$target.files;
 
+      if (name === 'select_addon') {
+        var addons = _this.state.addons;
+
+        var addon = _this.props.backend.meals.allAddons.find(function (a) {
+          return +a.id === +value;
+        });
+
+        addons.push(addon);
+        return _this.setState({
+          addons: addons
+        });
+      }
+
       _this.setState(_defineProperty({}, name, files ? files[0] : value));
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "onClick", function (id) {
+      return _this.setState(function (prevState) {
+        return {
+          addons: prevState.addons.filter(function (a) {
+            return +a.id !== +id;
+          })
+        };
+      });
     });
 
     _defineProperty(_assertThisInitialized(_this), "fileUpload", function () {
@@ -657,6 +682,8 @@ var Add = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var _this$props = this.props,
           _this$props$content$c = _this$props.content.cms.pages,
           _this$props$content$c2 = _this$props$content$c.components.form,
@@ -678,7 +705,9 @@ var Add = /*#__PURE__*/function (_Component) {
           message = _this$props$backend$m.message,
           meal = _this$props$backend$m.meal,
           _this$props$backend$m2 = _this$props$backend$m.categories,
-          categories = _this$props$backend$m2 === void 0 ? [] : _this$props$backend$m2;
+          categories = _this$props$backend$m2 === void 0 ? [] : _this$props$backend$m2,
+          _this$props$backend$m3 = _this$props$backend$m.allAddons,
+          allAddons = _this$props$backend$m3 === void 0 ? [] : _this$props$backend$m3;
       var _this$state = this.state,
           name = _this$state.name,
           category_id = _this$state.category_id,
@@ -687,7 +716,8 @@ var Add = /*#__PURE__*/function (_Component) {
           reference = _this$state.reference,
           time = _this$state.time,
           is_active = _this$state.is_active,
-          photo = _this$state.photo;
+          photo = _this$state.photo,
+          addons = _this$state.addons;
       var content = null;
       var errors = null;
       if (!categories) categories = [];
@@ -698,6 +728,18 @@ var Add = /*#__PURE__*/function (_Component) {
           value: category.id,
           children: category.name
         }, JSON.stringify(category));
+      });
+      var addonsOptions = allAddons.sort(function (a, b) {
+        return a.name > b.name;
+      }).filter(function (addon) {
+        return !addons.map(function (a) {
+          return a.id;
+        }).includes(addon.id);
+      }).map(function (addon) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("option", {
+          value: addon.id,
+          children: addon.name
+        }, JSON.stringify(addon));
       });
       if (loading) content = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_16__.default, {
         xs: 12,
@@ -747,6 +789,54 @@ var Add = /*#__PURE__*/function (_Component) {
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("option", {
                         children: form.select_category
                       }), categoriesOptions]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+                      type: "select",
+                      className: "col-md-6",
+                      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faCookie,
+                      onChange: this.inputChangeHandler,
+                      name: "select_addon",
+                      required: true,
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("option", {
+                        children: form.select_addon
+                      }), addonsOptions]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_19__.default, {
+                      className: "col-md-6",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                        className: "border border-soft rounded-6 p-1",
+                        style: {
+                          height: 53.33
+                        },
+                        children: addons.map(function (addon) {
+                          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+                            className: "mr-1 bg-blue-10 rounded-4 p-2 position-relative h-100 d-inline-flex align-items-center",
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                              className: "mx-3 text-300 text-12",
+                              children: addon.name
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("input", {
+                              type: "hidden",
+                              name: "addons[]",
+                              defaultValue: addon.id
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+                              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faMinusCircle,
+                              className: "text-red text-10 position-absolute",
+                              style: {
+                                top: 6,
+                                right: 6,
+                                cursor: 'pointer'
+                              },
+                              onClick: function onClick() {
+                                return _this2.onClick(addon.id);
+                              }
+                            })]
+                          }, Math.random() + JSON.stringify(addon));
+                        })
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_19__.default, {
+                      className: "col-12 text-14",
+                      children: [form.total_addons, ": ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("span", {
+                        className: "text-700 text-orange",
+                        children: addons.length
+                      })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
                       type: "text",
                       className: "col-md-6",
@@ -855,13 +945,13 @@ var Add = /*#__PURE__*/function (_Component) {
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
                   className: "col-12",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_19__.default, {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_20__.default, {
                     color: "orange",
                     className: "text-20 rounded-4 py-3 px-4",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
                       className: "mx-3",
                       children: [save, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-                        icon: _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_20__.faSave,
+                        icon: _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_21__.faSave,
                         className: "ml-4"
                       })]
                     })
@@ -944,7 +1034,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_21__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_2__.connect)(mapStateToProps, mapDispatchToProps)(Add)));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_22__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_2__.connect)(mapStateToProps, mapDispatchToProps)(Add)));
 
 /***/ }),
 

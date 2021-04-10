@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, Redirect, withRouter } from 'react-router-dom';
 import { Row } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEdit, faTrash, faListOl, faThLarge } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faTrash, faComment } from '@fortawesome/free-solid-svg-icons';
 
 // Components
 import Breadcrumb from '../../../../components/Backend/UI/Breadcrumb/Breadcrumb';
 import TitleWrapper from '../../../../components/Backend/UI/TitleWrapper';
 import SpecialTitle from '../../../../components/UI/Titles/SpecialTitle/SpecialTitle';
 import Subtitle from '../../../../components/UI/Titles/Subtitle/Subtitle';
-import List from '../../../../components/Backend/UI/List/List';
+import Table from '../../../../components/Backend/UI/Food/Table';
 import Error from '../../../../components/Error/Error';
 import Feedback from '../../../../components/Feedback/Feedback';
 import Delete from '../../../../components/Backend/UI/Delete/Delete';
 
 import * as actions from '../../../../store/actions/backend';
-import { updateObject } from '../../../../shared/utility';
+import { convertDate, updateObject } from '../../../../shared/utility';
 
 class Index extends Component {
     componentDidMount() {
@@ -31,12 +31,14 @@ class Index extends Component {
         let {
             content: {
                 cms: {
-                    pages: { components: { list: { action } }, backend: { pages: { comments: { title, index, form } } } }
+                    pages: { components: { list: { action } }, backend: { pages: { comments: { title, subtitle, index, form } } } }
                 }
             },
             backend: { comments: { loading, error, message, comments, total } },
+            auth: { data: { plan } }
         } = this.props;
 
+        const redirect = (!plan || (plan && plan.slug !== 'premium')) && <Redirect to="/restaurant/dashboard" />
         const errors = <>
             <Error err={error} />
         </>;
@@ -45,6 +47,7 @@ class Index extends Component {
         if (!comments) comments = [];
         const data = comments.map(comment => {
             return updateObject(comment, {
+                created_at: convertDate(comment.created_at),
                 action: <div className="text-center">
                     <Link to={`/restaurant/comments/${comment.id}`} className="mr-2">
                         <FontAwesomeIcon icon={faEye} className="text-green" fixedWidth />
@@ -57,7 +60,7 @@ class Index extends Component {
         const content = (
             <>
                 <Row>
-                    <List array={data} loading={loading} data={JSON.stringify(comments)} get={this.props.get} total={total} bordered icon={faThLarge} title={index} className="shadow-sm"
+                    <Table array={data} loading={loading} data={JSON.stringify(comments)} get={this.props.get} total={total} bordered icon={faComment} title={index} subtitle={subtitle} className="shadow-sm"
                         fields={[
                             { name: form.created_at, key: 'created_at' },
                             { name: form.name, key: 'name' },
@@ -72,12 +75,13 @@ class Index extends Component {
 
         return (
             <>
+                {redirect}
                 <TitleWrapper>
-                    <Breadcrumb main={index} icon={faThLarge} />
+                    <Breadcrumb main={index} icon={faComment} />
                     <SpecialTitle>{title}</SpecialTitle>
                     <Subtitle>{index}</Subtitle>
                 </TitleWrapper>
-                <div className="p-4 pb-0">
+                <div>
                     {errors}
                     {feedback}
                     {content}

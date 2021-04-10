@@ -151,10 +151,6 @@ Route::namespace('Restaurant')->prefix('restaurant')->name('restaurant.')->group
             Route::get('{meal}', 'MealController@show')->name('show');
         });
 
-        Route::prefix('drinks')->name('drinks.')->group(function () {
-            Route::get('{drink}', 'DrinkController@show')->name('show');
-        });
-
         Route::prefix('addons')->name('addons.')->group(function () {
             Route::get('{addon}', 'AddonController@show')->name('show');
         });
@@ -171,14 +167,23 @@ Route::namespace('Restaurant')->prefix('restaurant')->name('restaurant.')->group
             Route::get('', 'SettingsController@index')->name('index');
         });
 
+        Route::prefix('plans')->name('plans.')->group(function () {
+            Route::get('info', 'PlanController@info')->name('info');
+        });
+
+        Route::prefix('recharges')->name('recharges.')->group(function () {
+            Route::get('info', 'RechargeController@info')->name('info');
+        });
+
 
 
         Route::apiResources([
             'categories' => 'CategoryController',
             'addons' => 'AddonController',
-            'drinks' => 'DrinkController',
             'meals' => 'MealController',
             'comments' => 'CommentController',
+            'plans' => 'PlanController',
+            'recharges' => 'RechargeController',
         ]);
     });
 });
@@ -250,4 +255,9 @@ Route::prefix('content')->name('content.')->group(function () {
             'cms' => $cms,
         ]);
     })->name('cms');
+});
+
+Route::namespace('Method')->group(function () {
+    Route::get('monetbil/notify', 'MonetbilController@notify')->name('monetbil.notify.get');
+    Route::post('monetbil/notify', 'MonetbilController@notify')->name('monetbil.notify.post');
 });

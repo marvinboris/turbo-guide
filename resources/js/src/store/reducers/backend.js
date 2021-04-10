@@ -56,6 +56,14 @@ const initialState = {
         loading: false,
         error: null
     },
+    plans: {
+        loading: false,
+        error: null
+    },
+    recharges: {
+        loading: false,
+        error: null
+    },
     settings: {
         loading: false,
         error: null
@@ -123,6 +131,16 @@ const commentsReset = (state) => updateObject(state, { comments: initialState.co
 const commentsStart = (state) => updateObject(state, { comments: updateObject(state.comments, { loading: true, message: null }) });
 const commentsSuccess = (state, action) => updateObject(state, { comments: updateObject(state.comments, { loading: false, error: null, ...action }) });
 const commentsFail = (state, action) => updateObject(state, { comments: updateObject(state.comments, { loading: false, ...action }) });
+
+const plansReset = (state) => updateObject(state, { plans: initialState.plans });
+const plansStart = (state) => updateObject(state, { plans: updateObject(state.plans, { loading: true, message: null }) });
+const plansSuccess = (state, action) => updateObject(state, { plans: updateObject(state.plans, { loading: false, error: null, ...action }) });
+const plansFail = (state, action) => updateObject(state, { plans: updateObject(state.plans, { loading: false, ...action }) });
+
+const rechargesReset = (state) => updateObject(state, { recharges: initialState.recharges });
+const rechargesStart = (state) => updateObject(state, { recharges: updateObject(state.recharges, { loading: true, message: null }) });
+const rechargesSuccess = (state, action) => updateObject(state, { recharges: updateObject(state.recharges, { loading: false, error: null, ...action }) });
+const rechargesFail = (state, action) => updateObject(state, { recharges: updateObject(state.recharges, { loading: false, ...action }) });
 
 const settingsReset = (state) => updateObject(state, { settings: initialState.settings });
 const settingsStart = (state) => updateObject(state, { settings: updateObject(state.settings, { loading: true, message: null }) });
@@ -197,6 +215,16 @@ export default (state = initialState, action) => {
         case actionTypes.COMMENTS_START: return commentsStart(state, action);
         case actionTypes.COMMENTS_SUCCESS: return commentsSuccess(state, action);
         case actionTypes.COMMENTS_FAIL: return commentsFail(state, action);
+
+        case actionTypes.PLANS_RESET: return plansReset(state, action);
+        case actionTypes.PLANS_START: return plansStart(state, action);
+        case actionTypes.PLANS_SUCCESS: return plansSuccess(state, action);
+        case actionTypes.PLANS_FAIL: return plansFail(state, action);
+
+        case actionTypes.RECHARGES_RESET: return rechargesReset(state, action);
+        case actionTypes.RECHARGES_START: return rechargesStart(state, action);
+        case actionTypes.RECHARGES_SUCCESS: return rechargesSuccess(state, action);
+        case actionTypes.RECHARGES_FAIL: return rechargesFail(state, action);
 
         case actionTypes.SETTINGS_RESET: return settingsReset(state, action);
         case actionTypes.SETTINGS_START: return settingsStart(state, action);

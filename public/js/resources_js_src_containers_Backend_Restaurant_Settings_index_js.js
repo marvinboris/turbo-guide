@@ -3862,6 +3862,13 @@ var Block = function Block(_ref) {
   }) : null;
 };
 
+var Conditional = function Conditional(_ref2) {
+  var _ref2$condition = _ref2.condition,
+      condition = _ref2$condition === void 0 ? false : _ref2$condition,
+      children = _ref2.children;
+  return condition ? children : null;
+};
+
 var Settings = /*#__PURE__*/function (_Component) {
   _inherits(Settings, _Component);
 
@@ -3894,13 +3901,11 @@ var Settings = /*#__PURE__*/function (_Component) {
       new_password: '',
       new_password_confirmation: '',
       photo: '',
-      banner_1: '',
-      banner_2: '',
-      banner_3: '',
+      banner1: '',
+      banner2: '',
+      banner3: '',
       days: '',
-      hours: '',
-      countries: [],
-      currencies: []
+      hours: ''
     });
 
     _defineProperty(_assertThisInitialized(_this), "submitHandler", function (e) {
@@ -3951,67 +3956,14 @@ var Settings = /*#__PURE__*/function (_Component) {
     key: "componentDidMount",
     value: function () {
       var _componentDidMount = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var phoneRes, namesRes, phone, names, countries, currenciesRes, currencies;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 this.props.reset();
                 this.props.get();
-                _context.next = 4;
-                return fetch(CORS + 'http://country.io/phone.json', {
-                  method: 'GET',
-                  mode: 'cors'
-                });
 
-              case 4:
-                phoneRes = _context.sent;
-                _context.next = 7;
-                return fetch(CORS + 'http://country.io/names.json', {
-                  method: 'GET',
-                  mode: 'cors'
-                });
-
-              case 7:
-                namesRes = _context.sent;
-                _context.next = 10;
-                return phoneRes.json();
-
-              case 10:
-                phone = _context.sent;
-                _context.next = 13;
-                return namesRes.json();
-
-              case 13:
-                names = _context.sent;
-                countries = Object.keys(phone).map(function (key) {
-                  return {
-                    country: key,
-                    code: phone[key],
-                    name: names[key]
-                  };
-                }).sort(function (a, b) {
-                  return a.country > b.country;
-                });
-                _context.next = 17;
-                return fetch(CORS + 'https://raw.githubusercontent.com/mhs/world-currencies/master/currencies.json', {
-                  method: 'GET',
-                  mode: 'cors'
-                });
-
-              case 17:
-                currenciesRes = _context.sent;
-                _context.next = 20;
-                return currenciesRes.json();
-
-              case 20:
-                currencies = _context.sent;
-                this.setState({
-                  countries: countries,
-                  currencies: currencies
-                });
-
-              case 22:
+              case 2:
               case "end":
                 return _context.stop();
             }
@@ -4037,21 +3989,23 @@ var Settings = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       var _this$props = this.props,
-          _this$props$content$c = _this$props.content.cms.pages,
+          _this$props$content = _this$props.content,
+          _this$props$content$c = _this$props$content.cms.pages,
           _this$props$content$c2 = _this$props$content$c.components.form,
           save = _this$props$content$c2.save,
           selected_file = _this$props$content$c2.selected_file,
-          active = _this$props$content$c2.active,
-          inactive = _this$props$content$c2.inactive,
           _this$props$content$c3 = _this$props$content$c.backend.pages.settings,
           title = _this$props$content$c3.title,
           subtitle = _this$props$content$c3.subtitle,
           form = _this$props$content$c3.form,
+          currencies = _this$props$content.currencies,
+          countries = _this$props$content.countries,
           _this$props$backend$s = _this$props.backend.settings,
           loading = _this$props$backend$s.loading,
           error = _this$props$backend$s.error,
           message = _this$props$backend$s.message,
-          restaurant = _this$props$backend$s.restaurant;
+          restaurant = _this$props$backend$s.restaurant,
+          plan = _this$props.auth.data.plan;
       var _this$state = this.state,
           name = _this$state.name,
           owner = _this$state.owner,
@@ -4068,36 +4022,37 @@ var Settings = /*#__PURE__*/function (_Component) {
           new_password = _this$state.new_password,
           new_password_confirmation = _this$state.new_password_confirmation,
           photo = _this$state.photo,
-          banner_1 = _this$state.banner_1,
-          banner_2 = _this$state.banner_2,
-          banner_3 = _this$state.banner_3,
+          banner1 = _this$state.banner1,
+          banner2 = _this$state.banner2,
+          banner3 = _this$state.banner3,
           days = _this$state.days,
-          hours = _this$state.hours,
-          countries = _this$state.countries,
-          currencies = _this$state.currencies;
+          hours = _this$state.hours;
       var restaurantContent, accountContent, cmsContent, calendarContent;
       var errors = null;
-      var countriesOptions = countries.map(function (_ref2) {
-        var country = _ref2.country,
-            code = _ref2.code,
-            name = _ref2.name;
+      var basic = plan;
+      var standard = plan && plan.slug === 'standard';
+      var premium = plan && plan.slug === 'premium';
+      var countriesOptions = countries.map(function (_ref3) {
+        var country = _ref3.country,
+            code = _ref3.code,
+            name = _ref3.name;
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("option", {
           value: country,
           code: code,
           children: name
         }, country);
       });
-      var currenciesOptions = currencies.map(function (_ref3) {
-        var cc = _ref3.cc,
-            symbol = _ref3.symbol,
-            name = _ref3.name;
+      var currenciesOptions = currencies.map(function (_ref4) {
+        var cc = _ref4.cc,
+            symbol = _ref4.symbol,
+            name = _ref4.name;
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("option", {
           value: cc,
           symbol: symbol,
           children: name
         }, cc);
       });
-      if (countries.length === 0 || currencies.length === 0 || loading) restaurantContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_19__.default, {
+      if (loading) restaurantContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_19__.default, {
         xs: 12,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_CustomSpinner_CustomSpinner__WEBPACK_IMPORTED_MODULE_9__.default, {})
       });else {
@@ -4128,28 +4083,37 @@ var Settings = /*#__PURE__*/function (_Component) {
             name: "owner",
             required: true,
             placeholder: form.owner
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
-            type: "tel",
-            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faPhone,
-            onChange: this.inputChangeHandler,
-            value: phone,
-            name: "phone",
-            required: true,
-            placeholder: form.phone
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
-            type: "tel",
-            icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_20__.faWhatsapp,
-            onChange: this.inputChangeHandler,
-            value: whatsapp,
-            name: "whatsapp",
-            placeholder: form.whatsapp
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
-            type: "text",
-            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faLocationArrow,
-            onChange: this.inputChangeHandler,
-            value: location,
-            name: "location",
-            placeholder: form.location
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(Conditional, {
+            condition: basic,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+              type: "tel",
+              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faPhone,
+              onChange: this.inputChangeHandler,
+              value: phone,
+              name: "phone",
+              required: true,
+              placeholder: form.phone
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(Conditional, {
+            condition: standard || premium,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+              type: "tel",
+              icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_20__.faWhatsapp,
+              onChange: this.inputChangeHandler,
+              value: whatsapp,
+              name: "whatsapp",
+              placeholder: form.whatsapp
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(Conditional, {
+            condition: premium,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+              type: "text",
+              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faLocationArrow,
+              onChange: this.inputChangeHandler,
+              value: location,
+              name: "location",
+              placeholder: form.location
+            })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
             type: "text",
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faSearchLocation,
@@ -4278,79 +4242,88 @@ var Settings = /*#__PURE__*/function (_Component) {
           })]
         });
         cmsContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.Fragment, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_21__.default, {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-              className: "embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center",
-              style: {
-                cursor: 'pointer',
-                background: photo && "url(\"".concat(banner_1, "\") no-repeat center"),
-                backgroundSize: 'cover'
-              },
-              onClick: function onClick() {
-                return _this2.fileUpload("banner-1");
-              },
-              children: banner_1 && banner_1 !== restaurant.banner_1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-                className: "text-center text-green",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-                    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faCheckCircle,
-                    fixedWidth: true,
-                    size: "5x"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                  className: "mt-3",
-                  children: selected_file
-                })]
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(Conditional, {
+            condition: basic,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_21__.default, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                className: "embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center",
+                style: {
+                  cursor: 'pointer',
+                  background: photo && "url(\"".concat(banner1, "\") no-repeat center"),
+                  backgroundSize: 'cover'
+                },
+                onClick: function onClick() {
+                  return _this2.fileUpload("banner-1");
+                },
+                children: banner1 && banner1 !== restaurant.banner1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+                  className: "text-center text-green",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+                      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faCheckCircle,
+                      fixedWidth: true,
+                      size: "5x"
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                    className: "mt-3",
+                    children: selected_file
+                  })]
+                })
               })
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_21__.default, {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-              className: "embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center",
-              style: {
-                cursor: 'pointer',
-                background: banner_2 && "url(\"".concat(banner_2, "\") no-repeat center"),
-                backgroundSize: 'cover'
-              },
-              onClick: function onClick() {
-                return _this2.fileUpload("banner-2");
-              },
-              children: banner_2 && banner_2 !== restaurant.banner_2 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-                className: "text-center text-green",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-                    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faCheckCircle,
-                    fixedWidth: true,
-                    size: "5x"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                  className: "mt-3",
-                  children: selected_file
-                })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(Conditional, {
+            condition: standard || premium,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_21__.default, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                className: "embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center",
+                style: {
+                  cursor: 'pointer',
+                  background: banner2 && "url(\"".concat(banner2, "\") no-repeat center"),
+                  backgroundSize: 'cover'
+                },
+                onClick: function onClick() {
+                  return _this2.fileUpload("banner-2");
+                },
+                children: banner2 && banner2 !== restaurant.banner2 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+                  className: "text-center text-green",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+                      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faCheckCircle,
+                      fixedWidth: true,
+                      size: "5x"
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                    className: "mt-3",
+                    children: selected_file
+                  })]
+                })
               })
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_21__.default, {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-              className: "embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center",
-              style: {
-                cursor: 'pointer',
-                background: banner_3 && "url(\"".concat(banner_3, "\") no-repeat center"),
-                backgroundSize: 'cover'
-              },
-              onClick: function onClick() {
-                return _this2.fileUpload("banner-3");
-              },
-              children: banner_3 && banner_3 !== restaurant.banner_3 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-                className: "text-center text-green",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-                    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faCheckCircle,
-                    fixedWidth: true,
-                    size: "5x"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                  className: "mt-3",
-                  children: selected_file
-                })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(Conditional, {
+            condition: premium,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_21__.default, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                className: "embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center",
+                style: {
+                  cursor: 'pointer',
+                  background: banner3 && "url(\"".concat(banner3, "\") no-repeat center"),
+                  backgroundSize: 'cover'
+                },
+                onClick: function onClick() {
+                  return _this2.fileUpload("banner-3");
+                },
+                children: banner3 && banner3 !== restaurant.banner3 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+                  className: "text-center text-green",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+                      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faCheckCircle,
+                      fixedWidth: true,
+                      size: "5x"
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                    className: "mt-3",
+                    children: selected_file
+                  })]
+                })
               })
             })
           })]
@@ -4425,21 +4398,21 @@ var Settings = /*#__PURE__*/function (_Component) {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("input", {
                   type: "file",
                   id: "banner-1",
-                  name: "banner_1",
+                  name: "banner1",
                   className: "d-none",
                   onChange: this.inputChangeHandler,
                   accept: ".png,.jpg,.jpeg"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("input", {
                   type: "file",
                   id: "banner-2",
-                  name: "banner_2",
+                  name: "banner2",
                   className: "d-none",
                   onChange: this.inputChangeHandler,
                   accept: ".png,.jpg,.jpeg"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("input", {
                   type: "file",
                   id: "banner-3",
-                  name: "banner_3",
+                  name: "banner3",
                   className: "d-none",
                   onChange: this.inputChangeHandler,
                   accept: ".png,.jpg,.jpeg"

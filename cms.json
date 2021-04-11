@@ -199,7 +199,8 @@
                     "not_found": "Meal not found.",
                     "created": "Meal successfully created.",
                     "updated": "Meal successfully updated.",
-                    "deleted": "Meal successfully deleted."
+                    "deleted": "Meal successfully deleted.",
+                    "reached": "Maximum number of meals reached"
                 },
                 "addons": {
                     "not_found": "Addon not found.",

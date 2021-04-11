@@ -19,7 +19,14 @@ const Circle = ({ color, icon }) => <div style={{ height: 38, width: 38 }} class
 
 class Addon extends Component {
     render() {
-        const { id, name, photo, price, description, is_active } = this.props
+        const {
+            id, name, photo, price, description, is_active,
+            auth: { data: { currency, position } },
+            content: { currencies },
+        } = this.props
+
+        const currencyObj = currencies.find(c => c.cc === currency);
+        const symbol = currencyObj && currencyObj.symbol;
 
         return <div className={`Addon d-flex m-2 rounded-4 bg-white position-relative`}>
             <div>
@@ -41,9 +48,9 @@ class Addon extends Component {
 
                 <div className="d-flex justify-content-between">
                     <div className="text-18 text-700 d-flex align-items-center text-truncate">
-                        <div>{price.toFixed(2)}</div>
-
-                        <div className="text-10 text-300">XAF</div>
+                        {position == 0 && <div className="text-10 text-300 mr-1">{symbol}</div>}
+                        <div>{price}</div>
+                        {position == 1 && <div className="text-10 text-300 ml-1">{symbol}</div>}
                     </div>
 
                     <div>
@@ -71,8 +78,10 @@ class Addon extends Component {
     }
 }
 
+const mapStateToProps = state => ({ ...state });
+
 const mapDispatchToProps = dispatch => ({
     delete: id => dispatch(actions.deleteAddons(id)),
 });
 
-export default connect(null, mapDispatchToProps)(Addon);
+export default connect(mapStateToProps, mapDispatchToProps)(Addon);

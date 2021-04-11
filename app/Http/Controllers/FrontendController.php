@@ -18,10 +18,10 @@ class FrontendController extends Controller
 
         $categories = [];
         foreach ($restaurant->categories as $category) {
-            if ($category->meals()->count() > 0) {
+            if ($category->meals()->count() > 0 && $category->is_active) {
                 $meals = [];
                 foreach ($category->meals as $meal) {
-                    $meals[] = array_merge($meal->toArray(), [
+                    if ($meal->is_active) $meals[] = array_merge($meal->toArray(), [
                         'price' => number_format($meal->price, 2,),
                     ]);
                 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Row } from 'reactstrap';
-import { faListAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCookie } from '@fortawesome/free-solid-svg-icons';
 
 // Components
 import Breadcrumb from '../../../../components/Backend/UI/Breadcrumb/Breadcrumb';
@@ -43,7 +43,7 @@ class Index extends Component {
         const content = (
             <>
                 <Row>
-                    <List array={addons} loading={loading} get={this.props.get} total={total} add={add} link="/restaurant/addons/add" icon={faListAlt} title={index} subtitle={subtitle} className="shadow-sm" render={addon => <Addon {...addon} />} />
+                    <List array={addons} loading={loading} get={this.props.get} total={total} add={add} link="/restaurant/addons/add" icon={faCookie} title={index} subtitle={subtitle} className="shadow-sm" render={addon => <Addon {...addon} />} />
                 </Row>
             </>
         );
@@ -51,7 +51,7 @@ class Index extends Component {
         return (
             <>
                 <TitleWrapper>
-                    <Breadcrumb main={index} icon={faListAlt} />
+                    <Breadcrumb main={index} icon={faCookie} />
                     <SpecialTitle>{title}</SpecialTitle>
                     <Subtitle>{index}</Subtitle>
                 </TitleWrapper>

@@ -41,7 +41,9 @@ class AddonController extends Controller
         $filteredData = $filteredData->get();
 
         foreach ($filteredData as $addon) {
-            $data[] = array_merge($addon->toArray(), []);
+            $data[] = array_merge($addon->toArray(), [
+                'price' => number_format($addon->price, 2),
+            ]);
         }
 
         return [

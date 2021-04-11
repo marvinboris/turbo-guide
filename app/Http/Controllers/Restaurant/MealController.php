@@ -153,7 +153,17 @@ class MealController extends Controller
             'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['meals']['not_found'], 'danger'),
         ]);
 
-        $meal = $meal->toArray();
+        $meal_addons = [];
+        $addons = $meal->addons;
+        foreach ($addons as $addon) {
+            $meal_addons[] = [
+                'id' => $addon->id,
+                'name' => $addon->name,
+            ];
+        }
+        $meal = $meal->toArray() + [
+            'addons' => $meal_addons,
+        ];
 
         $information = $this->information();
 
@@ -170,21 +180,27 @@ class MealController extends Controller
         $category = $this->validation($request);
         if ($category instanceof JsonResponse) return $category;
 
-        $input = $request->except('photo');
+        if ($restaurant->plan && ($restaurant->plan->meals === 0 || $restaurant->meals()->count() < $restaurant->plan->meals)) {
+            $input = $request->except('photo');
 
-        if ($file = $request->file('photo')) {
-            $fileName = time() . $file->getClientOriginalName();
-            $file->move('images/meals', $fileName);
-            $input['photo'] = htmlspecialchars($fileName);
+            if ($file = $request->file('photo')) {
+                $fileName = time() . $file->getClientOriginalName();
+                $file->move('images/meals', $fileName);
+                $input['photo'] = htmlspecialchars($fileName);
+            }
+
+            $category = $restaurant->categories()->find($input['category_id']);
+            $meal = $category->meals()->create($input);
+
+            $meal->addons()->sync($request->addons);
+
+            return response()->json([
+                'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['meals']['created'], 'success'),
+            ]);
         }
 
-        $category = $restaurant->categories()->find($input['category_id']);
-        $meal = $category->meals()->create($input);
-
-        $meal->addons()->sync($request->addons);
-
         return response()->json([
-            'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['meals']['created'], 'success'),
+            'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['meals']['reached'], 'danger'),
         ]);
     }
 
@@ -192,13 +208,6 @@ class MealController extends Controller
     {
         $cms = UtilController::cms();
         $restaurant = UtilController::get(request());
-        
-        // return response()->json([
-        //     'message' => [
-        //         'type' => 'success',
-        //         'content' => json_encode($request->input('addons')),
-        //     ],
-        // ]);
 
         $category = $this->validation($request, $id);
         if ($category instanceof JsonResponse) return $category;

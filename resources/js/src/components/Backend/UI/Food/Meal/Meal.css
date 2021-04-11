@@ -1,8 +1,12 @@
+.Meal {
+    padding: 8px;
+}
+
 .Meal .hover {
     top: 0;
     left: 0;
     opacity: 0;
-    transition: all .25s;
+    transition: all 0.25s;
 }
 
 .Meal .hover:hover {

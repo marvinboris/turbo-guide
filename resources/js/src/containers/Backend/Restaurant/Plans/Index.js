@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { Row } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faListAlt } from '@fortawesome/free-solid-svg-icons';
+import { faBox, faEye } from '@fortawesome/free-solid-svg-icons';
 
 // Components
 import Breadcrumb from '../../../../components/Backend/UI/Breadcrumb/Breadcrumb';
@@ -57,7 +57,7 @@ class Index extends Component {
         const content = (
             <>
                 <Row>
-                    <Table array={data} loading={loading} data={JSON.stringify(plans)} get={this.props.get} total={total} bordered icon={faListAlt} title={index} subtitle={subtitle} className="shadow-sm"
+                    <Table array={data} loading={loading} data={JSON.stringify(plans)} get={this.props.get} total={total} bordered icon={faBox} title={index} subtitle={subtitle} className="shadow-sm"
                         fields={[
                             { name: form.created_at, key: 'created_at' },
                             { name: form.name, key: 'name' },
@@ -73,7 +73,7 @@ class Index extends Component {
         return (
             <>
                 <TitleWrapper>
-                    <Breadcrumb main={index} icon={faListAlt} />
+                    <Breadcrumb main={index} icon={faBox} />
                     <SpecialTitle>{title}</SpecialTitle>
                     <Subtitle>{index}</Subtitle>
                 </TitleWrapper>

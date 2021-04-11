@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Button, Col, CustomInput, Row } from 'reactstrap';
-import { faListAlt, faMoneyBillWaveAlt, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { faBox, faMoneyBillWaveAlt, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
 // Components
 import Breadcrumb from '../../../../components/Backend/UI/Breadcrumb/Breadcrumb';
@@ -113,14 +113,14 @@ class Purchase extends Component {
         return (
             <>
                 <TitleWrapper>
-                    <Breadcrumb main={add} icon={faListAlt} />
+                    <Breadcrumb main={add} icon={faBox} />
                     <SpecialTitle>{title}</SpecialTitle>
                     <Subtitle>{add}</Subtitle>
                 </TitleWrapper>
                 <div>
                     {errors}
                     <Row>
-                        <Form onSubmit={this.submitHandler} icon={faListAlt} title={add} subtitle={subtitle} list={index} link="/restaurant/plans" innerClassName="row justify-content-center">
+                        <Form onSubmit={this.submitHandler} icon={faBox} title={add} subtitle={subtitle} list={index} link="/restaurant/plans" innerClassName="row justify-content-center">
                             {content}
                         </Form>
                     </Row>

@@ -100,7 +100,7 @@ class PlanController extends Controller
         $plan = Plan::find($request->plan_id);
         if ($restaurant->balance >= $plan->price) {
             $old_plan = $restaurant->plan;
-            $old_plan->update([
+            if ($old_plan) $old_plan->update([
                 'expiry_date' => Carbon::now(),
             ]);
             

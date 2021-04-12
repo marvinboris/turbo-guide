@@ -8,8 +8,8 @@ import './Plan.css';
 
 const Item = ({ condition = true, children }) => condition ? <div className="pb-2"><FontAwesomeIcon icon={faCheckCircle} className="mr-2" fixedWidth />{children}</div> : null;
 
-export default ({ id, name, meals, actions, banners, price, premium = false, standard = false, basic = false }) => <div className="Plan text-left">
-    <div className={`rounded-15 shadow-sm bg-${premium ? 'green' : 'orange-10'} text-${premium ? 'white' : ''} px-2`}>
+export default ({ id, name, meals, actions, banners, price, premium = false, standard = false, basic = false }) => <div className="Plan text-left bg-white rounded-15 shadow-sm">
+    <div className={`rounded-15 bg-${premium ? 'green' : 'orange-20'} text-${premium ? 'white' : ''} px-2`}>
         <div style={{ borderStyle: 'dashed', borderWidth: '0 0 .25px 0' }} className={`py-3 ${premium ? "border-white-50" : "border-orange-50"}`}>
             <div className={`d-flex align-items-center ${premium ? "" : "text-orange"}`}>
                 <div className={`bg-white py-1 px-3 text-14 position-relative shadow-sm rounded-left-0 rounded-pill ${premium ? "text-green text-500" : ""}`} style={{ left: -8 }}>

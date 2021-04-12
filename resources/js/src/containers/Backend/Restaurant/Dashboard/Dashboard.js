@@ -200,24 +200,28 @@ class Dashboard extends Component {
                                         </div>
 
                                         <div className="ml-auto mr-3">
-                                            <div className="py-2 px-4 rounded-4 text-green bg-green-20 position-relative" onClick={() => this.switchDuration(1)} style={{ cursor: 'pointer' }}>
-                                                <div className="px-3">{monthly}</div>
+                                            <div className="rounded-4 text-green bg-white" onClick={() => this.switchDuration(1)} style={{ cursor: 'pointer' }}>
+                                                <div className="rounded-4 py-2 px-4 bg-green-20 position-relative">
+                                                    <div className="px-3">{monthly}</div>
 
-                                                <div style={{ top: 0, right: 0, transform: 'translate(50%,-50%)' }} className={`position-absolute ${duration === 1 ? "d-block" : "d-none"}`}>
-                                                    <div className="rounded-circle text-white bg-green d-flex justify-content-center align-items-center text-6" style={{ width: 20, height: 20 }}>
-                                                        <FontAwesomeIcon icon={faCheck} fixedWidth />
+                                                    <div style={{ top: 0, right: 0, transform: 'translate(50%,-50%)' }} className={`position-absolute ${duration === 1 ? "d-block" : "d-none"}`}>
+                                                        <div className="rounded-circle text-white bg-green d-flex justify-content-center align-items-center text-6" style={{ width: 20, height: 20 }}>
+                                                            <FontAwesomeIcon icon={faCheck} fixedWidth />
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div>
-                                            <div className="py-2 px-4 rounded-4 text-orange bg-orange-20 position-relative" onClick={() => this.switchDuration(12)} style={{ cursor: 'pointer' }}>
-                                                <div className="px-3">{yearly}</div>
+                                            <div className="rounded-4 text-orange bg-white" onClick={() => this.switchDuration(12)} style={{ cursor: 'pointer' }}>
+                                                <div className="rounded-4 py-2 px-4 bg-orange-20 position-relative">
+                                                    <div className="px-3">{yearly}</div>
 
-                                                <div style={{ top: 0, right: 0, transform: 'translate(50%,-50%)' }} className={`position-absolute ${duration === 12 ? "d-block" : "d-none"}`}>
-                                                    <div className="rounded-circle text-white bg-orange d-flex justify-content-center align-items-center text-6" style={{ width: 20, height: 20 }}>
-                                                        <FontAwesomeIcon icon={faCheck} fixedWidth />
+                                                    <div style={{ top: 0, right: 0, transform: 'translate(50%,-50%)' }} className={`position-absolute ${duration === 12 ? "d-block" : "d-none"}`}>
+                                                        <div className="rounded-circle text-white bg-orange d-flex justify-content-center align-items-center text-6" style={{ width: 20, height: 20 }}>
+                                                            <FontAwesomeIcon icon={faCheck} fixedWidth />
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

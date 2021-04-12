@@ -595,9 +595,9 @@ var Item = function Item(_ref) {
       _ref2$basic = _ref2.basic,
       basic = _ref2$basic === void 0 ? false : _ref2$basic;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-    className: "Plan text-left",
+    className: "Plan text-left bg-white rounded-15 shadow-sm",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-      className: "rounded-15 shadow-sm bg-".concat(premium ? 'green' : 'orange-10', " text-").concat(premium ? 'white' : '', " px-2"),
+      className: "rounded-15 bg-".concat(premium ? 'green' : 'orange-20', " text-").concat(premium ? 'white' : '', " px-2"),
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         style: {
           borderStyle: 'dashed',
@@ -1133,68 +1133,74 @@ var Dashboard = /*#__PURE__*/function (_Component) {
                       }), subscription_plan]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
                       className: "ml-auto mr-3",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-                        className: "py-2 px-4 rounded-4 text-green bg-green-20 position-relative",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                        className: "rounded-4 text-green bg-white",
                         onClick: function onClick() {
                           return _this2.switchDuration(1);
                         },
                         style: {
                           cursor: 'pointer'
                         },
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                          className: "px-3",
-                          children: monthly
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                          style: {
-                            top: 0,
-                            right: 0,
-                            transform: 'translate(50%,-50%)'
-                          },
-                          className: "position-absolute ".concat(duration === 1 ? "d-block" : "d-none"),
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                            className: "rounded-circle text-white bg-green d-flex justify-content-center align-items-center text-6",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+                          className: "rounded-4 py-2 px-4 bg-green-20 position-relative",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                            className: "px-3",
+                            children: monthly
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
                             style: {
-                              width: 20,
-                              height: 20
+                              top: 0,
+                              right: 0,
+                              transform: 'translate(50%,-50%)'
                             },
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-                              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_17__.faCheck,
-                              fixedWidth: true
+                            className: "position-absolute ".concat(duration === 1 ? "d-block" : "d-none"),
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                              className: "rounded-circle text-white bg-green d-flex justify-content-center align-items-center text-6",
+                              style: {
+                                width: 20,
+                                height: 20
+                              },
+                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+                                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_17__.faCheck,
+                                fixedWidth: true
+                              })
                             })
-                          })
-                        })]
+                          })]
+                        })
                       })
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-                        className: "py-2 px-4 rounded-4 text-orange bg-orange-20 position-relative",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                        className: "rounded-4 text-orange bg-white",
                         onClick: function onClick() {
                           return _this2.switchDuration(12);
                         },
                         style: {
                           cursor: 'pointer'
                         },
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                          className: "px-3",
-                          children: yearly
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                          style: {
-                            top: 0,
-                            right: 0,
-                            transform: 'translate(50%,-50%)'
-                          },
-                          className: "position-absolute ".concat(duration === 12 ? "d-block" : "d-none"),
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                            className: "rounded-circle text-white bg-orange d-flex justify-content-center align-items-center text-6",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+                          className: "rounded-4 py-2 px-4 bg-orange-20 position-relative",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                            className: "px-3",
+                            children: yearly
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
                             style: {
-                              width: 20,
-                              height: 20
+                              top: 0,
+                              right: 0,
+                              transform: 'translate(50%,-50%)'
                             },
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-                              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_17__.faCheck,
-                              fixedWidth: true
+                            className: "position-absolute ".concat(duration === 12 ? "d-block" : "d-none"),
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                              className: "rounded-circle text-white bg-orange d-flex justify-content-center align-items-center text-6",
+                              style: {
+                                width: 20,
+                                height: 20
+                              },
+                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+                                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_17__.faCheck,
+                                fixedWidth: true
+                              })
                             })
-                          })
-                        })]
+                          })]
+                        })
                       })
                     })]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {

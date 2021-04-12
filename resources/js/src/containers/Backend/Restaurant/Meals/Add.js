@@ -20,6 +20,8 @@ import Feedback from '../../../../components/Feedback/Feedback';
 import * as actions from '../../../../store/actions';
 import { updateObject } from '../../../../shared/utility';
 
+import './Meals.css';
+
 class Add extends Component {
     state = {
         name: '',
@@ -121,13 +123,15 @@ class Add extends Component {
                                             {addonsOptions}
                                         </FormInput>
                                         <FormGroup className="col-md-6">
-                                            <div className="border border-soft rounded-6 p-1" style={{ height: 53.33 }}>
-                                                {addons.map(addon => <div className="mr-1 bg-blue-10 rounded-4 p-2 position-relative h-100 d-inline-flex align-items-center" key={Math.random() + JSON.stringify(addon)}>
-                                                    <div className="mx-3 text-300 text-12">{addon.name}</div>
-                                                    <input type="hidden" name="addons[]" defaultValue={addon.id} />
+                                            <div className="addons border border-soft rounded-6 p-1" style={{ height: 53.33, overflowX: 'auto' }}>
+                                                <div className="text-truncate h-100" style={{ overflow: 'visible' }}>
+                                                    {addons.map(addon => <div className="mr-1 bg-blue-10 rounded-4 p-2 position-relative h-100 d-inline-flex align-items-center" key={Math.random() + JSON.stringify(addon)}>
+                                                        <div className="mx-3 text-300 text-12">{addon.name}</div>
+                                                        <input type="hidden" name="addons[]" defaultValue={addon.id} />
 
-                                                    <FontAwesomeIcon icon={faMinusCircle} className="text-red text-10 position-absolute" style={{ top: 6, right: 6, cursor: 'pointer' }} onClick={() => this.onClick(addon.id)} />
-                                                </div>)}
+                                                        <FontAwesomeIcon icon={faMinusCircle} className="text-red text-10 position-absolute" style={{ top: 6, right: 6, cursor: 'pointer' }} onClick={() => this.onClick(addon.id)} />
+                                                    </div>)}
+                                                </div>
                                             </div>
                                         </FormGroup>
                                         <FormGroup className="col-12 text-14">
@@ -186,7 +190,7 @@ class Add extends Component {
                     <SpecialTitle>{title}</SpecialTitle>
                     <Subtitle>{this.props.edit ? edit : add}</Subtitle>
                 </TitleWrapper>
-                <div>
+                <div className="Meals">
                     {errors}
                     <Row>
                         <Form onSubmit={this.submitHandler} icon={faDrumstickBite} title={this.props.edit ? edit : add} subtitle={subtitle} list={index} link="/restaurant/meals" innerClassName="row justify-content-center">

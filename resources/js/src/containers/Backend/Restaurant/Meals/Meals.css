@@ -5,3 +5,14 @@
     align-content: flex-start;
     padding-bottom: 50px;
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.Meals .addons::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.Meals .addons {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}

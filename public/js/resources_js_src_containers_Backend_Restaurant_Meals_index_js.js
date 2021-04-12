@@ -888,7 +888,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".Meals .flex-container {\r\n    display: flex;\r\n    flex-flow: column wrap;\r\n    max-height: 750px;\r\n    align-content: flex-start;\r\n    padding-bottom: 50px;\r\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".Meals .flex-container {\r\n    display: flex;\r\n    flex-flow: column wrap;\r\n    max-height: 750px;\r\n    align-content: flex-start;\r\n    padding-bottom: 50px;\r\n}\r\n\r\n/* Hide scrollbar for Chrome, Safari and Opera */\r\n.Meals .addons::-webkit-scrollbar {\r\n    display: none;\r\n}\r\n\r\n/* Hide scrollbar for IE, Edge and Firefox */\r\n.Meals .addons {\r\n    -ms-overflow-style: none; /* IE and Edge */\r\n    scrollbar-width: none; /* Firefox */\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

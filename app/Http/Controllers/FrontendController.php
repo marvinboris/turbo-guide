@@ -65,6 +65,8 @@ class FrontendController extends Controller
             'message' => 'Meal not found.'
         ]);
 
+        $meal->update(['views' => $meal->views + 1]);
+
         $addons = [];
         foreach ($meal->addons as $addon) {
             $addons[] = $addon->toArray() + [

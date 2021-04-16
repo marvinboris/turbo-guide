@@ -3701,6 +3701,166 @@ var CategoryTitle = function CategoryTitle(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/src/containers/Frontend/Restaurants/Home/Spinner/index.js":
+/*!********************************************************************************!*\
+  !*** ./resources/js/src/containers/Frontend/Restaurants/Home/Spinner/index.js ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Spinner)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "./node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
+/* harmony import */ var _Spinner_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Spinner.css */ "./resources/js/src/containers/Frontend/Restaurants/Home/Spinner/Spinner.css");
+/* harmony import */ var _assets_images_logo_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../assets/images/logo.png */ "./resources/js/src/assets/images/logo.png");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+
+
+
+
+var Spinner = /*#__PURE__*/function (_Component) {
+  _inherits(Spinner, _Component);
+
+  var _super = _createSuper(Spinner);
+
+  function Spinner() {
+    _classCallCheck(this, Spinner);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(Spinner, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      // $.getScript("https://kit.fontawesome.com/762c591422.js", function () {
+      var ico_anime = $('.ico_item');
+      var ico_anime_state = 0;
+
+      function anime_icon() {
+        if (ico_anime_state == 0) {
+          var current_ico_anime = $(".ico_item_now");
+          current_ico_anime.toggleClass("ico_item_now", "");
+          ico_anime[0].className += " ico_item_now";
+          ico_anime_state = 1;
+        } else if (ico_anime_state == 1) {
+          var _current_ico_anime = $(".ico_item_now");
+
+          _current_ico_anime.toggleClass("ico_item_now", "");
+
+          ico_anime[1].className += " ico_item_now";
+          ico_anime_state = 2;
+        } else if (ico_anime_state == 2) {
+          var _current_ico_anime2 = $(".ico_item_now");
+
+          _current_ico_anime2.toggleClass("ico_item_now", "");
+
+          ico_anime[2].className += " ico_item_now";
+          ico_anime_state = 3;
+        } else if (ico_anime_state == 3) {
+          var _current_ico_anime3 = $(".ico_item_now");
+
+          _current_ico_anime3.toggleClass("ico_item_now", "");
+
+          ico_anime[3].className += " ico_item_now";
+          ico_anime_state = 4;
+        } else if (ico_anime_state == 4) {
+          var _current_ico_anime4 = $(".ico_item_now");
+
+          _current_ico_anime4.toggleClass("ico_item_now", "");
+
+          ico_anime[4].className += " ico_item_now";
+          ico_anime_state = 0;
+        }
+      }
+
+      setInterval(anime_icon, 250); // });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        className: "Spinner",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+          className: "loading_container",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+            className: "logo_anime",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+              src: _assets_images_logo_png__WEBPACK_IMPORTED_MODULE_3__.default,
+              className: "logo_anime_val"
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+            className: "ico_container",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+              className: "ico_item",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
+                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faHamburger
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+              className: "ico_item",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
+                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faEgg
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+              className: "ico_item ico_item_now",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
+                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faIceCream
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+              className: "ico_item",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
+                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faPizzaSlice
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+              className: "ico_item",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
+                icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__.faPiedPiper
+              })
+            })]
+          })]
+        })
+      });
+    }
+  }]);
+
+  return Spinner;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+
+
+/***/ }),
+
 /***/ "./resources/js/src/containers/Frontend/Restaurants/Home/index.js":
 /*!************************************************************************!*\
   !*** ./resources/js/src/containers/Frontend/Restaurants/Home/index.js ***!
@@ -3716,19 +3876,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
-/* harmony import */ var _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @fortawesome/free-regular-svg-icons */ "./node_modules/@fortawesome/free-regular-svg-icons/index.es.js");
-/* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "./node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @fortawesome/free-regular-svg-icons */ "./node_modules/@fortawesome/free-regular-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "./node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
 /* harmony import */ var _components_UI_Food_Meal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../components/UI/Food/Meal */ "./resources/js/src/components/UI/Food/Meal/index.js");
 /* harmony import */ var _components_UI_Stars__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../components/UI/Stars */ "./resources/js/src/components/UI/Stars/index.js");
 /* harmony import */ var _Navigation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Navigation */ "./resources/js/src/containers/Frontend/Restaurants/Home/Navigation/index.js");
 /* harmony import */ var _Carousel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Carousel */ "./resources/js/src/containers/Frontend/Restaurants/Home/Carousel/index.js");
-/* harmony import */ var _store_actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../store/actions */ "./resources/js/src/store/actions/index.js");
-/* harmony import */ var _shared_utility__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../shared/utility */ "./resources/js/src/shared/utility.js");
-/* harmony import */ var _Home_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Home.css */ "./resources/js/src/containers/Frontend/Restaurants/Home/Home.css");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Spinner__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Spinner */ "./resources/js/src/containers/Frontend/Restaurants/Home/Spinner/index.js");
+/* harmony import */ var _store_actions__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../store/actions */ "./resources/js/src/store/actions/index.js");
+/* harmony import */ var _shared_utility__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../../shared/utility */ "./resources/js/src/shared/utility.js");
+/* harmony import */ var _Home_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Home.css */ "./resources/js/src/containers/Frontend/Restaurants/Home/Home.css");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
@@ -3786,11 +3947,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var Wrapper = function Wrapper(_ref) {
   var children = _ref.children,
       className = _ref.className,
       style = _ref.style;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
     className: className,
     style: _objectSpread({
       padding: '12px 11px'
@@ -3804,25 +3966,25 @@ var Category = function Category(_ref2) {
       name = _ref2.name,
       id = _ref2.id,
       active = _ref2.active;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
     id: "category-".concat(id),
     className: "category",
     style: {
       padding: '15px 0px'
     },
-    children: [!active && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+    children: [!active && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
       className: "mb-3 d-flex justify-content-end",
       style: {
         paddingRight: 11
       },
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
         className: "text-13 text-500 px-4 py-2 bg-orange-30 text-orange rounded-pill",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
           className: "px-1",
           children: name
         })
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
       children: children
     })]
   });
@@ -3834,14 +3996,14 @@ var Stack = function Stack(_ref3) {
       link = _ref3.link,
       _ref3$className = _ref3.className,
       className = _ref3$className === void 0 ? '' : _ref3$className;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("a", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("a", {
     href: link,
     target: "_blank",
     className: "fa-stack fa-2x text-".concat(color, " text-10 ").concat(className),
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_12__.faCircle,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_13__.faCircle,
       className: "fa-stack-2x"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
       icon: icon,
       className: "fa-stack-1x fa-inverse"
     })]
@@ -3992,6 +4154,7 @@ var Home = /*#__PURE__*/function (_Component) {
       var _this$props = this.props,
           currencies = _this$props.content.currencies,
           _this$props$frontend$ = _this$props.frontend.restaurants,
+          loading = _this$props$frontend$.loading,
           _this$props$frontend$2 = _this$props$frontend$.restaurant,
           restaurant = _this$props$frontend$2 === void 0 ? {} : _this$props$frontend$2,
           _this$props$frontend$3 = _this$props$frontend$.categories,
@@ -4003,12 +4166,12 @@ var Home = /*#__PURE__*/function (_Component) {
         return c.cc === currency;
       });
       var categoriesContent = categories.map(function (category) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(Category, {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(Category, {
           id: category.id,
           active: category.id === id,
           name: category.name,
           children: category.meals && category.meals.map(function (meal) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_UI_Food_Meal__WEBPACK_IMPORTED_MODULE_4__.default, _objectSpread(_objectSpread({
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_components_UI_Food_Meal__WEBPACK_IMPORTED_MODULE_4__.default, _objectSpread(_objectSpread({
               symbol: currencyObj && currencyObj.symbol,
               position: position
             }, meal), {}, {
@@ -4031,156 +4194,156 @@ var Home = /*#__PURE__*/function (_Component) {
       var basic = restaurant.plan;
       var standard = restaurant.plan && restaurant.plan.slug === 'standard';
       var premium = restaurant.plan && restaurant.plan.slug === 'premium';
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
         className: "Home",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+        children: [loading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Spinner__WEBPACK_IMPORTED_MODULE_8__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
           className: "embed-responsive embed-responsive-16by9 position-relative",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
             className: "position-absolute w-100 h-100",
             style: {
               top: 0,
               left: 0
             },
-            children: items.length > 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Carousel__WEBPACK_IMPORTED_MODULE_7__.default, {
+            children: items.length > 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Carousel__WEBPACK_IMPORTED_MODULE_7__.default, {
               items: items
-            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
               className: "h-100",
               style: bannerStyle
             })
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
           className: "sticky-top border-bottom border-soft bg-white",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(Wrapper, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(Wrapper, {
             className: "bg-orange-10",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
               className: "d-flex justify-content-between align-items-end",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
                 className: "text-500 text-17 text-orange",
                 children: restaurant.name
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(Conditional, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(Conditional, {
                   condition: (premium || standard || basic) && restaurant.phone,
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(Stack, {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(Stack, {
                     link: "tel:+".concat(restaurant.phone),
-                    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_12__.faPhone,
+                    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_13__.faPhone,
                     color: "primary"
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(Conditional, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(Conditional, {
                   condition: (premium || standard) && restaurant.whatsapp,
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(Stack, {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(Stack, {
                     link: "//wa.me/".concat(restaurant.whatsapp),
-                    icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_13__.faWhatsapp,
+                    icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_14__.faWhatsapp,
                     color: "green"
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(Conditional, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(Conditional, {
                   condition: premium && restaurant.location,
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(Stack, {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(Stack, {
                     link: restaurant.location,
-                    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_12__.faSearchLocation,
+                    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_13__.faSearchLocation,
                     color: "yellow"
                   })
                 })]
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
               className: "d-flex align-items-center text-8 text-500",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
                 className: "mr-2 pr-2 border-right border-lg border-orange d-flex align-items-center",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
                   className: "mr-1",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-                    icon: _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_14__.faCalendar,
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+                    icon: _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faCalendar,
                     className: "text-6 text-orange"
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("span", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("span", {
                   children: restaurant.days
                 })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
                 className: "d-flex align-items-center",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
                   className: "mr-1",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-                    icon: _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_14__.faClock,
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+                    icon: _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faClock,
                     className: "text-6 text-orange"
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("span", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("span", {
                   children: restaurant.hours
                 })]
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
               className: "d-flex justify-content-between align-items-center",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
                 className: "text-300 text-8",
                 children: restaurant.address
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
                 className: "d-flex align-items-center",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
                   className: "text-8",
                   children: "Ratings"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
                   className: "mx-1",
-                  children: restaurant.mark && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_UI_Stars__WEBPACK_IMPORTED_MODULE_5__.default, {
+                  children: restaurant.mark && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_components_UI_Stars__WEBPACK_IMPORTED_MODULE_5__.default, {
                     readOnly: true,
                     lg: true,
                     mark: +restaurant.mark
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
                   className: "text-orange text-6 text-700",
                   children: ["(", restaurant.mark, ")"]
                 })]
               })]
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(Wrapper, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(Wrapper, {
             className: "navigation scrollbar-orange",
             style: {
               paddingTop: 18
             },
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
               className: "text-truncate",
               style: {
                 overflow: 'visible'
               },
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Navigation__WEBPACK_IMPORTED_MODULE_6__.default, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Navigation__WEBPACK_IMPORTED_MODULE_6__.default, {
                 categories: categories.map(function (c) {
-                  return (0,_shared_utility__WEBPACK_IMPORTED_MODULE_9__.updateObject)(c, {
+                  return (0,_shared_utility__WEBPACK_IMPORTED_MODULE_10__.updateObject)(c, {
                     active: id === c.id
                   });
                 }),
                 onClick: this.onClick
               })
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)(Wrapper, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(Wrapper, {
             className: "bg-orange-10 d-flex justify-content-end align-items-center",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
               className: "text-12 mr-auto",
               children: "You are on category"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
               className: "mx-2",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
                 className: "rounded-pill bg-orange",
                 style: {
                   height: 5,
                   width: 18
                 }
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
                 className: "bg-orange-30 rounded-pill py-2 px-2 text-500 text-orange text-13 position-relative category-select",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
                   className: "d-flex mx-1",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
                     className: "text-truncate",
                     children: categories.length > 0 && categories.find(function (c) {
                       return c.id === id;
                     }).name
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxs)("div", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
                     className: "position-relative",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
                       style: {
                         width: .5,
                         height: 21
                       },
                       className: "mx-2 bg-orange"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
                       className: "embed-responsive embed-responsive-1by1 rounded-circle border border-orange bg-white position-absolute",
                       style: {
                         width: 4,
@@ -4189,16 +4352,16 @@ var Home = /*#__PURE__*/function (_Component) {
                         transform: 'translate(-50%,-50%)'
                       }
                     })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-                      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_12__.faFilter
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+                      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_13__.faFilter
                     })
                   })]
                 })
               })
             })]
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
           className: "categories",
           children: categoriesContent
         })]
@@ -4209,7 +4372,7 @@ var Home = /*#__PURE__*/function (_Component) {
     value: function getDerivedStateFromProps(nextProps, prevState) {
       if (nextProps.frontend.restaurants.restaurant && prevState.id === '') {
         var categories = nextProps.frontend.restaurants.categories;
-        if (categories.length > 0) return (0,_shared_utility__WEBPACK_IMPORTED_MODULE_9__.updateObject)(prevState, {
+        if (categories.length > 0) return (0,_shared_utility__WEBPACK_IMPORTED_MODULE_10__.updateObject)(prevState, {
           id: categories[0].id
         });
       }
@@ -4228,12 +4391,12 @@ var mapStateToProps = function mapStateToProps(state) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     get: function get(md5) {
-      return dispatch(_store_actions__WEBPACK_IMPORTED_MODULE_8__.getRestaurantData(md5));
+      return dispatch(_store_actions__WEBPACK_IMPORTED_MODULE_9__.getRestaurantData(md5));
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_15__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_2__.connect)(mapStateToProps, mapDispatchToProps)(Home)));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_16__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_2__.connect)(mapStateToProps, mapDispatchToProps)(Home)));
 
 /***/ }),
 
@@ -4306,6 +4469,45 @@ ___CSS_LOADER_EXPORT___.push([module.id, ".CategoryTitle div {\r\n    color: var
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/src/containers/Frontend/Restaurants/Home/Spinner/Spinner.css":
+/*!*********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/src/containers/Frontend/Restaurants/Home/Spinner/Spinner.css ***!
+  \*********************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "/***amine_page***/\r\n\r\n.Spinner {\r\n    width: 100%;\r\n    height: 100%;\r\n    margin: 0 auto;\r\n    font-family: \"pr\", sans-serif;\r\n    font-weight: normal;\r\n    font-size: 12px;\r\n    -moz-user-select: none;\r\n    -ms-user-select: none;\r\n    -o-user-select: none;\r\n    text-align: center;\r\n    -webkit-user-select: none;\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    z-index: 1200;\r\n}\r\n\r\n.Spinner .amine_contain {\r\n    display: inline-flex;\r\n    justify-content: space-around;\r\n    align-items: center;\r\n    width: 100%;\r\n    height: 100%;\r\n    position: fixed;\r\n    top: 0px;\r\n    left: 0px;\r\n    z-index: 1000;\r\n    opacity: 1;\r\n\r\n    background: white;\r\n}\r\n\r\n.Spinner .icon_container {\r\n    width: 100%;\r\n    display: inline-block;\r\n}\r\n\r\n.Spinner .icon_container_flex {\r\n    height: 100%;\r\n}\r\n\r\n.Spinner .icon_container {\r\n    width: 100%;\r\n    transform: rotate(0deg);\r\n}\r\n\r\n.Spinner .icon_container_item {\r\n    display: inline-block;\r\n\r\n    margin: 9px;\r\n\r\n    font-size: 20px;\r\n    opacity: 0;\r\n    transition: 2s;\r\n}\r\n\r\n.Spinner .icon_container_item:hover {\r\n    display: inline-block;\r\n    transform: scale(1.8);\r\n    opacity: 1;\r\n    color: #e98809;\r\n    transition: 0s;\r\n}\r\n\r\n.Spinner #svg {\r\n    position: fixed;\r\n    display: inline-flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    width: 20%;\r\n    height: 20%;\r\n    border-radius: 50px;\r\n\r\n    z-index: 2;\r\n    background: white;\r\n}\r\n.Spinner #svg .svg_img {\r\n    width: 90%;\r\n    -webkit-animation: anime 1.4s ease-in infinite;\r\n            animation: anime 1.4s ease-in infinite;\r\n}\r\n\r\n@-webkit-keyframes bouger {\r\n    0% {\r\n        transform: translateX(-100%);\r\n    }\r\n\r\n    100% {\r\n        transform: translateX(100%);\r\n    }\r\n}\r\n\r\n@keyframes bouger {\r\n    0% {\r\n        transform: translateX(-100%);\r\n    }\r\n\r\n    100% {\r\n        transform: translateX(100%);\r\n    }\r\n}\r\n\r\n@-webkit-keyframes anime {\r\n    0% {\r\n        filter: grayscale(100%);\r\n        color: #707070;\r\n    }\r\n\r\n    50% {\r\n        filter: grayscale(0%);\r\n        color: #e98809;\r\n    }\r\n\r\n    100% {\r\n        filter: grayscale(100%);\r\n        color: #707070;\r\n    }\r\n}\r\n\r\n@keyframes anime {\r\n    0% {\r\n        filter: grayscale(100%);\r\n        color: #707070;\r\n    }\r\n\r\n    50% {\r\n        filter: grayscale(0%);\r\n        color: #e98809;\r\n    }\r\n\r\n    100% {\r\n        filter: grayscale(100%);\r\n        color: #707070;\r\n    }\r\n}\r\n\r\n@-webkit-keyframes gooo {\r\n    0% {\r\n        opacity: 1;\r\n        z-index: 1000;\r\n        display: inline-flex;\r\n    }\r\n    50% {\r\n        opacity: 1;\r\n        z-index: 1000;\r\n        display: inline-flex;\r\n    }\r\n    80% {\r\n        opacity: 1;\r\n        z-index: 1000;\r\n        display: inline-flex;\r\n    }\r\n    85% {\r\n        opacity: 0;\r\n        z-index: 1000;\r\n        display: none;\r\n    }\r\n    90% {\r\n        opacity: 0;\r\n        z-index: 1000;\r\n    }\r\n    100% {\r\n        opacity: 0;\r\n        z-index: -1000;\r\n    }\r\n}\r\n\r\n@keyframes gooo {\r\n    0% {\r\n        opacity: 1;\r\n        z-index: 1000;\r\n        display: inline-flex;\r\n    }\r\n    50% {\r\n        opacity: 1;\r\n        z-index: 1000;\r\n        display: inline-flex;\r\n    }\r\n    80% {\r\n        opacity: 1;\r\n        z-index: 1000;\r\n        display: inline-flex;\r\n    }\r\n    85% {\r\n        opacity: 0;\r\n        z-index: 1000;\r\n        display: none;\r\n    }\r\n    90% {\r\n        opacity: 0;\r\n        z-index: 1000;\r\n    }\r\n    100% {\r\n        opacity: 0;\r\n        z-index: -1000;\r\n    }\r\n}\r\n\r\n@media all and (max-width: 872px) {\r\n    .Spinner .icon_container_item {\r\n        display: inline-block;\r\n\r\n        margin: 4px;\r\n\r\n        font-size: 12px;\r\n        opacity: 0;\r\n        transition: 2s;\r\n    }\r\n\r\n    .Spinner .icon_container_item:hover {\r\n        display: inline-block;\r\n        transform: scale(1.2);\r\n        opacity: 1;\r\n        color: #e98809;\r\n        transition: 0s;\r\n    }\r\n\r\n    .Spinner #svg {\r\n        width: 50%;\r\n        height: 30%;\r\n        background: none;\r\n    }\r\n\r\n    .Spinner #svg .svg_img {\r\n        width: 60%;\r\n    }\r\n}\r\n\r\n.Spinner .loading_container {\r\n    display: inline-flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n    width: 100%;\r\n    height: 100%;\r\n    background: white;\r\n    z-index: 1000;\r\n    opacity: 1;\r\n}\r\n\r\n.Spinner .logo_anime {\r\n    display: inline-block;\r\n    width: 12%;\r\n    height: auto;\r\n}\r\n\r\n.Spinner .logo_anime_val {\r\n    display: inline-block;\r\n    width: 100%;\r\n}\r\n\r\n.Spinner .ico_container {\r\n    display: inline-flex;\r\n    text-align: center;\r\n    justify-content: center;\r\n    align-items: center;\r\n    width: auto;\r\n    height: 100px;\r\n    margin-top: 7px;\r\n}\r\n\r\n.Spinner .ico_item {\r\n    display: inline-flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    font-size: 20px;\r\n    width: 50px;\r\n    height: 50px;\r\n    margin-left: 15px;\r\n    margin-right: 15px;\r\n    border-radius: 50%;\r\n    background-color: white;\r\n    color: #ff8700;\r\n    box-shadow: -3px 3px 17px #00000029;\r\n    text-shadow: -3px 3px 17px #00000029;\r\n    transition: all ease-out 0.3s;\r\n}\r\n\r\n.Spinner .ico_item_now {\r\n    transition: all ease-in 0.3s;\r\n    font-size: 30px;\r\n    width: 80px;\r\n    height: 80px;\r\n}\r\n\r\n@-webkit-keyframes zoommer {\r\n    0% {\r\n        font-size: 30px;\r\n        width: 80px;\r\n        height: 80px;\r\n    }\r\n\r\n    80% {\r\n        font-size: 25px;\r\n        width: 70px;\r\n        height: 70px;\r\n    }\r\n\r\n    100% {\r\n        font-size: 30px;\r\n        width: 80px;\r\n        height: 80px;\r\n    }\r\n}\r\n\r\n@keyframes zoommer {\r\n    0% {\r\n        font-size: 30px;\r\n        width: 80px;\r\n        height: 80px;\r\n    }\r\n\r\n    80% {\r\n        font-size: 25px;\r\n        width: 70px;\r\n        height: 70px;\r\n    }\r\n\r\n    100% {\r\n        font-size: 30px;\r\n        width: 80px;\r\n        height: 80px;\r\n    }\r\n}\r\n\r\n@media all and (max-width: 900px) {\r\n    .Spinner .ico_container {\r\n        display: inline-flex;\r\n        text-align: center;\r\n        justify-content: center;\r\n        align-items: center;\r\n        width: auto;\r\n        height: 60px;\r\n    }\r\n\r\n    .Spinner .ico_item {\r\n        font-size: 17px;\r\n        width: 30px;\r\n        height: 30px;\r\n    }\r\n\r\n    .Spinner .ico_item_now {\r\n        font-size: 25px;\r\n        width: 50px;\r\n        height: 50px;\r\n    }\r\n\r\n    .Spinner .logo_anime {\r\n        width: 20%;\r\n    }\r\n}\r\n\r\n@media all and (max-width: 600px) {\r\n    .Spinner .ico_item {\r\n        margin-left: 3px;\r\n        margin-right: 3px;\r\n    }\r\n\r\n    .Spinner .ico_container {\r\n        margin-top: 0px;\r\n    }\r\n}\r\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./resources/js/src/assets/images/logo.png":
+/*!*************************************************!*\
+  !*** ./resources/js/src/assets/images/logo.png ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/logo.png?6fa58ac021754a8fd156b073ec169e11");
 
 /***/ }),
 
@@ -4950,6 +5152,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_CategoryTitle_css__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
+
+/***/ }),
+
+/***/ "./resources/js/src/containers/Frontend/Restaurants/Home/Spinner/Spinner.css":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/src/containers/Frontend/Restaurants/Home/Spinner/Spinner.css ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_Spinner_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./Spinner.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/src/containers/Frontend/Restaurants/Home/Spinner/Spinner.css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_Spinner_css__WEBPACK_IMPORTED_MODULE_1__.default, options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_Spinner_css__WEBPACK_IMPORTED_MODULE_1__.default.locals || {});
 
 /***/ })
 

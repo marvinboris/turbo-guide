@@ -11,6 +11,7 @@ import Stars from '../../../../components/UI/Stars';
 
 import Navigation from './Navigation';
 import Carousel from './Carousel';
+import Spinner from './Spinner';
 
 import * as actions from '../../../../store/actions';
 import { updateObject } from '../../../../shared/utility';
@@ -103,7 +104,7 @@ class Home extends Component {
     }
 
     render() {
-        const { content: { currencies }, frontend: { restaurants: { restaurant = {}, categories = [], currency, position } } } = this.props;
+        const { content: { currencies }, frontend: { restaurants: { loading, restaurant = {}, categories = [], currency, position } } } = this.props;
         const { id } = this.state;
 
         const currencyObj = currencies.find(c => c.cc === currency);
@@ -130,6 +131,8 @@ class Home extends Component {
         const premium = restaurant.plan && restaurant.plan.slug === 'premium';
 
         return <div className="Home">
+            {loading && <Spinner />}
+
             <div className="embed-responsive embed-responsive-16by9 position-relative">
                 <div className="position-absolute w-100 h-100" style={{ top: 0, left: 0 }}>
                     {items.length > 1 ? <Carousel items={items} /> : <div className="h-100" style={bannerStyle} />}

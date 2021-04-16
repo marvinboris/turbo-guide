@@ -13,13 +13,13 @@ export default class Carousel extends Component {
 
     next = () => {
         if (this.state.animating) return;
-        const nextIndex = this.state.activeIndex === items.length - 1 ? 0 : this.state.activeIndex + 1;
+        const nextIndex = this.state.activeIndex === this.props.items.length - 1 ? 0 : this.state.activeIndex + 1;
         this.setState({ activeIndex: nextIndex });
     }
 
     previous = () => {
         if (this.state.animating) return;
-        const nextIndex = this.state.activeIndex === 0 ? items.length - 1 : this.state.activeIndex - 1;
+        const nextIndex = this.state.activeIndex === 0 ? this.props.items.length - 1 : this.state.activeIndex - 1;
         this.setState({ activeIndex: nextIndex });
     }
 

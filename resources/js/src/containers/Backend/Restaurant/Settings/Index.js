@@ -21,7 +21,7 @@ import Feedback from '../../../../components/Feedback/Feedback';
 import * as actions from '../../../../store/actions';
 import { updateObject } from '../../../../shared/utility';
 
-const Block = ({ children, icon, title, save, onSubmit }) => children ? <form className="col-xl-4 col-md-6 pb-4" onSubmit={onSubmit}>
+const Block = ({ children, icon, title, save, hidden, onSubmit }) => children ? <form className="col-xl-4 col-md-6 pb-4" style={hidden ? { visibility: 'hidden' } : { visibility: 'visible' }} onSubmit={onSubmit}>
     <input type="hidden" name="_method" defaultValue="PATCH" />
 
     <div className="h-100 bg-white rounded-8 shadow py-4 px-5">
@@ -146,8 +146,10 @@ class Settings extends Component {
             banner1, banner2, banner3,
             days, hours,
         } = this.state;
-        let restaurantContent, accountContent, cmsContent, calendarContent;
+        let spinnerContent, restaurantContent, accountContent, cmsContent, calendarContent;
         let errors = null;
+
+        if (message && message.type === 'success') window.location.reload();
 
         const basic = plan;
         const standard = plan && plan.slug === 'standard';
@@ -156,7 +158,7 @@ class Settings extends Component {
         const countriesOptions = countries.map(({ country, code, name }) => <option key={country} value={country} code={code}>{name}</option>);
         const currenciesOptions = currencies.map(({ cc, symbol, name }) => <option key={cc} value={cc} symbol={symbol}>{name}</option>);
 
-        if (loading) restaurantContent = <Col xs={12}>
+        if (loading) spinnerContent = <Col xs={12}>
             <CustomSpinner />
         </Col>;
         else {
@@ -273,23 +275,25 @@ class Settings extends Component {
                                 <Feedback message={message} />
                             </div>
 
-                            <Block icon={faHome} save={save} onSubmit={this.restaurantSettingsSubmitHandler} title={form.restaurant_settings}>
+                            {spinnerContent}
+
+                            <Block hidden={loading} icon={faHome} save={save} onSubmit={this.restaurantSettingsSubmitHandler} title={form.restaurant_settings}>
                                 {restaurantContent}
                             </Block>
 
-                            <Block icon={faUser} save={save} onSubmit={this.accountSettingsSubmitHandler} title={form.account_settings}>
+                            <Block hidden={loading} icon={faUser} save={save} onSubmit={this.accountSettingsSubmitHandler} title={form.account_settings}>
                                 <input type="file" id="photo" name="photo" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" />
                                 {accountContent}
                             </Block>
 
-                            <Block icon={faCog} save={save} onSubmit={this.cmsSettingsSubmitHandler} title={form.cms_settings}>
+                            <Block hidden={loading} icon={faCog} save={save} onSubmit={this.cmsSettingsSubmitHandler} title={form.cms_settings}>
                                 <input type="file" id="banner-1" name="banner1" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" />
                                 <input type="file" id="banner-2" name="banner2" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" />
                                 <input type="file" id="banner-3" name="banner3" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" />
                                 {cmsContent}
                             </Block>
 
-                            <Block icon={faCalendar} save={save} onSubmit={this.calendarSettingsSubmitHandler} title={form.calendar_settings}>
+                            <Block hidden={loading} icon={faCalendar} save={save} onSubmit={this.calendarSettingsSubmitHandler} title={form.calendar_settings}>
                                 {calendarContent}
                             </Block>
                         </Form>

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Modal, ModalBody, ModalHeader } from 'reactstrap';
-import { faKey, faLock, faPaperPlane, faSignInAlt, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faKey, faLock, faPaperPlane, faSignInAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Input from '../../../../components/UI/Input/Input';
@@ -18,6 +18,8 @@ export class Login extends Component {
         token: '',
         password: '',
         modal: false,
+
+        visible: false,
     }
 
     toggle = () => {
@@ -39,8 +41,10 @@ export class Login extends Component {
         this.setState({ [name]: value });
     }
 
+    eyeClickedHandler = () => this.setState(prevState => ({ visible: !prevState.visible }))
+
     render() {
-        const { token, password } = this.state;
+        const { token, password, visible } = this.state;
         const {
             content: {
                 cms: {
@@ -57,7 +61,17 @@ export class Login extends Component {
 
         formContent = <>
             <Input type="text" icon={faKey} onChange={this.inputChangeHandler} validation={{ required: true }} value={token} name="token" required placeholder={login.token} />
-            <Input type="password" icon={faLock} onChange={this.inputChangeHandler} validation={{ required: true }} value={password} name="password" required placeholder={login.password} />
+            <Input id="password" type={visible ? "text" : "password"} className="position-relative" icon={faLock} onChange={this.inputChangeHandler} validation={{ required: true }} value={password} name="password" required placeholder={login.password}
+                bonus={<div className="position-absolute d-flex align-items-center px-2" style={{ height: 53.5, top: 0, right: 30, zIndex: 10, cursor: 'pointer' }} onClick={this.eyeClickedHandler}>
+                    <div className="position-relative">
+                        <FontAwesomeIcon icon={faEye} className="text-orange" />
+
+                        <div style={!visible ? { visibility: 'visible' } : { visibility: 'hidden' }}>
+                            <div style={{ height: 1.5, width: 18, transform: 'rotate(30deg) translate(-7px, -10px)' }} className="bg-orange" />
+                        </div>
+                    </div>
+                </div>}
+            />
             <div className="pl-5 my-4">
                 {login.forgot} ? <span className="text-orange" onClick={this.toggle} style={{ cursor: 'pointer' }}>{login.reset}</span>
             </div>

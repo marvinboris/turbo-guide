@@ -6,7 +6,7 @@ import { checkValidity } from '../../../shared/utility';
 
 import './Input.css';
 
-export default ({ icon, addon, onChange, className = '', name, type = 'text', required, readonly, placeholder, value = '', validation = {}, append, children, dark = false }) => {
+export default ({ id, icon, addon, onChange, className = '', name, type = 'text', required, readonly, placeholder, value = '', validation = {}, append, children, dark = false, bonus }) => {
     const [touched, setTouched] = useState(false);
 
     const inputChangedHandler = e => {
@@ -25,7 +25,7 @@ export default ({ icon, addon, onChange, className = '', name, type = 'text', re
             {children ?
                 <CustomInput valid={touched && checkValidity(value, validation)} invalid={touched && !checkValidity(value, validation)} onChange={inputChangedHandler} type={type} id={name} name={name} required={required} readOnly={readonly} value={value} className={`bg-${dark ? "grayblue" : "white"} border-0 text-small text-secondary h-100 px-4 py-3`} placeholder={placeholder}>{children}</CustomInput>
                 :
-                <Input valid={touched && checkValidity(value, validation)} invalid={touched && !checkValidity(value, validation)} onChange={inputChangedHandler} type={type} name={name} required={required} readOnly={readonly} value={value} className={"bg-transparent border-0 text-small text-secondary h-100 px-4 py-3"} placeholder={placeholder} />
+                <Input valid={touched && checkValidity(value, validation)} invalid={touched && !checkValidity(value, validation)} onChange={inputChangedHandler} id={id} type={type} name={name} required={required} readOnly={readonly} value={value} className={"bg-transparent border-0 text-small text-secondary h-100 px-4 py-3"} placeholder={placeholder} />
             }
 
             {append ? <InputGroupAddon addonType="append">
@@ -34,5 +34,7 @@ export default ({ icon, addon, onChange, className = '', name, type = 'text', re
                 </InputGroupText>
             </InputGroupAddon> : null}
         </InputGroup>
+
+        {bonus}
     </FormGroup>;
 };

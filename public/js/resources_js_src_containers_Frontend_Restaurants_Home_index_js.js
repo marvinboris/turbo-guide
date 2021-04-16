@@ -3566,7 +3566,7 @@ var Carousel = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "next", function () {
       if (_this.state.animating) return;
-      var nextIndex = _this.state.activeIndex === items.length - 1 ? 0 : _this.state.activeIndex + 1;
+      var nextIndex = _this.state.activeIndex === _this.props.items.length - 1 ? 0 : _this.state.activeIndex + 1;
 
       _this.setState({
         activeIndex: nextIndex
@@ -3575,7 +3575,7 @@ var Carousel = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "previous", function () {
       if (_this.state.animating) return;
-      var nextIndex = _this.state.activeIndex === 0 ? items.length - 1 : _this.state.activeIndex - 1;
+      var nextIndex = _this.state.activeIndex === 0 ? _this.props.items.length - 1 : _this.state.activeIndex - 1;
 
       _this.setState({
         activeIndex: nextIndex

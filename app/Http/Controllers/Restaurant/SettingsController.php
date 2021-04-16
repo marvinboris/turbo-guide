@@ -26,7 +26,7 @@ class SettingsController extends Controller
         $input = $request->validate([
             'name' => 'required|string',
             'owner' => 'required|string',
-            'phone' => 'required|string',
+            'phone' => 'nullable|string',
             'whatsapp' => 'nullable|string',
             'location' => 'nullable',
             'address' => 'nullable|string',

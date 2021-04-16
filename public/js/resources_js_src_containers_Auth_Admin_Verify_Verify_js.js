@@ -116,7 +116,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (_ref) {
-  var icon = _ref.icon,
+  var id = _ref.id,
+      icon = _ref.icon,
       addon = _ref.addon,
       onChange = _ref.onChange,
       _ref$className = _ref.className,
@@ -134,7 +135,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       append = _ref.append,
       children = _ref.children,
       _ref$dark = _ref.dark,
-      dark = _ref$dark === void 0 ? false : _ref$dark;
+      dark = _ref$dark === void 0 ? false : _ref$dark,
+      bonus = _ref.bonus;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -146,9 +148,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     onChange(e);
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_5__.default, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_5__.default, {
     className: "Input ".concat(className),
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.default, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.default, {
       className: "bg-".concat(dark ? "grayblue" : "white border border-soft", " rounded-6 d-flex align-items-center"),
       size: "lg",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.default, {
@@ -181,6 +183,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         valid: touched && (0,_shared_utility__WEBPACK_IMPORTED_MODULE_2__.checkValidity)(value, validation),
         invalid: touched && !(0,_shared_utility__WEBPACK_IMPORTED_MODULE_2__.checkValidity)(value, validation),
         onChange: inputChangedHandler,
+        id: id,
         type: type,
         name: name,
         required: required,
@@ -195,7 +198,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           children: append
         })
       }) : null]
-    })
+    }), bonus]
   });
 });
 

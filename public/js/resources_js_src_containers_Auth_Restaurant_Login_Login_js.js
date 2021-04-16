@@ -119,7 +119,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (_ref) {
-  var icon = _ref.icon,
+  var id = _ref.id,
+      icon = _ref.icon,
       addon = _ref.addon,
       onChange = _ref.onChange,
       _ref$className = _ref.className,
@@ -137,7 +138,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       append = _ref.append,
       children = _ref.children,
       _ref$dark = _ref.dark,
-      dark = _ref$dark === void 0 ? false : _ref$dark;
+      dark = _ref$dark === void 0 ? false : _ref$dark,
+      bonus = _ref.bonus;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -149,9 +151,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     onChange(e);
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_5__.default, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_5__.default, {
     className: "Input ".concat(className),
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.default, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.default, {
       className: "bg-".concat(dark ? "grayblue" : "white border border-soft", " rounded-6 d-flex align-items-center"),
       size: "lg",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.default, {
@@ -184,6 +186,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         valid: touched && (0,_shared_utility__WEBPACK_IMPORTED_MODULE_2__.checkValidity)(value, validation),
         invalid: touched && !(0,_shared_utility__WEBPACK_IMPORTED_MODULE_2__.checkValidity)(value, validation),
         onChange: inputChangedHandler,
+        id: id,
         type: type,
         name: name,
         required: required,
@@ -198,7 +201,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           children: append
         })
       }) : null]
-    })
+    }), bonus]
   });
 });
 
@@ -297,7 +300,8 @@ var Login = /*#__PURE__*/function (_Component) {
     _defineProperty(_assertThisInitialized(_this), "state", {
       token: '',
       password: '',
-      modal: false
+      modal: false,
+      visible: false
     });
 
     _defineProperty(_assertThisInitialized(_this), "toggle", function () {
@@ -328,6 +332,14 @@ var Login = /*#__PURE__*/function (_Component) {
       _this.setState(_defineProperty({}, name, value));
     });
 
+    _defineProperty(_assertThisInitialized(_this), "eyeClickedHandler", function () {
+      return _this.setState(function (prevState) {
+        return {
+          visible: !prevState.visible
+        };
+      });
+    });
+
     return _this;
   }
 
@@ -336,7 +348,8 @@ var Login = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this$state = this.state,
           token = _this$state.token,
-          password = _this$state.password;
+          password = _this$state.password,
+          visible = _this$state.visible;
       var _this$props = this.props,
           login = _this$props.content.cms.pages.auth.restaurant.login,
           _this$props$auth = _this$props.auth,
@@ -360,7 +373,9 @@ var Login = /*#__PURE__*/function (_Component) {
           required: true,
           placeholder: login.token
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_3__.default, {
-          type: "password",
+          id: "password",
+          type: visible ? "text" : "password",
+          className: "position-relative",
           icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faLock,
           onChange: this.inputChangeHandler,
           validation: {
@@ -369,7 +384,39 @@ var Login = /*#__PURE__*/function (_Component) {
           value: password,
           name: "password",
           required: true,
-          placeholder: login.password
+          placeholder: login.password,
+          bonus: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+            className: "position-absolute d-flex align-items-center px-2",
+            style: {
+              height: 53.5,
+              top: 0,
+              right: 30,
+              zIndex: 10,
+              cursor: 'pointer'
+            },
+            onClick: this.eyeClickedHandler,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+              className: "position-relative",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faEye,
+                className: "text-orange"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+                style: !visible ? {
+                  visibility: 'visible'
+                } : {
+                  visibility: 'hidden'
+                },
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+                  style: {
+                    height: 1.5,
+                    width: 18,
+                    transform: 'rotate(30deg) translate(-7px, -10px)'
+                  },
+                  className: "bg-orange"
+                })
+              })]
+            })
+          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
           className: "pl-5 my-4",
           children: [login.forgot, " ? ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {

@@ -3575,7 +3575,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (_ref) {
-  var icon = _ref.icon,
+  var id = _ref.id,
+      icon = _ref.icon,
       addon = _ref.addon,
       onChange = _ref.onChange,
       _ref$className = _ref.className,
@@ -3593,7 +3594,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       append = _ref.append,
       children = _ref.children,
       _ref$dark = _ref.dark,
-      dark = _ref$dark === void 0 ? false : _ref$dark;
+      dark = _ref$dark === void 0 ? false : _ref$dark,
+      bonus = _ref.bonus;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -3605,9 +3607,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     onChange(e);
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_5__.default, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_5__.default, {
     className: "Input ".concat(className),
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.default, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.default, {
       className: "bg-".concat(dark ? "grayblue" : "white border border-soft", " rounded-6 d-flex align-items-center"),
       size: "lg",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.default, {
@@ -3640,6 +3642,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         valid: touched && (0,_shared_utility__WEBPACK_IMPORTED_MODULE_2__.checkValidity)(value, validation),
         invalid: touched && !(0,_shared_utility__WEBPACK_IMPORTED_MODULE_2__.checkValidity)(value, validation),
         onChange: inputChangedHandler,
+        id: id,
         type: type,
         name: name,
         required: required,
@@ -3654,7 +3657,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           children: append
         })
       }) : null]
-    })
+    }), bonus]
   });
 });
 
@@ -3815,9 +3818,15 @@ var Block = function Block(_ref) {
       icon = _ref.icon,
       title = _ref.title,
       save = _ref.save,
+      hidden = _ref.hidden,
       onSubmit = _ref.onSubmit;
   return children ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("form", {
     className: "col-xl-4 col-md-6 pb-4",
+    style: hidden ? {
+      visibility: 'hidden'
+    } : {
+      visibility: 'visible'
+    },
     onSubmit: onSubmit,
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("input", {
       type: "hidden",
@@ -4027,8 +4036,9 @@ var Settings = /*#__PURE__*/function (_Component) {
           banner3 = _this$state.banner3,
           days = _this$state.days,
           hours = _this$state.hours;
-      var restaurantContent, accountContent, cmsContent, calendarContent;
+      var spinnerContent, restaurantContent, accountContent, cmsContent, calendarContent;
       var errors = null;
+      if (message && message.type === 'success') window.location.reload();
       var basic = plan;
       var standard = plan && plan.slug === 'standard';
       var premium = plan && plan.slug === 'premium';
@@ -4052,7 +4062,7 @@ var Settings = /*#__PURE__*/function (_Component) {
           children: name
         }, cc);
       });
-      if (loading) restaurantContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_19__.default, {
+      if (loading) spinnerContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_19__.default, {
         xs: 12,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_CustomSpinner_CustomSpinner__WEBPACK_IMPORTED_MODULE_9__.default, {})
       });else {
@@ -4371,13 +4381,15 @@ var Settings = /*#__PURE__*/function (_Component) {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_Feedback_Feedback__WEBPACK_IMPORTED_MODULE_12__.default, {
                   message: message
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(Block, {
+              }), spinnerContent, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(Block, {
+                hidden: loading,
                 icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faHome,
                 save: save,
                 onSubmit: this.restaurantSettingsSubmitHandler,
                 title: form.restaurant_settings,
                 children: restaurantContent
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(Block, {
+                hidden: loading,
                 icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faUser,
                 save: save,
                 onSubmit: this.accountSettingsSubmitHandler,
@@ -4391,6 +4403,7 @@ var Settings = /*#__PURE__*/function (_Component) {
                   accept: ".png,.jpg,.jpeg"
                 }), accountContent]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(Block, {
+                hidden: loading,
                 icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faCog,
                 save: save,
                 onSubmit: this.cmsSettingsSubmitHandler,
@@ -4418,6 +4431,7 @@ var Settings = /*#__PURE__*/function (_Component) {
                   accept: ".png,.jpg,.jpeg"
                 }), cmsContent]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(Block, {
+                hidden: loading,
                 icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faCalendar,
                 save: save,
                 onSubmit: this.calendarSettingsSubmitHandler,

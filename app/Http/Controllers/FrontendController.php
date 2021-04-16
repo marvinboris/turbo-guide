@@ -68,7 +68,7 @@ class FrontendController extends Controller
         $meal->update(['views' => $meal->views + 1]);
 
         $addons = [];
-        foreach ($meal->addons as $addon) {
+        foreach ($meal->addons()->whereIsActive(1)->get() as $addon) {
             $addons[] = $addon->toArray() + [
                 'formattedPrice' => number_format($addon->price, 2),
             ];

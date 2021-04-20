@@ -92,7 +92,7 @@ var Breadcrumb = /*#__PURE__*/function (_Component) {
         style: {
           top: '50%',
           right: 0,
-          transform: 'translateY(-30px)',
+          transform: 'translateY(-10px)',
           position: 'absolute',
           zIndex: 1000
         },

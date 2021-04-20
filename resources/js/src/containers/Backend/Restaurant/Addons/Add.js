@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Button, Col, Row } from 'reactstrap';
-import { faBook, faCheckCircle, faCookie, faFileImage, faMoneyBillWave, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { faBook, faCheckCircle, faCookie, faFileImage, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { faSave } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -26,7 +26,7 @@ class Add extends Component {
         description: '',
         price: '',
         reference: '',
-        is_active: '',
+        is_active: '1',
         photo: '',
     }
 
@@ -55,7 +55,21 @@ class Add extends Component {
 
     inputChangeHandler = e => {
         const { name, value, files } = e.target;
+        if (files) this.readURL(e.target);
         this.setState({ [name]: files ? files[0] : value });
+    }
+
+    readURL = input => {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                document.getElementById(`embed-${input.name}`).style.backgroundImage = `url('${e.target.result}')`;
+                document.getElementById(`embed-${input.name}`).style.backgroundSize = "cover";
+            }
+
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
     }
 
     fileUpload = () => document.getElementById('photo').click()
@@ -65,9 +79,11 @@ class Add extends Component {
             content: {
                 cms: {
                     pages: { components: { form: { save, selected_file, active, inactive } }, backend: { pages: { addons: { title, subtitle, instructions, add, edit, index, form } } } }
-                }
+                },
+                currencies,
             },
             backend: { addons: { loading, error, message, addon } },
+            auth: { data: { currency } }
         } = this.props;
         let { name, description, price, reference, is_active, photo } = this.state;
         let content = null;
@@ -80,6 +96,10 @@ class Add extends Component {
             errors = <>
                 <Error err={error} />
             </>;
+            let symbol;
+            const selectedCurrency = currencies.find(c => c.cc === currency);
+            if (selectedCurrency) symbol = selectedCurrency.symbol;
+
             content = (
                 <>
                     <Col lg={9}>
@@ -95,7 +115,7 @@ class Add extends Component {
                                     <Row>
                                         <FormInput type="text" className="col-md-6" icon={faBook} onChange={this.inputChangeHandler} value={name} name="name" required placeholder={form.name} />
                                         <FormInput type="text" className="col-md-6" icon={faPencilAlt} onChange={this.inputChangeHandler} value={description} name="description" required placeholder={form.description} />
-                                        <FormInput type="number" className="col-md-6" icon={faMoneyBillWave} onChange={this.inputChangeHandler} value={price} name="price" required placeholder={form.price} />
+                                        <FormInput type="number" className="col-md-6" addon={<div className="text-center text-light" style={{ margin: '0 -10px' }}>{symbol}</div>} onChange={this.inputChangeHandler} value={price} name="price" required placeholder={form.price} />
                                         <FormInput type="text" className="col-md-6" icon={faPencilAlt} onChange={this.inputChangeHandler} value={reference} name="reference" required placeholder={form.reference} />
                                         <FormInput type="select" className="col-md-6" icon={faPencilAlt} onChange={this.inputChangeHandler} value={is_active} name="is_active" required>
                                             <option>{form.select_status}</option>
@@ -106,7 +126,7 @@ class Add extends Component {
                                 </div>
 
                                 <div className="col-lg-3">
-                                    <div className="embed-responsive embed-responsive-1by1 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', background: photo && `url("${photo}") no-repeat center`, backgroundSize: 'cover' }} onClick={this.fileUpload}>
+                                    <div id="embed-photo" className="embed-responsive embed-responsive-1by1 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', background: photo && `url("${photo}") no-repeat center`, backgroundSize: 'cover' }} onClick={this.fileUpload}>
                                         {this.props.edit
                                             ? photo && (photo !== addon.photo) && <div className="text-center text-green">
                                                 <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>

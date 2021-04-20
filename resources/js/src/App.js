@@ -141,16 +141,16 @@ class App extends Component {
                 <Redirect path="/restaurant" to="/auth/login" />
                 <Redirect path="/auth" to="/auth/login" />
 
-                <Route path="/restaurants/:md5/meals/:id">
+                <Route path="/restaurants/:slug/meals/:id">
                     <FrontendMeals>
                         <Switch>
-                            <Route path="/restaurants/:md5/meals/:id/addons" component={asyncRestaurantsMealsAddons} />
-                            <Route path="/restaurants/:md5/meals/:id/description" component={asyncRestaurantsMealsDescription} />
-                            <Route path="/restaurants/:md5/meals/:id/comments" component={asyncRestaurantsMealsComments} />
+                            <Route path="/restaurants/:slug/meals/:id/addons" component={asyncRestaurantsMealsAddons} />
+                            <Route path="/restaurants/:slug/meals/:id/description" component={asyncRestaurantsMealsDescription} />
+                            <Route path="/restaurants/:slug/meals/:id/comments" component={asyncRestaurantsMealsComments} />
                         </Switch>
                     </FrontendMeals>
                 </Route>
-                <Route path="/restaurants/:md5" component={asyncRestaurantsHome} />
+                <Route path="/restaurants/:slug" component={asyncRestaurantsHome} />
 
                 <Redirect path="/" to="/auth" />
             </Switch>
@@ -247,16 +247,16 @@ class App extends Component {
                     <Redirect path="/dashboard" to={`/${role}/dashboard`} />
                     <Redirect path="/auth" to={`/${role}/dashboard`} />
 
-                    <Route path="/restaurants/:md5/meals/:id">
+                    <Route path="/restaurants/:slug/meals/:id">
                         <FrontendMeals>
                             <Switch>
-                                <Route path="/restaurants/:md5/meals/:id/addons" component={asyncRestaurantsMealsAddons} />
-                                <Route path="/restaurants/:md5/meals/:id/description" component={asyncRestaurantsMealsDescription} />
-                                <Route path="/restaurants/:md5/meals/:id/comments" component={asyncRestaurantsMealsComments} />
+                                <Route path="/restaurants/:slug/meals/:id/addons" component={asyncRestaurantsMealsAddons} />
+                                <Route path="/restaurants/:slug/meals/:id/description" component={asyncRestaurantsMealsDescription} />
+                                <Route path="/restaurants/:slug/meals/:id/comments" component={asyncRestaurantsMealsComments} />
                             </Switch>
                         </FrontendMeals>
                     </Route>
-                    <Route path="/restaurants/:md5" component={asyncRestaurantsHome} />
+                    <Route path="/restaurants/:slug" component={asyncRestaurantsHome} />
 
                     <Redirect path="/" to="/auth" />
                 </Switch>

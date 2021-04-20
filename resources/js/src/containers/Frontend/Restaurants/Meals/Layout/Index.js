@@ -25,7 +25,7 @@ const NavItem = ({ to, icon, children, className = '' }) => <NavLink to={to} exa
 
 class Layout extends Component {
     componentDidMount() {
-        this.props.get(this.props.match.params.md5, this.props.match.params.id);
+        this.props.get(this.props.match.params.slug, this.props.match.params.id);
     }
 
     componentWillUnmount() {
@@ -38,7 +38,7 @@ class Layout extends Component {
             frontend: {
                 restaurants: { loading, error, meal = {}, total = 0, qty = 1, currency, position }
             },
-            match: { params: { md5 } },
+            match: { params: { slug } },
             children
         } = this.props;
 
@@ -64,7 +64,7 @@ class Layout extends Component {
                 <div className="position-absolute w-100 h-100" style={bannerStyle} />
 
                 <div className="position-absolute" style={{ top: 23, right: 30 }}>
-                    <Link to={"/restaurants/" + md5} className="text-decoration-none text-reset text-16">
+                    <Link to={"/restaurants/" + slug} className="text-decoration-none text-reset text-16">
                         <FontAwesomeIcon icon={faTimesCircle} className="text-soft" />
                     </Link>
                 </div>
@@ -143,9 +143,9 @@ class Layout extends Component {
             </Wrapper>
 
             <Wrapper className="border-bottom border-soft d-flex justify-content-center">
-                <NavItem to={`/restaurants/${md5}/meals/${meal.id}/addons`} icon={faList}>Food addons</NavItem>
-                <NavItem to={`/restaurants/${md5}/meals/${meal.id}/description`} icon={faBook} className="mx-2">Description</NavItem>
-                <NavItem to={`/restaurants/${md5}/meals/${meal.id}/comments`} icon={faComment}>Comments</NavItem>
+                <NavItem to={`/restaurants/${slug}/meals/${meal.id}/addons`} icon={faList}>Food addons</NavItem>
+                <NavItem to={`/restaurants/${slug}/meals/${meal.id}/description`} icon={faBook} className="mx-2">Description</NavItem>
+                <NavItem to={`/restaurants/${slug}/meals/${meal.id}/comments`} icon={faComment}>Comments</NavItem>
             </Wrapper>
 
             <div className="overflow-hidden" style={{ padding: '15px 0px' }}>
@@ -161,7 +161,7 @@ const mapStateToProps = state => ({ ...state });
 const mapDispatchToProps = dispatch => ({
     add: () => dispatch(actions.addMeal()),
     sub: () => dispatch(actions.subMeal()),
-    get: (md5, id) => dispatch(actions.getRestaurantsMeal(md5, id)),
+    get: (slug, id) => dispatch(actions.getRestaurantsMeal(slug, id)),
     reset: () => dispatch(actions.resetRestaurants(true)),
 });
 

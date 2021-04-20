@@ -6,16 +6,26 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Restaurant extends Authenticatable
 {
-    use Notifiable, HasApiTokens;
+    use Notifiable, HasApiTokens, Sluggable;
 
     protected $directory = '/images/restaurants/';
 
     protected $fillable = [
-        'plan_id', 'language_id', 'name', 'owner', 'token', 'md5', 'email', 'photo', 'phone', 'country', 'whatsapp', 'address', 'days', 'hours', 'location', 'balance', 'password', 'is_active', 'currency', 'position', 'banner1', 'banner2', 'banner3'
+        'plan_id', 'language_id', 'name', 'owner', 'token', 'md5', 'slug', 'email', 'photo', 'phone', 'country', 'whatsapp', 'address', 'days', 'hours', 'location', 'balance', 'password', 'is_active', 'currency', 'position', 'banner1', 'banner2', 'banner3'
     ];
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
 
     /**
      * The attributes that should be hidden for arrays.
@@ -75,7 +85,8 @@ class Restaurant extends Authenticatable
 
     public function getPlanAttribute()
     {
-        $plan = $this->plans()->whereDate('expiry_date', '>=', Carbon::now())->orderBy('id', 'DESC')->first();
+        $plan = $this->plans()->whereDate('expiry_date', '>=', Carbon::now())->orderBy('expiry_date', 'DESC')->first();
+        // $plan = $this->plans()->whereDate('expiry_date', '>=', Carbon::now())->orderBy('id', 'DESC')->first();
 
         return $plan;
     }
@@ -102,7 +113,7 @@ class Restaurant extends Authenticatable
 
     public function plans()
     {
-        return $this->belongsToMany(Plan::class, 'plan_restaurant')->withPivot(['id', 'expiry_date']);
+        return $this->belongsToMany(Plan::class, 'plan_restaurant')->withPivot(['id', 'expiry_date', 'created_at', 'updated_at']);
     }
 
     public function recharges()

@@ -3323,7 +3323,7 @@ var Breadcrumb = /*#__PURE__*/function (_Component) {
         style: {
           top: '50%',
           right: 0,
-          transform: 'translateY(-30px)',
+          transform: 'translateY(-10px)',
           position: 'absolute',
           zIndex: 1000
         },
@@ -3422,7 +3422,7 @@ __webpack_require__.r(__webpack_exports__);
     xl: xl,
     className: outerClassName,
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "rounded-4 d-flex align-items-center mb-4 py-4 px-5 bg-".concat(dark ? "grayblue" : "orange-10", " ").concat(className),
+      className: "rounded-4 d-flex align-items-center mb-5 py-4 px-5 bg-".concat(dark ? "grayblue" : "orange-10", " ").concat(className),
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         className: "d-flex align-items-center",
         children: [icon ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
@@ -3736,13 +3736,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Button.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Col.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/FormGroup.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/FormGroup.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Col.js");
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Row.js");
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
 /* harmony import */ var _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @fortawesome/free-regular-svg-icons */ "./node_modules/@fortawesome/free-regular-svg-icons/index.es.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-/* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "./node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "./node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
 /* harmony import */ var _components_Backend_UI_Breadcrumb_Breadcrumb__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../components/Backend/UI/Breadcrumb/Breadcrumb */ "./resources/js/src/components/Backend/UI/Breadcrumb/Breadcrumb.js");
 /* harmony import */ var _components_Backend_UI_TitleWrapper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../components/Backend/UI/TitleWrapper */ "./resources/js/src/components/Backend/UI/TitleWrapper/index.js");
 /* harmony import */ var _components_UI_Titles_SpecialTitle_SpecialTitle__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../components/UI/Titles/SpecialTitle/SpecialTitle */ "./resources/js/src/components/UI/Titles/SpecialTitle/SpecialTitle.js");
@@ -3871,10 +3871,63 @@ var Block = function Block(_ref) {
   }) : null;
 };
 
-var Conditional = function Conditional(_ref2) {
-  var _ref2$condition = _ref2.condition,
-      condition = _ref2$condition === void 0 ? false : _ref2$condition,
-      children = _ref2.children;
+var CmsItem = function CmsItem(_ref2) {
+  var condition = _ref2.condition,
+      banner = _ref2.banner,
+      attr = _ref2.attr,
+      restaurant = _ref2.restaurant,
+      selected_file = _ref2.selected_file,
+      fileUpload = _ref2.fileUpload;
+  return condition ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_19__.default, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+      id: "embed-".concat(attr),
+      className: "embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center",
+      style: {
+        cursor: 'pointer',
+        background: banner && "url(\"".concat(banner, "\") no-repeat center"),
+        backgroundSize: 'cover'
+      },
+      onClick: function onClick() {
+        return fileUpload(attr);
+      },
+      children: banner && banner !== restaurant[attr] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
+        className: "text-center text-green",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faCheckCircle,
+            fixedWidth: true,
+            size: "5x"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+          className: "mt-3",
+          children: selected_file
+        })]
+      })
+    })
+  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_19__.default, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+      style: {
+        cursor: 'not-allowed'
+      },
+      className: "embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+        className: "text-center text-light",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faLock,
+            fixedWidth: true,
+            size: "5x"
+          })
+        })
+      })
+    })
+  });
+};
+
+var Conditional = function Conditional(_ref3) {
+  var _ref3$condition = _ref3.condition,
+      condition = _ref3$condition === void 0 ? false : _ref3$condition,
+      children = _ref3.children;
   return condition ? children : null;
 };
 
@@ -3950,12 +4003,26 @@ var Settings = /*#__PURE__*/function (_Component) {
           name = _e$target.name,
           value = _e$target.value,
           files = _e$target.files;
+      if (files) _this.readURL(e.target);
 
       _this.setState(_defineProperty({}, name, files ? files[0] : value));
     });
 
+    _defineProperty(_assertThisInitialized(_this), "readURL", function (input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          document.getElementById("embed-".concat(input.name)).style.backgroundImage = "url('".concat(e.target.result, "')");
+          document.getElementById("embed-".concat(input.name)).style.backgroundSize = "cover";
+        };
+
+        reader.readAsDataURL(input.files[0]); // convert to base64 string
+      }
+    });
+
     _defineProperty(_assertThisInitialized(_this), "fileUpload", function (id) {
-      return document.getElementById(id).click();
+      return document.getElementById(id) && document.getElementById(id).click();
     });
 
     return _this;
@@ -4042,27 +4109,27 @@ var Settings = /*#__PURE__*/function (_Component) {
       var basic = plan;
       var standard = plan && plan.slug === 'standard';
       var premium = plan && plan.slug === 'premium';
-      var countriesOptions = countries.map(function (_ref3) {
-        var country = _ref3.country,
-            code = _ref3.code,
-            name = _ref3.name;
+      var countriesOptions = countries.map(function (_ref4) {
+        var country = _ref4.country,
+            code = _ref4.code,
+            name = _ref4.name;
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("option", {
           value: country,
           code: code,
           children: name
         }, country);
       });
-      var currenciesOptions = currencies.map(function (_ref4) {
-        var cc = _ref4.cc,
-            symbol = _ref4.symbol,
-            name = _ref4.name;
+      var currenciesOptions = currencies.map(function (_ref5) {
+        var cc = _ref5.cc,
+            symbol = _ref5.symbol,
+            name = _ref5.name;
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("option", {
           value: cc,
           symbol: symbol,
           children: name
         }, cc);
       });
-      if (loading) spinnerContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_19__.default, {
+      if (loading) spinnerContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_20__.default, {
         xs: 12,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_CustomSpinner_CustomSpinner__WEBPACK_IMPORTED_MODULE_9__.default, {})
       });else {
@@ -4108,7 +4175,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             condition: standard || premium,
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
               type: "tel",
-              icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_20__.faWhatsapp,
+              icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_21__.faWhatsapp,
               onChange: this.inputChangeHandler,
               value: whatsapp,
               name: "whatsapp",
@@ -4126,7 +4193,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
             type: "text",
-            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faSearchLocation,
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faMapMarkerAlt,
             onChange: this.inputChangeHandler,
             value: address,
             name: "address",
@@ -4224,8 +4291,9 @@ var Settings = /*#__PURE__*/function (_Component) {
             value: new_password_confirmation,
             name: "new_password_confirmation",
             placeholder: form.new_password_confirmation
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_21__.default, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_19__.default, {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+              id: "embed-photo",
               className: "embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center",
               style: {
                 cursor: 'pointer',
@@ -4251,92 +4319,26 @@ var Settings = /*#__PURE__*/function (_Component) {
             })
           })]
         });
-        cmsContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.Fragment, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(Conditional, {
+        cmsContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.Fragment, {
+          children: [{
             condition: basic,
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_21__.default, {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                className: "embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center",
-                style: {
-                  cursor: 'pointer',
-                  background: photo && "url(\"".concat(banner1, "\") no-repeat center"),
-                  backgroundSize: 'cover'
-                },
-                onClick: function onClick() {
-                  return _this2.fileUpload("banner-1");
-                },
-                children: banner1 && banner1 !== restaurant.banner1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-                  className: "text-center text-green",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-                      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faCheckCircle,
-                      fixedWidth: true,
-                      size: "5x"
-                    })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                    className: "mt-3",
-                    children: selected_file
-                  })]
-                })
-              })
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(Conditional, {
+            banner: banner1,
+            attr: 'banner1'
+          }, {
             condition: standard || premium,
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_21__.default, {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                className: "embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center",
-                style: {
-                  cursor: 'pointer',
-                  background: banner2 && "url(\"".concat(banner2, "\") no-repeat center"),
-                  backgroundSize: 'cover'
-                },
-                onClick: function onClick() {
-                  return _this2.fileUpload("banner-2");
-                },
-                children: banner2 && banner2 !== restaurant.banner2 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-                  className: "text-center text-green",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-                      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faCheckCircle,
-                      fixedWidth: true,
-                      size: "5x"
-                    })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                    className: "mt-3",
-                    children: selected_file
-                  })]
-                })
-              })
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(Conditional, {
+            banner: banner2,
+            attr: 'banner2'
+          }, {
             condition: premium,
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_21__.default, {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                className: "embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center",
-                style: {
-                  cursor: 'pointer',
-                  background: banner3 && "url(\"".concat(banner3, "\") no-repeat center"),
-                  backgroundSize: 'cover'
-                },
-                onClick: function onClick() {
-                  return _this2.fileUpload("banner-3");
-                },
-                children: banner3 && banner3 !== restaurant.banner3 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-                  className: "text-center text-green",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-                      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_16__.faCheckCircle,
-                      fixedWidth: true,
-                      size: "5x"
-                    })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                    className: "mt-3",
-                    children: selected_file
-                  })]
-                })
-              })
-            })
-          })]
+            banner: banner3,
+            attr: 'banner3'
+          }].map(function (item) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(CmsItem, _objectSpread(_objectSpread({}, item), {}, {
+              restaurant: restaurant,
+              selected_file: selected_file,
+              fileUpload: _this2.fileUpload
+            }), JSON.stringify(item));
+          })
         });
         calendarContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.Fragment, {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
@@ -4408,27 +4410,36 @@ var Settings = /*#__PURE__*/function (_Component) {
                 save: save,
                 onSubmit: this.cmsSettingsSubmitHandler,
                 title: form.cms_settings,
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("input", {
-                  type: "file",
-                  id: "banner-1",
-                  name: "banner1",
-                  className: "d-none",
-                  onChange: this.inputChangeHandler,
-                  accept: ".png,.jpg,.jpeg"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("input", {
-                  type: "file",
-                  id: "banner-2",
-                  name: "banner2",
-                  className: "d-none",
-                  onChange: this.inputChangeHandler,
-                  accept: ".png,.jpg,.jpeg"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("input", {
-                  type: "file",
-                  id: "banner-3",
-                  name: "banner3",
-                  className: "d-none",
-                  onChange: this.inputChangeHandler,
-                  accept: ".png,.jpg,.jpeg"
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(Conditional, {
+                  condition: basic,
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("input", {
+                    type: "file",
+                    id: "banner1",
+                    name: "banner1",
+                    className: "d-none",
+                    onChange: this.inputChangeHandler,
+                    accept: ".png,.jpg,.jpeg"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(Conditional, {
+                  condition: standard || premium,
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("input", {
+                    type: "file",
+                    id: "banner2",
+                    name: "banner2",
+                    className: "d-none",
+                    onChange: this.inputChangeHandler,
+                    accept: ".png,.jpg,.jpeg"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(Conditional, {
+                  condition: premium,
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("input", {
+                    type: "file",
+                    id: "banner3",
+                    name: "banner3",
+                    className: "d-none",
+                    onChange: this.inputChangeHandler,
+                    accept: ".png,.jpg,.jpeg"
+                  })
                 }), cmsContent]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(Block, {
                 hidden: loading,

@@ -24,7 +24,7 @@ class Add extends Component {
     state = {
         name: '',
         description: '',
-        is_active: '',
+        is_active: '1',
         photo: '',
     }
 
@@ -53,7 +53,21 @@ class Add extends Component {
 
     inputChangeHandler = e => {
         const { name, value, files } = e.target;
+        if (files) this.readURL(e.target);
         this.setState({ [name]: files ? files[0] : value });
+    }
+
+    readURL = input => {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                document.getElementById(`embed-${input.name}`).style.backgroundImage = `url('${e.target.result}')`;
+                document.getElementById(`embed-${input.name}`).style.backgroundSize = "cover";
+            }
+
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
     }
 
     fileUpload = () => document.getElementById('photo').click()
@@ -102,7 +116,7 @@ class Add extends Component {
                                 </div>
 
                                 <div className="col-lg-3">
-                                    <div className="embed-responsive embed-responsive-1by1 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', background: photo && `url("${photo}") no-repeat center`, backgroundSize: 'cover' }} onClick={this.fileUpload}>
+                                    <div id="embed-photo" className="embed-responsive embed-responsive-1by1 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', background: photo && `url("${photo}") no-repeat center`, backgroundSize: 'cover' }} onClick={this.fileUpload}>
                                         {this.props.edit
                                             ? photo && (photo !== category.photo) && <div className="text-center text-green">
                                                 <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>

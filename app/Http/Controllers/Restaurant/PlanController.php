@@ -39,7 +39,9 @@ class PlanController extends Controller
         $filteredData = $filteredData->get();
 
         foreach ($filteredData as $plan) {
-            $data[] = array_merge($plan->toArray(), []);
+            $data[] = array_merge($plan->toArray(), [
+                'created_at' => $plan->pivot->created_at
+            ]);
         }
 
         return [

@@ -21,7 +21,7 @@ export default ({ id, name, meals, actions, banners, price, premium = false, sta
                 <div className="ml-auto d-flex align-items-center text-montserrat pr-2">
                     <div className="text-700 text-16 mr-1">{price}</div>
 
-                    <div className="text-10 text-300 mr-1">XAF</div>
+                    <div className="text-10 text-300 mr-1">USD</div>
                 </div>
             </div>
         </div>

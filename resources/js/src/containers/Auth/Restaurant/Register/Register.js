@@ -20,22 +20,7 @@ class Register extends Component {
         country: 'CM',
         code: '237',
         phone: '',
-
-        countries: [],
     }
-
-    async componentDidMount() {
-        const phoneRes = await fetch(CORS + 'http://country.io/phone.json', { method: 'GET', mode: 'cors' });
-        const namesRes = await fetch(CORS + 'http://country.io/names.json', { method: 'GET', mode: 'cors' });
-
-        const phone = await phoneRes.json();
-        const names = await namesRes.json();
-
-        const countries = Object.keys(phone).map(key => ({ country: key, code: phone[key], name: names[key] })).sort((a, b) => a.country > b.country);
-
-        this.setState({ countries });
-    }
-
     submitHandler = e => {
         e.preventDefault();
         this.props.onAuth(e.target);
@@ -43,7 +28,7 @@ class Register extends Component {
 
     inputChangeHandler = e => {
         const { name, value, checked } = e.target;
-        if (name === 'country') return this.setState({ country: value, code: this.state.countries.find(({ country }) => country === value).code });
+        if (name === 'country') return this.setState({ country: value, code: this.props.content.countries.find(({ country }) => country === value).code });
         if (name === 'terms') return this.setState({ terms: checked });
         this.setState({ [name]: value });
     }
@@ -51,13 +36,14 @@ class Register extends Component {
     render() {
         const {
             content: {
+                countries,
                 cms: {
                     pages: { auth: { restaurant: { register } } }
                 }
             },
             auth: { loading, error, message, signup: { status }, },
         } = this.props;
-        const { countries, owner, email, code, country, phone } = this.state;
+        const { owner, email, code, country, phone } = this.state;
         let titleContent, formContent;
 
         titleContent = <>

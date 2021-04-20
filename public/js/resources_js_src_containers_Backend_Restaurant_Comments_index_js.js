@@ -92,7 +92,7 @@ var Breadcrumb = /*#__PURE__*/function (_Component) {
         style: {
           top: '50%',
           right: 0,
-          transform: 'translateY(-30px)',
+          transform: 'translateY(-10px)',
           position: 'absolute',
           zIndex: 1000
         },
@@ -647,7 +647,7 @@ var Table = /*#__PURE__*/function (_Component) {
           id: "table-search",
           value: search
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-          className: "rounded-4 d-flex align-items-center mb-4 py-4 px-5 bg-".concat(dark ? "grayblue" : "orange-10"),
+          className: "rounded-4 d-flex align-items-center mb-5 py-4 px-5 bg-".concat(dark ? "grayblue" : "orange-10"),
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
             className: "d-flex align-items-center",
             children: [icon ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {

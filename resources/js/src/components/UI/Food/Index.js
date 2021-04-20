@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import './Food.css';
 
-export default ({ photo, name, description, reference, meal, addon, qty, add, sub, id, md5, children }) => {
+export default ({ photo, name, description, reference, meal, addon, qty, add, sub, id, slug, children }) => {
     const content = <>
         <div className="pb-1 d-flex">
             <div className="pr-2">
@@ -75,7 +75,7 @@ export default ({ photo, name, description, reference, meal, addon, qty, add, su
     </>;
 
     return <div className={`Food pb-3 px-3 mb-3 border-bottom border-${addon ? "orange-10" : "soft"}`}>
-        {meal ? <Link to={`/restaurants/${md5}/meals/${id}/addons`} className="d-block text-decoration-none text-reset">
+        {meal ? <Link to={`/restaurants/${slug}/meals/${id}/addons`} className="d-block text-decoration-none text-reset">
             {content}
         </Link> : content}
     </div>;

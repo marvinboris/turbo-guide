@@ -6,11 +6,11 @@ export const resetRestaurants = (meal = false) => ({ type: actionTypes.RESTAURAN
 const restaurantsStart = () => ({ type: actionTypes.RESTAURANTS_START });
 const restaurantsSuccess = data => ({ type: actionTypes.RESTAURANTS_SUCCESS, ...data });
 const restaurantsFail = error => ({ type: actionTypes.RESTAURANTS_FAIL, error });
-export const getRestaurant = md5 => async dispatch => {
+export const getRestaurant = slug => async dispatch => {
     dispatch(restaurantsStart());
 
     try {
-        const res = await fetch(`${prefix}restaurants/${md5}`);
+        const res = await fetch(`${prefix}restaurants/${slug}`);
         const resData = await res.json();
 
         dispatch(restaurantsSuccess(resData));
@@ -19,11 +19,11 @@ export const getRestaurant = md5 => async dispatch => {
     }
 }
 
-export const getRestaurantsMeal = (md5, id) => async dispatch => {
+export const getRestaurantsMeal = (slug, id) => async dispatch => {
     dispatch(restaurantsStart());
 
     try {
-        const res = await fetch(`${prefix}restaurants/${md5}/meals/${id}`);
+        const res = await fetch(`${prefix}restaurants/${slug}/meals/${id}`);
         const resData = await res.json();
 
         resData.addons = resData.addons.map(a => ({ ...a, qty: 0 }))
@@ -37,12 +37,12 @@ export const getRestaurantsMeal = (md5, id) => async dispatch => {
     }
 }
 
-export const postComment = (md5, id, data) => async dispatch => {
+export const postComment = (slug, id, data) => async dispatch => {
     dispatch(restaurantsStart());
 
     try {
         const form = new FormData(data);
-        const res = await fetch(`${prefix}restaurants/${md5}/meals/${id}/comment`, {
+        const res = await fetch(`${prefix}restaurants/${slug}/meals/${id}/comment`, {
             method: 'POST',
             body: form,
         });

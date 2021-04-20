@@ -31,8 +31,49 @@ class Dashboard extends Component {
         duration: 1,
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         this.props.get();
+
+        const res = await fetch("https://qrcode-monkey.p.rapidapi.com/qr/custom", {
+            "method": "POST",
+            "headers": {
+                "content-type": "application/json",
+                "x-rapidapi-key": "6ce92d4e5dmsh598d92a451c175ep1360c5jsn7348a06ad241",
+                "x-rapidapi-host": "qrcode-monkey.p.rapidapi.com"
+            },
+            "body": {
+                "data": `${window.location.protocol}//${window.location.hostname}/restaurants/${this.props.auth.data.slug}`,
+                "config": {
+                    "body": "circle-zebra-vertical",
+                    "eye": "frame13",
+                    "eyeBall": "ball15",
+                    "erf1": [],
+                    "erf2": [],
+                    "erf3": [],
+                    "brf1": [],
+                    "brf2": [],
+                    "brf3": [],
+                    "bodyColor": "#0277BD",
+                    "bgColor": "#FFFFFF",
+                    "eye1Color": "#075685",
+                    "eye2Color": "#075685",
+                    "eye3Color": "#075685",
+                    "eyeBall1Color": "#0277BD",
+                    "eyeBall2Color": "#0277BD",
+                    "eyeBall3Color": "#0277BD",
+                    "gradientColor1": "#075685",
+                    "gradientColor2": "#0277BD",
+                    "gradientType": "linear",
+                    "gradientOnEyes": false,
+                    // "logo": "#facebook"
+                },
+                "size": 225,
+                "download": false,
+                "file": "png"
+            }
+        });
+
+        console.log({ res });
     }
 
     componentWillUnmount() {
@@ -49,7 +90,7 @@ class Dashboard extends Component {
                 }
             },
             backend: { dashboard: { loading, error, blocksData, mostViewed = [], comments = 0, marks = {}, plans = {} } },
-            auth: { data: { md5, name, plan } }
+            auth: { data: { slug, name, plan } }
         } = this.props;
         const { duration } = this.state;
 
@@ -115,8 +156,8 @@ class Dashboard extends Component {
 
                 content = (
                     <>
-                        {plan && <div className="position-fixed pt-3 pr-5" style={{ top: 0, right: 0, zIndex: 1100 }}>
-                            <a href={`/restaurants/${md5}`} target="_blank" className="btn btn-green text-18 text-montserrat text-700 text-decoration-none py-3 px-4 rounded-4">
+                        {plan && <div className="position-absolute pt-3 pr-5" style={{ top: 0, right: 0, zIndex: 1100 }}>
+                            <a href={`/restaurants/${slug}`} target="_blank" className="btn btn-green text-18 text-montserrat text-700 text-decoration-none py-3 px-4 rounded-4">
                                 {go_live}
 
                                 <FontAwesomeIcon icon={faExternalLinkAlt} className="ml-3" />
@@ -136,7 +177,7 @@ class Dashboard extends Component {
                                         <div className="mb3">{credit_balance}</div>
 
                                         <div>
-                                            <span className="text-700 text-35 text-montserrat">{blocksData.creditBalance}</span> <span className="text-14">XAF</span>
+                                            <span className="text-700 text-35 text-montserrat">{blocksData.creditBalance}</span> <span className="text-14">USD</span>
                                         </div>
                                     </div>
 
@@ -160,8 +201,14 @@ class Dashboard extends Component {
                                         {most_viewed}
                                     </div>
 
-                                    <div className="row flex-fill align-items-center">
+                                    <div className="row d-none d-md-flex flex-fill align-items-center">
                                         {mealsContent}
+                                    </div>
+
+                                    <div className="d-md-none">
+                                        <OwlCarousel options={{ responsive: { 0: { items: 1 }, 600: { items: 2 }, 1200: { items: 3 } }, center: true, loop: true, dots: false }}>
+                                            {mealsContent}
+                                        </OwlCarousel>
                                     </div>
                                 </div>
                             </div>
@@ -174,7 +221,7 @@ class Dashboard extends Component {
 
                                     <div className="mb-4 rounded-8 shadow-sm bg-white-50 position-relative embed-responsive embed-responsive-1by1 mx-auto" style={{ width: 280 }}>
                                         <div className="position-absolute w-100 h-100 p-4" style={{ top: 0, left: 0 }}>
-                                            <div className="h-100 w-100" style={{ background: `url('https://api.qrserver.com/v1/create-qr-code/?size=225x225&data=${`${window.location.protocol}//${window.location.hostname}`}/restaurants/${md5}') no-repeat center`, backgroundSize: 'cover' }} />
+                                            <div className="h-100 w-100" style={{ background: `url('https://api.qrserver.com/v1/create-qr-code/?size=225x225&data=${`${window.location.protocol}//${window.location.hostname}`}/restaurants/${slug}') no-repeat center`, backgroundSize: 'cover' }} />
                                         </div>
                                     </div>
 
@@ -229,9 +276,9 @@ class Dashboard extends Component {
                                     </div>
 
                                     <div className="flex-fill">
-                                        <Row className="d-none d-sm-flex align-items-center">{plansContent}</Row>
+                                        <Row className="d-none d-md-flex align-items-center">{plansContent}</Row>
 
-                                        <div className="d-sm-none">
+                                        <div className="d-md-none">
                                             <OwlCarousel options={{ responsive: { 0: { items: 1 }, 600: { items: 2 }, 1200: { items: 3 } }, center: true, loop: true, dots: false }}>
                                                 {plansContent}
                                             </OwlCarousel>

@@ -166,7 +166,7 @@ class Table extends Component {
                 <input type="hidden" id="table-page" value={page} />
                 <input type="hidden" id="table-search" value={search} />
 
-                <div className={`rounded-4 d-flex align-items-center mb-4 py-4 px-5 bg-${dark ? "grayblue" : "orange-10"}`}>
+                <div className={`rounded-4 d-flex align-items-center mb-5 py-4 px-5 bg-${dark ? "grayblue" : "orange-10"}`}>
                     <div className="d-flex align-items-center">{
                         icon ? <FontAwesomeIcon fixedWidth className="mr-4 text-30 text-orange-20" icon={icon} size="lg" /> : null}
 

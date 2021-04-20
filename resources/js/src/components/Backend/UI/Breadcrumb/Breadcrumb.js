@@ -23,7 +23,7 @@ class Breadcrumb extends Component {
         ));
 
         return (
-            <B className="d-none d-sm-flex align-items-center" color={dark ? "light" : "secondary"} listClassName="bg-transparent rounded-0 justify-content-end text-large" style={{ top: '50%', right: 0, transform: 'translateY(-30px)', position: 'absolute', zIndex: 1000 }}>
+            <B className="d-none d-sm-flex align-items-center" color={dark ? "light" : "secondary"} listClassName="bg-transparent rounded-0 justify-content-end text-large" style={{ top: '50%', right: 0, transform: 'translateY(-10px)', position: 'absolute', zIndex: 1000 }}>
                 <BreadcrumbItem><NavLink className={`text-${dark ? "light" : "secondary"}`} to="/"><FontAwesomeIcon icon={icon} className="mr-1" /> <strong>{home}</strong></NavLink></BreadcrumbItem>
                 {itemsComponent}
                 <BreadcrumbItem className={`text-${dark ? "light" : "secondary"} text-decoration-none`} active>{main}</BreadcrumbItem>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Button, Col, FormGroup, Row } from 'reactstrap';
-import { faArrowsAlt, faArrowsAltH, faCalendar, faCheckCircle, faClock, faCog, faEdit, faEnvelope, faHome, faLocationArrow, faLock, faPhone, faSearchLocation, faUser, faUserTie } from '@fortawesome/free-solid-svg-icons';
+import { faArrowsAltH, faCalendar, faCheckCircle, faClock, faCog, faEdit, faEnvelope, faHome, faLocationArrow, faLock, faMapMarkerAlt, faPhone, faUser, faUserTie } from '@fortawesome/free-solid-svg-icons';
 import { faSave } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
@@ -50,6 +50,23 @@ const Block = ({ children, icon, title, save, hidden, onSubmit }) => children ? 
         </div>
     </div>
 </form> : null;
+
+const CmsItem = ({ condition, banner, attr, restaurant, selected_file, fileUpload }) => condition ? <FormGroup>
+    <div id={`embed-${attr}`} className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', background: banner && `url("${banner}") no-repeat center`, backgroundSize: 'cover' }} onClick={() => fileUpload(attr)}>
+        {banner && (banner !== restaurant[attr]) && <div className="text-center text-green">
+            <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
+
+            <div className="mt-3">{selected_file}</div>
+        </div>}
+    </div>
+</FormGroup>
+    : <FormGroup>
+        <div style={{ cursor: 'not-allowed' }} className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center">
+            <div className="text-center text-light">
+                <div><FontAwesomeIcon icon={faLock} fixedWidth size="5x" /></div>
+            </div>
+        </div>
+    </FormGroup>;
 
 const Conditional = ({ condition = false, children }) => condition ? children : null;
 
@@ -124,10 +141,24 @@ class Settings extends Component {
 
     inputChangeHandler = e => {
         const { name, value, files } = e.target;
+        if (files) this.readURL(e.target);
         this.setState({ [name]: files ? files[0] : value });
     }
 
-    fileUpload = id => document.getElementById(id).click()
+    readURL = input => {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                document.getElementById(`embed-${input.name}`).style.backgroundImage = `url('${e.target.result}')`;
+                document.getElementById(`embed-${input.name}`).style.backgroundSize = "cover";
+            }
+
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+    }
+
+    fileUpload = id => document.getElementById(id) && document.getElementById(id).click()
 
     render() {
         let {
@@ -181,7 +212,7 @@ class Settings extends Component {
                 <Conditional condition={premium}>
                     <FormInput type="text" icon={faLocationArrow} onChange={this.inputChangeHandler} value={location} name="location" placeholder={form.location} />
                 </Conditional>
-                <FormInput type="text" icon={faSearchLocation} onChange={this.inputChangeHandler} value={address} name="address" placeholder={form.address} />
+                <FormInput type="text" icon={faMapMarkerAlt} onChange={this.inputChangeHandler} value={address} name="address" placeholder={form.address} />
                 <FormInput type="select" addon={<div className="text-center text-light" style={{ margin: '0 -10px' }}>{symbol}</div>} onChange={this.inputChangeHandler} value={currency} name="currency" required>
                     <option>{form.select_currency}</option>
                     {currenciesOptions}
@@ -208,7 +239,7 @@ class Settings extends Component {
                 <FormInput type="password" icon={faLock} onChange={this.inputChangeHandler} value={new_password} name="new_password" placeholder={form.new_password} />
                 <FormInput type="password" icon={faLock} onChange={this.inputChangeHandler} value={new_password_confirmation} name="new_password_confirmation" placeholder={form.new_password_confirmation} />
                 <FormGroup>
-                    <div className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', background: photo && `url("${photo}") no-repeat center`, backgroundSize: 'cover' }} onClick={() => this.fileUpload("photo")}>
+                    <div id="embed-photo" className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', background: photo && `url("${photo}") no-repeat center`, backgroundSize: 'cover' }} onClick={() => this.fileUpload("photo")}>
                         {photo && (photo !== restaurant.photo) && <div className="text-center text-green">
                             <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
 
@@ -219,39 +250,11 @@ class Settings extends Component {
             </>;
 
             cmsContent = <>
-                <Conditional condition={basic}>
-                    <FormGroup>
-                        <div className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', background: photo && `url("${banner1}") no-repeat center`, backgroundSize: 'cover' }} onClick={() => this.fileUpload("banner-1")}>
-                            {banner1 && (banner1 !== restaurant.banner1) && <div className="text-center text-green">
-                                <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
-
-                                <div className="mt-3">{selected_file}</div>
-                            </div>}
-                        </div>
-                    </FormGroup>
-                </Conditional>
-                <Conditional condition={standard || premium}>
-                    <FormGroup>
-                        <div className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', background: banner2 && `url("${banner2}") no-repeat center`, backgroundSize: 'cover' }} onClick={() => this.fileUpload("banner-2")}>
-                            {banner2 && (banner2 !== restaurant.banner2) && <div className="text-center text-green">
-                                <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
-
-                                <div className="mt-3">{selected_file}</div>
-                            </div>}
-                        </div>
-                    </FormGroup>
-                </Conditional>
-                <Conditional condition={premium}>
-                    <FormGroup>
-                        <div className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', background: banner3 && `url("${banner3}") no-repeat center`, backgroundSize: 'cover' }} onClick={() => this.fileUpload("banner-3")}>
-                            {banner3 && (banner3 !== restaurant.banner3) && <div className="text-center text-green">
-                                <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
-
-                                <div className="mt-3">{selected_file}</div>
-                            </div>}
-                        </div>
-                    </FormGroup>
-                </Conditional>
+                {[
+                    { condition: basic, banner: banner1, attr: 'banner1' },
+                    { condition: standard || premium, banner: banner2, attr: 'banner2' },
+                    { condition: premium, banner: banner3, attr: 'banner3' },
+                ].map(item => <CmsItem key={JSON.stringify(item)} {...item} restaurant={restaurant} selected_file={selected_file} fileUpload={this.fileUpload} />)}
             </>;
 
             calendarContent = <>
@@ -287,9 +290,10 @@ class Settings extends Component {
                             </Block>
 
                             <Block hidden={loading} icon={faCog} save={save} onSubmit={this.cmsSettingsSubmitHandler} title={form.cms_settings}>
-                                <input type="file" id="banner-1" name="banner1" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" />
-                                <input type="file" id="banner-2" name="banner2" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" />
-                                <input type="file" id="banner-3" name="banner3" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" />
+                                <Conditional condition={basic}><input type="file" id="banner1" name="banner1" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" /></Conditional>
+                                <Conditional condition={standard || premium}><input type="file" id="banner2" name="banner2" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" /></Conditional>
+                                <Conditional condition={premium}><input type="file" id="banner3" name="banner3" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" /></Conditional>
+
                                 {cmsContent}
                             </Block>
 

@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
-    public function show($md5)
+    public function show($slug)
     {
-        $restaurant = Restaurant::whereMd5($md5)->first();
+        $restaurant = Restaurant::whereSlug($slug)->first();
         if (!$restaurant) return response()->json([
-            'message' => 'Restaurant not found.'
+            'message' => UtilController::message('Restaurant not found.', 'danger'),
         ]);
 
         $mark = number_format($restaurant->mark ?? 0, 1);
@@ -53,16 +53,16 @@ class FrontendController extends Controller
         ]);
     }
 
-    public function meal($md5, $id)
+    public function meal($slug, $id)
     {
-        $restaurant = Restaurant::whereMd5($md5)->first();
+        $restaurant = Restaurant::whereSlug($slug)->first();
         if (!$restaurant) return response()->json([
-            'message' => 'Restaurant not found.'
+            'message' => UtilController::message('Restaurant not found.', 'danger'),
         ]);
 
         $meal = $restaurant->meals()->find($id);
         if (!$meal) return response()->json([
-            'message' => 'Meal not found.'
+            'message' => UtilController::message('Meal not found.', 'danger'),
         ]);
 
         $meal->update(['views' => $meal->views + 1]);
@@ -83,16 +83,16 @@ class FrontendController extends Controller
         ]);
     }
 
-    public function comment(Request $request, $md5, $id)
+    public function comment(Request $request, $slug, $id)
     {
-        $restaurant = Restaurant::whereMd5($md5)->first();
+        $restaurant = Restaurant::whereSlug($slug)->first();
         if (!$restaurant) return response()->json([
-            'message' => UtilController::message('Restaurant not found.'),
+            'message' => UtilController::message('Restaurant not found.', 'danger'),
         ]);
 
         $meal = $restaurant->meals()->find($id);
         if (!$meal) return response()->json([
-            'message' => UtilController::message('Meal not found.'),
+            'message' => UtilController::message('Meal not found.', 'danger'),
         ]);
 
         $input = $request->validate([
@@ -105,7 +105,7 @@ class FrontendController extends Controller
         $meal->comments()->create($input);
 
         return response()->json([
-            'message' => UtilController::message('Comment successfully posted.'),
+            'message' => UtilController::message('Comment successfully posted.', 'success'),
             'comments' => $meal->comments,
         ]);
     }

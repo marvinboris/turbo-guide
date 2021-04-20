@@ -25,6 +25,6 @@ class Plan extends Model
 
     public function restaurants()
     {
-        return $this->belongsToMany(Restaurant::class, 'plan_restaurant')->withPivot(['id', 'expiry_date']);
+        return $this->belongsToMany(Restaurant::class, 'plan_restaurant')->withPivot(['id', 'expiry_date', 'created_at', 'updated_at']);
     }
 }

@@ -60,6 +60,8 @@ class Purchase extends Component {
         let content = null;
         let errors = null;
 
+        if (message && message.type === 'success') window.location.reload();
+
         const typesOptions = types.sort((a, b) => a.name > b.name).map(type => <option key={JSON.stringify(type)} value={type.months}>{type.name}</option>);
 
         let plansOptions = [];

@@ -358,7 +358,7 @@ var Comments = /*#__PURE__*/function (_Component) {
     _defineProperty(_assertThisInitialized(_this), "submitHandler", function (e) {
       e.preventDefault();
 
-      _this.props.post(_this.props.match.params.md5, _this.props.match.params.id, e.target);
+      _this.props.post(_this.props.match.params.slug, _this.props.match.params.id, e.target);
     });
 
     _defineProperty(_assertThisInitialized(_this), "inputChangeHandler", function (e) {
@@ -557,8 +557,8 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    post: function post(md5, id, data) {
-      return dispatch(_store_actions_frontend__WEBPACK_IMPORTED_MODULE_8__.postComment(md5, id, data));
+    post: function post(slug, id, data) {
+      return dispatch(_store_actions_frontend__WEBPACK_IMPORTED_MODULE_8__.postComment(slug, id, data));
     }
   };
 };

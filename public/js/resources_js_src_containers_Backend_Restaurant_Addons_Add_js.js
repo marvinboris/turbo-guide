@@ -92,7 +92,7 @@ var Breadcrumb = /*#__PURE__*/function (_Component) {
         style: {
           top: '50%',
           right: 0,
-          transform: 'translateY(-30px)',
+          transform: 'translateY(-10px)',
           position: 'absolute',
           zIndex: 1000
         },
@@ -191,7 +191,7 @@ __webpack_require__.r(__webpack_exports__);
     xl: xl,
     className: outerClassName,
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "rounded-4 d-flex align-items-center mb-4 py-4 px-5 bg-".concat(dark ? "grayblue" : "orange-10", " ").concat(className),
+      className: "rounded-4 d-flex align-items-center mb-5 py-4 px-5 bg-".concat(dark ? "grayblue" : "orange-10", " ").concat(className),
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         className: "d-flex align-items-center",
         children: [icon ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
@@ -600,7 +600,7 @@ var Add = /*#__PURE__*/function (_Component) {
       description: '',
       price: '',
       reference: '',
-      is_active: '',
+      is_active: '1',
       photo: ''
     });
 
@@ -614,8 +614,22 @@ var Add = /*#__PURE__*/function (_Component) {
           name = _e$target.name,
           value = _e$target.value,
           files = _e$target.files;
+      if (files) _this.readURL(e.target);
 
       _this.setState(_defineProperty({}, name, files ? files[0] : value));
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "readURL", function (input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          document.getElementById("embed-".concat(input.name)).style.backgroundImage = "url('".concat(e.target.result, "')");
+          document.getElementById("embed-".concat(input.name)).style.backgroundSize = "cover";
+        };
+
+        reader.readAsDataURL(input.files[0]); // convert to base64 string
+      }
     });
 
     _defineProperty(_assertThisInitialized(_this), "fileUpload", function () {
@@ -659,7 +673,8 @@ var Add = /*#__PURE__*/function (_Component) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          _this$props$content$c = _this$props.content.cms.pages,
+          _this$props$content = _this$props.content,
+          _this$props$content$c = _this$props$content.cms.pages,
           _this$props$content$c2 = _this$props$content$c.components.form,
           save = _this$props$content$c2.save,
           selected_file = _this$props$content$c2.selected_file,
@@ -673,11 +688,13 @@ var Add = /*#__PURE__*/function (_Component) {
           edit = _this$props$content$c3.edit,
           index = _this$props$content$c3.index,
           form = _this$props$content$c3.form,
+          currencies = _this$props$content.currencies,
           _this$props$backend$a = _this$props.backend.addons,
           loading = _this$props$backend$a.loading,
           error = _this$props$backend$a.error,
           message = _this$props$backend$a.message,
-          addon = _this$props$backend$a.addon;
+          addon = _this$props$backend$a.addon,
+          currency = _this$props.auth.data.currency;
       var _this$state = this.state,
           name = _this$state.name,
           description = _this$state.description,
@@ -696,6 +713,11 @@ var Add = /*#__PURE__*/function (_Component) {
             err: error
           })
         });
+        var symbol;
+        var selectedCurrency = currencies.find(function (c) {
+          return c.cc === currency;
+        });
+        if (selectedCurrency) symbol = selectedCurrency.symbol;
         content = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.Fragment, {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_16__.default, {
             lg: 9,
@@ -736,7 +758,13 @@ var Add = /*#__PURE__*/function (_Component) {
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
                       type: "number",
                       className: "col-md-6",
-                      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faMoneyBillWave,
+                      addon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                        className: "text-center text-light",
+                        style: {
+                          margin: '0 -10px'
+                        },
+                        children: symbol
+                      }),
                       onChange: this.inputChangeHandler,
                       value: price,
                       name: "price",
@@ -773,6 +801,7 @@ var Add = /*#__PURE__*/function (_Component) {
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
                   className: "col-lg-3",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                    id: "embed-photo",
                     className: "embed-responsive embed-responsive-1by1 bg-soft rounded-8 d-flex justify-content-center align-items-center",
                     style: {
                       cursor: 'pointer',

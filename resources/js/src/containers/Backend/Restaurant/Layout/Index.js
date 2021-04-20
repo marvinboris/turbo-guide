@@ -10,7 +10,7 @@ import { updateObject } from '../../../../shared/utility';
 
 import './Layout.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 class Layout extends Component {
     state = {
@@ -69,6 +69,10 @@ class Layout extends Component {
 
             <main className={`bg-${dark ? 'darkblue' : 'white'} position-relative min-vh-100 pb-5`}>
                 <div style={{ height: 90 }} className="d-flex align-items-center px-5 border-bottom border-light sticky-top bg-white">
+                    <div className="text-orange text-24 d-md-none mr-3">
+                        <FontAwesomeIcon icon={faBars} onClick={this.toggle} style={{ cursor: 'pointer' }} />
+                    </div>
+
                     <div className="mr-3 text-24 text-light"><FontAwesomeIcon icon={faSearch} /></div>
 
                     <div className="flex-fill">

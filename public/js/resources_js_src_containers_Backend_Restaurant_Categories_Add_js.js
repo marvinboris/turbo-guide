@@ -92,7 +92,7 @@ var Breadcrumb = /*#__PURE__*/function (_Component) {
         style: {
           top: '50%',
           right: 0,
-          transform: 'translateY(-30px)',
+          transform: 'translateY(-10px)',
           position: 'absolute',
           zIndex: 1000
         },
@@ -191,7 +191,7 @@ __webpack_require__.r(__webpack_exports__);
     xl: xl,
     className: outerClassName,
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "rounded-4 d-flex align-items-center mb-4 py-4 px-5 bg-".concat(dark ? "grayblue" : "orange-10", " ").concat(className),
+      className: "rounded-4 d-flex align-items-center mb-5 py-4 px-5 bg-".concat(dark ? "grayblue" : "orange-10", " ").concat(className),
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         className: "d-flex align-items-center",
         children: [icon ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
@@ -598,7 +598,7 @@ var Add = /*#__PURE__*/function (_Component) {
     _defineProperty(_assertThisInitialized(_this), "state", {
       name: '',
       description: '',
-      is_active: '',
+      is_active: '1',
       photo: ''
     });
 
@@ -612,8 +612,22 @@ var Add = /*#__PURE__*/function (_Component) {
           name = _e$target.name,
           value = _e$target.value,
           files = _e$target.files;
+      if (files) _this.readURL(e.target);
 
       _this.setState(_defineProperty({}, name, files ? files[0] : value));
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "readURL", function (input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          document.getElementById("embed-".concat(input.name)).style.backgroundImage = "url('".concat(e.target.result, "')");
+          document.getElementById("embed-".concat(input.name)).style.backgroundSize = "cover";
+        };
+
+        reader.readAsDataURL(input.files[0]); // convert to base64 string
+      }
     });
 
     _defineProperty(_assertThisInitialized(_this), "fileUpload", function () {
@@ -751,6 +765,7 @@ var Add = /*#__PURE__*/function (_Component) {
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
                   className: "col-lg-3",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                    id: "embed-photo",
                     className: "embed-responsive embed-responsive-1by1 bg-soft rounded-8 d-flex justify-content-center align-items-center",
                     style: {
                       cursor: 'pointer',

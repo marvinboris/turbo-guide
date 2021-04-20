@@ -7,7 +7,7 @@ import { faTasks } from '@fortawesome/free-solid-svg-icons';
 export default ({ onSubmit, xs = 12, sm = 12, md = 12, lg = 12, xl = 12, icon, title, subtitle, className = '', dark = false, innerClassName = '', outerClassName = '', p0, children, style, id, list, link, disabled }) => {
     return (
         <Col xs={xs} sm={sm} md={md} lg={lg} xl={xl} className={outerClassName}>
-            <div className={`rounded-4 d-flex align-items-center mb-4 py-4 px-5 bg-${dark ? "grayblue" : "orange-10"} ${className}`}>
+            <div className={`rounded-4 d-flex align-items-center mb-5 py-4 px-5 bg-${dark ? "grayblue" : "orange-10"} ${className}`}>
                 <div className="d-flex align-items-center">{
                     icon ? <FontAwesomeIcon fixedWidth className="mr-4 text-30 text-orange-20" icon={icon} size="lg" /> : null}
 

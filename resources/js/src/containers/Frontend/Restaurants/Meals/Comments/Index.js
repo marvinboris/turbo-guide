@@ -39,7 +39,7 @@ class Comments extends Component {
 
     submitHandler = e => {
         e.preventDefault();
-        this.props.post(this.props.match.params.md5, this.props.match.params.id, e.target);
+        this.props.post(this.props.match.params.slug, this.props.match.params.id, e.target);
     }
 
     inputChangeHandler = e => {
@@ -109,7 +109,7 @@ class Comments extends Component {
 const mapStateToProps = state => ({ ...state });
 
 const mapDispatchToProps = dispatch => ({
-    post: (md5, id, data) => dispatch(actions.postComment(md5, id, data)),
+    post: (slug, id, data) => dispatch(actions.postComment(slug, id, data)),
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Comments));

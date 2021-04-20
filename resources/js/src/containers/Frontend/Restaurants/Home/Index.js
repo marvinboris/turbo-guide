@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircle, faFilter, faPhone, faSearchLocation } from '@fortawesome/free-solid-svg-icons';
+import { faCircle, faMapMarkerAlt, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faCalendar, faClock } from '@fortawesome/free-regular-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
@@ -12,6 +12,7 @@ import Stars from '../../../../components/UI/Stars';
 import Navigation from './Navigation';
 import Carousel from './Carousel';
 import Spinner from './Spinner';
+import SelectCategory from './SelectCategory';
 
 import * as actions from '../../../../store/actions';
 import { updateObject } from '../../../../shared/utility';
@@ -45,6 +46,7 @@ class Home extends Component {
     state = {
         id: '',
         categoryOffsets: [],
+        modal: false,
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
@@ -56,7 +58,7 @@ class Home extends Component {
     }
 
     async componentDidMount() {
-        this.props.get(this.props.match.params.md5);
+        this.props.get(this.props.match.params.slug);
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -110,7 +112,7 @@ class Home extends Component {
         const currencyObj = currencies.find(c => c.cc === currency);
 
         const categoriesContent = categories.map(category => <Category id={category.id} active={category.id === id} key={JSON.stringify(category) + Math.random()} name={category.name}>
-            {category.meals && category.meals.map(meal => <Meal symbol={currencyObj && currencyObj.symbol} position={position} key={JSON.stringify(meal) + Math.random()} {...meal} md5={this.props.match.params.md5} />)}
+            {category.meals && category.meals.map(meal => <Meal symbol={currencyObj && currencyObj.symbol} position={position} key={JSON.stringify(meal) + Math.random()} {...meal} slug={this.props.match.params.slug} />)}
         </Category>);
 
         const bannerStyle = {
@@ -122,7 +124,8 @@ class Home extends Component {
             backgroundSize: 'cover'
         };
 
-        const items = [restaurant.banner1];
+        const items = [];
+        if (restaurant.banner1) items.push(restaurant.banner1);
         if (restaurant.banner2) items.push(restaurant.banner2);
         if (restaurant.banner3) items.push(restaurant.banner3);
 
@@ -131,7 +134,7 @@ class Home extends Component {
         const premium = restaurant.plan && restaurant.plan.slug === 'premium';
 
         return <div className="Home">
-            {loading && <Spinner />}
+            {loading && Object.keys(restaurant).length === 0 && <Spinner />}
 
             <div className="embed-responsive embed-responsive-16by9 position-relative">
                 <div className="position-absolute w-100 h-100" style={{ top: 0, left: 0 }}>
@@ -149,7 +152,7 @@ class Home extends Component {
                         <div>
                             <Conditional condition={(premium || standard || basic) && restaurant.phone}><Stack link={`tel:+${restaurant.phone}`} icon={faPhone} color="primary" /></Conditional>
                             <Conditional condition={(premium || standard) && restaurant.whatsapp}><Stack link={`//wa.me/${restaurant.whatsapp}`} icon={faWhatsapp} color="green" /></Conditional>
-                            <Conditional condition={premium && restaurant.location}><Stack link={restaurant.location} icon={faSearchLocation} color="yellow" /></Conditional>
+                            <Conditional condition={premium && restaurant.location}><Stack link={restaurant.location} icon={faMapMarkerAlt} color="yellow" /></Conditional>
                         </div>
                     </div>
 
@@ -209,25 +212,7 @@ class Home extends Component {
                         <div className="rounded-pill bg-orange" style={{ height: 5, width: 18 }} />
                     </div>
 
-                    <div>
-                        <div className="bg-orange-30 rounded-pill py-2 px-2 text-500 text-orange text-13 position-relative category-select">
-                            <div className="d-flex mx-1">
-                                <div className="text-truncate">
-                                    {categories.length > 0 && categories.find(c => c.id === id).name}
-                                </div>
-
-                                <div className="position-relative">
-                                    <div style={{ width: .5, height: 21 }} className="mx-2 bg-orange" />
-
-                                    <div className="embed-responsive embed-responsive-1by1 rounded-circle border border-orange bg-white position-absolute" style={{ width: 4, top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }} />
-                                </div>
-
-                                <div>
-                                    <FontAwesomeIcon icon={faFilter} />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <SelectCategory categories={categories} id={id} onClick={this.onClick} />
                 </Wrapper>
             </div>
 
@@ -241,7 +226,7 @@ class Home extends Component {
 const mapStateToProps = state => ({ ...state });
 
 const mapDispatchToProps = dispatch => ({
-    get: md5 => dispatch(actions.getRestaurantData(md5)),
+    get: slug => dispatch(actions.getRestaurantData(slug)),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));

@@ -87,7 +87,7 @@ __webpack_require__.r(__webpack_exports__);
       add = _ref.add,
       sub = _ref.sub,
       id = _ref.id,
-      md5 = _ref.md5,
+      slug = _ref.slug,
       children = _ref.children;
 
   var content = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
@@ -222,7 +222,7 @@ __webpack_require__.r(__webpack_exports__);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
     className: "Food pb-3 px-3 mb-3 border-bottom border-".concat(addon ? "orange-10" : "soft"),
     children: meal ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
-      to: "/restaurants/".concat(md5, "/meals/").concat(id, "/addons"),
+      to: "/restaurants/".concat(slug, "/meals/").concat(id, "/addons"),
       className: "d-block text-decoration-none text-reset",
       children: content
     }) : content

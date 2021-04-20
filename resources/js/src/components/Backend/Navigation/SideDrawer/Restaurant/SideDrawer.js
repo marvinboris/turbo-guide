@@ -85,50 +85,52 @@ export default ({ data, toggle, logoutHandler, isOpen, selectItem, selectedItem,
 
 
     return (
-        <Collapse isOpen={isOpen} className={`SideDrawer nav-left-sidebar bg-${dark ? "grayblue text-white border-right border-darkblue" : "orange-10 text-secondary"} shadow-sm position-fixed d-md-block`}>
-            <div className="p-4 border-bottom border-light">
-                <div className="my-2 mx-3">
-                    <Logo sm />
+        <Collapse isOpen={isOpen} className={`SideDrawer nav-left-sidebar bg-soft shadow-sm position-fixed d-md-block`}>
+            <div className={`vh-100 d-flex flex-column bg-${dark ? "grayblue text-white border-right border-darkblue" : "orange-10 text-secondary"}`}>
+                <div className="p-4 border-bottom border-light">
+                    <div className="my-2 mx-3">
+                        <Logo sm />
+                    </div>
+                </div>
+
+                <div className="p-4 mt-5 flex-fill">
+                    <div className="mt-2 mx-3">
+                        <div className="mb-3">
+                            <img src={photo} className="rounded-circle" style={{ width: 62, height: 62, objectFit: 'cover', objectPosition: 'center' }} alt="User profile" />
+                        </div>
+
+                        <div className="text-truncate text-ellipsis-1 text-montserrat text-18 mb-1">
+                            Hello, <span className="text-700">{name}</span>
+                        </div>
+
+                        <div className="text-14 text-300 mb-5">
+                            {plan ? <>Your Plan : <span className="text-500 text-orange">{plan.name}</span></> : <>No Plan</>}
+
+                            <Link to="/restaurant/plans/purchase" className="text-decoration-none text-reset text-16 ml-3">
+                                <FontAwesomeIcon icon={faEdit} />
+                            </Link>
+                        </div>
+
+                        <div className="mb-5">
+                            <Link to="/restaurant/meals/add" className="btn btn-orange btn-block pl-4 pr-3 py-3 text-500 text-14 rounded-4 shadow-sm">
+                                <div className="pl-3 pr-1 py-1 d-flex justify-content-between align-items-center">
+                                    <div>{meals.add}</div>
+
+                                    <div><FontAwesomeIcon icon={faPlus} /></div>
+                                </div>
+                            </Link>
+                        </div>
+
+                        <div className="px-3">
+                            <ul className="navbar-nav w-100 flex-column">
+                                {sideDrawerItems}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div className="p-4 mt-5">
-                <div className="mt-2 mx-3">
-                    <div className="mb-3">
-                        <img src={photo} className="rounded-circle" style={{ width: 62, height: 62, objectFit: 'cover', objectPosition: 'center' }} alt="User profile" />
-                    </div>
-
-                    <div className="text-truncate text-ellipsis-1 text-montserrat text-18 mb-1">
-                        Hello, <span className="text-700">{name}</span>
-                    </div>
-
-                    <div className="text-14 text-300 mb-5">
-                        {plan ? <>Your Plan : <span className="text-500 text-orange">{plan.name}</span></> : <>No Plan</>}
-
-                        <Link to="/restaurant/plans/purchase" className="text-decoration-none text-reset text-16 ml-3">
-                            <FontAwesomeIcon icon={faEdit} />
-                        </Link>
-                    </div>
-
-                    <div className="mb-5">
-                        <Link to="/restaurant/meals/add" className="btn btn-orange btn-block pl-4 pr-3 py-3 text-500 text-14 rounded-4 shadow-sm">
-                            <div className="pl-3 pr-1 py-1 d-flex justify-content-between align-items-center">
-                                <div>{meals.add}</div>
-
-                                <div><FontAwesomeIcon icon={faPlus} /></div>
-                            </div>
-                        </Link>
-                    </div>
-
-                    <div className="px-3">
-                        <ul className="navbar-nav w-100 flex-column">
-                            {sideDrawerItems}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div className="backdrop w-100 bg-soft-50 position-fixed d-md-none" onClick={toggle} style={{ top: 70, zIndex: -1 }} />
+            <div className="backdrop w-100 bg-soft-50 position-fixed d-md-none" onClick={toggle} style={{ top: 0, zIndex: -1 }} />
         </Collapse>
     )
 };

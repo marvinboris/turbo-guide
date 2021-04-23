@@ -183,7 +183,7 @@ class Home extends Component {
                         backgroundSize: 'cover',
                     }} />}
 
-                    <div className="position-absolute pt-4 pr-4" style={{ top: 0, right: 0, zIndex: 1100 }}>
+                    <div className="position-absolute pt-4 pr-4" style={{ top: 0, right: 0, zIndex: 1040 }}>
                         <Languages languages={languages} set={this.setLanguage} />
                     </div>
                 </div>

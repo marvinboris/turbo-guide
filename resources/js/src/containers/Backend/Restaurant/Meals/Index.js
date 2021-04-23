@@ -58,6 +58,7 @@ class Index extends Component {
         const errors = <>
             <Error err={error} />
         </>;
+        const flash = this.props.location.state ? <Feedback time={5000} message={this.props.location.state.message} /> : null;
         const feedback = <Feedback message={message} />;
 
         const categoriesOptions = categories.sort((a, b) => a.name > b.name).map(category => <option key={JSON.stringify(category) + Math.random()} value={category.id}>{category.name}</option>);
@@ -126,6 +127,7 @@ class Index extends Component {
                             </div>
 
                             {errors}
+                            {flash}
                             {feedback}
 
                             <div className="mb-5 pb-2 scrollbar-orange" style={{ overflowX: 'auto' }}>

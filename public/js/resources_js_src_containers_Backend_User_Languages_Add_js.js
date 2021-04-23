@@ -484,13 +484,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Alert.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (_ref) {
-  var message = _ref.message;
+  var message = _ref.message,
+      time = _ref.time;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+      _useState2 = _slicedToArray(_useState, 2),
+      visible = _useState2[0],
+      setVisible = _useState2[1];
+
+  if (time) setTimeout(function () {
+    setVisible(false);
+  }, time);
   return message ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_2__.default, {
     color: message.type,
+    isOpen: visible,
     children: message.content
   }) : null;
 });
@@ -707,8 +730,7 @@ var Add = /*#__PURE__*/function (_Component) {
     _defineProperty(_assertThisInitialized(_this), "state", {
       name: '',
       abbr: '',
-      flag: '',
-      countries: []
+      flag: ''
     });
 
     _defineProperty(_assertThisInitialized(_this), "submitHandler", /*#__PURE__*/function () {
@@ -750,53 +772,13 @@ var Add = /*#__PURE__*/function (_Component) {
     key: "componentDidMount",
     value: function () {
       var _componentDidMount = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        var cors, phoneRes, namesRes, phone, names, countries;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 this.props.reset();
-                cors = 'https://cors-anywhere.herokuapp.com/';
-                _context2.next = 4;
-                return fetch(cors + 'http://country.io/phone.json', {
-                  method: 'GET',
-                  mode: 'cors'
-                });
 
-              case 4:
-                phoneRes = _context2.sent;
-                _context2.next = 7;
-                return fetch(cors + 'http://country.io/names.json', {
-                  method: 'GET',
-                  mode: 'cors'
-                });
-
-              case 7:
-                namesRes = _context2.sent;
-                _context2.next = 10;
-                return phoneRes.json();
-
-              case 10:
-                phone = _context2.sent;
-                _context2.next = 13;
-                return namesRes.json();
-
-              case 13:
-                names = _context2.sent;
-                countries = Object.keys(phone).map(function (key) {
-                  return {
-                    country: key,
-                    code: phone[key],
-                    name: names[key]
-                  };
-                }).sort(function (a, b) {
-                  return a.name < b.name ? -1 : a.name > b.name ? 1 : 0;
-                });
-                this.setState({
-                  countries: countries
-                });
-
-              case 16:
+              case 1:
               case "end":
                 return _context2.stop();
             }
@@ -819,13 +801,15 @@ var Add = /*#__PURE__*/function (_Component) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          _this$props$content$c = _this$props.content.cms.pages,
+          _this$props$content = _this$props.content,
+          _this$props$content$c = _this$props$content.cms.pages,
           save = _this$props$content$c.components.form.save,
           _this$props$content$c2 = _this$props$content$c.backend.pages.languages,
           title = _this$props$content$c2.title,
           add = _this$props$content$c2.add,
           index = _this$props$content$c2.index,
           form = _this$props$content$c2.form,
+          countries = _this$props$content.countries,
           _this$props$backend$l = _this$props.backend.languages,
           loading = _this$props$backend$l.loading,
           error = _this$props$backend$l.error,
@@ -834,8 +818,7 @@ var Add = /*#__PURE__*/function (_Component) {
       var _this$state = this.state,
           name = _this$state.name,
           abbr = _this$state.abbr,
-          flag = _this$state.flag,
-          countries = _this$state.countries;
+          flag = _this$state.flag;
       var content = null;
       var errors = null;
       var feature = features.find(function (f) {

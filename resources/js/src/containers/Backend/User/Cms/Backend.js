@@ -26,7 +26,6 @@ const Separator = ({ sm }) => <Col xs={12} className={`mb-${sm ? 2 : 3}`} />;
 const SubNavLinks = ({ backend, language }) => {
     const [activeTab, setActiveTab] = useState(`${language.abbr}-header`);
     const [value, setValue] = useState(backend);
-    console.log({ backend })
 
     const toggle = tab => {
         if (activeTab !== tab) setActiveTab(tab);
@@ -262,7 +261,7 @@ class Backend extends Component {
 
             if (!languages) languages = [];
             const nav = languages.map(language => <NavItem key={Math.random()}>
-                <NavLink className={(activeTab === language.abbr) && 'active'} onClick={() => this.toggle(language.abbr)}>
+                <NavLink className={(activeTab === language.abbr) ? 'active' : ''} onClick={() => this.toggle(language.abbr)}>
                     {language.name}
                 </NavLink>
             </NavItem>);

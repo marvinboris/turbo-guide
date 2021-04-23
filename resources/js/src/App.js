@@ -8,6 +8,8 @@ import asyncComponent from './hoc/asyncComponent/asyncComponent';
 
 import FrontendMeals from './containers/Frontend/Restaurants/Meals/Layout';
 
+import Spinner from './components/UI/Spinner';
+
 import * as actions from './store/actions';
 
 import 'aos/dist/aos.css';
@@ -43,6 +45,7 @@ const asyncUserCmsMessages = asyncComponent(() => import('./containers/Backend/U
 const asyncUserCmsComponents = asyncComponent(() => import('./containers/Backend/User/Cms/Components'));
 const asyncUserCmsAuth = asyncComponent(() => import('./containers/Backend/User/Cms/Auth'));
 const asyncUserCmsBackend = asyncComponent(() => import('./containers/Backend/User/Cms/Backend'));
+const asyncUserCmsFrontend = asyncComponent(() => import('./containers/Backend/User/Cms/Frontend'));
 
 const asyncUserDashboard = asyncComponent(() => import('./containers/Backend/User/Dashboard/Dashboard'));
 
@@ -122,7 +125,7 @@ class App extends Component {
     }
 
     render() {
-        const { content: { cms }, auth: { role } } = this.props;
+        const { content: { cms, currencies, countries }, auth: { role } } = this.props;
         const isAuthenticated = localStorage.getItem('token') !== null;
 
         let routes = (
@@ -174,7 +177,7 @@ class App extends Component {
                     <Route path="/restaurant/settings" component={asyncRestaurantSettings} />
 
                     <Route path="/restaurant/comments" component={asyncRestaurantComments} />
-                    
+
                     <Route path="/restaurant/plans/purchase" component={asyncRestaurantPlansPurchase} />
                     <Route path="/restaurant/plans" component={asyncRestaurantPlans} />
 
@@ -190,6 +193,7 @@ class App extends Component {
                     <Route path="/user/cms/components" component={asyncUserCmsComponents} />
                     <Route path="/user/cms/auth" component={asyncUserCmsAuth} />
                     <Route path="/user/cms/backend" component={asyncUserCmsBackend} />
+                    <Route path="/user/cms/frontend" component={asyncUserCmsFrontend} />
 
                     <Route path="/user/dashboard" component={asyncUserDashboard} />
 
@@ -263,11 +267,11 @@ class App extends Component {
             );
         }
 
-        const dataReady = cms !== undefined && ((isAuthenticated && role !== undefined) || !isAuthenticated);
+        const dataReady = cms !== undefined && currencies !== undefined && countries !== undefined && ((isAuthenticated && role !== undefined) || !isAuthenticated);
 
-        return dataReady && <Layout>
+        return dataReady ? <Layout>
             {routes}
-        </Layout>;
+        </Layout> : <Spinner />;
     }
 }
 

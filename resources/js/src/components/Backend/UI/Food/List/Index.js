@@ -54,11 +54,11 @@ class List extends Component {
                         </div>
                     </div>
 
-                    <div className="ml-auto mr-4">
+                    <div className="ml-auto d-none d-md-block mr-4">
                         <Input type="search" name="search" onChange={this.inputChangedHandler} value={search} placeholder={`${search_}...`} className="rounded-6 border-orange text-16" />
                     </div>
 
-                    {add && <Link to={link}>
+                    {add && <Link className="d-none d-md-inline" to={link}>
                         <Button color="green" className="rounded-2 py-2 text-16 text-500 px-4">
                             <FontAwesomeIcon icon={faPlus} fixedWidth className="mr-3" />
 

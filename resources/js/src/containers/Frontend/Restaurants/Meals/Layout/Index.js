@@ -34,7 +34,10 @@ class Layout extends Component {
 
     render() {
         const {
-            content: { currencies },
+            content: {
+                cms: { pages: { general, frontend: { restaurants: { meals } } } },
+                currencies,
+            },
             frontend: {
                 restaurants: { loading, error, meal = {}, total = 0, qty = 1, currency, position }
             },
@@ -46,25 +49,23 @@ class Layout extends Component {
         if (error) errors = <>
             <Error err={error} />
         </>;
-        
+
         const currencyObj = currencies.find(c => c.cc === currency);
         const symbol = currencyObj && currencyObj.symbol;
 
-        const bannerStyle = {
-            top: 0,
-            left: 0,
-            backgroundImage: `linear-gradient(rgba(2,35,67,.4),rgba(2,35,67,.4)), url('${meal.photo}')`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            backgroundSize: 'auto, cover',
-        };
-
         return <div className="Layout">
             <div className="embed-responsive embed-responsive-16by9 position-relative">
-                <div className="position-absolute w-100 h-100" style={bannerStyle} />
+                <div className="position-absolute w-100 h-100" style={{
+                    top: 0,
+                    left: 0,
+                    backgroundImage: `linear-gradient(rgba(2,35,67,.4),rgba(2,35,67,.4)), url('${meal.photo}')`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'center',
+                    backgroundSize: 'auto, cover',
+                }} />
 
                 <div className="position-absolute" style={{ top: 23, right: 30 }}>
-                    <Link to={"/restaurants/" + slug} className="text-decoration-none text-reset text-16">
+                    <Link to={`/restaurants/${slug}`} className="text-decoration-none text-reset text-16">
                         <FontAwesomeIcon icon={faTimesCircle} className="text-soft" />
                     </Link>
                 </div>
@@ -105,19 +106,19 @@ class Layout extends Component {
                     </div>
 
                     <div className="ml-auto text-8">
-                        Compose your meal to know the cost
+                        {meals.composes}
                     </div>
                 </div>
 
                 <div className="price-block text-montserrat text-white">
                     <div className="ticket">
                         <div className="rounded-6 bg-orange py-2 px-3" style={{ width: 140 }}>
-                            <div className="text-6">Price :</div>
+                            <div className="text-6">{meals.price} :</div>
 
                             <div>
-                            {position == 0 && <span className="text-8 mr-1">{symbol}</span>}
-                            <span className="text-700">{total.toFixed(2)}</span>
-                            {position == 1 && <span className="text-8 ml-1">{symbol}</span>}
+                                {position == 0 && <span className="text-8 mr-1">{symbol}</span>}
+                                <span className="text-700">{total.toFixed(2)}</span>
+                                {position == 1 && <span className="text-8 ml-1">{symbol}</span>}
                             </div>
                         </div>
                     </div>
@@ -143,14 +144,14 @@ class Layout extends Component {
             </Wrapper>
 
             <Wrapper className="border-bottom border-soft d-flex justify-content-center">
-                <NavItem to={`/restaurants/${slug}/meals/${meal.id}/addons`} icon={faList}>Food addons</NavItem>
-                <NavItem to={`/restaurants/${slug}/meals/${meal.id}/description`} icon={faBook} className="mx-2">Description</NavItem>
-                <NavItem to={`/restaurants/${slug}/meals/${meal.id}/comments`} icon={faComment}>Comments</NavItem>
+                <NavItem to={`/restaurants/${slug}/meals/${meal.id}/addons`} icon={faList}>{meals.addons.title}</NavItem>
+                <NavItem to={`/restaurants/${slug}/meals/${meal.id}/description`} icon={faBook} className="mx-2">{meals.description}</NavItem>
+                <NavItem to={`/restaurants/${slug}/meals/${meal.id}/comments`} icon={faComment}>{meals.comments.title}</NavItem>
             </Wrapper>
 
             <div className="overflow-hidden" style={{ padding: '15px 0px' }}>
                 {errors}
-                {loading ? <div className="text-center">Loading...</div> : children}
+                {loading ? <div className="text-center">{general.loading}...</div> : children}
             </div>
         </div>;
     }

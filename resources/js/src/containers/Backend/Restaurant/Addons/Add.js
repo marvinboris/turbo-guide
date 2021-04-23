@@ -20,38 +20,30 @@ import Feedback from '../../../../components/Feedback/Feedback';
 import * as actions from '../../../../store/actions';
 import { updateObject } from '../../../../shared/utility';
 
+const initialState = {
+    name: '',
+    description: '',
+    price: '',
+    reference: '',
+    is_active: '1',
+    photo: '',
+
+    add: false,
+};
+
 class Add extends Component {
-    state = {
-        name: '',
-        description: '',
-        price: '',
-        reference: '',
-        is_active: '1',
-        photo: '',
-    }
+    state = { ...initialState }
 
-    static getDerivedStateFromProps(nextProps, prevState) {
-        if (nextProps.backend.addons.addon && prevState.name === '') {
-            const { backend: { addons: { addon } } } = nextProps;
-            return updateObject(prevState, { ...addon });
-        }
-        return prevState;
-    }
 
-    async componentDidMount() {
-        this.props.reset();
-        if (this.props.edit) this.props.get(this.props.match.params.id);
-    }
 
-    componentWillUnmount() {
-        this.props.reset();
-    }
-
-    submitHandler = e => {
+    // Component methods
+    saveHandler = e => {
         e.preventDefault();
         if (this.props.edit) this.props.patch(this.props.match.params.id, e.target);
         else this.props.post(e.target);
     }
+
+    saveAddHandler = () => this.setState({ add: true }, () => this.props.post(document.querySelector('form')))
 
     inputChangeHandler = e => {
         const { name, value, files } = e.target;
@@ -74,11 +66,43 @@ class Add extends Component {
 
     fileUpload = () => document.getElementById('photo').click()
 
+
+
+    // Lifecycle methods
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (nextProps.backend.addons.addon && prevState.name === '') {
+            const { backend: { addons: { addon } } } = nextProps;
+            return updateObject(prevState, { ...addon });
+        }
+        return prevState;
+    }
+
+    componentDidMount() {
+        this.props.reset();
+        if (this.props.edit) this.props.get(this.props.match.params.id);
+    }
+
+    componentDidUpdate(prevProps) {
+        if (!prevProps.backend.addons.message && this.props.backend.addons.message && this.props.backend.addons.message.type === 'success' && !this.props.edit) {
+            if (this.state.add) this.setState({ ...initialState });
+            else this.props.history.push({
+                pathname: '/restaurant/addons',
+                state: {
+                    message: this.props.backend.addons.message,
+                },
+            });
+        }
+    }
+
+    componentWillUnmount() {
+        this.props.reset();
+    }
+
     render() {
         let {
             content: {
                 cms: {
-                    pages: { components: { form: { save, selected_file, active, inactive } }, backend: { pages: { addons: { title, subtitle, instructions, add, edit, index, form } } } }
+                    pages: { components: { form: { save, save_add, selected_file, active, inactive } }, backend: { pages: { addons: { title, subtitle, instructions, add, edit, index, form } } } }
                 },
                 currencies,
             },
@@ -126,7 +150,13 @@ class Add extends Component {
                                 </div>
 
                                 <div className="col-lg-3">
-                                    <div id="embed-photo" className="embed-responsive embed-responsive-1by1 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', background: photo && `url("${photo}") no-repeat center`, backgroundSize: 'cover' }} onClick={this.fileUpload}>
+                                    <div id="embed-photo" className="embed-responsive embed-responsive-1by1 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{
+                                        cursor: 'pointer',
+                                        backgroundImage: photo && `url("${photo}")`,
+                                        backgroundRepeat: 'no-repeat',
+                                        backgroundPosition: 'center',
+                                        backgroundSize: 'cover'
+                                    }} onClick={this.fileUpload}>
                                         {this.props.edit
                                             ? photo && (photo !== addon.photo) && <div className="text-center text-green">
                                                 <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
@@ -151,6 +181,10 @@ class Add extends Component {
                                     <Button color="orange" className="text-20 rounded-4 py-3 px-4">
                                         <div className="mx-3">{save}<FontAwesomeIcon icon={faSave} className="ml-4" /></div>
                                     </Button>
+
+                                    {!this.props.edit && <Button color="green" onClick={this.saveAddHandler} className="text-20 rounded-4 py-3 px-4 ml-3">
+                                        <div className="mx-3">{save_add}<FontAwesomeIcon icon={faSave} className="ml-4" /></div>
+                                    </Button>}
                                 </div>
                             </Row>
                         </div>
@@ -169,7 +203,7 @@ class Add extends Component {
                 <div>
                     {errors}
                     <Row>
-                        <Form onSubmit={this.submitHandler} icon={faCookie} title={this.props.edit ? edit : add} subtitle={subtitle} list={index} link="/restaurant/addons" innerClassName="row justify-content-center">
+                        <Form onSubmit={this.saveHandler} icon={faCookie} title={this.props.edit ? edit : add} subtitle={subtitle} list={index} link="/restaurant/addons" innerClassName="row justify-content-center">
                             <input type="file" id="photo" name="photo" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" />
                             {content}
                         </Form>

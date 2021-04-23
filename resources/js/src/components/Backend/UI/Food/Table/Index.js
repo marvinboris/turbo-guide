@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Col, Table as BSTable, Button, Input, Row } from 'reactstrap';
+import { Col, Table as BSTable, Button, Input, Row, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusCircle, faFileExcel, faFilePdf, faFileCsv, faPrint, faAngleDoubleLeft, faChevronLeft, faChevronRight, faAngleDoubleRight, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle, faFileExcel, faFilePdf, faFileCsv, faPrint, faAngleDoubleLeft, faChevronLeft, faChevronRight, faAngleDoubleRight, faPlus, faFileExport } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 import { updateObject } from '../../../../../shared/utility';
@@ -195,13 +195,13 @@ class Table extends Component {
                                         {title}
                                     </div>
 
-                                    <div className="ml-auto d-flex align-items-center">
-                                        <div className={`d-flex align-items-center text-${dark ? "light" : "secondary"} rounded-2`}>
+                                    <div className="ml-auto d-none d-md-flex align-items-center">
+                                        <div className={`d-flex align-items-center text-${dark ? "light" : "secondary"} rounded-4`}>
                                             <div className="border-right border-border-50">
-                                                <div className={`px-3 py-2 font-weight-bold h-100 bg-${dark ? "darkblue" : "soft"}`}>{show_}</div>
+                                                <div className={`px-3 py-2 text-300 h-100 rounded-left-4 bg-${dark ? "darkblue" : "soft"}`}>{show_}</div>
                                             </div>
 
-                                            <Input type="select" name="show" onChange={this.inputChangedHandler} className={`px-3 py-2 text-center rounded-0 h-100 d-block text-reset border-bottom-0 border-${dark ? "darkblue" : "soft"} bg-${dark ? "darkblue" : "soft"}`} style={{ width: '5rem' }}>
+                                            <Input type="select" name="show" onChange={this.inputChangedHandler} className={`px-3 py-2 text-center rounded-left-0 rounded-right-4 h-100 d-block text-reset border-bottom-0 border-${dark ? "darkblue" : "soft"} bg-${dark ? "darkblue" : "soft"}`} style={{ width: '5rem' }}>
                                                 <option value="10">10</option>
                                                 <option value="25">25</option>
                                                 <option value="50">50</option>
@@ -210,14 +210,22 @@ class Table extends Component {
                                             </Input>
                                         </div>
 
-                                        <div className={`bg-${dark ? "darkblue text-light" : "soft text-secondary"} d-flex justify-content-around align-items-center font-weight-bold py-3 mx-3`}>
-                                            <a href="/api/export/xlsx" onClick={this.onClick} className="px-2 export text-decoration-none text-truncate text-reset"><FontAwesomeIcon icon={faFileExcel} className={`text-${dark ? "white" : "darkblue"} mr-2`} />{excel}</a>
-                                            <a href="/api/export/pdf" onClick={this.onClick} className="px-2 export text-decoration-none text-truncate text-reset"><FontAwesomeIcon icon={faFilePdf} className="text-danger mr-2" />{pdf}</a>
-                                            <a href="/api/export/csv" onClick={this.onClick} className="px-2 export text-decoration-none text-truncate text-reset"><FontAwesomeIcon icon={faFileCsv} className="text-green mr-2" />{csv}</a>
-                                            <a href="/api/export/pdf" onClick={this.onClick} className="px-2 export text-decoration-none text-truncate text-reset"><FontAwesomeIcon icon={faPrint} className="text-primary mr-2" />{print}</a>
-                                        </div>
+                                        <UncontrolledDropdown className="mx-3">
+                                            <DropdownToggle color="green" caret>
+                                                <FontAwesomeIcon icon={faFileExport} className="mr-2" />
 
-                                        <Input type="search" name="search" onChange={this.inputChangedHandler} className={`bg-${dark ? "darkblue" : "soft text-secondary"} border-0 rounded-2`} placeholder={`${search_}...`} />
+                                                <span>Export</span>
+                                            </DropdownToggle>
+
+                                            <DropdownMenu>
+                                                <DropdownItem><a href="/api/export/xlsx" onClick={this.onClick} className="px-2 export text-decoration-none text-reset"><FontAwesomeIcon icon={faFileExcel} className={`text-${dark ? "white" : "darkblue"} mr-2`} />{excel}</a></DropdownItem>
+                                                <DropdownItem><a href="/api/export/pdf" onClick={this.onClick} className="px-2 export text-decoration-none text-reset"><FontAwesomeIcon icon={faFilePdf} className="text-danger mr-2" />{pdf}</a></DropdownItem>
+                                                <DropdownItem><a href="/api/export/csv" onClick={this.onClick} className="px-2 export text-decoration-none text-reset"><FontAwesomeIcon icon={faFileCsv} className="text-green mr-2" />{csv}</a></DropdownItem>
+                                                <DropdownItem><a href="/api/export/pdf" onClick={this.onClick} className="px-2 export text-decoration-none text-reset"><FontAwesomeIcon icon={faPrint} className="text-primary mr-2" />{print}</a></DropdownItem>
+                                            </DropdownMenu>
+                                        </UncontrolledDropdown>
+
+                                        <Input type="search" name="search" onChange={this.inputChangedHandler} className={`bg-${dark ? "darkblue" : "orange-10 text-secondary"} border-0 rounded-4`} style={{ maxWidth: 150 }} placeholder={`${search_}...`} />
                                     </div>
                                 </div>
                             </div>

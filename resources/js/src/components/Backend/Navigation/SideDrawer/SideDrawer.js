@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Badge, Collapse } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTachometerAlt, faCog, faUserTag, faTools, faUser, faUserCog, faLanguage, faBell, faWrench, faBorderNone, faExclamationCircle, faWallet, faHandHoldingUsd, faMoneyBillWaveAlt, faMoneyCheckAlt, faMoneyCheck, faSearchDollar, faDollarSign, faFile, faCircleNotch, faLayerGroup, faChalkboardTeacher, faCalendar, faUserGraduate, faSchool, faClock, faFilm, faListOl, faCopy, faMarker, faBook } from '@fortawesome/free-solid-svg-icons';
+import { faTachometerAlt, faCog, faUserTag, faTools, faUser, faUserCog, faLanguage, faBell, faWrench, faBorderNone, faExclamationCircle, faWallet, faHandHoldingUsd, faMoneyBillWaveAlt, faMoneyCheckAlt, faMoneyCheck, faSearchDollar, faDollarSign, faFile, faCircleNotch, faLayerGroup, faChalkboardTeacher, faCalendar, faUserGraduate, faSchool, faClock, faFilm, faListOl, faCopy, faMarker, faBook, faComment, faDrumstickBite, faListAlt, faCookie, faList } from '@fortawesome/free-solid-svg-icons';
 import { faCircle } from '@fortawesome/free-regular-svg-icons';
 
 import SideDrawerItem from './SideDrawerItem/SideDrawerItem';
@@ -23,7 +23,7 @@ export default ({ data, role = 'user', notifications = [], toggle, isOpen, selec
                     user, admin,
                     menu: {
                         dashboard, admins, users, roles, features, languages, cms: cms_, notifications: notifications_, settings,
-                        cycles, levels, classrooms, years, students, subjects, sessions, trimesters, sequences, exam_types, exams, marks }
+                        meals, categories, addons, comments, history }
                 }
             }
         }
@@ -78,18 +78,11 @@ export default ({ data, role = 'user', notifications = [], toggle, isOpen, selec
                 {sideDrawerItem(false, null, features, faTools, "/user/features")}
                 {sideDrawerItem(false, null, languages, faLanguage, "/user/languages")}
 
-                {sideDrawerItem(false, null, cycles, faCircleNotch, "/user/cycles")}
-                {sideDrawerItem(false, null, levels, faLayerGroup, "/user/levels")}
-                {sideDrawerItem(false, null, classrooms, faChalkboardTeacher, "/user/classrooms")}
-                {sideDrawerItem(false, null, years, faCalendar, "/user/years")}
-                {sideDrawerItem(false, null, students, faUserGraduate, "/user/students")}
-                {sideDrawerItem(false, null, subjects, faBook, "/user/subjects")}
-                {sideDrawerItem(false, null, sessions, faSchool, "/user/sessions")}
-                {sideDrawerItem(false, null, trimesters, faClock, "/user/trimesters")}
-                {sideDrawerItem(false, null, sequences, faFilm, "/user/sequences")}
-                {sideDrawerItem(false, null, exam_types, faListOl, "/user/exam-types")}
-                {sideDrawerItem(false, null, exams, faCopy, "/user/exams")}
-                {sideDrawerItem(false, null, marks, faMarker, "/user/marks")}
+                {sideDrawerItem(false, null, meals, faDrumstickBite, "/user/meals")}
+                {sideDrawerItem(false, null, categories, faListAlt, "/user/categories")}
+                {sideDrawerItem(false, null, addons, faCookie, "/user/addons")}
+                {sideDrawerItem(false, comments, null, faComment, "/user/comments")}
+                {sideDrawerItem(false, history, null, faList, "/user/history")}
 
                 {sideDrawerItem(false, null, cms_, faWrench, "/user/cms", [
                     { link: '/global', text: cms_.global },
@@ -98,6 +91,7 @@ export default ({ data, role = 'user', notifications = [], toggle, isOpen, selec
                     { link: '/components', text: cms_.components },
                     { link: '/auth', text: cms_.auth },
                     { link: '/backend', text: cms_.backend },
+                    { link: '/frontend', text: cms_.frontend },
                 ])}
                 <SideDrawerItem id={notifications_} sideDrawerToggle={toggle} select={selectItem} selected={selectedItem} icon={faBell} href="/user/notifications">
                     {notifications_}{' '}
@@ -118,18 +112,11 @@ export default ({ data, role = 'user', notifications = [], toggle, isOpen, selec
                 {sideDrawerItem(true, null, features, faTools, "/admin/features")}
                 {sideDrawerItem(true, null, languages, faLanguage, "/admin/languages")}
 
-                {sideDrawerItem(true, null, cycles, faCircleNotch, "/admin/cycles")}
-                {sideDrawerItem(true, null, levels, faLayerGroup, "/admin/levels")}
-                {sideDrawerItem(true, null, classrooms, faChalkboardTeacher, "/admin/classrooms")}
-                {sideDrawerItem(true, null, years, faCalendar, "/admin/years")}
-                {sideDrawerItem(true, null, students, faUserGraduate, "/admin/students")}
-                {sideDrawerItem(true, null, subjects, faBook, "/admin/subjects")}
-                {sideDrawerItem(true, null, sessions, faSchool, "/admin/sessions")}
-                {sideDrawerItem(true, null, trimesters, faClock, "/admin/trimesters")}
-                {sideDrawerItem(true, null, sequences, faFilm, "/admin/sequences")}
-                {sideDrawerItem(true, null, exam_types, faListOl, "/admin/exam-types")}
-                {sideDrawerItem(true, null, exams, faCopy, "/admin/exams")}
-                {sideDrawerItem(true, null, marks, faMarker, "/admin/marks")}
+                {sideDrawerItem(true, null, meals, faDrumstickBite, "/admin/meals")}
+                {sideDrawerItem(true, null, categories, faListAlt, "/admin/categories")}
+                {sideDrawerItem(true, null, addons, faCookie, "/admin/addons")}
+                {sideDrawerItem(true, comments, null, faComment, "/admin/comments")}
+                {sideDrawerItem(true, history, null, faList, "/admin/history")}
 
                 {sideDrawerItem(true, null, cms_, faWrench, "/admin/cms", [
                     { link: '/global', text: cms_.global },
@@ -138,6 +125,7 @@ export default ({ data, role = 'user', notifications = [], toggle, isOpen, selec
                     { link: '/components', text: cms_.components },
                     { link: '/auth', text: cms_.auth },
                     { link: '/backend', text: cms_.backend },
+                    { link: '/frontend', text: cms_.frontend },
                 ])}
                 <SideDrawerItem id={notifications_} sideDrawerToggle={toggle} select={selectItem} selected={selectedItem} icon={faBell} href="/admin/notifications">
                     {notifications_}{' '}

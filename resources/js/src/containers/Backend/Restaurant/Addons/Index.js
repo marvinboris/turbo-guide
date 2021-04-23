@@ -38,6 +38,7 @@ class Index extends Component {
         const errors = <>
             <Error err={error} />
         </>;
+        const flash = this.props.location.state ? <Feedback time={5000} message={this.props.location.state.message} /> : null;
         const feedback = <Feedback message={message} />;
 
         const content = (
@@ -57,6 +58,7 @@ class Index extends Component {
                 </TitleWrapper>
                 <div>
                     {errors}
+                    {flash}
                     {feedback}
                     {content}
                 </div>

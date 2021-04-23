@@ -5,7 +5,7 @@ const prefix = '/api/';
 const contentStart = () => ({ type: actionTypes.CONTENT_START });
 const contentSuccess = data => ({ type: actionTypes.CONTENT_SUCCESS, ...data });
 const contentFail = error => ({ type: actionTypes.CONTENT_FAIL, error });
-export const getContent = () => async dispatch => {
+export const getContent = () => async (dispatch, getState) => {
     dispatch(contentStart());
 
     try {
@@ -17,18 +17,24 @@ export const getContent = () => async dispatch => {
         const res = await fetch(`${prefix}content/${lang}`);
         const resData = await res.json();
 
-        const currenciesRes = await fetch(CORS + 'https://raw.githubusercontent.com/mhs/world-currencies/master/currencies.json', { method: 'GET', mode: 'cors' });
-        const currencies = await currenciesRes.json();
+        let { currencies, countries } = getState().content;
 
-        const phoneRes = await fetch(CORS + 'http://country.io/phone.json', { method: 'GET', mode: 'cors' });
-        const namesRes = await fetch(CORS + 'http://country.io/names.json', { method: 'GET', mode: 'cors' });
+        if (!currencies || !countries) {
+            const currenciesRes = await fetch(CORS + 'https://raw.githubusercontent.com/mhs/world-currencies/master/currencies.json', { method: 'GET', mode: 'cors' });
+            currencies = await currenciesRes.json();
 
-        const phone = await phoneRes.json();
-        const names = await namesRes.json();
+            const phoneRes = await fetch(CORS + 'http://country.io/phone.json', { method: 'GET', mode: 'cors' });
+            const namesRes = await fetch(CORS + 'http://country.io/names.json', { method: 'GET', mode: 'cors' });
 
-        const countries = Object.keys(phone).map(key => ({ country: key, code: phone[key], name: names[key] })).sort((a, b) => a.country > b.country);
+            const phone = await phoneRes.json();
+            const names = await namesRes.json();
 
-        dispatch(contentSuccess({ ...resData, currencies, countries }));
+            countries = Object.keys(phone).map(key => ({ country: key, code: phone[key], name: names[key] })).sort((a, b) => a.country > b.country);
+
+            return dispatch(contentSuccess({ ...resData, currencies, countries }));
+        } 
+
+        dispatch(contentSuccess(resData));
     } catch (error) {
         console.log(error);
         dispatch(contentFail(error));

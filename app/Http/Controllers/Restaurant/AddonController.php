@@ -122,7 +122,7 @@ class AddonController extends Controller
         $input = $request->except('photo');
 
         if ($file = $request->file('photo')) {
-            if ($addon->photo) unlink(public_path($addon->photo));
+            if ($addon->photo && is_file(public_path($addon->photo))) unlink(public_path($addon->photo));
             $fileName = time() . $file->getClientOriginalName();
             $file->move('images/addons', $fileName);
             $input['photo'] = htmlspecialchars($fileName);
@@ -148,6 +148,7 @@ class AddonController extends Controller
             'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['addons']['not_found'], 'danger'),
         ]);
 
+        if ($addon->photo && is_file(public_path($addon->photo))) unlink(public_path($addon->photo));
         $addon->delete();
 
         $data = $this->data();

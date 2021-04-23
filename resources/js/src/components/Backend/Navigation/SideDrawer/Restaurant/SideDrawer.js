@@ -85,7 +85,7 @@ export default ({ data, toggle, logoutHandler, isOpen, selectItem, selectedItem,
 
 
     return (
-        <Collapse isOpen={isOpen} className={`SideDrawer nav-left-sidebar bg-soft shadow-sm position-fixed d-md-block`}>
+        <Collapse isOpen={isOpen} className={`Restaurant SideDrawer nav-left-sidebar bg-soft shadow-sm position-fixed d-md-block`}>
             <div className={`vh-100 d-flex flex-column bg-${dark ? "grayblue text-white border-right border-darkblue" : "orange-10 text-secondary"}`}>
                 <div className="p-4 border-bottom border-light">
                     <div className="my-2 mx-3">
@@ -122,7 +122,7 @@ export default ({ data, toggle, logoutHandler, isOpen, selectItem, selectedItem,
                         </div>
 
                         <div className="px-3">
-                            <ul className="navbar-nav w-100 flex-column">
+                            <ul className="navbar-nav flex-column pr-3 scrollbar-orange">
                                 {sideDrawerItems}
                             </ul>
                         </div>

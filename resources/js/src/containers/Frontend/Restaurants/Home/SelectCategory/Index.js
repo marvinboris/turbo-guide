@@ -5,7 +5,7 @@ import { faFilter, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import './SelectCategory.css';
 
-export default ({ categories, id, onClick }) => {
+export default ({ categories, id, onClick, cms }) => {
     const [modal, setModal] = useState(false);
     const [search, setSearch] = useState('');
 
@@ -42,7 +42,7 @@ export default ({ categories, id, onClick }) => {
             </div>
 
             <Modal isOpen={modal} toggle={toggle} className="SelectCategory">
-                <ModalHeader toggle={toggle} className="text-17 text-500">Select category</ModalHeader>
+                <ModalHeader toggle={toggle} className="text-17 text-500">{cms.select_category}</ModalHeader>
 
                 <ModalBody className="p-0">
                     <ListGroup flush>
@@ -50,7 +50,7 @@ export default ({ categories, id, onClick }) => {
                             <div className="mr-3 text-17 text-light"><FontAwesomeIcon icon={faSearch} /></div>
 
                             <div className="flex-fill">
-                                <input type="search" name="search" className="border-0 text-poppins border-transparent p-0 m-0 d-block text-13 w-100" style={{ outline: 'none' }} placeholder="Search..." value={search} onChange={searchChangeHandler} />
+                                <input type="search" name="search" className="border-0 text-poppins border-transparent p-0 m-0 d-block text-13 w-100" style={{ outline: 'none' }} placeholder={`${cms.search}...`} value={search} onChange={searchChangeHandler} />
                             </div>
                         </ListGroupItem>
 

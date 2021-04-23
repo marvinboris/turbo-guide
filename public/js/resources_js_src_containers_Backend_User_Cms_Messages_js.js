@@ -534,82 +534,48 @@ __webpack_require__.r(__webpack_exports__);
     "updated": "Content successfully updated."
   },
   "settings": {
+    "restaurant": "Restaurant settings successfully updated.",
+    "account": "Account settings successfully updated.",
+    "cms": "CMS settings successfully updated.",
+    "calendar": "Calendar settings successfully updated.",
+    "password": "Incorrect password.",
     "not_found": "Setting not found.",
     "created": "Setting successfully created.",
     "updated": "Setting successfully updated.",
     "deleted": "Setting successfully deleted."
   },
-  "cycles": {
-    "not_found": "Cycle not found.",
-    "created": "Cycle successfully created.",
-    "updated": "Cycle successfully updated.",
-    "deleted": "Cycle successfully deleted."
+  "categories": {
+    "not_found": "Category not found.",
+    "created": "Category successfully created.",
+    "updated": "Category successfully updated.",
+    "deleted": "Category successfully deleted."
   },
-  "levels": {
-    "not_found": "Level not found.",
-    "created": "Level successfully created.",
-    "updated": "Level successfully updated.",
-    "deleted": "Level successfully deleted."
+  "meals": {
+    "not_found": "Meal not found.",
+    "created": "Meal successfully created.",
+    "updated": "Meal successfully updated.",
+    "deleted": "Meal successfully deleted.",
+    "reached": "Maximum number of meals reached"
   },
-  "classrooms": {
-    "not_found": "Class not found.",
-    "created": "Class successfully created.",
-    "updated": "Class successfully updated.",
-    "deleted": "Class successfully deleted."
+  "addons": {
+    "not_found": "Addon not found.",
+    "created": "Addon successfully created.",
+    "updated": "Addon successfully updated.",
+    "deleted": "Addon successfully deleted."
   },
-  "years": {
-    "not_found": "Year not found.",
-    "created": "Year successfully created.",
-    "updated": "Year successfully updated.",
-    "deleted": "Year successfully deleted."
+  "drinks": {
+    "not_found": "Drink not found.",
+    "created": "Drink successfully created.",
+    "updated": "Drink successfully updated.",
+    "deleted": "Drink successfully deleted."
   },
-  "students": {
-    "not_found": "Student not found.",
-    "created": "Student successfully created.",
-    "updated": "Student successfully updated.",
-    "deleted": "Student successfully deleted."
-  },
-  "subjects": {
-    "not_found": "Subject not found.",
-    "created": "Subject successfully created.",
-    "updated": "Subject successfully updated.",
-    "deleted": "Subject successfully deleted."
-  },
-  "sessions": {
-    "not_found": "Session not found.",
-    "created": "Session successfully created.",
-    "updated": "Session successfully updated.",
-    "deleted": "Session successfully deleted."
-  },
-  "trimesters": {
-    "not_found": "Trimester not found.",
-    "created": "Trimester successfully created.",
-    "updated": "Trimester successfully updated.",
-    "deleted": "Trimester successfully deleted."
-  },
-  "sequences": {
-    "not_found": "Sequence not found.",
-    "created": "Sequence successfully created.",
-    "updated": "Sequence successfully updated.",
-    "deleted": "Sequence successfully deleted."
-  },
-  "exam_types": {
-    "not_found": "Exam type not found.",
-    "created": "Exam type successfully created.",
-    "updated": "Exam type successfully updated.",
-    "deleted": "Exam type successfully deleted."
-  },
-  "exams": {
-    "not_found": "Exam not found.",
-    "created": "Exam successfully created.",
-    "updated": "Exam successfully updated.",
-    "deleted": "Exam successfully deleted."
-  },
-  "marks": {
-    "not_found": "Mark not found.",
-    "created": "Mark successfully created.",
-    "updated": "Mark successfully updated.",
-    "deleted": "Mark successfully deleted."
+  "plans": {
+    "not_found": "Plan not found.",
+    "balance": "Insufficient balance.",
+    "purchased": "Plan successfully purchased.",
+    "created": "Plan successfully created.",
+    "updated": "Plan successfully updated.",
+    "deleted": "Plan successfully deleted."
   }
 });
 
@@ -629,13 +595,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Alert.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (_ref) {
-  var message = _ref.message;
+  var message = _ref.message,
+      time = _ref.time;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+      _useState2 = _slicedToArray(_useState, 2),
+      visible = _useState2[0],
+      setVisible = _useState2[1];
+
+  if (time) setTimeout(function () {
+    setVisible(false);
+  }, time);
   return message ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_2__.default, {
     color: message.type,
+    isOpen: visible,
     children: message.content
   }) : null;
 });
@@ -1178,7 +1167,7 @@ var Messages = /*#__PURE__*/function (_Component) {
         var nav = languages.map(function (language) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_21__.default, {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_22__.default, {
-              className: activeTab === language.abbr && 'active',
+              className: activeTab === language.abbr ? 'active' : '',
               onClick: function onClick() {
                 return _this2.toggle(language.abbr);
               },

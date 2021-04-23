@@ -49,7 +49,7 @@ class Layout extends Component {
         let content = null;
         if (url.includes('auth/user')) content = <AuthUser>{children}</AuthUser>;
         else if (url.includes('auth/admin')) content = <AuthAdmin>{children}</AuthAdmin>;
-        else if (url.includes('/auth')) content = <AuthRestaurant>{children}</AuthRestaurant>;
+        else if (url.includes('/auth/')) content = <AuthRestaurant>{children}</AuthRestaurant>;
         else if (url.includes('/restaurant/')) content = <BackendRestaurant>{children}</BackendRestaurant>;
         else if (url.includes('/user/') || url.includes('/admin/')) content = <Backend>{children}</Backend>;
         else if (url.includes('/restaurants/')) content = <Frontend sideDrawerToggleHandler={this.sideDrawerToggleHandler}>{children}</Frontend>;

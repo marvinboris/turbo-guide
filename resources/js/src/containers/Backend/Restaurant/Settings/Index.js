@@ -97,24 +97,9 @@ class Settings extends Component {
         hours: '',
     }
 
-    static getDerivedStateFromProps(nextProps, prevState) {
-        if (nextProps.backend.settings.restaurant && prevState.name === '') {
-            const { backend: { settings: { restaurant } } } = nextProps;
-            return updateObject(prevState, { ...restaurant });
-        }
-        return prevState;
-    }
 
-    async componentDidMount() {
-        this.props.reset();
-        this.props.get();
-    }
-
-    componentWillUnmount() {
-        if (!this.props.backend.settings.restaurant.name) return this.props.history.push('/restaurant/settings');
-        this.props.reset();
-    }
-
+    
+    // Component methods
     submitHandler = e => {
         e.preventDefault();
     }
@@ -159,6 +144,27 @@ class Settings extends Component {
     }
 
     fileUpload = id => document.getElementById(id) && document.getElementById(id).click()
+
+
+
+    // Lifecycle methods
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (nextProps.backend.settings.restaurant && prevState.name === '') {
+            const { backend: { settings: { restaurant } } } = nextProps;
+            return updateObject(prevState, { ...restaurant });
+        }
+        return prevState;
+    }
+
+    componentDidMount() {
+        this.props.reset();
+        this.props.get();
+    }
+
+    componentWillUnmount() {
+        if (!this.props.backend.settings.restaurant.name) return this.props.history.push('/restaurant/settings');
+        this.props.reset();
+    }
 
     render() {
         let {

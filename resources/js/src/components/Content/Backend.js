@@ -19,6 +19,7 @@ export default {
     "sidebar": {
         "admin": "Administrator",
         "user": "User",
+        "restaurant": "Restaurant",
         "menu": {
             "dashboard": "Dashboard",
             "admins": {
@@ -62,66 +63,28 @@ export default {
                 "cms": "CMS",
                 "language": "Language settings"
             },
-            "cycles": {
-                "title": "Cycles",
-                "add": "Add cycle",
-                "index": "Cycle list"
+            "categories": {
+                "title": "Categories",
+                "add": "Add category",
+                "index": "Category list"
             },
-            "levels": {
-                "title": "Levels",
-                "add": "Add level",
-                "index": "Level list"
+            "meals": {
+                "title": "Meals",
+                "add": "Create new meal",
+                "index": "Meal list"
             },
-            "classrooms": {
-                "title": "Classes",
-                "add": "Add class",
-                "index": "Class list"
+            "addons": {
+                "title": "Addons",
+                "add": "Add addon",
+                "index": "Addon list"
             },
-            "years": {
-                "title": "Years",
-                "add": "Add year",
-                "index": "Year list"
+            "drinks": {
+                "title": "Drinks",
+                "add": "Add drink",
+                "index": "Drink list"
             },
-            "students": {
-                "title": "Students",
-                "add": "Add student",
-                "index": "Student list"
-            },
-            "subjects": {
-                "title": "Subjects",
-                "add": "Add subject",
-                "index": "Subject list"
-            },
-            "sessions": {
-                "title": "Sessions",
-                "add": "Add session",
-                "index": "Session list"
-            },
-            "trimesters": {
-                "title": "Trimesters",
-                "add": "Add trimester",
-                "index": "Trimester list"
-            },
-            "sequences": {
-                "title": "Sequences",
-                "add": "Add sequence",
-                "index": "Sequence list"
-            },
-            "exam_types": {
-                "title": "Exam types",
-                "add": "Add exam type",
-                "index": "Exam type list"
-            },
-            "exams": {
-                "title": "Exams",
-                "add": "Add exam",
-                "index": "Exam list"
-            },
-            "marks": {
-                "title": "Marks",
-                "add": "Add mark",
-                "index": "Mark list"
-            }
+            "comments": "Customer Review",
+            "history": "Order History"
         }
     },
     "pages": {
@@ -130,21 +93,21 @@ export default {
                 "title": "Admin panel",
                 "subtitle": "Dashboard",
                 "blocks": {
-                    "total_cycles": {
-                        "title": "Total Cycles",
-                        "description": "Total Cycles"
+                    "total_categories": {
+                        "title": "Total Categories",
+                        "description": "Total Categories"
                     },
-                    "total_years": {
-                        "title": "Total Years",
-                        "description": "Total Years"
+                    "total_drinks": {
+                        "title": "Total Drinks",
+                        "description": "Total Drinks"
                     },
-                    "total_subjects": {
-                        "title": "Total Subjects",
-                        "description": "Total Subjects"
+                    "total_meals": {
+                        "title": "Total Meals",
+                        "description": "Total Meals"
                     },
-                    "total_students": {
-                        "title": "Total Students",
-                        "description": "Total Students"
+                    "total_addons": {
+                        "title": "Total Addons",
+                        "description": "Total Addons"
                     }
                 }
             },
@@ -152,23 +115,64 @@ export default {
                 "title": "User panel",
                 "subtitle": "Dashboard",
                 "blocks": {
-                    "total_cycles": {
-                        "title": "Total Cycles",
-                        "description": "Total Cycles"
+                    "total_categories": {
+                        "title": "Total Categories",
+                        "description": "Total Categories"
                     },
-                    "total_years": {
-                        "title": "Total Years",
-                        "description": "Total Years"
+                    "total_drinks": {
+                        "title": "Total Drinks",
+                        "description": "Total Drinks"
                     },
-                    "total_subjects": {
-                        "title": "Total Subjects",
-                        "description": "Total Subjects"
+                    "total_meals": {
+                        "title": "Total Meals",
+                        "description": "Total Meals"
                     },
-                    "total_students": {
-                        "title": "Total Students",
-                        "description": "Total Students"
+                    "total_addons": {
+                        "title": "Total Addons",
+                        "description": "Total Addons"
                     }
                 }
+            },
+            "restaurant": {
+                "welcome": "Welcome",
+                "subtitle": "Dashboard",
+                "go_live": "Go Live",
+                "customer_reviews": "Customer reviews",
+                "customer_ratings": "customer ratings",
+                "most_viewed": "Most Viewed Meals",
+                "qr_code": "Restaurant QR Code",
+                "download": "Download a print this code",
+                "subscription_plan": "Subscription Plan",
+                "monthly": "Monthly",
+                "yearly": "Yearly",
+                "stars": {
+                    "singular": "Star",
+                    "plural": "Stars"
+                },
+                "general_overview": "General Overview",
+                "blocks": {
+                    "customer_review": "Customer Review",
+                    "credit_balance": "Credit Balance",
+                    "recharge": "Recharge",
+                    "total_meals": "Total Meals",
+                    "total_categories": "Total Categories",
+                    "total_addons": "Total Addons"
+                }
+            }
+        },
+        "cms": {
+            "title": "CMS",
+            "global": "Global",
+            "general": "General",
+            "messages": "Messages",
+            "frontend": "Frontend",
+            "components": "Components",
+            "backend": "Backend",
+            "auth": "Auth",
+            "form": {
+                "logo": "Logo",
+                "app_name": "App name",
+                "company_name": "Company name"
             }
         },
         "admins": {
@@ -244,23 +248,34 @@ export default {
                 "created_at": "Created at"
             }
         },
-        "cms": {
-            "title": "CMS",
-            "global": "Global",
-            "general": "General",
-            "messages": "Messages",
-            "frontend": "Frontend",
-            "components": "Components",
-            "backend": "Backend",
-            "auth": "Auth",
-            "form": {
-                "logo": "Logo",
-                "app_name": "App name",
-                "company_name": "Company name"
-            }
-        },
         "settings": {
             "title": "Settings",
+            "form": {
+                "restaurant_settings": "RESTAURANT SETTINGS",
+                "account_settings": "ACCOUNT SETTINGS",
+                "cms_settings": "CMS SETTINGS",
+                "calendar_settings": "CALENDAR SETTINGS",
+                "name": "Restaurant's Name",
+                "owner": "Restaurant Owner's Name",
+                "phone": "Restaurant's Phone Number",
+                "whatsapp": "Restaurant's WhatsApp NO",
+                "location": "Restaurant's Location (Gmaps)",
+                "address": "Restaurant's Address",
+                "currency": "Restaurant's Currency",
+                "select_position": "Select currency position",
+                "left": "Left",
+                "right": "Right",
+                "email": "Email Address",
+                "country": "Country",
+                "token": "Restaurant Token",
+                "password": "Password",
+                "new_password": "New Password",
+                "new_password_confirmation": "Confirm New Password",
+                "upload": "Upload Profile Image",
+                "size": "Max Size : 3 MB Format : 250 x 250",
+                "days": "Opening Days",
+                "hours": "Opening Hours"
+            },
             "language": {
                 "title": "Language settings",
                 "form": {
@@ -268,174 +283,129 @@ export default {
                 }
             }
         },
-        "cycles": {
-            "title": "Cycles",
-            "add": "Add cycle",
-            "edit": "Edit cycle",
-            "index": "Cycle list",
+        "categories": {
+            "title": "Categories",
+            "subtitle": "Please follow the instructions carefully",
+            "instructions": "Please fill the form below, All fields are required",
+            "add": "Add category",
+            "edit": "Edit category",
+            "index": "Category list",
             "form": {
-                "name": "Name",
-                "slug": "Slug"
+                "name": "Category's Name",
+                "description": "Category's Description",
+                "upload": "Upload Category Image",
+                "size": "Max Size : 3 MB Format : 250 x 250",
+                "select_status": "Please select category status"
             }
         },
-        "levels": {
-            "title": "Levels",
-            "add": "Add devel",
-            "edit": "Edit devel",
-            "index": "Level list",
+        "meals": {
+            "title": "Meals",
+            "subtitle": "Set your meals here. Edit and update.",
+            "welcome": "Welcome",
+            "filter": "Filter",
+            "most_liked": "Most liked",
+            "counted": "Counted Meals",
+            "total_meals": "Total Meals available in the system",
+            "watching": "Watching list",
+            "check": "Check the monitored meal",
+            "all_categories": "All Categories",
+            "viewing": "Viewing Now",
+            "add": "Add meal",
+            "edit": "Edit meal",
+            "index": "Meal list",
             "form": {
-                "name": "Name",
-                "slug": "Slug",
-                "cycle": "Cycle",
-                "select_cycle": "Select cycle"
+                "name": "Meal's Name",
+                "description": "Meal's Description",
+                "price": "Meal's Price",
+                "reference": "Meal's ID Number",
+                "time": "Meal's Preparation Time (in minutes)",
+                "total_addons": "Total Addons Selected",
+                "upload": "Upload Meal Image",
+                "size": "Max Size : 3 MB Format : 250 x 250",
+                "select_category": "Select category",
+                "select_addon": "Select addon",
+                "select_status": "Please select meal status"
             }
         },
-        "classrooms": {
-            "title": "Classes",
-            "add": "Add class",
-            "edit": "Edit class",
-            "index": "Class list",
+        "addons": {
+            "title": "Addons",
+            "subtitle": "Please follow the instructions carefully",
+            "add": "Add addon",
+            "edit": "Edit addon",
+            "index": "Addon list",
             "form": {
-                "name": "Name",
-                "slug": "Slug",
-                "cycle": "Cycle",
-                "select_cycle": "Select cycle",
-                "level": "Level",
-                "select_level": "Select level"
+                "name": "Addon's Name",
+                "description": "Addon's Description",
+                "price": "Addon's Price",
+                "reference": "Addon's ID Number",
+                "upload": "Upload Addon Image",
+                "size": "Max Size : 3 MB Format : 250 x 250",
+                "select_status": "Please select addon status"
             }
         },
-        "years": {
-            "title": "Years",
-            "add": "Add year",
-            "edit": "Edit year",
-            "index": "Year list",
+        "drinks": {
+            "title": "Drinks",
+            "subtitle": "Please follow the instructions carefully",
+            "add": "Add drink",
+            "edit": "Edit drink",
+            "index": "Drink list",
             "form": {
-                "name": "Name",
-                "slug": "Slug"
+                "name": "Drink's Name",
+                "description": "Drink's Description",
+                "price": "Drink's Price",
+                "reference": "Drink's ID Number",
+                "upload": "Upload Drink Image",
+                "size": "Max Size : 3 MB Format : 250 x 250",
+                "select_status": "Please select drink status"
             }
         },
-        "students": {
-            "title": "Students",
-            "add": "Add student",
-            "edit": "Edit student",
-            "index": "Student list",
+        "comments": {
+            "title": "Customer Review",
+            "subtitle": "Here are your customers comments",
+            "index": "Review list",
             "form": {
-                "first_name": "First name",
-                "last_name": "Last name",
-                "birth_date": "Birth date",
-                "birth_place": "Birth place",
-                "matricule": "Matricule",
-                "slug": "Slug"
+                "name": "Customer's Name",
+                "body": "Comment's Body",
+                "meal": "Meal's Name",
+                "mark": "Assigned Mark",
+                "created_at": "Posted On"
             }
         },
-        "subjects": {
-            "title": "Subjects",
-            "add": "Add subject",
-            "edit": "Edit subject",
-            "index": "Subject list",
+        "plans": {
+            "title": "Subscription Plan",
+            "subtitle": "Purchase Plan",
+            "instructions": "Please fill the form below to purchase or upgrade plan",
+            "add": "Purchase Plan",
+            "edit": "Edit meal",
+            "index": "Purchase List",
             "form": {
-                "name": "Name",
-                "slug": "Slug"
+                "purchase": "Purchase Plan",
+                "name": "Plan Name",
+                "amount": "Amount",
+                "status": "Status",
+                "type": "Purchase Type",
+                "terms": "Accept terms and conditions & Privacy policies",
+                "price": "Cost",
+                "created_at": "Purchase Date",
+                "select_plan_id": "Select plan",
+                "select_type": "Purchase Type"
             }
         },
-        "sessions": {
-            "title": "Sessions",
-            "add": "Add session",
-            "edit": "Edit session",
-            "index": "Session list",
+        "recharges": {
+            "title": "Recharge Balance",
+            "subtitle": "Deposit funds in your E-menu account to purchase plans",
+            "instructions": "Please fill the form below to recharge balance",
+            "add": "Purchase Plan",
+            "edit": "Edit meal",
+            "index": "Recharge",
             "form": {
-                "subjects": "Subjects",
-                "students": "Students",
-                "classroom": "Class",
-                "select_classroom": "Select class",
-                "cycle": "Cycle",
-                "select_cycle": "Select cycle",
-                "level": "Level",
-                "select_level": "Select level",
-                "year": "Year",
-                "select_year": "Select year"
-            }
-        },
-        "trimesters": {
-            "title": "Trimesters",
-            "add": "Add trimester",
-            "edit": "Edit trimester",
-            "index": "Trimester list",
-            "form": {
-                "name": "Name",
-                "year": "Year",
-                "select_year": "Select year",
-                "session": "Session",
-                "select_session": "Select session"
-            }
-        },
-        "sequences": {
-            "title": "Sequences",
-            "add": "Add sequence",
-            "edit": "Edit sequence",
-            "index": "Sequence list",
-            "form": {
-                "name": "Name",
-                "year": "Year",
-                "select_year": "Select year",
-                "session": "Session",
-                "select_session": "Select session",
-                "trimester": "Trimester",
-                "select_trimester": "Select trimester"
-            }
-        },
-        "exam_types": {
-            "title": "Exam types",
-            "add": "Add exam type",
-            "edit": "Edit exam type",
-            "index": "Exam type list",
-            "form": {
-                "name": "Name",
-                "slug": "Slug"
-            }
-        },
-        "exams": {
-            "title": "Exams",
-            "add": "Add exam",
-            "edit": "Edit exam",
-            "index": "Exam list",
-            "form": {
-                "name": "Name",
-                "coef": "Coefficient",
-                "exam_type": "Exam type",
-                "select_exam_type": "Select exam type",
-                "year": "Year",
-                "select_year": "Select year",
-                "session": "Session",
-                "select_session": "Select session",
-                "trimester": "Trimester",
-                "select_trimester": "Select trimester",
-                "sequence": "Sequence",
-                "select_sequence": "Select sequence",
-                "subject": "Subject",
-                "select_subject": "Select subject"
-            }
-        },
-        "marks": {
-            "title": "Marks",
-            "add": "Add mark",
-            "edit": "Edit mark",
-            "index": "Mark list",
-            "form": {
-                "value": "Value",
-                "comment": "Comment",
-                "exam": "Exam",
-                "select_exam": "Select exam",
-                "student": "Student",
-                "select_student": "Select student",
-                "year": "Year",
-                "select_year": "Select year",
-                "session": "Session",
-                "select_session": "Select session",
-                "trimester": "Trimester",
-                "select_trimester": "Select trimester",
-                "sequence": "Sequence",
-                "select_sequence": "Select sequence"
+                "process": "Process Payment",
+                "amount": "Amount",
+                "status": "Status",
+                "method": "Payment Gateway",
+                "terms": "Accept terms and conditions & Privacy policies",
+                "created_at": "Date",
+                "select_method": "Select payment gateway"
             }
         }
     }

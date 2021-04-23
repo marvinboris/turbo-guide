@@ -340,7 +340,9 @@ var Addons = /*#__PURE__*/function (_Component) {
       var _this = this;
 
       var _this$props = this.props,
-          currencies = _this$props.content.currencies,
+          _this$props$content = _this$props.content,
+          meals = _this$props$content.cms.pages.frontend.restaurants.meals,
+          currencies = _this$props$content.currencies,
           _this$props$frontend$ = _this$props.frontend.restaurants,
           _this$props$frontend$2 = _this$props$frontend$.total,
           total = _this$props$frontend$2 === void 0 ? 0 : _this$props$frontend$2,
@@ -370,7 +372,7 @@ var Addons = /*#__PURE__*/function (_Component) {
           className: "pb-4 mb-2",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
             className: "rounded-8 bg-soft py-2 px-3 text-10",
-            children: "Dear customers, this item comes with an addon of your choice. If you would like extra addon, please select below"
+            children: meals.addons.dear_customers
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
           children: addonsContent
@@ -385,7 +387,7 @@ var Addons = /*#__PURE__*/function (_Component) {
               className: "row align-items-center",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
                 className: "col-6 pl-5 text-14",
-                children: "Your Cart cost is"
+                children: meals.addons.your_cart_cost_is
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
                 className: "col-6 rounded-4 bg-green text-white p-4 rounded-right-0 text-20 text-montserrat",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {

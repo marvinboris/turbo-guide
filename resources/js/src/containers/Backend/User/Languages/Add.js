@@ -24,24 +24,10 @@ class Add extends Component {
         name: '',
         abbr: '',
         flag: '',
-
-        countries: [],
     }
 
     async componentDidMount() {
         this.props.reset();
-
-        const cors = 'https://cors-anywhere.herokuapp.com/';
-
-        const phoneRes = await fetch(cors + 'http://country.io/phone.json', { method: 'GET', mode: 'cors' });
-        const namesRes = await fetch(cors + 'http://country.io/names.json', { method: 'GET', mode: 'cors' });
-
-        const phone = await phoneRes.json();
-        const names = await namesRes.json();
-
-        const countries = Object.keys(phone).map(key => ({ country: key, code: phone[key], name: names[key] })).sort((a, b) => (a.name < b.name) ? -1 : (a.name > b.name) ? 1 : 0);
-
-        this.setState({ countries });
     }
 
     componentWillUnmount() {
@@ -63,12 +49,13 @@ class Add extends Component {
             content: {
                 cms: {
                     pages: { components: { form: { save } }, backend: { pages: { languages: { title, add, index, form } } } }
-                }
+                },
+                countries,
             },
             backend: { languages: { loading, error, message } },
             auth: { data: { role: { features } } }
         } = this.props;
-        let { name, abbr, flag, countries } = this.state;
+        let { name, abbr, flag } = this.state;
         let content = null;
         let errors = null;
 

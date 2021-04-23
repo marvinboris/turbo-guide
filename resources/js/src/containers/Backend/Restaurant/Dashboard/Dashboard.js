@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { Col, Row } from 'reactstrap';
-import { faTachometerAlt, faDrumstickBite, faStar, faCookie, faWineBottle, faMoneyBillWave, faDownload, faBox, faExternalLinkAlt, faListAlt, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { Col, DropdownItem, DropdownMenu, DropdownToggle, Row, UncontrolledDropdown } from 'reactstrap';
+import { faTachometerAlt, faDrumstickBite, faStar, faCookie, faWineBottle, faMoneyBillWave, faDownload, faBox, faExternalLinkAlt, faListAlt, faCheck, faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import OwlCarousel from 'react-owl-carousel2';
 
@@ -31,8 +31,16 @@ class Dashboard extends Component {
         duration: 1,
     }
 
+
+
+    // Component methods
+    switchDuration = duration => this.setState({ duration });
+
+
+
+    // Lifecycle methods
     async componentDidMount() {
-        this.props.get();
+        return this.props.get();
 
         const res = await fetch("https://qrcode-monkey.p.rapidapi.com/qr/custom", {
             "method": "POST",
@@ -79,8 +87,6 @@ class Dashboard extends Component {
     componentWillUnmount() {
         this.props.reset();
     }
-
-    switchDuration = duration => this.setState({ duration });
 
     render() {
         let {
@@ -154,13 +160,37 @@ class Dashboard extends Component {
                     </Col>);
                 }
 
+                const monthlyContent = <div className="rounded-4 text-green bg-white" onClick={() => this.switchDuration(1)} style={{ cursor: 'pointer' }}>
+                    <div className="rounded-4 py-2 px-4 bg-green-20 position-relative">
+                        <div className="px-3">{monthly}</div>
+
+                        <div style={{ top: 0, right: 0, transform: 'translate(50%,-50%)' }} className={`position-absolute ${duration === 1 ? "d-block" : "d-none"}`}>
+                            <div className="rounded-circle text-white bg-green d-flex justify-content-center align-items-center text-6" style={{ width: 20, height: 20 }}>
+                                <FontAwesomeIcon icon={faCheck} fixedWidth />
+                            </div>
+                        </div>
+                    </div>
+                </div>;
+
+                const yearlyContent = <div className="rounded-4 text-orange bg-white" onClick={() => this.switchDuration(12)} style={{ cursor: 'pointer' }}>
+                    <div className="rounded-4 py-2 px-4 bg-orange-20 position-relative">
+                        <div className="px-3">{yearly}</div>
+
+                        <div style={{ top: 0, right: 0, transform: 'translate(50%,-50%)' }} className={`position-absolute ${duration === 12 ? "d-block" : "d-none"}`}>
+                            <div className="rounded-circle text-white bg-orange d-flex justify-content-center align-items-center text-6" style={{ width: 20, height: 20 }}>
+                                <FontAwesomeIcon icon={faCheck} fixedWidth />
+                            </div>
+                        </div>
+                    </div>
+                </div>;
+
                 content = (
                     <>
-                        {plan && <div className="position-absolute pt-3 pr-5" style={{ top: 0, right: 0, zIndex: 1100 }}>
-                            <a href={`/restaurants/${slug}`} target="_blank" className="btn btn-green text-18 text-montserrat text-700 text-decoration-none py-3 px-4 rounded-4">
+                        {plan && <div className="position-fixed pt-4 pr-5" style={{ top: 0, right: 0, zIndex: 1030 }}>
+                            <a href={`/restaurants/${slug}`} target="_blank" className="btn btn-green text-14 text-montserrat text-700 text-decoration-none py-2 px-3 rounded-4">
                                 {go_live}
 
-                                <FontAwesomeIcon icon={faExternalLinkAlt} className="ml-3" />
+                                <FontAwesomeIcon icon={faExternalLinkAlt} className="ml-2" />
                             </a>
                         </div>}
 
@@ -183,9 +213,9 @@ class Dashboard extends Component {
 
                                     <div>
                                         <Link to="/restaurant/recharges" className="btn btn-white text-decoration-none text-green py-2 px-3">
-                                            <FontAwesomeIcon icon={faMoneyBillWave} className="mr-3" />
+                                            <FontAwesomeIcon icon={faMoneyBillWave} className="mr-md-3" />
 
-                                            {recharge}
+                                            <span className="d-none d-md-inline">{recharge}</span>
                                         </Link>
                                     </div>
                                 </div>
@@ -206,7 +236,7 @@ class Dashboard extends Component {
                                     </div>
 
                                     <div className="d-md-none">
-                                        <OwlCarousel options={{ responsive: { 0: { items: 1 }, 600: { items: 2 }, 1200: { items: 3 } }, center: true, loop: true, dots: false }}>
+                                        <OwlCarousel options={{ responsive: { 0: { items: 1 }, 600: { items: 2 }, 1200: { items: 3 } }, center: false, loop: true, dots: false }}>
                                             {mealsContent}
                                         </OwlCarousel>
                                     </div>
@@ -246,32 +276,25 @@ class Dashboard extends Component {
                                             {subscription_plan}
                                         </div>
 
-                                        <div className="ml-auto mr-3">
-                                            <div className="rounded-4 text-green bg-white" onClick={() => this.switchDuration(1)} style={{ cursor: 'pointer' }}>
-                                                <div className="rounded-4 py-2 px-4 bg-green-20 position-relative">
-                                                    <div className="px-3">{monthly}</div>
-
-                                                    <div style={{ top: 0, right: 0, transform: 'translate(50%,-50%)' }} className={`position-absolute ${duration === 1 ? "d-block" : "d-none"}`}>
-                                                        <div className="rounded-circle text-white bg-green d-flex justify-content-center align-items-center text-6" style={{ width: 20, height: 20 }}>
-                                                            <FontAwesomeIcon icon={faCheck} fixedWidth />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div className="ml-auto mr-3 d-none d-md-block">
+                                            {monthlyContent}
                                         </div>
 
-                                        <div>
-                                            <div className="rounded-4 text-orange bg-white" onClick={() => this.switchDuration(12)} style={{ cursor: 'pointer' }}>
-                                                <div className="rounded-4 py-2 px-4 bg-orange-20 position-relative">
-                                                    <div className="px-3">{yearly}</div>
+                                        <div className="d-none d-md-block">
+                                            {yearlyContent}
+                                        </div>
 
-                                                    <div style={{ top: 0, right: 0, transform: 'translate(50%,-50%)' }} className={`position-absolute ${duration === 12 ? "d-block" : "d-none"}`}>
-                                                        <div className="rounded-circle text-white bg-orange d-flex justify-content-center align-items-center text-6" style={{ width: 20, height: 20 }}>
-                                                            <FontAwesomeIcon icon={faCheck} fixedWidth />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div className="d-md-none ml-auto">
+                                            <UncontrolledDropdown>
+                                                <DropdownToggle color="orange">
+                                                    <FontAwesomeIcon icon={faBars} />
+                                                </DropdownToggle>
+
+                                                <DropdownMenu>
+                                                    <DropdownItem>{monthlyContent}</DropdownItem>
+                                                    <DropdownItem>{yearlyContent}</DropdownItem>
+                                                </DropdownMenu>
+                                            </UncontrolledDropdown>
                                         </div>
                                     </div>
 
@@ -279,7 +302,7 @@ class Dashboard extends Component {
                                         <Row className="d-none d-md-flex align-items-center">{plansContent}</Row>
 
                                         <div className="d-md-none">
-                                            <OwlCarousel options={{ responsive: { 0: { items: 1 }, 600: { items: 2 }, 1200: { items: 3 } }, center: true, loop: true, dots: false }}>
+                                            <OwlCarousel options={{ responsive: { 0: { items: 1 }, 700: { items: 2 }, 1200: { items: 3 } }, center: false, loop: true, dots: false }}>
                                                 {plansContent}
                                             </OwlCarousel>
                                         </div>

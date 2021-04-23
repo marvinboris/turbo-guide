@@ -16,7 +16,13 @@ class Addons extends Component {
     }
 
     render() {
-        const { content: { currencies }, frontend: { restaurants: { total = 0, addons = [], currency, position } } } = this.props;
+        const {
+            content: {
+                cms: { pages: { frontend: { restaurants: { meals } } } },
+                currencies,
+            },
+            frontend: { restaurants: { total = 0, addons = [], currency, position } }
+        } = this.props;
 
         const currencyObj = currencies.find(c => c.cc === currency);
         const symbol = currencyObj && currencyObj.symbol;
@@ -26,8 +32,7 @@ class Addons extends Component {
         return <>
             <Wrapper className="pb-4 mb-2">
                 <div className="rounded-8 bg-soft py-2 px-3 text-10">
-                    Dear customers, this item comes with an addon of your choice.
-                    If you would like extra addon, please select below
+                    {meals.addons.dear_customers}
                 </div>
             </Wrapper>
 
@@ -39,7 +44,7 @@ class Addons extends Component {
                 <div style={{ margin: '0px -22px' }} className="bg-green-10">
                     <div className="row align-items-center">
                         <div className="col-6 pl-5 text-14">
-                            Your Cart cost is
+                            {meals.addons.your_cart_cost_is}
                         </div>
 
                         <div className="col-6 rounded-4 bg-green text-white p-4 rounded-right-0 text-20 text-montserrat">

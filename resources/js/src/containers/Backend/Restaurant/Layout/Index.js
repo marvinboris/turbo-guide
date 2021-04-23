@@ -69,7 +69,7 @@ class Layout extends Component {
 
             <main className={`bg-${dark ? 'darkblue' : 'white'} position-relative min-vh-100 pb-5`}>
                 <div style={{ height: 90 }} className="d-flex align-items-center px-5 border-bottom border-light sticky-top bg-white">
-                    <div className="text-orange text-24 d-md-none mr-3">
+                    <div className="text-orange text-30 d-md-none mr-3">
                         <FontAwesomeIcon icon={faBars} onClick={this.toggle} style={{ cursor: 'pointer' }} />
                     </div>
 
@@ -80,7 +80,7 @@ class Layout extends Component {
                     </div>
                 </div>
 
-                <div className="mb-5 pb-5 mt-4 pt-3 px-5">
+                <div className="main mb-5 pb-5 mt-4 pt-3 px-5">
                     {loading ? <div className="h-100 d-flex justify-content-center align-items-center"><CustomSpinner /></div> : children}
                 </div>
 

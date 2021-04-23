@@ -220,7 +220,7 @@ class MealController extends Controller
         $input = $request->except('photo');
 
         if ($file = $request->file('photo')) {
-            if ($meal->photo) unlink(public_path($meal->photo));
+            if ($meal->photo && is_file(public_path($meal->photo))) unlink(public_path($meal->photo));
             $fileName = time() . $file->getClientOriginalName();
             $file->move('images/meals', $fileName);
             $input['photo'] = htmlspecialchars($fileName);
@@ -248,6 +248,7 @@ class MealController extends Controller
             'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['meals']['not_found'], 'danger'),
         ]);
 
+        if ($meal->photo && is_file(public_path($meal->photo))) unlink(public_path($meal->photo));
         $meal->delete();
 
         $data = $this->data();

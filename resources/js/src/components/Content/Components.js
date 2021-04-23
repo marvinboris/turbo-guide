@@ -1,7 +1,10 @@
 export default {
     "form": {
         "save": "Save",
-        "selected_file": "File selected"
+        "save_add": "Save & Add",
+        "selected_file": "File selected",
+        "active": "Active",
+        "inactive": "Inactive"
     },
     "list": {
         "action": "Action",
@@ -23,5 +26,8 @@ export default {
             "singular": "entry",
             "plural": "entries"
         }
+    },
+    "food": {
+        "ratings": "Ratings"
     }
 };

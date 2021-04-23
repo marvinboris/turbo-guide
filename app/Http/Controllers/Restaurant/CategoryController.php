@@ -118,7 +118,7 @@ class CategoryController extends Controller
         $input = $request->except('photo');
 
         if ($file = $request->file('photo')) {
-            if ($category->photo) unlink(public_path($category->photo));
+            if ($category->photo && is_file(public_path($category->photo))) unlink(public_path($category->photo));
             $fileName = time() . $file->getClientOriginalName();
             $file->move('images/categories', $fileName);
             $input['photo'] = htmlspecialchars($fileName);
@@ -144,6 +144,7 @@ class CategoryController extends Controller
             'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['categories']['not_found'], 'danger'),
         ]);
 
+        if ($category->photo && is_file(public_path($category->photo))) unlink(public_path($category->photo));
         $category->delete();
 
         $data = $this->data();

@@ -66,7 +66,9 @@ var Description = /*#__PURE__*/function (_Component) {
   _createClass(Description, [{
     key: "render",
     value: function render() {
-      var _this$props$frontend$ = this.props.frontend.restaurants.meal,
+      var _this$props = this.props,
+          meals = _this$props.content.cms.pages.frontend.restaurants.meals,
+          _this$props$frontend$ = _this$props.frontend.restaurants.meal,
           meal = _this$props$frontend$ === void 0 ? {} : _this$props$frontend$;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_Wrapper__WEBPACK_IMPORTED_MODULE_2__.default, {
@@ -76,14 +78,14 @@ var Description = /*#__PURE__*/function (_Component) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
               className: "text-14 mb-2",
-              children: "Must Read"
+              children: meals.must_read
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
               style: {
                 padding: '12px 33px',
                 margin: '0px -33px'
               },
               className: "bg-orange-10 text-300 text-10",
-              children: "Dear customers, we would love to make available more food items but unfortunately kindly note that some of the addons mentioned below might not be available. For special request, please contact us. Thanks for understanding."
+              children: meals.dear_customers
             })]
           })]
         })

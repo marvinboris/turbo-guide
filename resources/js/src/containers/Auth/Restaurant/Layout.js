@@ -24,10 +24,10 @@ class Layout extends Component {
         </>;
 
         return <div className={`min-vh-100 d-flex flex-column bg-${dark ? "darkblue" : "soft text-secondary"}`}>
-            <div className="flex-fill d-flex justify-content-center align-items-center">
-                <div className="rounded-8 bg-white shadow px-5 py-4" style={{ maxWidth: 500 }}>
-                    <div className="mx-3 my-2">
-                        <div className="text-center mb-4">
+            <div className="flex-fill d-flex justify-content-center align-items-center p-3">
+                <div className="rounded-8 bg-white shadow px-4 px-sm-5 py-3 py-sm-4" style={{ maxWidth: 500 }}>
+                    <div className="mx-2 mx-sm-3 my-1 my-sm-2">
+                        <div className="text-center mb-3 mb-sm-4">
                             <Logo />
                         </div>
 

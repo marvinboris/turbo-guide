@@ -250,9 +250,11 @@ Route::prefix('content')->name('content.')->group(function () {
             'global' => $cmsFile['global'],
             'pages' => $cmsFile['pages'][$abbr],
         ];
+        $languages = Language::all();
 
         return response()->json([
             'cms' => $cms,
+            'languages' => $languages,
         ]);
     })->name('cms');
 });

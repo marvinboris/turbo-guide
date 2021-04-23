@@ -193,7 +193,7 @@ class Auth extends Component {
 
             if (!languages) languages = [];
             const nav = languages.map(language => <NavItem key={Math.random()}>
-                <NavLink className={(activeTab === language.abbr) && 'active'} onClick={() => this.toggle(language.abbr)}>
+                <NavLink className={(activeTab === language.abbr) ? 'active' : ''} onClick={() => this.toggle(language.abbr)}>
                     {language.name}
                 </NavLink>
             </NavItem>);

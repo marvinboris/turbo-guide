@@ -18,7 +18,7 @@ export default ({ onSubmit, xs = 12, sm = 12, md = 12, lg = 12, xl = 12, icon, t
                     </div>
                 </div>
 
-                {list && <Link to={link} className="ml-auto">
+                {list && <Link to={link} className="ml-auto d-none d-md-inline">
                     <Button color="green" className="rounded-2 py-2 text-16 text-500 px-4">
                         <FontAwesomeIcon icon={faTasks} fixedWidth className="mr-3" />
 

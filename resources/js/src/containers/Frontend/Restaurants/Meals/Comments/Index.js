@@ -19,20 +19,6 @@ class Comments extends Component {
         name: '',
         body: '',
         country: 'CM',
-
-        countries: [],
-    }
-
-    async componentDidMount() {
-        const phoneRes = await fetch(CORS + 'http://country.io/phone.json', { method: 'GET', mode: 'cors' });
-        const namesRes = await fetch(CORS + 'http://country.io/names.json', { method: 'GET', mode: 'cors' });
-
-        const phone = await phoneRes.json();
-        const names = await namesRes.json();
-
-        const countries = Object.keys(phone).map(key => ({ country: key, code: phone[key], name: names[key] })).sort((a, b) => a.country > b.country);
-
-        this.setState({ countries });
     }
 
     toggle = () => this.setState(prevState => ({ modal: !prevState.modal }));
@@ -48,8 +34,14 @@ class Comments extends Component {
     }
 
     render() {
-        const { frontend: { restaurants: { comments = [] } } } = this.props;
-        const { modal, name, body, country, countries = [] } = this.state;
+        const { 
+            content: {
+                cms: { pages: { frontend: { restaurants: { meals } } } },
+                countries,
+            },
+            frontend: { restaurants: { comments = [] } } 
+        } = this.props;
+        const { modal, name, body, country } = this.state;
 
         const commentsContent = comments.map(comment => <Comment key={comment.id + Math.random()} {...comment} />);
         const countriesOptions = countries.map(({ country, code, name }) => <option key={country} value={country} code={code}>{name}</option>);
@@ -62,25 +54,22 @@ class Comments extends Component {
 
                 <div className="mb-4">
                     <span onClick={this.toggle} className="btn btn-orange text-decoration-none text-11 rounded-pill">
-                        <FontAwesomeIcon icon={faComment} className="mr-2" />Post comment
+                        <FontAwesomeIcon icon={faComment} className="mr-2" />{meals.comments.post_comment}
                     </span>
                 </div>
 
                 <div>
                     <div style={{ padding: '12px 33px', margin: '0px -33px' }} className="bg-orange-10 text-300 text-10">
-                        Dear customers, we would love to make available more food items
-                        but unfortunately kindly note that some of the addons mentioned
-                        below might not be available. For special request, please contact us.
-                        Thanks for understanding.
+                        {meals.dear_customers}
                     </div>
                 </div>
 
 
                 <Modal isOpen={modal} toggle={this.toggle}>
-                    <ModalHeader toggle={this.toggle}>Post comment</ModalHeader>
+                    <ModalHeader toggle={this.toggle}>{meals.comments.post_comment}</ModalHeader>
                     <ModalBody>
                         <form onSubmit={this.submitHandler}>
-                            <FormInput type="text" icon={faUser} onChange={this.inputChangeHandler} value={name} name="name" required placeholder={"Full Name"} />
+                            <FormInput type="text" icon={faUser} onChange={this.inputChangeHandler} value={name} name="name" required placeholder={meals.comments.name} />
                             <FormInput type="select" addon={<div>
                                 <div className="rounded-circle mx-auto overflow-hidden position-relative d-flex justify-content-center align-items-center" style={{ width: 18, height: 18 }}>
                                     <span className={`flag-icon text-large position-absolute flag-icon-${country.toLowerCase()}`} />
@@ -93,10 +82,10 @@ class Comments extends Component {
                             <FormGroup>
                                 <Stars />
                             </FormGroup>
-                            <FormInput type="textarea" icon={faPencilAlt} onChange={this.inputChangeHandler} value={body} name="body" required placeholder={"Type something here..."} />
+                            <FormInput type="textarea" icon={faPencilAlt} onChange={this.inputChangeHandler} value={body} name="body" required placeholder={meals.comments.body} />
 
                             <Button className="btn btn-orange text-decoration-none text-11 rounded-pill">
-                                <FontAwesomeIcon icon={faComment} className="mr-2" />Post comment
+                                <FontAwesomeIcon icon={faComment} className="mr-2" />{meals.comments.post_comment}
                             </Button>
                         </form>
                     </ModalBody>

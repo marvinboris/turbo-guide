@@ -27,7 +27,7 @@ __webpack_require__.r(__webpack_exports__);
       color = _ref.color,
       details = _ref.details;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    className: "col-lg-3 col-6 pb-3 pb-lg-0",
+    className: "col-lg-3 col-sm-6 pb-3 pb-lg-0",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
       to: link,
       className: "bg-".concat(color, "-10 rounded-8 text-decoration-none text-").concat(color, " px-4 py-4 d-flex align-items-center"),
@@ -758,9 +758,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Col.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Row.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/UncontrolledDropdown.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/DropdownToggle.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/DropdownMenu.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/DropdownItem.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Row.js");
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 /* harmony import */ var react_owl_carousel2__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-owl-carousel2 */ "./node_modules/react-owl-carousel2/lib/OwlCarousel.js");
@@ -878,53 +882,15 @@ var Dashboard = /*#__PURE__*/function (_Component) {
 
   _createClass(Dashboard, [{
     key: "componentDidMount",
-    value: function () {
+    value: // Lifecycle methods
+    function () {
       var _componentDidMount = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         var res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                this.props.get();
-                _context.next = 3;
-                return fetch("https://qrcode-monkey.p.rapidapi.com/qr/custom", {
-                  "method": "POST",
-                  "headers": {
-                    "content-type": "application/json",
-                    "x-rapidapi-key": "6ce92d4e5dmsh598d92a451c175ep1360c5jsn7348a06ad241",
-                    "x-rapidapi-host": "qrcode-monkey.p.rapidapi.com"
-                  },
-                  "body": {
-                    "data": "".concat(window.location.protocol, "//").concat(window.location.hostname, "/restaurants/").concat(this.props.auth.data.slug),
-                    "config": {
-                      "body": "circle-zebra-vertical",
-                      "eye": "frame13",
-                      "eyeBall": "ball15",
-                      "erf1": [],
-                      "erf2": [],
-                      "erf3": [],
-                      "brf1": [],
-                      "brf2": [],
-                      "brf3": [],
-                      "bodyColor": "#0277BD",
-                      "bgColor": "#FFFFFF",
-                      "eye1Color": "#075685",
-                      "eye2Color": "#075685",
-                      "eye3Color": "#075685",
-                      "eyeBall1Color": "#0277BD",
-                      "eyeBall2Color": "#0277BD",
-                      "eyeBall3Color": "#0277BD",
-                      "gradientColor1": "#075685",
-                      "gradientColor2": "#0277BD",
-                      "gradientType": "linear",
-                      "gradientOnEyes": false // "logo": "#facebook"
-
-                    },
-                    "size": 225,
-                    "download": false,
-                    "file": "png"
-                  }
-                });
+                return _context.abrupt("return", this.props.get());
 
               case 3:
                 res = _context.sent;
@@ -1076,21 +1042,91 @@ var Dashboard = /*#__PURE__*/function (_Component) {
             });
           }
 
+          var monthlyContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
+            className: "rounded-4 text-green bg-white",
+            onClick: function onClick() {
+              return _this2.switchDuration(1);
+            },
+            style: {
+              cursor: 'pointer'
+            },
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
+              className: "rounded-4 py-2 px-4 bg-green-20 position-relative",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
+                className: "px-3",
+                children: monthly
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
+                style: {
+                  top: 0,
+                  right: 0,
+                  transform: 'translate(50%,-50%)'
+                },
+                className: "position-absolute ".concat(duration === 1 ? "d-block" : "d-none"),
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
+                  className: "rounded-circle text-white bg-green d-flex justify-content-center align-items-center text-6",
+                  style: {
+                    width: 20,
+                    height: 20
+                  },
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+                    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faCheck,
+                    fixedWidth: true
+                  })
+                })
+              })]
+            })
+          });
+
+          var yearlyContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
+            className: "rounded-4 text-orange bg-white",
+            onClick: function onClick() {
+              return _this2.switchDuration(12);
+            },
+            style: {
+              cursor: 'pointer'
+            },
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
+              className: "rounded-4 py-2 px-4 bg-orange-20 position-relative",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
+                className: "px-3",
+                children: yearly
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
+                style: {
+                  top: 0,
+                  right: 0,
+                  transform: 'translate(50%,-50%)'
+                },
+                className: "position-absolute ".concat(duration === 12 ? "d-block" : "d-none"),
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
+                  className: "rounded-circle text-white bg-orange d-flex justify-content-center align-items-center text-6",
+                  style: {
+                    width: 20,
+                    height: 20
+                  },
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+                    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faCheck,
+                    fixedWidth: true
+                  })
+                })
+              })]
+            })
+          });
+
           content = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.Fragment, {
             children: [plan && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-              className: "position-absolute pt-3 pr-5",
+              className: "position-fixed pt-4 pr-5",
               style: {
                 top: 0,
                 right: 0,
-                zIndex: 1100
+                zIndex: 1030
               },
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("a", {
                 href: "/restaurants/".concat(slug),
                 target: "_blank",
-                className: "btn btn-green text-18 text-montserrat text-700 text-decoration-none py-3 px-4 rounded-4",
+                className: "btn btn-green text-14 text-montserrat text-700 text-decoration-none py-2 px-3 rounded-4",
                 children: [go_live, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
                   icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faExternalLinkAlt,
-                  className: "ml-3"
+                  className: "ml-2"
                 })]
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
@@ -1125,8 +1161,11 @@ var Dashboard = /*#__PURE__*/function (_Component) {
                       className: "btn btn-white text-decoration-none text-green py-2 px-3",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
                         icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faMoneyBillWave,
-                        className: "mr-3"
-                      }), recharge]
+                        className: "mr-md-3"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("span", {
+                        className: "d-none d-md-inline",
+                        children: recharge
+                      })]
                     })
                   })]
                 })
@@ -1161,7 +1200,7 @@ var Dashboard = /*#__PURE__*/function (_Component) {
                             items: 3
                           }
                         },
-                        center: true,
+                        center: false,
                         loop: true,
                         dots: false
                       },
@@ -1226,80 +1265,31 @@ var Dashboard = /*#__PURE__*/function (_Component) {
                         className: "mr-3 text-orange"
                       }), subscription_plan]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                      className: "ml-auto mr-3",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                        className: "rounded-4 text-green bg-white",
-                        onClick: function onClick() {
-                          return _this2.switchDuration(1);
-                        },
-                        style: {
-                          cursor: 'pointer'
-                        },
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
-                          className: "rounded-4 py-2 px-4 bg-green-20 position-relative",
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                            className: "px-3",
-                            children: monthly
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                            style: {
-                              top: 0,
-                              right: 0,
-                              transform: 'translate(50%,-50%)'
-                            },
-                            className: "position-absolute ".concat(duration === 1 ? "d-block" : "d-none"),
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                              className: "rounded-circle text-white bg-green d-flex justify-content-center align-items-center text-6",
-                              style: {
-                                width: 20,
-                                height: 20
-                              },
-                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-                                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faCheck,
-                                fixedWidth: true
-                              })
-                            })
-                          })]
-                        })
-                      })
+                      className: "ml-auto mr-3 d-none d-md-block",
+                      children: monthlyContent
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                        className: "rounded-4 text-orange bg-white",
-                        onClick: function onClick() {
-                          return _this2.switchDuration(12);
-                        },
-                        style: {
-                          cursor: 'pointer'
-                        },
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
-                          className: "rounded-4 py-2 px-4 bg-orange-20 position-relative",
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                            className: "px-3",
-                            children: yearly
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                            style: {
-                              top: 0,
-                              right: 0,
-                              transform: 'translate(50%,-50%)'
-                            },
-                            className: "position-absolute ".concat(duration === 12 ? "d-block" : "d-none"),
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                              className: "rounded-circle text-white bg-orange d-flex justify-content-center align-items-center text-6",
-                              style: {
-                                width: 20,
-                                height: 20
-                              },
-                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-                                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faCheck,
-                                fixedWidth: true
-                              })
-                            })
+                      className: "d-none d-md-block",
+                      children: yearlyContent
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
+                      className: "d-md-none ml-auto",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_20__.default, {
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_21__.default, {
+                          color: "orange",
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+                            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faBars
+                          })
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_22__.default, {
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_23__.default, {
+                            children: monthlyContent
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_23__.default, {
+                            children: yearlyContent
                           })]
-                        })
+                        })]
                       })
                     })]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
                     className: "flex-fill",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_20__.default, {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_24__.default, {
                       className: "d-none d-md-flex align-items-center",
                       children: plansContent
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
@@ -1310,14 +1300,14 @@ var Dashboard = /*#__PURE__*/function (_Component) {
                             0: {
                               items: 1
                             },
-                            600: {
+                            700: {
                               items: 2
                             },
                             1200: {
                               items: 3
                             }
                           },
-                          center: true,
+                          center: false,
                           loop: true,
                           dots: false
                         },
@@ -1440,7 +1430,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_21__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_2__.connect)(mapStateToProps, mapDispatchToProps)(Dashboard)));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_25__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_2__.connect)(mapStateToProps, mapDispatchToProps)(Dashboard)));
 
 /***/ }),
 

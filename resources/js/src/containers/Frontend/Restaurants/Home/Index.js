@@ -5,16 +5,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle, faMapMarkerAlt, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faCalendar, faClock } from '@fortawesome/free-regular-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from 'reactstrap';
 
 import Meal from '../../../../components/UI/Food/Meal';
 import Stars from '../../../../components/UI/Stars';
+import Spinner from '../../../../components/UI/Spinner';
 
 import Navigation from './Navigation';
 import Carousel from './Carousel';
-import Spinner from './Spinner';
 import SelectCategory from './SelectCategory';
 
-import * as actions from '../../../../store/actions';
+import * as frontendActions from '../../../../store/actions/frontend';
+import * as contentActions from '../../../../store/actions/content';
 import { updateObject } from '../../../../shared/utility';
 
 import './Home.css';
@@ -42,6 +44,33 @@ const Stack = ({ icon, color, link, className = '' }) => <a href={link} target="
 
 const Conditional = ({ condition, children }) => condition ? children : null;
 
+const Languages = ({ languages, set }) => {
+    const lang = localStorage.getItem('lang');
+    const language = languages.find(l => l.abbr === lang);
+
+    const dropdownItems = languages.map(l => <DropdownItem onClick={() => set(l.abbr)} key={JSON.stringify(l)} className="px-3">
+        <span className={`flag-icon flag-icon-${l.flag.toLowerCase()}`} /> {l.abbr.toUpperCase()}
+    </DropdownItem>);
+
+    return <UncontrolledDropdown>
+        <DropdownToggle className="d-flex justify-content-around align-items-center bg-transparent border-0 p-0 m-0" style={{ boxShadow: 'none' }} caret>
+            <span className="language-flag shadow-lg mr-2 overflow-hidden d-none d-lg-inline-flex justify-content-center align-items-center position-relative">
+                <span className={`flag-icon position-absolute flag-icon-${language && language.flag.toLowerCase()}`} />
+            </span>
+
+            <span className="pl-2 border-left border-dark-20 position-relative">
+                <span className="text-700">{language && language.abbr.toUpperCase()}</span>
+
+                <FontAwesomeIcon icon={faCircle} className="text-orange text-6 position-absolute" style={{ left: 0, transform: 'translate(-50%, -50%)', top: '50%' }} />
+            </span>
+        </DropdownToggle>
+
+        <DropdownMenu style={{ minWidth: '5rem' }}>
+            {dropdownItems}
+        </DropdownMenu>
+    </UncontrolledDropdown>;
+};
+
 class Home extends Component {
     state = {
         id: '',
@@ -49,35 +78,9 @@ class Home extends Component {
         modal: false,
     }
 
-    static getDerivedStateFromProps(nextProps, prevState) {
-        if (nextProps.frontend.restaurants.restaurant && prevState.id === '') {
-            const { categories } = nextProps.frontend.restaurants;
-            if (categories.length > 0) return updateObject(prevState, { id: categories[0].id });
-        }
-        return prevState;
-    }
 
-    async componentDidMount() {
-        this.props.get(this.props.match.params.slug);
-    }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevState.id === '' && this.state.id !== '') {
-            const categoryElts = document.getElementsByClassName("category");
-            const categoryOffsets = [];
-            let i = 0;
-            for (const categoryElt of categoryElts) {
-                categoryOffsets.push({ id: this.props.frontend.restaurants.categories[i].id, top: categoryElt.offsetTop, height: categoryElt.offsetHeight });
-                i++;
-            }
-            this.setState({ categoryOffsets }, () => document.addEventListener('scroll', this.scrollHandler));
-        }
-    }
-
-    componentWillUnmount() {
-        document.removeEventListener('scroll', this.scrollHandler);
-    }
-
+    // Component methods
     scrollHandler = () => {
         const stickyBlockHeight = document.querySelector(".sticky-top").offsetHeight;
         const scrollTop = window.scrollY;
@@ -105,8 +108,51 @@ class Home extends Component {
         }
     }
 
+    setLanguage = lang => {
+        localStorage.setItem('lang', lang);
+        this.props.getContent();
+    }
+
+
+
+    // Lifecycle methods
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (nextProps.frontend.restaurants.restaurant && prevState.id === '') {
+            const { categories } = nextProps.frontend.restaurants;
+            if (categories.length > 0) return updateObject(prevState, { id: categories[0].id });
+        }
+        return prevState;
+    }
+
+    componentDidMount() {
+        this.props.get(this.props.match.params.slug);
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.id === '' && this.state.id !== '') {
+            const categoryElts = document.getElementsByClassName("category");
+            const categoryOffsets = [];
+            let i = 0;
+            for (const categoryElt of categoryElts) {
+                categoryOffsets.push({ id: this.props.frontend.restaurants.categories[i].id, top: categoryElt.offsetTop, height: categoryElt.offsetHeight });
+                i++;
+            }
+            this.setState({ categoryOffsets }, () => document.addEventListener('scroll', this.scrollHandler));
+        }
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('scroll', this.scrollHandler);
+    }
+
     render() {
-        const { content: { currencies }, frontend: { restaurants: { loading, restaurant = {}, categories = [], currency, position } } } = this.props;
+        const {
+            content: {
+                cms: { pages: { components: { food }, frontend: { restaurants: { home } } } },
+                currencies, languages,
+            },
+            frontend: { restaurants: { loading, restaurant = {}, categories = [], currency, position } }
+        } = this.props;
         const { id } = this.state;
 
         const currencyObj = currencies.find(c => c.cc === currency);
@@ -114,15 +160,6 @@ class Home extends Component {
         const categoriesContent = categories.map(category => <Category id={category.id} active={category.id === id} key={JSON.stringify(category) + Math.random()} name={category.name}>
             {category.meals && category.meals.map(meal => <Meal symbol={currencyObj && currencyObj.symbol} position={position} key={JSON.stringify(meal) + Math.random()} {...meal} slug={this.props.match.params.slug} />)}
         </Category>);
-
-        const bannerStyle = {
-            top: 0,
-            left: 0,
-            backgroundImage: `url('${restaurant.banner1}')`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            backgroundSize: 'cover'
-        };
 
         const items = [];
         if (restaurant.banner1) items.push(restaurant.banner1);
@@ -138,7 +175,17 @@ class Home extends Component {
 
             <div className="embed-responsive embed-responsive-16by9 position-relative">
                 <div className="position-absolute w-100 h-100" style={{ top: 0, left: 0 }}>
-                    {items.length > 1 ? <Carousel items={items} /> : <div className="h-100" style={bannerStyle} />}
+                    {items.length > 1 ? <Carousel items={items} /> : <div className="h-100" style={{
+                        top: 0, left: 0,
+                        backgroundImage: `url('${restaurant.banner1}')`,
+                        backgroundRepeat: 'no-repeat',
+                        backgroundPosition: 'center',
+                        backgroundSize: 'cover',
+                    }} />}
+
+                    <div className="position-absolute pt-4 pr-4" style={{ top: 0, right: 0, zIndex: 1100 }}>
+                        <Languages languages={languages} set={this.setLanguage} />
+                    </div>
                 </div>
             </div>
 
@@ -184,7 +231,7 @@ class Home extends Component {
                         </div>
 
                         <div className="d-flex align-items-center">
-                            <div className="text-8">Ratings</div>
+                            <div className="text-8">{food.ratings}</div>
 
                             <div className="mx-1">
                                 {restaurant.mark && <Stars readOnly lg mark={+restaurant.mark} />}
@@ -205,14 +252,14 @@ class Home extends Component {
 
                 <Wrapper className="bg-orange-10 d-flex justify-content-end align-items-center">
                     <div className="text-12 mr-auto">
-                        You are on category
+                        {home.you_are_on_category}
                     </div>
 
                     <div className="mx-2">
                         <div className="rounded-pill bg-orange" style={{ height: 5, width: 18 }} />
                     </div>
 
-                    <SelectCategory categories={categories} id={id} onClick={this.onClick} />
+                    <SelectCategory cms={home} categories={categories} id={id} onClick={this.onClick} />
                 </Wrapper>
             </div>
 
@@ -226,7 +273,8 @@ class Home extends Component {
 const mapStateToProps = state => ({ ...state });
 
 const mapDispatchToProps = dispatch => ({
-    get: slug => dispatch(actions.getRestaurantData(slug)),
+    get: slug => dispatch(frontendActions.getRestaurant(slug)),
+    getContent: () => dispatch(contentActions.getContent()),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));

@@ -263,7 +263,7 @@ class Home extends Component {
                 </Wrapper>
             </div>
 
-            <div className="categories">
+            <div className="categories bg-white">
                 {categoriesContent}
             </div>
         </div>;

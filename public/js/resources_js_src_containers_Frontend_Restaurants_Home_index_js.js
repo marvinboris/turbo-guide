@@ -1041,7 +1041,7 @@ var Home = /*#__PURE__*/function (_Component) {
               style: {
                 top: 0,
                 right: 0,
-                zIndex: 1100
+                zIndex: 1040
               },
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(Languages, {
                 languages: languages,
@@ -1171,7 +1171,7 @@ var Home = /*#__PURE__*/function (_Component) {
             })]
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
-          className: "categories",
+          className: "categories bg-white",
           children: categoriesContent
         })]
       });

@@ -1,4 +1,4 @@
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_src_containers_Frontend_Restaurants_Home_index_js"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_src_containers_Frontend_Restaurants_Test_index_js"],{
 
 /***/ "./resources/js/src/components/UI/Food/Meal/index.js":
 /*!***********************************************************!*\
@@ -267,9 +267,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/src/containers/Frontend/Restaurants/Home/Carousel/index.js":
+/***/ "./resources/js/src/containers/Frontend/Restaurants/Test/Carousel/index.js":
 /*!*********************************************************************************!*\
-  !*** ./resources/js/src/containers/Frontend/Restaurants/Home/Carousel/index.js ***!
+  !*** ./resources/js/src/containers/Frontend/Restaurants/Test/Carousel/index.js ***!
   \*********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -412,9 +412,9 @@ var Carousel = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
-/***/ "./resources/js/src/containers/Frontend/Restaurants/Home/Navigation/index.js":
+/***/ "./resources/js/src/containers/Frontend/Restaurants/Test/Navigation/index.js":
 /*!***********************************************************************************!*\
-  !*** ./resources/js/src/containers/Frontend/Restaurants/Home/Navigation/index.js ***!
+  !*** ./resources/js/src/containers/Frontend/Restaurants/Test/Navigation/index.js ***!
   \***********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -424,7 +424,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _CategoryTitle_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CategoryTitle.css */ "./resources/js/src/containers/Frontend/Restaurants/Home/Navigation/CategoryTitle.css");
+/* harmony import */ var _CategoryTitle_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CategoryTitle.css */ "./resources/js/src/containers/Frontend/Restaurants/Test/Navigation/CategoryTitle.css");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
@@ -434,15 +434,17 @@ __webpack_require__.r(__webpack_exports__);
 var CategoryTitle = function CategoryTitle(_ref) {
   var children = _ref.children,
       onClick = _ref.onClick,
-      active = _ref.active;
+      id = _ref.id,
+      index = _ref.index;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     className: "CategoryTitle pr-2 text-truncate d-inline-block",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      id: "category-nav-".concat(id),
       style: {
         cursor: 'pointer'
       },
       onClick: onClick,
-      className: "rounded-pill d-block border border-orange text-decoration-none text-10 text-truncate ".concat(active ? "active" : ""),
+      className: "rounded-pill d-block border border-orange text-decoration-none text-10 text-truncate ".concat(index === 0 ? 'active' : ''),
       children: children
     })
   });
@@ -453,15 +455,15 @@ var CategoryTitle = function CategoryTitle(_ref) {
       categories = _ref2$categories === void 0 ? [] : _ref2$categories,
       _onClick = _ref2.onClick;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-    children: categories.map(function (_ref3) {
+    children: categories.map(function (_ref3, index) {
       var name = _ref3.name,
-          id = _ref3.id,
-          active = _ref3.active;
+          id = _ref3.id;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(CategoryTitle, {
+        index: index,
+        id: id,
         onClick: function onClick() {
           return _onClick(id);
         },
-        active: active,
         children: name
       }, name + Math.random());
     })
@@ -470,9 +472,9 @@ var CategoryTitle = function CategoryTitle(_ref) {
 
 /***/ }),
 
-/***/ "./resources/js/src/containers/Frontend/Restaurants/Home/SelectCategory/index.js":
+/***/ "./resources/js/src/containers/Frontend/Restaurants/Test/SelectCategory/index.js":
 /*!***************************************************************************************!*\
-  !*** ./resources/js/src/containers/Frontend/Restaurants/Home/SelectCategory/index.js ***!
+  !*** ./resources/js/src/containers/Frontend/Restaurants/Test/SelectCategory/index.js ***!
   \***************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -491,7 +493,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/ListGroupItemText.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
-/* harmony import */ var _SelectCategory_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SelectCategory.css */ "./resources/js/src/containers/Frontend/Restaurants/Home/SelectCategory/SelectCategory.css");
+/* harmony import */ var _SelectCategory_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SelectCategory.css */ "./resources/js/src/containers/Frontend/Restaurants/Test/SelectCategory/SelectCategory.css");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -516,7 +518,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   var categories = _ref.categories,
       id = _ref.id,
       onClick = _ref.onClick,
-      cms = _ref.cms;
+      cms = _ref.cms,
+      categoryId = _ref.categoryId;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -536,6 +539,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     onClick(id);
     toggle();
     setSearch('');
+    document.querySelector('.list-group-item.active').classList.remove('active');
+    document.getElementById("category-list-group-item-".concat(categoryId)).classList.add('active');
   };
 
   var searchChangeHandler = function searchChangeHandler(e) {
@@ -554,7 +559,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "text-truncate",
           children: categories.length > 0 && categories.find(function (category) {
-            return +category.id === +id;
+            return category.id == id;
           }).name
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "position-relative",
@@ -614,9 +619,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             })]
           }), categories.filter(function (category) {
             return category.name.toLowerCase().includes(search.toLowerCase());
-          }).map(function (category) {
+          }).map(function (category, index) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_9__.default, {
-              active: +category.id === +id,
+              active: index === 0,
+              id: "category-list-group-item-".concat(category.id),
               onClick: function onClick() {
                 return click(category.id);
               },
@@ -640,9 +646,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 /***/ }),
 
-/***/ "./resources/js/src/containers/Frontend/Restaurants/Home/index.js":
+/***/ "./resources/js/src/containers/Frontend/Restaurants/Test/index.js":
 /*!************************************************************************!*\
-  !*** ./resources/js/src/containers/Frontend/Restaurants/Home/index.js ***!
+  !*** ./resources/js/src/containers/Frontend/Restaurants/Test/index.js ***!
   \************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -665,13 +671,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_UI_Food_Meal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../components/UI/Food/Meal */ "./resources/js/src/components/UI/Food/Meal/index.js");
 /* harmony import */ var _components_UI_Stars__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../components/UI/Stars */ "./resources/js/src/components/UI/Stars/index.js");
 /* harmony import */ var _components_UI_Spinner__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../components/UI/Spinner */ "./resources/js/src/components/UI/Spinner/index.js");
-/* harmony import */ var _Navigation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Navigation */ "./resources/js/src/containers/Frontend/Restaurants/Home/Navigation/index.js");
-/* harmony import */ var _Carousel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Carousel */ "./resources/js/src/containers/Frontend/Restaurants/Home/Carousel/index.js");
-/* harmony import */ var _SelectCategory__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./SelectCategory */ "./resources/js/src/containers/Frontend/Restaurants/Home/SelectCategory/index.js");
+/* harmony import */ var _Navigation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Navigation */ "./resources/js/src/containers/Frontend/Restaurants/Test/Navigation/index.js");
+/* harmony import */ var _Carousel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Carousel */ "./resources/js/src/containers/Frontend/Restaurants/Test/Carousel/index.js");
+/* harmony import */ var _SelectCategory__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./SelectCategory */ "./resources/js/src/containers/Frontend/Restaurants/Test/SelectCategory/index.js");
 /* harmony import */ var _store_actions_frontend__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../store/actions/frontend */ "./resources/js/src/store/actions/frontend/index.js");
 /* harmony import */ var _store_actions_content__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../../store/actions/content */ "./resources/js/src/store/actions/content.js");
 /* harmony import */ var _shared_utility__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../../shared/utility */ "./resources/js/src/shared/utility.js");
-/* harmony import */ var _Home_css__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Home.css */ "./resources/js/src/containers/Frontend/Restaurants/Home/Home.css");
+/* harmony import */ var _Home_css__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Home.css */ "./resources/js/src/containers/Frontend/Restaurants/Test/Home.css");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -748,7 +754,7 @@ var Category = function Category(_ref2) {
       index = _ref2.index;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
     id: "category-".concat(id),
-    className: "category",
+    className: "category ".concat(index === 0 ? 'active' : ''),
     style: {
       padding: '15px 0px'
     },
@@ -850,6 +856,8 @@ var Languages = function Languages(_ref5) {
   });
 };
 
+var categoryId;
+
 var Home = /*#__PURE__*/function (_Component) {
   _inherits(Home, _Component);
 
@@ -875,17 +883,24 @@ var Home = /*#__PURE__*/function (_Component) {
     _defineProperty(_assertThisInitialized(_this), "scrollHandler", function () {
       var stickyBlockHeight = document.querySelector(".sticky-top").offsetHeight;
       var scrollTop = window.scrollY;
-      var _this$state = _this.state,
-          categoryOffsets = _this$state.categoryOffsets,
-          id = _this$state.id;
+      var categoryOffsets = _this.state.categoryOffsets;
       var activeCategory = categoryOffsets.find(function (el) {
         return el.top - stickyBlockHeight + 51.5 < scrollTop && scrollTop <= el.top + el.height - stickyBlockHeight + 51.5;
       });
-      if (activeCategory && activeCategory.id !== id) _this.setState({
-        id: activeCategory.id
-      });else if (!activeCategory && id !== categoryOffsets[0].id) _this.setState({
-        id: categoryOffsets[0].id
-      });
+
+      if (activeCategory && activeCategory.id !== categoryId) {
+        categoryId = activeCategory.id;
+        document.querySelector('.category.active').classList.remove('active');
+        document.getElementById("category-".concat(categoryId)).classList.add('active');
+        document.querySelector('.CategoryTitle div.active').classList.remove('active');
+        document.getElementById("category-nav-".concat(categoryId)).classList.add('active');
+      } else if (!activeCategory && categoryId !== categoryOffsets[0].id) {
+        categoryId = categoryOffsets[0].id;
+        document.querySelector('.category.active').classList.remove('active');
+        document.getElementById("category-".concat(categoryId)).classList.add('active');
+        document.querySelector('.CategoryTitle div.active').classList.remove('active');
+        document.getElementById("category-nav-".concat(categoryId)).classList.add('active');
+      }
     });
 
     _defineProperty(_assertThisInitialized(_this), "onClick", function (id) {
@@ -898,18 +913,17 @@ var Home = /*#__PURE__*/function (_Component) {
       });
 
       if (category) {
+        document.removeEventListener('scroll', _this.scrollHandler);
+        categoryId = id;
+        document.querySelector('.category.active').classList.remove('active');
+        document.getElementById("category-".concat(categoryId)).classList.add('active');
+        document.querySelector('.CategoryTitle div.active').classList.remove('active');
+        document.getElementById("category-nav-".concat(categoryId)).classList.add('active');
         window.scroll({
           top: category.top - stickyBlockHeight + (index === 0 ? 0 : 53),
           behavior: 'smooth'
         });
-        setTimeout(function () {
-          _this.setState({
-            id: id
-          }, function () {
-            return document.addEventListener('scroll', _this.scrollHandler);
-          });
-        }, 1000);
-        ;
+        document.addEventListener('scroll', _this.scrollHandler);
       }
     });
 
@@ -988,7 +1002,6 @@ var Home = /*#__PURE__*/function (_Component) {
           categories = _this$props$frontend$3 === void 0 ? [] : _this$props$frontend$3,
           currency = _this$props$frontend$.currency,
           position = _this$props$frontend$.position;
-      var id = this.state.id;
       var currencyObj = currencies.find(function (c) {
         return c.cc === currency;
       });
@@ -1015,7 +1028,7 @@ var Home = /*#__PURE__*/function (_Component) {
       var standard = restaurant.plan && restaurant.plan.slug === 'standard';
       var premium = restaurant.plan && restaurant.plan.slug === 'premium';
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
-        className: "Home",
+        className: "Restaurants Home",
         children: [loading && Object.keys(restaurant).length === 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_UI_Spinner__WEBPACK_IMPORTED_MODULE_5__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
           className: "embed-responsive embed-responsive-16by9 position-relative",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
@@ -1143,7 +1156,7 @@ var Home = /*#__PURE__*/function (_Component) {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_Navigation__WEBPACK_IMPORTED_MODULE_6__.default, {
                 categories: categories.map(function (c) {
                   return (0,_shared_utility__WEBPACK_IMPORTED_MODULE_11__.updateObject)(c, {
-                    active: id === c.id
+                    active: categoryId == c.id
                   });
                 }),
                 onClick: this.onClick
@@ -1166,8 +1179,9 @@ var Home = /*#__PURE__*/function (_Component) {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_SelectCategory__WEBPACK_IMPORTED_MODULE_8__.default, {
               cms: home,
               categories: categories,
-              id: id,
-              onClick: this.onClick
+              id: categoryId,
+              onClick: this.onClick,
+              categoryId: categoryId
             })]
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
@@ -1182,6 +1196,7 @@ var Home = /*#__PURE__*/function (_Component) {
     function getDerivedStateFromProps(nextProps, prevState) {
       if (nextProps.frontend.restaurants.restaurant && prevState.id === '') {
         var categories = nextProps.frontend.restaurants.categories;
+        categoryId = categories[0].id;
         if (categories.length > 0) return (0,_shared_utility__WEBPACK_IMPORTED_MODULE_11__.updateObject)(prevState, {
           id: categories[0].id
         });
@@ -1237,9 +1252,9 @@ ___CSS_LOADER_EXPORT___.push([module.id, ".Food .addon-limit {\r\n    max-width:
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/src/containers/Frontend/Restaurants/Home/Home.css":
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/src/containers/Frontend/Restaurants/Test/Home.css":
 /*!**********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/src/containers/Frontend/Restaurants/Home/Home.css ***!
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/src/containers/Frontend/Restaurants/Test/Home.css ***!
   \**********************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
@@ -1254,16 +1269,16 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".Home .categories {\r\n    padding-bottom: calc(100vh - 280px);\r\n}\r\n\r\n.Home .carousel-inner {\r\n    height: 100% !important;\r\n}\r\n\r\n.Home .language-flag {\r\n    overflow: hidden;\r\n    border-radius: 50%;\r\n    width: 20px;\r\n    height: 20px;\r\n    border: 3px solid #fff;\r\n}\r\n\r\n.Home .navigation {\r\n    overflow-x: auto;\r\n}\r\n\r\n.Home #banner {\r\n    position: relative;\r\n    z-index: 10;\r\n}\r\n\r\n.Home .category-select {\r\n    max-width: calc(var(--app-width) - 178px);\r\n}\r\n\r\n@media (max-width: 412px) {\r\n    .Home .category-select {\r\n        max-width: calc(100vw - 178px);\r\n    }\r\n}\r\n\r\n.Home .carousel-indicators li {\r\n    width: 8px;\r\n    height: 8px;\r\n    border-radius: 100%;\r\n    background-color: var(--white-50);\r\n    transition: all 0.25s;\r\n}\r\n\r\n.Home .carousel-indicators li.active {\r\n    background-color: var(--white-80);\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".Restaurants.Home .categories {\r\n    padding-bottom: calc(100vh - 280px);\r\n}\r\n\r\n.Restaurants.Home .carousel-inner {\r\n    height: 100% !important;\r\n}\r\n\r\n.Restaurants.Home .language-flag {\r\n    overflow: hidden;\r\n    border-radius: 50%;\r\n    width: 20px;\r\n    height: 20px;\r\n    border: 3px solid #fff;\r\n}\r\n\r\n.Restaurants.Home .navigation {\r\n    overflow-x: auto;\r\n}\r\n\r\n.Restaurants.Home #banner {\r\n    position: relative;\r\n    z-index: 10;\r\n}\r\n\r\n.Restaurants.Home .category-select {\r\n    max-width: calc(var(--app-width) - 178px);\r\n}\r\n\r\n@media (max-width: 412px) {\r\n    .Restaurants.Home .category-select {\r\n        max-width: calc(100vw - 178px);\r\n    }\r\n}\r\n\r\n.Restaurants.Home .carousel-indicators li {\r\n    width: 8px;\r\n    height: 8px;\r\n    border-radius: 100%;\r\n    background-color: var(--white-50);\r\n    transition: all 0.25s;\r\n}\r\n\r\n.Restaurants.Home .carousel-indicators li.active {\r\n    background-color: var(--white-80);\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/src/containers/Frontend/Restaurants/Home/Navigation/CategoryTitle.css":
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/src/containers/Frontend/Restaurants/Test/Navigation/CategoryTitle.css":
 /*!******************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/src/containers/Frontend/Restaurants/Home/Navigation/CategoryTitle.css ***!
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/src/containers/Frontend/Restaurants/Test/Navigation/CategoryTitle.css ***!
   \******************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
@@ -1285,9 +1300,9 @@ ___CSS_LOADER_EXPORT___.push([module.id, ".CategoryTitle div {\r\n    color: var
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/src/containers/Frontend/Restaurants/Home/SelectCategory/SelectCategory.css":
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/src/containers/Frontend/Restaurants/Test/SelectCategory/SelectCategory.css":
 /*!***********************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/src/containers/Frontend/Restaurants/Home/SelectCategory/SelectCategory.css ***!
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/src/containers/Frontend/Restaurants/Test/SelectCategory/SelectCategory.css ***!
   \***********************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
@@ -2135,9 +2150,9 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
-/***/ "./resources/js/src/containers/Frontend/Restaurants/Home/Home.css":
+/***/ "./resources/js/src/containers/Frontend/Restaurants/Test/Home.css":
 /*!************************************************************************!*\
-  !*** ./resources/js/src/containers/Frontend/Restaurants/Home/Home.css ***!
+  !*** ./resources/js/src/containers/Frontend/Restaurants/Test/Home.css ***!
   \************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2148,7 +2163,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_Home_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./Home.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/src/containers/Frontend/Restaurants/Home/Home.css");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_Home_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./Home.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/src/containers/Frontend/Restaurants/Test/Home.css");
 
             
 
@@ -2165,9 +2180,9 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
-/***/ "./resources/js/src/containers/Frontend/Restaurants/Home/Navigation/CategoryTitle.css":
+/***/ "./resources/js/src/containers/Frontend/Restaurants/Test/Navigation/CategoryTitle.css":
 /*!********************************************************************************************!*\
-  !*** ./resources/js/src/containers/Frontend/Restaurants/Home/Navigation/CategoryTitle.css ***!
+  !*** ./resources/js/src/containers/Frontend/Restaurants/Test/Navigation/CategoryTitle.css ***!
   \********************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2178,7 +2193,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_CategoryTitle_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./CategoryTitle.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/src/containers/Frontend/Restaurants/Home/Navigation/CategoryTitle.css");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_CategoryTitle_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./CategoryTitle.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/src/containers/Frontend/Restaurants/Test/Navigation/CategoryTitle.css");
 
             
 
@@ -2195,9 +2210,9 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
-/***/ "./resources/js/src/containers/Frontend/Restaurants/Home/SelectCategory/SelectCategory.css":
+/***/ "./resources/js/src/containers/Frontend/Restaurants/Test/SelectCategory/SelectCategory.css":
 /*!*************************************************************************************************!*\
-  !*** ./resources/js/src/containers/Frontend/Restaurants/Home/SelectCategory/SelectCategory.css ***!
+  !*** ./resources/js/src/containers/Frontend/Restaurants/Test/SelectCategory/SelectCategory.css ***!
   \*************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2208,7 +2223,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_SelectCategory_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./SelectCategory.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/src/containers/Frontend/Restaurants/Home/SelectCategory/SelectCategory.css");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_SelectCategory_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./SelectCategory.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/src/containers/Frontend/Restaurants/Test/SelectCategory/SelectCategory.css");
 
             
 

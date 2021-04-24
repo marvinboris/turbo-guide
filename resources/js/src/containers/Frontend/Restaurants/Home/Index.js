@@ -25,8 +25,8 @@ const Wrapper = ({ children, className, style }) => <div className={className} s
     {children}
 </div>;
 
-const Category = ({ children, name, id, active }) => <div id={`category-${id}`} className="category" style={{ padding: '15px 0px' }}>
-    {!active && <div className="mb-3 d-flex justify-content-end" style={{ paddingRight: 11 }}>
+const Category = ({ children, name, id, index }) => <div id={`category-${id}`} className="category" style={{ padding: '15px 0px' }}>
+    {index > 0 && <div className="mb-3 d-flex justify-content-end" style={{ paddingRight: 11 }}>
         <div className="text-13 text-500 px-4 py-2 bg-orange-30 text-orange rounded-pill">
             <div className="px-1">{name}</div>
         </div>
@@ -157,7 +157,7 @@ class Home extends Component {
 
         const currencyObj = currencies.find(c => c.cc === currency);
 
-        const categoriesContent = categories.map(category => <Category id={category.id} active={category.id === id} key={JSON.stringify(category) + Math.random()} name={category.name}>
+        const categoriesContent = categories.map((category, index) => <Category id={category.id} index={index} key={JSON.stringify(category) + Math.random()} name={category.name}>
             {category.meals && category.meals.map(meal => <Meal symbol={currencyObj && currencyObj.symbol} position={position} key={JSON.stringify(meal) + Math.random()} {...meal} slug={this.props.match.params.slug} />)}
         </Category>);
 

@@ -873,41 +873,43 @@ var Home = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "scrollHandler", function () {
-      var stickyBlockHeight = document.querySelector(".sticky-top").offsetHeight;
-      var scrollTop = window.scrollY;
-      var _this$state = _this.state,
-          categoryOffsets = _this$state.categoryOffsets,
-          id = _this$state.id;
-      var activeCategory = categoryOffsets.find(function (el) {
-        return el.top - stickyBlockHeight + 51.5 < scrollTop && scrollTop <= el.top + el.height - stickyBlockHeight + 51.5;
-      });
-
-      if (activeCategory && activeCategory.id !== id) {
-        _this.setState({
-          id: activeCategory.id
-        }, function () {
-          var index = _this.props.frontend.restaurants.categories.findIndex(function (category) {
-            return category.id == _this.state.id;
-          });
-
-          document.querySelector('.navigation').scroll({
-            left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11,
-            behavior: 'smooth'
-          });
+      if (document.querySelector('.sticky-top')) {
+        var stickyBlockHeight = document.querySelector(".sticky-top").offsetHeight;
+        var scrollTop = window.scrollY;
+        var _this$state = _this.state,
+            categoryOffsets = _this$state.categoryOffsets,
+            id = _this$state.id;
+        var activeCategory = categoryOffsets.find(function (el) {
+          return el.top - stickyBlockHeight + 51.5 < scrollTop && scrollTop <= el.top + el.height - stickyBlockHeight + 51.5;
         });
-      } else if (!activeCategory && id !== categoryOffsets[0].id) {
-        _this.setState({
-          id: categoryOffsets[0].id
-        }, function () {
-          var index = _this.props.frontend.restaurants.categories.findIndex(function (category) {
-            return category.id === _this.state.id;
-          });
 
-          document.querySelector('.navigation').scroll({
-            left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11,
-            behavior: 'smooth'
+        if (activeCategory && activeCategory.id !== id) {
+          _this.setState({
+            id: activeCategory.id
+          }, function () {
+            var index = _this.props.frontend.restaurants.categories.findIndex(function (category) {
+              return category.id == _this.state.id;
+            });
+
+            document.querySelector('.navigation').scroll({
+              left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11,
+              behavior: 'smooth'
+            });
           });
-        });
+        } else if (!activeCategory && id !== categoryOffsets[0].id) {
+          _this.setState({
+            id: categoryOffsets[0].id
+          }, function () {
+            var index = _this.props.frontend.restaurants.categories.findIndex(function (category) {
+              return category.id === _this.state.id;
+            });
+
+            document.querySelector('.navigation').scroll({
+              left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11,
+              behavior: 'smooth'
+            });
+          });
+        }
       }
     });
 

@@ -82,23 +82,26 @@ class Home extends Component {
 
     // Component methods
     scrollHandler = () => {
-        const stickyBlockHeight = document.querySelector(".sticky-top").offsetHeight;
-        const scrollTop = window.scrollY;
+        if (document.querySelector('.sticky-top')) {
+            const stickyBlockHeight = document.querySelector(".sticky-top").offsetHeight;
+            const scrollTop = window.scrollY;
 
-        const { categoryOffsets, id } = this.state;
-        const activeCategory = categoryOffsets.find(el => el.top - stickyBlockHeight + 51.5 < scrollTop && scrollTop <= el.top + el.height - stickyBlockHeight + 51.5);
+            const { categoryOffsets, id } = this.state;
+            const activeCategory = categoryOffsets.find(el => el.top - stickyBlockHeight + 51.5 < scrollTop && scrollTop <= el.top + el.height - stickyBlockHeight + 51.5);
 
-        if (activeCategory && activeCategory.id !== id) {
-            this.setState({ id: activeCategory.id }, () => {
-                const index = this.props.frontend.restaurants.categories.findIndex(category => category.id == this.state.id);
-                document.querySelector('.navigation').scroll({ left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11, behavior: 'smooth' });
-            });
-        } else if (!activeCategory && id !== categoryOffsets[0].id) {
-            this.setState({ id: categoryOffsets[0].id }, () => {
-                const index = this.props.frontend.restaurants.categories.findIndex(category => category.id === this.state.id);
-                document.querySelector('.navigation').scroll({ left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11, behavior: 'smooth' });
-            });
+            if (activeCategory && activeCategory.id !== id) {
+                this.setState({ id: activeCategory.id }, () => {
+                    const index = this.props.frontend.restaurants.categories.findIndex(category => category.id == this.state.id);
+                    document.querySelector('.navigation').scroll({ left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11, behavior: 'smooth' });
+                });
+            } else if (!activeCategory && id !== categoryOffsets[0].id) {
+                this.setState({ id: categoryOffsets[0].id }, () => {
+                    const index = this.props.frontend.restaurants.categories.findIndex(category => category.id === this.state.id);
+                    document.querySelector('.navigation').scroll({ left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11, behavior: 'smooth' });
+                });
+            }
         }
+
     }
 
     onClick = id => {

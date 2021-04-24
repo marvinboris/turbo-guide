@@ -151,7 +151,7 @@ class Home extends Component {
     }
 
     componentWillUnmount() {
-        document.removeEventListener('scroll', this.scrollHandler);
+        // document.removeEventListener('scroll', this.scrollHandler);
     }
 
     render() {

@@ -891,7 +891,7 @@ var Home = /*#__PURE__*/function (_Component) {
           });
 
           document.querySelector('.navigation').scroll({
-            left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft,
+            left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11,
             behavior: 'smooth'
           });
         });
@@ -904,7 +904,7 @@ var Home = /*#__PURE__*/function (_Component) {
           });
 
           document.querySelector('.navigation').scroll({
-            left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft,
+            left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11,
             behavior: 'smooth'
           });
         });

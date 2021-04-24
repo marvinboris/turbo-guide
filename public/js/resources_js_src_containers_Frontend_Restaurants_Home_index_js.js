@@ -988,7 +988,8 @@ var Home = /*#__PURE__*/function (_Component) {
     }
   }, {
     key: "componentWillUnmount",
-    value: function componentWillUnmount() {// document.removeEventListener('scroll', this.scrollHandler);
+    value: function componentWillUnmount() {
+      document.removeEventListener('scroll', this.scrollHandler);
     }
   }, {
     key: "render",

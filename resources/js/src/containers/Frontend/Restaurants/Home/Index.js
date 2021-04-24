@@ -88,8 +88,17 @@ class Home extends Component {
         const { categoryOffsets, id } = this.state;
         const activeCategory = categoryOffsets.find(el => el.top - stickyBlockHeight + 51.5 < scrollTop && scrollTop <= el.top + el.height - stickyBlockHeight + 51.5);
 
-        if (activeCategory && activeCategory.id !== id) this.setState({ id: activeCategory.id });
-        else if (!activeCategory && id !== categoryOffsets[0].id) this.setState({ id: categoryOffsets[0].id });
+        if (activeCategory && activeCategory.id !== id) {
+            this.setState({ id: activeCategory.id }, () => {
+                const index = this.props.frontend.restaurants.categories.findIndex(category => category.id == this.state.id);
+                document.querySelector('.navigation').scrollTo(document.getElementsByClassName('CategoryTitle')[index].offsetLeft, 0);
+            });
+        } else if (!activeCategory && id !== categoryOffsets[0].id) {
+            this.setState({ id: categoryOffsets[0].id }, () => {
+                const index = this.props.frontend.restaurants.categories.findIndex(category => category.id === this.state.id);
+                document.querySelector('.navigation').scrollTo(document.getElementsByClassName('CategoryTitle')[index].offsetLeft, 0);
+            });
+        }
     }
 
     onClick = id => {

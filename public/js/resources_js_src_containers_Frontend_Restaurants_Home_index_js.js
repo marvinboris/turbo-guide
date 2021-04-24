@@ -881,11 +881,28 @@ var Home = /*#__PURE__*/function (_Component) {
       var activeCategory = categoryOffsets.find(function (el) {
         return el.top - stickyBlockHeight + 51.5 < scrollTop && scrollTop <= el.top + el.height - stickyBlockHeight + 51.5;
       });
-      if (activeCategory && activeCategory.id !== id) _this.setState({
-        id: activeCategory.id
-      });else if (!activeCategory && id !== categoryOffsets[0].id) _this.setState({
-        id: categoryOffsets[0].id
-      });
+
+      if (activeCategory && activeCategory.id !== id) {
+        _this.setState({
+          id: activeCategory.id
+        }, function () {
+          var index = _this.props.frontend.restaurants.categories.findIndex(function (category) {
+            return category.id == _this.state.id;
+          });
+
+          document.querySelector('.navigation').scrollTo(document.getElementsByClassName('CategoryTitle')[index].offsetLeft, 0);
+        });
+      } else if (!activeCategory && id !== categoryOffsets[0].id) {
+        _this.setState({
+          id: categoryOffsets[0].id
+        }, function () {
+          var index = _this.props.frontend.restaurants.categories.findIndex(function (category) {
+            return category.id === _this.state.id;
+          });
+
+          document.querySelector('.navigation').scrollTo(document.getElementsByClassName('CategoryTitle')[index].offsetLeft, 0);
+        });
+      }
     });
 
     _defineProperty(_assertThisInitialized(_this), "onClick", function (id) {

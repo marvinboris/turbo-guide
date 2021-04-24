@@ -890,7 +890,10 @@ var Home = /*#__PURE__*/function (_Component) {
             return category.id == _this.state.id;
           });
 
-          document.querySelector('.navigation').scrollTo(document.getElementsByClassName('CategoryTitle')[index].offsetLeft, 0);
+          document.querySelector('.navigation').scroll({
+            left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft,
+            behavior: 'smooth'
+          });
         });
       } else if (!activeCategory && id !== categoryOffsets[0].id) {
         _this.setState({
@@ -900,7 +903,10 @@ var Home = /*#__PURE__*/function (_Component) {
             return category.id === _this.state.id;
           });
 
-          document.querySelector('.navigation').scrollTo(document.getElementsByClassName('CategoryTitle')[index].offsetLeft, 0);
+          document.querySelector('.navigation').scroll({
+            left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft,
+            behavior: 'smooth'
+          });
         });
       }
     });

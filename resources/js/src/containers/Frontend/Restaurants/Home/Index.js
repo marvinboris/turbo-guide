@@ -91,12 +91,12 @@ class Home extends Component {
         if (activeCategory && activeCategory.id !== id) {
             this.setState({ id: activeCategory.id }, () => {
                 const index = this.props.frontend.restaurants.categories.findIndex(category => category.id == this.state.id);
-                document.querySelector('.navigation').scrollTo(document.getElementsByClassName('CategoryTitle')[index].offsetLeft, 0);
+                document.querySelector('.navigation').scroll({ left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft, behavior: 'smooth' });
             });
         } else if (!activeCategory && id !== categoryOffsets[0].id) {
             this.setState({ id: categoryOffsets[0].id }, () => {
                 const index = this.props.frontend.restaurants.categories.findIndex(category => category.id === this.state.id);
-                document.querySelector('.navigation').scrollTo(document.getElementsByClassName('CategoryTitle')[index].offsetLeft, 0);
+                document.querySelector('.navigation').scroll({ left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft, behavior: 'smooth' });
             });
         }
     }

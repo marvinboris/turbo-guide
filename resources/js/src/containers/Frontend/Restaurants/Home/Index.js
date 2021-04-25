@@ -122,6 +122,7 @@ class Home extends Component {
         });
         if (category) {
             window.scroll({ top: category.top - stickyBlockHeight + (index === 0 ? 0 : 53), behavior: 'smooth' });
+            document.querySelector('.navigation').scroll({ left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11, behavior: 'smooth' });
             this.setState({ id }, () => setTimeout(() => {
                 document.addEventListener('scroll', this.scrollHandler);
             }, 1500));

@@ -850,6 +850,8 @@ var Languages = function Languages(_ref5) {
   });
 };
 
+var timeout;
+
 var Home = /*#__PURE__*/function (_Component) {
   _inherits(Home, _Component);
 
@@ -872,48 +874,56 @@ var Home = /*#__PURE__*/function (_Component) {
       modal: false
     });
 
-    _defineProperty(_assertThisInitialized(_this), "scrollHandler", function () {
-      if (document.querySelector('.sticky-top')) {
-        var stickyBlockHeight = document.querySelector(".sticky-top").offsetHeight;
-        var scrollTop = window.scrollY;
-        var _this$state = _this.state,
-            categoryOffsets = _this$state.categoryOffsets,
-            id = _this$state.id;
-        var activeCategory = categoryOffsets.find(function (el) {
-          return el.top - stickyBlockHeight + 51.5 < scrollTop && scrollTop <= el.top + el.height - stickyBlockHeight + 51.5;
+    _defineProperty(_assertThisInitialized(_this), "scrollProcess", function () {
+      var stickyBlockHeight = document.querySelector(".sticky-top").offsetHeight;
+      var scrollTop = window.scrollY;
+      var _this$state = _this.state,
+          categoryOffsets = _this$state.categoryOffsets,
+          id = _this$state.id;
+      var activeCategory = categoryOffsets.find(function (el) {
+        return el.top - stickyBlockHeight + 51.5 < scrollTop && scrollTop <= el.top + el.height - stickyBlockHeight + 51.5;
+      });
+
+      if (activeCategory && activeCategory.id !== id) {
+        _this.setState({
+          id: activeCategory.id
+        }, function () {
+          var index = _this.props.frontend.restaurants.categories.findIndex(function (category) {
+            return category.id == _this.state.id;
+          });
+
+          document.querySelector('.navigation').scroll({
+            left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11,
+            behavior: 'smooth'
+          });
         });
-
-        if (activeCategory && activeCategory.id !== id) {
-          _this.setState({
-            id: activeCategory.id
-          }, function () {
-            var index = _this.props.frontend.restaurants.categories.findIndex(function (category) {
-              return category.id == _this.state.id;
-            });
-
-            document.querySelector('.navigation').scroll({
-              left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11,
-              behavior: 'smooth'
-            });
+      } else if (!activeCategory && id !== categoryOffsets[0].id) {
+        _this.setState({
+          id: categoryOffsets[0].id
+        }, function () {
+          var index = _this.props.frontend.restaurants.categories.findIndex(function (category) {
+            return category.id === _this.state.id;
           });
-        } else if (!activeCategory && id !== categoryOffsets[0].id) {
-          _this.setState({
-            id: categoryOffsets[0].id
-          }, function () {
-            var index = _this.props.frontend.restaurants.categories.findIndex(function (category) {
-              return category.id === _this.state.id;
-            });
 
-            document.querySelector('.navigation').scroll({
-              left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11,
-              behavior: 'smooth'
-            });
+          document.querySelector('.navigation').scroll({
+            left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11,
+            behavior: 'smooth'
           });
-        }
+        });
       }
     });
 
+    _defineProperty(_assertThisInitialized(_this), "scrollHandler", function () {
+      if (timeout) clearTimeout(timeout);
+      timeout = setTimeout(function () {
+        _this.scrollProcess();
+
+        clearTimeout(timeout);
+      }, 50);
+    });
+
     _defineProperty(_assertThisInitialized(_this), "onClick", function (id) {
+      document.removeEventListener('scroll', _this.scrollHandler);
       var stickyBlockHeight = document.querySelector(".sticky-top").offsetHeight;
       var categoryOffsets = _this.state.categoryOffsets;
       var index = 0;
@@ -927,14 +937,14 @@ var Home = /*#__PURE__*/function (_Component) {
           top: category.top - stickyBlockHeight + (index === 0 ? 0 : 53),
           behavior: 'smooth'
         });
-        setTimeout(function () {
-          _this.setState({
-            id: id
-          }, function () {
-            return document.addEventListener('scroll', _this.scrollHandler);
-          });
-        }, 1000);
-        ;
+
+        _this.setState({
+          id: id
+        }, function () {
+          return setTimeout(function () {
+            document.addEventListener('scroll', _this.scrollHandler);
+          }, 1500);
+        });
       }
     });
 
@@ -951,13 +961,12 @@ var Home = /*#__PURE__*/function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.get(this.props.match.params.slug);
+      document.addEventListener('scroll', this.scrollHandler);
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
-      var _this2 = this;
-
-      if (prevState.id === '' && this.state.id !== '') {
+      if (this.state.id !== '' && prevState.categoryOffsets.length === 0) {
         var categoryElts = document.getElementsByClassName("category");
         var categoryOffsets = [];
         var i = 0;
@@ -983,8 +992,6 @@ var Home = /*#__PURE__*/function (_Component) {
 
         this.setState({
           categoryOffsets: categoryOffsets
-        }, function () {
-          return document.addEventListener('scroll', _this2.scrollHandler);
         });
       }
     }
@@ -996,7 +1003,7 @@ var Home = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this2 = this;
 
       var _this$props = this.props,
           _this$props$content = _this$props.content,
@@ -1027,7 +1034,7 @@ var Home = /*#__PURE__*/function (_Component) {
               symbol: currencyObj && currencyObj.symbol,
               position: position
             }, meal), {}, {
-              slug: _this3.props.match.params.slug
+              slug: _this2.props.match.params.slug
             }), JSON.stringify(meal) + Math.random());
           })
         }, JSON.stringify(category) + Math.random());
@@ -1212,7 +1219,7 @@ var Home = /*#__PURE__*/function (_Component) {
         });
       }
 
-      return prevState;
+      return null;
     }
   }]);
 

@@ -71,6 +71,8 @@ const Languages = ({ languages, set }) => {
     </UncontrolledDropdown>;
 };
 
+let timeout;
+
 class Home extends Component {
     state = {
         id: '',
@@ -81,30 +83,36 @@ class Home extends Component {
 
 
     // Component methods
-    scrollHandler = () => {
-        if (document.querySelector('.sticky-top')) {
-            const stickyBlockHeight = document.querySelector(".sticky-top").offsetHeight;
-            const scrollTop = window.scrollY;
+    scrollProcess = () => {
+        const stickyBlockHeight = document.querySelector(".sticky-top").offsetHeight;
+        const scrollTop = window.scrollY;
 
-            const { categoryOffsets, id } = this.state;
-            const activeCategory = categoryOffsets.find(el => el.top - stickyBlockHeight + 51.5 < scrollTop && scrollTop <= el.top + el.height - stickyBlockHeight + 51.5);
+        const { categoryOffsets, id } = this.state;
+        const activeCategory = categoryOffsets.find(el => el.top - stickyBlockHeight + 51.5 < scrollTop && scrollTop <= el.top + el.height - stickyBlockHeight + 51.5);
 
-            if (activeCategory && activeCategory.id !== id) {
-                this.setState({ id: activeCategory.id }, () => {
-                    const index = this.props.frontend.restaurants.categories.findIndex(category => category.id == this.state.id);
-                    document.querySelector('.navigation').scroll({ left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11, behavior: 'smooth' });
-                });
-            } else if (!activeCategory && id !== categoryOffsets[0].id) {
-                this.setState({ id: categoryOffsets[0].id }, () => {
-                    const index = this.props.frontend.restaurants.categories.findIndex(category => category.id === this.state.id);
-                    document.querySelector('.navigation').scroll({ left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11, behavior: 'smooth' });
-                });
-            }
+        if (activeCategory && activeCategory.id !== id) {
+            this.setState({ id: activeCategory.id }, () => {
+                const index = this.props.frontend.restaurants.categories.findIndex(category => category.id == this.state.id);
+                document.querySelector('.navigation').scroll({ left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11, behavior: 'smooth' });
+            });
+        } else if (!activeCategory && id !== categoryOffsets[0].id) {
+            this.setState({ id: categoryOffsets[0].id }, () => {
+                const index = this.props.frontend.restaurants.categories.findIndex(category => category.id === this.state.id);
+                document.querySelector('.navigation').scroll({ left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11, behavior: 'smooth' });
+            });
         }
+    }
 
+    scrollHandler = () => {
+        if (timeout) clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            this.scrollProcess();
+            clearTimeout(timeout);
+        }, 50);
     }
 
     onClick = id => {
+        document.removeEventListener('scroll', this.scrollHandler)
         const stickyBlockHeight = document.querySelector(".sticky-top").offsetHeight;
         const { categoryOffsets } = this.state;
         let index = 0;
@@ -114,9 +122,9 @@ class Home extends Component {
         });
         if (category) {
             window.scroll({ top: category.top - stickyBlockHeight + (index === 0 ? 0 : 53), behavior: 'smooth' });
-            setTimeout(() => {
-                this.setState({ id }, () => document.addEventListener('scroll', this.scrollHandler))
-            }, 1000);;
+            this.setState({ id }, () => setTimeout(() => {
+                document.addEventListener('scroll', this.scrollHandler);
+            }, 1500));
         }
     }
 
@@ -133,15 +141,16 @@ class Home extends Component {
             const { categories } = nextProps.frontend.restaurants;
             if (categories.length > 0) return updateObject(prevState, { id: categories[0].id });
         }
-        return prevState;
+        return null;
     }
 
     componentDidMount() {
         this.props.get(this.props.match.params.slug);
+        document.addEventListener('scroll', this.scrollHandler);
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevState.id === '' && this.state.id !== '') {
+        if (this.state.id !== '' && prevState.categoryOffsets.length === 0) {
             const categoryElts = document.getElementsByClassName("category");
             const categoryOffsets = [];
             let i = 0;
@@ -149,7 +158,7 @@ class Home extends Component {
                 categoryOffsets.push({ id: this.props.frontend.restaurants.categories[i].id, top: categoryElt.offsetTop, height: categoryElt.offsetHeight });
                 i++;
             }
-            this.setState({ categoryOffsets }, () => document.addEventListener('scroll', this.scrollHandler));
+            this.setState({ categoryOffsets });
         }
     }
 

@@ -122,10 +122,14 @@ class Home extends Component {
         });
         if (category) {
             window.scroll({ top: category.top - stickyBlockHeight + (index === 0 ? 0 : 53), behavior: 'smooth' });
-            this.setState({ id }, () => setTimeout(() => {
+            this.setState({ id }, () => {
+                const index = this.props.frontend.restaurants.categories.findIndex(category => category.id === this.state.id);
                 document.querySelector('.navigation').scroll({ left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11, behavior: 'smooth' });
-                document.addEventListener('scroll', this.scrollHandler);
-            }, 1500));
+                
+                setTimeout(() => {
+                    document.addEventListener('scroll', this.scrollHandler);
+                }, 1500);
+            });
         }
     }
 

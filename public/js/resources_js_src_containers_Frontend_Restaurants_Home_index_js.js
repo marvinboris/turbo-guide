@@ -1217,8 +1217,10 @@ var Home = /*#__PURE__*/function (_Component) {
     value: // Lifecycle methods
     function getDerivedStateFromProps(nextProps, prevState) {
       if (nextProps.frontend.restaurants.restaurant && prevState.id === '') {
-        var categories = nextProps.frontend.restaurants.categories;
-        document.title = "".concat(nextProps.frontend.restaurants.restaurant.name, " - ").concat(document.title);
+        var _nextProps$frontend$r = nextProps.frontend.restaurants,
+            categories = _nextProps$frontend$r.categories,
+            name = _nextProps$frontend$r.restaurant.name;
+        if (!document.title.includes("".concat(name, " - "))) document.title = "".concat(name, " - ").concat(document.title);
         if (categories.length > 0) return (0,_shared_utility__WEBPACK_IMPORTED_MODULE_11__.updateObject)(prevState, {
           id: categories[0].id
         });

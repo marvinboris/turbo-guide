@@ -942,6 +942,10 @@ var Home = /*#__PURE__*/function (_Component) {
           id: id
         }, function () {
           return setTimeout(function () {
+            document.querySelector('.navigation').scroll({
+              left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11,
+              behavior: 'smooth'
+            });
             document.addEventListener('scroll', _this.scrollHandler);
           }, 1500);
         });
@@ -1214,6 +1218,7 @@ var Home = /*#__PURE__*/function (_Component) {
     function getDerivedStateFromProps(nextProps, prevState) {
       if (nextProps.frontend.restaurants.restaurant && prevState.id === '') {
         var categories = nextProps.frontend.restaurants.categories;
+        document.title = "".concat(nextProps.frontend.restaurants.restaurant.name, " - ").concat(document.title);
         if (categories.length > 0) return (0,_shared_utility__WEBPACK_IMPORTED_MODULE_11__.updateObject)(prevState, {
           id: categories[0].id
         });

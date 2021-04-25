@@ -140,6 +140,7 @@ class Home extends Component {
     static getDerivedStateFromProps(nextProps, prevState) {
         if (nextProps.frontend.restaurants.restaurant && prevState.id === '') {
             const { categories } = nextProps.frontend.restaurants;
+            document.title = `${nextProps.frontend.restaurants.restaurant.name} - ${document.title}`;
             if (categories.length > 0) return updateObject(prevState, { id: categories[0].id });
         }
         return null;

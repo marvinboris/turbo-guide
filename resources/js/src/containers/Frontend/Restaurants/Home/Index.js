@@ -120,6 +120,7 @@ class Home extends Component {
             index = i;
             return el.id === id;
         });
+        
         if (category) {
             window.scroll({ top: category.top - stickyBlockHeight + (index === 0 ? 0 : 53), behavior: 'smooth' });
             this.setState({ id }, () => {

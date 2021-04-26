@@ -112,7 +112,10 @@ class UtilController extends Controller
                 'role' => $role
             ];
         } else if ($type === 'admin') $data = array_merge($data, []);
-        else if ($type === 'restaurant') $data = array_merge($data, []);
+        else if ($type === 'restaurant') {
+            $data = array_merge($data, []);
+            if (!str_contains($data['qr'], $data['slug'] . '.png')) $user->qrCode();
+        }
         return response()->json(['data' => $data, 'role' => $type,]);
     }
 

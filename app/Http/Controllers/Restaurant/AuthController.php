@@ -86,6 +86,8 @@ class AuthController extends Controller
         $token->expires_at = Carbon::now()->addWeeks(1);
         $token->save();
 
+        if ($restaurant->slug && !str_contains($restaurant->qr, $restaurant->slug . '.png')) $restaurant->qrCode();
+
         return response()->json([
             'access_token' => $tokenResult->accessToken,
             'token_type' => 'Bearer',

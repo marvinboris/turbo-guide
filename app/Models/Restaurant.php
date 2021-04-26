@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\UtilController;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -174,5 +175,74 @@ class Restaurant extends Authenticatable
         }
 
         return $code;
+    }
+
+    public function qrCode()
+    {
+        $curl = curl_init();
+
+        curl_setopt_array($curl, [
+            CURLOPT_URL => "https://qrcode-monkey.p.rapidapi.com/qr/custom",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => "{\r\n    
+                \"data\": \"" . env('APP_URL') . "/restaurants/" . $this->slug . "\",\r\n    
+                \"config\": {\r\n    
+                    \"body\": \"circle-zebra-vertical\",\r\n    
+                    \"eye\": \"frame1\",\r\n    
+                    \"eyeBall\": \"ball14\",\r\n    
+                    \"erf1\": [\"fh\"],\r\n    
+                    \"erf2\": [],\r\n    
+                    \"erf3\": [\"fv\",\"fh\"],\r\n    
+                    \"brf1\": [],\r\n    
+                    \"brf2\": [],\r\n    
+                    \"brf3\": [],\r\n    
+                    \"bodyColor\": \"#0277BD\",\r\n    
+                    \"bgColor\": \"#FFFFFF\",\r\n    
+                    \"eye1Color\": \"#075685\",\r\n    
+                    \"eye2Color\": \"#075685\",\r\n    
+                    \"eye3Color\": \"#075685\",\r\n    
+                    \"eyeBall1Color\": \"#0277BD\",\r\n    
+                    \"eyeBall2Color\": \"#0277BD\",\r\n    
+                    \"eyeBall3Color\": \"#0277BD\",\r\n    
+                    \"gradientColor1\": \"#e98809\",\r\n    
+                    \"gradientColor2\": \"#000000\",\r\n    
+                    \"gradientType\": \"linear\",\r\n    
+                    \"gradientOnEyes\": true,\r\n    
+                    \"logo\": \"https://qrmenu.briluce.com/images/logo.png\",\r\n    
+                    \"logoMode\": \"clean\"\r\n    
+                },\r\n    
+                \"size\": 600,\r\n    
+                \"download\": false,\r\n    
+                \"file\": \"png\"\r\n
+            }",
+            CURLOPT_HTTPHEADER => [
+                "content-type: application/json",
+                "x-rapidapi-host: qrcode-monkey.p.rapidapi.com",
+                "x-rapidapi-key: " . env('RAPID_API_KEY')
+            ],
+        ]);
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            return response()->json([
+                'message' => UtilController::message("cURL Error #:" . $err, 'danger'),
+            ]);
+        } else {
+            $qrName = $this->slug . '.png';
+            file_put_contents(public_path('images/restaurants/qr/' . $qrName), $response);
+            $this->update([
+                'qr' => $qrName,
+            ]);
+        }
     }
 }

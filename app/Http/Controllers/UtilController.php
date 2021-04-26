@@ -114,7 +114,7 @@ class UtilController extends Controller
         } else if ($type === 'admin') $data = array_merge($data, []);
         else if ($type === 'restaurant') {
             $data = array_merge($data, []);
-            if (!$user->qr && $user->slug) $user->qrCode();
+            if (!$user->qr && $user->name) $user->qrCode();
         }
         return response()->json(['data' => $data, 'role' => $type,]);
     }

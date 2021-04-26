@@ -35,11 +35,11 @@ class SettingsController extends Controller
             'position' => 'nullable|integer',
         ]);
 
-        $restaurant_name = $restaurant->name;
+        $restaurant_slug = $restaurant->slug;
 
         $restaurant->update($input);
 
-        if ($request->name !== $restaurant_name || !str_contains($restaurant->qr, $restaurant->slug . '.png')) $restaurant->qrCode();
+        if ($restaurant->slug !== $restaurant_slug || !$restaurant->qr) $restaurant->qrCode();
 
         return response()->json([
             'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['settings']['restaurant'], 'success'),

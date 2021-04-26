@@ -45,6 +45,7 @@ class AuthController extends Controller
             'md5' => md5($token),
             'password' => Hash::make($password),
             'language_id' => 1,
+            'slug' => 'temp'
         ]);
         Mail::to($restaurant->email)->send(new VerificationLink([
             'token' => $token,
@@ -86,7 +87,7 @@ class AuthController extends Controller
         $token->expires_at = Carbon::now()->addWeeks(1);
         $token->save();
 
-        if ($restaurant->slug && !str_contains($restaurant->qr, $restaurant->slug . '.png')) $restaurant->qrCode();
+        if ($restaurant->slug && !$restaurant->qr) $restaurant->qrCode();
 
         return response()->json([
             'access_token' => $tokenResult->accessToken,

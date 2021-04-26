@@ -40,48 +40,7 @@ class Dashboard extends Component {
 
     // Lifecycle methods
     async componentDidMount() {
-        return this.props.get();
-
-        const res = await fetch("https://qrcode-monkey.p.rapidapi.com/qr/custom", {
-            "method": "POST",
-            "headers": {
-                "content-type": "application/json",
-                "x-rapidapi-key": "6ce92d4e5dmsh598d92a451c175ep1360c5jsn7348a06ad241",
-                "x-rapidapi-host": "qrcode-monkey.p.rapidapi.com"
-            },
-            "body": {
-                "data": `${window.location.protocol}//${window.location.hostname}/restaurants/${this.props.auth.data.slug}`,
-                "config": {
-                    "body": "circle-zebra-vertical",
-                    "eye": "frame13",
-                    "eyeBall": "ball15",
-                    "erf1": [],
-                    "erf2": [],
-                    "erf3": [],
-                    "brf1": [],
-                    "brf2": [],
-                    "brf3": [],
-                    "bodyColor": "#0277BD",
-                    "bgColor": "#FFFFFF",
-                    "eye1Color": "#075685",
-                    "eye2Color": "#075685",
-                    "eye3Color": "#075685",
-                    "eyeBall1Color": "#0277BD",
-                    "eyeBall2Color": "#0277BD",
-                    "eyeBall3Color": "#0277BD",
-                    "gradientColor1": "#075685",
-                    "gradientColor2": "#0277BD",
-                    "gradientType": "linear",
-                    "gradientOnEyes": false,
-                    // "logo": "#facebook"
-                },
-                "size": 225,
-                "download": false,
-                "file": "png"
-            }
-        });
-
-        console.log({ res });
+        this.props.get();
     }
 
     componentWillUnmount() {
@@ -96,7 +55,7 @@ class Dashboard extends Component {
                 }
             },
             backend: { dashboard: { loading, error, blocksData, mostViewed = [], comments = 0, marks = {}, plans = {} } },
-            auth: { data: { slug, name, plan } }
+            auth: { data: { slug, name, plan, qr } }
         } = this.props;
         const { duration } = this.state;
 
@@ -251,7 +210,12 @@ class Dashboard extends Component {
 
                                     <div className="mb-4 rounded-8 shadow-sm bg-white-50 position-relative embed-responsive embed-responsive-1by1 mx-auto" style={{ width: 280 }}>
                                         <div className="position-absolute w-100 h-100 p-4" style={{ top: 0, left: 0 }}>
-                                            <div className="h-100 w-100" style={{ background: `url('https://api.qrserver.com/v1/create-qr-code/?size=225x225&data=${`${window.location.protocol}//${window.location.hostname}`}/restaurants/${slug}') no-repeat center`, backgroundSize: 'cover' }} />
+                                            <div className="h-100 w-100" style={{
+                                                backgroundImage: `url('${qr}')`,
+                                                backgroundRepeat: 'no-repeat',
+                                                backgroundPosition: 'center',
+                                                backgroundSize: 'cover'
+                                            }} />
                                         </div>
                                     </div>
 

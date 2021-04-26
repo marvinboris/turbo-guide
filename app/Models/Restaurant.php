@@ -15,7 +15,7 @@ class Restaurant extends Authenticatable
     protected $directory = '/images/restaurants/';
 
     protected $fillable = [
-        'plan_id', 'language_id', 'name', 'owner', 'token', 'md5', 'slug', 'email', 'photo', 'phone', 'country', 'whatsapp', 'address', 'days', 'hours', 'location', 'balance', 'password', 'is_active', 'currency', 'position', 'banner1', 'banner2', 'banner3'
+        'plan_id', 'language_id', 'name', 'owner', 'token', 'md5', 'slug', 'qr', 'logo', 'email', 'photo', 'phone', 'country', 'whatsapp', 'address', 'days', 'hours', 'location', 'balance', 'password', 'is_active', 'currency', 'position', 'banner1', 'banner2', 'banner3'
     ];
 
     public function sluggable()
@@ -48,6 +48,11 @@ class Restaurant extends Authenticatable
     public function language()
     {
         return $this->belongsTo(Language::class);
+    }
+
+    public function getQrAttribute($value)
+    {
+        return $value ? $this->directory . 'qr/' . $value : null;
     }
 
     public function getPhotoAttribute($value)
@@ -86,7 +91,6 @@ class Restaurant extends Authenticatable
     public function getPlanAttribute()
     {
         $plan = $this->plans()->whereDate('expiry_date', '>=', Carbon::now())->orderBy('expiry_date', 'DESC')->first();
-        // $plan = $this->plans()->whereDate('expiry_date', '>=', Carbon::now())->orderBy('id', 'DESC')->first();
 
         return $plan;
     }

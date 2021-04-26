@@ -885,20 +885,13 @@ var Dashboard = /*#__PURE__*/function (_Component) {
     value: // Lifecycle methods
     function () {
       var _componentDidMount = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                return _context.abrupt("return", this.props.get());
+                this.props.get();
 
-              case 3:
-                res = _context.sent;
-                console.log({
-                  res: res
-                });
-
-              case 5:
+              case 1:
               case "end":
                 return _context.stop();
             }
@@ -961,7 +954,8 @@ var Dashboard = /*#__PURE__*/function (_Component) {
           _this$props$auth$data = _this$props.auth.data,
           slug = _this$props$auth$data.slug,
           name = _this$props$auth$data.name,
-          plan = _this$props$auth$data.plan;
+          plan = _this$props$auth$data.plan,
+          qr = _this$props$auth$data.qr;
       var duration = this.state.duration;
       var content = null;
       var errors = null;
@@ -1229,7 +1223,9 @@ var Dashboard = /*#__PURE__*/function (_Component) {
                       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
                         className: "h-100 w-100",
                         style: {
-                          background: "url('https://api.qrserver.com/v1/create-qr-code/?size=225x225&data=".concat("".concat(window.location.protocol, "//").concat(window.location.hostname), "/restaurants/", slug, "') no-repeat center"),
+                          backgroundImage: "url('".concat(qr, "')"),
+                          backgroundRepeat: 'no-repeat',
+                          backgroundPosition: 'center',
                           backgroundSize: 'cover'
                         }
                       })

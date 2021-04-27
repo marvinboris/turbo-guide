@@ -18,7 +18,7 @@ export default ({ photo, name, description, reference, meal, addon, qty, add, su
                 </div>
             </div>
 
-            <div className="flex-fill">
+            <div className="flex-fill d-flex flex-column">
                 <div className="pb-1 position-relative">
                     <div className="d-flex align-items-center">
                         <div className={`text-12 text-500 text-truncate ${addon ? "addon-limit" : ""} ${meal ? "meal-limit" : ""}`}>
@@ -69,7 +69,7 @@ export default ({ photo, name, description, reference, meal, addon, qty, add, su
 
                 <div className="text-10 text-300 text-ellipsis-2 mb-1">{description}</div>
 
-                <div className="text-montserrat">{children}</div>
+                <div className="text-montserrat mt-auto">{children}</div>
             </div>
         </div>
     </>;

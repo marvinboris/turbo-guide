@@ -20,6 +20,8 @@ import Plan from '../../../../components/UI/Plan';
 
 import * as actions from '../../../../store/actions';
 
+import './Dashboard.css';
+
 const appreciations = [
     { color: 'green', lt: 5, text: 'Positive' },
     { color: 'orange', lt: 3.5, text: 'Average' },
@@ -145,7 +147,7 @@ class Dashboard extends Component {
 
                 content = (
                     <>
-                        {plan && <div className="position-fixed ml-4 pl-3 ml-lg-0 pl-lg-0" style={{ top: 24, right: 130, zIndex: 1030 }}>
+                        {plan && <div className="go-live position-fixed">
                             <a href={`/restaurants/${slug}`} target="_blank" className="btn btn-green text-14 text-montserrat text-700 text-decoration-none py-2 px-3 rounded-4">
                                 {go_live}
 
@@ -322,7 +324,7 @@ class Dashboard extends Component {
                     <SpecialTitle><span className="text-orange text-700 text-40">{welcome},</span> {name}</SpecialTitle>
                     <Subtitle>{subtitle}</Subtitle>
                 </TitleWrapper>
-                <div>
+                <div className="Restaurant Dashboard">
                     {errors}
                     {content}
                 </div>

@@ -93,6 +93,11 @@ class AddonController extends Controller
 
         $input = $request->except('photo');
 
+        $addonWithReference = $restaurant->addons()->find($request->reference);
+        if ($addonWithReference) return response()->json([
+            'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['addons']['reference'], 'danger'),
+        ]);
+
         if ($file = $request->file('photo')) {
             $fileName = time() . $file->getClientOriginalName();
             $file->move('images/addons', $fileName);
@@ -120,6 +125,11 @@ class AddonController extends Controller
         $request->validate($rules);
 
         $input = $request->except('photo');
+
+        $addonWithReference = $restaurant->addons()->find($request->reference);
+        if ($addonWithReference && $addonWithReference->id !== +$id) return response()->json([
+            'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['addons']['reference'], 'danger'),
+        ]);
 
         if ($file = $request->file('photo')) {
             if ($addon->photo && is_file(public_path($addon->photo))) unlink(public_path($addon->photo));

@@ -201,6 +201,7 @@
                     "deleted": "Category successfully deleted."
                 },
                 "meals": {
+                    "reference": "Meal with this reference already exists.",
                     "not_found": "Meal not found.",
                     "created": "Meal successfully created.",
                     "updated": "Meal successfully updated.",
@@ -208,6 +209,7 @@
                     "reached": "Maximum number of meals reached"
                 },
                 "addons": {
+                    "reference": "Addon with this reference already exists.",
                     "not_found": "Addon not found.",
                     "created": "Addon successfully created.",
                     "updated": "Addon successfully updated.",
@@ -863,6 +865,7 @@
                     "deleted": "Category successfully deleted."
                 },
                 "meals": {
+                    "reference": "Meal with this reference already exists.",
                     "not_found": "Meal not found.",
                     "created": "Meal successfully created.",
                     "updated": "Meal successfully updated.",
@@ -870,6 +873,7 @@
                     "reached": "Maximum number of meals reached"
                 },
                 "addons": {
+                    "reference": "Addon with this reference already exists.",
                     "not_found": "Addon not found.",
                     "created": "Addon successfully created.",
                     "updated": "Addon successfully updated.",

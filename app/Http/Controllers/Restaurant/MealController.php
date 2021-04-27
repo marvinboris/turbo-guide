@@ -183,6 +183,11 @@ class MealController extends Controller
         if ($restaurant->plan && ($restaurant->plan->meals === 0 || $restaurant->meals()->count() < $restaurant->plan->meals)) {
             $input = $request->except('photo');
 
+            $mealWithReference = $restaurant->meals()->find($request->reference);
+            if ($mealWithReference) return response()->json([
+                'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['meals']['reference'], 'danger'),
+            ]);
+
             if ($file = $request->file('photo')) {
                 $fileName = time() . $file->getClientOriginalName();
                 $file->move('images/meals', $fileName);
@@ -218,6 +223,11 @@ class MealController extends Controller
         ]);
 
         $input = $request->except('photo');
+
+        $mealWithReference = $restaurant->meals()->find($request->reference);
+        if ($mealWithReference && $mealWithReference->id !== +$id) return response()->json([
+            'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['meals']['reference'], 'danger'),
+        ]);
 
         if ($file = $request->file('photo')) {
             if ($meal->photo && is_file(public_path($meal->photo))) unlink(public_path($meal->photo));

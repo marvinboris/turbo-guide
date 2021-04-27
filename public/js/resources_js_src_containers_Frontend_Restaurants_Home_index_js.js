@@ -816,7 +816,7 @@ var Languages = function Languages(_ref5) {
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_16__.default, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_17__.default, {
-      className: "d-flex justify-content-around align-items-center bg-transparent border-0 p-0 m-0",
+      className: "d-flex justify-content-around align-items-center bg-orange-50 rounded-pill border-0 p-2 m-0",
       style: {
         boxShadow: 'none'
       },

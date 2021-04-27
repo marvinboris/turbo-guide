@@ -53,7 +53,7 @@ const Languages = ({ languages, set }) => {
     </DropdownItem>);
 
     return <UncontrolledDropdown>
-        <DropdownToggle className="d-flex justify-content-around align-items-center bg-transparent border-0 p-0 m-0" style={{ boxShadow: 'none' }} caret>
+        <DropdownToggle className="d-flex justify-content-around align-items-center bg-orange-50 rounded-pill border-0 p-2 m-0" style={{ boxShadow: 'none' }} caret>
             <span className="language-flag shadow-lg mr-2 overflow-hidden d-none d-lg-inline-flex justify-content-center align-items-center position-relative">
                 <span className={`flag-icon position-absolute flag-icon-${language && language.flag.toLowerCase()}`} />
             </span>

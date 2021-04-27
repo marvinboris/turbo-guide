@@ -27,7 +27,7 @@ __webpack_require__.r(__webpack_exports__);
       color = _ref.color,
       details = _ref.details;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    className: "col-lg-3 col-sm-6 pb-3 pb-lg-0",
+    className: "col-xxl-2 col-xl-4 col-lg-6 col-sm-6 col-md-12 pb-3 pb-xxl-0",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
       to: link,
       className: "bg-".concat(color, "-10 rounded-8 text-decoration-none text-").concat(color, " px-4 py-4 d-flex align-items-center"),
@@ -1125,14 +1125,8 @@ var Dashboard = /*#__PURE__*/function (_Component) {
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
               className: "row mb-5",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                className: "col-lg-8",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                  className: "row",
-                  children: cards
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                className: "col-lg-4",
+              children: [cards, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
+                className: "col-xxl-4 col-xl-8 pb-xl-3 pb-xxl-0",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
                   className: "bg-green rounded-8 text-20 text-300 text-white py-3 px-4 d-flex justify-content-between align-items-center h-100",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
@@ -1167,7 +1161,7 @@ var Dashboard = /*#__PURE__*/function (_Component) {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
               className: "row",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                className: "col-lg-8 pb-4 bg-white",
+                className: "col-xxl-8 order-first pb-4 bg-white",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
                   className: "p-4 rounded-15 bg-green-5 h-100 d-flex flex-column",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
@@ -1203,9 +1197,9 @@ var Dashboard = /*#__PURE__*/function (_Component) {
                   })]
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                className: "col-lg-4 pb-4 bg-white",
+                className: "col-xxl-4 col-xl-6 order-2 pb-4 bg-white",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
-                  className: "p-4 rounded-15 bg-orange-20",
+                  className: "p-4 rounded-15 bg-orange-20 h-100",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
                     className: "pb-4 mb-4 px-4 border-bottom border-light text-18",
                     children: qr_code
@@ -1236,12 +1230,14 @@ var Dashboard = /*#__PURE__*/function (_Component) {
                       className: "mr-3",
                       children: download
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("a", {
+                        href: qr,
+                        download: true,
                         style: {
                           height: 38,
                           width: 38
                         },
-                        className: "bg-white rounded-circle d-flex justify-content-center align-items-center border border-orange border-2 text-orange",
+                        className: "bg-white rounded-circle text-decoration-none d-flex justify-content-center align-items-center border border-orange border-2 text-orange",
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
                           icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faDownload
                         })
@@ -1250,7 +1246,7 @@ var Dashboard = /*#__PURE__*/function (_Component) {
                   })]
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                className: "col-lg-8 pb-4 bg-white",
+                className: "col-xxl-8 order-xxl-3 order-xl-last order-3 pb-4 bg-white",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
                   className: "p-4 rounded-15 bg-green-5 h-100 d-flex flex-column",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
@@ -1313,7 +1309,7 @@ var Dashboard = /*#__PURE__*/function (_Component) {
                   })]
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
-                className: "col-lg-4 pb-4",
+                className: "col-xxl-4 order-xxl-last col-xl-6 order-xl-3 order-last pb-4",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
                   className: "h-100 rounded-15 bg-green-5 border border-soft px-5 py-4",
                   style: {

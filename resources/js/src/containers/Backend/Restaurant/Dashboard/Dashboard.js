@@ -154,13 +154,9 @@ class Dashboard extends Component {
                         </div>}
 
                         <div className="row mb-5">
-                            <div className="col-lg-8">
-                                <div className="row">
-                                    {cards}
-                                </div>
-                            </div>
+                            {cards}
 
-                            <div className="col-lg-4">
+                            <div className="col-xxl-4 col-xl-8 pb-xl-3 pb-xxl-0">
                                 <div className="bg-green rounded-8 text-20 text-300 text-white py-3 px-4 d-flex justify-content-between align-items-center h-100">
                                     <div className="h-100">
                                         <div className="mb3">{credit_balance}</div>
@@ -182,7 +178,7 @@ class Dashboard extends Component {
                         </div>
 
                         <div className="row">
-                            <div className="col-lg-8 pb-4 bg-white">
+                            <div className="col-xxl-8 order-first pb-4 bg-white">
                                 <div className="p-4 rounded-15 bg-green-5 h-100 d-flex flex-column">
                                     <div className="pb-4 mb-4 px-4 border-bottom border-light text-18">
                                         <FontAwesomeIcon icon={faDrumstickBite} className="mr-3 text-orange" />
@@ -202,8 +198,8 @@ class Dashboard extends Component {
                                 </div>
                             </div>
 
-                            <div className="col-lg-4 pb-4 bg-white">
-                                <div className="p-4 rounded-15 bg-orange-20">
+                            <div className="col-xxl-4 col-xl-6 order-2 pb-4 bg-white">
+                                <div className="p-4 rounded-15 bg-orange-20 h-100">
                                     <div className="pb-4 mb-4 px-4 border-bottom border-light text-18">
                                         {qr_code}
                                     </div>
@@ -223,15 +219,15 @@ class Dashboard extends Component {
                                         <div className="mr-3">{download}</div>
 
                                         <div>
-                                            <div style={{ height: 38, width: 38 }} className={`bg-white rounded-circle d-flex justify-content-center align-items-center border border-orange border-2 text-orange`}>
+                                            <a href={qr} download style={{ height: 38, width: 38 }} className={`bg-white rounded-circle text-decoration-none d-flex justify-content-center align-items-center border border-orange border-2 text-orange`}>
                                                 <FontAwesomeIcon icon={faDownload} />
-                                            </div>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="col-lg-8 pb-4 bg-white">
+                            <div className="col-xxl-8 order-xxl-3 order-xl-last order-3 pb-4 bg-white">
                                 <div className="p-4 rounded-15 bg-green-5 h-100 d-flex flex-column">
                                     <div className="pb-4 mb-4 px-4 d-flex align-items-center border-bottom border-light text-18">
                                         <div>
@@ -274,7 +270,7 @@ class Dashboard extends Component {
                                 </div>
                             </div>
 
-                            <div className="col-lg-4 pb-4">
+                            <div className="col-xxl-4 order-xxl-last col-xl-6 order-xl-3 order-last pb-4">
                                 <div className="h-100 rounded-15 bg-green-5 border border-soft px-5 py-4" style={{ borderStyle: 'dashed' }}>
                                     <div className="text-center text-20 text-500 mt-2 mb-4">{customer_reviews}</div>
 

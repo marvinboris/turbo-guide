@@ -21,7 +21,7 @@ import Feedback from '../../../../components/Feedback/Feedback';
 import * as actions from '../../../../store/actions';
 import { updateObject } from '../../../../shared/utility';
 
-const Block = ({ children, icon, title, save, hidden, onSubmit }) => children ? <form className="col-xl-4 col-md-6 pb-4" style={hidden ? { visibility: 'hidden' } : { visibility: 'visible' }} onSubmit={onSubmit}>
+const Block = ({ children, icon, title, save, hidden, onSubmit }) => children ? <form className="col-xxl-3 col-xl-4 col-lg-6 pb-4" style={hidden ? { visibility: 'hidden' } : { visibility: 'visible' }} onSubmit={onSubmit}>
     <input type="hidden" name="_method" defaultValue="PATCH" />
 
     <div className="h-100 bg-white rounded-8 shadow py-4 px-5">
@@ -98,7 +98,7 @@ class Settings extends Component {
     }
 
 
-    
+
     // Component methods
     submitHandler = e => {
         e.preventDefault();

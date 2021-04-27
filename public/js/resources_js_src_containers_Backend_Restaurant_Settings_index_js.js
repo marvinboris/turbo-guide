@@ -605,7 +605,7 @@ var Block = function Block(_ref) {
       hidden = _ref.hidden,
       onSubmit = _ref.onSubmit;
   return children ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("form", {
-    className: "col-xl-4 col-md-6 pb-4",
+    className: "col-xxl-3 col-xl-4 col-lg-6 pb-4",
     style: hidden ? {
       visibility: 'hidden'
     } : {

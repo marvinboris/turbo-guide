@@ -54,7 +54,7 @@ const Languages = ({ languages, set }) => {
 
     return <UncontrolledDropdown>
         <DropdownToggle className="d-flex justify-content-around align-items-center bg-orange-50 rounded-pill border-0 p-2 m-0" style={{ boxShadow: 'none' }} caret>
-            <span className="language-flag shadow-lg mr-2 overflow-hidden d-none d-lg-inline-flex justify-content-center align-items-center position-relative">
+            <span className="language-flag shadow-lg mr-2 overflow-hidden d-inline-flex justify-content-center align-items-center position-relative">
                 <span className={`flag-icon position-absolute flag-icon-${language && language.flag.toLowerCase()}`} />
             </span>
 
@@ -108,7 +108,7 @@ class Home extends Component {
         timeout = setTimeout(() => {
             this.scrollProcess();
             clearTimeout(timeout);
-        }, 50);
+        }, 25);
     }
 
     onClick = id => {
@@ -125,7 +125,7 @@ class Home extends Component {
             this.setState({ id }, () => setTimeout(() => {
                 document.querySelector('.navigation').scroll({ left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11, behavior: 'smooth' });
                 document.addEventListener('scroll', this.scrollHandler);
-            }, 1500));
+            }, 1250));
         }
     }
 

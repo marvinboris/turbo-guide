@@ -125,7 +125,7 @@ class Home extends Component {
             this.setState({ id }, () => setTimeout(() => {
                 document.querySelector('.navigation').scroll({ left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11, behavior: 'smooth' });
                 document.addEventListener('scroll', this.scrollHandler);
-            }, 1250));
+            }, 1500));
         }
     }
 

@@ -10,7 +10,7 @@ import { updateObject } from '../../../../shared/utility';
 
 import './Layout.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faBell, faCog, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 class Layout extends Component {
     state = {
@@ -68,19 +68,27 @@ class Layout extends Component {
             {isAuthenticated && <SideDrawer data={data} isOpen={isOpen} toggle={this.toggle} selectItem={this.selectItem} logoutHandler={this.logoutHandler} selectedItem={selectedItem} cms={cms} />}
 
             <main className={`bg-${dark ? 'darkblue' : 'white'} position-relative min-vh-100 pb-5`}>
-                <div style={{ height: 90 }} className="d-flex align-items-center px-5 border-bottom border-light sticky-top bg-white">
+                <div style={{ height: 90 }} className="d-flex align-items-center px-3 px-lg-5 border-bottom border-light sticky-top bg-white">
                     <div className="text-orange text-30 d-md-none mr-3">
                         <FontAwesomeIcon icon={faBars} onClick={this.toggle} style={{ cursor: 'pointer' }} />
                     </div>
 
                     <div className="mr-3 text-24 text-light"><FontAwesomeIcon icon={faSearch} /></div>
 
-                    <div className="flex-fill">
+                    <div className="flex-fill mr-3">
                         <input type="search" name="search" className="border-0 text-poppins border-transparent p-0 m-0 d-block text-18 w-100" style={{ outline: 'none' }} placeholder={search} />
+                    </div>
+
+                    <div className="mr-3 text-24 text-orange">
+                        <FontAwesomeIcon icon={faBell} />
+                    </div>
+
+                    <div className="text-24 text-secondary">
+                        <FontAwesomeIcon icon={faCog} />
                     </div>
                 </div>
 
-                <div className="main mb-5 pb-5 mt-4 pt-3 px-5">
+                <div className="main mb-5 pb-5 mt-4 pt-3 px-3 px-lg-5">
                     {loading ? <div className="h-100 d-flex justify-content-center align-items-center"><CustomSpinner /></div> : children}
                 </div>
 

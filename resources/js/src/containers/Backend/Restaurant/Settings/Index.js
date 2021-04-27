@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Button, Col, FormGroup, Row } from 'reactstrap';
-import { faArrowsAltH, faCalendar, faCheckCircle, faClock, faCog, faEdit, faEnvelope, faHome, faLocationArrow, faLock, faMapMarkerAlt, faPhone, faUser, faUserTie } from '@fortawesome/free-solid-svg-icons';
+import { faArrowsAltH, faCalendar, faCheckCircle, faClock, faCog, faEdit, faEnvelope, faFileImage, faHome, faLocationArrow, faLock, faMapMarkerAlt, faPhone, faUser, faUserTie } from '@fortawesome/free-solid-svg-icons';
 import { faSave } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
@@ -21,7 +21,7 @@ import Feedback from '../../../../components/Feedback/Feedback';
 import * as actions from '../../../../store/actions';
 import { updateObject } from '../../../../shared/utility';
 
-const Block = ({ children, icon, title, save, hidden, onSubmit }) => children ? <form className="col-xxl-3 col-xl-4 col-lg-6 pb-4" style={hidden ? { visibility: 'hidden' } : { visibility: 'visible' }} onSubmit={onSubmit}>
+const Block = ({ children, icon, title, save, hidden, onSubmit, toggle }) => children ? <form className="col-xxl-3 col-xl-4 col-lg-6 pb-4" style={hidden ? { visibility: 'hidden' } : { visibility: 'visible' }} onSubmit={onSubmit}>
     <input type="hidden" name="_method" defaultValue="PATCH" />
 
     <div className="h-100 bg-white rounded-8 shadow py-4 px-5">
@@ -34,7 +34,7 @@ const Block = ({ children, icon, title, save, hidden, onSubmit }) => children ? 
                 </div>
 
                 <div className="text-27 text-orange">
-                    <FontAwesomeIcon icon={faEdit} />
+                    <FontAwesomeIcon icon={faEdit} onClick={toggle} style={{ cursor: 'pointer' }} />
                 </div>
             </div>
 
@@ -51,9 +51,9 @@ const Block = ({ children, icon, title, save, hidden, onSubmit }) => children ? 
     </div>
 </form> : null;
 
-const CmsItem = ({ condition, banner, attr, restaurant, selected_file, fileUpload }) => condition ? <FormGroup>
+const CmsItem = ({ condition, banner, attr, locked, restaurant, selected_file, fileUpload }) => condition ? <FormGroup>
     <div id={`embed-${attr}`} className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', background: banner && `url("${banner}") no-repeat center`, backgroundSize: 'cover' }} onClick={() => fileUpload(attr)}>
-        {banner && (banner !== restaurant[attr]) && <div className="text-center text-green">
+        {banner && (banner !== restaurant[attr]) && <div className="text-center text-green w-100 px-3">
             <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
 
             <div className="mt-3">{selected_file}</div>
@@ -62,8 +62,10 @@ const CmsItem = ({ condition, banner, attr, restaurant, selected_file, fileUploa
 </FormGroup>
     : <FormGroup>
         <div style={{ cursor: 'not-allowed' }} className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center">
-            <div className="text-center text-light">
+            <div className="text-center text-light w-100 px-3">
                 <div><FontAwesomeIcon icon={faLock} fixedWidth size="5x" /></div>
+
+                <div className="mt-3 text-12 text-center text-truncate">{locked}</div>
             </div>
         </div>
     </FormGroup>;
@@ -80,6 +82,7 @@ class Settings extends Component {
         address: '',
         currency: 'XAF',
         position: '1',
+        restaurantUpdate: false,
 
         email: '',
         country: '',
@@ -88,13 +91,16 @@ class Settings extends Component {
         new_password: '',
         new_password_confirmation: '',
         photo: '',
+        accountUpdate: false,
 
         banner1: '',
         banner2: '',
         banner3: '',
+        cmsUpdate: false,
 
         days: '',
         hours: '',
+        calendarUpdate: false,
     }
 
 
@@ -109,20 +115,28 @@ class Settings extends Component {
         this.props.restaurant(e.target);
     }
 
+    restaurantToggle = () => this.setState(prevState => ({ restaurantUpdate: !prevState.restaurantUpdate }))
+
     accountSettingsSubmitHandler = e => {
         e.preventDefault();
         this.props.account(e.target);
     }
+
+    accountToggle = () => this.setState(prevState => ({ accountUpdate: !prevState.accountUpdate }))
 
     cmsSettingsSubmitHandler = e => {
         e.preventDefault();
         this.props.cms(e.target);
     }
 
+    cmsToggle = () => this.setState(prevState => ({ cmsUpdate: !prevState.cmsUpdate }))
+
     calendarSettingsSubmitHandler = e => {
         e.preventDefault();
         this.props.calendar(e.target);
     }
+
+    calendarToggle = () => this.setState(prevState => ({ calendarUpdate: !prevState.calendarUpdate }))
 
     inputChangeHandler = e => {
         const { name, value, files } = e.target;
@@ -178,10 +192,10 @@ class Settings extends Component {
             auth: { data: { plan } }
         } = this.props;
         let {
-            name, owner, phone, whatsapp, location, address, currency, position,
-            email, country, token, password, new_password, new_password_confirmation, photo,
-            banner1, banner2, banner3,
-            days, hours,
+            name, owner, phone, whatsapp, location, address, currency, position, restaurantUpdate,
+            email, country, token, password, new_password, new_password_confirmation, photo, accountUpdate,
+            banner1, banner2, banner3, cmsUpdate,
+            days, hours, calendarUpdate,
         } = this.state;
         let spinnerContent, restaurantContent, accountContent, cmsContent, calendarContent;
         let errors = null;
@@ -207,23 +221,23 @@ class Settings extends Component {
             if (selectedCurrency) symbol = selectedCurrency.symbol;
 
             restaurantContent = <>
-                <FormInput type="text" icon={faHome} onChange={this.inputChangeHandler} value={name} name="name" required placeholder={form.name} />
-                <FormInput type="text" icon={faUserTie} onChange={this.inputChangeHandler} value={owner} name="owner" required placeholder={form.owner} />
+                <FormInput type="text" icon={faHome} onChange={this.inputChangeHandler} value={name} disabled={!restaurantUpdate} name="name" required placeholder={form.name} />
+                <FormInput type="text" icon={faUserTie} onChange={this.inputChangeHandler} value={owner} disabled={!restaurantUpdate} name="owner" required placeholder={form.owner} />
                 <Conditional condition={basic}>
-                    <FormInput type="tel" icon={faPhone} onChange={this.inputChangeHandler} value={phone} name="phone" required placeholder={form.phone} />
+                    <FormInput type="tel" icon={faPhone} onChange={this.inputChangeHandler} value={phone} disabled={!restaurantUpdate} name="phone" required placeholder={form.phone} />
                 </Conditional>
                 <Conditional condition={standard || premium}>
-                    <FormInput type="tel" icon={faWhatsapp} onChange={this.inputChangeHandler} value={whatsapp} name="whatsapp" placeholder={form.whatsapp} />
+                    <FormInput type="tel" icon={faWhatsapp} onChange={this.inputChangeHandler} value={whatsapp} disabled={!restaurantUpdate} name="whatsapp" placeholder={form.whatsapp} />
                 </Conditional>
                 <Conditional condition={premium}>
-                    <FormInput type="text" icon={faLocationArrow} onChange={this.inputChangeHandler} value={location} name="location" placeholder={form.location} />
+                    <FormInput type="text" icon={faLocationArrow} onChange={this.inputChangeHandler} value={location} disabled={!restaurantUpdate} name="location" placeholder={form.location} />
                 </Conditional>
-                <FormInput type="text" icon={faMapMarkerAlt} onChange={this.inputChangeHandler} value={address} name="address" placeholder={form.address} />
-                <FormInput type="select" addon={<div className="text-center text-light" style={{ margin: '0 -10px' }}>{symbol}</div>} onChange={this.inputChangeHandler} value={currency} name="currency" required>
+                <FormInput type="text" icon={faMapMarkerAlt} onChange={this.inputChangeHandler} value={address} disabled={!restaurantUpdate} name="address" placeholder={form.address} />
+                <FormInput type="select" addon={<div className="text-center text-light" style={{ margin: '0 -10px' }}>{symbol}</div>} onChange={this.inputChangeHandler} value={currency} disabled={!restaurantUpdate} name="currency" required>
                     <option>{form.select_currency}</option>
                     {currenciesOptions}
                 </FormInput>
-                <FormInput type="select" icon={faArrowsAltH} onChange={this.inputChangeHandler} value={position} name="position" required>
+                <FormInput type="select" icon={faArrowsAltH} onChange={this.inputChangeHandler} value={position} disabled={!restaurantUpdate} name="position" required>
                     <option>{form.select_position}</option>
                     <option value={0}>{form.left}</option>
                     <option value={1}>{form.right}</option>
@@ -231,22 +245,28 @@ class Settings extends Component {
             </>;
 
             accountContent = <>
-                <FormInput type="email" icon={faEnvelope} onChange={this.inputChangeHandler} value={email} name="email" required placeholder={form.email} />
+                <FormInput type="email" icon={faEnvelope} onChange={this.inputChangeHandler} value={email} disabled={!accountUpdate} name="email" required placeholder={form.email} />
                 <FormInput type="select" addon={<div>
                     <div className="rounded-circle mx-auto overflow-hidden position-relative d-flex justify-content-center align-items-center" style={{ width: 18, height: 18 }}>
                         <span className={`flag-icon text-large position-absolute flag-icon-${country.toLowerCase()}`} />
                     </div>
-                </div>} onChange={this.inputChangeHandler} value={country} name="country" required>
+                </div>} onChange={this.inputChangeHandler} value={country} disabled={!accountUpdate} name="country" required>
                     <option>{form.select_country}</option>
                     {countriesOptions}
                 </FormInput>
-                <FormInput type="text" icon={faEdit} onChange={this.inputChangeHandler} value={token} name="token" readonly placeholder={form.token} />
-                <FormInput type="password" icon={faLock} onChange={this.inputChangeHandler} value={password} name="password" placeholder={form.password} />
-                <FormInput type="password" icon={faLock} onChange={this.inputChangeHandler} value={new_password} name="new_password" placeholder={form.new_password} />
-                <FormInput type="password" icon={faLock} onChange={this.inputChangeHandler} value={new_password_confirmation} name="new_password_confirmation" placeholder={form.new_password_confirmation} />
+                <FormInput type="text" icon={faEdit} onChange={this.inputChangeHandler} value={token} disabled={!accountUpdate} name="token" readonly placeholder={form.token} />
+                <FormInput type="password" icon={faLock} onChange={this.inputChangeHandler} value={password} disabled={!accountUpdate} name="password" placeholder={form.password} />
+                <FormInput type="password" icon={faLock} onChange={this.inputChangeHandler} value={new_password} disabled={!accountUpdate} name="new_password" placeholder={form.new_password} />
+                <FormInput type="password" icon={faLock} onChange={this.inputChangeHandler} value={new_password_confirmation} disabled={!accountUpdate} name="new_password_confirmation" placeholder={form.new_password_confirmation} />
                 <FormGroup>
-                    <div id="embed-photo" className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', background: photo && `url("${photo}") no-repeat center`, backgroundSize: 'cover' }} onClick={() => this.fileUpload("photo")}>
-                        {photo && (photo !== restaurant.photo) && <div className="text-center text-green">
+                    <div id="embed-photo" className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: 'pointer', background: photo && `url("${photo}") no-repeat center`, backgroundSize: 'cover' }} onClick={accountUpdate && (() => this.fileUpload("photo"))}>
+                        {!photo ? <div className="text-center text-light w-100 overflow-hidden px-3">
+                            <div><FontAwesomeIcon icon={faFileImage} fixedWidth size="5x" /></div>
+
+                            <div className="mt-3 mb-1 text-center text-12 text-truncate">{form.upload}</div>
+
+                            <div className="text-center text-12 text-truncate">{form.size}</div>
+                        </div> : photo && (photo !== restaurant.photo) && <div className="text-center text-green w-100 px-3">
                             <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
 
                             <div className="mt-3">{selected_file}</div>
@@ -257,15 +277,15 @@ class Settings extends Component {
 
             cmsContent = <>
                 {[
-                    { condition: basic, banner: banner1, attr: 'banner1' },
-                    { condition: standard || premium, banner: banner2, attr: 'banner2' },
-                    { condition: premium, banner: banner3, attr: 'banner3' },
-                ].map(item => <CmsItem key={JSON.stringify(item)} {...item} restaurant={restaurant} selected_file={selected_file} fileUpload={this.fileUpload} />)}
+                    { condition: basic, banner: banner1, attr: 'banner1', locked: form.locked_banner1 },
+                    { condition: standard || premium, banner: banner2, attr: 'banner2', locked: form.locked_banner2 },
+                    { condition: premium, banner: banner3, attr: 'banner3', locked: form.locked_banner3 },
+                ].map(item => <CmsItem key={JSON.stringify(item)} {...item} restaurant={restaurant} selected_file={selected_file} fileUpload={cmsUpdate && this.fileUpload} />)}
             </>;
 
             calendarContent = <>
-                <FormInput type="text" icon={faCalendar} onChange={this.inputChangeHandler} value={days} name="days" required placeholder={form.days} />
-                <FormInput type="text" icon={faClock} onChange={this.inputChangeHandler} value={hours} name="hours" required placeholder={form.hours} />
+                <FormInput type="text" icon={faCalendar} onChange={this.inputChangeHandler} value={days} disabled={!calendarUpdate} name="days" required placeholder={form.days} />
+                <FormInput type="text" icon={faClock} onChange={this.inputChangeHandler} value={hours} disabled={!calendarUpdate} name="hours" required placeholder={form.hours} />
             </>;
         }
 
@@ -286,16 +306,16 @@ class Settings extends Component {
 
                             {spinnerContent}
 
-                            <Block hidden={loading} icon={faHome} save={save} onSubmit={this.restaurantSettingsSubmitHandler} title={form.restaurant_settings}>
+                            <Block hidden={loading} icon={faHome} save={save} onSubmit={this.restaurantSettingsSubmitHandler} title={form.restaurant_settings} toggle={this.restaurantToggle}>
                                 {restaurantContent}
                             </Block>
 
-                            <Block hidden={loading} icon={faUser} save={save} onSubmit={this.accountSettingsSubmitHandler} title={form.account_settings}>
+                            <Block hidden={loading} icon={faUser} save={save} onSubmit={this.accountSettingsSubmitHandler} title={form.account_settings} toggle={this.accountToggle}>
                                 <input type="file" id="photo" name="photo" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" />
                                 {accountContent}
                             </Block>
 
-                            <Block hidden={loading} icon={faCog} save={save} onSubmit={this.cmsSettingsSubmitHandler} title={form.cms_settings}>
+                            <Block hidden={loading} icon={faCog} save={save} onSubmit={this.cmsSettingsSubmitHandler} title={form.cms_settings} toggle={this.cmsToggle}>
                                 <Conditional condition={basic}><input type="file" id="banner1" name="banner1" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" /></Conditional>
                                 <Conditional condition={standard || premium}><input type="file" id="banner2" name="banner2" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" /></Conditional>
                                 <Conditional condition={premium}><input type="file" id="banner3" name="banner3" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" /></Conditional>
@@ -303,7 +323,7 @@ class Settings extends Component {
                                 {cmsContent}
                             </Block>
 
-                            <Block hidden={loading} icon={faCalendar} save={save} onSubmit={this.calendarSettingsSubmitHandler} title={form.calendar_settings}>
+                            <Block hidden={loading} icon={faCalendar} save={save} onSubmit={this.calendarSettingsSubmitHandler} title={form.calendar_settings} toggle={this.calendarToggle}>
                                 {calendarContent}
                             </Block>
                         </Form>

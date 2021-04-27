@@ -153,6 +153,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       type = _ref$type === void 0 ? 'text' : _ref$type,
       required = _ref.required,
       readonly = _ref.readonly,
+      disabled = _ref.disabled,
       placeholder = _ref.placeholder,
       _ref$value = _ref.value,
       value = _ref$value === void 0 ? '' : _ref$value,
@@ -201,8 +202,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         name: name,
         required: required,
         readOnly: readonly,
+        disabled: disabled,
         value: value,
-        className: "bg-".concat(dark ? "grayblue" : "white", " border-0 text-small text-secondary h-100 px-4 py-3"),
+        className: "bg-".concat(dark ? "grayblue" : "", " border-0 text-small text-secondary h-100 px-4 py-3"),
         placeholder: placeholder,
         children: children
       }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_10__.default, {
@@ -214,8 +216,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         name: name,
         required: required,
         readOnly: readonly,
+        disabled: disabled,
         value: value,
-        className: "bg-transparent border-0 text-small text-secondary h-100 px-4 py-3",
+        className: "border-0 text-small text-secondary h-100 px-4 py-3",
         placeholder: placeholder
       }), append ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.default, {
         addonType: "append",

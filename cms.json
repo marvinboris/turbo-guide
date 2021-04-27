@@ -505,6 +505,9 @@
                             "new_password_confirmation": "Confirm New Password",
                             "upload": "Upload Profile Image",
                             "size": "Max Size : 3 MB Format : 250 x 250",
+                            "locked_banner1": "Buy a plan to have access.",
+                            "locked_banner2": "Upgrade the standard plan to have access.",
+                            "locked_banner3": "Upgrade the premium plan to have access.",
                             "days": "Opening Days",
                             "hours": "Opening Hours"
                         },
@@ -1169,6 +1172,9 @@
                             "new_password_confirmation": "Confirm New Password",
                             "upload": "Upload Profile Image",
                             "size": "Max Size : 3 MB Format : 250 x 250",
+                            "locked_banner1": "Buy a plan to have access.",
+                            "locked_banner2": "Upgrade the standard plan to have access.",
+                            "locked_banner3": "Upgrade the premium plan to have access.",
                             "days": "Opening Days",
                             "hours": "Opening Hours"
                         },

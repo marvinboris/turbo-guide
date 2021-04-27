@@ -99,8 +99,7 @@ class AddonController extends Controller
         ]);
 
         if ($file = $request->file('photo')) {
-            $fileName = time() . $file->getClientOriginalName();
-            $file->move('images/addons', $fileName);
+            $fileName = UtilController::resize($file, 'addons');
             $input['photo'] = htmlspecialchars($fileName);
         }
 
@@ -133,8 +132,7 @@ class AddonController extends Controller
 
         if ($file = $request->file('photo')) {
             if ($addon->photo && is_file(public_path($addon->photo))) unlink(public_path($addon->photo));
-            $fileName = time() . $file->getClientOriginalName();
-            $file->move('images/addons', $fileName);
+            $fileName = UtilController::resize($file, 'addons');
             $input['photo'] = htmlspecialchars($fileName);
         }
 

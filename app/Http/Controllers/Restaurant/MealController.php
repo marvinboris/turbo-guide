@@ -189,8 +189,7 @@ class MealController extends Controller
             ]);
 
             if ($file = $request->file('photo')) {
-                $fileName = time() . $file->getClientOriginalName();
-                $file->move('images/meals', $fileName);
+                $fileName = UtilController::resize($file, 'meals');
                 $input['photo'] = htmlspecialchars($fileName);
             }
 
@@ -231,8 +230,7 @@ class MealController extends Controller
 
         if ($file = $request->file('photo')) {
             if ($meal->photo && is_file(public_path($meal->photo))) unlink(public_path($meal->photo));
-            $fileName = time() . $file->getClientOriginalName();
-            $file->move('images/meals', $fileName);
+            $fileName = UtilController::resize($file, 'meals');
             $input['photo'] = htmlspecialchars($fileName);
         }
 

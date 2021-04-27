@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Intervention\Image\ImageManagerStatic as Image;
 use App\Models\Admin;
 use App\Models\Restaurant;
 use App\Models\User;
@@ -64,11 +65,56 @@ class UtilController extends Controller
             if (strpos($rule, 'file') > 0) {
                 $rule = str_replace('required', 'nullable', $rule);
                 $check = true;
-            } else if (strpos($rule, 'array') >= 0) $check = true; 
+            } else if (strpos($rule, 'array') >= 0) $check = true;
             else $check = request()->input($key) !== $model->toArray()[$key];
             if ($check) $rules[$key] = $rule;
         }
         return $rules;
+    }
+
+    public static function resize($file, $folder)
+    {
+        $name = $file->getClientOriginalName();
+        $path = $file->getRealPath();
+        $dimensions = getimagesize($path);
+
+        $destinationPath = public_path('/images/' . $folder);
+        $destination = time() . $name;
+
+        $maxHeight = 640;
+        $maxWidth = 640;
+
+        $actualHeight = $dimensions[1];
+        $actualWidth = $dimensions[0];
+
+        $imgRatio = $actualWidth / $actualHeight;
+        $maxRatio = $maxWidth / $maxHeight;
+        $compressionQuality  = 0.6;
+
+        if ($actualHeight > $maxHeight || $actualWidth > $maxWidth) {
+            if ($imgRatio < $maxRatio) {
+                //adjust width according to maxHeight
+                $imgRatio = $maxHeight / $actualHeight;
+                $actualWidth = $imgRatio * $actualWidth;
+                $actualHeight = $maxHeight;
+            } else if ($imgRatio > $maxRatio) {
+                //adjust height according to maxWidth
+                $imgRatio = $maxWidth / $actualWidth;
+                $actualHeight = $imgRatio * $actualHeight;
+                $actualWidth = $maxWidth;
+            } else {
+                $actualHeight = $maxHeight;
+                $actualWidth = $maxWidth;
+                $compressionQuality = 1;
+            }
+        }
+
+        $img = Image::make($path);
+        $img
+            ->resize($actualWidth, $actualHeight)
+            ->save($destinationPath . '/' . $destination, $compressionQuality * 100);
+
+        return $destination;
     }
 
 

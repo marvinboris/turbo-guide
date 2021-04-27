@@ -69,8 +69,7 @@ class SettingsController extends Controller
 
         if ($file = $request->file('photo')) {
             if ($restaurant->photo && is_file(public_path($restaurant->photo))) unlink(public_path($restaurant->photo));
-            $fileName = time() . $file->getClientOriginalName();
-            $file->move('images/restaurants', $fileName);
+            $fileName = UtilController::resize($file, 'restaurants');
             $input['photo'] = htmlspecialchars($fileName);
         }
 
@@ -94,22 +93,19 @@ class SettingsController extends Controller
 
         if ($file = $request->file('banner1')) {
             if ($restaurant->banner1 && is_file(public_path($restaurant->banner1))) unlink(public_path($restaurant->banner1));
-            $fileName = time() . $file->getClientOriginalName();
-            $file->move('images/restaurants', $fileName);
+            $fileName = UtilController::resize($file, 'restaurants');
             $input['banner1'] = htmlspecialchars($fileName);
         }
 
         if ($file = $request->file('banner2')) {
             if ($restaurant->banner2 && is_file(public_path($restaurant->banner2))) unlink(public_path($restaurant->banner2));
-            $fileName = time() . $file->getClientOriginalName();
-            $file->move('images/restaurants', $fileName);
+            $fileName = UtilController::resize($file, 'restaurants');
             $input['banner2'] = htmlspecialchars($fileName);
         }
 
         if ($file = $request->file('banner3')) {
             if ($restaurant->banner3 && is_file(public_path($restaurant->banner3))) unlink(public_path($restaurant->banner3));
-            $fileName = time() . $file->getClientOriginalName();
-            $file->move('images/restaurants', $fileName);
+            $fileName = UtilController::resize($file, 'restaurants');
             $input['banner3'] = htmlspecialchars($fileName);
         }
 

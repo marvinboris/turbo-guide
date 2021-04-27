@@ -378,6 +378,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       type = _ref$type === void 0 ? 'text' : _ref$type,
       required = _ref.required,
       readonly = _ref.readonly,
+      disabled = _ref.disabled,
       placeholder = _ref.placeholder,
       _ref$value = _ref.value,
       value = _ref$value === void 0 ? '' : _ref$value,
@@ -426,8 +427,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         name: name,
         required: required,
         readOnly: readonly,
+        disabled: disabled,
         value: value,
-        className: "bg-".concat(dark ? "grayblue" : "white", " border-0 text-small text-secondary h-100 px-4 py-3"),
+        className: "bg-".concat(dark ? "grayblue" : "", " border-0 text-small text-secondary h-100 px-4 py-3"),
         placeholder: placeholder,
         children: children
       }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_10__.default, {
@@ -439,8 +441,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         name: name,
         required: required,
         readOnly: readonly,
+        disabled: disabled,
         value: value,
-        className: "bg-transparent border-0 text-small text-secondary h-100 px-4 py-3",
+        className: "border-0 text-small text-secondary h-100 px-4 py-3",
         placeholder: placeholder
       }), append ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.default, {
         addonType: "append",
@@ -811,7 +814,7 @@ var Add = /*#__PURE__*/function (_Component) {
         if (selectedCurrency) symbol = selectedCurrency.symbol;
         content = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.Fragment, {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_16__.default, {
-            lg: 9,
+            xl: 9,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_Feedback_Feedback__WEBPACK_IMPORTED_MODULE_11__.default, {
               message: message
             }), this.props.edit && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("input", {
@@ -978,7 +981,7 @@ var Add = /*#__PURE__*/function (_Component) {
                     },
                     onClick: this.fileUpload,
                     children: this.props.edit ? photo && photo !== meal.photo && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-                      className: "text-center text-green",
+                      className: "text-center text-green w-100",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
                           icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faCheckCircle,
@@ -990,7 +993,7 @@ var Add = /*#__PURE__*/function (_Component) {
                         children: selected_file
                       })]
                     }) : photo ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-                      className: "text-center text-green",
+                      className: "text-center text-green w-100",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
                           icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faCheckCircle,
@@ -1002,7 +1005,7 @@ var Add = /*#__PURE__*/function (_Component) {
                         children: selected_file
                       })]
                     }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-                      className: "text-center text-light overflow-hidden px-4",
+                      className: "text-center text-light w-100 overflow-hidden px-3",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
                           icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faFileImage,

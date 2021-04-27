@@ -91,7 +91,7 @@ class CategoryController extends Controller
 
         if ($file = $request->file('photo')) {
             $fileName = time() . $file->getClientOriginalName();
-            $file->move('images/categories', $fileName);
+            $fileName = UtilController::resize($file, 'categories');
             $input['photo'] = htmlspecialchars($fileName);
         }
 
@@ -119,8 +119,7 @@ class CategoryController extends Controller
 
         if ($file = $request->file('photo')) {
             if ($category->photo && is_file(public_path($category->photo))) unlink(public_path($category->photo));
-            $fileName = time() . $file->getClientOriginalName();
-            $file->move('images/categories', $fileName);
+            $fileName = UtilController::resize($file, 'categories');
             $input['photo'] = htmlspecialchars($fileName);
         }
 

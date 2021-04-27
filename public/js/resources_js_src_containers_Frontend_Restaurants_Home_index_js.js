@@ -158,7 +158,7 @@ __webpack_require__.r(__webpack_exports__);
           })]
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "flex-fill",
+        className: "flex-fill d-flex flex-column",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "pb-1 position-relative",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -248,7 +248,7 @@ __webpack_require__.r(__webpack_exports__);
           className: "text-10 text-300 text-ellipsis-2 mb-1",
           children: description
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          className: "text-montserrat",
+          className: "text-montserrat mt-auto",
           children: children
         })]
       })]
@@ -822,7 +822,7 @@ var Languages = function Languages(_ref5) {
       },
       caret: true,
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("span", {
-        className: "language-flag shadow-lg mr-2 overflow-hidden d-none d-lg-inline-flex justify-content-center align-items-center position-relative",
+        className: "language-flag shadow-lg mr-2 overflow-hidden d-inline-flex justify-content-center align-items-center position-relative",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("span", {
           className: "flag-icon position-absolute flag-icon-".concat(language && language.flag.toLowerCase())
         })
@@ -919,7 +919,7 @@ var Home = /*#__PURE__*/function (_Component) {
         _this.scrollProcess();
 
         clearTimeout(timeout);
-      }, 50);
+      }, 25);
     });
 
     _defineProperty(_assertThisInitialized(_this), "onClick", function (id) {

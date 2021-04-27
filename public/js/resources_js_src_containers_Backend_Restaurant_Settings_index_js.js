@@ -378,6 +378,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       type = _ref$type === void 0 ? 'text' : _ref$type,
       required = _ref.required,
       readonly = _ref.readonly,
+      disabled = _ref.disabled,
       placeholder = _ref.placeholder,
       _ref$value = _ref.value,
       value = _ref$value === void 0 ? '' : _ref$value,
@@ -426,8 +427,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         name: name,
         required: required,
         readOnly: readonly,
+        disabled: disabled,
         value: value,
-        className: "bg-".concat(dark ? "grayblue" : "white", " border-0 text-small text-secondary h-100 px-4 py-3"),
+        className: "bg-".concat(dark ? "grayblue" : "", " border-0 text-small text-secondary h-100 px-4 py-3"),
         placeholder: placeholder,
         children: children
       }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_10__.default, {
@@ -439,8 +441,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         name: name,
         required: required,
         readOnly: readonly,
+        disabled: disabled,
         value: value,
-        className: "bg-transparent border-0 text-small text-secondary h-100 px-4 py-3",
+        className: "border-0 text-small text-secondary h-100 px-4 py-3",
         placeholder: placeholder
       }), append ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.default, {
         addonType: "append",
@@ -603,7 +606,8 @@ var Block = function Block(_ref) {
       title = _ref.title,
       save = _ref.save,
       hidden = _ref.hidden,
-      onSubmit = _ref.onSubmit;
+      onSubmit = _ref.onSubmit,
+      toggle = _ref.toggle;
   return children ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("form", {
     className: "col-xxl-3 col-xl-4 col-lg-6 pb-4",
     style: hidden ? {
@@ -631,7 +635,11 @@ var Block = function Block(_ref) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
             className: "text-27 text-orange",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faEdit
+              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faEdit,
+              onClick: toggle,
+              style: {
+                cursor: 'pointer'
+              }
             })
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
@@ -659,6 +667,7 @@ var CmsItem = function CmsItem(_ref2) {
   var condition = _ref2.condition,
       banner = _ref2.banner,
       attr = _ref2.attr,
+      locked = _ref2.locked,
       restaurant = _ref2.restaurant,
       selected_file = _ref2.selected_file,
       fileUpload = _ref2.fileUpload;
@@ -675,7 +684,7 @@ var CmsItem = function CmsItem(_ref2) {
         return fileUpload(attr);
       },
       children: banner && banner !== restaurant[attr] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
-        className: "text-center text-green",
+        className: "text-center text-green w-100 px-3",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faCheckCircle,
@@ -694,15 +703,18 @@ var CmsItem = function CmsItem(_ref2) {
         cursor: 'not-allowed'
       },
       className: "embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
-        className: "text-center text-light",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+        className: "text-center text-light w-100 px-3",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faLock,
             fixedWidth: true,
             size: "5x"
           })
-        })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+          className: "mt-3 text-12 text-center text-truncate",
+          children: locked
+        })]
       })
     })
   });
@@ -740,6 +752,7 @@ var Settings = /*#__PURE__*/function (_Component) {
       address: '',
       currency: 'XAF',
       position: '1',
+      restaurantUpdate: false,
       email: '',
       country: '',
       token: '',
@@ -747,11 +760,14 @@ var Settings = /*#__PURE__*/function (_Component) {
       new_password: '',
       new_password_confirmation: '',
       photo: '',
+      accountUpdate: false,
       banner1: '',
       banner2: '',
       banner3: '',
+      cmsUpdate: false,
       days: '',
-      hours: ''
+      hours: '',
+      calendarUpdate: false
     });
 
     _defineProperty(_assertThisInitialized(_this), "submitHandler", function (e) {
@@ -764,10 +780,26 @@ var Settings = /*#__PURE__*/function (_Component) {
       _this.props.restaurant(e.target);
     });
 
+    _defineProperty(_assertThisInitialized(_this), "restaurantToggle", function () {
+      return _this.setState(function (prevState) {
+        return {
+          restaurantUpdate: !prevState.restaurantUpdate
+        };
+      });
+    });
+
     _defineProperty(_assertThisInitialized(_this), "accountSettingsSubmitHandler", function (e) {
       e.preventDefault();
 
       _this.props.account(e.target);
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "accountToggle", function () {
+      return _this.setState(function (prevState) {
+        return {
+          accountUpdate: !prevState.accountUpdate
+        };
+      });
     });
 
     _defineProperty(_assertThisInitialized(_this), "cmsSettingsSubmitHandler", function (e) {
@@ -776,10 +808,26 @@ var Settings = /*#__PURE__*/function (_Component) {
       _this.props.cms(e.target);
     });
 
+    _defineProperty(_assertThisInitialized(_this), "cmsToggle", function () {
+      return _this.setState(function (prevState) {
+        return {
+          cmsUpdate: !prevState.cmsUpdate
+        };
+      });
+    });
+
     _defineProperty(_assertThisInitialized(_this), "calendarSettingsSubmitHandler", function (e) {
       e.preventDefault();
 
       _this.props.calendar(e.target);
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "calendarToggle", function () {
+      return _this.setState(function (prevState) {
+        return {
+          calendarUpdate: !prevState.calendarUpdate
+        };
+      });
     });
 
     _defineProperty(_assertThisInitialized(_this), "inputChangeHandler", function (e) {
@@ -856,6 +904,7 @@ var Settings = /*#__PURE__*/function (_Component) {
           address = _this$state.address,
           currency = _this$state.currency,
           position = _this$state.position,
+          restaurantUpdate = _this$state.restaurantUpdate,
           email = _this$state.email,
           country = _this$state.country,
           token = _this$state.token,
@@ -863,11 +912,14 @@ var Settings = /*#__PURE__*/function (_Component) {
           new_password = _this$state.new_password,
           new_password_confirmation = _this$state.new_password_confirmation,
           photo = _this$state.photo,
+          accountUpdate = _this$state.accountUpdate,
           banner1 = _this$state.banner1,
           banner2 = _this$state.banner2,
           banner3 = _this$state.banner3,
+          cmsUpdate = _this$state.cmsUpdate,
           days = _this$state.days,
-          hours = _this$state.hours;
+          hours = _this$state.hours,
+          calendarUpdate = _this$state.calendarUpdate;
       var spinnerContent, restaurantContent, accountContent, cmsContent, calendarContent;
       var errors = null;
       if (message && message.type === 'success') window.location.reload();
@@ -914,6 +966,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faHome,
             onChange: this.inputChangeHandler,
             value: name,
+            disabled: !restaurantUpdate,
             name: "name",
             required: true,
             placeholder: form.name
@@ -922,6 +975,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faUserTie,
             onChange: this.inputChangeHandler,
             value: owner,
+            disabled: !restaurantUpdate,
             name: "owner",
             required: true,
             placeholder: form.owner
@@ -932,6 +986,7 @@ var Settings = /*#__PURE__*/function (_Component) {
               icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faPhone,
               onChange: this.inputChangeHandler,
               value: phone,
+              disabled: !restaurantUpdate,
               name: "phone",
               required: true,
               placeholder: form.phone
@@ -943,6 +998,7 @@ var Settings = /*#__PURE__*/function (_Component) {
               icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_20__.faWhatsapp,
               onChange: this.inputChangeHandler,
               value: whatsapp,
+              disabled: !restaurantUpdate,
               name: "whatsapp",
               placeholder: form.whatsapp
             })
@@ -953,6 +1009,7 @@ var Settings = /*#__PURE__*/function (_Component) {
               icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faLocationArrow,
               onChange: this.inputChangeHandler,
               value: location,
+              disabled: !restaurantUpdate,
               name: "location",
               placeholder: form.location
             })
@@ -961,6 +1018,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faMapMarkerAlt,
             onChange: this.inputChangeHandler,
             value: address,
+            disabled: !restaurantUpdate,
             name: "address",
             placeholder: form.address
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_10__.default, {
@@ -974,6 +1032,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             }),
             onChange: this.inputChangeHandler,
             value: currency,
+            disabled: !restaurantUpdate,
             name: "currency",
             required: true,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("option", {
@@ -984,6 +1043,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faArrowsAltH,
             onChange: this.inputChangeHandler,
             value: position,
+            disabled: !restaurantUpdate,
             name: "position",
             required: true,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("option", {
@@ -1003,6 +1063,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faEnvelope,
             onChange: this.inputChangeHandler,
             value: email,
+            disabled: !accountUpdate,
             name: "email",
             required: true,
             placeholder: form.email
@@ -1022,6 +1083,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             }),
             onChange: this.inputChangeHandler,
             value: country,
+            disabled: !accountUpdate,
             name: "country",
             required: true,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("option", {
@@ -1032,6 +1094,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faEdit,
             onChange: this.inputChangeHandler,
             value: token,
+            disabled: !accountUpdate,
             name: "token",
             readonly: true,
             placeholder: form.token
@@ -1040,6 +1103,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faLock,
             onChange: this.inputChangeHandler,
             value: password,
+            disabled: !accountUpdate,
             name: "password",
             placeholder: form.password
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_10__.default, {
@@ -1047,6 +1111,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faLock,
             onChange: this.inputChangeHandler,
             value: new_password,
+            disabled: !accountUpdate,
             name: "new_password",
             placeholder: form.new_password
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_10__.default, {
@@ -1054,6 +1119,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faLock,
             onChange: this.inputChangeHandler,
             value: new_password_confirmation,
+            disabled: !accountUpdate,
             name: "new_password_confirmation",
             placeholder: form.new_password_confirmation
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_18__.default, {
@@ -1065,11 +1131,26 @@ var Settings = /*#__PURE__*/function (_Component) {
                 background: photo && "url(\"".concat(photo, "\") no-repeat center"),
                 backgroundSize: 'cover'
               },
-              onClick: function onClick() {
+              onClick: accountUpdate && function () {
                 return _this2.fileUpload("photo");
               },
-              children: photo && photo !== restaurant.photo && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
-                className: "text-center text-green",
+              children: !photo ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+                className: "text-center text-light w-100 overflow-hidden px-3",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+                    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faFileImage,
+                    fixedWidth: true,
+                    size: "5x"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+                  className: "mt-3 mb-1 text-center text-12 text-truncate",
+                  children: form.upload
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+                  className: "text-center text-12 text-truncate",
+                  children: form.size
+                })]
+              }) : photo && photo !== restaurant.photo && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+                className: "text-center text-green w-100 px-3",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
                     icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faCheckCircle,
@@ -1088,20 +1169,23 @@ var Settings = /*#__PURE__*/function (_Component) {
           children: [{
             condition: basic,
             banner: banner1,
-            attr: 'banner1'
+            attr: 'banner1',
+            locked: form.locked_banner1
           }, {
             condition: standard || premium,
             banner: banner2,
-            attr: 'banner2'
+            attr: 'banner2',
+            locked: form.locked_banner2
           }, {
             condition: premium,
             banner: banner3,
-            attr: 'banner3'
+            attr: 'banner3',
+            locked: form.locked_banner3
           }].map(function (item) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(CmsItem, _objectSpread(_objectSpread({}, item), {}, {
               restaurant: restaurant,
               selected_file: selected_file,
-              fileUpload: _this2.fileUpload
+              fileUpload: cmsUpdate && _this2.fileUpload
             }), JSON.stringify(item));
           })
         });
@@ -1111,6 +1195,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faCalendar,
             onChange: this.inputChangeHandler,
             value: days,
+            disabled: !calendarUpdate,
             name: "days",
             required: true,
             placeholder: form.days
@@ -1119,6 +1204,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faClock,
             onChange: this.inputChangeHandler,
             value: hours,
+            disabled: !calendarUpdate,
             name: "hours",
             required: true,
             placeholder: form.hours
@@ -1154,6 +1240,7 @@ var Settings = /*#__PURE__*/function (_Component) {
                 save: save,
                 onSubmit: this.restaurantSettingsSubmitHandler,
                 title: form.restaurant_settings,
+                toggle: this.restaurantToggle,
                 children: restaurantContent
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(Block, {
                 hidden: loading,
@@ -1161,6 +1248,7 @@ var Settings = /*#__PURE__*/function (_Component) {
                 save: save,
                 onSubmit: this.accountSettingsSubmitHandler,
                 title: form.account_settings,
+                toggle: this.accountToggle,
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("input", {
                   type: "file",
                   id: "photo",
@@ -1175,6 +1263,7 @@ var Settings = /*#__PURE__*/function (_Component) {
                 save: save,
                 onSubmit: this.cmsSettingsSubmitHandler,
                 title: form.cms_settings,
+                toggle: this.cmsToggle,
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(Conditional, {
                   condition: basic,
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("input", {
@@ -1212,6 +1301,7 @@ var Settings = /*#__PURE__*/function (_Component) {
                 save: save,
                 onSubmit: this.calendarSettingsSubmitHandler,
                 title: form.calendar_settings,
+                toggle: this.calendarToggle,
                 children: calendarContent
               })]
             })

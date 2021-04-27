@@ -145,7 +145,7 @@ class Dashboard extends Component {
 
                 content = (
                     <>
-                        {plan && <div className="position-fixed pt-4 pr-5" style={{ top: 0, right: 0, zIndex: 1030 }}>
+                        {plan && <div className="position-fixed" style={{ top: 24, right: 130, zIndex: 1030 }}>
                             <a href={`/restaurants/${slug}`} target="_blank" className="btn btn-green text-14 text-montserrat text-700 text-decoration-none py-2 px-3 rounded-4">
                                 {go_live}
 

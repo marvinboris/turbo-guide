@@ -146,7 +146,7 @@ class Add extends Component {
 
             content = (
                 <>
-                    <Col lg={9}>
+                    <Col xl={9}>
                         <Feedback message={message} />
 
                         {this.props.edit && <input type="hidden" name="_method" defaultValue="PATCH" />}
@@ -202,16 +202,16 @@ class Add extends Component {
                                         backgroundSize: 'cover'
                                     }} onClick={this.fileUpload}>
                                         {this.props.edit
-                                            ? photo && (photo !== meal.photo) && <div className="text-center text-green">
+                                            ? photo && (photo !== meal.photo) && <div className="text-center text-green w-100">
                                                 <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
 
                                                 <div className="mt-3">{selected_file}</div>
                                             </div>
-                                            : photo ? <div className="text-center text-green">
+                                            : photo ? <div className="text-center text-green w-100">
                                                 <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
 
                                                 <div className="mt-3">{selected_file}</div>
-                                            </div> : <div className="text-center text-light overflow-hidden px-4">
+                                            </div> : <div className="text-center text-light w-100 overflow-hidden px-3">
                                                 <div><FontAwesomeIcon icon={faFileImage} fixedWidth size="5x" /></div>
 
                                                 <div className="mt-3 mb-1 text-center text-12 text-truncate">{form.upload}</div>

@@ -23,7 +23,8 @@ class Restaurant extends Authenticatable
     {
         return [
             'slug' => [
-                'source' => 'name'
+                'source' => 'name',
+                'onUpdate' => true
             ]
         ];
     }

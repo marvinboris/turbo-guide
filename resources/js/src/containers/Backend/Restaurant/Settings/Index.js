@@ -24,9 +24,9 @@ import { updateObject } from '../../../../shared/utility';
 const Block = ({ children, icon, title, save, hidden, onSubmit, toggle }) => children ? <form className="col-xxl-3 col-xl-4 col-lg-6 pb-4" style={hidden ? { visibility: 'hidden' } : { visibility: 'visible' }} onSubmit={onSubmit}>
     <input type="hidden" name="_method" defaultValue="PATCH" />
 
-    <div className="h-100 bg-white rounded-8 shadow py-4 px-5">
+    <div className="h-100 bg-white rounded-8 shadow py-3 py-sm-4 px-4 px-sm-5">
         <div className="py-2">
-            <div className="mb-4 pb-4 border-bottom border-orange-50 d-flex align-items-center justify-content-between">
+            <div className="mb-3 mb-sm-4 pb-3 pb-sm-4 border-bottom border-orange-50 d-flex align-items-center justify-content-between">
                 <div className="text-14">
                     <FontAwesomeIcon icon={icon} className="mr-3 text-orange text-21" />
 
@@ -38,7 +38,7 @@ const Block = ({ children, icon, title, save, hidden, onSubmit, toggle }) => chi
                 </div>
             </div>
 
-            <div className="mb-3 pb-1">
+            <div className="mb-2 mb-sm-3 pb-1">
                 {children}
             </div>
 
@@ -259,7 +259,7 @@ class Settings extends Component {
                 <FormInput type="password" icon={faLock} onChange={this.inputChangeHandler} value={new_password} disabled={!accountUpdate} name="new_password" placeholder={form.new_password} />
                 <FormInput type="password" icon={faLock} onChange={this.inputChangeHandler} value={new_password_confirmation} disabled={!accountUpdate} name="new_password_confirmation" placeholder={form.new_password_confirmation} />
                 <FormGroup>
-                    <div id="embed-photo" className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: accountUpdate ? 'pointer' : 'not-allowed', background: photo && `url("${photo}") no-repeat center`, backgroundSize: 'cover' }} onClick={accountUpdate && (() => this.fileUpload("photo"))}>
+                    <div id="embed-photo" className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: accountUpdate ? 'pointer' : 'not-allowed', background: photo && `url("${photo}") no-repeat center`, backgroundSize: 'cover' }} onClick={!accountUpdate ? null : (() => this.fileUpload("photo"))}>
                         {!photo ? <div className="text-center text-light w-100 overflow-hidden px-3">
                             <div><FontAwesomeIcon icon={faFileImage} fixedWidth size="5x" /></div>
 
@@ -280,7 +280,7 @@ class Settings extends Component {
                     { condition: basic, banner: banner1, attr: 'banner1', locked: form.locked_banner1 },
                     { condition: standard || premium, banner: banner2, attr: 'banner2', locked: form.locked_banner2 },
                     { condition: premium, banner: banner3, attr: 'banner3', locked: form.locked_banner3 },
-                ].map(item => <CmsItem key={JSON.stringify(item)} {...item} disabled={!cmsUpdate} restaurant={restaurant} selected_file={selected_file} fileUpload={cmsUpdate && this.fileUpload} />)}
+                ].map(item => <CmsItem key={JSON.stringify(item)} {...item} disabled={!cmsUpdate} restaurant={restaurant} selected_file={selected_file} fileUpload={!cmsUpdate ? null : this.fileUpload} />)}
             </>;
 
             calendarContent = <>

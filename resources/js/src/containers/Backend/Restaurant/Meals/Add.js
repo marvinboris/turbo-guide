@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Button, Col, FormGroup, Row } from 'reactstrap';
+import { Col, FormGroup, Row } from 'reactstrap';
 import { faBook, faCheckCircle, faClock, faCookie, faDrumstickBite, faFileImage, faMinusCircle, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
-import { faSave } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // Components
@@ -14,6 +13,7 @@ import Subtitle from '../../../../components/UI/Titles/Subtitle/Subtitle';
 import Error from '../../../../components/Error/Error';
 import CustomSpinner from '../../../../components/UI/CustomSpinner/CustomSpinner';
 import Form from '../../../../components/Backend/UI/Food/Form';
+import Save from '../../../../components/Backend/UI/Food/Form/Save';
 import FormInput from '../../../../components/UI/Input/Input';
 import Feedback from '../../../../components/Feedback/Feedback';
 
@@ -117,7 +117,7 @@ class Add extends Component {
         let {
             content: {
                 cms: {
-                    pages: { components: { form: { save, save_add, selected_file, active, inactive } }, backend: { pages: { meals: { title, subtitle, instructions, add, edit, index, form } } } }
+                    pages: { components: { form: { selected_file, active, inactive } }, backend: { pages: { meals: { title, subtitle, instructions, add, edit, index, form } } } }
                 },
                 currencies,
             },
@@ -151,8 +151,8 @@ class Add extends Component {
 
                         {this.props.edit && <input type="hidden" name="_method" defaultValue="PATCH" />}
 
-                        <div className="shadow-lg rounded-8 bg-white px-5 py-4">
-                            <Row className="my-3">
+                        <div className="shadow-lg rounded-8 bg-white px-4 px-sm-5 py-3 py-sm-4">
+                            <Row className="my-2 my-sm-3">
                                 <div className="mb-3 text-14 col-12">{instructions}</div>
 
                                 <div className="col-lg-9">
@@ -194,42 +194,36 @@ class Add extends Component {
                                 </div>
 
                                 <div className="col-lg-3">
-                                    <div id="embed-photo" className="embed-responsive embed-responsive-1by1 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{
-                                        cursor: 'pointer',
-                                        backgroundImage: photo && `url("${photo}")`,
-                                        backgroundRepeat: 'no-repeat',
-                                        backgroundPosition: 'center',
-                                        backgroundSize: 'cover'
-                                    }} onClick={this.fileUpload}>
-                                        {this.props.edit
-                                            ? photo && (photo !== meal.photo) && <div className="text-center text-green w-100">
-                                                <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
+                                    <FormGroup>
+                                        <div id="embed-photo" className="embed-responsive embed-responsive-1by1 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{
+                                            cursor: 'pointer',
+                                            backgroundImage: photo && `url("${photo}")`,
+                                            backgroundRepeat: 'no-repeat',
+                                            backgroundPosition: 'center',
+                                            backgroundSize: 'cover'
+                                        }} onClick={this.fileUpload}>
+                                            {this.props.edit
+                                                ? photo && (photo !== meal.photo) && <div className="text-center text-green w-100">
+                                                    <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
 
-                                                <div className="mt-3">{selected_file}</div>
-                                            </div>
-                                            : photo ? <div className="text-center text-green w-100">
-                                                <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
+                                                    <div className="mt-3">{selected_file}</div>
+                                                </div>
+                                                : photo ? <div className="text-center text-green w-100">
+                                                    <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
 
-                                                <div className="mt-3">{selected_file}</div>
-                                            </div> : <div className="text-center text-light w-100 overflow-hidden px-3">
-                                                <div><FontAwesomeIcon icon={faFileImage} fixedWidth size="5x" /></div>
+                                                    <div className="mt-3">{selected_file}</div>
+                                                </div> : <div className="text-center text-light w-100 overflow-hidden px-3">
+                                                    <div><FontAwesomeIcon icon={faFileImage} fixedWidth size="5x" /></div>
 
-                                                <div className="mt-3 mb-1 text-center text-12 text-truncate">{form.upload}</div>
+                                                    <div className="mt-3 mb-1 text-center text-12 text-truncate">{form.upload}</div>
 
-                                                <div className="text-center text-12 text-truncate">{form.size}</div>
-                                            </div>}
-                                    </div>
+                                                    <div className="text-center text-12 text-truncate">{form.size}</div>
+                                                </div>}
+                                        </div>
+                                    </FormGroup>
                                 </div>
 
-                                <div className="col-12">
-                                    <Button color="orange" className="text-20 rounded-4 py-3 px-4">
-                                        <div className="mx-3">{save}<FontAwesomeIcon icon={faSave} className="ml-4" /></div>
-                                    </Button>
-
-                                    {!this.props.edit && <Button color="green" onClick={this.saveAddHandler} className="text-20 rounded-4 py-3 px-4 ml-3">
-                                        <div className="mx-3">{save_add}<FontAwesomeIcon icon={faSave} className="ml-4" /></div>
-                                    </Button>}
-                                </div>
+                                <Save edit={this.props.edit} saveAddHandler={this.saveAddHandler} />
                             </Row>
                         </div>
                     </Col>

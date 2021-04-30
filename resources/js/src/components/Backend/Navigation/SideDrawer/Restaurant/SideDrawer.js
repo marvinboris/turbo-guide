@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button, Collapse, Modal, ModalBody, ModalHeader } from 'reactstrap';
-import { faCog, faPlus, faThLarge, faListAlt, faDrumstickBite, faCookie, faWineBottle, faList, faPowerOff, faTimes, faComment, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faCog, faPlus, faThLarge, faListAlt, faDrumstickBite, faCookie, faWineBottle, faList, faPowerOff, faTimes, faComment, faEdit, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 import SideDrawerItem from './SideDrawerItem/SideDrawerItem';
 import Logo from '../../../../UI/Logo/Logo';
 
 import './SideDrawer.css';
 
-export default ({ data, toggle, logoutHandler, isOpen, selectItem, selectedItem, cms, dark = false }) => {
+export default ({ data, toggle, logoutHandler, selectItem, selectedItem, cms, dark = false }) => {
     const [modal, setModal] = useState(false);
 
     const modalToggle = () => setModal(!modal);
@@ -85,33 +85,43 @@ export default ({ data, toggle, logoutHandler, isOpen, selectItem, selectedItem,
 
 
     return (
-        <Collapse isOpen={isOpen} className={`Restaurant SideDrawer nav-left-sidebar bg-soft shadow-sm position-fixed d-md-block`}>
+        <div className={`Restaurant SideDrawer nav-left-sidebar bg-soft shadow-sm position-fixed`}>
             <div className={`vh-100 d-flex flex-column bg-${dark ? "grayblue text-white border-right border-darkblue" : "orange-10 text-secondary"}`}>
                 <div className="p-4 border-bottom border-light">
-                    <div className="my-2 mx-3">
+                    <div className="my-2 mx-3 d-flex justify-content-between align-items-center">
                         <Logo sm />
+
+                        <div className="d-md-none">
+                            <FontAwesomeIcon icon={faArrowLeft} cursor="pointer" className="text-21" onClick={toggle} />
+                        </div>
                     </div>
                 </div>
 
-                <div className="p-4 mt-5 flex-fill">
+                <div className="p-4 mt-3 mt-md-5 flex-fill">
                     <div className="mt-2 mx-3">
-                        <div className="mb-3">
-                            <img src={photo} className="rounded-circle" style={{ width: 62, height: 62, objectFit: 'cover', objectPosition: 'center' }} alt="User profile" />
+                        <div className="mb-3 d-flex align-items-center">
+                            <div className="pr-3 pr-md-0">
+                                <img src={photo} className="rounded-circle" style={{ width: 62, height: 62, objectFit: 'cover', objectPosition: 'center' }} alt="User profile" />
+                            </div>
+
+                            <div className="text-montserrat text-18 d-md-none">
+                                Hello, <span className="text-700">{name}</span>
+                            </div>
                         </div>
 
-                        <div className="text-truncate text-ellipsis-1 text-montserrat text-18 mb-1">
+                        <div className="text-montserrat text-18 mb-1 d-none d-md-block">
                             Hello, <span className="text-700">{name}</span>
                         </div>
 
-                        <div className="text-14 text-300 mb-5">
+                        <div className="text-14 text-300 mb-3 mb-md-5">
                             {plan ? <>Your Plan : <span className="text-500 text-orange">{plan.name}</span></> : <>No Plan</>}
 
-                            <Link to="/restaurant/plans/purchase" className="text-decoration-none text-reset text-16 ml-3">
+                            <Link to="/restaurant/plans/purchase" onClick={toggle} className="text-decoration-none text-reset text-16 ml-3">
                                 <FontAwesomeIcon icon={faEdit} />
                             </Link>
                         </div>
 
-                        <div className="mb-5">
+                        <div className="mb-4 mb-md-5">
                             <Link to="/restaurant/meals/add" className="btn btn-orange btn-block pl-4 pr-3 py-3 text-500 text-14 rounded-4 shadow-sm">
                                 <div className="pl-3 pr-1 py-1 d-flex justify-content-between align-items-center">
                                     <div>{meals.add}</div>
@@ -130,7 +140,7 @@ export default ({ data, toggle, logoutHandler, isOpen, selectItem, selectedItem,
                 </div>
             </div>
 
-            <div className="backdrop w-100 bg-soft-50 position-fixed d-md-none" onClick={toggle} style={{ top: 0, zIndex: -1 }} />
-        </Collapse>
+            <div className="backdrop bg-soft-50 position-fixed d-md-none" onClick={toggle} style={{ top: 0, zIndex: -1 }} />
+        </div>
     )
 };

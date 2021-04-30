@@ -97,10 +97,10 @@ class Index extends Component {
 
         return (
             <>
-                <div className="Meals mt-5 row">
+                <div className="Meals mt-4 mt-sm-5 row">
                     <div className="col-xl-9">
-                        <div className="mr-4 pr-5 border-right border-light">
-                            <div className="d-flex align-items-center mb-4">
+                        <div className="mr-xl-4 pr-xl-5 border-xl-right border-light">
+                            <div className="d-flex align-items-center flex-wrap mb-4">
                                 <TitleWrapper>
                                     <SpecialTitle>{welcome}, {name}</SpecialTitle>
                                     <Subtitle>{subtitle}</Subtitle>
@@ -140,7 +140,7 @@ class Index extends Component {
                         </div>
                     </div>
 
-                    <div className="col-xl-3">
+                    <div className="col-xl-3 pt-5 pt-xl-0">
                         <div className="mb-1">
                             <SpecialTitle>{watching}</SpecialTitle>
                             <Subtitle>{check}</Subtitle>

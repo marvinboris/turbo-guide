@@ -316,7 +316,14 @@
                             "index": "Drink list"
                         },
                         "comments": "Customer Review",
-                        "history": "Order History"
+                        "history": "Order History",
+                        "plans": {
+                            "title": "Subscription Plan",
+                            "purchase": "Purchase Plan"
+                        },
+                        "recharges": {
+                            "title": "Recharge Balance"
+                        }
                     }
                 },
                 "pages": {
@@ -983,7 +990,14 @@
                             "index": "Drink list"
                         },
                         "comments": "Customer Review",
-                        "history": "Order History"
+                        "history": "Order History",
+                        "plans": {
+                            "title": "Subscription Plan",
+                            "purchase": "Purchase Plan"
+                        },
+                        "recharges": {
+                            "title": "Recharge Balance"
+                        }
                     }
                 },
                 "pages": {

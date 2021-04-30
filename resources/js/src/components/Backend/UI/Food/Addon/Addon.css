@@ -1,5 +1,6 @@
 .Addon {
     width: 100%;
+    padding: 4px;
 }
 
 .Addon .name {
@@ -48,12 +49,12 @@
 
 @media (min-width: 1300px) {
     .Addon {
-        width: calc(50% - 14px);
+        width: calc(50%);
     }
 }
 
 @media (min-width: 1600px) {
     .Addon {
-        width: calc(33.33% - 14px);
+        width: calc(33.33%);
     }
 }

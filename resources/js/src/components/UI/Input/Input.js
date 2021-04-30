@@ -14,18 +14,23 @@ export default ({ id, icon, addon, onChange, className = '', name, type = 'text'
         onChange(e);
     }
 
+    if (required) validation.required = true;
+
     return <FormGroup className={`Input ${className}`}>
         <InputGroup className={`bg-${dark ? "grayblue" : "white border border-soft"} rounded-6 d-flex align-items-center`} size="lg">
             <InputGroupAddon addonType="prepend">
-                <InputGroupText className="bg-transparent d-block border-left-0 border-top-0 border-bottom-0 border-soft px-4 py-0 my-1 text-center text-16" style={{ width: 77 }}>
+                <InputGroupText className="bg-transparent d-block border-0 px-4 py-0 my-1 text-center text-16" style={{ width: 77 }}>
                     {icon ? <FontAwesomeIcon className="text-light mx-1" fixedWidth icon={icon} /> : addon}
                 </InputGroupText>
             </InputGroupAddon>
 
             {children ?
-                <CustomInput valid={touched && checkValidity(value, validation)} invalid={touched && !checkValidity(value, validation)} onChange={inputChangedHandler} type={type} id={name} name={name} required={required} readOnly={readonly} disabled={disabled} value={value} className={`bg-${dark ? "grayblue" : ""} border-0 text-small text-secondary h-100 px-4 py-3`} placeholder={placeholder}>{children}</CustomInput>
+                <CustomInput valid={touched && checkValidity(value, validation)} invalid={touched && !checkValidity(value, validation)} onChange={inputChangedHandler} type={type} id={name} name={name} required={required} readOnly={readonly} disabled={disabled} value={value} className={`bg-${dark ? "grayblue" : ""} border-top-0 border-right-0 border-bottom-0 border-soft rounded-right-6 text-small text-secondary h-100 px-4 py-3`}>{children}</CustomInput>
                 :
-                <Input valid={touched && checkValidity(value, validation)} invalid={touched && !checkValidity(value, validation)} onChange={inputChangedHandler} id={id} type={type} name={name} required={required} readOnly={readonly} disabled={disabled} value={value} className={"border-0 text-small text-secondary h-100 px-4 py-3"} placeholder={placeholder} />
+                <>
+                    <Input valid={touched && checkValidity(value, validation)} invalid={touched && !checkValidity(value, validation)} onChange={inputChangedHandler} id={id ? id : name} type={type} name={name} required={required} readOnly={readonly} disabled={disabled} value={value} className={"border-top-0 border-right-0 border-bottom-0 border-soft rounded-right-6 text-small text-secondary h-100 px-4 py-3"} />
+                    <label className="text-small text-light text-truncate m-0" for={id ? id : name}>{placeholder}</label>
+                </>
             }
 
             {append ? <InputGroupAddon addonType="append">

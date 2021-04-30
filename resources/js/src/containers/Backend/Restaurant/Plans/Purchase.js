@@ -79,8 +79,8 @@ class Purchase extends Component {
                     <Col lg={6}>
                         <Feedback message={message} />
 
-                        <div className="shadow-lg rounded-8 bg-white px-5 py-4">
-                            <Row className="my-3">
+                        <div className="shadow-lg rounded-8 bg-white px-4 px-sm-5 py-3 py-sm-4">
+                            <Row className="my-2 my-sm-3">
                                 <div className="mb-3 text-14 col-12">{instructions}</div>
 
                                 <div className="col-lg-10">
@@ -95,7 +95,7 @@ class Purchase extends Component {
                                         </FormInput>
                                         <FormInput type="text" className="col-md-12" icon={faMoneyBillWaveAlt} onChange={this.inputChangeHandler} value={price} name="price" readonly placeholder={form.price} />
                                     </Row>
-                                    <div className="my-4">
+                                    <div className="my-3 my-sm-4">
                                         <CustomInput type="checkbox" name="terms" id="terms" label={form.terms} />
                                     </div>
                                 </div>

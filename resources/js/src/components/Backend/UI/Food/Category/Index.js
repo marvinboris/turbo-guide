@@ -21,7 +21,7 @@ class Category extends Component {
     render() {
         const { id, name, photo, description, is_active } = this.props
 
-        return <div className={`Category d-flex m-2 rounded-4 bg-white position-relative`}>
+        return <div className={`Category d-flex rounded-4 bg-white position-relative`}>
             <div>
                 <div className="embed-responsive embed-responsive-1by1 rounded-left-4" style={{ background: `url('${photo}') no-repeat center`, backgroundSize: 'cover', width: 150 }} />
             </div>

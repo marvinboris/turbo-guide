@@ -166,9 +166,9 @@ class Table extends Component {
                 <input type="hidden" id="table-page" value={page} />
                 <input type="hidden" id="table-search" value={search} />
 
-                <div className={`rounded-4 d-flex align-items-center mb-5 py-4 px-5 bg-${dark ? "grayblue" : "orange-10"}`}>
+                <div className={`rounded-4 d-flex align-items-center mb-4 mb-sm-5 py-3 py-sm-4 px-4 px-sm-5 bg-${dark ? "grayblue" : "orange-10"}`}>
                     <div className="d-flex align-items-center">{
-                        icon ? <FontAwesomeIcon fixedWidth className="mr-4 text-30 text-orange-20" icon={icon} size="lg" /> : null}
+                        icon ? <FontAwesomeIcon fixedWidth className="mr-3 mr-sm-4 text-30 text-orange-20" icon={icon} size="lg" /> : null}
 
                         <div>
                             <div className={`text-${dark ? "light" : "orange"} text-700 text-20 mb-1`}>{title}</div>
@@ -178,8 +178,8 @@ class Table extends Component {
                     </div>
 
                     {add && <Link className="ml-auto" to={link}>
-                        <Button color="green" className="rounded-2 py-2 text-16 text-500 px-4">
-                            <FontAwesomeIcon icon={faPlus} fixedWidth className="mr-3" />
+                        <Button color="green" className="rounded-2 py-2 text-16 text-500 px-3 px-sm-4">
+                            <FontAwesomeIcon icon={faPlus} fixedWidth className="mr-2 mr-sm-3" />
 
                             {add}
                         </Button>
@@ -231,16 +231,16 @@ class Table extends Component {
                             </div>
 
                             <div className={`flex-fill d-flex flex-column ${!p0 ? "p-4" : "p-0"}`}>
-                                <div className="table-responsive flex-fill">
+                                <div className="table-responsive flex-fill scrollbar-orange mb-3">
                                     <BSTable dark={dark} bordered={bordered} hover borderless={borderless} className={`bg-${dark ? "darkblue" : ""} ${innerClassName}`}>
                                         <thead className={dark ? "text-light" : "bg-soft text-secondary"}><tr>{titles}</tr></thead>
                                         <tbody className={dark ? "bg-darklight-50 text-light" : "bg-soft-50 text-secondary"}>{!loading && content}</tbody>
                                     </BSTable>
-                                </div>
 
-                                {loading && <Col xs={12} className="text-center">
-                                    <div className="text-center py-3">{loading_}...</div>
-                                </Col>}
+                                    {loading && <Col xs={12} className="text-center">
+                                        <div className="text-center py-3">{loading_}...</div>
+                                    </Col>}
+                                </div>
 
                                 <div>
                                     {children}

@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faBell, faSearch } from '@fortawesome/free-solid-svg-icons';
+
+import Settings from './Settings';
 
 import SideDrawer from '../../../../components/Backend/Navigation/SideDrawer/Restaurant/SideDrawer';
 import CustomSpinner from '../../../../components/UI/CustomSpinner/CustomSpinner';
@@ -9,13 +13,9 @@ import { authLogout } from '../../../../store/actions';
 import { updateObject } from '../../../../shared/utility';
 
 import './Layout.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faBell, faCog, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 class Layout extends Component {
     state = {
-        isOpen: false,
-
         selectedItem: '',
 
         notifications: [],
@@ -35,13 +35,21 @@ class Layout extends Component {
     }
 
     toggle = () => {
-        this.setState(prevState => ({ isOpen: !prevState.isOpen }));
+        const left = $('.Restaurant.SideDrawer').css('left');
+        if (left === "0px") {
+            $('.Restaurant.SideDrawer').animate({ left: '-100%' });
+            $('.Restaurant.SideDrawer .backdrop').hide();
+        }
+        else {
+            $('.Restaurant.SideDrawer').animate({ left: 0 });
+            $('.Restaurant.SideDrawer .backdrop').show();
+        }
     }
 
     selectItem = item => this.setState({ selectedItem: item });
 
     render() {
-        const { isOpen, selectedItem } = this.state;
+        const { selectedItem } = this.state;
         const {
             auth: { loading, data, role },
             content: { cms },
@@ -54,7 +62,7 @@ class Layout extends Component {
 
         const {
             global: { app_name, company_logo },
-            pages: { backend: { footer: { copyright, all_rights } }, components: { list: { search } } }
+            pages: { backend: { header, sidebar: { menu }, footer: { copyright, all_rights } }, components: { list: { search } } }
         } = cms;
 
         footerContent = <>
@@ -65,12 +73,12 @@ class Layout extends Component {
 
         return <div className="Layout text-left text-secondary">
             {redirect}
-            {isAuthenticated && <SideDrawer data={data} isOpen={isOpen} toggle={this.toggle} selectItem={this.selectItem} logoutHandler={this.logoutHandler} selectedItem={selectedItem} cms={cms} />}
+            {isAuthenticated && <SideDrawer data={data} toggle={this.toggle} selectItem={this.selectItem} logoutHandler={this.logoutHandler} selectedItem={selectedItem} cms={cms} />}
 
-            <main className={`bg-${dark ? 'darkblue' : 'white'} position-relative min-vh-100 pb-5`}>
+            <main className={`bg-${dark ? 'darkblue' : 'white'} position-relative min-vh-100 pb-4 pb-sm-5`}>
                 <div style={{ height: 90 }} className="d-flex align-items-center px-3 px-lg-5 border-bottom border-light sticky-top bg-white">
                     <div className="text-orange text-30 d-md-none mr-3">
-                        <FontAwesomeIcon icon={faBars} onClick={this.toggle} style={{ cursor: 'pointer' }} />
+                        <FontAwesomeIcon icon={faBars} onClick={this.toggle} cursor="pointer" />
                     </div>
 
                     <div className="mr-3 text-24 text-light"><FontAwesomeIcon icon={faSearch} /></div>
@@ -84,11 +92,11 @@ class Layout extends Component {
                     </div>
 
                     <div className="text-24 text-secondary">
-                        <FontAwesomeIcon icon={faCog} />
+                        <Settings cms={{ header, menu }} logoutHandler={this.logoutHandler} />
                     </div>
                 </div>
 
-                <div className="main mb-5 pb-5 mt-4 pt-3 px-3 px-lg-5">
+                <div className="main mb-4 mb-sm-5 pb-4 pb-sm-5 mt-3 mt-sm-4 pt-3 px-3 px-lg-5">
                     {loading ? <div className="h-100 d-flex justify-content-center align-items-center"><CustomSpinner /></div> : children}
                 </div>
 

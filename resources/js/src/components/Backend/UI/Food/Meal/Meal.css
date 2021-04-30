@@ -1,5 +1,6 @@
 .Meal {
-    padding: 8px;
+    padding: 4px;
+    width: 100%;
 }
 
 .Meal .hover {
@@ -15,24 +16,24 @@
 
 @media (min-width: 1000px) {
     .Meal {
-        width: calc(50% - 15px);
+        width: 50%;
     }
 }
 
 @media (min-width: 1400px) {
     .Meal {
-        width: calc(33.33% - 15px);
+        width: 33.33%;
     }
 }
 
 @media (min-width: 1600px) {
     .Meal {
-        width: calc(25% - 15px);
+        width: 25%;
     }
 }
 
 @media (min-width: 1900px) {
     .Meal {
-        width: calc(20% - 15px);
+        width: 20%;
     }
 }

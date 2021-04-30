@@ -88,12 +88,12 @@ class Index extends Component {
                             { name: action, key: 'action' }
                         ]}
                         containerClassName = "col-xl-8"
-                        addon={<div className="col-xl-4">
+                        addon={<div className="col-xl-4 pt-4 pt-xl-0">
                             <form onSubmit={this.submitHandler}>
                                 <Feedback message={message} />
 
-                                <div className="shadow-sm rounded-8 bg-white px-5 py-4">
-                                    <Row className="my-3">
+                                <div className="shadow-sm rounded-8 bg-white px-4 px-sm-5 py-3 py-sm-4">
+                                    <Row className="my-2 my-sm-3">
                                         <div className="mb-3 text-14 col-12">{instructions}</div>
 
                                         <div className="col-lg-12">
@@ -104,7 +104,7 @@ class Index extends Component {
                                                     {methodsOptions}
                                                 </FormInput>
                                             </Row>
-                                            <div className="my-4">
+                                            <div className="my-3 my-sm-4">
                                                 <CustomInput type="checkbox" name="terms" id="terms" label={form.terms} />
                                             </div>
                                         </div>

@@ -159,20 +159,25 @@ class Dashboard extends Component {
                             {cards}
 
                             <div className="col-xxl-4 col-xl-8 pb-xl-3 pb-xxl-0">
-                                <div className="bg-green rounded-8 text-20 text-300 text-white py-3 px-4 d-flex justify-content-between align-items-center h-100">
+                                <div className="bg-green rounded-8 text-300 text-white py-3 px-4 d-flex justify-content-between align-items-center h-100">
                                     <div className="h-100">
-                                        <div className="mb3">{credit_balance}</div>
+                                        <div className="text-20 d-none d-sm-block">{credit_balance}</div>
+                                        <div className="text-14 d-sm-none">{credit_balance}</div>
 
                                         <div>
-                                            <span className="text-700 text-35 text-montserrat">{blocksData.creditBalance}</span> <span className="text-14">USD</span>
+                                            <span className="text-700 text-35 d-none d-sm-inline text-montserrat">{blocksData.creditBalance}</span>
+                                            <span className="text-700 text-24 d-sm-none text-montserrat">{blocksData.creditBalance}</span>{' '}
+
+                                            <span className="text-14">USD</span>
                                         </div>
                                     </div>
 
                                     <div>
-                                        <Link to="/restaurant/recharges" className="btn btn-white text-decoration-none text-green py-2 px-3">
-                                            <FontAwesomeIcon icon={faMoneyBillWave} className="mr-md-3" />
-
-                                            <span className="d-none d-md-inline">{recharge}</span>
+                                        <Link to="/restaurant/recharges" className="btn btn-white text-20 d-none d-sm-inline text-decoration-none text-green py-2 px-3">
+                                            <FontAwesomeIcon icon={faMoneyBillWave} className="mr-3" />{recharge}
+                                        </Link>
+                                        <Link to="/restaurant/recharges" className="btn btn-white text-14 d-sm-none text-decoration-none text-green py-2 px-3">
+                                            <FontAwesomeIcon icon={faMoneyBillWave} className="mr-3" />{recharge}
                                         </Link>
                                     </div>
                                 </div>
@@ -321,7 +326,7 @@ class Dashboard extends Component {
             <>
                 <TitleWrapper>
                     <Breadcrumb main={subtitle} icon={faTachometerAlt} />
-                    <SpecialTitle><span className="text-orange text-700 text-40">{welcome},</span> {name}</SpecialTitle>
+                    <SpecialTitle><span className="text-orange text-700"><span className="text-40 d-none d-sm-inline">{welcome},</span><span className="text-24 d-sm-none">{welcome},</span></span> {name}</SpecialTitle>
                     <Subtitle>{subtitle}</Subtitle>
                 </TitleWrapper>
                 <div className="Restaurant Dashboard">

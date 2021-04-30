@@ -2,3 +2,23 @@
     color: var(--light);
     opacity: 1;
 }
+
+.Input label {
+    position: absolute;
+    left: 101px;
+    top: 1rem;
+    z-index: 1;
+    max-width: calc(100% - 102px - 1rem);
+}
+
+.Input label::after {
+    content: "*";
+    color: red;
+}
+
+.Input input[readonly] + label,
+.Input input[disabled] + label,
+.Input input[required]:valid + label,
+.Input input:not([value=""]) + label {
+    display: none;
+}

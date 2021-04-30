@@ -28,7 +28,7 @@ class Addon extends Component {
         const currencyObj = currencies.find(c => c.cc === currency);
         const symbol = currencyObj && currencyObj.symbol;
 
-        return <div className={`Addon d-flex m-2 rounded-4 bg-white position-relative`}>
+        return <div className={`Addon d-flex rounded-4 bg-white position-relative`}>
             <div>
                 <div className="embed-responsive embed-responsive-1by1 rounded-left-4" style={{ background: `url('${photo}') no-repeat center`, backgroundSize: 'cover', width: 150 }} />
             </div>

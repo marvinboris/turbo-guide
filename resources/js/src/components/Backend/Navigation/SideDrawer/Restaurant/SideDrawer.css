@@ -3,16 +3,19 @@
 	top: 70;
 	z-index: 1040;
 	height: calc(100vh);
+	left: -100%;
 }
 
 .Restaurant.SideDrawer .navbar-nav {
-	height: calc(100vh - 500px);
+	height: calc(100vh - 400px);
 	width: calc(100% + 1rem);
 	overflow: auto;
 }
 
 .Restaurant.SideDrawer .backdrop {
 	height: calc(100vh);
+	display: none;
+	width: 200%;
 }
 
 .Restaurant.SideDrawer nav.flex-fill {
@@ -37,5 +40,16 @@
 	background-color: #880015;
 }
 
-@media (max-width: 992px) {
+@media (min-width: 768px) {
+	.Restaurant.SideDrawer {
+		left: 0 !important;
+	}
+
+	.Restaurant.SideDrawer .backdrop {
+		display: none !important;
+	}
+
+	.Restaurant.SideDrawer .navbar-nav {
+		height: calc(100vh - 500px);
+	}
 }

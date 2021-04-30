@@ -43,9 +43,9 @@ class List extends Component {
             <Col xs={xs} sm={sm} md={md} lg={lg} xl={xl} className={`List ${outerClassName}`}>
                 <input type="hidden" id="table-search" value={search} />
 
-                <div className={`rounded-4 d-flex align-items-center mb-4 py-4 px-5 bg-${dark ? "grayblue" : "orange-10"} ${className}`}>
+                <div className={`rounded-4 d-flex align-items-center mb-3 mb-sm-4 py-3 py-sm-4 px-4 px-sm-5 bg-${dark ? "grayblue" : "orange-10"} ${className}`}>
                     <div className="d-flex align-items-center">{
-                        icon ? <FontAwesomeIcon fixedWidth className="mr-4 text-30 text-orange-20" icon={icon} size="lg" /> : null}
+                        icon ? <FontAwesomeIcon fixedWidth className="mr-3 mr-sm-4 text-30 text-orange-20" icon={icon} size="lg" /> : null}
 
                         <div>
                             <div className={`text-${dark ? "light" : "orange"} text-700 text-20 mb-1`}>{title}</div>
@@ -54,7 +54,7 @@ class List extends Component {
                         </div>
                     </div>
 
-                    <div className="ml-auto d-none d-md-block mr-4">
+                    <div className="ml-auto d-none d-md-block mr-3 mr-sm-4">
                         <Input type="search" name="search" onChange={this.inputChangedHandler} value={search} placeholder={`${search_}...`} className="rounded-6 border-orange text-16" />
                     </div>
 
@@ -67,7 +67,7 @@ class List extends Component {
                     </Link>}
                 </div>
 
-                <div className="px-4 py-4 shadow bg-white">
+                <div className="p-3 p-sm-4 shadow bg-white">
                     <div className="py-1 px-3 d-flex flex-column">
                         <div className="scrollbar-orange" style={{ overflowX: 'auto' }}>
                             <div className="flex-container">{content}</div>

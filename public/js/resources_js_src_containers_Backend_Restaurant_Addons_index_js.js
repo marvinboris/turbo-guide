@@ -338,7 +338,7 @@ var Addon = /*#__PURE__*/function (_Component) {
       });
       var symbol = currencyObj && currencyObj.symbol;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
-        className: "Addon d-flex m-2 rounded-4 bg-white position-relative",
+        className: "Addon d-flex rounded-4 bg-white position-relative",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
             className: "embed-responsive embed-responsive-1by1 rounded-left-4",
@@ -593,12 +593,12 @@ var List = /*#__PURE__*/function (_Component) {
           id: "table-search",
           value: search
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          className: "rounded-4 d-flex align-items-center mb-4 py-4 px-5 bg-".concat(dark ? "grayblue" : "orange-10", " ").concat(className),
+          className: "rounded-4 d-flex align-items-center mb-3 mb-sm-4 py-3 py-sm-4 px-4 px-sm-5 bg-".concat(dark ? "grayblue" : "orange-10", " ").concat(className),
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "d-flex align-items-center",
             children: [icon ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
               fixedWidth: true,
-              className: "mr-4 text-30 text-orange-20",
+              className: "mr-3 mr-sm-4 text-30 text-orange-20",
               icon: icon,
               size: "lg"
             }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
@@ -611,7 +611,7 @@ var List = /*#__PURE__*/function (_Component) {
               })]
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "ml-auto d-none d-md-block mr-4",
+            className: "ml-auto d-none d-md-block mr-3 mr-sm-4",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.default, {
               type: "search",
               name: "search",
@@ -634,7 +634,7 @@ var List = /*#__PURE__*/function (_Component) {
             })
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-          className: "px-4 py-4 shadow bg-white",
+          className: "p-3 p-sm-4 shadow bg-white",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "py-1 px-3 d-flex flex-column",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
@@ -690,7 +690,7 @@ __webpack_require__.r(__webpack_exports__);
       _ref$dark = _ref.dark,
       dark = _ref$dark === void 0 ? false : _ref$dark;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    className: "mb-4 pb-3 position-relative",
+    className: "mb-3 mb-sm-4 pb-2 pb-sm-3 position-relative",
     children: children
   });
 });
@@ -762,14 +762,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (_ref) {
   var children = _ref.children,
       className = _ref.className,
       _ref$dark = _ref.dark,
       dark = _ref$dark === void 0 ? false : _ref$dark;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    className: "text-30 mb-1 text-".concat(dark ? "light" : "secondary", " ").concat(className),
-    children: children
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "text-30 d-none d-sm-block mb-1 text-".concat(dark ? "light" : "secondary", " ").concat(className),
+      children: children
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "text-24 d-sm-none mb-1 text-".concat(dark ? "light" : "secondary", " ").concat(className),
+      children: children
+    })]
   });
 });
 
@@ -790,14 +796,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (_ref) {
   var children = _ref.children,
       className = _ref.className,
       _ref$dark = _ref.dark,
       dark = _ref$dark === void 0 ? false : _ref$dark;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    className: "text-".concat(dark ? "light" : "secondary", " text-18 text-300 ").concat(className),
-    children: children
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "text-".concat(dark ? "light" : "secondary", " text-18 d-none d-sm-block text-300 ").concat(className),
+      children: children
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "text-".concat(dark ? "light" : "secondary", " text-14 d-sm-none text-300 ").concat(className),
+      children: children
+    })]
   });
 });
 
@@ -1005,7 +1017,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".Addon {\r\n    width: 100%;\r\n}\r\n\r\n.Addon .name {\r\n    max-width: calc(100% - 30px);\r\n}\r\n\r\n.Addon .description {\r\n    max-width: 100%;\r\n}\r\n\r\n.Addon .action {\r\n    padding: 0;\r\n    transition: all .25s;\r\n}\r\n\r\n.Addon .action:hover {\r\n    padding: 0 46px;\r\n}\r\n\r\n.Addon .view,\r\n.Addon .delete {\r\n    position: absolute;\r\n    opacity: 0;\r\n    transform: translate(0);\r\n    transition: all 0.25s;\r\n    z-index: 1;\r\n}\r\n\r\n.Addon .edit {\r\n    position: relative;\r\n    z-index: 2;\r\n}\r\n\r\n.Addon .action:hover .view {\r\n    transform: translateX(calc(-100% - 8px));\r\n}\r\n\r\n.Addon .action:hover .delete {\r\n    transform: translateX(calc(100% + 8px));\r\n}\r\n\r\n.Addon .action:hover .view,\r\n.Addon .action:hover .delete {\r\n    opacity: 1;\r\n}\r\n\r\n@media (min-width: 1300px) {\r\n    .Addon {\r\n        width: calc(50% - 14px);\r\n    }\r\n}\r\n\r\n@media (min-width: 1600px) {\r\n    .Addon {\r\n        width: calc(33.33% - 14px);\r\n    }\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".Addon {\r\n    width: 100%;\r\n    padding: 4px;\r\n}\r\n\r\n.Addon .name {\r\n    max-width: calc(100% - 30px);\r\n}\r\n\r\n.Addon .description {\r\n    max-width: 100%;\r\n}\r\n\r\n.Addon .action {\r\n    padding: 0;\r\n    transition: all .25s;\r\n}\r\n\r\n.Addon .action:hover {\r\n    padding: 0 46px;\r\n}\r\n\r\n.Addon .view,\r\n.Addon .delete {\r\n    position: absolute;\r\n    opacity: 0;\r\n    transform: translate(0);\r\n    transition: all 0.25s;\r\n    z-index: 1;\r\n}\r\n\r\n.Addon .edit {\r\n    position: relative;\r\n    z-index: 2;\r\n}\r\n\r\n.Addon .action:hover .view {\r\n    transform: translateX(calc(-100% - 8px));\r\n}\r\n\r\n.Addon .action:hover .delete {\r\n    transform: translateX(calc(100% + 8px));\r\n}\r\n\r\n.Addon .action:hover .view,\r\n.Addon .action:hover .delete {\r\n    opacity: 1;\r\n}\r\n\r\n@media (min-width: 1300px) {\r\n    .Addon {\r\n        width: calc(50%);\r\n    }\r\n}\r\n\r\n@media (min-width: 1600px) {\r\n    .Addon {\r\n        width: calc(33.33%);\r\n    }\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -29,11 +29,11 @@ export default ({ photo, name, description, reference, meal, addon, qty, add, su
                             <FontAwesomeIcon icon={faExclamationCircle} />
                         </div>
 
-                        <div>
+                        {reference && <div>
                             <div className="px-1 bg-green text-white text-5 rounded-pill" style={{ paddingTop: 2, paddingBottom: 2 }}>
                                 {reference}
                             </div>
-                        </div>
+                        </div>}
 
                         {addon && <div className="ml-auto pl-2">
                             <div className="rounded-pill py-1 px-1 bg-orange-25 d-flex align-items-center text-10 text-orange" style={{ width: 63 }}>

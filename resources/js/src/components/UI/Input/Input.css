@@ -11,7 +11,7 @@
     max-width: calc(100% - 102px - 1rem);
 }
 
-.Input label::after {
+.Input input[required] + label::after {
     content: "*";
     color: red;
 }

@@ -17,9 +17,9 @@ class CreateMealsTable extends Migration
             $table->id();
             $table->integer('category_id')->unsigned()->index();
             $table->string('name');
-            $table->string('reference');
+            $table->string('reference')->nullable();
             $table->text('photo')->nullable();
-            $table->string('description');
+            $table->mediumText('description')->nullable();
             $table->float('price');
             $table->integer('time')->default(0);
             $table->integer('views')->default(0);

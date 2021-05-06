@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Restaurant;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\UtilController;
 use App\Mail\VerificationLink;
 use App\Models\Restaurant;
 use Carbon\Carbon;
@@ -144,6 +145,17 @@ class AuthController extends Controller
                 'type' => 'danger',
                 'content' => 'Failure.'
             ]
+        ]);
+    }
+
+    public function autoRenew(Request $request)
+    {
+        $restaurant = UtilController::get($request);
+
+        $restaurant->update(['auto_renew' => $restaurant->auto_renew === 0 ? 1 : 0]);
+
+        return response()->json([
+            'auto_renew' => $restaurant->auto_renew,
         ]);
     }
 }

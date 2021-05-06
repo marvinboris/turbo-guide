@@ -181,9 +181,9 @@ class Add extends Component {
                                         <FormGroup className="col-12 text-14">
                                             {form.total_addons}: <span className="text-700 text-orange">{addons.length}</span>
                                         </FormGroup>
-                                        <FormInput type="text" className="col-md-6" icon={faPencilAlt} onChange={this.inputChangeHandler} value={description} name="description" required placeholder={form.description} />
+                                        <FormInput type="text" className="col-md-6" icon={faPencilAlt} onChange={this.inputChangeHandler} value={description} name="description" placeholder={form.description} />
                                         <FormInput type="number" className="col-md-6" addon={<div className="text-center text-light" style={{ margin: '0 -10px' }}>{symbol}</div>} onChange={this.inputChangeHandler} value={price} name="price" required placeholder={form.price} />
-                                        <FormInput type="text" className="col-md-6" icon={faPencilAlt} onChange={this.inputChangeHandler} value={reference} name="reference" required placeholder={form.reference} />
+                                        <FormInput type="text" className="col-md-6" icon={faPencilAlt} onChange={this.inputChangeHandler} value={reference} name="reference" placeholder={form.reference} />
                                         <FormInput type="number" className="col-md-6" icon={faClock} onChange={this.inputChangeHandler} value={time} name="time" required placeholder={form.time} />
                                         <FormInput type="select" className="col-md-6" icon={faPencilAlt} onChange={this.inputChangeHandler} value={is_active} name="is_active" required>
                                             <option>{form.select_status}</option>

@@ -5,34 +5,35 @@ import { Button, Col, CustomInput, Row } from 'reactstrap';
 import { faBox, faMoneyBillWaveAlt, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
 // Components
-import Breadcrumb from '../../../../components/Backend/UI/Breadcrumb/Breadcrumb';
-import TitleWrapper from '../../../../components/Backend/UI/TitleWrapper';
-import SpecialTitle from '../../../../components/UI/Titles/SpecialTitle/SpecialTitle';
-import Subtitle from '../../../../components/UI/Titles/Subtitle/Subtitle';
-import Error from '../../../../components/Error/Error';
-import CustomSpinner from '../../../../components/UI/CustomSpinner/CustomSpinner';
-import Form from '../../../../components/Backend/UI/Food/Form';
-import FormInput from '../../../../components/UI/Input/Input';
-import Feedback from '../../../../components/Feedback/Feedback';
+import TitleWrapper from '../../../../../components/Backend/UI/TitleWrapper';
+import SpecialTitle from '../../../../../components/UI/Titles/SpecialTitle/SpecialTitle';
+import Subtitle from '../../../../../components/UI/Titles/Subtitle/Subtitle';
+import Error from '../../../../../components/Error/Error';
+import CustomSpinner from '../../../../../components/UI/CustomSpinner/CustomSpinner';
+import Form from '../../../../../components/Backend/UI/Food/Form';
+import FormInput from '../../../../../components/UI/Input/Input';
+import Feedback from '../../../../../components/Feedback/Feedback';
 
-import * as actions from '../../../../store/actions/backend';
+import * as authActions from '../../../../../store/actions/auth';
+import * as backendActions from '../../../../../store/actions/backend';
+import { updateObject } from '../../../../../shared/utility';
+
+import './Purchase.css';
+
+const icon = faBox;
 
 class Purchase extends Component {
     state = {
         type: '',
         plan_id: '',
         price: '',
+
+        auto_renew: null,
     }
 
-    async componentDidMount() {
-        this.props.reset();
-        this.props.info();
-    }
 
-    componentWillUnmount() {
-        this.props.reset();
-    }
 
+    // Component methods
     submitHandler = e => {
         e.preventDefault();
         this.props.purchase(e.target);
@@ -47,6 +48,27 @@ class Purchase extends Component {
         this.setState({ [name]: files ? files[0] : value });
     }
 
+    autoRenewHandler = () => {
+        this.props.autoRenew();
+    }
+
+
+
+    // Lifecycle methods
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (prevState.auto_renew !== nextProps.auth.data.auto_renew) return updateObject(prevState, { auto_renew: nextProps.auth.data.auto_renew });
+        return null;
+    }
+
+    componentDidMount() {
+        this.props.reset();
+        this.props.info();
+    }
+
+    componentWillUnmount() {
+        this.props.reset();
+    }
+
     render() {
         let {
             content: {
@@ -55,6 +77,7 @@ class Purchase extends Component {
                 }
             },
             backend: { plans: { loading, error, message, types = [] } },
+            auth: { data: { plan, auto_renew } }
         } = this.props;
         let { type, plan_id, price } = this.state;
         let content = null;
@@ -76,7 +99,7 @@ class Purchase extends Component {
             </>;
             content = (
                 <>
-                    <Col lg={6}>
+                    <Col lg={8} xl={6} className="col-xxl-4">
                         <Feedback message={message} />
 
                         <div className="shadow-lg rounded-8 bg-white px-4 px-sm-5 py-3 py-sm-4">
@@ -113,21 +136,51 @@ class Purchase extends Component {
         }
 
         return (
-            <>
+            <div className="Purchase">
                 <TitleWrapper>
-                    <Breadcrumb main={add} icon={faBox} />
-                    <SpecialTitle>{title}</SpecialTitle>
-                    <Subtitle>{add}</Subtitle>
+                    <div className="d-flex align-items-center">
+                        <div>
+                            <SpecialTitle>{title}</SpecialTitle>
+                            <Subtitle>{add}</Subtitle>
+                        </div>
+
+                        {plan && <div className="ml-4 pl-2">
+                            <div className="p-3 position-relative bg-orange-20 rounded-4 d-flex align-items-end">
+                                <div className="text-white bg-orange rounded-pill py-1 px-3 position-absolute text-14 current-plan">Current Plan</div>
+
+                                <div className="mx-4 pl-1 pr-3">
+                                    <div className="text-orange text-32 text-700">{plan.name}</div>
+
+                                    <div className="text-11 text-300">{plan.months === 1 ? 'Monthly' : 'Yearly'}</div>
+                                </div>
+
+                                <div className="pr-1 d-flex flex-column align-items-center">
+                                    <div className="mb-1">
+                                        <div className={"rounded-pill d-flex align-items-center position-relative auto-renew " + (auto_renew === 1 ? "on" : "off") + " text-11 p-1"}>
+                                            <div className="circle rounded-circle" onClick={this.autoRenewHandler} />
+
+                                            <div className="off mr-1">Off</div>
+
+                                            <div className="on">On</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="text-8 text-300">Auto renew</div>
+                                </div>
+                            </div>
+                        </div>}
+                    </div>
                 </TitleWrapper>
+
                 <div>
                     {errors}
                     <Row>
-                        <Form onSubmit={this.submitHandler} icon={faBox} title={add} subtitle={subtitle} list={index} link="/restaurant/plans" innerClassName="row justify-content-center">
+                        <Form onSubmit={this.submitHandler} icon={icon} title={add} subtitle={subtitle} list={index} link="/restaurant/plans" innerClassName="row justify-content-center">
                             {content}
                         </Form>
                     </Row>
                 </div>
-            </>
+            </div>
         );
     }
 }
@@ -135,9 +188,11 @@ class Purchase extends Component {
 const mapStateToProps = state => ({ ...state });
 
 const mapDispatchToProps = dispatch => ({
-    info: () => dispatch(actions.getPlansInfo()),
-    purchase: data => dispatch(actions.purchasePlan(data)),
-    reset: () => dispatch(actions.resetPlans()),
+    info: () => dispatch(backendActions.getPlansInfo()),
+    purchase: data => dispatch(backendActions.purchasePlan(data)),
+    reset: () => dispatch(backendActions.resetPlans()),
+
+    autoRenew: () => dispatch(authActions.authAutoRenew()),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Purchase));

@@ -14,8 +14,8 @@ class MealController extends Controller
     private $rules = [
         'category_id' => 'required|exists:categories,id',
         'name' => 'required|string',
-        'reference' => 'required|string',
-        'description' => 'required|string',
+        'reference' => 'nullable|string',
+        'description' => 'nullable|string',
         'price' => 'required|numeric',
         'time' => 'required|numeric',
         'photo' => 'required|file|image',

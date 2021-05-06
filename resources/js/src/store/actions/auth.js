@@ -9,6 +9,7 @@ const authFail = error => ({ type: actionTypes.AUTH_FAIL, error });
 const authUserLoginSuccess = (token, data) => ({ type: actionTypes.AUTH_USER_LOGIN_SUCCESS, token, data: { ...data }, role: 'user' });
 
 const authRestaurantLoginSuccess = (token, data) => ({ type: actionTypes.AUTH_RESTAURANT_LOGIN_SUCCESS, token, data: { ...data }, role: 'restaurant' });
+const authAutoRenewSuccess = auto_renew => ({ type: actionTypes.AUTH_AUTO_RENEW_SUCCESS, auto_renew });
 const authPhotoSuccess = photo => ({ type: actionTypes.AUTH_PHOTO_SUCCESS, photo });
 const authSignupSuccess = email => ({ type: actionTypes.AUTH_SIGNUP_SUCCESS, signup: { status: true, email } });
 export const clearSignup = () => ({ type: actionTypes.CLEAR_SIGNUP, signup: { status: false, email: null } });
@@ -90,6 +91,27 @@ export const authRestaurantLogin = data => async dispatch => {
         localStorage.setItem('expirationDate', expirationDate);
         dispatch(authRestaurantLoginSuccess(token, userData));
         dispatch(checkAuthTimeout(expires_at - new Date().getTime()));
+    } catch (error) {
+        dispatch(authFail(error));
+    }
+};
+
+export const authAutoRenew = () => async dispatch => {
+    dispatch(authStart());
+    const token = localStorage.getItem('token');
+
+    try {
+        const res = await fetch(`${prefix}restaurant/auto-renew`, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Authorization': token
+            }
+        });
+
+        const resData = await res.json();
+
+        dispatch(authAutoRenewSuccess(resData.auto_renew));
     } catch (error) {
         dispatch(authFail(error));
     }

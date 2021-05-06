@@ -10,8 +10,8 @@ class AddonController extends Controller
 {
     private $rules = [
         'name' => 'required|string',
-        'reference' => 'required|string',
-        'description' => 'required|string',
+        'reference' => 'nullable|string',
+        'description' => 'nullable|string',
         'price' => 'required|numeric',
         'photo' => 'required|file|image',
         'is_active' => 'required|integer',

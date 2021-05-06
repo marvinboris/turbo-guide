@@ -20,8 +20,8 @@ class CreateRestaurantsTable extends Migration
             $table->string('name')->nullable();
             $table->string('owner');
             $table->string('token', 64)->unique();
-            $table->string('md5', 64)->unique();
             $table->string('email', 50)->unique();
+            $table->string('password');
             $table->string('phone');
             $table->string('country');
             $table->string('whatsapp')->nullable();
@@ -29,10 +29,18 @@ class CreateRestaurantsTable extends Migration
             $table->string('days')->nullable();
             $table->string('hours')->nullable();
             $table->string('location')->nullable();
-            $table->string('photo')->nullable();
+            $table->text('position')->default(1);
+            $table->text('photo')->nullable();
+            $table->text('qr')->nullable();
+            $table->text('logo')->nullable();
+            $table->text('banner1')->nullable();
+            $table->text('banner2')->nullable();
+            $table->text('banner3')->nullable();
+            $table->string('currency')->default('XAF');
             $table->float('balance')->default(0);
-            $table->string('password');
             $table->tinyInteger('is_active')->default(1);
+            $table->tinyInteger('auto_renew')->default(0);
+            $table->string('slug')->nullable();
             $table->timestamps();
         });
     }

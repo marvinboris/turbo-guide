@@ -18,7 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->integer('restaurant_id')->unsigned()->index();
             $table->string('name');
             $table->text('photo')->nullable();
-            $table->string('description');
+            $table->mediumText('description')->nullable();
             $table->tinyInteger('is_active')->default(1);
             $table->timestamps();
         });

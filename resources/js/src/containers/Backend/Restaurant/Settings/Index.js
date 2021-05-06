@@ -200,7 +200,7 @@ class Settings extends Component {
         let spinnerContent, restaurantContent, accountContent, cmsContent, calendarContent;
         let errors = null;
 
-        if (message && message.type === 'success') window.location.reload();
+        // if (message && message.type === 'success') window.location.reload();
 
         const basic = plan;
         const standard = plan && plan.slug === 'standard';

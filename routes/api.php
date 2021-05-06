@@ -175,6 +175,8 @@ Route::namespace('Restaurant')->prefix('restaurant')->name('restaurant.')->group
             Route::get('info', 'RechargeController@info')->name('info');
         });
 
+        Route::post('auto-renew', 'AuthController@autoRenew')->name('auto-renew');
+
 
 
         Route::apiResources([

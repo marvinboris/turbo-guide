@@ -10,8 +10,8 @@ class CategoryController extends Controller
 {
     private $rules = [
         'name' => 'required|string',
-        'description' => 'required|string',
-        'photo' => 'required|file|image',
+        'description' => 'nullable|string',
+        'photo' => 'nullable|file|image',
         'is_active' => 'required|integer',
     ];
 

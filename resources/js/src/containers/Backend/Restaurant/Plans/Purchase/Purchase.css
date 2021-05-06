@@ -1,0 +1,59 @@
+.Purchase .current-plan {
+    top: 0;
+    left: 44px;
+    transform: translateY(-50%);
+}
+
+.Purchase .auto-renew.on {
+    background-color: var(--green-20);
+    color: var(--green);
+}
+
+.Purchase .auto-renew.off {
+    background-color: var(--red-20);
+    color: var(--red);
+}
+
+.Purchase .auto-renew .circle {
+    position: absolute;
+    cursor: pointer;
+    z-index: 1;
+    top: 4px;
+    width: 18px;
+    height: 18px;
+    transition: all 0.25s;
+}
+
+.Purchase .auto-renew.on .circle {
+    background-color: var(--green);
+    left: 4px;
+    transform: translateX(0%);
+}
+
+.Purchase .auto-renew.off .circle {
+    background-color: var(--red);
+    left: calc(100% - 4px);
+    transform: translateX(-100%);
+}
+
+.Purchase .auto-renew .on,
+.Purchase .auto-renew .off {
+    width: 18px;
+    transition: all 0.25s;
+}
+
+.Purchase .auto-renew.on .on {
+    opacity: 1;
+}
+
+.Purchase .auto-renew.off .on {
+    opacity: 0;
+}
+
+.Purchase .auto-renew.on .off {
+    opacity: 0;
+}
+
+.Purchase .auto-renew.off .off {
+    opacity: 1;
+}

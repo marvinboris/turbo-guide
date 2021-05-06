@@ -16,7 +16,7 @@ class Restaurant extends Authenticatable
     protected $directory = '/images/restaurants/';
 
     protected $fillable = [
-        'plan_id', 'language_id', 'name', 'owner', 'token', 'md5', 'slug', 'qr', 'logo', 'email', 'photo', 'phone', 'country', 'whatsapp', 'address', 'days', 'hours', 'location', 'balance', 'password', 'is_active', 'currency', 'position', 'banner1', 'banner2', 'banner3'
+        'language_id', 'name', 'owner', 'token', 'md5', 'slug', 'qr', 'logo', 'email', 'photo', 'phone', 'country', 'whatsapp', 'address', 'days', 'hours', 'location', 'balance', 'password', 'is_active', 'currency', 'position', 'banner1', 'banner2', 'banner3', 'auto_renew'
     ];
 
     public function sluggable()
@@ -110,11 +110,6 @@ class Restaurant extends Authenticatable
     public function addons()
     {
         return $this->hasMany(Addon::class);
-    }
-
-    public function drinks()
-    {
-        return $this->hasMany(Drink::class);
     }
 
     public function plans()

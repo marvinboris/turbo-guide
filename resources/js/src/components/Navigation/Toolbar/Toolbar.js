@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown, faEnvelope, faGamepad, faHeadset, faLaptop, faMicrophoneAlt, faMobileAlt, faPhone, faSearch, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
-import { faHeart, faUser } from '@fortawesome/free-regular-svg-icons';
-import { Badge, Button, Collapse, Input, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
+import { faAngleDown, faEnvelope, faPhone, faSearch, faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { Badge, Collapse, Input, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
 
 import NavigationItems from '../NavigationItems/NavigationItems';
-import Categories from '../Categories';
 import Logo from '../../UI/Logo/Logo';
 
 import './Toolbar.css';
 
-import MenuBar from '../../../assets/images/menu-bar.svg';
 
 const Notification = ({ icon, value }) => <div className="position-relative mx-2">
     <FontAwesomeIcon icon={icon} size="2x" fixedWidth />
@@ -91,19 +89,6 @@ export default ({ }) => {
                         <Notification icon={faShoppingBasket} value={3} />
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div className="bg-soft">
-            <div className="container">
-                <Categories items={[
-                    { icon: faUser, text: 'Mixte' },
-                    { icon: faHeadset, text: 'Headphones' },
-                    { icon: faLaptop, text: 'Laptops' },
-                    { icon: faMobileAlt, text: 'Smartphones' },
-                    { icon: faMicrophoneAlt, text: 'Accessories' },
-                    { icon: faGamepad, text: 'Games' },
-                ]} />
             </div>
         </div>
     </div>;

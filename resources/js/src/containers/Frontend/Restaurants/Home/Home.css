@@ -6,6 +6,15 @@
     height: 100% !important;
 }
 
+.Home .Languages .dropdown-toggle {
+    left: 40px;
+    transition: all 0.25s;
+}
+
+.Home .Languages:hover .dropdown-toggle {
+    left: 0px;
+}
+
 .Home .language-flag {
     overflow: hidden;
     border-radius: 50%;

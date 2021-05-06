@@ -52,17 +52,13 @@ const Languages = ({ languages, set }) => {
         <span className={`flag-icon flag-icon-${l.flag.toLowerCase()}`} /> {l.abbr.toUpperCase()}
     </DropdownItem>);
 
-    return <UncontrolledDropdown>
-        <DropdownToggle className="d-flex justify-content-around align-items-center bg-orange-50 rounded-pill border-0 p-2 m-0" style={{ boxShadow: 'none' }} caret>
+    return <UncontrolledDropdown className="Languages">
+        <DropdownToggle className="position-relative d-flex justify-content-around align-items-center bg-black-50 rounded-pill rounded-right-0 border-0 p-2 m-0" style={{ boxShadow: 'none' }} caret>
             <span className="language-flag shadow-lg mr-2 overflow-hidden d-inline-flex justify-content-center align-items-center position-relative">
                 <span className={`flag-icon position-absolute flag-icon-${language && language.flag.toLowerCase()}`} />
             </span>
 
-            <span className="pl-2 border-left border-dark-20 position-relative">
-                <span className="text-700">{language && language.abbr.toUpperCase()}</span>
-
-                <FontAwesomeIcon icon={faCircle} className="text-orange text-6 position-absolute" style={{ left: 0, transform: 'translate(-50%, -50%)', top: '50%' }} />
-            </span>
+            <span className="text-700">{language && language.abbr.toUpperCase()}</span>
         </DropdownToggle>
 
         <DropdownMenu style={{ minWidth: '5rem' }}>
@@ -206,7 +202,7 @@ class Home extends Component {
                         backgroundSize: 'cover',
                     }} />}
 
-                    <div className="position-absolute pt-4 pr-4" style={{ top: 0, right: 0, zIndex: 1040 }}>
+                    <div className="position-absolute pt-4" style={{ top: 0, right: 0, zIndex: 1040 }}>
                         <Languages languages={languages} set={this.setLanguage} />
                     </div>
                 </div>

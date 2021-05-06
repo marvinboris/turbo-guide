@@ -625,6 +625,7 @@ var Block = function Block(_ref) {
       save = _ref.save,
       hidden = _ref.hidden,
       onSubmit = _ref.onSubmit,
+      updatable = _ref.updatable,
       toggle = _ref.toggle;
   return children ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("form", {
     className: "col-xxl-3 col-xl-4 col-lg-6 pb-4",
@@ -641,7 +642,7 @@ var Block = function Block(_ref) {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
       className: "h-100 bg-white rounded-8 shadow py-3 py-sm-4 px-4 px-sm-5",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
-        className: "py-2",
+        className: "py-2 d-flex flex-column h-100",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
           className: "mb-3 mb-sm-4 pb-3 pb-sm-4 border-bottom border-orange-50 d-flex align-items-center justify-content-between",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
@@ -653,7 +654,7 @@ var Block = function Block(_ref) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
             className: "text-27 text-orange",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faEdit,
+              icon: updatable ? _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faLockOpen : _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faLock,
               onClick: toggle,
               style: {
                 cursor: 'pointer'
@@ -664,6 +665,7 @@ var Block = function Block(_ref) {
           className: "mb-2 mb-sm-3 pb-1",
           children: children
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+          className: "mt-auto",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_16__.default, {
             color: "orange",
             className: "text-20 rounded-4 py-3 px-4",
@@ -771,7 +773,7 @@ var Settings = /*#__PURE__*/function (_Component) {
       address: '',
       currency: 'XAF',
       position: '1',
-      restaurantUpdate: false,
+      restaurantUpdatable: false,
       email: '',
       country: '',
       token: '',
@@ -779,14 +781,14 @@ var Settings = /*#__PURE__*/function (_Component) {
       new_password: '',
       new_password_confirmation: '',
       photo: '',
-      accountUpdate: false,
+      accountUpdatable: false,
       banner1: '',
       banner2: '',
       banner3: '',
-      cmsUpdate: false,
+      cmsUpdatable: false,
       days: '',
       hours: '',
-      calendarUpdate: false
+      calendarUpdatable: false
     });
 
     _defineProperty(_assertThisInitialized(_this), "submitHandler", function (e) {
@@ -802,7 +804,7 @@ var Settings = /*#__PURE__*/function (_Component) {
     _defineProperty(_assertThisInitialized(_this), "restaurantToggle", function () {
       return _this.setState(function (prevState) {
         return {
-          restaurantUpdate: !prevState.restaurantUpdate
+          restaurantUpdatable: !prevState.restaurantUpdatable
         };
       });
     });
@@ -816,7 +818,7 @@ var Settings = /*#__PURE__*/function (_Component) {
     _defineProperty(_assertThisInitialized(_this), "accountToggle", function () {
       return _this.setState(function (prevState) {
         return {
-          accountUpdate: !prevState.accountUpdate
+          accountUpdatable: !prevState.accountUpdatable
         };
       });
     });
@@ -830,7 +832,7 @@ var Settings = /*#__PURE__*/function (_Component) {
     _defineProperty(_assertThisInitialized(_this), "cmsToggle", function () {
       return _this.setState(function (prevState) {
         return {
-          cmsUpdate: !prevState.cmsUpdate
+          cmsUpdatable: !prevState.cmsUpdatable
         };
       });
     });
@@ -844,7 +846,7 @@ var Settings = /*#__PURE__*/function (_Component) {
     _defineProperty(_assertThisInitialized(_this), "calendarToggle", function () {
       return _this.setState(function (prevState) {
         return {
-          calendarUpdate: !prevState.calendarUpdate
+          calendarUpdatable: !prevState.calendarUpdatable
         };
       });
     });
@@ -923,7 +925,7 @@ var Settings = /*#__PURE__*/function (_Component) {
           address = _this$state.address,
           currency = _this$state.currency,
           position = _this$state.position,
-          restaurantUpdate = _this$state.restaurantUpdate,
+          restaurantUpdatable = _this$state.restaurantUpdatable,
           email = _this$state.email,
           country = _this$state.country,
           token = _this$state.token,
@@ -931,14 +933,14 @@ var Settings = /*#__PURE__*/function (_Component) {
           new_password = _this$state.new_password,
           new_password_confirmation = _this$state.new_password_confirmation,
           photo = _this$state.photo,
-          accountUpdate = _this$state.accountUpdate,
+          accountUpdatable = _this$state.accountUpdatable,
           banner1 = _this$state.banner1,
           banner2 = _this$state.banner2,
           banner3 = _this$state.banner3,
-          cmsUpdate = _this$state.cmsUpdate,
+          cmsUpdatable = _this$state.cmsUpdatable,
           days = _this$state.days,
           hours = _this$state.hours,
-          calendarUpdate = _this$state.calendarUpdate;
+          calendarUpdatable = _this$state.calendarUpdatable;
       var spinnerContent, restaurantContent, accountContent, cmsContent, calendarContent;
       var errors = null;
       if (message && message.type === 'success') window.location.reload();
@@ -985,7 +987,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faHome,
             onChange: this.inputChangeHandler,
             value: name,
-            disabled: !restaurantUpdate,
+            disabled: !restaurantUpdatable,
             name: "name",
             required: true,
             placeholder: form.name
@@ -994,7 +996,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faUserTie,
             onChange: this.inputChangeHandler,
             value: owner,
-            disabled: !restaurantUpdate,
+            disabled: !restaurantUpdatable,
             name: "owner",
             required: true,
             placeholder: form.owner
@@ -1005,7 +1007,7 @@ var Settings = /*#__PURE__*/function (_Component) {
               icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faPhone,
               onChange: this.inputChangeHandler,
               value: phone,
-              disabled: !restaurantUpdate,
+              disabled: !restaurantUpdatable,
               name: "phone",
               required: true,
               placeholder: form.phone
@@ -1017,7 +1019,7 @@ var Settings = /*#__PURE__*/function (_Component) {
               icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_20__.faWhatsapp,
               onChange: this.inputChangeHandler,
               value: whatsapp,
-              disabled: !restaurantUpdate,
+              disabled: !restaurantUpdatable,
               name: "whatsapp",
               placeholder: form.whatsapp
             })
@@ -1028,7 +1030,7 @@ var Settings = /*#__PURE__*/function (_Component) {
               icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faLocationArrow,
               onChange: this.inputChangeHandler,
               value: location,
-              disabled: !restaurantUpdate,
+              disabled: !restaurantUpdatable,
               name: "location",
               placeholder: form.location
             })
@@ -1037,7 +1039,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faMapMarkerAlt,
             onChange: this.inputChangeHandler,
             value: address,
-            disabled: !restaurantUpdate,
+            disabled: !restaurantUpdatable,
             name: "address",
             placeholder: form.address
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_10__.default, {
@@ -1051,7 +1053,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             }),
             onChange: this.inputChangeHandler,
             value: currency,
-            disabled: !restaurantUpdate,
+            disabled: !restaurantUpdatable,
             name: "currency",
             required: true,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("option", {
@@ -1062,7 +1064,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faArrowsAltH,
             onChange: this.inputChangeHandler,
             value: position,
-            disabled: !restaurantUpdate,
+            disabled: !restaurantUpdatable,
             name: "position",
             required: true,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("option", {
@@ -1082,7 +1084,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faEnvelope,
             onChange: this.inputChangeHandler,
             value: email,
-            disabled: !accountUpdate,
+            disabled: !accountUpdatable,
             name: "email",
             required: true,
             placeholder: form.email
@@ -1102,7 +1104,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             }),
             onChange: this.inputChangeHandler,
             value: country,
-            disabled: !accountUpdate,
+            disabled: !accountUpdatable,
             name: "country",
             required: true,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("option", {
@@ -1113,7 +1115,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faEdit,
             onChange: this.inputChangeHandler,
             value: token,
-            disabled: !accountUpdate,
+            disabled: !accountUpdatable,
             name: "token",
             readonly: true,
             placeholder: form.token
@@ -1122,7 +1124,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faLock,
             onChange: this.inputChangeHandler,
             value: password,
-            disabled: !accountUpdate,
+            disabled: !accountUpdatable,
             name: "password",
             placeholder: form.password
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_10__.default, {
@@ -1130,7 +1132,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faLock,
             onChange: this.inputChangeHandler,
             value: new_password,
-            disabled: !accountUpdate,
+            disabled: !accountUpdatable,
             name: "new_password",
             placeholder: form.new_password
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_10__.default, {
@@ -1138,7 +1140,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faLock,
             onChange: this.inputChangeHandler,
             value: new_password_confirmation,
-            disabled: !accountUpdate,
+            disabled: !accountUpdatable,
             name: "new_password_confirmation",
             placeholder: form.new_password_confirmation
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_18__.default, {
@@ -1146,11 +1148,11 @@ var Settings = /*#__PURE__*/function (_Component) {
               id: "embed-photo",
               className: "embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center",
               style: {
-                cursor: accountUpdate ? 'pointer' : 'not-allowed',
+                cursor: accountUpdatable ? 'pointer' : 'not-allowed',
                 background: photo && "url(\"".concat(photo, "\") no-repeat center"),
                 backgroundSize: 'cover'
               },
-              onClick: !accountUpdate ? null : function () {
+              onClick: !accountUpdatable ? null : function () {
                 return _this2.fileUpload("photo");
               },
               children: !photo ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
@@ -1202,10 +1204,10 @@ var Settings = /*#__PURE__*/function (_Component) {
             locked: form.locked_banner3
           }].map(function (item) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(CmsItem, _objectSpread(_objectSpread({}, item), {}, {
-              disabled: !cmsUpdate,
+              disabled: !cmsUpdatable,
               restaurant: restaurant,
               selected_file: selected_file,
-              fileUpload: !cmsUpdate ? null : _this2.fileUpload
+              fileUpload: !cmsUpdatable ? null : _this2.fileUpload
             }), JSON.stringify(item));
           })
         });
@@ -1215,7 +1217,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faCalendar,
             onChange: this.inputChangeHandler,
             value: days,
-            disabled: !calendarUpdate,
+            disabled: !calendarUpdatable,
             name: "days",
             required: true,
             placeholder: form.days
@@ -1224,7 +1226,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faClock,
             onChange: this.inputChangeHandler,
             value: hours,
-            disabled: !calendarUpdate,
+            disabled: !calendarUpdatable,
             name: "hours",
             required: true,
             placeholder: form.hours
@@ -1260,6 +1262,7 @@ var Settings = /*#__PURE__*/function (_Component) {
                 save: save,
                 onSubmit: this.restaurantSettingsSubmitHandler,
                 title: form.restaurant_settings,
+                updatable: restaurantUpdatable,
                 toggle: this.restaurantToggle,
                 children: restaurantContent
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(Block, {
@@ -1268,6 +1271,7 @@ var Settings = /*#__PURE__*/function (_Component) {
                 save: save,
                 onSubmit: this.accountSettingsSubmitHandler,
                 title: form.account_settings,
+                updatable: accountUpdatable,
                 toggle: this.accountToggle,
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("input", {
                   type: "file",
@@ -1283,6 +1287,7 @@ var Settings = /*#__PURE__*/function (_Component) {
                 save: save,
                 onSubmit: this.cmsSettingsSubmitHandler,
                 title: form.cms_settings,
+                updatable: cmsUpdatable,
                 toggle: this.cmsToggle,
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(Conditional, {
                   condition: basic,
@@ -1321,6 +1326,7 @@ var Settings = /*#__PURE__*/function (_Component) {
                 save: save,
                 onSubmit: this.calendarSettingsSubmitHandler,
                 title: form.calendar_settings,
+                updatable: calendarUpdatable,
                 toggle: this.calendarToggle,
                 children: calendarContent
               })]

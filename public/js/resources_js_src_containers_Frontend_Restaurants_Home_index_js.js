@@ -815,8 +815,9 @@ var Languages = function Languages(_ref5) {
     }, JSON.stringify(l));
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_16__.default, {
+    className: "Languages",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_17__.default, {
-      className: "d-flex justify-content-around align-items-center bg-orange-50 rounded-pill border-0 p-2 m-0",
+      className: "position-relative d-flex justify-content-around align-items-center bg-black-50 rounded-pill rounded-right-0 border-0 p-2 m-0",
       style: {
         boxShadow: 'none'
       },
@@ -826,20 +827,9 @@ var Languages = function Languages(_ref5) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("span", {
           className: "flag-icon position-absolute flag-icon-".concat(language && language.flag.toLowerCase())
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("span", {
-        className: "pl-2 border-left border-dark-20 position-relative",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("span", {
-          className: "text-700",
-          children: language && language.abbr.toUpperCase()
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-          icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_14__.faCircle,
-          className: "text-orange text-6 position-absolute",
-          style: {
-            left: 0,
-            transform: 'translate(-50%, -50%)',
-            top: '50%'
-          }
-        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("span", {
+        className: "text-700",
+        children: language && language.abbr.toUpperCase()
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_18__.default, {
       style: {
@@ -1073,7 +1063,7 @@ var Home = /*#__PURE__*/function (_Component) {
                 backgroundSize: 'cover'
               }
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
-              className: "position-absolute pt-4 pr-4",
+              className: "position-absolute pt-4",
               style: {
                 top: 0,
                 right: 0,
@@ -1293,7 +1283,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".Home .categories {\r\n    padding-bottom: calc(100vh - 280px);\r\n}\r\n\r\n.Home .carousel-inner {\r\n    height: 100% !important;\r\n}\r\n\r\n.Home .language-flag {\r\n    overflow: hidden;\r\n    border-radius: 50%;\r\n    width: 20px;\r\n    height: 20px;\r\n    border: 3px solid #fff;\r\n}\r\n\r\n.Home .navigation {\r\n    overflow-x: auto;\r\n}\r\n\r\n.Home #banner {\r\n    position: relative;\r\n    z-index: 10;\r\n}\r\n\r\n.Home .category-select {\r\n    max-width: calc(var(--app-width) - 178px);\r\n}\r\n\r\n@media (max-width: 412px) {\r\n    .Home .category-select {\r\n        max-width: calc(100vw - 178px);\r\n    }\r\n}\r\n\r\n.Home .carousel-indicators li {\r\n    width: 8px;\r\n    height: 8px;\r\n    border-radius: 100%;\r\n    background-color: var(--white-50);\r\n    transition: all 0.25s;\r\n}\r\n\r\n.Home .carousel-indicators li.active {\r\n    background-color: var(--white-80);\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".Home .categories {\r\n    padding-bottom: calc(100vh - 280px);\r\n}\r\n\r\n.Home .carousel-inner {\r\n    height: 100% !important;\r\n}\r\n\r\n.Home .Languages .dropdown-toggle {\r\n    left: 40px;\r\n    transition: all 0.25s;\r\n}\r\n\r\n.Home .Languages:hover .dropdown-toggle {\r\n    left: 0px;\r\n}\r\n\r\n.Home .language-flag {\r\n    overflow: hidden;\r\n    border-radius: 50%;\r\n    width: 20px;\r\n    height: 20px;\r\n    border: 3px solid #fff;\r\n}\r\n\r\n.Home .navigation {\r\n    overflow-x: auto;\r\n}\r\n\r\n.Home #banner {\r\n    position: relative;\r\n    z-index: 10;\r\n}\r\n\r\n.Home .category-select {\r\n    max-width: calc(var(--app-width) - 178px);\r\n}\r\n\r\n@media (max-width: 412px) {\r\n    .Home .category-select {\r\n        max-width: calc(100vw - 178px);\r\n    }\r\n}\r\n\r\n.Home .carousel-indicators li {\r\n    width: 8px;\r\n    height: 8px;\r\n    border-radius: 100%;\r\n    background-color: var(--white-50);\r\n    transition: all 0.25s;\r\n}\r\n\r\n.Home .carousel-indicators li.active {\r\n    background-color: var(--white-80);\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

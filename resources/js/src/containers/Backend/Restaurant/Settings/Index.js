@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Button, Col, FormGroup, Row } from 'reactstrap';
-import { faArrowsAltH, faCalendar, faCheckCircle, faClock, faCog, faEdit, faEnvelope, faFileImage, faHome, faLocationArrow, faLock, faMapMarkerAlt, faPhone, faUser, faUserTie } from '@fortawesome/free-solid-svg-icons';
+import { faArrowsAltH, faCalendar, faCheckCircle, faClock, faCog, faEdit, faEnvelope, faFileImage, faHome, faLocationArrow, faLock, faLockOpen, faMapMarkerAlt, faPhone, faUser, faUserTie } from '@fortawesome/free-solid-svg-icons';
 import { faSave } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
@@ -21,11 +21,11 @@ import Feedback from '../../../../components/Feedback/Feedback';
 import * as actions from '../../../../store/actions';
 import { updateObject } from '../../../../shared/utility';
 
-const Block = ({ children, icon, title, save, hidden, onSubmit, toggle }) => children ? <form className="col-xxl-3 col-xl-4 col-lg-6 pb-4" style={hidden ? { visibility: 'hidden' } : { visibility: 'visible' }} onSubmit={onSubmit}>
+const Block = ({ children, icon, title, save, hidden, onSubmit, updatable, toggle }) => children ? <form className="col-xxl-3 col-xl-4 col-lg-6 pb-4" style={hidden ? { visibility: 'hidden' } : { visibility: 'visible' }} onSubmit={onSubmit}>
     <input type="hidden" name="_method" defaultValue="PATCH" />
 
     <div className="h-100 bg-white rounded-8 shadow py-3 py-sm-4 px-4 px-sm-5">
-        <div className="py-2">
+        <div className="py-2 d-flex flex-column h-100">
             <div className="mb-3 mb-sm-4 pb-3 pb-sm-4 border-bottom border-orange-50 d-flex align-items-center justify-content-between">
                 <div className="text-14">
                     <FontAwesomeIcon icon={icon} className="mr-3 text-orange text-21" />
@@ -34,7 +34,7 @@ const Block = ({ children, icon, title, save, hidden, onSubmit, toggle }) => chi
                 </div>
 
                 <div className="text-27 text-orange">
-                    <FontAwesomeIcon icon={faEdit} onClick={toggle} style={{ cursor: 'pointer' }} />
+                    <FontAwesomeIcon icon={updatable ? faLockOpen : faLock} onClick={toggle} style={{ cursor: 'pointer' }} />
                 </div>
             </div>
 
@@ -42,7 +42,7 @@ const Block = ({ children, icon, title, save, hidden, onSubmit, toggle }) => chi
                 {children}
             </div>
 
-            <div>
+            <div className="mt-auto">
                 <Button color="orange" className="text-20 rounded-4 py-3 px-4">
                     <div className="mx-3">{save}<FontAwesomeIcon icon={faSave} className="ml-4" /></div>
                 </Button>
@@ -82,7 +82,7 @@ class Settings extends Component {
         address: '',
         currency: 'XAF',
         position: '1',
-        restaurantUpdate: false,
+        restaurantUpdatable: false,
 
         email: '',
         country: '',
@@ -91,16 +91,16 @@ class Settings extends Component {
         new_password: '',
         new_password_confirmation: '',
         photo: '',
-        accountUpdate: false,
+        accountUpdatable: false,
 
         banner1: '',
         banner2: '',
         banner3: '',
-        cmsUpdate: false,
+        cmsUpdatable: false,
 
         days: '',
         hours: '',
-        calendarUpdate: false,
+        calendarUpdatable: false,
     }
 
 
@@ -115,28 +115,28 @@ class Settings extends Component {
         this.props.restaurant(e.target);
     }
 
-    restaurantToggle = () => this.setState(prevState => ({ restaurantUpdate: !prevState.restaurantUpdate }))
+    restaurantToggle = () => this.setState(prevState => ({ restaurantUpdatable: !prevState.restaurantUpdatable }))
 
     accountSettingsSubmitHandler = e => {
         e.preventDefault();
         this.props.account(e.target);
     }
 
-    accountToggle = () => this.setState(prevState => ({ accountUpdate: !prevState.accountUpdate }))
+    accountToggle = () => this.setState(prevState => ({ accountUpdatable: !prevState.accountUpdatable }))
 
     cmsSettingsSubmitHandler = e => {
         e.preventDefault();
         this.props.cms(e.target);
     }
 
-    cmsToggle = () => this.setState(prevState => ({ cmsUpdate: !prevState.cmsUpdate }))
+    cmsToggle = () => this.setState(prevState => ({ cmsUpdatable: !prevState.cmsUpdatable }))
 
     calendarSettingsSubmitHandler = e => {
         e.preventDefault();
         this.props.calendar(e.target);
     }
 
-    calendarToggle = () => this.setState(prevState => ({ calendarUpdate: !prevState.calendarUpdate }))
+    calendarToggle = () => this.setState(prevState => ({ calendarUpdatable: !prevState.calendarUpdatable }))
 
     inputChangeHandler = e => {
         const { name, value, files } = e.target;
@@ -192,10 +192,10 @@ class Settings extends Component {
             auth: { data: { plan } }
         } = this.props;
         let {
-            name, owner, phone, whatsapp, location, address, currency, position, restaurantUpdate,
-            email, country, token, password, new_password, new_password_confirmation, photo, accountUpdate,
-            banner1, banner2, banner3, cmsUpdate,
-            days, hours, calendarUpdate,
+            name, owner, phone, whatsapp, location, address, currency, position, restaurantUpdatable,
+            email, country, token, password, new_password, new_password_confirmation, photo, accountUpdatable,
+            banner1, banner2, banner3, cmsUpdatable,
+            days, hours, calendarUpdatable,
         } = this.state;
         let spinnerContent, restaurantContent, accountContent, cmsContent, calendarContent;
         let errors = null;
@@ -221,23 +221,23 @@ class Settings extends Component {
             if (selectedCurrency) symbol = selectedCurrency.symbol;
 
             restaurantContent = <>
-                <FormInput type="text" icon={faHome} onChange={this.inputChangeHandler} value={name} disabled={!restaurantUpdate} name="name" required placeholder={form.name} />
-                <FormInput type="text" icon={faUserTie} onChange={this.inputChangeHandler} value={owner} disabled={!restaurantUpdate} name="owner" required placeholder={form.owner} />
+                <FormInput type="text" icon={faHome} onChange={this.inputChangeHandler} value={name} disabled={!restaurantUpdatable} name="name" required placeholder={form.name} />
+                <FormInput type="text" icon={faUserTie} onChange={this.inputChangeHandler} value={owner} disabled={!restaurantUpdatable} name="owner" required placeholder={form.owner} />
                 <Conditional condition={basic}>
-                    <FormInput type="tel" icon={faPhone} onChange={this.inputChangeHandler} value={phone} disabled={!restaurantUpdate} name="phone" required placeholder={form.phone} />
+                    <FormInput type="tel" icon={faPhone} onChange={this.inputChangeHandler} value={phone} disabled={!restaurantUpdatable} name="phone" required placeholder={form.phone} />
                 </Conditional>
                 <Conditional condition={standard || premium}>
-                    <FormInput type="tel" icon={faWhatsapp} onChange={this.inputChangeHandler} value={whatsapp} disabled={!restaurantUpdate} name="whatsapp" placeholder={form.whatsapp} />
+                    <FormInput type="tel" icon={faWhatsapp} onChange={this.inputChangeHandler} value={whatsapp} disabled={!restaurantUpdatable} name="whatsapp" placeholder={form.whatsapp} />
                 </Conditional>
                 <Conditional condition={premium}>
-                    <FormInput type="text" icon={faLocationArrow} onChange={this.inputChangeHandler} value={location} disabled={!restaurantUpdate} name="location" placeholder={form.location} />
+                    <FormInput type="text" icon={faLocationArrow} onChange={this.inputChangeHandler} value={location} disabled={!restaurantUpdatable} name="location" placeholder={form.location} />
                 </Conditional>
-                <FormInput type="text" icon={faMapMarkerAlt} onChange={this.inputChangeHandler} value={address} disabled={!restaurantUpdate} name="address" placeholder={form.address} />
-                <FormInput type="select" addon={<div className="text-center text-light" style={{ margin: '0 -10px' }}>{symbol}</div>} onChange={this.inputChangeHandler} value={currency} disabled={!restaurantUpdate} name="currency" required>
+                <FormInput type="text" icon={faMapMarkerAlt} onChange={this.inputChangeHandler} value={address} disabled={!restaurantUpdatable} name="address" placeholder={form.address} />
+                <FormInput type="select" addon={<div className="text-center text-light" style={{ margin: '0 -10px' }}>{symbol}</div>} onChange={this.inputChangeHandler} value={currency} disabled={!restaurantUpdatable} name="currency" required>
                     <option>{form.select_currency}</option>
                     {currenciesOptions}
                 </FormInput>
-                <FormInput type="select" icon={faArrowsAltH} onChange={this.inputChangeHandler} value={position} disabled={!restaurantUpdate} name="position" required>
+                <FormInput type="select" icon={faArrowsAltH} onChange={this.inputChangeHandler} value={position} disabled={!restaurantUpdatable} name="position" required>
                     <option>{form.select_position}</option>
                     <option value={0}>{form.left}</option>
                     <option value={1}>{form.right}</option>
@@ -245,21 +245,21 @@ class Settings extends Component {
             </>;
 
             accountContent = <>
-                <FormInput type="email" icon={faEnvelope} onChange={this.inputChangeHandler} value={email} disabled={!accountUpdate} name="email" required placeholder={form.email} />
+                <FormInput type="email" icon={faEnvelope} onChange={this.inputChangeHandler} value={email} disabled={!accountUpdatable} name="email" required placeholder={form.email} />
                 <FormInput type="select" addon={<div>
                     <div className="rounded-circle mx-auto overflow-hidden position-relative d-flex justify-content-center align-items-center" style={{ width: 18, height: 18 }}>
                         <span className={`flag-icon text-large position-absolute flag-icon-${country.toLowerCase()}`} />
                     </div>
-                </div>} onChange={this.inputChangeHandler} value={country} disabled={!accountUpdate} name="country" required>
+                </div>} onChange={this.inputChangeHandler} value={country} disabled={!accountUpdatable} name="country" required>
                     <option>{form.select_country}</option>
                     {countriesOptions}
                 </FormInput>
-                <FormInput type="text" icon={faEdit} onChange={this.inputChangeHandler} value={token} disabled={!accountUpdate} name="token" readonly placeholder={form.token} />
-                <FormInput type="password" icon={faLock} onChange={this.inputChangeHandler} value={password} disabled={!accountUpdate} name="password" placeholder={form.password} />
-                <FormInput type="password" icon={faLock} onChange={this.inputChangeHandler} value={new_password} disabled={!accountUpdate} name="new_password" placeholder={form.new_password} />
-                <FormInput type="password" icon={faLock} onChange={this.inputChangeHandler} value={new_password_confirmation} disabled={!accountUpdate} name="new_password_confirmation" placeholder={form.new_password_confirmation} />
+                <FormInput type="text" icon={faEdit} onChange={this.inputChangeHandler} value={token} disabled={!accountUpdatable} name="token" readonly placeholder={form.token} />
+                <FormInput type="password" icon={faLock} onChange={this.inputChangeHandler} value={password} disabled={!accountUpdatable} name="password" placeholder={form.password} />
+                <FormInput type="password" icon={faLock} onChange={this.inputChangeHandler} value={new_password} disabled={!accountUpdatable} name="new_password" placeholder={form.new_password} />
+                <FormInput type="password" icon={faLock} onChange={this.inputChangeHandler} value={new_password_confirmation} disabled={!accountUpdatable} name="new_password_confirmation" placeholder={form.new_password_confirmation} />
                 <FormGroup>
-                    <div id="embed-photo" className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: accountUpdate ? 'pointer' : 'not-allowed', background: photo && `url("${photo}") no-repeat center`, backgroundSize: 'cover' }} onClick={!accountUpdate ? null : (() => this.fileUpload("photo"))}>
+                    <div id="embed-photo" className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: accountUpdatable ? 'pointer' : 'not-allowed', background: photo && `url("${photo}") no-repeat center`, backgroundSize: 'cover' }} onClick={!accountUpdatable ? null : (() => this.fileUpload("photo"))}>
                         {!photo ? <div className="text-center text-light w-100 overflow-hidden px-3">
                             <div><FontAwesomeIcon icon={faFileImage} fixedWidth size="5x" /></div>
 
@@ -280,12 +280,12 @@ class Settings extends Component {
                     { condition: basic, banner: banner1, attr: 'banner1', locked: form.locked_banner1 },
                     { condition: standard || premium, banner: banner2, attr: 'banner2', locked: form.locked_banner2 },
                     { condition: premium, banner: banner3, attr: 'banner3', locked: form.locked_banner3 },
-                ].map(item => <CmsItem key={JSON.stringify(item)} {...item} disabled={!cmsUpdate} restaurant={restaurant} selected_file={selected_file} fileUpload={!cmsUpdate ? null : this.fileUpload} />)}
+                ].map(item => <CmsItem key={JSON.stringify(item)} {...item} disabled={!cmsUpdatable} restaurant={restaurant} selected_file={selected_file} fileUpload={!cmsUpdatable ? null : this.fileUpload} />)}
             </>;
 
             calendarContent = <>
-                <FormInput type="text" icon={faCalendar} onChange={this.inputChangeHandler} value={days} disabled={!calendarUpdate} name="days" required placeholder={form.days} />
-                <FormInput type="text" icon={faClock} onChange={this.inputChangeHandler} value={hours} disabled={!calendarUpdate} name="hours" required placeholder={form.hours} />
+                <FormInput type="text" icon={faCalendar} onChange={this.inputChangeHandler} value={days} disabled={!calendarUpdatable} name="days" required placeholder={form.days} />
+                <FormInput type="text" icon={faClock} onChange={this.inputChangeHandler} value={hours} disabled={!calendarUpdatable} name="hours" required placeholder={form.hours} />
             </>;
         }
 
@@ -306,16 +306,16 @@ class Settings extends Component {
 
                             {spinnerContent}
 
-                            <Block hidden={loading} icon={faHome} save={save} onSubmit={this.restaurantSettingsSubmitHandler} title={form.restaurant_settings} toggle={this.restaurantToggle}>
+                            <Block hidden={loading} icon={faHome} save={save} onSubmit={this.restaurantSettingsSubmitHandler} title={form.restaurant_settings} updatable={restaurantUpdatable} toggle={this.restaurantToggle}>
                                 {restaurantContent}
                             </Block>
 
-                            <Block hidden={loading} icon={faUser} save={save} onSubmit={this.accountSettingsSubmitHandler} title={form.account_settings} toggle={this.accountToggle}>
+                            <Block hidden={loading} icon={faUser} save={save} onSubmit={this.accountSettingsSubmitHandler} title={form.account_settings} updatable={accountUpdatable} toggle={this.accountToggle}>
                                 <input type="file" id="photo" name="photo" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" />
                                 {accountContent}
                             </Block>
 
-                            <Block hidden={loading} icon={faCog} save={save} onSubmit={this.cmsSettingsSubmitHandler} title={form.cms_settings} toggle={this.cmsToggle}>
+                            <Block hidden={loading} icon={faCog} save={save} onSubmit={this.cmsSettingsSubmitHandler} title={form.cms_settings} updatable={cmsUpdatable} toggle={this.cmsToggle}>
                                 <Conditional condition={basic}><input type="file" id="banner1" name="banner1" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" /></Conditional>
                                 <Conditional condition={standard || premium}><input type="file" id="banner2" name="banner2" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" /></Conditional>
                                 <Conditional condition={premium}><input type="file" id="banner3" name="banner3" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" /></Conditional>
@@ -323,7 +323,7 @@ class Settings extends Component {
                                 {cmsContent}
                             </Block>
 
-                            <Block hidden={loading} icon={faCalendar} save={save} onSubmit={this.calendarSettingsSubmitHandler} title={form.calendar_settings} toggle={this.calendarToggle}>
+                            <Block hidden={loading} icon={faCalendar} save={save} onSubmit={this.calendarSettingsSubmitHandler} title={form.calendar_settings} updatable={calendarUpdatable} toggle={this.calendarToggle}>
                                 {calendarContent}
                             </Block>
                         </Form>

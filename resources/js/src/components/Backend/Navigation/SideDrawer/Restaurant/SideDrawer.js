@@ -65,7 +65,7 @@ export default ({ data, toggle, logoutHandler, selectItem, selectedItem, cms, da
         {sideDrawerItem(addons.title, null, faCookie, "/restaurant/addons")}
 
         <div className="text-border text-16 px-3 py-2 mb-1 mt-4">OTHERS</div>
-        {plan && plan.slug === 'premium' && sideDrawerItem(comments, null, faComment, "/restaurant/comments")}
+        {plan && plan.slug.includes('premium') && sideDrawerItem(comments, null, faComment, "/restaurant/comments")}
         {sideDrawerItem(history, null, faList, "/restaurant/history")}
         {sideDrawerItem(settings.title, null, faCog, "/restaurant/settings")}
 

@@ -200,11 +200,11 @@ class Settings extends Component {
         let spinnerContent, restaurantContent, accountContent, cmsContent, calendarContent;
         let errors = null;
 
-        // if (message && message.type === 'success') window.location.reload();
+        if (message && message.type === 'success') window.location.reload();
 
         const basic = plan;
-        const standard = plan && plan.slug === 'standard';
-        const premium = plan && plan.slug === 'premium';
+        const standard = plan && plan.slug.includes('standard');
+        const premium = plan && plan.slug.includes('premium');
 
         const countriesOptions = countries.map(({ country, code, name }) => <option key={country} value={country} code={code}>{name}</option>);
         const currenciesOptions = currencies.map(({ cc, symbol, name }) => <option key={cc} value={cc} symbol={symbol}>{name}</option>);

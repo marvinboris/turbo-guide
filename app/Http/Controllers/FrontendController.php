@@ -62,7 +62,7 @@ class FrontendController extends Controller
             'categories' => $categories,
             'currency' => $restaurant->currency,
             'position' => $restaurant->position,
-            'languages' => $restaurant->languages,
+            'languages' => $languages,
         ]);
     }
 

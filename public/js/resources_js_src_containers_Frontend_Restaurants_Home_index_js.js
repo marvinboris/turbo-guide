@@ -988,6 +988,12 @@ var Home = /*#__PURE__*/function (_Component) {
           categoryOffsets: categoryOffsets
         });
       }
+
+      if (!prevProps.frontend.restaurants.languages && this.props.frontend.restaurants.languages && !this.props.frontend.restaurants.languages.map(function (l) {
+        return l.abbr;
+      }).includes(localStorage.getItem('lang'))) this.setLanguage(this.props.frontend.restaurants.languages.find(function (l) {
+        return l.pivot.main === 1;
+      }).abbr);
     }
   }, {
     key: "componentWillUnmount",
@@ -1005,7 +1011,6 @@ var Home = /*#__PURE__*/function (_Component) {
           food = _this$props$content$c.components.food,
           home = _this$props$content$c.frontend.restaurants.home,
           currencies = _this$props$content.currencies,
-          languages = _this$props$content.languages,
           _this$props$frontend$ = _this$props.frontend.restaurants,
           loading = _this$props$frontend$.loading,
           _this$props$frontend$2 = _this$props$frontend$.restaurant,
@@ -1013,6 +1018,8 @@ var Home = /*#__PURE__*/function (_Component) {
           _this$props$frontend$3 = _this$props$frontend$.categories,
           categories = _this$props$frontend$3 === void 0 ? [] : _this$props$frontend$3,
           currency = _this$props$frontend$.currency,
+          _this$props$frontend$4 = _this$props$frontend$.languages,
+          languages = _this$props$frontend$4 === void 0 ? [] : _this$props$frontend$4,
           position = _this$props$frontend$.position;
       var id = this.state.id;
       var currencyObj = currencies.find(function (c) {
@@ -1209,8 +1216,15 @@ var Home = /*#__PURE__*/function (_Component) {
       if (nextProps.frontend.restaurants.restaurant && prevState.id === '') {
         var _nextProps$frontend$r = nextProps.frontend.restaurants,
             categories = _nextProps$frontend$r.categories,
-            name = _nextProps$frontend$r.restaurant.name;
-        if (!document.title.includes("".concat(name, " - "))) document.title = "".concat(name, " - ").concat(document.title);
+            _nextProps$frontend$r2 = _nextProps$frontend$r.restaurant,
+            name = _nextProps$frontend$r2.name,
+            logo = _nextProps$frontend$r2.logo;
+
+        if (!document.title.includes("".concat(name, " - "))) {
+          document.title = "".concat(name, " - ").concat(document.title);
+          if (logo) document.getElementById('favicon').setAttribute('href', logo);
+        }
+
         if (categories.length > 0) return (0,_shared_utility__WEBPACK_IMPORTED_MODULE_11__.updateObject)(prevState, {
           id: categories[0].id
         });

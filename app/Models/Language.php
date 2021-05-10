@@ -25,6 +25,6 @@ class Language extends Model
 
     public function restaurants()
     {
-        return $this->hasMany(Restaurant::class);
+        return $this->belongsToMany(Restaurant::class, 'language_restaurant')->withPivot(['main']);
     }
 }

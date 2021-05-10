@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Restaurant;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\UtilController;
+use App\Models\Language;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -14,8 +15,22 @@ class SettingsController extends Controller
     {
         $restaurant = UtilController::get(request());
 
+        $restaurant_languages = [];
+        foreach ($restaurant->languages as $language) {
+            $restaurant_languages[] = [
+                'id' => $language->id,
+                'name' => $language->name,
+            ];
+        }
+        $default_language = $restaurant->languages()->wherePivot('main', 1)->first();
+        $restaurant = array_merge($restaurant->toArray(), [
+            'languages' => $restaurant_languages,
+            'language' => $default_language ? $default_language->id : null,
+        ]);
+
         return response()->json([
-            'restaurant' => $restaurant->toArray(),
+            'restaurant' => $restaurant,
+            'allLanguages' => Language::all(),
         ]);
     }
 
@@ -33,9 +48,16 @@ class SettingsController extends Controller
             'address' => 'nullable|string',
             'currency' => 'nullable|string',
             'position' => 'nullable|integer',
+            'photo' => 'nullable|file|image',
         ]);
 
         $restaurant_slug = $restaurant->slug;
+
+        if ($file = $request->file('logo')) {
+            if ($restaurant->logo && is_file(public_path($restaurant->logo))) unlink(public_path($restaurant->logo));
+            $fileName = UtilController::resize($file, 'restaurants');
+            $input['logo'] = htmlspecialchars($fileName);
+        }
 
         $restaurant->update($input);
 
@@ -127,6 +149,30 @@ class SettingsController extends Controller
         ]);
 
         $restaurant->update($input);
+
+        return response()->json([
+            'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['settings']['cms'], 'success'),
+        ]);
+    }
+
+    public function language(Request $request)
+    {
+        $cms = UtilController::cms();
+        $restaurant = UtilController::get(request());
+
+        $request->validate([
+            'languages' => 'array|exists:languages,id',
+            'language' => 'exists:languages,id',
+        ]);
+
+        $languages = [];
+        foreach ($request->languages as $language) {
+            $languages[$language] = [
+                'main' => +$language === +$request->language ? 1 : 0,
+            ];
+        }
+
+        $restaurant->languages()->sync($languages);
 
         return response()->json([
             'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['settings']['cms'], 'success'),

@@ -16,7 +16,7 @@ class CreateAddonsTable extends Migration
         Schema::create('addons', function (Blueprint $table) {
             $table->id();
             $table->integer('restaurant_id')->unsigned()->index();
-            $table->string('name');
+            $table->text('name');
             $table->string('reference')->nullable();
             $table->text('photo')->nullable();
             $table->mediumText('description')->nullable();

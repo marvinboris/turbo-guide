@@ -135,8 +135,11 @@ class Home extends Component {
     // Lifecycle methods
     static getDerivedStateFromProps(nextProps, prevState) {
         if (nextProps.frontend.restaurants.restaurant && prevState.id === '') {
-            const { categories, restaurant: { name } } = nextProps.frontend.restaurants;
-            if (!document.title.includes(`${name} - `)) document.title = `${name} - ${document.title}`;
+            const { categories, restaurant: { name, logo } } = nextProps.frontend.restaurants;
+            if (!document.title.includes(`${name} - `)) {
+                document.title = `${name} - ${document.title}`;
+                if (logo) document.getElementById('favicon').setAttribute('href', logo);
+            }
             if (categories.length > 0) return updateObject(prevState, { id: categories[0].id });
         }
         return null;
@@ -158,6 +161,7 @@ class Home extends Component {
             }
             this.setState({ categoryOffsets });
         }
+        if (!prevProps.frontend.restaurants.languages && this.props.frontend.restaurants.languages && !this.props.frontend.restaurants.languages.map(l => l.abbr).includes(localStorage.getItem('lang'))) this.setLanguage(this.props.frontend.restaurants.languages.find(l => l.pivot.main === 1).abbr);
     }
 
     componentWillUnmount() {
@@ -168,9 +172,9 @@ class Home extends Component {
         const {
             content: {
                 cms: { pages: { components: { food }, frontend: { restaurants: { home } } } },
-                currencies, languages,
+                currencies,
             },
-            frontend: { restaurants: { loading, restaurant = {}, categories = [], currency, position } }
+            frontend: { restaurants: { loading, restaurant = {}, categories = [], currency, languages = [], position } }
         } = this.props;
         const { id } = this.state;
 

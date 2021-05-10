@@ -31,9 +31,15 @@ class FrontendController extends Controller
             }
         }
 
+        $languages = [];
+        foreach ($restaurant->languages as $language) {
+            $languages[] = $language;
+        }
+
         return response()->json([
             'restaurant' => [
                 'name' => $restaurant->name,
+                'logo' => $restaurant->logo,
                 'mark' => $mark,
                 'banner1' => $restaurant->banner1,
                 'banner2' => $restaurant->banner2,
@@ -50,6 +56,7 @@ class FrontendController extends Controller
             'categories' => $categories,
             'currency' => $restaurant->currency,
             'position' => $restaurant->position,
+            'languages' => $restaurant->languages,
         ]);
     }
 

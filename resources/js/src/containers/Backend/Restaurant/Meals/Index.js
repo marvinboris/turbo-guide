@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { CustomInput } from 'reactstrap';
+import { Button, CustomInput } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faHamburger, faStar, faCommentAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faHamburger, faStar, faCommentAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 // Components
 import TitleWrapper from '../../../../components/Backend/UI/TitleWrapper';
@@ -47,7 +47,7 @@ class Index extends Component {
         let {
             content: {
                 cms: {
-                    pages: { components: { }, backend: { pages: { meals: { welcome, subtitle, most_liked, filter, counted, total_meals, watching, check, all_categories, viewing } } } }
+                    pages: { components: { }, backend: { pages: { meals: { welcome, subtitle, filter, counted, total_meals, watching, check, all_categories, viewing, add } } } }
                 }
             },
             backend: { meals: { error, message, meals = [], categories = [], mostLiked = [], countedMeals } },
@@ -107,15 +107,13 @@ class Index extends Component {
                                 </TitleWrapper>
 
                                 <div className="ml-auto mr-3">
-                                    <div className="rounded-4 bg-green-10 py-2 px-3 text-green text-300 text-16 d-flex align-items-center">
-                                        <div className="mr-2 pr-1">
-                                            <div style={{ width: 22, height: 22, background: `url('${Green}') no-repeat center`, backgroundSize: 'cover' }} className="text-5 text-white d-flex justify-content-center align-items-center">
-                                                <FontAwesomeIcon icon={faCheck} />
-                                            </div>
-                                        </div>
+                                    <Link to="/restaurant/meals/add" className="d-none d-md-inline">
+                                        <Button color="green" className="rounded-2 py-2 text-16 text-500 px-3 px-sm-4">
+                                            <FontAwesomeIcon icon={faPlus} fixedWidth className="mr-3" />
 
-                                        <div>{most_liked}</div>
-                                    </div>
+                                            {add}
+                                        </Button>
+                                    </Link>
                                 </div>
 
                                 <div>

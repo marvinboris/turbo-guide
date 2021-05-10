@@ -123,6 +123,7 @@ export {
     accountSettings,
     calendarSettings,
     cmsSettings,
+    languageSettings,
     getSettings,
     restaurantSettings,
 } from './backend';

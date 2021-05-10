@@ -114,6 +114,7 @@ export {
     accountSettings,
     calendarSettings,
     cmsSettings,
+    languageSettings,
     getSettings,
     resetSettings,
     restaurantSettings

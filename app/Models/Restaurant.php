@@ -16,7 +16,7 @@ class Restaurant extends Authenticatable
     protected $directory = '/images/restaurants/';
 
     protected $fillable = [
-        'language_id', 'name', 'owner', 'token', 'md5', 'slug', 'qr', 'logo', 'email', 'photo', 'phone', 'country', 'whatsapp', 'address', 'days', 'hours', 'location', 'balance', 'password', 'is_active', 'currency', 'position', 'banner1', 'banner2', 'banner3', 'auto_renew'
+        'language_id', 'name', 'owner', 'token', 'md5', 'slug', 'qr', 'logo', 'email', 'photo', 'phone', 'country', 'whatsapp', 'address', 'days', 'hours', 'location', 'balance', 'password', 'is_active', 'currency', 'position', 'banner1', 'banner2', 'banner3', 'auto_renew', 'must_read'
     ];
 
     public function sluggable()
@@ -52,12 +52,22 @@ class Restaurant extends Authenticatable
         return $this->belongsTo(Language::class);
     }
 
+    public function languages()
+    {
+        return $this->belongsToMany(Language::class, 'language_restaurant')->withPivot(['main']);
+    }
+
     public function getQrAttribute($value)
     {
         return $value ? $this->directory . 'qr/' . $value : null;
     }
 
     public function getPhotoAttribute($value)
+    {
+        return $value ? $this->directory . $value : null;
+    }
+
+    public function getLogoAttribute($value)
     {
         return $value ? $this->directory . $value : null;
     }

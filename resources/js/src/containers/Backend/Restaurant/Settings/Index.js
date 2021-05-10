@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Button, Col, FormGroup, Row } from 'reactstrap';
-import { faArrowsAltH, faCalendar, faCheckCircle, faClock, faCog, faEdit, faEnvelope, faFileImage, faHome, faLocationArrow, faLock, faLockOpen, faMapMarkerAlt, faPhone, faUser, faUserTie } from '@fortawesome/free-solid-svg-icons';
+import { Button, Col, FormGroup, Input, Label, Row } from 'reactstrap';
+import { faArrowsAltH, faCalendar, faCheckCircle, faClock, faCog, faEdit, faEnvelope, faFileImage, faFlag, faHome, faLocationArrow, faLock, faLockOpen, faMapMarkerAlt, faMinusSquare, faPhone, faUser, faUserTie } from '@fortawesome/free-solid-svg-icons';
 import { faSave } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
@@ -77,6 +77,7 @@ class Settings extends Component {
         name: '',
         owner: '',
         phone: '',
+        logo: '',
         whatsapp: '',
         location: '',
         address: '',
@@ -101,6 +102,10 @@ class Settings extends Component {
         days: '',
         hours: '',
         calendarUpdatable: false,
+
+        languages: [],
+        language: '',
+        languageUpdatable: false,
     }
 
 
@@ -138,9 +143,24 @@ class Settings extends Component {
 
     calendarToggle = () => this.setState(prevState => ({ calendarUpdatable: !prevState.calendarUpdatable }))
 
+    languageSettingsSubmitHandler = e => {
+        e.preventDefault();
+        this.props.language(e.target);
+    }
+
+    languageToggle = () => this.setState(prevState => ({ languageUpdatable: !prevState.languageUpdatable }))
+
+    removeLanguage = id => this.setState(prevState => ({ languages: prevState.languages.filter(language => language.id !== id) }))
+
     inputChangeHandler = e => {
         const { name, value, files } = e.target;
         if (files) this.readURL(e.target);
+        if (name === 'select_language') {
+            const languages = [...this.state.languages];
+            const language = this.props.backend.settings.allLanguages.find(a => +a.id === +value);
+            languages.push(language);
+            return this.setState({ languages });
+        }
         this.setState({ [name]: files ? files[0] : value });
     }
 
@@ -188,16 +208,17 @@ class Settings extends Component {
                 },
                 currencies, countries,
             },
-            backend: { settings: { loading, error, message, restaurant } },
+            backend: { settings: { loading, error, message, restaurant, allLanguages = [] } },
             auth: { data: { plan } }
         } = this.props;
         let {
-            name, owner, phone, whatsapp, location, address, currency, position, restaurantUpdatable,
+            name, owner, phone, logo, whatsapp, location, address, currency, position, restaurantUpdatable,
             email, country, token, password, new_password, new_password_confirmation, photo, accountUpdatable,
             banner1, banner2, banner3, cmsUpdatable,
             days, hours, calendarUpdatable,
+            languages, language, languageUpdatable,
         } = this.state;
-        let spinnerContent, restaurantContent, accountContent, cmsContent, calendarContent;
+        let spinnerContent, restaurantContent, accountContent, cmsContent, calendarContent, languageContent;
         let errors = null;
 
         if (message && message.type === 'success') window.location.reload();
@@ -208,6 +229,7 @@ class Settings extends Component {
 
         const countriesOptions = countries.map(({ country, code, name }) => <option key={country} value={country} code={code}>{name}</option>);
         const currenciesOptions = currencies.map(({ cc, symbol, name }) => <option key={cc} value={cc} symbol={symbol}>{name}</option>);
+        const languagesOptions = allLanguages.filter(({ id }) => !languages.map(l => l.id).includes(id)).map(({ id, name }) => <option key={id} value={id}>{name}</option>);
 
         if (loading) spinnerContent = <Col xs={12}>
             <CustomSpinner />
@@ -242,6 +264,23 @@ class Settings extends Component {
                     <option value={0}>{form.left}</option>
                     <option value={1}>{form.right}</option>
                 </FormInput>
+                <FormGroup row className="justify-content-center">
+                    <div className="col-12 col-sm-10">
+                        <div id="embed-logo" className="embed-responsive embed-responsive-1by1 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: restaurantUpdatable ? 'pointer' : 'not-allowed', background: logo && `url("${logo}") no-repeat center`, backgroundSize: 'cover' }} onClick={!restaurantUpdatable ? null : (() => this.fileUpload("logo"))}>
+                            {!logo ? <div className="text-center text-light w-100 overflow-hidden px-3">
+                                <div><FontAwesomeIcon icon={faFileImage} fixedWidth size="5x" /></div>
+
+                                <div className="mt-3 mb-1 text-center text-12 text-truncate">{form.upload}</div>
+
+                                <div className="text-center text-12 text-truncate">{form.size}</div>
+                            </div> : logo && (logo !== restaurant.logo) && <div className="text-center text-green w-100 px-3">
+                                <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
+
+                                <div className="mt-3">{selected_file}</div>
+                            </div>}
+                        </div>
+                    </div>
+                </FormGroup>
             </>;
 
             accountContent = <>
@@ -287,6 +326,25 @@ class Settings extends Component {
                 <FormInput type="text" icon={faCalendar} onChange={this.inputChangeHandler} value={days} disabled={!calendarUpdatable} name="days" required placeholder={form.days} />
                 <FormInput type="text" icon={faClock} onChange={this.inputChangeHandler} value={hours} disabled={!calendarUpdatable} name="hours" required placeholder={form.hours} />
             </>;
+
+            languageContent = <>
+                <FormInput type="select" icon={faFlag} onChange={this.inputChangeHandler} disabled={!languageUpdatable} name="select_language">
+                    <option>{form.select_language}</option>
+                    {languagesOptions}
+                </FormInput>
+                {languages.length > 0 && <FormGroup disabled={!languageUpdatable} tag="fieldset">
+                    <legend className="text-14 text-500">{form.languages}</legend>
+                    {languages.map(l => <FormGroup key={JSON.stringify(l) + Math.random()} check>
+                        <Label disabled={!languageUpdatable} check className="text-14">
+                            <Input type="radio" disabled={!languageUpdatable} required name="language" defaultValue={l.id} defaultChecked={l.id === language} />
+                            {' ' + l.name + ' '}
+                            {languageUpdatable && <FontAwesomeIcon icon={faMinusSquare} className="text-red" cursor="pointer" onClick={() => this.removeLanguage(l.id)} />}
+                        </Label>
+
+                        <input type="hidden" disabled={!languageUpdatable} name="languages[]" defaultValue={l.id} />
+                    </FormGroup>)}
+                </FormGroup>}
+            </>;
         }
 
         return (
@@ -307,6 +365,7 @@ class Settings extends Component {
                             {spinnerContent}
 
                             <Block hidden={loading} icon={faHome} save={save} onSubmit={this.restaurantSettingsSubmitHandler} title={form.restaurant_settings} updatable={restaurantUpdatable} toggle={this.restaurantToggle}>
+                                <input type="file" id="logo" name="logo" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" />
                                 {restaurantContent}
                             </Block>
 
@@ -326,6 +385,10 @@ class Settings extends Component {
                             <Block hidden={loading} icon={faCalendar} save={save} onSubmit={this.calendarSettingsSubmitHandler} title={form.calendar_settings} updatable={calendarUpdatable} toggle={this.calendarToggle}>
                                 {calendarContent}
                             </Block>
+
+                            <Block hidden={loading} icon={faFlag} save={save} onSubmit={this.languageSettingsSubmitHandler} title={form.language_settings} updatable={languageUpdatable} toggle={this.languageToggle}>
+                                {languageContent}
+                            </Block>
                         </Form>
                     </Row>
                 </div>
@@ -342,6 +405,7 @@ const mapDispatchToProps = dispatch => ({
     account: data => dispatch(actions.accountSettings(data)),
     cms: data => dispatch(actions.cmsSettings(data)),
     calendar: data => dispatch(actions.calendarSettings(data)),
+    language: data => dispatch(actions.languageSettings(data)),
     reset: () => dispatch(actions.resetSettings()),
 });
 

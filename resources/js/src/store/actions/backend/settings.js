@@ -117,3 +117,26 @@ export const calendarSettings = data => async (dispatch, getState) => {
         dispatch(settingsFail(error));
     }
 };
+
+export const languageSettings = data => async (dispatch, getState) => {
+    dispatch(settingsStart());
+    const { role } = getState().auth;
+
+    try {
+        const token = localStorage.getItem('token');
+        const form = new FormData(data);
+        const res = await fetch(`${prefix + role}/settings/language`, {
+            method: 'POST',
+            body: form,
+            headers: {
+                Authorization: token,
+            }
+        });
+        const resData = await res.json();
+        if (res.status === 422) throw new Error(Object.values(resData.errors).join('\n'));
+        dispatch(settingsSuccess(resData));
+    } catch (error) {
+        console.log(error);
+        dispatch(settingsFail(error));
+    }
+};

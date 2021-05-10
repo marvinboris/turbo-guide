@@ -16,7 +16,6 @@ class CreateRestaurantsTable extends Migration
         Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
             $table->integer('language_id')->unsigned()->index();
-            $table->integer('plan_id')->unsigned()->index()->nullable();
             $table->string('name')->nullable();
             $table->string('owner');
             $table->string('token', 64)->unique();
@@ -29,7 +28,8 @@ class CreateRestaurantsTable extends Migration
             $table->string('days')->nullable();
             $table->string('hours')->nullable();
             $table->string('location')->nullable();
-            $table->text('position')->default(1);
+            $table->text('must_read')->nullable();
+            $table->text('position')->nullable();
             $table->text('photo')->nullable();
             $table->text('qr')->nullable();
             $table->text('logo')->nullable();

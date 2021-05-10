@@ -494,6 +494,7 @@
                             "account_settings": "ACCOUNT SETTINGS",
                             "cms_settings": "CMS SETTINGS",
                             "calendar_settings": "CALENDAR SETTINGS",
+                            "language_settings": "LANGUAGE SETTINGS",
                             "name": "Restaurant's Name",
                             "owner": "Restaurant Owner's Name",
                             "phone": "Restaurant's Phone Number",
@@ -502,6 +503,8 @@
                             "address": "Restaurant's Address",
                             "currency": "Restaurant's Currency",
                             "select_position": "Select currency position",
+                            "select_language": "Select language",
+                            "languages": "Languages",
                             "left": "Left",
                             "right": "Right",
                             "email": "Email Address",
@@ -1168,6 +1171,7 @@
                             "account_settings": "ACCOUNT SETTINGS",
                             "cms_settings": "CMS SETTINGS",
                             "calendar_settings": "CALENDAR SETTINGS",
+                            "language_settings": "LANGUAGE SETTINGS",
                             "name": "Restaurant's Name",
                             "owner": "Restaurant Owner's Name",
                             "phone": "Restaurant's Phone Number",
@@ -1176,6 +1180,8 @@
                             "address": "Restaurant's Address",
                             "currency": "Restaurant's Currency",
                             "select_position": "Select currency position",
+                            "select_language": "Select language",
+                            "language": "Language",
                             "left": "Left",
                             "right": "Right",
                             "email": "Email Address",
@@ -1257,22 +1263,6 @@
                             "upload": "Upload Addon Image",
                             "size": "Max Size : 3 MB Format : 250 x 250",
                             "select_status": "Please select addon status"
-                        }
-                    },
-                    "drinks": {
-                        "title": "Drinks",
-                        "subtitle": "Please follow the instructions carefully",
-                        "add": "Add drink",
-                        "edit": "Edit drink",
-                        "index": "Drink list",
-                        "form": {
-                            "name": "Drink's Name",
-                            "description": "Drink's Description",
-                            "price": "Drink's Price",
-                            "reference": "Drink's ID Number",
-                            "upload": "Upload Drink Image",
-                            "size": "Max Size : 3 MB Format : 250 x 250",
-                            "select_status": "Please select drink status"
                         }
                     },
                     "comments": {

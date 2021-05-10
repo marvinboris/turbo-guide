@@ -19,14 +19,12 @@ Route::get('backup', function () {
     $mysqlUserName      = env('DB_USERNAME');
     $mysqlPassword      = env('DB_PASSWORD');
     $DbName             = env('DB_DATABASE');
-    $backup_name        = "mybackup.sql";
     $tables             = array('addons', 'admins', 'categories', 'comments', 'features', 'feature_role', 'languages', 'meals', 'meal_addon', 'methods', 'plans', 'plan_restaurant', 'recharges', 'restaurants', 'roles', 'transactions', 'users'); //here your tables...
 
     $connect = new \PDO("mysql:host=$mysqlHostName;dbname=$DbName;charset=utf8", "$mysqlUserName", "$mysqlPassword", array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
-    $get_all_table_query = "SHOW TABLES";
-    $statement = $connect->prepare($get_all_table_query);
-    $statement->execute();
-    $result = $statement->fetchAll();
+    // $get_all_table_query = "SHOW TABLES";
+    // $statement = $connect->prepare($get_all_table_query);
+    // $statement->execute();
 
 
     $output = '';

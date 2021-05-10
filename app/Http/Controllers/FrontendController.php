@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Language;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 
@@ -35,6 +36,11 @@ class FrontendController extends Controller
         foreach ($restaurant->languages as $language) {
             $languages[] = $language;
         }
+        if (count($languages) === 0) $languages[] = Language::first()->toArray() + [
+            'pivot' => [
+                'main' => 1
+            ]
+        ];
 
         return response()->json([
             'restaurant' => [

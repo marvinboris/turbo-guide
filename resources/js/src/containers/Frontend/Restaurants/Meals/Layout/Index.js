@@ -6,6 +6,7 @@ import { faBook, faClock, faComment, faList, faMinusCircle, faPlusCircle, faTime
 
 import Stars from '../../../../../components/UI/Stars';
 import Error from '../../../../../components/Error/Error';
+import View from '../../../../../components/Backend/UI/View/View';
 
 import './Layout.css';
 
@@ -54,26 +55,28 @@ class Layout extends Component {
         const symbol = currencyObj && currencyObj.symbol;
 
         return <div className="Layout">
-            <div className="embed-responsive embed-responsive-16by9 position-relative">
-                <div className="position-absolute w-100 h-100" style={{
-                    top: 0,
-                    left: 0,
-                    backgroundImage: `linear-gradient(rgba(2,35,67,.4),rgba(2,35,67,.4)), url('${meal.photo}')`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'center',
-                    backgroundSize: 'auto, cover',
-                }} />
+            <View content={<img src={meal.photo} className="img-fluid w-100" />}>
+                <div className="embed-responsive embed-responsive-16by9 position-relative">
+                    <div className="position-absolute w-100 h-100" style={{
+                        top: 0,
+                        left: 0,
+                        backgroundImage: `linear-gradient(rgba(2,35,67,.4),rgba(2,35,67,.4)), url('${meal.photo}')`,
+                        backgroundRepeat: 'no-repeat',
+                        backgroundPosition: 'center',
+                        backgroundSize: 'auto, cover',
+                    }} />
 
-                <div className="position-absolute" style={{ top: 23, right: 30 }}>
-                    <Link to={`/restaurants/${slug}`} className="text-decoration-none text-reset text-16">
-                        <FontAwesomeIcon icon={faTimesCircle} className="text-soft" />
-                    </Link>
-                </div>
+                    <div className="position-absolute" style={{ top: 23, right: 30 }}>
+                        <Link to={`/restaurants/${slug}`} className="text-decoration-none text-reset text-16">
+                            <FontAwesomeIcon icon={faTimesCircle} className="text-soft" />
+                        </Link>
+                    </div>
 
-                <div className="position-absolute" style={{ top: 42, left: 30 }}>
-                    <div className="rounded-4 bg-orange text-white text-12 py-1 px-2">{meal.reference}</div>
+                    <div className="position-absolute" style={{ top: 42, left: 30 }}>
+                        <div className="rounded-4 bg-orange text-white text-12 py-1 px-2">{meal.reference}</div>
+                    </div>
                 </div>
-            </div>
+            </View>
 
             <Wrapper className="bg-orange-10 position-relative">
                 <div className="text-500 text-17 text-orange mb-2">

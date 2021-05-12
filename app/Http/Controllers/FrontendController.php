@@ -8,12 +8,9 @@ use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
-    public function show($slug)
+    private function information($slug)
     {
         $restaurant = Restaurant::whereSlug($slug)->first();
-        if (!$restaurant) return response()->json([
-            'message' => UtilController::message('Restaurant not found.', 'danger'),
-        ]);
 
         $mark = number_format($restaurant->mark ?? 0, 1);
 
@@ -42,7 +39,7 @@ class FrontendController extends Controller
             ]
         ];
 
-        return response()->json([
+        return [
             'restaurant' => [
                 'name' => $restaurant->name,
                 'logo' => $restaurant->logo,
@@ -58,12 +55,27 @@ class FrontendController extends Controller
                 'location' => $restaurant->location,
                 'meals' => $restaurant->meals,
                 'plan' => $restaurant->plan,
+                'caution' => $restaurant->caution,
+                'must_read' => $restaurant->must_read,
+                'disclaimer' => $restaurant->disclaimer,
             ],
             'categories' => $categories,
             'currency' => $restaurant->currency,
             'position' => $restaurant->position,
             'languages' => $languages,
+        ];
+    }
+
+    public function show($slug)
+    {
+        $restaurant = Restaurant::whereSlug($slug)->first();
+        if (!$restaurant) return response()->json([
+            'message' => UtilController::message('Restaurant not found.', 'danger'),
         ]);
+
+        $information = $this->information($slug);
+
+        return response()->json($information);
     }
 
     public function meal($slug, $id)
@@ -72,6 +84,8 @@ class FrontendController extends Controller
         if (!$restaurant) return response()->json([
             'message' => UtilController::message('Restaurant not found.', 'danger'),
         ]);
+        
+        $information = $this->information($slug);
 
         $meal = $restaurant->meals()->find($id);
         if (!$meal) return response()->json([
@@ -87,13 +101,17 @@ class FrontendController extends Controller
             ];
         }
 
-        return response()->json([
+        $data = [
             'meal' => $meal->toArray(),
             'addons' => $addons,
             'comments' => $meal->comments,
             'currency' => $restaurant->currency,
             'position' => $restaurant->position,
-        ]);
+        ];
+
+        $data += $information;
+
+        return response()->json($data);
     }
 
     public function comment(Request $request, $slug, $id)

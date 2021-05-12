@@ -344,10 +344,12 @@ var Addons = /*#__PURE__*/function (_Component) {
           meals = _this$props$content.cms.pages.frontend.restaurants.meals,
           currencies = _this$props$content.currencies,
           _this$props$frontend$ = _this$props.frontend.restaurants,
-          _this$props$frontend$2 = _this$props$frontend$.total,
-          total = _this$props$frontend$2 === void 0 ? 0 : _this$props$frontend$2,
-          _this$props$frontend$3 = _this$props$frontend$.addons,
-          addons = _this$props$frontend$3 === void 0 ? [] : _this$props$frontend$3,
+          _this$props$frontend$2 = _this$props$frontend$.restaurant,
+          restaurant = _this$props$frontend$2 === void 0 ? {} : _this$props$frontend$2,
+          _this$props$frontend$3 = _this$props$frontend$.total,
+          total = _this$props$frontend$3 === void 0 ? 0 : _this$props$frontend$3,
+          _this$props$frontend$4 = _this$props$frontend$.addons,
+          addons = _this$props$frontend$4 === void 0 ? [] : _this$props$frontend$4,
           currency = _this$props$frontend$.currency,
           position = _this$props$frontend$.position;
       var currencyObj = currencies.find(function (c) {
@@ -368,11 +370,11 @@ var Addons = /*#__PURE__*/function (_Component) {
         }), addon.id + Math.random());
       });
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Wrapper__WEBPACK_IMPORTED_MODULE_4__.default, {
+        children: [restaurant.caution && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Wrapper__WEBPACK_IMPORTED_MODULE_4__.default, {
           className: "pb-4 mb-2",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
             className: "rounded-8 bg-soft py-2 px-3 text-10",
-            children: meals.addons.dear_customers
+            children: restaurant.caution
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
           children: addonsContent

@@ -21,7 +21,7 @@ class Addons extends Component {
                 cms: { pages: { frontend: { restaurants: { meals } } } },
                 currencies,
             },
-            frontend: { restaurants: { total = 0, addons = [], currency, position } }
+            frontend: { restaurants: { restaurant = {}, total = 0, addons = [], currency, position } }
         } = this.props;
 
         const currencyObj = currencies.find(c => c.cc === currency);
@@ -30,11 +30,11 @@ class Addons extends Component {
         const addonsContent = addons.map(addon => <Addon key={addon.id + Math.random()} symbol={symbol} position={position} {...addon} add={() => this.props.add(addon.id)} sub={() => this.props.sub(addon.id)} />);
 
         return <>
-            <Wrapper className="pb-4 mb-2">
+            {restaurant.caution && <Wrapper className="pb-4 mb-2">
                 <div className="rounded-8 bg-soft py-2 px-3 text-10">
-                    {meals.addons.dear_customers}
+                    {restaurant.caution}
                 </div>
-            </Wrapper>
+            </Wrapper>}
 
             <div>
                 {addonsContent}

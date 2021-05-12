@@ -326,12 +326,16 @@ var Category = /*#__PURE__*/function (_Component) {
         className: "Category d-flex rounded-4 bg-white position-relative",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
-            className: "embed-responsive embed-responsive-1by1 rounded-left-4",
+            className: "embed-responsive embed-responsive-1by1 rounded-left-4 position-relative overflow-hidden",
             style: {
-              background: "url('".concat(photo, "') no-repeat center"),
-              backgroundSize: 'cover',
               width: 150
-            }
+            },
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+              className: "img position-absolute w-100 h-100",
+              style: {
+                backgroundImage: "url('".concat(photo, "')")
+              }
+            })
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
           className: "flex-fill overflow-hidden rounded-right-4 py-3 px-4 bg-".concat(is_active ? "green" : "red", "-10"),
@@ -985,7 +989,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".Category {\r\n    width: 100%;\r\n    padding: 4px;\r\n}\r\n\r\n.Category .name { \r\n    max-width: calc(100% - 30px);\r\n}\r\n\r\n.Category .description {\r\n    max-width: 100%;\r\n}\r\n\r\n.Category .action {\r\n    padding: 0;\r\n    transition: all .25s;\r\n}\r\n\r\n.Category .action:hover {\r\n    padding: 0 46px;\r\n}\r\n\r\n.Category .view,\r\n.Category .delete {\r\n    position: absolute;\r\n    opacity: 0;\r\n    transform: translate(0);\r\n    transition: all 0.25s;\r\n    z-index: 1;\r\n}\r\n\r\n.Category .edit {\r\n    position: relative;\r\n    z-index: 2;\r\n}\r\n\r\n.Category .action:hover .view {\r\n    transform: translateX(calc(-100% - 8px));\r\n}\r\n\r\n.Category .action:hover .delete {\r\n    transform: translateX(calc(100% + 8px));\r\n}\r\n\r\n.Category .action:hover .view,\r\n.Category .action:hover .delete {\r\n    opacity: 1;\r\n}\r\n\r\n@media (min-width: 1300px) {\r\n    .Category {\r\n        width: calc(50%);\r\n    }\r\n}\r\n\r\n@media (min-width: 1600px) {\r\n    .Category {\r\n        width: calc(33.33%);\r\n    }\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".Category {\r\n    width: 100%;\r\n    padding: 4px;\r\n}\r\n\r\n.Category .img {\r\n    top: 0;\r\n    left: 0;\r\n    background-repeat: no-repeat;\r\n    background-position: center;\r\n    background-size: cover;\r\n    transform: scale(1) rotate(0deg);\r\n    transition: all 0.25s;\r\n}\r\n\r\n.Category:hover .img {\r\n    transform: scale(1.21) rotate(10deg);\r\n}\r\n\r\n.Category .name { \r\n    max-width: calc(100% - 30px);\r\n}\r\n\r\n.Category .description {\r\n    max-width: 100%;\r\n}\r\n\r\n.Category .action {\r\n    padding: 0;\r\n    transition: all .25s;\r\n}\r\n\r\n.Category .action:hover {\r\n    padding: 0 46px;\r\n}\r\n\r\n.Category .view,\r\n.Category .delete {\r\n    position: absolute;\r\n    opacity: 0;\r\n    transform: translate(0);\r\n    transition: all 0.25s;\r\n    z-index: 1;\r\n}\r\n\r\n.Category .edit {\r\n    position: relative;\r\n    z-index: 2;\r\n}\r\n\r\n.Category .action:hover .view {\r\n    transform: translateX(calc(-100% - 8px));\r\n}\r\n\r\n.Category .action:hover .delete {\r\n    transform: translateX(calc(100% + 8px));\r\n}\r\n\r\n.Category .action:hover .view,\r\n.Category .action:hover .delete {\r\n    opacity: 1;\r\n}\r\n\r\n@media (min-width: 1300px) {\r\n    .Category {\r\n        width: calc(50%);\r\n    }\r\n}\r\n\r\n@media (min-width: 1600px) {\r\n    .Category {\r\n        width: calc(33.33%);\r\n    }\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

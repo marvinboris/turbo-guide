@@ -29,8 +29,10 @@ class Meal extends Component {
         return <div className={`Meal ${className}`}>
             <div className={`rounded-4 bg-white shadow-sm`}>
                 <div>
-                    <div className="embed-responsive embed-responsive-4by3 w-100 rounded-top-4 shadow-sm position-relative" style={{ background: `url('${photo}') no-repeat center`, backgroundSize: 'cover' }}>
-                        <div className="hover text-10 d-flex justify-content-center align-items-center position-absolute w-100 h-100 bg-black-30">
+                    <div className="embed-responsive embed-responsive-4by3 w-100 rounded-top-4 shadow-sm position-relative overflow-hidden">
+                        <div className="bg position-absolute w-100 h-100" style={{ backgroundImage: `url('${photo}')` }} />
+                        
+                        <div className="actions text-10 d-flex justify-content-center align-items-center position-absolute w-100 h-100 bg-black-30">
                             <Link to={`/restaurant/meals/${id}`} className="text-decoration-none mr-2">
                                 <Circle color="green" icon={faEye} />
                             </Link>

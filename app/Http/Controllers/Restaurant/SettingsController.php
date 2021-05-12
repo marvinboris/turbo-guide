@@ -49,6 +49,9 @@ class SettingsController extends Controller
             'currency' => 'nullable|string',
             'position' => 'nullable|integer',
             'photo' => 'nullable|file|image',
+            'caution' => 'nullable|string',
+            'must_read' => 'nullable|string',
+            'disclaimer' => 'nullable|string',
         ]);
 
         $restaurant_slug = $restaurant->slug;
@@ -108,7 +111,7 @@ class SettingsController extends Controller
         $restaurant = UtilController::get(request());
 
         $input = $request->validate([
-            'banner1' => 'nullable|file|image',
+            'banner1' => 'required|file|image',
             'banner2' => 'nullable|file|image',
             'banner3' => 'nullable|file|image',
         ]);
@@ -162,7 +165,7 @@ class SettingsController extends Controller
 
         $request->validate([
             'languages' => 'array|exists:languages,id',
-            'language' => 'exists:languages,id',
+            'language' => 'required|exists:languages,id',
         ]);
 
         $languages = [];

@@ -3,6 +3,20 @@
     padding: 4px;
 }
 
+.Addon .img {
+    top: 0;
+    left: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transform: scale(1) rotate(0deg);
+    transition: all 0.25s;
+}
+
+.Addon:hover .img {
+    transform: scale(1.21) rotate(10deg);
+}
+
 .Addon .name {
     max-width: calc(100% - 30px);
 }
@@ -13,7 +27,7 @@
 
 .Addon .action {
     padding: 0;
-    transition: all .25s;
+    transition: all 0.25s;
 }
 
 .Addon .action:hover {

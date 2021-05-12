@@ -68,14 +68,17 @@ var Description = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this$props = this.props,
           meals = _this$props.content.cms.pages.frontend.restaurants.meals,
-          _this$props$frontend$ = _this$props.frontend.restaurants.meal,
-          meal = _this$props$frontend$ === void 0 ? {} : _this$props$frontend$;
+          _this$props$frontend$ = _this$props.frontend.restaurants,
+          _this$props$frontend$2 = _this$props$frontend$.restaurant,
+          restaurant = _this$props$frontend$2 === void 0 ? {} : _this$props$frontend$2,
+          _this$props$frontend$3 = _this$props$frontend$.meal,
+          meal = _this$props$frontend$3 === void 0 ? {} : _this$props$frontend$3;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_Wrapper__WEBPACK_IMPORTED_MODULE_2__.default, {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
             className: "mb-3 pb-4 text-300 text-10",
             children: meal.description
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          }), restaurant.must_read && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
               className: "text-14 mb-2",
               children: meals.must_read
@@ -85,7 +88,7 @@ var Description = /*#__PURE__*/function (_Component) {
                 margin: '0px -33px'
               },
               className: "bg-orange-10 text-300 text-10",
-              children: meals.dear_customers
+              children: restaurant.must_read
             })]
           })]
         })

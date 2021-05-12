@@ -10,7 +10,7 @@ export default ({ title, content, className, children }) => {
         <>
             <span style={{ cursor: 'pointer' }} onClick={toggle}>{children}</span>
             <Modal isOpen={modal} toggle={toggle} size="lg" centered className={className}>
-                <ModalHeader toggle={toggle}>{title}</ModalHeader>
+                {title && <ModalHeader toggle={toggle}>{title}</ModalHeader>}
                 <ModalBody>
                     <div className="p-2">{content}</div>
                 </ModalBody>

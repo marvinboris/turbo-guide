@@ -39,7 +39,7 @@ class Comments extends Component {
                 cms: { pages: { frontend: { restaurants: { meals } } } },
                 countries,
             },
-            frontend: { restaurants: { comments = [] } } 
+            frontend: { restaurants: { restaurant = {}, comments = [] } } 
         } = this.props;
         const { modal, name, body, country } = this.state;
 
@@ -58,11 +58,11 @@ class Comments extends Component {
                     </span>
                 </div>
 
-                <div>
+                {restaurant.disclaimer && <div>
                     <div style={{ padding: '12px 33px', margin: '0px -33px' }} className="bg-orange-10 text-300 text-10">
-                        {meals.dear_customers}
+                        {restaurant.disclaimer}
                     </div>
-                </div>
+                </div>}
 
 
                 <Modal isOpen={modal} toggle={this.toggle}>

@@ -5,6 +5,8 @@ import {
     CarouselIndicators
 } from 'reactstrap';
 
+import View from '../../../../../components/Backend/UI/View/View';
+
 export default class Carousel extends Component {
     state = {
         activeIndex: 0,
@@ -33,7 +35,9 @@ export default class Carousel extends Component {
 
         const slides = items.map(item => (
             <CarouselItem onExiting={() => this.setState({ animating: true })} onExited={() => this.setState({ animating: false })} key={item} className="h-100">
-                <div className="h-100" style={{ background: `url("${item}") no-repeat top center`, backgroundSize: 'cover' }} />
+                <View content={<img src={item} className="img-fluid w-100" />}>
+                    <div className="h-100" style={{ background: `url("${item}") no-repeat top center`, backgroundSize: 'cover' }} />
+                </View>
             </CarouselItem>
         ));
 

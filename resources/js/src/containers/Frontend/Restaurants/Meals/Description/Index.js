@@ -8,24 +8,24 @@ import Wrapper from '../Wrapper';
 
 class Description extends Component {
     render() {
-        const { 
+        const {
             content: {
                 cms: { pages: { frontend: { restaurants: { meals } } } }
             },
-            frontend: { restaurants: { meal = {} } } 
+            frontend: { restaurants: { restaurant = {}, meal = {} } }
         } = this.props;
 
         return <>
             <Wrapper>
                 <div className="mb-3 pb-4 text-300 text-10">{meal.description}</div>
 
-                <div>
+                {restaurant.must_read && <div>
                     <div className="text-14 mb-2">{meals.must_read}</div>
 
                     <div style={{ padding: '12px 33px', margin: '0px -33px' }} className="bg-orange-10 text-300 text-10">
-                        {meals.dear_customers}
+                        {restaurant.must_read}
                     </div>
-                </div>
+                </div>}
             </Wrapper>
         </>;
     }

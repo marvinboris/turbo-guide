@@ -43,7 +43,6 @@ class AuthController extends Controller
             'phone' => $request->code . $request->phone,
             'country' => $request->country,
             'token' => $token,
-            'md5' => md5($token),
             'password' => Hash::make($password),
             'language_id' => 1,
             'slug' => 'temp'

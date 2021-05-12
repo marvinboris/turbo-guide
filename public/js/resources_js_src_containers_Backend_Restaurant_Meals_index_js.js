@@ -217,14 +217,15 @@ var Meal = /*#__PURE__*/function (_Component) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
           className: "rounded-4 bg-white shadow-sm",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-              className: "embed-responsive embed-responsive-4by3 w-100 rounded-top-4 shadow-sm position-relative",
-              style: {
-                background: "url('".concat(photo, "') no-repeat center"),
-                backgroundSize: 'cover'
-              },
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-                className: "hover text-10 d-flex justify-content-center align-items-center position-absolute w-100 h-100 bg-black-30",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+              className: "embed-responsive embed-responsive-4by3 w-100 rounded-top-4 shadow-sm position-relative overflow-hidden",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                className: "bg position-absolute w-100 h-100",
+                style: {
+                  backgroundImage: "url('".concat(photo, "')")
+                }
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "actions text-10 d-flex justify-content-center align-items-center position-absolute w-100 h-100 bg-black-30",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
                   to: "/restaurant/meals/".concat(id),
                   className: "text-decoration-none mr-2",
@@ -250,7 +251,7 @@ var Meal = /*#__PURE__*/function (_Component) {
                     })
                   })
                 })]
-              })
+              })]
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
             className: "p-3 bg-white overflow-hidden",
@@ -899,7 +900,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".Meal {\r\n    padding: 4px;\r\n    width: 100%;\r\n}\r\n\r\n.Meal .hover {\r\n    top: 0;\r\n    left: 0;\r\n    opacity: 0;\r\n    transition: all 0.25s;\r\n}\r\n\r\n.Meal .hover:hover {\r\n    opacity: 1;\r\n}\r\n\r\n@media (min-width: 1000px) {\r\n    .Meal {\r\n        width: 50%;\r\n    }\r\n}\r\n\r\n@media (min-width: 1400px) {\r\n    .Meal {\r\n        width: 33.33%;\r\n    }\r\n}\r\n\r\n@media (min-width: 1600px) {\r\n    .Meal {\r\n        width: 25%;\r\n    }\r\n}\r\n\r\n@media (min-width: 1900px) {\r\n    .Meal {\r\n        width: 20%;\r\n    }\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".Meal {\r\n    padding: 4px;\r\n    width: 100%;\r\n}\r\n\r\n.Meal .bg {\r\n    top: 0;\r\n    left: 0;\r\n    background-repeat: no-repeat;\r\n    background-position: center;\r\n    background-size: cover;\r\n    transform: scale(1) rotate(0deg);\r\n    transition: all 0.25s;\r\n}\r\n\r\n.Meal:hover .bg {\r\n    transform: scale(1.21) rotate(10deg);\r\n}\r\n\r\n.Meal .actions {\r\n    top: 0;\r\n    left: 0;\r\n    opacity: 0;\r\n    transition: all 0.25s;\r\n}\r\n\r\n.Meal .actions:hover {\r\n    opacity: 1;\r\n}\r\n\r\n@media (min-width: 1000px) {\r\n    .Meal {\r\n        width: 50%;\r\n    }\r\n}\r\n\r\n@media (min-width: 1400px) {\r\n    .Meal {\r\n        width: 33.33%;\r\n    }\r\n}\r\n\r\n@media (min-width: 1600px) {\r\n    .Meal {\r\n        width: 25%;\r\n    }\r\n}\r\n\r\n@media (min-width: 1900px) {\r\n    .Meal {\r\n        width: 20%;\r\n    }\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

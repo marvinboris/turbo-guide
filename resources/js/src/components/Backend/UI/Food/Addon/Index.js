@@ -30,7 +30,9 @@ class Addon extends Component {
 
         return <div className={`Addon d-flex rounded-4 bg-white position-relative`}>
             <div>
-                <div className="embed-responsive embed-responsive-1by1 rounded-left-4" style={{ background: `url('${photo}') no-repeat center`, backgroundSize: 'cover', width: 150 }} />
+                <div className="embed-responsive embed-responsive-1by1 rounded-left-4 position-relative overflow-hidden" style={{ width: 150 }}>
+                    <div className="img position-absolute w-100 h-100" style={{ backgroundImage: `url('${photo}')` }} />
+                </div>
             </div>
 
             <div className={`flex-fill overflow-hidden rounded-right-4 py-3 px-4 bg-${is_active ? "green" : "red"}-10`} style={{ height: 150 }}>

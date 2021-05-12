@@ -146,7 +146,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        this.props.get(this.props.match.params.slug);
+        if (!this.props.frontend.restaurants.restaurant) this.props.get(this.props.match.params.slug);
         document.addEventListener('scroll', this.scrollHandler);
     }
 

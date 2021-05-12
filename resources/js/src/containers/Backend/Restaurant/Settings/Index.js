@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Button, Col, FormGroup, Input, Label, Row } from 'reactstrap';
-import { faArrowsAltH, faCalendar, faCheckCircle, faClock, faCog, faEdit, faEnvelope, faFileImage, faFlag, faHome, faLocationArrow, faLock, faLockOpen, faMapMarkerAlt, faMinusSquare, faPhone, faUser, faUserTie } from '@fortawesome/free-solid-svg-icons';
+import { faArrowsAltH, faCalendar, faCheckCircle, faClock, faCog, faEdit, faEnvelope, faExclamationCircle, faFileImage, faFlag, faHome, faInfoCircle, faLocationArrow, faLock, faLockOpen, faMapMarkerAlt, faMinusSquare, faPhone, faUser, faUserTie } from '@fortawesome/free-solid-svg-icons';
 import { faSave } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
@@ -83,6 +83,9 @@ class Settings extends Component {
         address: '',
         currency: 'XAF',
         position: '1',
+        caution: '',
+        must_read: '',
+        disclaimer: '',
         restaurantUpdatable: false,
 
         email: '',
@@ -212,7 +215,7 @@ class Settings extends Component {
             auth: { data: { plan } }
         } = this.props;
         let {
-            name, owner, phone, logo, whatsapp, location, address, currency, position, restaurantUpdatable,
+            name, owner, phone, logo, whatsapp, location, address, currency, position, caution, must_read, disclaimer, restaurantUpdatable,
             email, country, token, password, new_password, new_password_confirmation, photo, accountUpdatable,
             banner1, banner2, banner3, cmsUpdatable,
             days, hours, calendarUpdatable,
@@ -255,15 +258,18 @@ class Settings extends Component {
                     <FormInput type="text" icon={faLocationArrow} onChange={this.inputChangeHandler} value={location} disabled={!restaurantUpdatable} name="location" placeholder={form.location} />
                 </Conditional>
                 <FormInput type="text" icon={faMapMarkerAlt} onChange={this.inputChangeHandler} value={address} disabled={!restaurantUpdatable} name="address" placeholder={form.address} />
-                <FormInput type="select" addon={<div className="text-center text-light" style={{ margin: '0 -10px' }}>{symbol}</div>} onChange={this.inputChangeHandler} value={currency} disabled={!restaurantUpdatable} name="currency" required>
+                <FormInput type="select" addon={<div className="text-center text-light" style={{ margin: '0 -10px' }}>{symbol}</div>} onChange={this.inputChangeHandler} value={currency} disabled={!restaurantUpdatable} name="currency" placeholder={form.select_currency} required>
                     <option>{form.select_currency}</option>
                     {currenciesOptions}
                 </FormInput>
-                <FormInput type="select" icon={faArrowsAltH} onChange={this.inputChangeHandler} value={position} disabled={!restaurantUpdatable} name="position" required>
+                <FormInput type="select" icon={faArrowsAltH} onChange={this.inputChangeHandler} value={position} disabled={!restaurantUpdatable} name="position" placeholder={form.select_position} required>
                     <option>{form.select_position}</option>
                     <option value={0}>{form.left}</option>
                     <option value={1}>{form.right}</option>
                 </FormInput>
+                <FormInput type="textarea" icon={faInfoCircle} onChange={this.inputChangeHandler} value={caution} disabled={!restaurantUpdatable} name="caution" placeholder={form.caution} />
+                <FormInput type="textarea" icon={faExclamationCircle} onChange={this.inputChangeHandler} value={must_read} disabled={!restaurantUpdatable} name="must_read" placeholder={form.must_read} />
+                <FormInput type="textarea" icon={faInfoCircle} onChange={this.inputChangeHandler} value={disclaimer} disabled={!restaurantUpdatable} name="disclaimer" placeholder={form.disclaimer} />
                 <FormGroup row className="justify-content-center">
                     <div className="col-12 col-sm-10">
                         <div id="embed-logo" className="embed-responsive embed-responsive-1by1 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: restaurantUpdatable ? 'pointer' : 'not-allowed', background: logo && `url("${logo}") no-repeat center`, backgroundSize: 'cover' }} onClick={!restaurantUpdatable ? null : (() => this.fileUpload("logo"))}>
@@ -289,7 +295,7 @@ class Settings extends Component {
                     <div className="rounded-circle mx-auto overflow-hidden position-relative d-flex justify-content-center align-items-center" style={{ width: 18, height: 18 }}>
                         <span className={`flag-icon text-large position-absolute flag-icon-${country.toLowerCase()}`} />
                     </div>
-                </div>} onChange={this.inputChangeHandler} value={country} disabled={!accountUpdatable} name="country" required>
+                </div>} onChange={this.inputChangeHandler} value={country} disabled={!accountUpdatable} name="country" placeholder={form.select_country} required>
                     <option>{form.select_country}</option>
                     {countriesOptions}
                 </FormInput>

@@ -19,11 +19,11 @@ export const getRestaurant = slug => async dispatch => {
     }
 }
 
-export const getRestaurantsMeal = (slug, id) => async dispatch => {
+export const getRestaurantsMeal = (slug, id, restaurant) => async dispatch => {
     dispatch(restaurantsStart());
 
     try {
-        const res = await fetch(`${prefix}restaurants/${slug}/meals/${id}`);
+        const res = await fetch(`${prefix}restaurants/${slug}/meals/${id}?restaurant=${restaurant ? 1 : 0}`);
         const resData = await res.json();
 
         resData.addons = resData.addons.map(a => ({ ...a, qty: 0 }))

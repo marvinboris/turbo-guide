@@ -26,7 +26,7 @@ const NavItem = ({ to, icon, children, className = '' }) => <NavLink to={to} exa
 
 class Layout extends Component {
     componentDidMount() {
-        this.props.get(this.props.match.params.slug, this.props.match.params.id);
+        this.props.get(this.props.match.params.slug, this.props.match.params.id, !this.props.frontend.restaurants.restaurant);
     }
 
     componentWillUnmount() {
@@ -165,7 +165,7 @@ const mapStateToProps = state => ({ ...state });
 const mapDispatchToProps = dispatch => ({
     add: () => dispatch(actions.addMeal()),
     sub: () => dispatch(actions.subMeal()),
-    get: (slug, id) => dispatch(actions.getRestaurantsMeal(slug, id)),
+    get: (slug, id, restaurant) => dispatch(actions.getRestaurantsMeal(slug, id, restaurant)),
     reset: () => dispatch(actions.resetRestaurants(true)),
 });
 

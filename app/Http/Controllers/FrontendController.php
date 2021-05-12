@@ -84,8 +84,6 @@ class FrontendController extends Controller
         if (!$restaurant) return response()->json([
             'message' => UtilController::message('Restaurant not found.', 'danger'),
         ]);
-        
-        $information = $this->information($slug);
 
         $meal = $restaurant->meals()->find($id);
         if (!$meal) return response()->json([
@@ -109,7 +107,7 @@ class FrontendController extends Controller
             'position' => $restaurant->position,
         ];
 
-        $data += $information;
+        if (request()->restaurant == 1) $data += $this->information($slug);
 
         return response()->json($data);
     }

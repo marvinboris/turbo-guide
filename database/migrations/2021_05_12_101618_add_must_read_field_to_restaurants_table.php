@@ -15,7 +15,6 @@ class AddMustReadFieldToRestaurantsTable extends Migration
     {
         Schema::table('restaurants', function (Blueprint $table) {
             $table->mediumText('caution')->nullable();
-            $table->mediumText('must_read')->nullable();
             $table->mediumText('disclaimer')->nullable();
         });
     }
@@ -29,7 +28,6 @@ class AddMustReadFieldToRestaurantsTable extends Migration
     {
         Schema::table('restaurants', function (Blueprint $table) {
             $table->dropColumn('caution');
-            $table->dropColumn('must_read');
             $table->dropColumn('disclaimer');
         });
     }

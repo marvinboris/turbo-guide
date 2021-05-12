@@ -147,6 +147,16 @@ class Home extends Component {
 
     componentDidMount() {
         if (!this.props.frontend.restaurants.restaurant) this.props.get(this.props.match.params.slug);
+        else {
+            const categoryElts = document.getElementsByClassName("category");
+            const categoryOffsets = [];
+            let i = 0;
+            for (const categoryElt of categoryElts) {
+                categoryOffsets.push({ id: this.props.frontend.restaurants.categories[i].id, top: categoryElt.offsetTop, height: categoryElt.offsetHeight });
+                i++;
+            }
+            this.setState({ categoryOffsets });
+        }
         document.addEventListener('scroll', this.scrollHandler);
     }
 

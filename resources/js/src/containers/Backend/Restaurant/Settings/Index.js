@@ -215,11 +215,20 @@ class Settings extends Component {
             auth: { data: { plan } }
         } = this.props;
         let {
-            name, owner, phone, logo, whatsapp, location, address, currency, position, caution, must_read, disclaimer, restaurantUpdatable,
-            email, country, token, password, new_password, new_password_confirmation, photo, accountUpdatable,
-            banner1, banner2, banner3, cmsUpdatable,
-            days, hours, calendarUpdatable,
-            languages, language, languageUpdatable,
+            name, owner, phone, logo, whatsapp, location, address, currency, position, caution, must_read, disclaimer, 
+            restaurantUpdatable,
+
+            email, country, token, password, new_password, new_password_confirmation, photo, 
+            accountUpdatable,
+            
+            banner1, banner2, banner3, 
+            cmsUpdatable,
+            
+            days, hours, 
+            calendarUpdatable,
+            
+            languages, language, 
+            languageUpdatable,
         } = this.state;
         let spinnerContent, restaurantContent, accountContent, cmsContent, calendarContent, languageContent;
         let errors = null;

@@ -962,13 +962,7 @@ var Home = /*#__PURE__*/function (_Component) {
   _createClass(Home, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      if (!this.props.frontend.restaurants.restaurant) this.props.get(this.props.match.params.slug);
-      document.addEventListener('scroll', this.scrollHandler);
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps, prevState) {
-      if (this.state.id !== '' && prevState.categoryOffsets.length === 0) {
+      if (!this.props.frontend.restaurants.restaurant) this.props.get(this.props.match.params.slug);else {
         var categoryElts = document.getElementsByClassName("category");
         var categoryOffsets = [];
         var i = 0;
@@ -990,6 +984,39 @@ var Home = /*#__PURE__*/function (_Component) {
           _iterator.e(err);
         } finally {
           _iterator.f();
+        }
+
+        this.setState({
+          categoryOffsets: categoryOffsets
+        });
+      }
+      document.addEventListener('scroll', this.scrollHandler);
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      if (this.state.id !== '' && prevState.categoryOffsets.length === 0) {
+        var categoryElts = document.getElementsByClassName("category");
+        var categoryOffsets = [];
+        var i = 0;
+
+        var _iterator2 = _createForOfIteratorHelper(categoryElts),
+            _step2;
+
+        try {
+          for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+            var categoryElt = _step2.value;
+            categoryOffsets.push({
+              id: this.props.frontend.restaurants.categories[i].id,
+              top: categoryElt.offsetTop,
+              height: categoryElt.offsetHeight
+            });
+            i++;
+          }
+        } catch (err) {
+          _iterator2.e(err);
+        } finally {
+          _iterator2.f();
         }
 
         this.setState({

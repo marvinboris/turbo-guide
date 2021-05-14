@@ -707,7 +707,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     return setTooltipOpen(!tooltipOpen);
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+  return content ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
       id: id,
       children: children
@@ -717,7 +717,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       toggle: toggle,
       children: content
     })]
-  });
+  }) : children;
 });
 
 /***/ }),
@@ -857,14 +857,16 @@ var Add = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "readURL", function (input) {
       if (input.files && input.files[0]) {
+        var file = input.files[0];
         var reader = new FileReader();
 
         reader.onload = function (e) {
           document.getElementById("embed-".concat(input.name)).style.backgroundImage = "url('".concat(e.target.result, "')");
           document.getElementById("embed-".concat(input.name)).style.backgroundSize = "cover";
+          document.getElementById("embed-".concat(input.name)).querySelector(".file-selected").innerHTML = file.name;
         };
 
-        reader.readAsDataURL(input.files[0]); // convert to base64 string
+        reader.readAsDataURL(file); // convert to base64 string
       }
     });
 
@@ -905,7 +907,6 @@ var Add = /*#__PURE__*/function (_Component) {
           _this$props$content = _this$props.content,
           _this$props$content$c = _this$props$content.cms.pages,
           _this$props$content$c2 = _this$props$content$c.components.form,
-          selected_file = _this$props$content$c2.selected_file,
           active = _this$props$content$c2.active,
           inactive = _this$props$content$c2.inactive,
           _this$props$content$c3 = _this$props$content$c.backend.pages.addons,
@@ -1029,46 +1030,65 @@ var Add = /*#__PURE__*/function (_Component) {
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_19__.default, {
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
                       id: "embed-photo",
-                      className: "embed-responsive embed-responsive-1by1 bg-soft rounded-8 d-flex justify-content-center align-items-center",
+                      className: "embed-responsive embed-responsive-1by1 bg-soft rounded-8 d-flex justify-content-center align-items-center position-relative",
                       style: {
                         cursor: 'pointer',
                         backgroundImage: photo && "url(\"".concat(photo, "\")"),
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'center',
-                        backgroundSize: 'cover'
+                        backgroundSize: 'cover',
+                        overflow: 'visible'
                       },
                       onClick: this.fileUpload,
                       children: this.props.edit ? photo && photo !== addon.photo && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
                         className: "text-center text-green w-100",
                         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                          className: "position-absolute",
+                          style: {
+                            top: 0,
+                            right: 0,
+                            transform: 'translate(50%,-50%)'
+                          },
                           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
                             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faCheckCircle,
                             fixedWidth: true,
-                            size: "5x"
+                            size: "2x"
                           })
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                          className: "mt-3",
-                          children: selected_file
+                          className: "position-absolute file-selected w-100 pt-3",
+                          style: {
+                            top: '100%',
+                            left: 0
+                          }
                         })]
                       }) : photo ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
                         className: "text-center text-green w-100",
                         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                          className: "position-absolute",
+                          style: {
+                            top: 0,
+                            right: 0,
+                            transform: 'translate(50%,-50%)'
+                          },
                           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
                             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faCheckCircle,
                             fixedWidth: true,
-                            size: "5x"
+                            size: "2x"
                           })
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                          className: "mt-3",
-                          children: selected_file
+                          className: "position-absolute file-selected w-100 pt-3",
+                          style: {
+                            top: '100%',
+                            left: 0
+                          }
                         })]
                       }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)("div", {
-                        className: "text-center text-light overflow-hidden w-100 px-3",
+                        className: "text-center text-light w-100 overflow-hidden px-3",
                         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
                           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
                             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faFileImage,
                             fixedWidth: true,
-                            size: "5x"
+                            size: "4x"
                           })
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
                           className: "mt-3 mb-1 text-center text-12 text-truncate",

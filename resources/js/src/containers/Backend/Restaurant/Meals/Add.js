@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { Col, FormGroup, Row } from 'reactstrap';
 import { faBook, faCheckCircle, faClock, faCookie, faDrumstickBite, faFileImage, faMinusCircle, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Swal from 'sweetalert2';
 
 // Components
 import Breadcrumb from '../../../../components/Backend/UI/Breadcrumb/Breadcrumb';
@@ -65,14 +66,16 @@ class Add extends Component {
 
     readURL = input => {
         if (input.files && input.files[0]) {
+            const file = input.files[0];
             const reader = new FileReader();
 
             reader.onload = function (e) {
                 document.getElementById(`embed-${input.name}`).style.backgroundImage = `url('${e.target.result}')`;
                 document.getElementById(`embed-${input.name}`).style.backgroundSize = "cover";
+                document.getElementById(`embed-${input.name}`).querySelector(".file-selected").innerHTML = file.name;
             }
 
-            reader.readAsDataURL(input.files[0]); // convert to base64 string
+            reader.readAsDataURL(file); // convert to base64 string
         }
     }
 
@@ -107,6 +110,39 @@ class Add extends Component {
                 },
             });
         }
+        if (!prevProps.backend.meals.categories && this.props.backend.meals.categories && (this.props.backend.meals.categories.length === 0 || this.props.backend.meals.allAddons.length === 0)) {
+            const settings = {
+                title: 'Missing categories and addons',
+                text: "Before creating meals, make sure you have added categories and addons.",
+                icon: 'warning',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: 'Add category',
+                denyButtonText: 'Add addon',
+                confirmButtonColor: '#E98809',
+                denyButtonColor: '#009C1A',
+                cancelButtonColor: '#D14529',
+            };
+
+            if (this.props.backend.meals.categories.length > 0) {
+                settings.title = 'Missing addons';
+                settings.text = 'Before creating meals, make sure you have added addons.';
+                settings.showDenyButton = false;
+                settings.confirmButtonText = 'Add addon';
+            } else if (this.props.backend.meals.allAddons.length > 0) {
+                settings.title = 'Missing categories';
+                settings.text = 'Before creating meals, make sure you have added categories.';
+                settings.showDenyButton = false;
+            }
+
+            Swal.fire(settings).then(result => {
+                if (this.props.backend.meals.categories.length > 0 && result.isConfirmed) this.props.history.push('/restaurant/addons/add');
+                else {
+                    if (result.isConfirmed) this.props.history.push('/restaurant/categories/add');
+                    else if (result.isDenied) this.props.history.push('/restaurant/addons/add');
+                }
+            });
+        }
     }
 
     componentWillUnmount() {
@@ -117,7 +153,7 @@ class Add extends Component {
         let {
             content: {
                 cms: {
-                    pages: { components: { form: { selected_file, active, inactive } }, backend: { pages: { meals: { title, subtitle, instructions, add, edit, index, form } } } }
+                    pages: { components: { form: { active, inactive } }, backend: { pages: { meals: { title, subtitle, instructions, add, edit, index, form } } } }
                 },
                 currencies,
             },
@@ -195,25 +231,26 @@ class Add extends Component {
 
                                 <div className="col-lg-3">
                                     <FormGroup>
-                                        <div id="embed-photo" className="embed-responsive embed-responsive-1by1 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{
+                                        <div id="embed-photo" className="embed-responsive embed-responsive-1by1 bg-soft rounded-8 d-flex justify-content-center align-items-center position-relative" style={{
                                             cursor: 'pointer',
                                             backgroundImage: photo && `url("${photo}")`,
                                             backgroundRepeat: 'no-repeat',
                                             backgroundPosition: 'center',
-                                            backgroundSize: 'cover'
+                                            backgroundSize: 'cover',
+                                            overflow: 'visible',
                                         }} onClick={this.fileUpload}>
                                             {this.props.edit
                                                 ? photo && (photo !== meal.photo) && <div className="text-center text-green w-100">
-                                                    <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
+                                                    <div className="position-absolute" style={{ top: 0, right: 0, transform: 'translate(50%,-50%)' }}><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="2x" /></div>
 
-                                                    <div className="mt-3">{selected_file}</div>
+                                                    <div className="position-absolute file-selected w-100 pt-3" style={{ top: '100%', left: 0 }} />
                                                 </div>
                                                 : photo ? <div className="text-center text-green w-100">
-                                                    <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
+                                                    <div className="position-absolute" style={{ top: 0, right: 0, transform: 'translate(50%,-50%)' }}><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="2x" /></div>
 
-                                                    <div className="mt-3">{selected_file}</div>
+                                                    <div className="position-absolute file-selected w-100 pt-3" style={{ top: '100%', left: 0 }} />
                                                 </div> : <div className="text-center text-light w-100 overflow-hidden px-3">
-                                                    <div><FontAwesomeIcon icon={faFileImage} fixedWidth size="5x" /></div>
+                                                    <div><FontAwesomeIcon icon={faFileImage} fixedWidth size="4x" /></div>
 
                                                     <div className="mt-3 mb-1 text-center text-12 text-truncate">{form.upload}</div>
 

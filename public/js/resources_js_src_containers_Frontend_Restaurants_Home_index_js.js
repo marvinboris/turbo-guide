@@ -951,9 +951,11 @@ var Home = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "setLanguage", function (lang) {
-      localStorage.setItem('lang', lang);
+      if (lang !== localStorage.getItem('lang')) {
+        localStorage.setItem('lang', lang);
 
-      _this.props.getContent();
+        _this.props.getContent();
+      }
     });
 
     return _this;

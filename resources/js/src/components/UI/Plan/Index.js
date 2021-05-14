@@ -8,7 +8,7 @@ import './Plan.css';
 
 const Item = ({ condition = true, children }) => condition ? <div className="pb-2"><FontAwesomeIcon icon={faCheckCircle} className="mr-2" fixedWidth />{children}</div> : null;
 
-export default ({ id, name, meals, actions, banners, price, premium = false, standard = false, basic = false }) => <div className="Plan text-left bg-white rounded-15 shadow-sm">
+export default ({ id, name, meals, months, actions, banners, price, premium = false, standard = false, basic = false }) => <div className="Plan text-left bg-white rounded-15 shadow-sm">
     <div className={`rounded-15 bg-${premium ? 'green' : 'orange-20'} text-${premium ? 'white' : ''} px-2`}>
         <div style={{ borderStyle: 'dashed', borderWidth: '0 0 .25px 0' }} className={`py-3 ${premium ? "border-white-50" : "border-orange-50"}`}>
             <div className={`d-flex align-items-center ${premium ? "" : "text-orange"}`}>
@@ -39,7 +39,7 @@ export default ({ id, name, meals, actions, banners, price, premium = false, sta
         </div>
 
         <div style={{ borderStyle: 'dashed', borderWidth: '.25px 0 0 0' }} className={`py-3 px-4 text-center ${premium ? "border-white-50" : "border-orange-50"}`}>
-            <Link to={`/restaurant/plans/purchase?plan_id=${id}`} className={"btn text-decoration-none rounded-pill position-relative text-12 px-3 py-2 d-inline-flex align-items-center " + (premium ? "btn-white text-green" : "btn-orange")}>
+            <Link to={`/restaurant/plans/purchase?type=${months}&plan_id=${id}`} className={"btn text-decoration-none rounded-pill position-relative text-12 px-3 py-2 d-inline-flex align-items-center " + (premium ? "btn-white text-green" : "btn-orange")}>
                 <div className="mr-3">Select</div>
 
                 <FontAwesomeIcon icon={faArrowAltCircleRight} />

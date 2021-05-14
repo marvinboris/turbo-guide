@@ -22,19 +22,13 @@ class Index extends Component {
     state = {
         amount: '',
         method_id: '',
+
+        message: null,
     }
 
-    componentDidMount() {
-        this.props.get();
-    }
 
-    componentDidUpdate() {
-        if (this.props.backend.recharges.link) window.location.href = this.props.backend.recharges.link;
-    }
 
-    componentWillUnmount() {
-        this.props.reset();
-    }
+    // Component methods
 
     submitHandler = e => {
         e.preventDefault();
@@ -46,6 +40,37 @@ class Index extends Component {
         this.setState({ [name]: files ? files[0] : value });
     }
 
+
+
+    // Lifecycle methods
+    componentDidMount() {
+        this.props.get();
+        if (location.search) {
+            const searchParams = new URLSearchParams(location.search);
+
+            const status = searchParams.get('status');
+            const amount = searchParams.get('amount');
+
+            if (status == 0) this.setState({ amount });
+            else this.setState({
+                message: {
+                    type: 'success',
+                    content: <div>Balance successfully added : <strong>{amount} USD</strong></div>,
+                }
+            }, () => setTimeout(() => {
+                this.setState({ message: null });
+            }, 5000));
+        }
+    }
+
+    componentDidUpdate() {
+        if (this.props.backend.recharges.link) window.location.href = this.props.backend.recharges.link;
+    }
+
+    componentWillUnmount() {
+        this.props.reset();
+    }
+
     render() {
         let {
             content: {
@@ -55,11 +80,12 @@ class Index extends Component {
             },
             backend: { recharges: { loading, error, message, recharges, total, methods = [] } },
         } = this.props;
-        const { amount, method_id } = this.state;
+        const { amount, method_id, message: stateMessage } = this.state;
 
         const errors = <>
             <Error err={error} />
         </>;
+        const flash = <Feedback message={stateMessage} />;
         const feedback = <Feedback message={message} />;
 
         if (!recharges) recharges = [];
@@ -87,7 +113,7 @@ class Index extends Component {
                             { name: form.status, key: 'status' },
                             { name: action, key: 'action' }
                         ]}
-                        containerClassName = "col-xl-8"
+                        containerClassName="col-xl-8"
                         addon={<div className="col-xl-4 pt-4 pt-xl-0">
                             <form onSubmit={this.submitHandler}>
                                 <Feedback message={message} />
@@ -132,6 +158,7 @@ class Index extends Component {
                 </TitleWrapper>
                 <div>
                     {errors}
+                    {flash}
                     {feedback}
                     {content}
                 </div>

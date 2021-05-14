@@ -1139,7 +1139,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     return setTooltipOpen(!tooltipOpen);
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+  return content ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
       id: id,
       children: children
@@ -1149,7 +1149,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       toggle: toggle,
       children: content
     })]
-  });
+  }) : children;
 });
 
 /***/ }),
@@ -1252,7 +1252,8 @@ var Index = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "state", {
       amount: '',
-      method_id: ''
+      method_id: '',
+      message: null
     });
 
     _defineProperty(_assertThisInitialized(_this), "submitHandler", function (e) {
@@ -1275,8 +1276,35 @@ var Index = /*#__PURE__*/function (_Component) {
 
   _createClass(Index, [{
     key: "componentDidMount",
-    value: function componentDidMount() {
+    value: // Lifecycle methods
+    function componentDidMount() {
+      var _this2 = this;
+
       this.props.get();
+
+      if (location.search) {
+        var searchParams = new URLSearchParams(location.search);
+        var status = searchParams.get('status');
+        var amount = searchParams.get('amount');
+        if (status == 0) this.setState({
+          amount: amount
+        });else this.setState({
+          message: {
+            type: 'success',
+            content: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
+              children: ["Balance successfully added : ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("strong", {
+                children: [amount, " USD"]
+              })]
+            })
+          }
+        }, function () {
+          return setTimeout(function () {
+            _this2.setState({
+              message: null
+            });
+          }, 5000);
+        });
+      }
     }
   }, {
     key: "componentDidUpdate",
@@ -1310,12 +1338,17 @@ var Index = /*#__PURE__*/function (_Component) {
           methods = _this$props$backend$r2 === void 0 ? [] : _this$props$backend$r2;
       var _this$state = this.state,
           amount = _this$state.amount,
-          method_id = _this$state.method_id;
+          method_id = _this$state.method_id,
+          stateMessage = _this$state.message;
 
       var errors = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.Fragment, {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_Error_Error__WEBPACK_IMPORTED_MODULE_8__.default, {
           err: error
         })
+      });
+
+      var flash = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_Feedback_Feedback__WEBPACK_IMPORTED_MODULE_10__.default, {
+        message: stateMessage
       });
 
       var feedback = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_Feedback_Feedback__WEBPACK_IMPORTED_MODULE_10__.default, {
@@ -1454,7 +1487,7 @@ var Index = /*#__PURE__*/function (_Component) {
             children: index
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
-          children: [errors, feedback, content]
+          children: [errors, flash, feedback, content]
         })]
       });
     }

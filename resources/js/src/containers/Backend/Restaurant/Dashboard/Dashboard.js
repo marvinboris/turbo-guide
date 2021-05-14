@@ -41,7 +41,7 @@ class Dashboard extends Component {
 
 
     // Lifecycle methods
-    async componentDidMount() {
+    componentDidMount() {
         this.props.get();
     }
 

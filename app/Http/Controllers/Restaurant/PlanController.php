@@ -105,7 +105,7 @@ class PlanController extends Controller
             if ($old_plan) $old_plan->update([
                 'expiry_date' => Carbon::now(),
             ]);
-            
+
             $restaurant->plans()->attach($plan, [
                 'expiry_date' => Carbon::now()->addMonths($plan->months),
             ]);
@@ -117,9 +117,10 @@ class PlanController extends Controller
                 'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['plans']['purchased'], 'success'),
             ]);
         }
-        
+
         return response()->json([
             'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['plans']['balance'], 'danger'),
+            'amount' => $plan->price - $restaurant->balance,
         ]);
     }
 

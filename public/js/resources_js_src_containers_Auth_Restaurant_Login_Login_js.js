@@ -290,7 +290,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     return setTooltipOpen(!tooltipOpen);
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+  return content ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
       id: id,
       children: children
@@ -300,7 +300,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       toggle: toggle,
       children: content
     })]
-  });
+  }) : children;
 });
 
 /***/ }),

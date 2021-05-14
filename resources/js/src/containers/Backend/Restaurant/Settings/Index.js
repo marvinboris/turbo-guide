@@ -6,6 +6,7 @@ import { faArrowsAltH, faCalendar, faCheckCircle, faClock, faCog, faEdit, faEnve
 import { faSave } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import Swal from 'sweetalert2';
 
 // Components
 import Breadcrumb from '../../../../components/Backend/UI/Breadcrumb/Breadcrumb';
@@ -51,12 +52,12 @@ const Block = ({ children, icon, title, save, hidden, onSubmit, updatable, toggl
     </div>
 </form> : null;
 
-const CmsItem = ({ condition, banner, attr, locked, disabled, restaurant, selected_file, fileUpload }) => condition ? <FormGroup>
+const CmsItem = ({ condition, banner, attr, locked, disabled, restaurant, fileUpload }) => condition ? <FormGroup>
     <div id={`embed-${attr}`} className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: disabled ? 'not-allowed' : 'pointer', background: banner && `url("${banner}") no-repeat center`, backgroundSize: 'cover' }} onClick={() => fileUpload(attr)}>
         {banner && (banner !== restaurant[attr]) && <div className="text-center text-green w-100 px-3">
-            <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
+            <div className="position-absolute" style={{ top: 0, right: 0, transform: 'translate(50%,-50%)' }}><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="2x" /></div>
 
-            <div className="mt-3">{selected_file}</div>
+            <div className="position-absolute file-selected w-100 pt-3" style={{ top: '100%', left: 0 }} />
         </div>}
     </div>
 </FormGroup>
@@ -169,14 +170,16 @@ class Settings extends Component {
 
     readURL = input => {
         if (input.files && input.files[0]) {
+            const file = input.files[0];
             const reader = new FileReader();
 
             reader.onload = function (e) {
                 document.getElementById(`embed-${input.name}`).style.backgroundImage = `url('${e.target.result}')`;
                 document.getElementById(`embed-${input.name}`).style.backgroundSize = "cover";
+                document.getElementById(`embed-${input.name}`).querySelector(".file-selected").innerHTML = file.name;
             }
 
-            reader.readAsDataURL(input.files[0]); // convert to base64 string
+            reader.readAsDataURL(file); // convert to base64 string
         }
     }
 
@@ -188,6 +191,15 @@ class Settings extends Component {
     static getDerivedStateFromProps(nextProps, prevState) {
         if (nextProps.backend.settings.restaurant && prevState.name === '') {
             const { backend: { settings: { restaurant } } } = nextProps;
+            if (!restaurant.name) Swal.fire({
+                title: 'Missing restaurant\'s name',
+                text: "Please set your restaurant\'s name",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#D14529',
+                confirmButtonText: 'Yes'
+              });
             return updateObject(prevState, { ...restaurant });
         }
         return prevState;
@@ -207,7 +219,7 @@ class Settings extends Component {
         let {
             content: {
                 cms: {
-                    pages: { components: { form: { save, selected_file } }, backend: { pages: { settings: { title, subtitle, form } } } }
+                    pages: { components: { form: { save } }, backend: { pages: { settings: { title, subtitle, form } } } }
                 },
                 currencies, countries,
             },
@@ -215,19 +227,19 @@ class Settings extends Component {
             auth: { data: { plan } }
         } = this.props;
         let {
-            name, owner, phone, logo, whatsapp, location, address, currency, position, caution, must_read, disclaimer, 
+            name, owner, phone, logo, whatsapp, location, address, currency, position, caution, must_read, disclaimer,
             restaurantUpdatable,
 
-            email, country, token, password, new_password, new_password_confirmation, photo, 
+            email, country, token, password, new_password, new_password_confirmation, photo,
             accountUpdatable,
-            
-            banner1, banner2, banner3, 
+
+            banner1, banner2, banner3,
             cmsUpdatable,
-            
-            days, hours, 
+
+            days, hours,
             calendarUpdatable,
-            
-            languages, language, 
+
+            languages, language,
             languageUpdatable,
         } = this.state;
         let spinnerContent, restaurantContent, accountContent, cmsContent, calendarContent, languageContent;
@@ -289,9 +301,9 @@ class Settings extends Component {
 
                                 <div className="text-center text-12 text-truncate">{form.size}</div>
                             </div> : logo && (logo !== restaurant.logo) && <div className="text-center text-green w-100 px-3">
-                                <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
+                                <div className="position-absolute" style={{ top: 0, right: 0, transform: 'translate(50%,-50%)' }}><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="2x" /></div>
 
-                                <div className="mt-3">{selected_file}</div>
+                                <div className="position-absolute file-selected w-100 pt-3" style={{ top: '100%', left: 0 }} />
                             </div>}
                         </div>
                     </div>
@@ -313,17 +325,17 @@ class Settings extends Component {
                 <FormInput type="password" icon={faLock} onChange={this.inputChangeHandler} value={new_password} disabled={!accountUpdatable} name="new_password" placeholder={form.new_password} />
                 <FormInput type="password" icon={faLock} onChange={this.inputChangeHandler} value={new_password_confirmation} disabled={!accountUpdatable} name="new_password_confirmation" placeholder={form.new_password_confirmation} />
                 <FormGroup>
-                    <div id="embed-photo" className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: accountUpdatable ? 'pointer' : 'not-allowed', background: photo && `url("${photo}") no-repeat center`, backgroundSize: 'cover' }} onClick={!accountUpdatable ? null : (() => this.fileUpload("photo"))}>
+                    <div id="embed-photo" className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center position-relative" style={{ cursor: accountUpdatable ? 'pointer' : 'not-allowed', background: photo && `url("${photo}") no-repeat center`, backgroundSize: 'cover' }} onClick={!accountUpdatable ? null : (() => this.fileUpload("photo"))}>
                         {!photo ? <div className="text-center text-light w-100 overflow-hidden px-3">
-                            <div><FontAwesomeIcon icon={faFileImage} fixedWidth size="5x" /></div>
+                            <div><FontAwesomeIcon icon={faFileImage} fixedWidth size="4x" /></div>
 
                             <div className="mt-3 mb-1 text-center text-12 text-truncate">{form.upload}</div>
 
                             <div className="text-center text-12 text-truncate">{form.size}</div>
                         </div> : photo && (photo !== restaurant.photo) && <div className="text-center text-green w-100 px-3">
-                            <div><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="5x" /></div>
+                            <div className="position-absolute" style={{ top: 0, right: 0, transform: 'translate(50%,-50%)' }}><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="2x" /></div>
 
-                            <div className="mt-3">{selected_file}</div>
+                            <div className="position-absolute file-selected w-100 pt-3" style={{ top: '100%', left: 0 }} />
                         </div>}
                     </div>
                 </FormGroup>
@@ -334,7 +346,7 @@ class Settings extends Component {
                     { condition: basic, banner: banner1, attr: 'banner1', locked: form.locked_banner1 },
                     { condition: standard || premium, banner: banner2, attr: 'banner2', locked: form.locked_banner2 },
                     { condition: premium, banner: banner3, attr: 'banner3', locked: form.locked_banner3 },
-                ].map(item => <CmsItem key={JSON.stringify(item)} {...item} disabled={!cmsUpdatable} restaurant={restaurant} selected_file={selected_file} fileUpload={!cmsUpdatable ? null : this.fileUpload} />)}
+                ].map(item => <CmsItem key={JSON.stringify(item)} {...item} disabled={!cmsUpdatable} restaurant={restaurant} fileUpload={!cmsUpdatable ? null : this.fileUpload} />)}
             </>;
 
             calendarContent = <>

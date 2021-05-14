@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Button, Col, CustomInput, Row } from 'reactstrap';
 import { faBox, faMoneyBillWaveAlt, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 // Components
 import TitleWrapper from '../../../../../components/Backend/UI/TitleWrapper';
@@ -57,6 +59,15 @@ class Purchase extends Component {
     // Lifecycle methods
     static getDerivedStateFromProps(nextProps, prevState) {
         if (prevState.auto_renew !== nextProps.auth.data.auto_renew) return updateObject(prevState, { auto_renew: nextProps.auth.data.auto_renew });
+        else if (prevState.type === '' && nextProps.backend.plans.types && location.search) {
+            const searchParams = new URLSearchParams(location.search);
+
+            const type = searchParams.get('type');
+            const plan_id = searchParams.get('plan_id');
+            const { price } = nextProps.backend.plans.types.find(t => +t.months === +type).plans.find(plan => +plan.id === +plan_id);
+
+            return updateObject(prevState, { type, plan_id, price });
+        }
         return null;
     }
 
@@ -76,7 +87,7 @@ class Purchase extends Component {
                     pages: { backend: { pages: { plans: { title, subtitle, instructions, add, index, form } } } }
                 }
             },
-            backend: { plans: { loading, error, message, types = [] } },
+            backend: { plans: { loading, error, message, types = [], amount } },
             auth: { data: { plan, auto_renew } }
         } = this.props;
         let { type, plan_id, price } = this.state;
@@ -97,10 +108,23 @@ class Purchase extends Component {
             errors = <>
                 <Error err={error} />
             </>;
+
+            if (message && message.type === 'danger') Swal.fire({
+                title: message.content,
+                text: "Missing amount : " + amount + " USD",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Add balance'
+            }).then((result) => {
+                if (result.isConfirmed) this.props.history.push('/restaurant/recharges?status=0&amount=' + amount)
+            });
+
             content = (
                 <>
                     <Col lg={8} xl={6} className="col-xxl-4">
-                        <Feedback message={message} />
+                        {message && message.type === 'success' && <Feedback message={message} />}
 
                         <div className="shadow-lg rounded-8 bg-white px-4 px-sm-5 py-3 py-sm-4">
                             <Row className="my-2 my-sm-3">

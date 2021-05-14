@@ -105,7 +105,7 @@ class RechargeController extends Controller
         $method = Method::find($request->method_id);
         $link = null;
         switch ($method->name) {
-            case 'Mobile':
+            case 'Mobile payment':
                 new MonetbilController();
                 $monetbil = MonetbilController::generateWidgetData([
                     'amount' => $request->amount,

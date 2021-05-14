@@ -40,7 +40,7 @@ class MonetbilController extends Controller
 
         $json = [
             // 'amount' => 1,
-            'amount' => $input['amount'],
+            'amount' => round($input['amount'] * 604),
             'item_ref' => $input['amount'],
             'payment_ref' => time(),
             'country' => 'XAF',
@@ -96,7 +96,7 @@ class MonetbilController extends Controller
 
         if (!$transaction) {
             $transaction = Transaction::create([
-                'amount' => +$request->item_ref,
+                'amount' => round(+$request->item_ref * 604),
                 'tx_id' => $input['payment_ref'],
                 'tx_hash' => $input['transaction_id'],
                 'vendor' => 'monetbil',
@@ -109,7 +109,7 @@ class MonetbilController extends Controller
             $recharge = Recharge::create([
                 'restaurant_id' => $restaurant->id,
                 'method_id' => Method::whereSlug('mobile')->first()->id,
-                'amount' => $transaction->amount,
+                'amount' => +$request->item_ref,
                 'status' => 0,
                 'fees' => 0,
             ]);
@@ -123,22 +123,29 @@ class MonetbilController extends Controller
 
         if ($request->operator) $transaction->method = $input['operator'];
         if ($request->phone) $transaction->address = $input['phone'];
-        if ($request->amount) $transaction->amount = +$request->item_ref;
+        if ($request->amount) $transaction->amount = round(+$request->item_ref * 604);
 
         if ('success' === $input['status']) {
-            $recharge->update([
+            if ($recharge) $recharge->update([
                 'status' => 2,
             ]);
             // $restaurant->notify(new NotificationsRestaurantRecharge($transaction->amount));
-            $restaurant->update(['balance' => $restaurant->balance + $transaction->amount]);
+            $restaurant->update([
+                'balance' => $restaurant->balance + $transaction->amount
+            ]);
             $transaction->status = 'completed';
-        } else $transaction->status = $input['status'];
+        } else {
+            if ($recharge) $recharge->update([
+                'status' => 1,
+            ]);
+            $transaction->status = $input['status'];
+        }
 
         $transaction->save();
 
         if ('success' === $input['status'])
-            return redirect('/restaurant/recharges?status=1&amount=' . $transaction->amount);
+            return redirect('/restaurant/recharges?status=1&amount=' . $request->item_ref);
 
-        return redirect('/restaurant/recharges/add');
+        return redirect('/restaurant/recharges');
     }
 }

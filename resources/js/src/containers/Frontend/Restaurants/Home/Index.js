@@ -126,8 +126,10 @@ class Home extends Component {
     }
 
     setLanguage = lang => {
-        localStorage.setItem('lang', lang);
-        this.props.getContent();
+        if (lang !== localStorage.getItem('lang')) {
+            localStorage.setItem('lang', lang);
+            this.props.getContent();
+        }
     }
 
 

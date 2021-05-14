@@ -165,12 +165,12 @@ class Add extends Component {
                                                 ? photo && (photo !== addon.photo) && <div className="text-center text-green w-100">
                                                     <div className="position-absolute" style={{ top: 0, right: 0, transform: 'translate(50%,-50%)' }}><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="2x" /></div>
 
-                                                    <div className="position-absolute file-selected w-100 pt-3" style={{ top: '100%', left: 0 }} />
+                                                    <div className="position-absolute file-selected text-truncate w-100 pt-3" style={{ top: '100%', left: 0 }} />
                                                 </div>
                                                 : photo ? <div className="text-center text-green w-100">
                                                     <div className="position-absolute" style={{ top: 0, right: 0, transform: 'translate(50%,-50%)' }}><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="2x" /></div>
 
-                                                    <div className="position-absolute file-selected w-100 pt-3" style={{ top: '100%', left: 0 }} />
+                                                    <div className="position-absolute file-selected text-truncate w-100 pt-3" style={{ top: '100%', left: 0 }} />
                                                 </div> : <div className="text-center text-light w-100 overflow-hidden px-3">
                                                     <div><FontAwesomeIcon icon={faFileImage} fixedWidth size="4x" /></div>
 

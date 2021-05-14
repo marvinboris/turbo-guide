@@ -53,11 +53,16 @@ const Block = ({ children, icon, title, save, hidden, onSubmit, updatable, toggl
 </form> : null;
 
 const CmsItem = ({ condition, banner, attr, locked, disabled, restaurant, fileUpload }) => condition ? <FormGroup>
-    <div id={`embed-${attr}`} className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: disabled ? 'not-allowed' : 'pointer', background: banner && `url("${banner}") no-repeat center`, backgroundSize: 'cover' }} onClick={() => fileUpload(attr)}>
+    <div id={`embed-${attr}`} className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{
+        cursor: disabled ? 'not-allowed' : 'pointer',
+        background: banner && `url("${banner}") no-repeat center`,
+        backgroundSize: 'cover',
+        overflow: 'visible',
+    }} onClick={() => fileUpload(attr)}>
         {banner && (banner !== restaurant[attr]) && <div className="text-center text-green w-100 px-3">
             <div className="position-absolute" style={{ top: 0, right: 0, transform: 'translate(50%,-50%)' }}><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="2x" /></div>
 
-            <div className="position-absolute file-selected w-100 pt-3" style={{ top: '100%', left: 0 }} />
+            <div className="position-absolute file-selected text-truncate w-100 pt-3" style={{ top: '100%', left: 0 }} />
         </div>}
     </div>
 </FormGroup>
@@ -199,7 +204,7 @@ class Settings extends Component {
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#D14529',
                 confirmButtonText: 'Yes'
-              });
+            });
             return updateObject(prevState, { ...restaurant });
         }
         return prevState;
@@ -293,7 +298,12 @@ class Settings extends Component {
                 <FormInput type="textarea" icon={faInfoCircle} onChange={this.inputChangeHandler} value={disclaimer} disabled={!restaurantUpdatable} name="disclaimer" placeholder={form.disclaimer} />
                 <FormGroup row className="justify-content-center">
                     <div className="col-12 col-sm-10">
-                        <div id="embed-logo" className="embed-responsive embed-responsive-1by1 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{ cursor: restaurantUpdatable ? 'pointer' : 'not-allowed', background: logo && `url("${logo}") no-repeat center`, backgroundSize: 'cover' }} onClick={!restaurantUpdatable ? null : (() => this.fileUpload("logo"))}>
+                        <div id="embed-logo" className="embed-responsive embed-responsive-1by1 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{
+                            cursor: restaurantUpdatable ? 'pointer' : 'not-allowed',
+                            background: logo && `url("${logo}") no-repeat center`,
+                            backgroundSize: 'cover',
+                            overflow: 'visible',
+                        }} onClick={!restaurantUpdatable ? null : (() => this.fileUpload("logo"))}>
                             {!logo ? <div className="text-center text-light w-100 overflow-hidden px-3">
                                 <div><FontAwesomeIcon icon={faFileImage} fixedWidth size="5x" /></div>
 
@@ -303,7 +313,7 @@ class Settings extends Component {
                             </div> : logo && (logo !== restaurant.logo) && <div className="text-center text-green w-100 px-3">
                                 <div className="position-absolute" style={{ top: 0, right: 0, transform: 'translate(50%,-50%)' }}><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="2x" /></div>
 
-                                <div className="position-absolute file-selected w-100 pt-3" style={{ top: '100%', left: 0 }} />
+                                <div className="position-absolute file-selected text-truncate w-100 pt-3" style={{ top: '100%', left: 0 }} />
                             </div>}
                         </div>
                     </div>
@@ -325,7 +335,12 @@ class Settings extends Component {
                 <FormInput type="password" icon={faLock} onChange={this.inputChangeHandler} value={new_password} disabled={!accountUpdatable} name="new_password" placeholder={form.new_password} />
                 <FormInput type="password" icon={faLock} onChange={this.inputChangeHandler} value={new_password_confirmation} disabled={!accountUpdatable} name="new_password_confirmation" placeholder={form.new_password_confirmation} />
                 <FormGroup>
-                    <div id="embed-photo" className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center position-relative" style={{ cursor: accountUpdatable ? 'pointer' : 'not-allowed', background: photo && `url("${photo}") no-repeat center`, backgroundSize: 'cover' }} onClick={!accountUpdatable ? null : (() => this.fileUpload("photo"))}>
+                    <div id="embed-photo" className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center position-relative" style={{
+                        cursor: accountUpdatable ? 'pointer' : 'not-allowed',
+                        background: photo && `url("${photo}") no-repeat center`,
+                        backgroundSize: 'cover',
+                        overflow: 'visible',
+                    }} onClick={!accountUpdatable ? null : (() => this.fileUpload("photo"))}>
                         {!photo ? <div className="text-center text-light w-100 overflow-hidden px-3">
                             <div><FontAwesomeIcon icon={faFileImage} fixedWidth size="4x" /></div>
 
@@ -335,7 +350,7 @@ class Settings extends Component {
                         </div> : photo && (photo !== restaurant.photo) && <div className="text-center text-green w-100 px-3">
                             <div className="position-absolute" style={{ top: 0, right: 0, transform: 'translate(50%,-50%)' }}><FontAwesomeIcon icon={faCheckCircle} fixedWidth size="2x" /></div>
 
-                            <div className="position-absolute file-selected w-100 pt-3" style={{ top: '100%', left: 0 }} />
+                            <div className="position-absolute file-selected text-truncate w-100 pt-3" style={{ top: '100%', left: 0 }} />
                         </div>}
                     </div>
                 </FormGroup>

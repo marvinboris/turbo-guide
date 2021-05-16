@@ -40,16 +40,12 @@ class UtilController extends Controller
         $user = $request->user();
         switch ($user->token()->name) {
             case 'User Personal Access Token':
-                $user = User::find($user->id);
-                break;
+                return User::find($user->id);
             case 'Restaurant Personal Access Token':
-                $user = Restaurant::find($user->id);
-                break;
+                return Restaurant::find($user->id);
             case 'Admin Personal Access Token':
-                $user = Admin::find($user->id);
-                break;
+                return Admin::find($user->id);
         }
-        return $user;
     }
 
     public static function cms()
@@ -136,7 +132,7 @@ class UtilController extends Controller
         $type = $user->type();
 
         $data = array_merge($user->toArray(), [
-            'notifications' => $user->unreadNotifications()->latest()->limit(5)->get(),
+            'notifications' => $user->notifications()->latest()->limit(5)->get(),
             'language' => $user->language->abbr
         ]);
         if ($type === 'user') {
@@ -190,8 +186,39 @@ class UtilController extends Controller
         $notification = $user->notifications()->find($id);
         $notification->markAsRead();
 
+        $type = $user->type();
+
+        $data = array_merge($user->toArray(), [
+            'notifications' => $user->notifications()->latest()->limit(5)->get(),
+            'language' => $user->language->abbr
+        ]);
+        if ($type === 'user') {
+            $role = $user->role;
+
+            $role_features = [];
+            foreach ($role->features as $feature) {
+                $role_features[] = [
+                    'id' => $feature->id,
+                    'prefix' => $feature->prefix,
+                    'permissions' => $feature->pivot->access,
+                ];
+            }
+
+            $role = $role->toArray();
+            $role['features'] = $role_features;
+
+            $data = $data + [
+                'role' => $role
+            ];
+        } else if ($type === 'admin') $data = array_merge($data, []);
+        else if ($type === 'restaurant') {
+            $data = array_merge($data, []);
+            if (!$user->qr && $user->name) $user->qrCode();
+        }
+
         return response()->json([
-            'notification' => $notification
+            'notification' => $notification,
+            'data' => $data,
         ]);
     }
 }

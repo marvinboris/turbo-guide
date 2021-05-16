@@ -20,9 +20,10 @@ class Table extends Component {
         pageLast: 3,
     }
 
-    componentDidUpdate(prevProps) {
-        const { total, show } = this.props;
-        if (prevProps.total !== total || prevProps.show !== show) this.setState({ pageNumber: Math.ceil(total / show) });
+    componentDidUpdate(prevProps, prevState) {
+        const { total } = this.props;
+        const { show } = this.state;
+        if (prevProps.total !== total || prevState.show !== show) this.setState({ pageNumber: Math.ceil(total / show) });
     }
 
     inputChangedHandler = e => {
@@ -73,12 +74,11 @@ class Table extends Component {
         const { show, search, pageNumber } = this.state;
         const lastPage = pageNumber;
         let pageFirst;
-        if (page === 1) pageFirst = 1;
+        if (page < 3) pageFirst = 1;
         else if (page === lastPage) pageFirst = lastPage - 2;
         else pageFirst = page - 1;
-        this.props.get(page, show, search);
         const pageSecond = pageFirst + 1, pageLast = pageFirst + 2;
-        this.setState({ page, pageFirst, pageSecond, pageLast });
+        this.setState({ page, pageFirst, pageSecond, pageLast }, () => this.props.get(page, show, search));
     }
 
     onClick = e => {
@@ -89,7 +89,7 @@ class Table extends Component {
     };
 
     exportData = async url => {
-        const { data } = this.props;
+        const { data, title } = this.props;
         const format = url.split('/')[url.split('/').length - 1];
         const name = title + '.' + format;
         const token = localStorage.getItem('token');
@@ -218,10 +218,10 @@ class Table extends Component {
                                             </DropdownToggle>
 
                                             <DropdownMenu>
-                                                <DropdownItem><a href="/api/export/xlsx" onClick={this.onClick} className="px-2 export text-decoration-none text-reset"><FontAwesomeIcon icon={faFileExcel} className={`text-${dark ? "white" : "darkblue"} mr-2`} />{excel}</a></DropdownItem>
-                                                <DropdownItem><a href="/api/export/pdf" onClick={this.onClick} className="px-2 export text-decoration-none text-reset"><FontAwesomeIcon icon={faFilePdf} className="text-danger mr-2" />{pdf}</a></DropdownItem>
-                                                <DropdownItem><a href="/api/export/csv" onClick={this.onClick} className="px-2 export text-decoration-none text-reset"><FontAwesomeIcon icon={faFileCsv} className="text-green mr-2" />{csv}</a></DropdownItem>
-                                                <DropdownItem><a href="/api/export/pdf" onClick={this.onClick} className="px-2 export text-decoration-none text-reset"><FontAwesomeIcon icon={faPrint} className="text-primary mr-2" />{print}</a></DropdownItem>
+                                                <a href="/api/export/xlsx" onClick={this.onClick} className="export dropdown-item text-decoration-none text-reset"><FontAwesomeIcon icon={faFileExcel} className={`text-${dark ? "white" : "darkblue"} mr-2`} />{excel}</a>
+                                                <a href="/api/export/pdf" onClick={this.onClick} className="export dropdown-item text-decoration-none text-reset"><FontAwesomeIcon icon={faFilePdf} className="text-danger mr-2" />{pdf}</a>
+                                                <a href="/api/export/csv" onClick={this.onClick} className="export dropdown-item text-decoration-none text-reset"><FontAwesomeIcon icon={faFileCsv} className="text-green mr-2" />{csv}</a>
+                                                <a href="/api/export/pdf" onClick={this.onClick} className="export dropdown-item text-decoration-none text-reset"><FontAwesomeIcon icon={faPrint} className="text-primary mr-2" />{print}</a>
                                             </DropdownMenu>
                                         </UncontrolledDropdown>
 
@@ -250,28 +250,24 @@ class Table extends Component {
                                     <div>{showing} {((+page !== pageNumber) && (+page > 1)) ? show : entries} {from} {total} {total > 1 ? plural : singular}.</div>
 
                                     <div className="pt-2 d-flex justify-content-end">
-                                        {show === "All" ? null : <ul className="pagination btn-group">
-                                            {page === 1 ? null :
-                                                <>
-                                                    <li className="btn btn-yellow" onClick={this.firstPageHandler}><FontAwesomeIcon icon={faAngleDoubleLeft} className="mr-2" />{first}</li>
-                                                    <li className="btn btn-darkblue text-secondary" onClick={this.previousPageHandler}><FontAwesomeIcon icon={faChevronLeft} /></li>
-                                                </>
-                                            }
+                                        {show !== "All" && <ul className="pagination btn-group">
+                                            {page !== 1 && <>
+                                                <li className="btn btn-yellow" onClick={this.firstPageHandler}><FontAwesomeIcon icon={faAngleDoubleLeft} className="mr-2" />{first}</li>
+                                                <li className="btn btn-darkblue text-secondary" onClick={this.previousPageHandler}><FontAwesomeIcon icon={faChevronLeft} /></li>
+                                            </>}
+
                                             <li className={"btn btn-darkblue " + (page === pageFirst ? 'text-700 active' : 'secondary')} onClick={() => this.pageChangeHandler(pageFirst)}>{pageFirst}</li>
-                                            {pageNumber > 1 ?
-                                                <>
-                                                    <li className={"btn btn-darkblue " + (page === pageSecond ? 'text-700 active' : 'secondary')} onClick={() => this.pageChangeHandler(pageSecond)}>{pageSecond}</li>
-                                                    {pageNumber > 2 ?
-                                                        <li className={"btn btn-darkblue " + (page === pageLast ? 'text-700 active' : 'secondary')} onClick={() => this.pageChangeHandler(pageLast)}>{pageLast}</li>
-                                                        : null}
-                                                    {page === pageNumber ? null :
-                                                        <>
-                                                            <li className="btn btn-darkblue text-secondary" onClick={this.nextPageHandler}><FontAwesomeIcon icon={faChevronRight} /></li>
-                                                            <li className="btn btn-myprimary" onClick={this.lastPageHandler}>{last}<FontAwesomeIcon icon={faAngleDoubleRight} className="ml-2" /></li>
-                                                        </>
-                                                    }
-                                                </>
-                                                : null}
+
+                                            {pageNumber > 1 && <>
+                                                <li className={"btn btn-darkblue " + (page === pageSecond ? 'text-700 active' : 'secondary')} onClick={() => this.pageChangeHandler(pageSecond)}>{pageSecond}</li>
+
+                                                {pageNumber > 2 && <li className={"btn btn-darkblue " + (page === pageLast ? 'text-700 active' : 'secondary')} onClick={() => this.pageChangeHandler(pageLast)}>{pageLast}</li>}
+
+                                                {page !== pageNumber && <>
+                                                    <li className="btn btn-darkblue text-secondary" onClick={this.nextPageHandler}><FontAwesomeIcon icon={faChevronRight} /></li>
+                                                    <li className="btn btn-primary" onClick={this.lastPageHandler}>{last}<FontAwesomeIcon icon={faAngleDoubleRight} className="ml-2" /></li>
+                                                </>}
+                                            </>}
                                         </ul>}
                                     </div>
                                 </div>

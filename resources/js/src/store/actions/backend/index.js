@@ -16,6 +16,12 @@ export {
 } from './cms';
 
 export {
+    getNotification,
+    getNotifications,
+    resetNotifications
+} from './notifications';
+
+export {
     getDashboard,
     resetDashboard
 } from './dashboard';

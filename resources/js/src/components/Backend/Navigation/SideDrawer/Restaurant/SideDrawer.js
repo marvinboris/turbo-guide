@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Button, Collapse, Modal, ModalBody, ModalHeader } from 'reactstrap';
-import { faCog, faPlus, faThLarge, faListAlt, faDrumstickBite, faCookie, faWineBottle, faList, faPowerOff, faTimes, faComment, faEdit, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { Badge, Button, Collapse, Modal, ModalBody, ModalHeader } from 'reactstrap';
+import { faCog, faPlus, faThLarge, faListAlt, faDrumstickBite, faCookie, faWineBottle, faList, faPowerOff, faTimes, faComment, faEdit, faArrowLeft, faBell } from '@fortawesome/free-solid-svg-icons';
 
 import SideDrawerItem from './SideDrawerItem/SideDrawerItem';
 import Logo from '../../../../UI/Logo/Logo';
@@ -25,7 +25,7 @@ export default ({ data, toggle, logoutHandler, selectItem, selectedItem, cms, da
                 header: { logout, close: close_, sure_logout },
                 sidebar: {
                     menu: {
-                        dashboard, meals, categories, addons, settings, comments, history }
+                        dashboard, meals, categories, addons, settings, comments, history, notifications }
                 }
             }
         }
@@ -67,6 +67,10 @@ export default ({ data, toggle, logoutHandler, selectItem, selectedItem, cms, da
         <div className="text-border text-16 px-3 py-2 mb-1 mt-4">OTHERS</div>
         {plan && plan.slug.includes('premium') && sideDrawerItem(comments, null, faComment, "/restaurant/comments")}
         {sideDrawerItem(history, null, faList, "/restaurant/history")}
+        <SideDrawerItem id={notifications} sideDrawerToggle={toggle} select={selectItem} selected={selectedItem} icon={faBell} href="/restaurant/notifications">
+            {notifications}{' '}
+            {data.notifications.filter(notification => !notification.read_at).length > 0 && <Badge color="green" className="position-relative rounded-circle text-x-small text-700 d-inline-flex justify-content-center align-items-center" style={{ width: 18, height: 18, top: -2, left: 2 }}><b className="text-white">{data.notifications.filter(notification => !notification.read_at).length}</b></Badge>}
+        </SideDrawerItem>
         {sideDrawerItem(settings.title, null, faCog, "/restaurant/settings")}
 
         <div className="mt-5 pt-5">

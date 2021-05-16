@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faBell, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import Settings from './Settings';
+import Notifications from './Notifications';
 
 import SideDrawer from '../../../../components/Backend/Navigation/SideDrawer/Restaurant/SideDrawer';
 import CustomSpinner from '../../../../components/UI/CustomSpinner/CustomSpinner';
@@ -88,7 +89,7 @@ class Layout extends Component {
                     </div>
 
                     <div className="mr-3 text-24 text-orange">
-                        <FontAwesomeIcon icon={faBell} />
+                        <Notifications cms={{ header }} notifications={data.notifications} />
                     </div>
 
                     <div className="text-24 text-secondary">

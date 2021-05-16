@@ -4,8 +4,6 @@ import { Button, DropdownItem, DropdownMenu, DropdownToggle, Modal, ModalBody, M
 import { faBox, faCog, faMoneyBillWave, faPowerOff, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import './Settings.css';
-
 export default ({ cms, logoutHandler }) => {
     const [modal, setModal] = useState(false);
 
@@ -24,21 +22,23 @@ export default ({ cms, logoutHandler }) => {
         </ModalBody>
     </>;
 
-    return <UncontrolledDropdown className="Settings">
-        <DropdownToggle className="text-24 text-secondary bg-transparent border-0 p-0 m-0">
-            <FontAwesomeIcon icon={faCog} />
-        </DropdownToggle>
+    return <>
+        <UncontrolledDropdown inNavbar>
+            <DropdownToggle nav className="text-24 p-0 m-0">
+                <FontAwesomeIcon icon={faCog} className="text-secondary" />
+            </DropdownToggle>
 
-        <DropdownMenu>
-            <DropdownItem className="text-secondary"><Link className="text-decoration-none text-reset" to="/restaurant/plans/purchase"><FontAwesomeIcon fixedWidth icon={faBox} className="mr-2 text-orange" />{cms.menu.plans.purchase}</Link></DropdownItem>
+            <DropdownMenu right>
+                <Link className="dropdown-item text-decoration-none text-reset" to="/restaurant/plans/purchase"><FontAwesomeIcon fixedWidth icon={faBox} className="mr-2 text-orange" />{cms.menu.plans.purchase}</Link>
 
-            <DropdownItem className="text-secondary"><Link className="text-decoration-none text-reset" to="/restaurant/recharges"><FontAwesomeIcon fixedWidth icon={faMoneyBillWave} className="mr-2 text-orange" />{cms.menu.recharges.title}</Link></DropdownItem>
+                <Link className="dropdown-item text-decoration-none text-reset" to="/restaurant/recharges"><FontAwesomeIcon fixedWidth icon={faMoneyBillWave} className="mr-2 text-orange" />{cms.menu.recharges.title}</Link>
 
-            <DropdownItem className="text-secondary" onClick={modalToggle}><FontAwesomeIcon fixedWidth icon={faPowerOff} className="mr-2 text-orange" />{cms.header.logout}</DropdownItem>
+                <div className="dropdown-item" style={{ cursor: 'pointer' }} onClick={() => setModal(true)}><FontAwesomeIcon fixedWidth icon={faPowerOff} className="mr-2 text-orange" />{cms.header.logout}</div>
+            </DropdownMenu>
+        </UncontrolledDropdown>
 
-            <Modal isOpen={modal} toggle={modalToggle}>
-                {logoutContent}
-            </Modal>
-        </DropdownMenu>
-    </UncontrolledDropdown>;
+        <Modal isOpen={modal} toggle={modalToggle}>
+            {logoutContent}
+        </Modal>
+    </>;
 }

@@ -8,6 +8,7 @@ use App\Models\Method;
 use App\Models\Recharge;
 use App\Models\Restaurant;
 use App\Models\Transaction;
+use App\Notifications\RestaurantRecharge;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
@@ -126,10 +127,10 @@ class MonetbilController extends Controller
         if ($request->amount) $transaction->amount = round(+$request->item_ref * 604);
 
         if ('success' === $input['status']) {
-            if ($recharge) $recharge->update([
+            $recharge->update([
                 'status' => 2,
             ]);
-            // $restaurant->notify(new NotificationsRestaurantRecharge($transaction->amount));
+            $restaurant->notify(new RestaurantRecharge($recharge));
             $restaurant->update([
                 'balance' => $restaurant->balance + $transaction->amount
             ]);

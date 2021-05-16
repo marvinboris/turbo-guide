@@ -36,6 +36,9 @@ const asyncRestaurantRecharges = asyncComponent(() => import('./containers/Backe
 
 const asyncRestaurantSettings = asyncComponent(() => import('./containers/Backend/Restaurant/Settings'));
 
+const asyncRestaurantNotificationsShow = asyncComponent(() => import('./containers/Backend/Restaurant/Notifications/Show'));
+const asyncRestaurantNotifications = asyncComponent(() => import('./containers/Backend/Restaurant/Notifications'));
+
 const asyncRestaurantDashboard = asyncComponent(() => import('./containers/Backend/Restaurant/Dashboard/Dashboard'));
 
 // User routes
@@ -182,6 +185,9 @@ class App extends Component {
                     <Route path="/restaurant/plans" component={asyncRestaurantPlans} />
 
                     <Route path="/restaurant/recharges" component={asyncRestaurantRecharges} />
+
+                    <Route path="/restaurant/notifications/:id" component={asyncRestaurantNotificationsShow} />
+                    <Route path="/restaurant/notifications" component={asyncRestaurantNotifications} />
 
                     <Route path="/restaurant/dashboard" component={asyncRestaurantDashboard} />
 

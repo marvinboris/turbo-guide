@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Restaurant;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\UtilController;
 use App\Models\Plan;
+use App\Notifications\PlanExpired;
+use App\Notifications\PlanImminentExpiration;
+use App\Notifications\PlanPurchase;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -19,28 +22,34 @@ class PlanController extends Controller
     {
         $restaurant = UtilController::get(request());
 
+        $page = +request()->page;
+        $show = request()->show;
         $search = request()->search;
 
         $total = 0;
 
         $data = [];
-        $filteredData = $restaurant->plans()->latest();
+        $filteredData = $restaurant->plans()->orderBy('plan_restaurant.created_at', 'DESC');
 
         $filteredData = $filteredData
             ->select('plans.*')
             ->when($search, function ($query, $search) {
                 if ($search !== "")
                     $query
-                        ->where('name', 'LIKE', "%$search%");
+                        ->where('name', 'LIKE', "%$search%")
+                        ->orWhere('price', 'LIKE', "%$search%");
             });
 
         $total = $filteredData->count();
+
+        if ($show !== 'All') $filteredData = $filteredData->skip(($page - 1) * $show)->take($show);
 
         $filteredData = $filteredData->get();
 
         foreach ($filteredData as $plan) {
             $data[] = array_merge($plan->toArray(), [
-                'created_at' => $plan->pivot->created_at
+                'created_at' => $plan->pivot->created_at,
+                'expiry_date' => $plan->pivot->expiry_date,
             ]);
         }
 
@@ -102,81 +111,38 @@ class PlanController extends Controller
         $plan = Plan::find($request->plan_id);
         if ($restaurant->balance >= $plan->price) {
             $old_plan = $restaurant->plan;
-            if ($old_plan) $old_plan->update([
+            if ($old_plan) $old_plan->pivot->update([
                 'expiry_date' => Carbon::now(),
             ]);
 
             $restaurant->plans()->attach($plan, [
                 'expiry_date' => Carbon::now()->addMonths($plan->months),
             ]);
+
             $restaurant->update([
                 'balance' => $restaurant->balance - $plan->price,
             ]);
 
+            $restaurant->notify(new PlanPurchase($restaurant->plan));
+
+            $restaurant->notify(new PlanImminentExpiration($restaurant->plan, 3));
+            $restaurant->notify(new PlanImminentExpiration($restaurant->plan, 2));
+            $restaurant->notify(new PlanImminentExpiration($restaurant->plan, 1));
+
+            if (!$restaurant->qr && $restaurant->name) $restaurant->qrCode();
+
             return response()->json([
                 'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['plans']['purchased'], 'success'),
+                'data' => array_merge($restaurant->toArray(), [
+                    'notifications' => $restaurant->notifications()->latest()->limit(5)->get(),
+                    'language' => $restaurant->language->abbr
+                ]),
             ]);
         }
 
         return response()->json([
             'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['plans']['balance'], 'danger'),
             'amount' => $plan->price - $restaurant->balance,
-        ]);
-    }
-
-    public function update(Request $request, $id)
-    {
-        $cms = UtilController::cms();
-        $restaurant = UtilController::get(request());
-
-        $plan = $restaurant->plans()->find($id);
-        if (!$plan) return response()->json([
-            'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['plans']['not_found'], 'danger'),
-        ]);
-
-        $rules = UtilController::rules($this->rules, $plan);
-        $request->validate($rules);
-
-        $input = $request->except('photo');
-
-        if ($file = $request->file('photo')) {
-            if ($plan->photo) unlink(public_path($plan->photo));
-            $fileName = time() . $file->getClientOriginalName();
-            $file->move('images/plans', $fileName);
-            $input['photo'] = htmlspecialchars($fileName);
-        }
-
-        $plan->update($input);
-
-        return response()->json([
-            'message' => [
-                'type' => 'success',
-                'content' => $cms['pages'][$restaurant->language->abbr]['messages']['plans']['updated']
-            ],
-        ]);
-    }
-
-    public function destroy($id)
-    {
-        $cms = UtilController::cms();
-        $restaurant = UtilController::get(request());
-
-        $plan = $restaurant->plans()->find($id);
-        if (!$plan) return response()->json([
-            'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['plans']['not_found'], 'danger'),
-        ]);
-
-        $plan->delete();
-
-        $data = $this->data();
-
-        $plans = $data['plans'];
-        $total = $data['total'];
-
-        return response()->json([
-            'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['plans']['deleted'], 'success'),
-            'plans' => $plans,
-            'total' => $total,
         ]);
     }
 }

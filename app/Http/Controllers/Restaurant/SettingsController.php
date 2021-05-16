@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 
 class SettingsController extends Controller
 {
-    public function index()
+    public function information()
     {
         $restaurant = UtilController::get(request());
 
@@ -28,10 +28,21 @@ class SettingsController extends Controller
             'language' => $default_language ? $default_language->id : null,
         ]);
 
-        return response()->json([
+        return [
             'restaurant' => $restaurant,
             'allLanguages' => Language::all(),
-        ]);
+            'data' => array_merge($restaurant->toArray(), [
+                'notifications' => $restaurant->notifications()->latest()->limit(5)->get(),
+                'language' => $restaurant->language->abbr
+            ]),
+        ];
+    }
+
+    public function index()
+    {
+        $information = $this->information();
+
+        return response()->json($information);
     }
 
     public function restaurant(Request $request)
@@ -68,7 +79,7 @@ class SettingsController extends Controller
 
         return response()->json([
             'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['settings']['restaurant'], 'success'),
-        ]);
+        ] + $this->information());
     }
 
     public function account(Request $request)
@@ -102,7 +113,7 @@ class SettingsController extends Controller
 
         return response()->json([
             'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['settings']['account'], 'success'),
-        ]);
+        ] + $this->information());
     }
 
     public function cms(Request $request)
@@ -138,7 +149,7 @@ class SettingsController extends Controller
 
         return response()->json([
             'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['settings']['cms'], 'success'),
-        ]);
+        ] + $this->information());
     }
 
     public function calendar(Request $request)
@@ -155,7 +166,7 @@ class SettingsController extends Controller
 
         return response()->json([
             'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['settings']['cms'], 'success'),
-        ]);
+        ] + $this->information());
     }
 
     public function language(Request $request)
@@ -179,6 +190,6 @@ class SettingsController extends Controller
 
         return response()->json([
             'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['settings']['cms'], 'success'),
-        ]);
+        ] + $this->information());
     }
 }

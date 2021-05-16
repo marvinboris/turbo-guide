@@ -96,7 +96,7 @@ class AuthController extends Controller
                 $tokenResult->token->expires_at
             )->toDateTimeString(),
             'userData' => $restaurant->toArray() + [
-                'notifications' => $restaurant->unreadNotifications()->latest()->limit(5)->get(),
+                'notifications' => $restaurant->notifications()->latest()->limit(5)->get(),
                 'language' => $restaurant->language->abbr,
             ]
         ]);

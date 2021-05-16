@@ -12,6 +12,8 @@ class CommentController extends Controller
     {
         $restaurant = UtilController::get(request());
 
+        $page = +request()->page;
+        $show = request()->show;
         $search = request()->search;
 
         $total = 0;

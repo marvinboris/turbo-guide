@@ -148,8 +148,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/UncontrolledDropdown.js");
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/DropdownToggle.js");
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/DropdownMenu.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/DropdownItem.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Table.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Table.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
@@ -300,10 +299,7 @@ var Table = /*#__PURE__*/function (_Component) {
           pageNumber = _this$state4.pageNumber;
       var lastPage = pageNumber;
       var pageFirst;
-      if (page === 1) pageFirst = 1;else if (page === lastPage) pageFirst = lastPage - 2;else pageFirst = page - 1;
-
-      _this.props.get(page, show, search);
-
+      if (page < 3) pageFirst = 1;else if (page === lastPage) pageFirst = lastPage - 2;else pageFirst = page - 1;
       var pageSecond = pageFirst + 1,
           pageLast = pageFirst + 2;
 
@@ -312,6 +308,8 @@ var Table = /*#__PURE__*/function (_Component) {
         pageFirst: pageFirst,
         pageSecond: pageSecond,
         pageLast: pageLast
+      }, function () {
+        return _this.props.get(page, show, search);
       });
     });
 
@@ -324,12 +322,13 @@ var Table = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "exportData", /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(url) {
-        var data, format, name, token, formData, res, resData, downloadLink, a;
+        var _this$props, data, title, format, name, token, formData, res, resData, downloadLink, a;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                data = _this.props.data;
+                _this$props = _this.props, data = _this$props.data, title = _this$props.title;
                 format = url.split('/')[url.split('/').length - 1];
                 name = title + '.' + format;
                 token = localStorage.getItem('token');
@@ -388,11 +387,10 @@ var Table = /*#__PURE__*/function (_Component) {
 
   _createClass(Table, [{
     key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      var _this$props = this.props,
-          total = _this$props.total,
-          show = _this$props.show;
-      if (prevProps.total !== total || prevProps.show !== show) this.setState({
+    value: function componentDidUpdate(prevProps, prevState) {
+      var total = this.props.total;
+      var show = this.state.show;
+      if (prevProps.total !== total || prevState.show !== show) this.setState({
         pageNumber: Math.ceil(total / show)
       });
     }
@@ -641,46 +639,38 @@ var Table = /*#__PURE__*/function (_Component) {
                           children: "Export"
                         })]
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_13__.default, {
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_14__.default, {
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("a", {
-                            href: "/api/export/xlsx",
-                            onClick: this.onClick,
-                            className: "px-2 export text-decoration-none text-reset",
-                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-                              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faFileExcel,
-                              className: "text-".concat(dark ? "white" : "darkblue", " mr-2")
-                            }), excel]
-                          })
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_14__.default, {
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("a", {
-                            href: "/api/export/pdf",
-                            onClick: this.onClick,
-                            className: "px-2 export text-decoration-none text-reset",
-                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-                              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faFilePdf,
-                              className: "text-danger mr-2"
-                            }), pdf]
-                          })
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_14__.default, {
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("a", {
-                            href: "/api/export/csv",
-                            onClick: this.onClick,
-                            className: "px-2 export text-decoration-none text-reset",
-                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-                              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faFileCsv,
-                              className: "text-green mr-2"
-                            }), csv]
-                          })
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_14__.default, {
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("a", {
-                            href: "/api/export/pdf",
-                            onClick: this.onClick,
-                            className: "px-2 export text-decoration-none text-reset",
-                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
-                              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faPrint,
-                              className: "text-primary mr-2"
-                            }), print]
-                          })
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("a", {
+                          href: "/api/export/xlsx",
+                          onClick: this.onClick,
+                          className: "export dropdown-item text-decoration-none text-reset",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+                            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faFileExcel,
+                            className: "text-".concat(dark ? "white" : "darkblue", " mr-2")
+                          }), excel]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("a", {
+                          href: "/api/export/pdf",
+                          onClick: this.onClick,
+                          className: "export dropdown-item text-decoration-none text-reset",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+                            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faFilePdf,
+                            className: "text-danger mr-2"
+                          }), pdf]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("a", {
+                          href: "/api/export/csv",
+                          onClick: this.onClick,
+                          className: "export dropdown-item text-decoration-none text-reset",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+                            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faFileCsv,
+                            className: "text-green mr-2"
+                          }), csv]
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("a", {
+                          href: "/api/export/pdf",
+                          onClick: this.onClick,
+                          className: "export dropdown-item text-decoration-none text-reset",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+                            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faPrint,
+                            className: "text-primary mr-2"
+                          }), print]
                         })]
                       })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_10__.default, {
@@ -699,7 +689,7 @@ var Table = /*#__PURE__*/function (_Component) {
                 className: "flex-fill d-flex flex-column ".concat(!p0 ? "p-4" : "p-0"),
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
                   className: "table-responsive flex-fill scrollbar-orange mb-3",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_15__.default, {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_14__.default, {
                     dark: dark,
                     bordered: bordered,
                     hover: true,
@@ -729,9 +719,9 @@ var Table = /*#__PURE__*/function (_Component) {
                     children: [showing, " ", +page !== pageNumber && +page > 1 ? show : entries, " ", from, " ", total, " ", total > 1 ? plural : singular, "."]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
                     className: "pt-2 d-flex justify-content-end",
-                    children: show === "All" ? null : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("ul", {
+                    children: show !== "All" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("ul", {
                       className: "pagination btn-group",
-                      children: [page === 1 ? null : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+                      children: [page !== 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
                         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("li", {
                           className: "btn btn-yellow",
                           onClick: this.firstPageHandler,
@@ -752,20 +742,20 @@ var Table = /*#__PURE__*/function (_Component) {
                           return _this2.pageChangeHandler(pageFirst);
                         },
                         children: pageFirst
-                      }), pageNumber > 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+                      }), pageNumber > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
                         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
                           className: "btn btn-darkblue " + (page === pageSecond ? 'text-700 active' : 'secondary'),
                           onClick: function onClick() {
                             return _this2.pageChangeHandler(pageSecond);
                           },
                           children: pageSecond
-                        }), pageNumber > 2 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
+                        }), pageNumber > 2 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
                           className: "btn btn-darkblue " + (page === pageLast ? 'text-700 active' : 'secondary'),
                           onClick: function onClick() {
                             return _this2.pageChangeHandler(pageLast);
                           },
                           children: pageLast
-                        }) : null, page === pageNumber ? null : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+                        }), page !== pageNumber && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
                             className: "btn btn-darkblue text-secondary",
                             onClick: this.nextPageHandler,
@@ -773,7 +763,7 @@ var Table = /*#__PURE__*/function (_Component) {
                               icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faChevronRight
                             })
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("li", {
-                            className: "btn btn-myprimary",
+                            className: "btn btn-primary",
                             onClick: this.lastPageHandler,
                             children: [last, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
                               icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faAngleDoubleRight,
@@ -781,7 +771,7 @@ var Table = /*#__PURE__*/function (_Component) {
                             })]
                           })]
                         })]
-                      }) : null]
+                      })]
                     })
                   })]
                 })]
@@ -1078,6 +1068,7 @@ var Index = /*#__PURE__*/function (_Component) {
       var data = plans.map(function (plan) {
         return (0,_shared_utility__WEBPACK_IMPORTED_MODULE_11__.updateObject)(plan, {
           created_at: (0,_shared_utility__WEBPACK_IMPORTED_MODULE_11__.convertDate)(plan.created_at),
+          expiry_date: (0,_shared_utility__WEBPACK_IMPORTED_MODULE_11__.convertDate)(plan.expiry_date),
           type: {
             1: 'Monthly',
             12: 'Yearly'
@@ -1085,7 +1076,7 @@ var Index = /*#__PURE__*/function (_Component) {
           action: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
             className: "text-center",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Link, {
-              to: "/restaurant/plans/".concat(plan.id),
+              to: "/restaurant/plans/".concat(plan.pivot.id),
               className: "mx-1",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
                 icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_14__.faEye,
@@ -1114,6 +1105,9 @@ var Index = /*#__PURE__*/function (_Component) {
               name: form.created_at,
               key: 'created_at'
             }, {
+              name: form.expiry_date,
+              key: 'expiry_date'
+            }, {
               name: form.name,
               key: 'name'
             }, {
@@ -1122,10 +1116,8 @@ var Index = /*#__PURE__*/function (_Component) {
             }, {
               name: form.type,
               key: 'type'
-            }, {
-              name: form.status,
-              key: 'status'
-            }, {
+            }, // { name: form.status, key: 'status' },
+            {
               name: action,
               key: 'action'
             }]

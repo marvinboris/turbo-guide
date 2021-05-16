@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\Recharge;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -11,14 +12,16 @@ class RestaurantRecharge extends Notification
 {
     use Queueable;
 
+    public $recharge;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Recharge $recharge)
     {
-        //
+        $this->recharge = $recharge;
     }
 
     /**
@@ -29,7 +32,7 @@ class RestaurantRecharge extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -41,9 +44,10 @@ class RestaurantRecharge extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->greeting('Hello!')
+            ->line('You successfully made a ' . $this->recharge->amount . ' USD ' . $this->recharge->method->name . ' deposit!')
+            ->action('View recharge', url('/restaurant/recharges/' . $this->recharge->id))
+            ->line('Thank you for using our application!');
     }
 
     /**
@@ -55,7 +59,9 @@ class RestaurantRecharge extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'recharge_id' => $this->recharge->id,
+            'amount' => $this->recharge->amount,
+            'method' => $this->recharge->method,
         ];
     }
 }

@@ -780,8 +780,11 @@ var CmsItem = function CmsItem(_ref2) {
       className: "embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center",
       style: {
         cursor: disabled ? 'not-allowed' : 'pointer',
-        background: banner && "url(\"".concat(banner, "\") no-repeat center"),
-        backgroundSize: 'cover'
+        backgroundImage: banner && "url(\"".concat(banner, "\")"),
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        overflow: 'visible'
       },
       onClick: function onClick() {
         return fileUpload(attr);
@@ -801,7 +804,7 @@ var CmsItem = function CmsItem(_ref2) {
             size: "2x"
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-          className: "position-absolute file-selected w-100 pt-3",
+          className: "position-absolute file-selected text-truncate w-100 pt-3",
           style: {
             top: '100%',
             left: 0
@@ -1025,6 +1028,25 @@ var Settings = /*#__PURE__*/function (_Component) {
       this.props.get();
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (!prevProps.backend.settings.message && this.props.backend.settings.message && this.props.backend.settings.message.type === 'success') {
+        var _this$props$backend$s = this.props.backend.settings.restaurant,
+            logo = _this$props$backend$s.logo,
+            photo = _this$props$backend$s.photo,
+            banner1 = _this$props$backend$s.banner1,
+            banner2 = _this$props$backend$s.banner2,
+            banner3 = _this$props$backend$s.banner3;
+        this.setState({
+          logo: logo,
+          photo: photo,
+          banner1: banner1,
+          banner2: banner2,
+          banner3: banner3
+        });
+      }
+    }
+  }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       if (!this.props.backend.settings.restaurant.name) return this.props.history.push('/restaurant/settings');
@@ -1045,13 +1067,13 @@ var Settings = /*#__PURE__*/function (_Component) {
           form = _this$props$content$c2.form,
           currencies = _this$props$content.currencies,
           countries = _this$props$content.countries,
-          _this$props$backend$s = _this$props.backend.settings,
-          loading = _this$props$backend$s.loading,
-          error = _this$props$backend$s.error,
-          message = _this$props$backend$s.message,
-          restaurant = _this$props$backend$s.restaurant,
-          _this$props$backend$s2 = _this$props$backend$s.allLanguages,
-          allLanguages = _this$props$backend$s2 === void 0 ? [] : _this$props$backend$s2,
+          _this$props$backend$s2 = _this$props.backend.settings,
+          loading = _this$props$backend$s2.loading,
+          error = _this$props$backend$s2.error,
+          message = _this$props$backend$s2.message,
+          restaurant = _this$props$backend$s2.restaurant,
+          _this$props$backend$s3 = _this$props$backend$s2.allLanguages,
+          allLanguages = _this$props$backend$s3 === void 0 ? [] : _this$props$backend$s3,
           plan = _this$props.auth.data.plan;
       var _this$state = this.state,
           name = _this$state.name,
@@ -1086,8 +1108,8 @@ var Settings = /*#__PURE__*/function (_Component) {
           language = _this$state.language,
           languageUpdatable = _this$state.languageUpdatable;
       var spinnerContent, restaurantContent, accountContent, cmsContent, calendarContent, languageContent;
-      var errors = null;
-      if (message && message.type === 'success') window.location.reload();
+      var errors = null; // if (message && message.type === 'success') window.location.reload();
+
       var basic = plan;
       var standard = plan && plan.slug.includes('standard');
       var premium = plan && plan.slug.includes('premium');
@@ -1269,8 +1291,11 @@ var Settings = /*#__PURE__*/function (_Component) {
                 className: "embed-responsive embed-responsive-1by1 bg-soft rounded-8 d-flex justify-content-center align-items-center",
                 style: {
                   cursor: restaurantUpdatable ? 'pointer' : 'not-allowed',
-                  background: logo && "url(\"".concat(logo, "\") no-repeat center"),
-                  backgroundSize: 'cover'
+                  backgroundImage: logo && "url(\"".concat(logo, "\")"),
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
+                  backgroundSize: 'cover',
+                  overflow: 'visible'
                 },
                 onClick: !restaurantUpdatable ? null : function () {
                   return _this2.fileUpload("logo");
@@ -1305,7 +1330,7 @@ var Settings = /*#__PURE__*/function (_Component) {
                       size: "2x"
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                    className: "position-absolute file-selected w-100 pt-3",
+                    className: "position-absolute file-selected text-truncate w-100 pt-3",
                     style: {
                       top: '100%',
                       left: 0
@@ -1388,8 +1413,11 @@ var Settings = /*#__PURE__*/function (_Component) {
               className: "embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center position-relative",
               style: {
                 cursor: accountUpdatable ? 'pointer' : 'not-allowed',
-                background: photo && "url(\"".concat(photo, "\") no-repeat center"),
-                backgroundSize: 'cover'
+                backgroundImage: photo && "url(\"".concat(photo, "\")"),
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                overflow: 'visible'
               },
               onClick: !accountUpdatable ? null : function () {
                 return _this2.fileUpload("photo");
@@ -1424,7 +1452,7 @@ var Settings = /*#__PURE__*/function (_Component) {
                     size: "2x"
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                  className: "position-absolute file-selected w-100 pt-3",
+                  className: "position-absolute file-selected text-truncate w-100 pt-3",
                   style: {
                     top: '100%',
                     left: 0

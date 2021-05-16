@@ -1,4 +1,5 @@
 import * as actionTypes from '../actionTypes';
+import { authDataUpdateSuccess } from '../auth';
 
 const prefix = '/api/';
 
@@ -62,6 +63,7 @@ export const purchasePlan = data => async (dispatch, getState) => {
         if (res.status === 422) throw new Error(Object.values(resData.errors).join('\n'));
         else if (res.status !== 200 && res.status !== 201) throw new Error(resData.error.message);
         dispatch(plansSuccess(resData));
+        dispatch(authDataUpdateSuccess(resData.data));
     } catch (error) {
         console.log(error);
         dispatch(plansFail(error));

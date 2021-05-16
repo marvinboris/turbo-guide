@@ -6,6 +6,8 @@ const authStart = () => ({ type: actionTypes.AUTH_START });
 const authMessage = message => ({ type: actionTypes.AUTH_MESSAGE, message });
 const authFail = error => ({ type: actionTypes.AUTH_FAIL, error });
 
+export const authDataUpdateSuccess = data => ({ type: actionTypes.AUTH_DATA_UPDATE_SUCCESS, data: { ...data } });
+
 const authUserLoginSuccess = (token, data) => ({ type: actionTypes.AUTH_USER_LOGIN_SUCCESS, token, data: { ...data }, role: 'user' });
 
 const authRestaurantLoginSuccess = (token, data) => ({ type: actionTypes.AUTH_RESTAURANT_LOGIN_SUCCESS, token, data: { ...data }, role: 'restaurant' });

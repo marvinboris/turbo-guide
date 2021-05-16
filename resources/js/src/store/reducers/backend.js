@@ -10,6 +10,10 @@ const initialState = {
         loading: false,
         error: null
     },
+    notifications: {
+        loading: false,
+        error: null
+    },
     dashboard: {
         loading: false,
         error: null
@@ -79,6 +83,11 @@ const cmsReset = (state) => updateObject(state, { cms: initialState.cms });
 const cmsStart = (state) => updateObject(state, { cms: updateObject(state.cms, { loading: true, message: null }) });
 const cmsSuccess = (state, action) => updateObject(state, { cms: updateObject(state.cms, { loading: false, error: null, ...action }) });
 const cmsFail = (state, action) => updateObject(state, { cms: updateObject(state.cms, { loading: false, ...action }) });
+
+const notificationsReset = (state) => updateObject(state, { notifications: initialState.notifications });
+const notificationsStart = (state) => updateObject(state, { notifications: updateObject(state.notifications, { loading: true, message: null }) });
+const notificationsSuccess = (state, action) => updateObject(state, { notifications: updateObject(state.notifications, { loading: false, error: null, ...action }) });
+const notificationsFail = (state, action) => updateObject(state, { notifications: updateObject(state.notifications, { loading: false, ...action }) });
 
 const dashboardReset = (state) => updateObject(state, { dashboard: initialState.dashboard });
 const dashboardStart = (state) => updateObject(state, { dashboard: updateObject(state.dashboard, { loading: true, message: null }) });
@@ -163,6 +172,11 @@ export default (state = initialState, action) => {
         case actionTypes.CMS_START: return cmsStart(state, action);
         case actionTypes.CMS_SUCCESS: return cmsSuccess(state, action);
         case actionTypes.CMS_FAIL: return cmsFail(state, action);
+
+        case actionTypes.NOTIFICATIONS_RESET: return notificationsReset(state, action);
+        case actionTypes.NOTIFICATIONS_START: return notificationsStart(state, action);
+        case actionTypes.NOTIFICATIONS_SUCCESS: return notificationsSuccess(state, action);
+        case actionTypes.NOTIFICATIONS_FAIL: return notificationsFail(state, action);
 
         case actionTypes.DASHBOARD_RESET: return dashboardReset(state, action);
         case actionTypes.DASHBOARD_START: return dashboardStart(state, action);

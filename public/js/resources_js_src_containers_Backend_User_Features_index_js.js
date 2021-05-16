@@ -398,10 +398,7 @@ var List = /*#__PURE__*/function (_Component) {
           pageNumber = _this$state4.pageNumber;
       var lastPage = pageNumber;
       var pageFirst;
-      if (page === 1) pageFirst = 1;else if (page === lastPage) pageFirst = lastPage - 2;else pageFirst = page - 1;
-
-      _this.props.get(page, show, search);
-
+      if (page < 3) pageFirst = 1;else if (page === lastPage) pageFirst = lastPage - 2;else pageFirst = page - 1;
       var pageSecond = pageFirst + 1,
           pageLast = pageFirst + 2;
 
@@ -410,6 +407,8 @@ var List = /*#__PURE__*/function (_Component) {
         pageFirst: pageFirst,
         pageSecond: pageSecond,
         pageLast: pageLast
+      }, function () {
+        return _this.props.get(page, show, search);
       });
     });
 
@@ -422,12 +421,13 @@ var List = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "exportData", /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(url) {
-        var data, format, name, token, formData, res, resData, downloadLink, a;
+        var _this$props, data, title, format, name, token, formData, res, resData, downloadLink, a;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                data = _this.props.data;
+                _this$props = _this.props, data = _this$props.data, title = _this$props.title;
                 format = url.split('/')[url.split('/').length - 1];
                 name = title + '.' + format;
                 token = localStorage.getItem('token');
@@ -486,11 +486,10 @@ var List = /*#__PURE__*/function (_Component) {
 
   _createClass(List, [{
     key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      var _this$props = this.props,
-          total = _this$props.total,
-          show = _this$props.show;
-      if (prevProps.total !== total || prevProps.show !== show) this.setState({
+    value: function componentDidUpdate(prevProps, prevState) {
+      var total = this.props.total;
+      var show = this.state.show;
+      if (prevProps.total !== total || prevState.show !== show) this.setState({
         pageNumber: Math.ceil(total / show)
       });
     }
@@ -804,9 +803,9 @@ var List = /*#__PURE__*/function (_Component) {
                 children: [showing, " ", +page !== pageNumber && +page > 1 ? show : entries, " ", from, " ", total, " ", total > 1 ? plural : singular, "."]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
                 className: "pt-2 d-flex justify-content-end",
-                children: show === 'All' ? null : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("ul", {
+                children: show !== "All" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("ul", {
                   className: "pagination btn-group",
-                  children: [page === 1 ? null : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+                  children: [page !== 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("li", {
                       className: "btn btn-yellow",
                       onClick: this.firstPageHandler,
@@ -827,20 +826,20 @@ var List = /*#__PURE__*/function (_Component) {
                       return _this2.pageChangeHandler(pageFirst);
                     },
                     children: pageFirst
-                  }), pageNumber > 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+                  }), pageNumber > 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
                       className: "btn btn-darkblue " + (page === pageSecond ? 'text-700 active' : 'secondary'),
                       onClick: function onClick() {
                         return _this2.pageChangeHandler(pageSecond);
                       },
                       children: pageSecond
-                    }), pageNumber > 2 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
+                    }), pageNumber > 2 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
                       className: "btn btn-darkblue " + (page === pageLast ? 'text-700 active' : 'secondary'),
                       onClick: function onClick() {
                         return _this2.pageChangeHandler(pageLast);
                       },
                       children: pageLast
-                    }) : null, page === pageNumber ? null : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+                    }), page !== pageNumber && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
                         className: "btn btn-darkblue text-secondary",
                         onClick: this.nextPageHandler,
@@ -848,7 +847,7 @@ var List = /*#__PURE__*/function (_Component) {
                           icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faChevronRight
                         })
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("li", {
-                        className: "btn btn-myprimary",
+                        className: "btn btn-primary",
                         onClick: this.lastPageHandler,
                         children: [last, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
                           icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faAngleDoubleRight,
@@ -856,7 +855,7 @@ var List = /*#__PURE__*/function (_Component) {
                         })]
                       })]
                     })]
-                  }) : null]
+                  })]
                 })
               })]
             })]

@@ -13,6 +13,7 @@ const initialState = {
 };
 
 const authStart = (state, action) => updateObject(state, { error: null, loading: true, message: null });
+const authDataUpdateSuccess = (state, action) => updateObject(state, { error: null, loading: false, ...action });
 const authUserLoginSuccess = (state, action) => updateObject(state, { error: null, loading: false, ...action });
 const authRestaurantLoginSuccess = (state, action) => updateObject(state, { error: null, loading: false, ...action });
 const authAutoRenewSuccess = (state, action) => updateObject(state, { error: null, loading: false, data: updateObject(state.data, { auto_renew: action.auto_renew }) });
@@ -30,6 +31,7 @@ const setHash = (state, action) => updateObject(state, { hash: action.hash });
 export default (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.AUTH_START: return authStart(state, action);
+        case actionTypes.AUTH_DATA_UPDATE_SUCCESS: return authDataUpdateSuccess(state, action);
         case actionTypes.AUTH_USER_LOGIN_SUCCESS: return authUserLoginSuccess(state, action);
         case actionTypes.AUTH_RESTAURANT_LOGIN_SUCCESS: return authRestaurantLoginSuccess(state, action);
         case actionTypes.AUTH_AUTO_RENEW_SUCCESS: return authAutoRenewSuccess(state, action);

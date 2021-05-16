@@ -102,7 +102,7 @@ class Restaurant extends Authenticatable
 
     public function getPlanAttribute()
     {
-        $plan = $this->plans()->whereDate('expiry_date', '>=', Carbon::now())->orderBy('expiry_date', 'DESC')->first();
+        $plan = $this->plans()->wherePivot('expiry_date', '>=', Carbon::now())->orderBy('plan_restaurant.created_at', 'DESC')->first();
 
         return $plan;
     }

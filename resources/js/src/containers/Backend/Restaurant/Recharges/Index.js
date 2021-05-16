@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { Button, CustomInput, Row } from 'reactstrap';
+import { Badge, Button, CustomInput, Row } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCreditCard, faEye, faMoneyBillWaveAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faCreditCard, faEye, faMoneyBillWaveAlt, faSpinner, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 // Components
 import Breadcrumb from '../../../../components/Backend/UI/Breadcrumb/Breadcrumb';
@@ -90,7 +90,12 @@ class Index extends Component {
 
         if (!recharges) recharges = [];
         const data = recharges.map(recharge => {
+            const colors = ['orange', 'red', 'green'];
+            const texts = ['Pending', 'Failed', 'Success'];
+            const icons = [faSpinner, faTimesCircle, faCheckCircle];
+
             return updateObject(recharge, {
+                status: <Badge color={colors[recharge.status]} className="badge-block position-static"><FontAwesomeIcon icon={icons[recharge.status]} className={[0].includes(recharge.status) ? "fa-spin" : ""} fixedWidth /> {texts[recharge.status]}</Badge>,
                 created_at: convertDate(recharge.created_at),
                 action: <div className="text-center">
                     <Link to={`/restaurant/recharges/${recharge.id}`} className="mx-1">
@@ -110,7 +115,7 @@ class Index extends Component {
                             { name: form.created_at, key: 'created_at' },
                             { name: form.method, key: 'method' },
                             { name: form.amount, key: 'amount' },
-                            { name: form.status, key: 'status' },
+                            { name: form.status, key: 'status', minWidth: 140 },
                             { name: action, key: 'action' }
                         ]}
                         containerClassName="col-xl-8"

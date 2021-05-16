@@ -1020,7 +1020,7 @@ var Add = /*#__PURE__*/function (_Component) {
                             size: "2x"
                           })
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                          className: "position-absolute file-selected w-100 pt-3",
+                          className: "position-absolute file-selected text-truncate w-100 pt-3",
                           style: {
                             top: '100%',
                             left: 0
@@ -1041,7 +1041,7 @@ var Add = /*#__PURE__*/function (_Component) {
                             size: "2x"
                           })
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
-                          className: "position-absolute file-selected w-100 pt-3",
+                          className: "position-absolute file-selected text-truncate w-100 pt-3",
                           style: {
                             top: '100%',
                             left: 0
@@ -1077,6 +1077,10 @@ var Add = /*#__PURE__*/function (_Component) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.Fragment, {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(_components_Backend_UI_TitleWrapper__WEBPACK_IMPORTED_MODULE_4__.default, {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_Backend_UI_Breadcrumb_Breadcrumb__WEBPACK_IMPORTED_MODULE_3__.default, {
+            items: this.props.edit && [{
+              to: '/restaurant/categories',
+              content: index
+            }],
             main: this.props.edit ? edit : add,
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faListAlt
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Titles_SpecialTitle_SpecialTitle__WEBPACK_IMPORTED_MODULE_5__.default, {

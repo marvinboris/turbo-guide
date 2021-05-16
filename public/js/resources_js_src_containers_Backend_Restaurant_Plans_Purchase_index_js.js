@@ -656,8 +656,8 @@ var Purchase = /*#__PURE__*/function (_Component) {
           plan_id = _this$state.plan_id,
           price = _this$state.price;
       var content = null;
-      var errors = null;
-      if (message && message.type === 'success') window.location.reload();
+      var errors = null; // if (message && message.type === 'success') window.location.reload();
+
       var typesOptions = types.sort(function (a, b) {
         return a.name > b.name;
       }).map(function (type) {

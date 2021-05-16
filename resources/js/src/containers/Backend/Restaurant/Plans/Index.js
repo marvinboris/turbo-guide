@@ -45,9 +45,10 @@ class Index extends Component {
         const data = plans.map(plan => {
             return updateObject(plan, {
                 created_at: convertDate(plan.created_at),
+                expiry_date: convertDate(plan.expiry_date),
                 type: { 1: 'Monthly', 12: 'Yearly' }[plan.months],
                 action: <div className="text-center">
-                    <Link to={`/restaurant/plans/${plan.id}`} className="mx-1">
+                    <Link to={`/restaurant/plans/${plan.pivot.id}`} className="mx-1">
                         <FontAwesomeIcon icon={faEye} className="text-green" fixedWidth />
                     </Link>
                 </div>,
@@ -60,10 +61,11 @@ class Index extends Component {
                     <Table array={data} loading={loading} data={JSON.stringify(plans)} get={this.props.get} total={total} bordered icon={faBox} title={index} subtitle={subtitle} className="shadow-sm"
                         fields={[
                             { name: form.created_at, key: 'created_at' },
+                            { name: form.expiry_date, key: 'expiry_date' },
                             { name: form.name, key: 'name' },
                             { name: form.amount, key: 'price' },
                             { name: form.type, key: 'type' },
-                            { name: form.status, key: 'status' },
+                            // { name: form.status, key: 'status' },
                             { name: action, key: 'action' }
                         ]} />
                 </Row>

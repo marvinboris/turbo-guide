@@ -55,7 +55,9 @@ const Block = ({ children, icon, title, save, hidden, onSubmit, updatable, toggl
 const CmsItem = ({ condition, banner, attr, locked, disabled, restaurant, fileUpload }) => condition ? <FormGroup>
     <div id={`embed-${attr}`} className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{
         cursor: disabled ? 'not-allowed' : 'pointer',
-        background: banner && `url("${banner}") no-repeat center`,
+        backgroundImage: banner && `url("${banner}")`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
         backgroundSize: 'cover',
         overflow: 'visible',
     }} onClick={() => fileUpload(attr)}>
@@ -215,6 +217,13 @@ class Settings extends Component {
         this.props.get();
     }
 
+    componentDidUpdate(prevProps) {
+        if (!prevProps.backend.settings.message && this.props.backend.settings.message && this.props.backend.settings.message.type === 'success') {
+            const { logo, photo, banner1, banner2, banner3 } = this.props.backend.settings.restaurant;
+            this.setState({ logo, photo, banner1, banner2, banner3 });
+        }
+    }
+
     componentWillUnmount() {
         if (!this.props.backend.settings.restaurant.name) return this.props.history.push('/restaurant/settings');
         this.props.reset();
@@ -250,7 +259,7 @@ class Settings extends Component {
         let spinnerContent, restaurantContent, accountContent, cmsContent, calendarContent, languageContent;
         let errors = null;
 
-        if (message && message.type === 'success') window.location.reload();
+        // if (message && message.type === 'success') window.location.reload();
 
         const basic = plan;
         const standard = plan && plan.slug.includes('standard');
@@ -300,7 +309,9 @@ class Settings extends Component {
                     <div className="col-12 col-sm-10">
                         <div id="embed-logo" className="embed-responsive embed-responsive-1by1 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{
                             cursor: restaurantUpdatable ? 'pointer' : 'not-allowed',
-                            background: logo && `url("${logo}") no-repeat center`,
+                            backgroundImage: logo && `url("${logo}")`,
+                            backgroundRepeat: 'no-repeat',
+                            backgroundPosition: 'center',
                             backgroundSize: 'cover',
                             overflow: 'visible',
                         }} onClick={!restaurantUpdatable ? null : (() => this.fileUpload("logo"))}>
@@ -337,7 +348,9 @@ class Settings extends Component {
                 <FormGroup>
                     <div id="embed-photo" className="embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center position-relative" style={{
                         cursor: accountUpdatable ? 'pointer' : 'not-allowed',
-                        background: photo && `url("${photo}") no-repeat center`,
+                        backgroundImage: photo && `url("${photo}")`,
+                        backgroundRepeat: 'no-repeat',
+                        backgroundPosition: 'center',
                         backgroundSize: 'cover',
                         overflow: 'visible',
                     }} onClick={!accountUpdatable ? null : (() => this.fileUpload("photo"))}>

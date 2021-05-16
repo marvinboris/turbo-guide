@@ -184,7 +184,7 @@ class Add extends Component {
         return (
             <>
                 <TitleWrapper>
-                    <Breadcrumb main={this.props.edit ? edit : add} icon={faListAlt} />
+                    <Breadcrumb items={this.props.edit && [{ to: '/restaurant/categories', content: index }]} main={this.props.edit ? edit : add} icon={faListAlt} />
                     <SpecialTitle>{title}</SpecialTitle>
                     <Subtitle>{this.props.edit ? edit : add}</Subtitle>
                 </TitleWrapper>

@@ -216,12 +216,6 @@
                     "updated": "Addon successfully updated.",
                     "deleted": "Addon successfully deleted."
                 },
-                "drinks": {
-                    "not_found": "Drink not found.",
-                    "created": "Drink successfully created.",
-                    "updated": "Drink successfully updated.",
-                    "deleted": "Drink successfully deleted."
-                },
                 "plans": {
                     "not_found": "Plan not found.",
                     "balance": "Insufficient balance.",
@@ -242,7 +236,8 @@
                     "you_have": "You have",
                     "messages": "messages",
                     "view_all_messages": "View all messages",
-                    "notifications": "notifications",
+                    "unread_notification": "unread notification",
+                    "unread_notifications": "unread notifications",
                     "view_all_notifications": "View all notifications"
                 },
                 "footer": {
@@ -310,11 +305,6 @@
                             "title": "Addons",
                             "add": "Add addon",
                             "index": "Addon list"
-                        },
-                        "drinks": {
-                            "title": "Drinks",
-                            "add": "Add drink",
-                            "index": "Drink list"
                         },
                         "comments": "Customer Review",
                         "history": "Order History",
@@ -488,6 +478,14 @@
                             "created_at": "Created at"
                         }
                     },
+                    "notifications": {
+                        "title": "Notifications",
+                        "show": "Notification details",
+                        "index": "Notification list",
+                        "form": {
+                            "you_have_no_notification": "You have no notification."
+                        }
+                    },
                     "settings": {
                         "title": "Settings",
                         "form": {
@@ -593,22 +591,6 @@
                             "select_status": "Please select addon status"
                         }
                     },
-                    "drinks": {
-                        "title": "Drinks",
-                        "subtitle": "Please follow the instructions carefully",
-                        "add": "Add drink",
-                        "edit": "Edit drink",
-                        "index": "Drink list",
-                        "form": {
-                            "name": "Drink's Name",
-                            "description": "Drink's Description",
-                            "price": "Drink's Price",
-                            "reference": "Drink's ID Number",
-                            "upload": "Upload Drink Image",
-                            "size": "Max Size : 3 MB Format : 250 x 250",
-                            "select_status": "Please select drink status"
-                        }
-                    },
                     "comments": {
                         "title": "Customer Review",
                         "subtitle": "Here are your customers comments",
@@ -636,6 +618,7 @@
                             "type": "Purchase Type",
                             "terms": "Accept terms and conditions & Privacy policies",
                             "price": "Cost",
+                            "expiry_date": "Expiry Date",
                             "created_at": "Purchase Date",
                             "select_plan_id": "Select plan",
                             "select_type": "Purchase Type"
@@ -898,12 +881,6 @@
                     "updated": "Addon successfully updated.",
                     "deleted": "Addon successfully deleted."
                 },
-                "drinks": {
-                    "not_found": "Drink not found.",
-                    "created": "Drink successfully created.",
-                    "updated": "Drink successfully updated.",
-                    "deleted": "Drink successfully deleted."
-                },
                 "plans": {
                     "not_found": "Plan not found.",
                     "balance": "Insufficient balance.",
@@ -924,7 +901,8 @@
                     "you_have": "You have",
                     "messages": "messages",
                     "view_all_messages": "View all messages",
-                    "notifications": "notifications",
+                    "unread_notification": "unread notification",
+                    "unread_notifications": "unread notifications",
                     "view_all_notifications": "View all notifications"
                 },
                 "footer": {
@@ -992,11 +970,6 @@
                             "title": "Addons",
                             "add": "Add addon",
                             "index": "Addon list"
-                        },
-                        "drinks": {
-                            "title": "Drinks",
-                            "add": "Add drink",
-                            "index": "Drink list"
                         },
                         "comments": "Customer Review",
                         "history": "Order History",
@@ -1170,6 +1143,14 @@
                             "created_at": "Created at"
                         }
                     },
+                    "notifications": {
+                        "title": "Notifications",
+                        "show": "Notification details",
+                        "index": "Notification list",
+                        "form": {
+                            "you_have_no_notification": "You have no notification."
+                        }
+                    },
                     "settings": {
                         "title": "Settings",
                         "form": {
@@ -1302,6 +1283,7 @@
                             "type": "Purchase Type",
                             "terms": "Accept terms and conditions & Privacy policies",
                             "price": "Cost",
+                            "expiry_date": "Expiry Date",
                             "created_at": "Purchase Date",
                             "select_plan_id": "Select plan",
                             "select_type": "Purchase Type"

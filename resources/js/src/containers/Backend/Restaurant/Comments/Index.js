@@ -38,7 +38,7 @@ class Index extends Component {
             auth: { data: { plan } }
         } = this.props;
 
-        const redirect = (!plan || (plan && plan.slug !== 'premium')) && <Redirect to="/restaurant/dashboard" />
+        const redirect = (!plan || (plan && !plan.slug.includes('premium'))) && <Redirect to="/restaurant/dashboard" />
         const errors = <>
             <Error err={error} />
         </>;

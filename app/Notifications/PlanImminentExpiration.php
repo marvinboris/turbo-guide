@@ -26,7 +26,7 @@ class PlanImminentExpiration extends Notification implements ShouldQueue
         $this->plan = $plan;
         $this->days = $days;
 
-        $this->delay((new Carbon($plan->pivot->expiry_date))->subMinutes($days));
+        $this->delay((new Carbon($plan->pivot->expiry_date))->subDays($days));
     }
 
     /**

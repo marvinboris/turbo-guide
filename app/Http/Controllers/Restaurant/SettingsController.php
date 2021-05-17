@@ -22,16 +22,17 @@ class SettingsController extends Controller
                 'name' => $language->name,
             ];
         }
-        $default_language = $restaurant->languages()->wherePivot('main', 1)->first();
+
         $restaurant = array_merge($restaurant->toArray(), [
             'notifications' => $restaurant->notifications()->latest()->limit(5)->get(),
-            'languages' => $restaurant_languages,
-            'language' => $default_language ? $default_language->id : null,
+            'language' => $restaurant->language->abbr,
         ]);
 
         return [
             'data' => $restaurant,
-            'restaurant' => $restaurant,
+            'restaurant' => $restaurant + [
+                'languages' => $restaurant_languages,
+            ],
             'allLanguages' => Language::all(),
         ];
     }

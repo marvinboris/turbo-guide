@@ -21,7 +21,7 @@ class Addons extends Component {
                 cms: { pages: { frontend: { restaurants: { meals } } } },
                 currencies,
             },
-            frontend: { restaurants: { restaurant = {}, total = 0, addons = [], currency, position } }
+            frontend: { restaurants: { restaurant = { caution: {} }, total = 0, addons = [], currency, position } }
         } = this.props;
 
         const currencyObj = currencies.find(c => c.cc === currency);

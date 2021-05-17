@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     private $rules = [
-        'name' => 'required|string',
-        'description' => 'nullable|string',
+        'name' => 'array|required',
+        'description' => 'array|nullable',
         'photo' => 'nullable|file|image',
         'is_active' => 'required|integer',
     ];
@@ -87,7 +87,7 @@ class CategoryController extends Controller
 
         $request->validate($this->rules);
 
-        $input = $request->except('photo');
+        $input = $request->except(['photo', 'name', 'description']);
 
         if ($file = $request->file('photo')) {
             $fileName = time() . $file->getClientOriginalName();
@@ -95,7 +95,10 @@ class CategoryController extends Controller
             $input['photo'] = htmlspecialchars($fileName);
         }
 
-        $restaurant->categories()->create($input);
+        $restaurant->categories()->create($input + [
+            'name' => json_encode($request->name),
+            'description' => json_encode($request->description),
+        ]);
 
         return response()->json([
             'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['categories']['created'], 'success'),
@@ -115,7 +118,7 @@ class CategoryController extends Controller
         $rules = UtilController::rules($this->rules, $category);
         $request->validate($rules);
 
-        $input = $request->except('photo');
+        $input = $request->except(['photo', 'name', 'description']);
 
         if ($file = $request->file('photo')) {
             if ($category->photo && is_file(public_path($category->photo))) unlink(public_path($category->photo));
@@ -123,7 +126,10 @@ class CategoryController extends Controller
             $input['photo'] = htmlspecialchars($fileName);
         }
 
-        $category->update($input);
+        $category->update($input + [
+            'name' => json_encode($request->name),
+            'description' => json_encode($request->description),
+        ]);
 
         return response()->json([
             'message' => [

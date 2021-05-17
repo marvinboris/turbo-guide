@@ -113,6 +113,12 @@ class UtilController extends Controller
         return $destination;
     }
 
+    public static function isJson($string)
+    {
+        json_decode($string);
+        return json_last_error() === JSON_ERROR_NONE;
+    }
+
 
 
     // Authentication
@@ -155,7 +161,9 @@ class UtilController extends Controller
             ];
         } else if ($type === 'admin') $data = array_merge($data, []);
         else if ($type === 'restaurant') {
-            $data = array_merge($data, []);
+            $data = array_merge($data, [
+                'languages' => $user->languages,
+            ]);
             if (!$user->qr && $user->name) $user->qrCode();
         }
         return response()->json(['data' => $data, 'role' => $type,]);

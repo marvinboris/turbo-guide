@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Button, Col, FormGroup, Input, Label, Row } from 'reactstrap';
-import { faArrowsAltH, faCalendar, faCheckCircle, faClock, faCog, faEdit, faEnvelope, faExclamationCircle, faFileImage, faFlag, faHome, faInfoCircle, faLocationArrow, faLock, faLockOpen, faMapMarkerAlt, faMinusSquare, faPhone, faUser, faUserTie } from '@fortawesome/free-solid-svg-icons';
+import { faArrowsAltH, faBook, faCalendar, faCheckCircle, faClock, faCog, faEdit, faEnvelope, faExclamationCircle, faFileImage, faFlag, faHome, faInfoCircle, faLocationArrow, faLock, faLockOpen, faMapMarkerAlt, faMinusSquare, faPhone, faUser, faUserTie } from '@fortawesome/free-solid-svg-icons';
 import { faSave } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
@@ -20,7 +20,6 @@ import FormInput from '../../../../components/UI/Input/Input';
 import Feedback from '../../../../components/Feedback/Feedback';
 
 import * as actions from '../../../../store/actions';
-import { updateObject } from '../../../../shared/utility';
 
 const Block = ({ children, icon, title, save, hidden, onSubmit, updatable, toggle }) => children ? <form className="col-xxl-3 col-xl-4 col-lg-6 pb-4" style={hidden ? { visibility: 'hidden' } : { visibility: 'visible' }} onSubmit={onSubmit}>
     <input type="hidden" name="_method" defaultValue="PATCH" />
@@ -88,13 +87,18 @@ class Settings extends Component {
         logo: '',
         whatsapp: '',
         location: '',
-        address: '',
         currency: 'XAF',
         position: '1',
-        caution: '',
-        must_read: '',
-        disclaimer: '',
         restaurantUpdatable: false,
+
+        address: {},
+        caution: {},
+        must_read: {},
+        disclaimer: {},
+        days: {},
+        hours: {},
+        translate: '',
+        translatableUpdatable: false,
 
         email: '',
         country: '',
@@ -109,10 +113,6 @@ class Settings extends Component {
         banner2: '',
         banner3: '',
         cmsUpdatable: false,
-
-        days: '',
-        hours: '',
-        calendarUpdatable: false,
 
         languages: [],
         language: '',
@@ -147,12 +147,12 @@ class Settings extends Component {
 
     cmsToggle = () => this.setState(prevState => ({ cmsUpdatable: !prevState.cmsUpdatable }))
 
-    calendarSettingsSubmitHandler = e => {
+    translatableSettingsSubmitHandler = e => {
         e.preventDefault();
-        this.props.calendar(e.target);
+        this.props.translatable(e.target);
     }
 
-    calendarToggle = () => this.setState(prevState => ({ calendarUpdatable: !prevState.calendarUpdatable }))
+    translatableToggle = () => this.setState(prevState => ({ translatableUpdatable: !prevState.translatableUpdatable }))
 
     languageSettingsSubmitHandler = e => {
         e.preventDefault();
@@ -171,6 +171,13 @@ class Settings extends Component {
             const language = this.props.backend.settings.allLanguages.find(a => +a.id === +value);
             languages.push(language);
             return this.setState({ languages });
+        }
+        if (name.includes('[')) {
+            const { translate } = this.state;
+            const stateName = name.split('[')[0];
+            const element = this.state[stateName];
+            element[translate] = value;
+            return this.setState({ [stateName]: element });
         }
         this.setState({ [name]: files ? files[0] : value });
     }
@@ -195,9 +202,19 @@ class Settings extends Component {
 
 
     // Lifecycle methods
-    static getDerivedStateFromProps(nextProps, prevState) {
-        if (nextProps.backend.settings.restaurant && prevState.name === '') {
-            const { backend: { settings: { restaurant } } } = nextProps;
+    componentDidMount() {
+        this.props.reset();
+        this.props.get();
+        this.setState({ translate: this.props.auth.data.main_language });
+    }
+
+    componentDidUpdate(prevProps) {
+        if (!prevProps.backend.settings.message && this.props.backend.settings.message && this.props.backend.settings.message.type === 'success') {
+            const { logo, photo, banner1, banner2, banner3 } = this.props.backend.settings.restaurant;
+            this.setState({ logo, photo, banner1, banner2, banner3 });
+        }
+        if (!prevProps.backend.settings.restaurant && this.props.backend.settings.restaurant) {
+            const { backend: { settings: { restaurant } } } = this.props;
             if (!restaurant.name) Swal.fire({
                 title: 'Missing restaurant\'s name',
                 text: "Please set your restaurant\'s name",
@@ -207,20 +224,7 @@ class Settings extends Component {
                 cancelButtonColor: '#D14529',
                 confirmButtonText: 'Yes'
             });
-            return updateObject(prevState, { ...restaurant });
-        }
-        return prevState;
-    }
-
-    componentDidMount() {
-        this.props.reset();
-        this.props.get();
-    }
-
-    componentDidUpdate(prevProps) {
-        if (!prevProps.backend.settings.message && this.props.backend.settings.message && this.props.backend.settings.message.type === 'success') {
-            const { logo, photo, banner1, banner2, banner3 } = this.props.backend.settings.restaurant;
-            this.setState({ logo, photo, banner1, banner2, banner3 });
+            this.setState({ ...restaurant });
         }
     }
 
@@ -238,11 +242,15 @@ class Settings extends Component {
                 currencies, countries,
             },
             backend: { settings: { loading, error, message, restaurant, allLanguages = [] } },
-            auth: { data: { plan } }
+            auth: { data: { plan, languages: restaurantLanguages } }
         } = this.props;
         let {
-            name, owner, phone, logo, whatsapp, location, address, currency, position, caution, must_read, disclaimer,
+            name, owner, phone, logo, whatsapp, location, currency, position,
             restaurantUpdatable,
+
+            address, caution, must_read, disclaimer, days, hours,
+            translate,
+            translatableUpdatable,
 
             email, country, token, password, new_password, new_password_confirmation, photo,
             accountUpdatable,
@@ -250,14 +258,13 @@ class Settings extends Component {
             banner1, banner2, banner3,
             cmsUpdatable,
 
-            days, hours,
-            calendarUpdatable,
-
             languages, language,
             languageUpdatable,
         } = this.state;
-        let spinnerContent, restaurantContent, accountContent, cmsContent, calendarContent, languageContent;
+        let spinnerContent, restaurantContent, accountContent, cmsContent, translatableContent, languageContent;
         let errors = null;
+
+        const restaurantLanguagesOptions = restaurantLanguages.sort((a, b) => a.name > b.name).map(language => <option key={JSON.stringify(language)} value={language.abbr}>{language.name}</option>);
 
         // if (message && message.type === 'success') window.location.reload();
 
@@ -292,7 +299,6 @@ class Settings extends Component {
                 <Conditional condition={premium}>
                     <FormInput type="text" icon={faLocationArrow} onChange={this.inputChangeHandler} value={location} disabled={!restaurantUpdatable} name="location" placeholder={form.location} />
                 </Conditional>
-                <FormInput type="text" icon={faMapMarkerAlt} onChange={this.inputChangeHandler} value={address} disabled={!restaurantUpdatable} name="address" placeholder={form.address} />
                 <FormInput type="select" addon={<div className="text-center text-light" style={{ margin: '0 -10px' }}>{symbol}</div>} onChange={this.inputChangeHandler} value={currency} disabled={!restaurantUpdatable} name="currency" placeholder={form.select_currency} required>
                     <option>{form.select_currency}</option>
                     {currenciesOptions}
@@ -302,9 +308,6 @@ class Settings extends Component {
                     <option value={0}>{form.left}</option>
                     <option value={1}>{form.right}</option>
                 </FormInput>
-                <FormInput type="textarea" icon={faInfoCircle} onChange={this.inputChangeHandler} value={caution} disabled={!restaurantUpdatable} name="caution" placeholder={form.caution} />
-                <FormInput type="textarea" icon={faExclamationCircle} onChange={this.inputChangeHandler} value={must_read} disabled={!restaurantUpdatable} name="must_read" placeholder={form.must_read} />
-                <FormInput type="textarea" icon={faInfoCircle} onChange={this.inputChangeHandler} value={disclaimer} disabled={!restaurantUpdatable} name="disclaimer" placeholder={form.disclaimer} />
                 <FormGroup row className="justify-content-center">
                     <div className="col-12 col-sm-10">
                         <div id="embed-logo" className="embed-responsive embed-responsive-1by1 bg-soft rounded-8 d-flex justify-content-center align-items-center" style={{
@@ -377,9 +380,20 @@ class Settings extends Component {
                 ].map(item => <CmsItem key={JSON.stringify(item)} {...item} disabled={!cmsUpdatable} restaurant={restaurant} fileUpload={!cmsUpdatable ? null : this.fileUpload} />)}
             </>;
 
-            calendarContent = <>
-                <FormInput type="text" icon={faCalendar} onChange={this.inputChangeHandler} value={days} disabled={!calendarUpdatable} name="days" required placeholder={form.days} />
-                <FormInput type="text" icon={faClock} onChange={this.inputChangeHandler} value={hours} disabled={!calendarUpdatable} name="hours" required placeholder={form.hours} />
+            translatableContent = <>
+                <FormGroup>
+                    <Input type="select" name="translate" onChange={this.inputChangeHandler} disabled={!translatableUpdatable} value={translate}>
+                        {restaurantLanguagesOptions}
+                    </Input>
+                </FormGroup>
+                {restaurantLanguages.map(l => <Fragment key={'language-' + l.abbr}>
+                    <FormInput type="text" icon={faMapMarkerAlt} id={"address-" + l.abbr} className={l.abbr === translate ? "" : "d-none"} onChange={this.inputChangeHandler} value={address[l.abbr]} disabled={!translatableUpdatable} name={"address[" + l.abbr + "]"} placeholder={form.address} />
+                    <FormInput type="textarea" icon={faInfoCircle} id={"caution-" + l.abbr} className={l.abbr === translate ? "" : "d-none"} onChange={this.inputChangeHandler} value={caution[l.abbr]} disabled={!translatableUpdatable} name={"caution[" + l.abbr + "]"} placeholder={form.caution} />
+                    <FormInput type="textarea" icon={faExclamationCircle} id={"must_read-" + l.abbr} className={l.abbr === translate ? "" : "d-none"} onChange={this.inputChangeHandler} value={must_read[l.abbr]} disabled={!translatableUpdatable} name={"must_read[" + l.abbr + "]"} placeholder={form.must_read} />
+                    <FormInput type="textarea" icon={faInfoCircle} id={"disclaimer-" + l.abbr} className={l.abbr === translate ? "" : "d-none"} onChange={this.inputChangeHandler} value={disclaimer[l.abbr]} disabled={!translatableUpdatable} name={"disclaimer[" + l.abbr + "]"} placeholder={form.disclaimer} />
+                    <FormInput type="text" icon={faCalendar} id={"days-" + l.abbr} className={l.abbr === translate ? "" : "d-none"} onChange={this.inputChangeHandler} value={days[l.abbr]} disabled={!translatableUpdatable} name={"days[" + l.abbr + "]"} required placeholder={form.days} />
+                    <FormInput type="text" icon={faClock} id={"hours-" + l.abbr} className={l.abbr === translate ? "" : "d-none"} onChange={this.inputChangeHandler} value={hours[l.abbr]} disabled={!translatableUpdatable} name={"hours[" + l.abbr + "]"} required placeholder={form.hours} />
+                </Fragment>)}
             </>;
 
             languageContent = <>
@@ -424,6 +438,10 @@ class Settings extends Component {
                                 {restaurantContent}
                             </Block>
 
+                            <Block hidden={loading} icon={faBook} save={save} onSubmit={this.translatableSettingsSubmitHandler} title={form.translatable_settings} updatable={translatableUpdatable} toggle={this.translatableToggle}>
+                                {translatableContent}
+                            </Block>
+
                             <Block hidden={loading} icon={faUser} save={save} onSubmit={this.accountSettingsSubmitHandler} title={form.account_settings} updatable={accountUpdatable} toggle={this.accountToggle}>
                                 <input type="file" id="photo" name="photo" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" />
                                 {accountContent}
@@ -435,10 +453,6 @@ class Settings extends Component {
                                 <Conditional condition={premium}><input type="file" id="banner3" name="banner3" className="d-none" onChange={this.inputChangeHandler} accept=".png,.jpg,.jpeg" /></Conditional>
 
                                 {cmsContent}
-                            </Block>
-
-                            <Block hidden={loading} icon={faCalendar} save={save} onSubmit={this.calendarSettingsSubmitHandler} title={form.calendar_settings} updatable={calendarUpdatable} toggle={this.calendarToggle}>
-                                {calendarContent}
                             </Block>
 
                             <Block hidden={loading} icon={faFlag} save={save} onSubmit={this.languageSettingsSubmitHandler} title={form.language_settings} updatable={languageUpdatable} toggle={this.languageToggle}>
@@ -459,7 +473,7 @@ const mapDispatchToProps = dispatch => ({
     restaurant: data => dispatch(actions.restaurantSettings(data)),
     account: data => dispatch(actions.accountSettings(data)),
     cms: data => dispatch(actions.cmsSettings(data)),
-    calendar: data => dispatch(actions.calendarSettings(data)),
+    translatable: data => dispatch(actions.translatableSettings(data)),
     language: data => dispatch(actions.languageSettings(data)),
     reset: () => dispatch(actions.resetSettings()),
 });

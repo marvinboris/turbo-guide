@@ -40,11 +40,12 @@ class Layout extends Component {
                 currencies,
             },
             frontend: {
-                restaurants: { loading, error, meal = {}, total = 0, qty = 1, currency, position }
+                restaurants: { loading, error, meal = { name: {} }, total = 0, qty = 1, currency, position }
             },
             match: { params: { slug } },
             children
         } = this.props;
+        const lang = localStorage.getItem('lang');
 
         let errors = null;
         if (error) errors = <>
@@ -80,7 +81,7 @@ class Layout extends Component {
 
             <Wrapper className="bg-orange-10 position-relative">
                 <div className="text-500 text-17 text-orange mb-2">
-                    {meal.name}
+                    {meal.name[lang]}
                 </div>
 
                 <div className="d-flex align-items-center">

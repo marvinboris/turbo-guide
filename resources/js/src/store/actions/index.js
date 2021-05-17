@@ -121,7 +121,7 @@ export {
 
     resetSettings,
     accountSettings,
-    calendarSettings,
+    translatableSettings,
     cmsSettings,
     languageSettings,
     getSettings,

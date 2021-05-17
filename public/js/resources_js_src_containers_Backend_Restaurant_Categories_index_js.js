@@ -913,10 +913,17 @@ var Index = /*#__PURE__*/function (_Component) {
         message: message
       });
 
+      var lang = localStorage.getItem('lang');
+
       var content = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.Fragment, {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_12__.default, {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_components_Backend_UI_Food_List__WEBPACK_IMPORTED_MODULE_6__.default, {
-            array: categories,
+            array: categories.map(function (category) {
+              return _objectSpread(_objectSpread({}, category), {}, {
+                name: category.name[lang],
+                description: category.description[lang]
+              });
+            }),
             loading: loading,
             get: this.props.get,
             total: total,

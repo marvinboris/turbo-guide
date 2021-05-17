@@ -63,6 +63,7 @@ class Dashboard extends Component {
 
         let content = null;
         let errors = null;
+        const lang = localStorage.getItem('lang');
 
         if (loading) content = <Col xs={12}>
             <CustomSpinner />
@@ -107,7 +108,7 @@ class Dashboard extends Component {
 
                 const cards = data.map(({ children, icon, link, color, details }, index) => <Card color={color} key={index} details={details} icon={icon} link={link}>{children}</Card>);
 
-                const mealsContent = mostViewed.map(meal => <div key={JSON.stringify(meal) + Math.random()} className="col-lg-3"><Meal className="w-100 p-0" {...meal} /></div>);
+                const mealsContent = mostViewed.map(meal => <div key={JSON.stringify(meal) + Math.random()} className="col-lg-3"><Meal className="w-100 p-0" {...{ ...meal, name: meal.name[lang], description: meal.description[lang] }} /></div>);
 
                 let plansContent = [];
                 if (plans.monthly) {

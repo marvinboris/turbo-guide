@@ -59,7 +59,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       disabled = _ref.disabled,
       placeholder = _ref.placeholder,
       _ref$value = _ref.value,
-      value = _ref$value === void 0 ? '' : _ref$value,
+      value = _ref$value === void 0 ? undefined : _ref$value,
+      _ref$defaultValue = _ref.defaultValue,
+      defaultValue = _ref$defaultValue === void 0 ? undefined : _ref$defaultValue,
       _ref$validation = _ref.validation,
       validation = _ref$validation === void 0 ? {} : _ref$validation,
       append = _ref.append,
@@ -82,7 +84,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.default, {
     className: "Input ".concat(className),
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_WithTooltip_WithTooltip__WEBPACK_IMPORTED_MODULE_3__.default, {
-      content: placeholder,
+      content: placeholder && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+        children: [placeholder, required && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+          className: "text-red",
+          children: "*"
+        })]
+      }),
       id: 'tooltip-' + (id ? id : name),
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.default, {
         className: "bg-".concat(dark ? "grayblue" : "white border border-soft", " rounded-6 d-flex align-items-center"),
@@ -110,6 +117,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           required: required,
           readOnly: readonly,
           disabled: disabled,
+          defaultValue: defaultValue,
           value: value,
           className: "bg-".concat(dark ? "grayblue" : "", " border-top-0 border-right-0 border-bottom-0 border-soft rounded-right-6 text-small text-secondary h-100 px-4 py-3"),
           children: children
@@ -124,6 +132,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             required: required,
             readOnly: readonly,
             disabled: disabled,
+            defaultValue: defaultValue,
             value: value,
             className: "border-top-0 border-right-0 border-bottom-0 border-soft rounded-right-6 text-small text-secondary h-100 px-4 py-3"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
@@ -455,6 +464,7 @@ var Comments = /*#__PURE__*/function (_Component) {
           name = _this$state.name,
           body = _this$state.body,
           country = _this$state.country;
+      var lang = localStorage.getItem('lang');
       var commentsContent = comments.map(function (comment) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Comment__WEBPACK_IMPORTED_MODULE_4__.default, _objectSpread({}, comment), comment.id + Math.random());
       });
@@ -482,14 +492,14 @@ var Comments = /*#__PURE__*/function (_Component) {
                 className: "mr-2"
               }), meals.comments.post_comment]
             })
-          }), restaurant.disclaimer && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+          }), restaurant.disclaimer[lang] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
               style: {
                 padding: '12px 33px',
                 margin: '0px -33px'
               },
               className: "bg-orange-10 text-300 text-10",
-              children: restaurant.disclaimer
+              children: restaurant.disclaimer[lang]
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_10__.default, {
             isOpen: modal,

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Col, FormGroup, Row } from 'reactstrap';
+import { Col, FormGroup, Input, Row } from 'reactstrap';
 import { faBook, faCheckCircle, faClock, faCookie, faDrumstickBite, faFileImage, faMinusCircle, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Swal from 'sweetalert2';
@@ -19,14 +19,13 @@ import FormInput from '../../../../components/UI/Input/Input';
 import Feedback from '../../../../components/Feedback/Feedback';
 
 import * as actions from '../../../../store/actions';
-import { updateObject } from '../../../../shared/utility';
 
 import './Meals.css';
 
 const initialState = {
-    name: '',
+    name: {},
     category_id: '',
-    description: '',
+    description: {},
     price: '',
     time: '',
     reference: '',
@@ -34,6 +33,8 @@ const initialState = {
     photo: '',
 
     addons: [],
+
+    translate: '',
 
     add: false,
 };
@@ -59,6 +60,13 @@ class Add extends Component {
             const addon = this.props.backend.meals.allAddons.find(a => +a.id === +value);
             addons.push(addon);
             return this.setState({ addons });
+        }
+        if (name.includes('[')) {
+            const { translate } = this.state;
+            const stateName = name.split('[')[0];
+            const element = this.state[stateName];
+            element[translate] = value;
+            return this.setState({ [stateName]: element });
         }
         if (files) this.readURL(e.target);
         this.setState({ [name]: files ? files[0] : value });
@@ -86,18 +94,11 @@ class Add extends Component {
 
 
     // Lifecycle methods
-    static getDerivedStateFromProps(nextProps, prevState) {
-        if (nextProps.backend.meals.meal && prevState.name === '') {
-            const { backend: { meals: { meal } } } = nextProps;
-            return updateObject(prevState, { ...meal });
-        }
-        return prevState;
-    }
-
     componentDidMount() {
         this.props.reset();
         if (this.props.edit) this.props.get(this.props.match.params.id);
         else this.props.info();
+        this.setState({ translate: this.props.auth.data.main_language });
     }
 
     componentDidUpdate(prevProps) {
@@ -143,6 +144,10 @@ class Add extends Component {
                 }
             });
         }
+        if (!prevProps.backend.meals.meal && this.props.backend.meals.meal) {
+            const { backend: { meals: { meal } } } = this.props;
+            this.setState({ ...meal });
+        }
     }
 
     componentWillUnmount() {
@@ -158,16 +163,19 @@ class Add extends Component {
                 currencies,
             },
             backend: { meals: { loading, error, message, meal, categories = [], allAddons = [] } },
-            auth: { data: { currency } }
+            auth: { data: { currency, languages } }
         } = this.props;
-        let { name, category_id, description, price, reference, time, is_active, photo, addons } = this.state;
+        let { name, category_id, description, price, reference, time, is_active, photo, addons, translate } = this.state;
         let content = null;
         let errors = null;
+        const lang = localStorage.getItem('lang');
+
+        const languagesOptions = languages.sort((a, b) => a.name > b.name).map(language => <option key={JSON.stringify(language)} value={language.abbr}>{language.name}</option>);
 
         if (!categories) categories = [];
-        const categoriesOptions = categories.sort((a, b) => a.name > b.name).map(category => <option key={JSON.stringify(category)} value={category.id}>{category.name}</option>);
+        const categoriesOptions = categories.sort((a, b) => a.name[lang] > b.name[lang]).map(category => <option key={JSON.stringify(category)} value={category.id}>{category.name[lang]}</option>);
 
-        const addonsOptions = allAddons.sort((a, b) => a.name > b.name).filter(addon => !addons.map(a => a.id).includes(addon.id)).map(addon => <option key={JSON.stringify(addon)} value={addon.id}>{addon.name}</option>);
+        const addonsOptions = allAddons.sort((a, b) => a.name[lang] > b.name[lang]).filter(addon => !addons.map(a => a.id).includes(addon.id)).map(addon => <option key={JSON.stringify(addon)} value={addon.id}>{addon.name[lang]}</option>);
 
         if (loading) content = <Col xs={12}>
             <CustomSpinner />
@@ -192,8 +200,28 @@ class Add extends Component {
                                 <div className="mb-3 text-14 col-12">{instructions}</div>
 
                                 <div className="col-lg-9">
+                                    <div className="row">
+                                        {languages.map(l => <Fragment key={'language-' + l.abbr}>
+                                            <FormInput type="text" id={"name-" + l.abbr} className={"col-md-6" + (l.abbr === translate ? "" : " d-none")} icon={faDrumstickBite} onChange={this.inputChangeHandler} value={name[l.abbr]} name={"name[" + l.abbr + "]"} required placeholder={form.name} />
+                                            <FormInput type="text" id={"description-" + l.abbr} className={"col-md-6" + (l.abbr === translate ? "" : " d-none")} icon={faPencilAlt} onChange={this.inputChangeHandler} value={description[l.abbr]} name={"description[" + l.abbr + "]"} placeholder={form.description} />
+                                        </Fragment>)}
+                                    </div>
+                                </div>
+
+                                <div className="col-lg-3">
+                                    <FormGroup>
+                                        <Input type="select" name="translate" onChange={this.inputChangeHandler} value={translate}>
+                                            {languagesOptions}
+                                        </Input>
+                                    </FormGroup>
+                                </div>
+
+                                <div className="col-12 mb-3">
+                                    <hr />
+                                </div>
+
+                                <div className="col-lg-9">
                                     <Row>
-                                        <FormInput type="text" className="col-md-6" icon={faDrumstickBite} onChange={this.inputChangeHandler} value={name} name="name" required placeholder={form.name} />
                                         <FormInput type="select" className="col-md-6" icon={faBook} onChange={this.inputChangeHandler} value={category_id} name="category_id" required>
                                             <option>{form.select_category}</option>
                                             {categoriesOptions}
@@ -206,7 +234,7 @@ class Add extends Component {
                                             <div className="addons border border-soft rounded-6 p-1" style={{ height: 53.33, overflowX: 'auto' }}>
                                                 <div className="text-truncate h-100" style={{ overflow: 'visible' }}>
                                                     {addons.map(addon => <div className="mr-1 bg-blue-10 rounded-4 p-2 position-relative h-100 d-inline-flex align-items-center" key={Math.random() + JSON.stringify(addon)}>
-                                                        <div className="mx-3 text-300 text-12">{addon.name}</div>
+                                                        <div className="mx-3 text-300 text-12">{addon.name[lang]}</div>
                                                         <input type="hidden" name="addons[]" defaultValue={addon.id} />
 
                                                         <FontAwesomeIcon icon={faMinusCircle} className="text-red text-10 position-absolute" style={{ top: 6, right: 6, cursor: 'pointer' }} onClick={() => this.onClick(addon.id)} />
@@ -217,7 +245,6 @@ class Add extends Component {
                                         <FormGroup className="col-12 text-14">
                                             {form.total_addons}: <span className="text-700 text-orange">{addons.length}</span>
                                         </FormGroup>
-                                        <FormInput type="text" className="col-md-6" icon={faPencilAlt} onChange={this.inputChangeHandler} value={description} name="description" placeholder={form.description} />
                                         <FormInput type="number" className="col-md-6" addon={<div className="text-center text-light" style={{ margin: '0 -10px' }}>{symbol}</div>} onChange={this.inputChangeHandler} value={price} name="price" required placeholder={form.price} />
                                         <FormInput type="text" className="col-md-6" icon={faPencilAlt} onChange={this.inputChangeHandler} value={reference} name="reference" placeholder={form.reference} />
                                         <FormInput type="number" className="col-md-6" icon={faClock} onChange={this.inputChangeHandler} value={time} name="time" required placeholder={form.time} />

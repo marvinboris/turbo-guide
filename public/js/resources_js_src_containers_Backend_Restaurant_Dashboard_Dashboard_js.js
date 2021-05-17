@@ -958,6 +958,7 @@ var Dashboard = /*#__PURE__*/function (_Component) {
       var duration = this.state.duration;
       var content = null;
       var errors = null;
+      var lang = localStorage.getItem('lang');
       if (loading) content = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_17__.default, {
         xs: 12,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_components_UI_CustomSpinner_CustomSpinner__WEBPACK_IMPORTED_MODULE_10__.default, {})
@@ -1016,7 +1017,10 @@ var Dashboard = /*#__PURE__*/function (_Component) {
               className: "col-lg-3",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_components_Backend_UI_Food_Meal__WEBPACK_IMPORTED_MODULE_11__.default, _objectSpread({
                 className: "w-100 p-0"
-              }, meal))
+              }, _objectSpread(_objectSpread({}, meal), {}, {
+                name: meal.name[lang],
+                description: meal.description[lang]
+              })))
             }, JSON.stringify(meal) + Math.random());
           });
           var plansContent = [];
@@ -1502,7 +1506,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".Restaurant.Dashboard .go-live {\r\n    top: 24px;\r\n    right: 98px;\r\n    z-index: 1030;\r\n}\r\n\r\n@media screen and (min-width: 1000px) {\r\n    .Restaurant.Dashboard .go-live {\r\n        right: 130px;\r\n    }\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".Restaurant.Dashboard .go-live {\r\n    top: 24px;\r\n    right: 183px;\r\n    z-index: 1030;\r\n}\r\n\r\n@media screen and (min-width: 1000px) {\r\n    .Restaurant.Dashboard .go-live {\r\n        right: 215px;\r\n    }\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

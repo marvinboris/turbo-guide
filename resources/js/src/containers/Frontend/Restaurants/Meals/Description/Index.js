@@ -14,16 +14,17 @@ class Description extends Component {
             },
             frontend: { restaurants: { restaurant = {}, meal = {} } }
         } = this.props;
+        const lang = localStorage.getItem('lang');
 
         return <>
             <Wrapper>
-                <div className="mb-3 pb-4 text-300 text-10">{meal.description}</div>
+                <div className="mb-3 pb-4 text-300 text-10">{meal.description[lang]}</div>
 
-                {restaurant.must_read && <div>
-                    <div className="text-14 mb-2">{meals.must_read}</div>
+                {restaurant.must_read[lang] && <div>
+                    <div className="text-14 mb-2">{meals.must_read[lang]}</div>
 
                     <div style={{ padding: '12px 33px', margin: '0px -33px' }} className="bg-orange-10 text-300 text-10">
-                        {restaurant.must_read}
+                        {restaurant.must_read[lang]}
                     </div>
                 </div>}
             </Wrapper>

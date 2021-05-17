@@ -508,7 +508,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       disabled = _ref.disabled,
       placeholder = _ref.placeholder,
       _ref$value = _ref.value,
-      value = _ref$value === void 0 ? '' : _ref$value,
+      value = _ref$value === void 0 ? undefined : _ref$value,
+      _ref$defaultValue = _ref.defaultValue,
+      defaultValue = _ref$defaultValue === void 0 ? undefined : _ref$defaultValue,
       _ref$validation = _ref.validation,
       validation = _ref$validation === void 0 ? {} : _ref$validation,
       append = _ref.append,
@@ -531,7 +533,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.default, {
     className: "Input ".concat(className),
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_WithTooltip_WithTooltip__WEBPACK_IMPORTED_MODULE_3__.default, {
-      content: placeholder,
+      content: placeholder && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+        children: [placeholder, required && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+          className: "text-red",
+          children: "*"
+        })]
+      }),
       id: 'tooltip-' + (id ? id : name),
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.default, {
         className: "bg-".concat(dark ? "grayblue" : "white border border-soft", " rounded-6 d-flex align-items-center"),
@@ -559,6 +566,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           required: required,
           readOnly: readonly,
           disabled: disabled,
+          defaultValue: defaultValue,
           value: value,
           className: "bg-".concat(dark ? "grayblue" : "", " border-top-0 border-right-0 border-bottom-0 border-soft rounded-right-6 text-small text-secondary h-100 px-4 py-3"),
           children: children
@@ -573,6 +581,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             required: required,
             readOnly: readonly,
             disabled: disabled,
+            defaultValue: defaultValue,
             value: value,
             className: "border-top-0 border-right-0 border-bottom-0 border-soft rounded-right-6 text-small text-secondary h-100 px-4 py-3"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
@@ -735,10 +744,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Col.js");
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Row.js");
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/FormGroup.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Input.js");
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 /* harmony import */ var _components_Backend_UI_Breadcrumb_Breadcrumb__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../components/Backend/UI/Breadcrumb/Breadcrumb */ "./resources/js/src/components/Backend/UI/Breadcrumb/Breadcrumb.js");
@@ -805,12 +815,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 var initialState = {
-  name: '',
-  description: '',
+  name: {},
+  description: {},
   price: '',
   reference: '',
   is_active: '1',
   photo: '',
+  translate: '',
   add: false
 };
 
@@ -852,6 +863,14 @@ var Add = /*#__PURE__*/function (_Component) {
           files = _e$target.files;
       if (files) _this.readURL(e.target);
 
+      if (name.includes('[')) {
+        var translate = _this.state.translate;
+        var stateName = name.split('[')[0];
+        var element = _this.state[stateName];
+        element[translate] = value;
+        return _this.setState(_defineProperty({}, stateName, element));
+      }
+
       _this.setState(_defineProperty({}, name, files ? files[0] : value));
     });
 
@@ -879,9 +898,13 @@ var Add = /*#__PURE__*/function (_Component) {
 
   _createClass(Add, [{
     key: "componentDidMount",
-    value: function componentDidMount() {
+    value: // Lifecycle methods
+    function componentDidMount() {
       this.props.reset();
       if (this.props.edit) this.props.get(this.props.match.params.id);
+      this.setState({
+        translate: this.props.auth.data.main_language
+      });
     }
   }, {
     key: "componentDidUpdate",
@@ -894,6 +917,11 @@ var Add = /*#__PURE__*/function (_Component) {
           }
         });
       }
+
+      if (!prevProps.backend.addons.addon && this.props.backend.addons.addon) {
+        var addon = this.props.backend.addons.addon;
+        this.setState(_objectSpread({}, addon));
+      }
     }
   }, {
     key: "componentWillUnmount",
@@ -903,6 +931,8 @@ var Add = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var _this$props = this.props,
           _this$props$content = _this$props.content,
           _this$props$content$c = _this$props$content.cms.pages,
@@ -923,16 +953,27 @@ var Add = /*#__PURE__*/function (_Component) {
           error = _this$props$backend$a.error,
           message = _this$props$backend$a.message,
           addon = _this$props$backend$a.addon,
-          currency = _this$props.auth.data.currency;
+          _this$props$auth$data = _this$props.auth.data,
+          currency = _this$props$auth$data.currency,
+          languages = _this$props$auth$data.languages;
       var _this$state = this.state,
           name = _this$state.name,
           description = _this$state.description,
           price = _this$state.price,
           reference = _this$state.reference,
           is_active = _this$state.is_active,
-          photo = _this$state.photo;
+          photo = _this$state.photo,
+          translate = _this$state.translate;
       var content = null;
       var errors = null;
+      var languagesOptions = languages.sort(function (a, b) {
+        return a.name > b.name;
+      }).map(function (language) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("option", {
+          value: language.abbr,
+          children: language.name
+        }, JSON.stringify(language));
+      });
       if (loading) content = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_16__.default, {
         xs: 12,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_CustomSpinner_CustomSpinner__WEBPACK_IMPORTED_MODULE_8__.default, {})
@@ -965,25 +1006,51 @@ var Add = /*#__PURE__*/function (_Component) {
                   children: instructions
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
                   className: "col-lg-9",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                    className: "row",
+                    children: languages.map(function (l) {
+                      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+                          type: "text",
+                          id: "name-" + l.abbr,
+                          className: "col-md-6" + (l.abbr === translate ? "" : " d-none"),
+                          icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faBook,
+                          onChange: _this2.inputChangeHandler,
+                          value: name[l.abbr],
+                          name: "name[" + l.abbr + "]",
+                          required: true,
+                          placeholder: form.name
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+                          type: "text",
+                          id: "description-" + l.abbr,
+                          className: "col-md-6" + (l.abbr === translate ? "" : " d-none"),
+                          icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faPencilAlt,
+                          onChange: _this2.inputChangeHandler,
+                          value: description[l.abbr],
+                          name: "description[" + l.abbr + "]",
+                          placeholder: form.description
+                        })]
+                      }, 'language-' + l.abbr);
+                    })
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                  className: "col-lg-3",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_19__.default, {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_20__.default, {
+                      type: "select",
+                      name: "translate",
+                      onChange: this.inputChangeHandler,
+                      value: translate,
+                      children: languagesOptions
+                    })
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                  className: "col-12 mb-3",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("hr", {})
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
+                  className: "col-lg-9",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_17__.default, {
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
-                      type: "text",
-                      className: "col-md-6",
-                      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faBook,
-                      onChange: this.inputChangeHandler,
-                      value: name,
-                      name: "name",
-                      required: true,
-                      placeholder: form.name
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
-                      type: "text",
-                      className: "col-md-6",
-                      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faPencilAlt,
-                      onChange: this.inputChangeHandler,
-                      value: description,
-                      name: "description",
-                      placeholder: form.description
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
                       type: "number",
                       className: "col-md-6",
                       addon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_15__.jsx)("div", {
@@ -1146,17 +1213,6 @@ var Add = /*#__PURE__*/function (_Component) {
         })]
       });
     }
-  }], [{
-    key: "getDerivedStateFromProps",
-    value: // Lifecycle methods
-    function getDerivedStateFromProps(nextProps, prevState) {
-      if (nextProps.backend.addons.addon && prevState.name === '') {
-        var addon = nextProps.backend.addons.addon;
-        return (0,_shared_utility__WEBPACK_IMPORTED_MODULE_14__.updateObject)(prevState, _objectSpread({}, addon));
-      }
-
-      return prevState;
-    }
   }]);
 
   return Add;
@@ -1183,7 +1239,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_20__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(Add)));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_21__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(Add)));
 
 /***/ }),
 

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\UtilController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,6 +19,30 @@ class Meal extends Model
     protected $appends = [
         'mark',
     ];
+
+    public function translatable($value)
+    {
+        $data = null;
+        if (!UtilController::isJson($value)) {
+            $data = [];
+            foreach (Category::find($this->category_id)->restaurant->languages as $language) {
+                $data[$language->abbr] = $value;
+            }
+            return $data;
+        }
+
+        return json_decode($value, true);
+    }
+
+    public function getNameAttribute($value)
+    {
+        return $this->translatable($value);
+    }
+
+    public function getDescriptionAttribute($value)
+    {
+        return $this->translatable($value);
+    }
 
     public function category()
     {

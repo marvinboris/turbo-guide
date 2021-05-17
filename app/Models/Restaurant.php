@@ -39,7 +39,7 @@ class Restaurant extends Authenticatable
     ];
 
     protected $appends = [
-        'mark', 'plan',
+        'mark', 'plan', 'main_language',
     ];
 
     public function type()
@@ -55,6 +55,50 @@ class Restaurant extends Authenticatable
     public function languages()
     {
         return $this->belongsToMany(Language::class, 'language_restaurant')->withPivot(['main']);
+    }
+
+    public function translatable($value)
+    {
+        $data = null;
+        if (!UtilController::isJson($value)) {
+            $data = [];
+            foreach ($this->languages as $language) {
+                $data[$language->abbr] = $value;
+            }
+            return $data;
+        }
+
+        return json_decode($value, true);
+    }
+
+    public function getAddressAttribute($value)
+    {
+        return $this->translatable($value);
+    }
+
+    public function getCautionAttribute($value)
+    {
+        return $this->translatable($value);
+    }
+
+    public function getMustReadAttribute($value)
+    {
+        return $this->translatable($value);
+    }
+
+    public function getDisclaimerAttribute($value)
+    {
+        return $this->translatable($value);
+    }
+
+    public function getDaysAttribute($value)
+    {
+        return $this->translatable($value);
+    }
+
+    public function getHoursAttribute($value)
+    {
+        return $this->translatable($value);
     }
 
     public function getQrAttribute($value)
@@ -105,6 +149,13 @@ class Restaurant extends Authenticatable
         $plan = $this->plans()->wherePivot('expiry_date', '>=', Carbon::now())->orderBy('plan_restaurant.created_at', 'DESC')->first();
 
         return $plan;
+    }
+
+    public function getMainLanguageAttribute()
+    {
+        $language = $this->languages()->wherePivot('main', 1)->first();
+
+        return $language ? $language->abbr : Language::first()->abbr;
     }
 
     public function categories()

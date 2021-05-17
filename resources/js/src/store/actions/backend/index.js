@@ -118,7 +118,7 @@ export {
 
 export {
     accountSettings,
-    calendarSettings,
+    translatableSettings,
     cmsSettings,
     languageSettings,
     getSettings,

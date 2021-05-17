@@ -674,12 +674,13 @@ var Index = /*#__PURE__*/function (_Component) {
         message: message
       });
 
+      var lang = localStorage.getItem('lang');
       var categoriesOptions = categories.sort(function (a, b) {
         return a.name > b.name;
       }).map(function (category) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("option", {
           value: category.id,
-          children: category.name
+          children: category.name[lang]
         }, JSON.stringify(category) + Math.random());
       });
       var categoriesList = [{
@@ -694,11 +695,14 @@ var Index = /*#__PURE__*/function (_Component) {
             return _this2.onClick(category.id);
           },
           className: "text-truncate text-decoration-none text-reset text-16 mr-4 text-".concat(category_id == category.id ? "500" : "300"),
-          children: category.name
+          children: category.name[lang]
         }, JSON.stringify(category) + Math.random());
       });
       var mealsContent = meals.map(function (meal) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_components_Backend_UI_Food_Meal__WEBPACK_IMPORTED_MODULE_8__.default, _objectSpread({}, meal), JSON.stringify(meal) + Math.random());
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_components_Backend_UI_Food_Meal__WEBPACK_IMPORTED_MODULE_8__.default, _objectSpread({}, _objectSpread(_objectSpread({}, meal), {}, {
+          name: meal.name[lang],
+          description: meal.description[lang]
+        })), JSON.stringify(meal) + Math.random());
       });
       var mostLikedMeals = mostLiked.map(function (meal, index) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
@@ -719,7 +723,7 @@ var Index = /*#__PURE__*/function (_Component) {
               className: "d-flex justify-content-between align-items-center position-relative pb-2 mb-3",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
                 className: "text-14",
-                children: meal.name
+                children: meal.name[lang]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
                 className: "text-".concat(index === 0 ? 'green' : 'border', " text-700 text-20"),
                 children: ["#", index + 1]

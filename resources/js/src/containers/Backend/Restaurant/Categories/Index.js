@@ -40,11 +40,16 @@ class Index extends Component {
         </>;
         const flash = this.props.location.state ? <Feedback time={5000} message={this.props.location.state.message} /> : null;
         const feedback = <Feedback message={message} />;
+        const lang = localStorage.getItem('lang');
 
         const content = (
             <>
                 <Row>
-                    <List array={categories} loading={loading} get={this.props.get} total={total} add={add} link="/restaurant/categories/add" icon={faListAlt} title={index} subtitle={subtitle} className="shadow-sm" render={category => <Category {...category} />} />
+                    <List array={categories.map(category => ({
+                        ...category,
+                        name: category.name[lang],
+                        description: category.description[lang],
+                    }))} loading={loading} get={this.props.get} total={total} add={add} link="/restaurant/categories/add" icon={faListAlt} title={index} subtitle={subtitle} className="shadow-sm" render={category => <Category {...category} />} />
                 </Row>
             </>
         );

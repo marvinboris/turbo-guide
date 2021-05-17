@@ -1051,7 +1051,11 @@ var Home = /*#__PURE__*/function (_Component) {
           _this$props$frontend$ = _this$props.frontend.restaurants,
           loading = _this$props$frontend$.loading,
           _this$props$frontend$2 = _this$props$frontend$.restaurant,
-          restaurant = _this$props$frontend$2 === void 0 ? {} : _this$props$frontend$2,
+          restaurant = _this$props$frontend$2 === void 0 ? {
+        days: {},
+        hours: {},
+        address: {}
+      } : _this$props$frontend$2,
           _this$props$frontend$3 = _this$props$frontend$.categories,
           categories = _this$props$frontend$3 === void 0 ? [] : _this$props$frontend$3,
           currency = _this$props$frontend$.currency,
@@ -1059,6 +1063,7 @@ var Home = /*#__PURE__*/function (_Component) {
           languages = _this$props$frontend$4 === void 0 ? [] : _this$props$frontend$4,
           position = _this$props$frontend$.position;
       var id = this.state.id;
+      var lang = localStorage.getItem('lang');
       var currencyObj = currencies.find(function (c) {
         return c.cc === currency;
       });
@@ -1066,12 +1071,15 @@ var Home = /*#__PURE__*/function (_Component) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(Category, {
           id: category.id,
           index: index,
-          name: category.name,
+          name: category.name[lang],
           children: category.meals && category.meals.map(function (meal) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_UI_Food_Meal__WEBPACK_IMPORTED_MODULE_3__.default, _objectSpread(_objectSpread({
               symbol: currencyObj && currencyObj.symbol,
               position: position
-            }, meal), {}, {
+            }, _objectSpread(_objectSpread({}, meal), {}, {
+              name: meal.name[lang],
+              description: meal.description[lang]
+            })), {}, {
               slug: _this2.props.match.params.slug
             }), JSON.stringify(meal) + Math.random());
           })
@@ -1163,7 +1171,7 @@ var Home = /*#__PURE__*/function (_Component) {
                     className: "text-6 text-orange"
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("span", {
-                  children: restaurant.days
+                  children: restaurant.days[lang]
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
                 className: "d-flex align-items-center",
@@ -1174,14 +1182,14 @@ var Home = /*#__PURE__*/function (_Component) {
                     className: "text-6 text-orange"
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("span", {
-                  children: restaurant.hours
+                  children: restaurant.hours[lang]
                 })]
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
               className: "d-flex justify-content-between align-items-center",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
                 className: "text-300 text-8",
-                children: restaurant.address
+                children: restaurant.address[lang]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
                 className: "d-flex align-items-center",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
@@ -1212,7 +1220,10 @@ var Home = /*#__PURE__*/function (_Component) {
               },
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_Navigation__WEBPACK_IMPORTED_MODULE_6__.default, {
                 categories: categories.map(function (c) {
-                  return (0,_shared_utility__WEBPACK_IMPORTED_MODULE_11__.updateObject)(c, {
+                  return (0,_shared_utility__WEBPACK_IMPORTED_MODULE_11__.updateObject)(_objectSpread(_objectSpread({}, c), {}, {
+                    name: c.name[lang],
+                    description: c.description[lang]
+                  }), {
                     active: id === c.id
                   });
                 }),
@@ -1235,7 +1246,12 @@ var Home = /*#__PURE__*/function (_Component) {
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_SelectCategory__WEBPACK_IMPORTED_MODULE_8__.default, {
               cms: home,
-              categories: categories,
+              categories: categories.map(function (c) {
+                return _objectSpread(_objectSpread({}, c), {}, {
+                  name: c.name[lang],
+                  description: c.description[lang]
+                });
+              }),
               id: id,
               onClick: this.onClick
             })]

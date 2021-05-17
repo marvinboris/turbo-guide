@@ -60,11 +60,12 @@ class Index extends Component {
         </>;
         const flash = this.props.location.state ? <Feedback time={5000} message={this.props.location.state.message} /> : null;
         const feedback = <Feedback message={message} />;
+        const lang = localStorage.getItem('lang');
 
-        const categoriesOptions = categories.sort((a, b) => a.name > b.name).map(category => <option key={JSON.stringify(category) + Math.random()} value={category.id}>{category.name}</option>);
-        const categoriesList = [{ name: all_categories, id: '' }, ...categories].map(category => <span key={JSON.stringify(category) + Math.random()} style={{ cursor: 'pointer' }} onClick={() => this.onClick(category.id)} className={`text-truncate text-decoration-none text-reset text-16 mr-4 text-${category_id == category.id ? "500" : "300"}`}>{category.name}</span>);
+        const categoriesOptions = categories.sort((a, b) => a.name > b.name).map(category => <option key={JSON.stringify(category) + Math.random()} value={category.id}>{category.name[lang]}</option>);
+        const categoriesList = [{ name: all_categories, id: '' }, ...categories].map(category => <span key={JSON.stringify(category) + Math.random()} style={{ cursor: 'pointer' }} onClick={() => this.onClick(category.id)} className={`text-truncate text-decoration-none text-reset text-16 mr-4 text-${category_id == category.id ? "500" : "300"}`}>{category.name[lang]}</span>);
 
-        const mealsContent = meals.map(meal => <Meal key={JSON.stringify(meal) + Math.random()} {...meal} />);
+        const mealsContent = meals.map(meal => <Meal key={JSON.stringify(meal) + Math.random()} {...{ ...meal, name: meal.name[lang], description: meal.description[lang] }} />);
         const mostLikedMeals = mostLiked.map((meal, index) => <div key={JSON.stringify(meal) + Math.random()} className={`bg-${index === 0 ? 'green' : 'light'}-10 p-2 mb-2 mt-1 d-flex`}>
             <div className="mr-2">
                 <div className="embed-responsive embed-responsive-1by1 rounded-left-4" style={{ background: `url('${meal.photo}') no-repeat center`, backgroundSize: 'cover', width: 84 }} />
@@ -72,7 +73,7 @@ class Index extends Component {
 
             <div className="flex-fill pr-2">
                 <div className="d-flex justify-content-between align-items-center position-relative pb-2 mb-3">
-                    <div className="text-14">{meal.name}</div>
+                    <div className="text-14">{meal.name[lang]}</div>
 
                     <div className={`text-${index === 0 ? 'green' : 'border'} text-700 text-20`}>
                         #{index + 1}

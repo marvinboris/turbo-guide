@@ -356,11 +356,15 @@ var Addons = /*#__PURE__*/function (_Component) {
         return c.cc === currency;
       });
       var symbol = currencyObj && currencyObj.symbol;
+      var lang = localStorage.getItem('lang');
       var addonsContent = addons.map(function (addon) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_UI_Food_Addon__WEBPACK_IMPORTED_MODULE_5__.default, _objectSpread(_objectSpread({
           symbol: symbol,
           position: position
-        }, addon), {}, {
+        }, _objectSpread(_objectSpread({}, addon), {}, {
+          name: addon.name[lang],
+          description: addon.description[lang]
+        })), {}, {
           add: function add() {
             return _this.props.add(addon.id);
           },
@@ -370,11 +374,11 @@ var Addons = /*#__PURE__*/function (_Component) {
         }), addon.id + Math.random());
       });
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
-        children: [restaurant.caution && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Wrapper__WEBPACK_IMPORTED_MODULE_4__.default, {
+        children: [restaurant.caution[lang] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Wrapper__WEBPACK_IMPORTED_MODULE_4__.default, {
           className: "pb-4 mb-2",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
             className: "rounded-8 bg-soft py-2 px-3 text-10",
-            children: restaurant.caution
+            children: restaurant.caution[lang]
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
           children: addonsContent

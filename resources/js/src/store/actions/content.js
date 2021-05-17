@@ -52,8 +52,8 @@ export const setLanguage = id => async dispatch => {
             }
         });
         const resData = await res.json();
-        dispatch(contentSuccess(resData));
         localStorage.setItem('lang', resData.language.abbr);
+        dispatch(contentSuccess(resData));
     } catch (error) {
         console.log(error);
         dispatch(contentFail(error));

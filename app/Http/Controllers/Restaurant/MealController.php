@@ -13,9 +13,9 @@ class MealController extends Controller
 {
     private $rules = [
         'category_id' => 'required|exists:categories,id',
-        'name' => 'required|string',
+        'name' => 'array|required',
         'reference' => 'nullable|string',
-        'description' => 'nullable|string',
+        'description' => 'array|nullable',
         'price' => 'required|numeric',
         'time' => 'required|numeric',
         'photo' => 'required|file|image',
@@ -181,7 +181,7 @@ class MealController extends Controller
         if ($category instanceof JsonResponse) return $category;
 
         if ($restaurant->plan && ($restaurant->plan->meals === 0 || $restaurant->meals()->count() < $restaurant->plan->meals)) {
-            $input = $request->except('photo');
+            $input = $request->except(['photo', 'name', 'description']);
 
             $mealWithReference = $restaurant->meals()->find($request->reference);
             if ($mealWithReference) return response()->json([
@@ -194,7 +194,10 @@ class MealController extends Controller
             }
 
             $category = $restaurant->categories()->find($input['category_id']);
-            $meal = $category->meals()->create($input);
+            $meal = $category->meals()->create($input + [
+                'name' => json_encode($request->name),
+                'description' => json_encode($request->description),
+            ]);
 
             $meal->addons()->sync($request->addons);
 
@@ -221,7 +224,7 @@ class MealController extends Controller
             'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['meals']['not_found'], 'danger'),
         ]);
 
-        $input = $request->except('photo');
+        $input = $request->except(['photo', 'name', 'description']);
 
         $mealWithReference = $restaurant->meals()->find($request->reference);
         if ($mealWithReference && $mealWithReference->id !== +$id) return response()->json([
@@ -234,7 +237,10 @@ class MealController extends Controller
             $input['photo'] = htmlspecialchars($fileName);
         }
 
-        $meal->update($input);
+        $meal->update($input + [
+            'name' => json_encode($request->name),
+            'description' => json_encode($request->description),
+        ]);
 
         $meal->addons()->sync($request->addons);
 

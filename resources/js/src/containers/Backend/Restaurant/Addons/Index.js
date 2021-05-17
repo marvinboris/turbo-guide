@@ -40,11 +40,16 @@ class Index extends Component {
         </>;
         const flash = this.props.location.state ? <Feedback time={5000} message={this.props.location.state.message} /> : null;
         const feedback = <Feedback message={message} />;
+        const lang = localStorage.getItem('lang');
 
         const content = (
             <>
                 <Row>
-                    <List array={addons} loading={loading} get={this.props.get} total={total} add={add} link="/restaurant/addons/add" icon={faCookie} title={index} subtitle={subtitle} className="shadow-sm" render={addon => <Addon {...addon} />} />
+                    <List array={addons.map(addon => ({
+                        ...addon,
+                        name: addon.name[lang],
+                        description: addon.description[lang],
+                    }))} loading={loading} get={this.props.get} total={total} add={add} link="/restaurant/addons/add" icon={faCookie} title={index} subtitle={subtitle} className="shadow-sm" render={addon => <Addon {...addon} />} />
                 </Row>
             </>
         );

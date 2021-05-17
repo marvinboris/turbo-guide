@@ -24,17 +24,15 @@ class SettingsController extends Controller
         }
         $default_language = $restaurant->languages()->wherePivot('main', 1)->first();
         $restaurant = array_merge($restaurant->toArray(), [
+            'notifications' => $restaurant->notifications()->latest()->limit(5)->get(),
             'languages' => $restaurant_languages,
             'language' => $default_language ? $default_language->id : null,
         ]);
 
         return [
+            'data' => $restaurant,
             'restaurant' => $restaurant,
             'allLanguages' => Language::all(),
-            'data' => array_merge($restaurant->toArray(), [
-                'notifications' => $restaurant->notifications()->latest()->limit(5)->get(),
-                'language' => $restaurant->language->abbr
-            ]),
         ];
     }
 
@@ -56,13 +54,9 @@ class SettingsController extends Controller
             'phone' => 'nullable|string',
             'whatsapp' => 'nullable|string',
             'location' => 'nullable',
-            'address' => 'nullable|string',
             'currency' => 'nullable|string',
             'position' => 'nullable|integer',
             'photo' => 'nullable|file|image',
-            'caution' => 'nullable|string',
-            'must_read' => 'nullable|string',
-            'disclaimer' => 'nullable|string',
         ]);
 
         $restaurant_slug = $restaurant->slug;
@@ -152,17 +146,28 @@ class SettingsController extends Controller
         ] + $this->information());
     }
 
-    public function calendar(Request $request)
+    public function translatable(Request $request)
     {
         $cms = UtilController::cms();
         $restaurant = UtilController::get(request());
 
-        $input = $request->validate([
-            'days' => 'required|string',
-            'hours' => 'required|string',
+        $request->validate([
+            'address' => 'array|nullable',
+            'caution' => 'array|nullable',
+            'must_read' => 'array|nullable',
+            'disclaimer' => 'array|nullable',
+            'days' => 'array|required',
+            'hours' => 'array|required',
         ]);
 
-        $restaurant->update($input);
+        $restaurant->update([
+            'address' => json_encode($request->address),
+            'caution' => json_encode($request->caution),
+            'must_read' => json_encode($request->must_read),
+            'disclaimer' => json_encode($request->disclaimer),
+            'days' => json_encode($request->days),
+            'hours' => json_encode($request->hours),
+        ]);
 
         return response()->json([
             'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['settings']['cms'], 'success'),

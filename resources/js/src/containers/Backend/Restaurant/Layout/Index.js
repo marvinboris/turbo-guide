@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faBell, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import Settings from './Settings';
 import Notifications from './Notifications';
+import Languages from './Languages';
 
 import SideDrawer from '../../../../components/Backend/Navigation/SideDrawer/Restaurant/SideDrawer';
 import CustomSpinner from '../../../../components/UI/CustomSpinner/CustomSpinner';
 
-import { authLogout } from '../../../../store/actions';
+import { authLogout, setLanguage } from '../../../../store/actions';
 import { updateObject } from '../../../../shared/utility';
 
 import './Layout.css';
@@ -18,6 +19,7 @@ import './Layout.css';
 class Layout extends Component {
     state = {
         selectedItem: '',
+        language: null,
 
         notifications: [],
     }
@@ -27,12 +29,20 @@ class Layout extends Component {
             const { notifications } = nextProps.auth.data;
             return updateObject(prevState, { notifications });
         }
-        return prevState;
+        return null;
+    }
+
+    componentDidMount() {
+        this.setState({ language: this.props.content.languages.find(l => l.abbr === localStorage.getItem('lang')) });
+    }
+
+    componentDidUpdate(prevProps) {
+        if (JSON.stringify(prevProps.content.cms) !== JSON.stringify(this.props.content.cms)) this.setState({ language: this.props.content.languages.find(l => l.abbr === localStorage.getItem('lang')) });
     }
 
     logoutHandler = () => {
-        const { onAuthLogout } = this.props;
-        onAuthLogout();
+        const { logout } = this.props;
+        logout();
     }
 
     toggle = () => {
@@ -47,13 +57,17 @@ class Layout extends Component {
         }
     }
 
+    setLanguage = id => {
+        this.props.set(id);
+    }
+
     selectItem = item => this.setState({ selectedItem: item });
 
     render() {
-        const { selectedItem } = this.state;
+        const { selectedItem, language } = this.state;
         const {
             auth: { loading, data, role },
-            content: { cms },
+            content: { cms, languages },
             children,
             dark = false
         } = this.props;
@@ -89,6 +103,10 @@ class Layout extends Component {
                     </div>
 
                     <div className="mr-3 text-24 text-orange">
+                        <Languages languages={languages} set={this.setLanguage} language={language} />
+                    </div>
+
+                    <div className="mr-3 text-24 text-orange">
                         <Notifications cms={{ header }} notifications={data.notifications} />
                     </div>
 
@@ -112,7 +130,8 @@ class Layout extends Component {
 const mapStateToProps = state => ({ ...state });
 
 const mapDispatchToProps = dispatch => ({
-    onAuthLogout: () => dispatch(authLogout()),
+    logout: () => dispatch(authLogout()),
+    set: id => dispatch(setLanguage(id))
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Layout));

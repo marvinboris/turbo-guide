@@ -26,13 +26,14 @@ class Addons extends Component {
 
         const currencyObj = currencies.find(c => c.cc === currency);
         const symbol = currencyObj && currencyObj.symbol;
+        const lang = localStorage.getItem('lang');
 
-        const addonsContent = addons.map(addon => <Addon key={addon.id + Math.random()} symbol={symbol} position={position} {...addon} add={() => this.props.add(addon.id)} sub={() => this.props.sub(addon.id)} />);
+        const addonsContent = addons.map(addon => <Addon key={addon.id + Math.random()} symbol={symbol} position={position} {...{ ...addon, name: addon.name[lang], description: addon.description[lang] }} add={() => this.props.add(addon.id)} sub={() => this.props.sub(addon.id)} />);
 
         return <>
-            {restaurant.caution && <Wrapper className="pb-4 mb-2">
+            {restaurant.caution[lang] && <Wrapper className="pb-4 mb-2">
                 <div className="rounded-8 bg-soft py-2 px-3 text-10">
-                    {restaurant.caution}
+                    {restaurant.caution[lang]}
                 </div>
             </Wrapper>}
 

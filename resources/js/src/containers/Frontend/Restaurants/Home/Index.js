@@ -186,14 +186,15 @@ class Home extends Component {
                 cms: { pages: { components: { food }, frontend: { restaurants: { home } } } },
                 currencies,
             },
-            frontend: { restaurants: { loading, restaurant = {}, categories = [], currency, languages = [], position } }
+            frontend: { restaurants: { loading, restaurant = { days: {}, hours: {}, address: {} }, categories = [], currency, languages = [], position } }
         } = this.props;
         const { id } = this.state;
+        const lang = localStorage.getItem('lang');
 
         const currencyObj = currencies.find(c => c.cc === currency);
 
-        const categoriesContent = categories.map((category, index) => <Category id={category.id} index={index} key={JSON.stringify(category) + Math.random()} name={category.name}>
-            {category.meals && category.meals.map(meal => <Meal symbol={currencyObj && currencyObj.symbol} position={position} key={JSON.stringify(meal) + Math.random()} {...meal} slug={this.props.match.params.slug} />)}
+        const categoriesContent = categories.map((category, index) => <Category id={category.id} index={index} key={JSON.stringify(category) + Math.random()} name={category.name[lang]}>
+            {category.meals && category.meals.map(meal => <Meal symbol={currencyObj && currencyObj.symbol} position={position} key={JSON.stringify(meal) + Math.random()} {...{ ...meal, name: meal.name[lang], description: meal.description[lang] }} slug={this.props.match.params.slug} />)}
         </Category>);
 
         const items = [];
@@ -245,7 +246,7 @@ class Home extends Component {
                             </div>
 
                             <span>
-                                {restaurant.days}
+                                {restaurant.days[lang]}
                             </span>
                         </div>
 
@@ -255,14 +256,14 @@ class Home extends Component {
                             </div>
 
                             <span>
-                                {restaurant.hours}
+                                {restaurant.hours[lang]}
                             </span>
                         </div>
                     </div>
 
                     <div className="d-flex justify-content-between align-items-center">
                         <div className="text-300 text-8">
-                            {restaurant.address}
+                            {restaurant.address[lang]}
                         </div>
 
                         <div className="d-flex align-items-center">
@@ -281,7 +282,7 @@ class Home extends Component {
 
                 <Wrapper className="navigation scrollbar-orange" style={{ paddingTop: 18 }}>
                     <div className="text-truncate" style={{ overflow: 'visible' }}>
-                        <Navigation categories={categories.map(c => updateObject(c, { active: id === c.id }))} onClick={this.onClick} />
+                        <Navigation categories={categories.map(c => updateObject({ ...c, name: c.name[lang], description: c.description[lang] }, { active: id === c.id }))} onClick={this.onClick} />
                     </div>
                 </Wrapper>
 
@@ -294,7 +295,7 @@ class Home extends Component {
                         <div className="rounded-pill bg-orange" style={{ height: 5, width: 18 }} />
                     </div>
 
-                    <SelectCategory cms={home} categories={categories} id={id} onClick={this.onClick} />
+                    <SelectCategory cms={home} categories={categories.map(c => ({ ...c, name: c.name[lang], description: c.description[lang] }))} id={id} onClick={this.onClick} />
                 </Wrapper>
             </div>
 

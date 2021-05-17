@@ -336,7 +336,7 @@ export const authCheckState = () => async dispatch => {
             if (res.status === 521) await dispatch(authLogoutSuccess());
             else if (res.status !== 200 && res.status !== 201) throw new Error(resData.error.message);
 
-            const { data, role, language } = resData;
+            const { data, role } = resData;
 
             const expirationDate = new Date(localStorage.getItem('expirationDate'));
             if (expirationDate > new Date()) {

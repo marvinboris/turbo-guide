@@ -34,14 +34,15 @@ class Comments extends Component {
     }
 
     render() {
-        const { 
+        const {
             content: {
                 cms: { pages: { frontend: { restaurants: { meals } } } },
                 countries,
             },
-            frontend: { restaurants: { restaurant = {}, comments = [] } } 
+            frontend: { restaurants: { restaurant = {}, comments = [] } }
         } = this.props;
         const { modal, name, body, country } = this.state;
+        const lang = localStorage.getItem('lang');
 
         const commentsContent = comments.map(comment => <Comment key={comment.id + Math.random()} {...comment} />);
         const countriesOptions = countries.map(({ country, code, name }) => <option key={country} value={country} code={code}>{name}</option>);
@@ -58,9 +59,9 @@ class Comments extends Component {
                     </span>
                 </div>
 
-                {restaurant.disclaimer && <div>
+                {restaurant.disclaimer[lang] && <div>
                     <div style={{ padding: '12px 33px', margin: '0px -33px' }} className="bg-orange-10 text-300 text-10">
-                        {restaurant.disclaimer}
+                        {restaurant.disclaimer[lang]}
                     </div>
                 </div>}
 

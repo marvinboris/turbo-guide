@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 class AddonController extends Controller
 {
     private $rules = [
-        'name' => 'required|string',
+        'name' => 'array|required',
         'reference' => 'nullable|string',
-        'description' => 'nullable|string',
+        'description' => 'array|nullable',
         'price' => 'required|numeric',
         'photo' => 'required|file|image',
         'is_active' => 'required|integer',
@@ -91,9 +91,9 @@ class AddonController extends Controller
 
         $request->validate($this->rules);
 
-        $input = $request->except('photo');
+        $input = $request->except(['photo', 'name', 'description']);
 
-        $addonWithReference = $restaurant->addons()->find($request->reference);
+        $addonWithReference = $restaurant->addons()->whereReference($request->reference)->first();
         if ($addonWithReference) return response()->json([
             'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['addons']['reference'], 'danger'),
         ]);
@@ -103,7 +103,10 @@ class AddonController extends Controller
             $input['photo'] = htmlspecialchars($fileName);
         }
 
-        $restaurant->addons()->create($input);
+        $restaurant->addons()->create($input + [
+            'name' => json_encode($request->name),
+            'description' => json_encode($request->description),
+        ]);
 
         return response()->json([
             'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['addons']['created'], 'success'),
@@ -123,9 +126,9 @@ class AddonController extends Controller
         $rules = UtilController::rules($this->rules, $addon);
         $request->validate($rules);
 
-        $input = $request->except('photo');
+        $input = $request->except(['photo', 'name', 'description']);
 
-        $addonWithReference = $restaurant->addons()->find($request->reference);
+        $addonWithReference = $restaurant->addons()->whereReference($request->reference)->first();
         if ($addonWithReference && $addonWithReference->id !== +$id) return response()->json([
             'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['addons']['reference'], 'danger'),
         ]);
@@ -136,7 +139,10 @@ class AddonController extends Controller
             $input['photo'] = htmlspecialchars($fileName);
         }
 
-        $addon->update($input);
+        $addon->update($input + [
+            'name' => json_encode($request->name),
+            'description' => json_encode($request->description),
+        ]);
 
         return response()->json([
             'message' => [

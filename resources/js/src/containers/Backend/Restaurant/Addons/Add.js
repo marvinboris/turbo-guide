@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Col, FormGroup, Row } from 'reactstrap';
+import { Col, FormGroup, Input, Row } from 'reactstrap';
 import { faBook, faCheckCircle, faCookie, faFileImage, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -21,12 +21,14 @@ import * as actions from '../../../../store/actions';
 import { updateObject } from '../../../../shared/utility';
 
 const initialState = {
-    name: '',
-    description: '',
+    name: {},
+    description: {},
     price: '',
     reference: '',
     is_active: '1',
     photo: '',
+
+    translate: '',
 
     add: false,
 };
@@ -48,6 +50,13 @@ class Add extends Component {
     inputChangeHandler = e => {
         const { name, value, files } = e.target;
         if (files) this.readURL(e.target);
+        if (name.includes('[')) {
+            const { translate } = this.state;
+            const stateName = name.split('[')[0];
+            const element = this.state[stateName];
+            element[translate] = value;
+            return this.setState({ [stateName]: element });
+        }
         this.setState({ [name]: files ? files[0] : value });
     }
 
@@ -71,17 +80,10 @@ class Add extends Component {
 
 
     // Lifecycle methods
-    static getDerivedStateFromProps(nextProps, prevState) {
-        if (nextProps.backend.addons.addon && prevState.name === '') {
-            const { backend: { addons: { addon } } } = nextProps;
-            return updateObject(prevState, { ...addon });
-        }
-        return prevState;
-    }
-
     componentDidMount() {
         this.props.reset();
         if (this.props.edit) this.props.get(this.props.match.params.id);
+        this.setState({ translate: this.props.auth.data.main_language });
     }
 
     componentDidUpdate(prevProps) {
@@ -93,6 +95,10 @@ class Add extends Component {
                     message: this.props.backend.addons.message,
                 },
             });
+        }
+        if (!prevProps.backend.addons.addon && this.props.backend.addons.addon) {
+            const { backend: { addons: { addon } } } = this.props;
+            this.setState({ ...addon });
         }
     }
 
@@ -109,11 +115,13 @@ class Add extends Component {
                 currencies,
             },
             backend: { addons: { loading, error, message, addon } },
-            auth: { data: { currency } }
+            auth: { data: { currency, languages } }
         } = this.props;
-        let { name, description, price, reference, is_active, photo } = this.state;
+        let { name, description, price, reference, is_active, photo, translate } = this.state;
         let content = null;
         let errors = null;
+
+        const languagesOptions = languages.sort((a, b) => a.name > b.name).map(language => <option key={JSON.stringify(language)} value={language.abbr}>{language.name}</option>);
 
         if (loading) content = <Col xs={12}>
             <CustomSpinner />
@@ -138,9 +146,28 @@ class Add extends Component {
                                 <div className="mb-3 text-14 col-12">{instructions}</div>
 
                                 <div className="col-lg-9">
+                                    <div className="row">
+                                        {languages.map(l => <Fragment key={'language-' + l.abbr}>
+                                            <FormInput type="text" id={"name-" + l.abbr} className={"col-md-6" + (l.abbr === translate ? "" : " d-none")} icon={faBook} onChange={this.inputChangeHandler} value={name[l.abbr]} name={"name[" + l.abbr + "]"} required placeholder={form.name} />
+                                            <FormInput type="text" id={"description-" + l.abbr} className={"col-md-6" + (l.abbr === translate ? "" : " d-none")} icon={faPencilAlt} onChange={this.inputChangeHandler} value={description[l.abbr]} name={"description[" + l.abbr + "]"} placeholder={form.description} />
+                                        </Fragment>)}
+                                    </div>
+                                </div>
+
+                                <div className="col-lg-3">
+                                    <FormGroup>
+                                        <Input type="select" name="translate" onChange={this.inputChangeHandler} value={translate}>
+                                            {languagesOptions}
+                                        </Input>
+                                    </FormGroup>
+                                </div>
+
+                                <div className="col-12 mb-3">
+                                    <hr />
+                                </div>
+
+                                <div className="col-lg-9">
                                     <Row>
-                                        <FormInput type="text" className="col-md-6" icon={faBook} onChange={this.inputChangeHandler} value={name} name="name" required placeholder={form.name} />
-                                        <FormInput type="text" className="col-md-6" icon={faPencilAlt} onChange={this.inputChangeHandler} value={description} name="description" placeholder={form.description} />
                                         <FormInput type="number" className="col-md-6" addon={<div className="text-center text-light" style={{ margin: '0 -10px' }}>{symbol}</div>} onChange={this.inputChangeHandler} value={price} name="price" required placeholder={form.price} />
                                         <FormInput type="text" className="col-md-6" icon={faPencilAlt} onChange={this.inputChangeHandler} value={reference} name="reference" placeholder={form.reference} />
                                         <FormInput type="select" className="col-md-6" icon={faPencilAlt} onChange={this.inputChangeHandler} value={is_active} name="is_active" required>

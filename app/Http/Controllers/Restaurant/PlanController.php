@@ -135,7 +135,8 @@ class PlanController extends Controller
                 'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['plans']['purchased'], 'success'),
                 'data' => array_merge($restaurant->toArray(), [
                     'notifications' => $restaurant->notifications()->latest()->limit(5)->get(),
-                    'language' => $restaurant->language->abbr
+                    'language' => $restaurant->language->abbr,
+                    'languages' => $restaurant->languages,
                 ]),
             ]);
         }

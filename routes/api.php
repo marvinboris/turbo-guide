@@ -163,7 +163,7 @@ Route::namespace('Restaurant')->prefix('restaurant')->name('restaurant.')->group
             Route::patch('restaurant', 'SettingsController@restaurant')->name('restaurant');
             Route::patch('account', 'SettingsController@account')->name('account');
             Route::patch('cms', 'SettingsController@cms')->name('cms');
-            Route::patch('calendar', 'SettingsController@calendar')->name('calendar');
+            Route::patch('translatable', 'SettingsController@translatable')->name('translatable');
             Route::patch('language', 'SettingsController@language')->name('language');
             Route::get('', 'SettingsController@index')->name('index');
         });

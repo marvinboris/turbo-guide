@@ -99,14 +99,14 @@ export const cmsSettings = data => async (dispatch, getState) => {
     }
 };
 
-export const calendarSettings = data => async (dispatch, getState) => {
+export const translatableSettings = data => async (dispatch, getState) => {
     dispatch(settingsStart());
     const { role } = getState().auth;
 
     try {
         const token = localStorage.getItem('token');
         const form = new FormData(data);
-        const res = await fetch(`${prefix + role}/settings/calendar`, {
+        const res = await fetch(`${prefix + role}/settings/translatable`, {
             method: 'POST',
             body: form,
             headers: {

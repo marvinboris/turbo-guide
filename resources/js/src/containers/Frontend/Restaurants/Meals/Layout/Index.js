@@ -34,18 +34,19 @@ class Layout extends Component {
     }
 
     render() {
-        const {
+        let {
             content: {
                 cms: { pages: { general, frontend: { restaurants: { meals } } } },
                 currencies,
             },
             frontend: {
-                restaurants: { loading, error, meal = { name: {} }, total = 0, qty = 1, currency, position }
+                restaurants: { loading, error, meal, total = 0, qty = 1, currency, position }
             },
             match: { params: { slug } },
             children
         } = this.props;
         const lang = localStorage.getItem('lang');
+        if (!meal || (meal && Object.keys(meal).length === 0)) meal = { name: {} };
 
         let errors = null;
         if (error) errors = <>

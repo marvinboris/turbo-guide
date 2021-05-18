@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Badge, Button, Collapse, Modal, ModalBody, ModalHeader } from 'reactstrap';
-import { faCog, faPlus, faThLarge, faListAlt, faDrumstickBite, faCookie, faWineBottle, faList, faPowerOff, faTimes, faComment, faEdit, faArrowLeft, faBell } from '@fortawesome/free-solid-svg-icons';
+import { Badge, Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
+import { faCog, faPlus, faThLarge, faListAlt, faDrumstickBite, faCookie, faList, faPowerOff, faTimes, faComment, faEdit, faArrowLeft, faBell } from '@fortawesome/free-solid-svg-icons';
 
 import SideDrawerItem from './SideDrawerItem/SideDrawerItem';
 import Logo from '../../../../UI/Logo/Logo';
@@ -16,7 +16,7 @@ export default ({ data, toggle, logoutHandler, selectItem, selectedItem, cms, da
 
     let { name, photo, plan } = data;
 
-    if (!photo) photo = "https://placehold.it/100x100";
+    if (!photo) photo = "//placehold.it/100x100";
 
     let sideDrawerItems = null;
     const {

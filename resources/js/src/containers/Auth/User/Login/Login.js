@@ -16,7 +16,6 @@ export class Login extends Component {
     state = {
         email: '',
         password: '',
-        otp: 'email'
     }
 
     componentDidUpdate() {
@@ -50,14 +49,14 @@ export class Login extends Component {
         let titleContent, formContent;
 
         titleContent = <>
-            {login.dont_be_late}! <span className="text-yellow">{login.get_in}</span>
+            {login.dont_be_late}! <span className="text-orange">{login.get_in}</span>
         </>;
 
         formContent = <>
             <Input type="text" icon={faUser} onChange={this.inputChangeHandler} validation={{ required: true, isEmail: true }} value={email} name="email" required placeholder={login.email_address} />
             <Input type="password" icon={faLock} onChange={this.inputChangeHandler} validation={{ required: true }} value={password} name="password" required placeholder={login.password} />
 
-            <BetweenButton color="yellow" size="lg" className="py-3 px-4 btn-block" icon={faSignInAlt}>{login.sign_in}</BetweenButton>
+            <BetweenButton color="orange" size="lg" className="py-3 px-4 btn-block" icon={faSignInAlt}>{login.sign_in}</BetweenButton>
         </>;
 
 
@@ -66,14 +65,12 @@ export class Login extends Component {
         let content = null;
 
         if (loading) content = <div className="h-100 d-flex justify-content-center align-items-center"><CustomSpinner /></div>;
-        else content = <Form onSubmit={this.submitHandler} className="row">
-            <Col xl={10}>
-                {formContent}
-            </Col>
+        else content = <Form onSubmit={this.submitHandler}>
+            {formContent}
         </Form>;
 
         return <>
-            <Title>
+            <Title className="h4">
                 {titleContent}
             </Title>
             {errors}

@@ -6,7 +6,7 @@ import { Collapse, Button } from 'reactstrap';
 
 import './SideDrawerItem.css';
 
-const SideDrawerItem = ({ children, dropdown, icon, href = '', items, path = '', sideDrawerToggle, exact = true, select, selected, id, dark = false }) => {
+const SideDrawerItem = ({ children, dropdown, icon, href = '', items, path = '', sideDrawerToggle, exact = false, select, selected, id, dark = false }) => {
     const match = window.location.pathname.includes(path);
 
     const toggle = () => {
@@ -26,18 +26,18 @@ const SideDrawerItem = ({ children, dropdown, icon, href = '', items, path = '',
 
     let content;
     if (!dropdown) content = <>
-        <NavLink onClick={onSideDrawerToggle} exact={exact} className="SideDrawerItem d-sm-none nav-link pl-3 text-normal text-300" activeClassName="active" to={href}>
-            <div>
-                <FontAwesomeIcon fixedWidth icon={icon} className="icon" />
-                <div className="separator text-white-50">|</div>
+        <NavLink onClick={onSideDrawerToggle} exact={exact} className="App SideDrawerItem p-0 d-sm-none nav-link" activeClassName="active" to={href}>
+            <div className="py-2 px-3 text-16 text-300 rounded-4">
+                <FontAwesomeIcon fixedWidth icon={icon} className="text-orange mr-3" />
+
                 <span className="text">{children}</span>
             </div>
         </NavLink>
 
-        <NavLink onClick={onSelect} exact={exact} className="SideDrawerItem nav-link d-none d-sm-block pl-3 text-normal text-300" activeClassName="active" to={href}>
-            <div>
-                <FontAwesomeIcon fixedWidth icon={icon} className="icon" />
-                <div className="separator text-white-50">|</div>
+        <NavLink onClick={onSelect} exact={exact} className="App SideDrawerItem p-0 nav-link d-none d-sm-block" activeClassName="active" to={href}>
+            <div className="py-2 px-3 text-16 text-300 rounded-4">
+                <FontAwesomeIcon fixedWidth icon={icon} className="text-orange mr-3" />
+
                 <span className="text">{children}</span>
             </div>
         </NavLink>
@@ -52,18 +52,18 @@ const SideDrawerItem = ({ children, dropdown, icon, href = '', items, path = '',
 
         content = (
             <div>
-                <Button color="link" onClick={toggle} className={`SideDrawerItem nav-link d-block w-100 pl-3 text-normal text-300 rounded-0 text-left text-${dark ? "light" : "secondary"} position-relative ${match ? 'active' : ''}`}>
-                    <div>
-                        <FontAwesomeIcon fixedWidth icon={icon} className="icon" />
-                        <div className="separator text-white-50">|</div>
+                <Button color="link" onClick={toggle} className={`App SideDrawerItem nav-link d-block w-100 rounded-0 border-0 p-0 text-left text-${dark ? "light" : "orange"} position-relative ${match ? 'active' : ''}`} style={{ boxShadow: 'none' }}>
+                    <div className="py-2 px-3 text-16 text-300 rounded-4">
+                        <FontAwesomeIcon fixedWidth icon={icon} className="text-orange mr-3" />
+
                         <span className="text">{children}</span>
                     </div>
 
-                    <FontAwesomeIcon fixedWidth icon={faAngleDown} className={`position-absolute angle-down text-${dark ? "light" : "secondary"} ${isSelected ? 'open' : ''}`} style={{ right: 16, top: '50%' }} />
+                    <FontAwesomeIcon fixedWidth icon={faAngleDown} className={`position-absolute angle-down text-${dark ? "light" : "orange"} ${isSelected ? 'open' : ''}`} style={{ right: 16, top: '50%' }} />
                 </Button>
 
                 <Collapse isOpen={isSelected} className={`pl-3 bg-${dark ? "darkblue-20" : "gray-10"}`}>
-                    <ul className={`nav flex-column border-left ml-3 border-${dark ? "white" : "secondary"}-20`}>
+                    <ul className={`nav flex-column border-left ml-3 border-${dark ? "white" : "orange"}-20`}>
                         {itemEls}
                     </ul>
                 </Collapse>

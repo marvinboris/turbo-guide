@@ -43,10 +43,12 @@ class Index extends Component {
             <Error err={error} />
         </>;
         const feedback = <Feedback message={message} />;
+        const lang = localStorage.getItem('lang');
 
         if (!comments) comments = [];
         const data = comments.map(comment => {
             return updateObject(comment, {
+                meal: comment.meal[lang],
                 created_at: convertDate(comment.created_at),
                 action: <div className="text-center">
                     <Link to={`/restaurant/comments/${comment.id}`} className="mr-2">

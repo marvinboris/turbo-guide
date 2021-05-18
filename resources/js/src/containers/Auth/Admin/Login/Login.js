@@ -51,7 +51,7 @@ export class Login extends Component {
         let titleContent, formContent;
 
         titleContent = <>
-            {login.sign_in_to} <span className="text-yellow">{login.admin_panel}</span>
+            {login.sign_in_to} <span className="text-orange">{login.admin_panel}</span>
         </>;
 
         formContent = <>
@@ -68,7 +68,7 @@ export class Login extends Component {
                 </Label>
             </FormGroup>
 
-            <BetweenButton color="yellow" size="lg" className="py-3 px-4 btn-block" icon={faSignInAlt}>{login.sign_in}</BetweenButton>
+            <BetweenButton color="orange" size="lg" className="py-3 px-4 btn-block" icon={faSignInAlt}>{login.sign_in}</BetweenButton>
         </>;
 
         const errors = <Error err={error} />;

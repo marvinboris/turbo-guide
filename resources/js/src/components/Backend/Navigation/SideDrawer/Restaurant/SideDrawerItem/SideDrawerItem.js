@@ -26,7 +26,7 @@ const SideDrawerItem = ({ children, dropdown, icon, href = '', items, path = '',
 
     let content;
     if (!dropdown) content = <>
-        <NavLink onClick={onSideDrawerToggle} exact={exact} className="SideDrawerItem p-0 d-sm-none nav-link" activeClassName="active" to={href}>
+        <NavLink onClick={onSideDrawerToggle} exact={exact} className="Restaurant SideDrawerItem p-0 d-sm-none nav-link" activeClassName="active" to={href}>
             <div className="py-2 px-3 text-16 text-300 rounded-4">
                 <FontAwesomeIcon fixedWidth icon={icon} className="text-orange mr-3" />
 
@@ -34,7 +34,7 @@ const SideDrawerItem = ({ children, dropdown, icon, href = '', items, path = '',
             </div>
         </NavLink>
 
-        <NavLink onClick={onSelect} exact={exact} className="SideDrawerItem p-0 nav-link d-none d-sm-block" activeClassName="active" to={href}>
+        <NavLink onClick={onSelect} exact={exact} className="Restaurant SideDrawerItem p-0 nav-link d-none d-sm-block" activeClassName="active" to={href}>
             <div className="py-2 px-3 text-16 text-300 rounded-4">
                 <FontAwesomeIcon fixedWidth icon={icon} className="text-orange mr-3" />
 
@@ -52,7 +52,7 @@ const SideDrawerItem = ({ children, dropdown, icon, href = '', items, path = '',
 
         content = (
             <div>
-                <Button color="link" onClick={toggle} className={`SideDrawerItem nav-link d-block w-100 pl-3 text-normal text-300 rounded-0 text-left text-${dark ? "light" : "secondary"} position-relative ${match ? 'active' : ''}`}>
+                <Button color="link" onClick={toggle} className={`Restaurant SideDrawerItem nav-link d-block w-100 pl-3 text-normal text-300 rounded-0 text-left text-${dark ? "light" : "secondary"} position-relative ${match ? 'active' : ''}`}>
                     <div>
                         <FontAwesomeIcon fixedWidth icon={icon} className="icon" />
                         <div className="separator text-white-50">|</div>

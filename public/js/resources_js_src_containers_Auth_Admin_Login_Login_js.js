@@ -478,7 +478,7 @@ var Login = /*#__PURE__*/function (_Component) {
       var titleContent, formContent;
       titleContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
         children: [login.sign_in_to, " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("span", {
-          className: "text-yellow",
+          className: "text-orange",
           children: login.admin_panel
         })]
       });
@@ -535,7 +535,7 @@ var Login = /*#__PURE__*/function (_Component) {
             })
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_components_UI_Button_BetweenButton_BetweenButton__WEBPACK_IMPORTED_MODULE_4__.default, {
-          color: "yellow",
+          color: "orange",
           size: "lg",
           className: "py-3 px-4 btn-block",
           icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_10__.faSignInAlt,

@@ -1174,9 +1174,11 @@ var Index = /*#__PURE__*/function (_Component) {
         message: message
       });
 
+      var lang = localStorage.getItem('lang');
       if (!comments) comments = [];
       var data = comments.map(function (comment) {
         return (0,_shared_utility__WEBPACK_IMPORTED_MODULE_12__.updateObject)(comment, {
+          meal: comment.meal[lang],
           created_at: (0,_shared_utility__WEBPACK_IMPORTED_MODULE_12__.convertDate)(comment.created_at),
           action: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
             className: "text-center",

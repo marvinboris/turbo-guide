@@ -1,0 +1,14 @@
+.Backend.Layout main {
+    margin-left: 0;
+    box-shadow: -3 3 17 rgba(0, 0, 0, 0.16);
+}
+
+.Backend.Layout .main {
+    overflow-x: hidden;
+}
+
+@media (min-width: 768px) {
+    .Backend.Layout main {
+        margin-left: var(--restaurant-sidebar-width);
+    }
+}

@@ -1,28 +1,33 @@
-import React from 'react';
-import { Col, Badge, Collapse } from 'reactstrap';
+import React, { useState } from 'react';
+import { Col, Badge, Modal, ModalHeader, ModalBody, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTachometerAlt, faCog, faUserTag, faTools, faUser, faUserCog, faLanguage, faBell, faWrench, faBorderNone, faExclamationCircle, faWallet, faHandHoldingUsd, faMoneyBillWaveAlt, faMoneyCheckAlt, faMoneyCheck, faSearchDollar, faDollarSign, faFile, faCircleNotch, faLayerGroup, faChalkboardTeacher, faCalendar, faUserGraduate, faSchool, faClock, faFilm, faListOl, faCopy, faMarker, faBook, faComment, faDrumstickBite, faListAlt, faCookie, faList } from '@fortawesome/free-solid-svg-icons';
+import { faTachometerAlt, faCog, faUserTag, faTools, faUser, faUserCog, faLanguage, faBell, faWrench, faComment, faDrumstickBite, faListAlt, faCookie, faList, faArrowLeft, faPowerOff, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { faCircle } from '@fortawesome/free-regular-svg-icons';
 
 import SideDrawerItem from './SideDrawerItem/SideDrawerItem';
+import Logo from '../../../UI/Logo/Logo';
 
 import './SideDrawer.css';
 
-export default ({ data, role = 'user', notifications = [], toggle, isOpen, selectItem, selectedItem, cms, dark = false }) => {
-    let { first_name, last_name, name, photo, role: role_ } = data;
+export default ({ data, role = 'user', logoutHandler, toggle, selectItem, selectedItem, cms, dark = false }) => {
+    const [modal, setModal] = useState(false);
 
-    if (!name) name = `${first_name} ${last_name}`;
-    if (!photo) photo = "https://placehold.it/100x100";
+    const modalToggle = () => setModal(!modal);
+
+    let { name, photo, role: role_ } = data;
+
+    if (!photo) photo = "//placehold.it/100x100";
 
     let addOns = null;
     let sideDrawerItems = null;
     const {
         pages: {
             backend: {
+                header: { logout, close: close_, sure_logout },
                 sidebar: {
                     user, admin,
                     menu: {
-                        dashboard, admins, users, roles, features, languages, cms: cms_, notifications: notifications_, settings,
+                        dashboard, admins, users, roles, features, languages, cms: cms_, notifications, settings,
                         meals, categories, addons, comments, history }
                 }
             }
@@ -33,6 +38,17 @@ export default ({ data, role = 'user', notifications = [], toggle, isOpen, selec
         user,
         admin,
     };
+
+    const logoutContent = <>
+        <ModalHeader toggle={modalToggle}>{logout}</ModalHeader>
+        <ModalBody className="text-center">
+            <p>{sure_logout}?</p>
+            <div>
+                <Button color="green" onClick={logoutHandler}>{logout} <FontAwesomeIcon icon={faPowerOff} fixedWidth /></Button>{' '}
+                <Button color="red" onClick={modalToggle}>{close_} <FontAwesomeIcon icon={faTimes} fixedWidth /></Button>
+            </div>
+        </ModalBody>
+    </>;
 
     const sideDrawerItem = (fixed = false, id = null, dropdown = null, icon, path, custom = false, addon = []) => {
         if (id) return <SideDrawerItem id={id} sideDrawerToggle={toggle} select={selectItem} selected={selectedItem} icon={icon} href={path}>{id}</SideDrawerItem>;
@@ -69,15 +85,17 @@ export default ({ data, role = 'user', notifications = [], toggle, isOpen, selec
     switch (role) {
         case 'user':
             addOns = <div className="text-left">
-                <div className="text-yellow small"><FontAwesomeIcon icon={faCircle} size="sm" fixedWidth className="mr-1" />{role_.name}</div>
+                <div className="text-orange small"><FontAwesomeIcon icon={faCircle} size="sm" fixedWidth className="mr-1" />{role_.name}</div>
             </div>;
             sideDrawerItems = <>
+                <div className="text-border text-16 px-3 py-2 mb-1">MENU</div>
                 {sideDrawerItem(true, dashboard, null, faTachometerAlt, "/user/dashboard")}
                 {sideDrawerItem(false, null, users, faUser, "/user/users")}
                 {sideDrawerItem(false, null, roles, faUserTag, "/user/roles")}
                 {sideDrawerItem(false, null, features, faTools, "/user/features")}
                 {sideDrawerItem(false, null, languages, faLanguage, "/user/languages")}
 
+                <div className="text-border text-16 px-3 py-2 mb-1 mt-4">RESOURCES</div>
                 {sideDrawerItem(false, null, meals, faDrumstickBite, "/user/meals")}
                 {sideDrawerItem(false, null, categories, faListAlt, "/user/categories")}
                 {sideDrawerItem(false, null, addons, faCookie, "/user/addons")}
@@ -93,25 +111,38 @@ export default ({ data, role = 'user', notifications = [], toggle, isOpen, selec
                     { link: '/backend', text: cms_.backend },
                     { link: '/frontend', text: cms_.frontend },
                 ])}
-                <SideDrawerItem id={notifications_} sideDrawerToggle={toggle} select={selectItem} selected={selectedItem} icon={faBell} href="/user/notifications">
-                    {notifications_}{' '}
-                    <Badge color="yellow" className="position-relative rounded-circle text-x-small text-700 d-inline-flex justify-content-center align-items-center" style={{ width: 18, height: 18, top: -7 }}><b className="text-white">{notifications.length}</b></Badge>
+                <SideDrawerItem id={notifications} sideDrawerToggle={toggle} select={selectItem} selected={selectedItem} icon={faBell} href="/user/notifications">
+                    {notifications}{' '}
+                    {data.notifications.filter(notification => !notification.read_at).length > 0 && <Badge color="green" className="position-relative rounded-circle text-x-small text-700 d-inline-flex justify-content-center align-items-center" style={{ width: 18, height: 18, top: -2, left: 2 }}><b className="text-white">{data.notifications.filter(notification => !notification.read_at).length}</b></Badge>}
                 </SideDrawerItem>
                 {sideDrawerItem(true, null, settings, faCog, "/user/settings", [
                     { link: '/language', text: settings.language },
                 ])}
+
+                <div className="mt-5 pt-5">
+                    <div className="py-2 px-3 text-16 text-300 rounded-4" onClick={modalToggle} style={{ cursor: 'pointer' }}>
+                        <FontAwesomeIcon fixedWidth icon={faPowerOff} className="text-orange mr-3" />
+
+                        <span className="text">{logout}</span>
+                    </div>
+                </div>
+
+                <Modal isOpen={modal} toggle={modalToggle}>
+                    {logoutContent}
+                </Modal>
             </>;
             break;
 
         case 'admin':
             sideDrawerItems = <>
+                <div className="text-border text-16 px-3 py-2 mb-1">MENU</div>
                 {sideDrawerItem(true, dashboard, null, faTachometerAlt, "/admin/dashboard")}
-                {sideDrawerItem(true, null, admins, faUserCog, "/admin/admins")}
                 {sideDrawerItem(true, null, users, faUser, "/admin/users")}
                 {sideDrawerItem(true, null, roles, faUserTag, "/admin/roles")}
                 {sideDrawerItem(true, null, features, faTools, "/admin/features")}
                 {sideDrawerItem(true, null, languages, faLanguage, "/admin/languages")}
 
+                <div className="text-border text-16 px-3 py-2 mb-1 mt-4">RESOURCES</div>
                 {sideDrawerItem(true, null, meals, faDrumstickBite, "/admin/meals")}
                 {sideDrawerItem(true, null, categories, faListAlt, "/admin/categories")}
                 {sideDrawerItem(true, null, addons, faCookie, "/admin/addons")}
@@ -127,13 +158,25 @@ export default ({ data, role = 'user', notifications = [], toggle, isOpen, selec
                     { link: '/backend', text: cms_.backend },
                     { link: '/frontend', text: cms_.frontend },
                 ])}
-                <SideDrawerItem id={notifications_} sideDrawerToggle={toggle} select={selectItem} selected={selectedItem} icon={faBell} href="/admin/notifications">
-                    {notifications_}{' '}
-                    <Badge color="yellow" className="position-relative rounded-circle text-x-small text-700 d-inline-flex justify-content-center align-items-center" style={{ width: 18, height: 18, top: -7 }}><b className="text-white">{notifications.length}</b></Badge>
+                <SideDrawerItem id={notifications} sideDrawerToggle={toggle} select={selectItem} selected={selectedItem} icon={faBell} href="/admin/notifications">
+                    {notifications}{' '}
+                    {data.notifications.filter(notification => !notification.read_at).length > 0 && <Badge color="green" className="position-relative rounded-circle text-x-small text-700 d-inline-flex justify-content-center align-items-center" style={{ width: 18, height: 18, top: -2, left: 2 }}><b className="text-white">{data.notifications.filter(notification => !notification.read_at).length}</b></Badge>}
                 </SideDrawerItem>
                 {sideDrawerItem(true, null, settings, faCog, "/admin/settings", [
                     { link: '/language', text: settings.language },
                 ])}
+
+                <div className="mt-5 pt-5">
+                    <div className="py-2 px-3 text-16 text-300 rounded-4" onClick={modalToggle} style={{ cursor: 'pointer' }}>
+                        <FontAwesomeIcon fixedWidth icon={faPowerOff} className="text-orange mr-3" />
+
+                        <span className="text">{logout}</span>
+                    </div>
+                </div>
+
+                <Modal isOpen={modal} toggle={modalToggle}>
+                    {logoutContent}
+                </Modal>
             </>;
             break;
     }
@@ -141,37 +184,48 @@ export default ({ data, role = 'user', notifications = [], toggle, isOpen, selec
 
 
     return (
-        <Collapse isOpen={isOpen} className={`SideDrawer nav-left-sidebar bg-${dark ? "grayblue text-white border-right border-darkblue" : "soft text-secondary"} shadow-sm position-fixed d-md-block`} style={{ width: 280 }}>
-            <div className="menu-list mh-100 d-flex flex-column">
-                <Col xs={12} className="pb-4">
-                    <div className={`py-3 mb-4 d-flex align-items-center border-top border-bottom border-${dark ? "white" : "secondary"}-20`}>
-                        <div className="px-2 position-relative d-flex justify-content-center">
-                            <div className="border-3 border-yellow d-flex justify-content-center align-items-center border rounded-circle" style={{ width: 68, height: 68 }}>
-                                <img src={photo} className="rounded-circle" style={{ width: 54, height: 54, objectFit: 'cover', objectPosition: 'center' }} alt="User profile" />
+        <div className={`App SideDrawer nav-left-sidebar bg-soft shadow-sm position-fixed`}>
+            <div className={`vh-100 d-flex flex-column bg-${dark ? "grayblue text-white border-right border-darkblue" : "orange-10 text-secondary"}`}>
+                <div className="p-4 border-bottom border-light">
+                    <div className="my-2 mx-3 d-flex justify-content-between align-items-center">
+                        <Logo sm />
+
+                        <div className="d-md-none">
+                            <FontAwesomeIcon icon={faArrowLeft} cursor="pointer" className="text-21" onClick={toggle} />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="p-4 mt-3 mt-md-5 flex-fill">
+                    <div className="mt-2 mx-3">
+                        <div className="mb-4 mb-md-5 d-flex align-items-center">
+                            <div className="pr-3 pr-md-0">
+                                <img src={photo} className="rounded-circle" style={{ width: 62, height: 62, objectFit: 'cover', objectPosition: 'center' }} alt="User profile" />
                             </div>
 
-                            {/* <FontAwesomeIcon icon={faEdit} className="position-absolute text-yellow" size="2x" style={{ top: 0, right: 0 }} /> */}
-                        </div>
-                        <div className="p-0 h-100 flex-fill">
-                            <div className="align-items-center m-0 h-100">
-                                <Col xs={12} className="p-0 text-large">
-                                    <strong>{name}</strong>
-                                </Col>
-                                <Col xs={12} className="p-0 text-300 small">{roles_[role]}</Col>
+                            <div className="text-montserrat text-18 d-md-none">
+                                Hello, <span className="text-700">{name}</span>
+                                <Col xs={12} className="p-0 text-300">{roles_[role]}</Col>
                                 {addOns}
                             </div>
                         </div>
+
+                        <div className="text-montserrat text-18 mb-4 mb-md-5 d-none d-md-block">
+                            Hello, <span className="text-700">{name}</span>
+                            <Col xs={12} className="p-0 text-300">{roles_[role]}</Col>
+                            {addOns}
+                        </div>
+
+                        <div className="px-3">
+                            <ul className="navbar-nav flex-column pr-3 scrollbar-orange">
+                                {sideDrawerItems}
+                            </ul>
+                        </div>
                     </div>
-                </Col>
-                <nav className="flex-fill">
-                    <div>
-                        <ul className="navbar-nav w-100 flex-column">
-                            {sideDrawerItems}
-                        </ul>
-                    </div>
-                </nav>
+                </div>
             </div>
-            <div className="backdrop w-100 bg-soft-50 position-fixed d-md-none" onClick={toggle} style={{ top: 70, zIndex: -1 }} />
-        </Collapse>
+
+            <div className="backdrop bg-soft-50 position-fixed d-md-none" onClick={toggle} style={{ top: 0, zIndex: -1 }} />
+        </div>
     )
 };

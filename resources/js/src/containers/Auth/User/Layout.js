@@ -95,14 +95,12 @@ class Auth extends Component {
 
             <div className="flex-fill overflow-hidden">
                 <div className="h-100">
-                    <Container className="h-100">
-                        <Row className="justify-content-between align-items-center h-100">
-                            <Col xl={5} className={`d-flex flex-column justify-content-center h-100 text-${dark ? "white" : "dark"}`}>
-                                <div>{children}</div>
-                            </Col>
-
-                            <Col xl={5}>
-                                <img src={Img} className="img-fluid" />
+                    <Container fluid className="h-100">
+                        <Row className="justify-content-center h-100">
+                            <Col xl={10} className="d-flex flex-column justify-content-center h-100">
+                                <Row className="justify-content-center">
+                                    <div className="col-xxl-3 col-xl-4 col-lg-5 col-md-6 col-sm-9">{children}</div>
+                                </Row>
                             </Col>
                         </Row>
                     </Container>

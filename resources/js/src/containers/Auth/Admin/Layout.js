@@ -28,11 +28,11 @@ class Layout extends Component {
                         <Row className="justify-content-center h-100">
                             <Col xl={10} className="d-flex flex-column justify-content-center h-100">
                                 <Row className="justify-content-center">
-                                    <Col xl={3}>
+                                    <div className="col-xxl-3 col-xl-4 col-lg-5 col-md-6 col-sm-9">
                                         <img src={logo} alt="Logo" className="img-fluid mx-auto w-60 mb-5 d-none d-sm-block" style={{ opacity: .5 }} />
 
                                         <div className="mt-3">{children}</div>
-                                    </Col>
+                                    </div>
                                 </Row>
                             </Col>
                         </Row>

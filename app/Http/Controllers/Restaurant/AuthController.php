@@ -98,6 +98,7 @@ class AuthController extends Controller
             'userData' => $restaurant->toArray() + [
                 'notifications' => $restaurant->notifications()->latest()->limit(5)->get(),
                 'language' => $restaurant->language->abbr,
+                'languages' => $restaurant->languages,
             ]
         ]);
     }

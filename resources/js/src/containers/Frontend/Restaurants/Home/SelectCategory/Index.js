@@ -54,7 +54,7 @@ export default ({ categories, id, onClick, cms }) => {
                             </div>
                         </ListGroupItem>
 
-                        {categories.filter(category => category.name.toLowerCase().includes(search.toLowerCase())).map(category => <ListGroupItem key={`ListGroupItem-${category.id}`} active={+category.id === +id} onClick={() => click(category.id)} style={{ cursor: 'pointer' }}>
+                        {categories.filter(category => (category.name || '').toLowerCase().includes(search.toLowerCase())).map(category => <ListGroupItem key={`ListGroupItem-${category.id}`} active={+category.id === +id} onClick={() => click(category.id)} style={{ cursor: 'pointer' }}>
                             <ListGroupItemHeading className="text-13 text-500">{category.name}</ListGroupItemHeading>
 
                             <ListGroupItemText className="text-10 text-300 m-0">

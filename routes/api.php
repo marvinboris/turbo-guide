@@ -135,6 +135,11 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
                 Route::get('{recharge}', 'RechargeController@show')->name('show');
             });
 
+            Route::prefix('plans')->name('plans.')->group(function () {
+                Route::get('info', 'PlanController@info')->name('info');
+                Route::get('{plan}', 'PlanController@show')->name('show');
+            });
+
 
 
             Route::apiResources([
@@ -145,6 +150,7 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
 
                 'methods' => 'MethodController',
                 'recharges' => 'RechargeController',
+                'plans' => 'PlanController',
             ]);
         });
     });

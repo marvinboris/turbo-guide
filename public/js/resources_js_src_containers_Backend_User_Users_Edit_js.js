@@ -1040,7 +1040,7 @@ var Add = /*#__PURE__*/function (_Component) {
 
       if (!roles) roles = [];
       var rolesOptions = roles.sort(function (a, b) {
-        return a.name > b.name;
+        return a.name.localeCompare(b.name);
       }).map(function (role) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("option", {
           value: role.id,
@@ -1124,9 +1124,6 @@ var Add = /*#__PURE__*/function (_Component) {
                       placeholder: form.role,
                       onChange: this.inputChangeHandler,
                       icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faUserTag,
-                      validation: {
-                        required: true
-                      },
                       required: true,
                       value: role_id,
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("option", {

@@ -98,7 +98,11 @@ export default ({ data, role = 'user', logoutHandler, toggle, selectItem, select
 
                 <div className="text-border text-16 px-3 py-2 mb-1 mt-4">RESOURCES</div>
                 {sideDrawerItem(false, null, restaurants, faHome, "/user/restaurants")}
-                {sideDrawerItem(false, null, plans, faBox, "/user/plans")}
+                {sideDrawerItem(false, null, plans, faBox, "/user/plans", [
+                    { link: '/add', text: plans.add },
+                    { link: '/bought', text: plans.bought },
+                    { link: '/', text: plans.index },
+                ])}
                 {sideDrawerItem(false, null, recharges, faMoneyBillWaveAlt, "/user/recharges")}
                 {sideDrawerItem(false, null, methods, faThList, "/user/methods")}
 
@@ -146,7 +150,11 @@ export default ({ data, role = 'user', logoutHandler, toggle, selectItem, select
 
                 <div className="text-border text-16 px-3 py-2 mb-1 mt-4">RESOURCES</div>
                 {sideDrawerItem(true, null, restaurants, faHome, "/admin/restaurants")}
-                {sideDrawerItem(true, null, plans, faBox, "/admin/plans")}
+                {sideDrawerItem(true, null, plans, faBox, "/admin/plans", [
+                    { link: '/add', text: plans.add },
+                    { link: '/bought', text: plans.bought },
+                    { link: '/', text: plans.index },
+                ])}
                 {sideDrawerItem(true, null, recharges, faMoneyBillWaveAlt, "/admin/recharges")}
                 {sideDrawerItem(false, null, methods, faThList, "/admin/methods")}
 

@@ -118,7 +118,7 @@ class Add extends Component {
         const redirect = !(feature && JSON.parse(feature.permissions).includes(this.props.edit ? 'u' : 'c')) && <Redirect to="/user/dashboard" />;
 
         if (!roles) roles = [];
-        const rolesOptions = roles.sort((a, b) => a.name > b.name).map(role => <option key={JSON.stringify(role)} value={role.id}>{role.name}</option>);
+        const rolesOptions = roles.sort((a, b) => a.name.localeCompare(b.name)).map(role => <option key={JSON.stringify(role)} value={role.id}>{role.name}</option>);
 
         if (loading) content = <Col xs={12}>
             <CustomSpinner />
@@ -143,7 +143,7 @@ class Add extends Component {
                                         <FormInput type="password" className="col-md-6" icon={faLock} onChange={this.inputChangeHandler} value={password} name="password" placeholder={form.password} />
                                         <FormInput type="password" className="col-md-6" icon={faLock} onChange={this.inputChangeHandler} value={password_confirmation} name="password_confirmation" placeholder={form.password_confirmation} />
                                         <FormInput type="email" className="col-md-6" icon={faEnvelope} onChange={this.inputChangeHandler} value={email} name="email" placeholder={form.email} />
-                                        <FormInput className="col-lg-6" type="select" name="role_id" placeholder={form.role} onChange={this.inputChangeHandler} icon={faUserTag} validation={{ required: true }} required value={role_id}>
+                                        <FormInput className="col-lg-6" type="select" name="role_id" placeholder={form.role} onChange={this.inputChangeHandler} icon={faUserTag} required value={role_id}>
                                             <option>{form.select_role}</option>
                                             {rolesOptions}
                                         </FormInput>

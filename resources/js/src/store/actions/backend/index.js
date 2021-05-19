@@ -138,7 +138,9 @@ export {
 export {
     deletePlans,
     getPlans,
+    getPlansBought,
     getPlansInfo,
+    postPlans,
     purchasePlan,
     resetPlans,
 } from './plans';

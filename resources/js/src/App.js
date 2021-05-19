@@ -77,6 +77,10 @@ const asyncUserMethodsEdit = asyncComponent(() => import('./containers/Backend/U
 const asyncUserRecharges = asyncComponent(() => import('./containers/Backend/User/Recharges'));
 const asyncUserRechargesAdd = asyncComponent(() => import('./containers/Backend/User/Recharges/Add'));
 
+const asyncUserPlans = asyncComponent(() => import('./containers/Backend/User/Plans'));
+const asyncUserPlansAdd = asyncComponent(() => import('./containers/Backend/User/Plans/Add'));
+const asyncUserPlansBought = asyncComponent(() => import('./containers/Backend/User/Plans/Bought'));
+
 // Admin routes
 const asyncAdminAdmins = asyncComponent(() => import('./containers/Backend/Admin/Admins'));
 const asyncAdminAdminsAdd = asyncComponent(() => import('./containers/Backend/Admin/Admins/Add'));
@@ -234,6 +238,10 @@ class App extends Component {
 
                     <Route path="/user/recharges/add" component={asyncUserRechargesAdd} />
                     <Route path="/user/recharges" component={asyncUserRecharges} />
+
+                    <Route path="/user/plans/bought" component={asyncUserPlansBought} />
+                    <Route path="/user/plans/add" component={asyncUserPlansAdd} />
+                    <Route path="/user/plans" component={asyncUserPlans} />
 
 
 

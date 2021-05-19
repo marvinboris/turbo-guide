@@ -323,7 +323,8 @@
                             "add": "Deposit plan",
                             "subscription": "Subscription Plan",
                             "purchase": "Purchase Plan",
-                            "index": "Plan list"
+                            "index": "Plan list",
+                            "bought": "Bought plans"
                         },
                         "recharges": {
                             "title": "Recharges",
@@ -647,7 +648,9 @@
                         "form": {
                             "name": "Method name",
                             "text": "Method description",
-                            "select_status": "Select status"
+                            "select_status": "Select status",
+                            "is_active": "Status",
+                            "created_at": "Created at"
                         }
                     }
                 }
@@ -997,7 +1000,8 @@
                             "add": "Deposit plan",
                             "subscription": "Subscription Plan",
                             "purchase": "Purchase Plan",
-                            "index": "Plan list"
+                            "index": "Plan list",
+                            "bought": "Bought plans"
                         },
                         "recharges": {
                             "title": "Recharges",
@@ -1321,7 +1325,9 @@
                         "form": {
                             "name": "Method name",
                             "text": "Method description",
-                            "select_status": "Select status"
+                            "select_status": "Select status",
+                            "is_active": "Status",
+                            "created_at": "Created at"
                         }
                     }
                 }

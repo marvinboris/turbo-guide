@@ -1069,8 +1069,8 @@ var Settings = /*#__PURE__*/function (_Component) {
       if (!prevProps.backend.settings.restaurant && this.props.backend.settings.restaurant) {
         var restaurant = this.props.backend.settings.restaurant;
         if (!restaurant.name) sweetalert2__WEBPACK_IMPORTED_MODULE_3___default().fire({
-          title: 'Missing restaurant\'s name',
-          text: "Please set your restaurant\'s name",
+          title: 'Missing restaurant\'s name or languages',
+          text: "Please set your restaurant\'s name and languages",
           icon: 'warning',
           showCancelButton: true,
           confirmButtonColor: '#3085d6',
@@ -1083,7 +1083,7 @@ var Settings = /*#__PURE__*/function (_Component) {
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      if (!this.props.backend.settings.restaurant.name) return this.props.history.push('/restaurant/settings');
+      if (!this.props.backend.settings.restaurant.name || this.props.backend.settings.restaurant.languages.length === 0) return this.props.history.push('/restaurant/settings');
       this.props.reset();
     }
   }, {

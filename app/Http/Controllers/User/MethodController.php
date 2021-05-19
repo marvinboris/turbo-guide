@@ -39,8 +39,8 @@ class MethodController extends Controller
 
         $filteredData = $filteredData->get();
 
-        foreach ($filteredData as $feature) {
-            $methods[] = $feature->toArray();
+        foreach ($filteredData as $method) {
+            $methods[] = $method->toArray();
         }
 
         return [
@@ -69,13 +69,13 @@ class MethodController extends Controller
         $cms = UtilController::cms();
         $user = UtilController::get(request());
 
-        $feature = Method::find($id);
-        if (!$feature) return response()->json([
+        $method = Method::find($id);
+        if (!$method) return response()->json([
             'message' => UtilController::message($cms['pages'][$user->language->abbr]['messages']['methods']['not_found'], 'danger'),
         ]);
 
         return response()->json([
-            'feature' => $feature,
+            'method' => $method,
         ]);
     }
 
@@ -102,21 +102,21 @@ class MethodController extends Controller
         $cms = UtilController::cms();
         $user = UtilController::get(request());
 
-        $feature = Method::find($id);
-        if (!$feature) return response()->json([
+        $method = Method::find($id);
+        if (!$method) return response()->json([
             'message' => UtilController::message($cms['pages'][$user->language->abbr]['messages']['methods']['not_found'], 'danger'),
         ]);
 
-        $rules = UtilController::rules($this->rules, $feature);
+        $rules = UtilController::rules($this->rules, $method);
         $request->validate($rules);
 
         $input = $request->all();
 
-        $feature->update($input);
+        $method->update($input);
 
         return response()->json([
             'message' => UtilController::message($cms['pages'][$user->language->abbr]['messages']['methods']['updated'], 'success'),
-            'feature' => $feature,
+            'method' => $method,
         ]);
     }
 
@@ -125,12 +125,12 @@ class MethodController extends Controller
         $cms = UtilController::cms();
         $user = UtilController::get(request());
 
-        $feature = Method::find($id);
-        if (!$feature) return response()->json([
+        $method = Method::find($id);
+        if (!$method) return response()->json([
             'message' => UtilController::message($cms['pages'][$user->language->abbr]['messages']['methods']['not_found'], 'danger'),
         ]);
 
-        $feature->delete();
+        $method->delete();
 
         $data = $this->data();
 

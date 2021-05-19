@@ -26,6 +26,25 @@ export const getPlans = (page = 1, show = 10, search = '') => async (dispatch, g
     }
 };
 
+export const getPlansBought = (page = 1, show = 10, search = '') => async (dispatch, getState) => {
+    dispatch(plansStart());
+    const { role } = getState().auth;
+
+    try {
+        const token = localStorage.getItem('token');
+        const res = await fetch(`${prefix + role}/plans/bought?page=${page}&show=${show}&search=${search}`, {
+            headers: {
+                Authorization: token
+            }
+        });
+        const resData = await res.json();
+        dispatch(plansSuccess(resData));
+    } catch (error) {
+        console.log(error);
+        dispatch(plansFail(error));
+    }
+};
+
 export const getPlansInfo = () => async (dispatch, getState) => {
     dispatch(plansStart());
     const { role } = getState().auth;
@@ -38,6 +57,30 @@ export const getPlansInfo = () => async (dispatch, getState) => {
             }
         });
         const resData = await res.json();
+        dispatch(plansSuccess(resData));
+    } catch (error) {
+        console.log(error);
+        dispatch(plansFail(error));
+    }
+};
+
+export const postPlans = data => async (dispatch, getState) => {
+    dispatch(plansStart());
+    const { role } = getState().auth;
+
+    try {
+        const token = localStorage.getItem('token');
+        const form = new FormData(data);
+        const res = await fetch(`${prefix + role}/plans`, {
+            method: 'POST',
+            body: form,
+            headers: {
+                Authorization: token
+            }
+        });
+        const resData = await res.json();
+        if (res.status === 422) throw new Error(Object.values(resData.errors).join('\n'));
+        else if (res.status !== 200 && res.status !== 201) throw new Error(resData.error.message);
         dispatch(plansSuccess(resData));
     } catch (error) {
         console.log(error);

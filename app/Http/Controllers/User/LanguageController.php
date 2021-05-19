@@ -10,8 +10,8 @@ use Illuminate\Http\Request;
 class LanguageController extends Controller
 {
     private $rules = [
-        'name' => 'required|string|unique:languages',
-        'abbr' => 'required|string|unique:languages',
+        'name' => 'required|string',
+        'abbr' => 'required|string',
         'flag' => 'required|string',
     ];
 
@@ -86,7 +86,10 @@ class LanguageController extends Controller
         $cms = UtilController::cms();
         $user = UtilController::get(request());
 
-        $request->validate($this->rules);
+        $request->validate(array_merge($this->rules, [
+            'name' => 'required|string|unique:languages',
+            'abbr' => 'required|string|unique:languages',
+        ]));
 
         $input = $request->all();
 

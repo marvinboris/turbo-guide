@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     private $rules = [
+        'email' => 'required|string|email',
         'role_id' => 'required|exists:roles,id',
         'name' => 'required|string',
         'password' => 'required|string|confirmed',
@@ -115,9 +116,9 @@ class UserController extends Controller
         $cms = UtilController::cms();
         $user = UtilController::get(request());
 
-        $request->validate($this->rules + [
+        $request->validate(array_merge($this->rules, [
             'email' => 'required|string|email|unique:users',
-        ]);
+        ]));
 
         $input = $request->except('photo');
 

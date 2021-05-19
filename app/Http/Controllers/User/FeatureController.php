@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class FeatureController extends Controller
 {
     private $rules = [
-        'name' => 'required|string|unique:features',
+        'name' => 'required|string',
         'prefix' => 'required|string',
     ];
 
@@ -84,7 +84,9 @@ class FeatureController extends Controller
         $cms = UtilController::cms();
         $user = UtilController::get(request());
 
-        $request->validate($this->rules);
+        $request->validate(array_merge($this->rules, [
+            'name' => 'required|string|unique:features',
+        ]));
 
         $input = $request->all();
 

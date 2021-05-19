@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 class RoleController extends Controller
 {
     private $rules = [
+        'name' => 'required|string',
         'description' => 'required|string',
     ];
 
@@ -113,9 +114,9 @@ class RoleController extends Controller
         $cms = UtilController::cms();
         $user = UtilController::get(request());
 
-        $request->validate($this->rules + [
+        $request->validate(array_merge($this->rules, [
             'name' => 'required|string|unique:roles',
-        ]);
+        ]));
 
         $input = $request->only(['name', 'description']);
 

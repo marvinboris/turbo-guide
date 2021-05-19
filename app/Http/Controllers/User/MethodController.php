@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class MethodController extends Controller
 {
     private $rules = [
-        'name' => 'required|string|unique:methods',
+        'name' => 'required|string',
         'text' => 'required|string',
     ];
 
@@ -84,7 +84,9 @@ class MethodController extends Controller
         $cms = UtilController::cms();
         $user = UtilController::get(request());
 
-        $request->validate($this->rules);
+        $request->validate(array_merge($this->rules, [
+            'name' => 'required|string|unique:methods',
+        ]));
 
         $input = $request->all();
 

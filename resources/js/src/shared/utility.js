@@ -32,7 +32,7 @@ export const timeFromTimestamp = timestamp => {
     return `${twoDigits(hours)} : ${twoDigits(minutes)} : ${twoDigits(seconds)}`;
 }
 
-export const checkValidity = (value, rules) => {
+export const checkValidity = (value = '', rules) => {
     let isValid = true;
 
     if (rules.required) isValid = (value.trim() !== '' && isValid);

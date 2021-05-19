@@ -216,8 +216,8 @@ class Settings extends Component {
         if (!prevProps.backend.settings.restaurant && this.props.backend.settings.restaurant) {
             const { backend: { settings: { restaurant } } } = this.props;
             if (!restaurant.name) Swal.fire({
-                title: 'Missing restaurant\'s name',
-                text: "Please set your restaurant\'s name",
+                title: 'Missing restaurant\'s name or languages',
+                text: "Please set your restaurant\'s name and languages",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -229,7 +229,7 @@ class Settings extends Component {
     }
 
     componentWillUnmount() {
-        if (!this.props.backend.settings.restaurant.name) return this.props.history.push('/restaurant/settings');
+        if (!this.props.backend.settings.restaurant.name || this.props.backend.settings.restaurant.languages.length === 0) return this.props.history.push('/restaurant/settings');
         this.props.reset();
     }
 

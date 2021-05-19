@@ -173,9 +173,9 @@ class Add extends Component {
         const languagesOptions = languages.sort((a, b) => a.name > b.name).map(language => <option key={JSON.stringify(language)} value={language.abbr}>{language.name}</option>);
 
         if (!categories) categories = [];
-        const categoriesOptions = categories.sort((a, b) => a.name[lang] > b.name[lang]).map(category => <option key={JSON.stringify(category)} value={category.id}>{category.name[lang]}</option>);
+        const categoriesOptions = categories.sort((a, b) => a.name[lang].localeCompare(b.name[lang])).map(category => <option key={JSON.stringify(category)} value={category.id}>{category.name[lang]}</option>);
 
-        const addonsOptions = allAddons.sort((a, b) => a.name[lang] > b.name[lang]).filter(addon => !addons.map(a => a.id).includes(addon.id)).map(addon => <option key={JSON.stringify(addon)} value={addon.id}>{addon.name[lang]}</option>);
+        const addonsOptions = allAddons.sort((a, b) => a.name[lang].localeCompare(b.name[lang])).filter(addon => !addons.map(a => a.id).includes(addon.id)).map(addon => <option key={JSON.stringify(addon)} value={addon.id}>{addon.name[lang]}</option>);
 
         if (loading) content = <Col xs={12}>
             <CustomSpinner />

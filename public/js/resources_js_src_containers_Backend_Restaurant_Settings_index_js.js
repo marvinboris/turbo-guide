@@ -465,13 +465,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             htmlFor: id ? id : name,
             children: placeholder
           })]
-        }), append ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_8__.default, {
+        }), append && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_8__.default, {
           addonType: "append",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_9__.default, {
             className: "bg-transparent border-0 text-secondary text-small px-4",
             children: append
           })
-        }) : null]
+        })]
       })
     }), bonus]
   });
@@ -1147,7 +1147,7 @@ var Settings = /*#__PURE__*/function (_Component) {
       var spinnerContent, restaurantContent, accountContent, cmsContent, translatableContent, languageContent;
       var errors = null;
       var restaurantLanguagesOptions = restaurantLanguages.sort(function (a, b) {
-        return a.name > b.name;
+        return a.name.localeCompare(b.name);
       }).map(function (language) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("option", {
           value: language.abbr,
@@ -1183,6 +1183,8 @@ var Settings = /*#__PURE__*/function (_Component) {
         return !languages.map(function (l) {
           return l.id;
         }).includes(id);
+      }).sort(function (a, b) {
+        return a.name.localeCompare(b.name);
       }).map(function (_ref7) {
         var id = _ref7.id,
             name = _ref7.name;

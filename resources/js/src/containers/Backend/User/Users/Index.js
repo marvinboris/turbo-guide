@@ -16,7 +16,7 @@ import Delete from '../../../../components/Backend/UI/Delete/Delete';
 import TitleWrapper from '../../../../components/Backend/UI/TitleWrapper';
 import View from '../../../../components/Backend/UI/View/View';
 
-import * as actions from '../../../../store/actions';
+import * as actions from '../../../../store/actions/backend';
 import { updateObject, convertDate, } from '../../../../shared/utility';
 
 class Index extends Component {
@@ -32,7 +32,7 @@ class Index extends Component {
         let {
             content: {
                 cms: {
-                    pages: { components: { list: { action, see } }, backend: { pages: { users: { title, add, index, form: { full_name, phone, photo, email, user_photo, role } } } } }
+                    pages: { components: { list: { action, see } }, backend: { pages: { users: { title, add, index, form } } } }
                 }
             },
             backend: { users: { loading, error, message, users, total } },
@@ -45,6 +45,7 @@ class Index extends Component {
         const errors = <>
             <Error err={error} />
         </>;
+        const flash = this.props.location.state ? <Feedback time={5000} message={this.props.location.state.message} /> : null;
         const feedback = <Feedback message={message} />;
 
         if (!users) users = [];
@@ -55,7 +56,7 @@ class Index extends Component {
                     <span>{see}</span>
 
                     <span className="ml-auto">
-                        <View title={`${user_photo}: ${user.name}`} content={<img src={user.photo} className="w-100" />}>
+                        <View title={`${form.user_photo}: ${user.name}`} content={<img src={user.photo} className="w-100" />}>
                             <FontAwesomeIcon icon={faEye} className="text-green mr-2" fixedWidth />
                         </View>
                     </span>
@@ -77,11 +78,11 @@ class Index extends Component {
                 <Row>
                     <List array={data} loading={loading} data={JSON.stringify(users)} get={this.props.get} total={total} bordered add={add} link="/user/users/add" icon={faUser} title={index} className="shadow-sm"
                         fields={[
-                            { name: full_name, key: 'name' },
-                            { name: email, key: 'email' },
-                            { name: phone, key: 'phone' },
-                            { name: role, key: 'role' },
-                            { name: photo, key: 'photo' },
+                            { name: form.full_name, key: 'name' },
+                            { name: form.email, key: 'email' },
+                            { name: form.phone, key: 'phone' },
+                            { name: form.role, key: 'role' },
+                            { name: form.photo, key: 'photo' },
                             { name: action, key: 'action', fixed: true }
                         ]} />
                 </Row>
@@ -92,12 +93,13 @@ class Index extends Component {
             <>
                 <TitleWrapper>
                     <Breadcrumb main={index} icon={faUser} />
-                    <SpecialTitle user icon={faUser}>{title}</SpecialTitle>
-                    <Subtitle user>{index}</Subtitle>
+                    <SpecialTitle>{title}</SpecialTitle>
+                    <Subtitle>{index}</Subtitle>
                 </TitleWrapper>
-                <div className="p-4 pb-0">
+                <div>
                     {redirect}
                     {errors}
+                    {flash}
                     {feedback}
                     {content}
                 </div>

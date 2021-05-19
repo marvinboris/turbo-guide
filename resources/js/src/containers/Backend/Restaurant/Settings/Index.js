@@ -264,7 +264,7 @@ class Settings extends Component {
         let spinnerContent, restaurantContent, accountContent, cmsContent, translatableContent, languageContent;
         let errors = null;
 
-        const restaurantLanguagesOptions = restaurantLanguages.sort((a, b) => a.name > b.name).map(language => <option key={JSON.stringify(language)} value={language.abbr}>{language.name}</option>);
+        const restaurantLanguagesOptions = restaurantLanguages.sort((a, b) => a.name.localeCompare(b.name)).map(language => <option key={JSON.stringify(language)} value={language.abbr}>{language.name}</option>);
 
         // if (message && message.type === 'success') window.location.reload();
 
@@ -274,7 +274,7 @@ class Settings extends Component {
 
         const countriesOptions = countries.map(({ country, code, name }) => <option key={country} value={country} code={code}>{name}</option>);
         const currenciesOptions = currencies.map(({ cc, symbol, name }) => <option key={cc} value={cc} symbol={symbol}>{name}</option>);
-        const languagesOptions = allLanguages.filter(({ id }) => !languages.map(l => l.id).includes(id)).map(({ id, name }) => <option key={id} value={id}>{name}</option>);
+        const languagesOptions = allLanguages.filter(({ id }) => !languages.map(l => l.id).includes(id)).sort((a, b) => a.name.localeCompare(b.name)).map(({ id, name }) => <option key={id} value={id}>{name}</option>);
 
         if (loading) spinnerContent = <Col xs={12}>
             <CustomSpinner />

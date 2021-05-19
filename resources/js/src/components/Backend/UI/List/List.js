@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Col, Table, Button, Input, Row } from 'reactstrap';
+import { Col, Table, Button, Input, Row, UncontrolledDropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusCircle, faFileExcel, faFilePdf, faFileCsv, faPrint, faAngleDoubleLeft, faChevronLeft, faChevronRight, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle, faFileExcel, faFilePdf, faFileCsv, faPrint, faAngleDoubleLeft, faChevronLeft, faChevronRight, faAngleDoubleRight, faPlus, faFileExport } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 import { updateObject } from '../../../../shared/utility';
@@ -126,7 +126,7 @@ class List extends Component {
 
     render() {
         const {
-            fields, array, loading = false, total = 0, limit, bordered, xs = 12, sm = 12, md = 12, lg = 12, xl = 12, icon, title, add, link, className = '', dark = false, borderless, innerClassName = '', outerClassName = '', p0, select, children, selectHandler, style,
+            fields, array, loading = false, total = 0, limit, bordered, xs = 12, sm = 12, md = 12, lg = 12, xl = 12, icon, title, subtitle, add, link, className = '', dark = false, borderless, innerClassName = '', outerClassName = '', containerClassName = '', addon, p0, select, children, selectHandler, style,
             content: {
                 cms: {
                     pages: { components: { list: { all, first, last, loading: loading_, print, pdf, csv, excel, search: search_, show: show_, sl, showing, from, entries: { singular, plural } } } }
@@ -166,96 +166,114 @@ class List extends Component {
                 <input type="hidden" id="table-page" value={page} />
                 <input type="hidden" id="table-search" value={search} />
 
-                <div className={`rounded-4 d-flex justify-content-between align-items-center mb-5 mt-3 py-4 px-4 text-large bg-${dark ? "grayblue" : "yellow-10"} ${className}`}>
-                    <span className="d-inline-flex align-items-center text-700 text-brown">{icon ? <FontAwesomeIcon fixedWidth className="mr-2" icon={icon} size="lg" /> : null}<span className={`text-${dark ? "light" : "dark"}`}>{title}</span></span>
+                <div className={`rounded-4 d-flex align-items-center mb-4 mb-sm-5 py-3 py-sm-4 px-4 px-sm-5 bg-${dark ? "grayblue" : "orange-10"}`}>
+                    <div className="d-flex align-items-center">
+                        {icon && <FontAwesomeIcon fixedWidth className="mr-3 mr-sm-4 text-30 text-orange-20" icon={icon} size="lg" />}
 
-                    {add ? <Link to={link}>
-                        <Button color="green" size="lg" className="rounded-2">
-                            <FontAwesomeIcon icon={faPlusCircle} fixedWidth className="mr-2" />
+                        <div>
+                            <div className={`text-${dark ? "light" : "orange"} text-700 text-20 mb-1`}>{title}</div>
+                        </div>
+                    </div>
+
+                    {add && <Link className="ml-auto" to={link}>
+                        <Button color="green" className="rounded-2 py-2 text-16 text-500 px-3 px-sm-4">
+                            <FontAwesomeIcon icon={faPlus} fixedWidth className="mr-2 mr-sm-3" />
+
                             {add}
                         </Button>
-                    </Link> : null}
+                    </Link>}
                 </div>
 
-                <div className={`d-flex flex-column ${dark ? "bg-grayblue text-light " : " "}${className}`} style={style}>
-                    <div className={`p-4 border-bottom border-${dark ? "border" : "soft"} text-brown text-700 position-relative`}>
-                        <Row className="align-items-center justify-content-between">
-                            <div className="col-6 pb-2 pb-lg-0 col-lg-2">
-                                <div className={`d-flex align-items-center text-${dark ? "light" : "secondary"} rounded-2`}>
-                                    <div className="border-right border-border-50">
-                                        <div className={`px-3 py-2 font-weight-bold h-100 bg-${dark ? "darkblue" : "soft"}`}>{show_}</div>
+                <div className="row justify-content-center">
+                    <div className={`${!addon && "col-lg-9"} ${containerClassName}`}>
+                        <div className={`d-flex flex-column h-100 ${dark ? "bg-grayblue text-light " : " "}${className}`} style={style}>
+                            <div className={`px-4 pt-4 text-700 position-relative`}>
+                                <div className="d-flex align-items-center">
+                                    <div className="text-18 text-400">
+                                        {title}
                                     </div>
-                                    <Input type="select" name="show" onChange={this.inputChangedHandler} className={`px-3 py-2 text-center rounded-0 h-100 d-block text-reset border-bottom-0 border-${dark ? "darkblue" : "soft"} bg-${dark ? "darkblue" : "soft"}`} style={{ width: '5rem' }}>
-                                        <option value="10">10</option>
-                                        <option value="25">25</option>
-                                        <option value="50">50</option>
-                                        <option value="100">100</option>
-                                        <option value="All">{all}</option>
-                                    </Input>
+
+                                    <div className="ml-auto d-none d-md-flex align-items-center">
+                                        <div className={`d-flex align-items-center text-${dark ? "light" : "secondary"} rounded-4`}>
+                                            <div className="border-right border-border-50">
+                                                <div className={`px-3 py-2 text-300 h-100 rounded-left-4 bg-${dark ? "darkblue" : "soft"}`}>{show_}</div>
+                                            </div>
+
+                                            <Input type="select" name="show" onChange={this.inputChangedHandler} className={`px-3 py-2 text-center rounded-left-0 rounded-right-4 h-100 d-block text-reset border-bottom-0 border-${dark ? "darkblue" : "soft"} bg-${dark ? "darkblue" : "soft"}`} style={{ width: '5rem' }}>
+                                                <option value="10">10</option>
+                                                <option value="25">25</option>
+                                                <option value="50">50</option>
+                                                <option value="100">100</option>
+                                                <option value="All">{all}</option>
+                                            </Input>
+                                        </div>
+
+                                        <UncontrolledDropdown className="mx-3">
+                                            <DropdownToggle color="green" caret>
+                                                <FontAwesomeIcon icon={faFileExport} className="mr-2" />
+
+                                                <span>Export</span>
+                                            </DropdownToggle>
+
+                                            <DropdownMenu>
+                                                <a href="/api/export/xlsx" onClick={this.onClick} className="export dropdown-item text-decoration-none text-reset"><FontAwesomeIcon icon={faFileExcel} className={`text-${dark ? "white" : "darkblue"} mr-2`} />{excel}</a>
+                                                <a href="/api/export/pdf" onClick={this.onClick} className="export dropdown-item text-decoration-none text-reset"><FontAwesomeIcon icon={faFilePdf} className="text-danger mr-2" />{pdf}</a>
+                                                <a href="/api/export/csv" onClick={this.onClick} className="export dropdown-item text-decoration-none text-reset"><FontAwesomeIcon icon={faFileCsv} className="text-green mr-2" />{csv}</a>
+                                                <a href="/api/export/pdf" onClick={this.onClick} className="export dropdown-item text-decoration-none text-reset"><FontAwesomeIcon icon={faPrint} className="text-primary mr-2" />{print}</a>
+                                            </DropdownMenu>
+                                        </UncontrolledDropdown>
+
+                                        <Input type="search" name="search" onChange={this.inputChangedHandler} className={`bg-${dark ? "darkblue" : "orange-10 text-secondary"} border-0 rounded-4`} style={{ maxWidth: 150 }} placeholder={`${search_}...`} />
+                                    </div>
                                 </div>
                             </div>
 
-                            <div className="col-6 d-lg-none pb-2 pb-lg-0">
-                                <Input type="search" name="search" onChange={this.inputChangedHandler} className={`bg-${dark ? "darkblue" : "soft"} border-0 rounded-2`} placeholder="Search..." />
-                            </div>
+                            <div className={`flex-fill d-flex flex-column ${!p0 ? "p-4" : "p-0"}`}>
+                                <div className="table-responsive flex-fill scrollbar-orange mb-3">
+                                    <Table dark={dark} bordered={bordered} hover borderless={borderless} className={`bg-${dark ? "darkblue" : ""} ${innerClassName}`}>
+                                        <thead className={dark ? "text-light" : "bg-soft text-secondary"}><tr>{titles}</tr></thead>
+                                        <tbody className={dark ? "bg-darklight-50 text-light" : "bg-soft-50 text-secondary"}>{!loading && content}</tbody>
+                                    </Table>
 
-                            <div className="col-lg-4 pb-2 pb-lg-0 rounded-2 overflow-hidden">
-                                <div className={`bg-${dark ? "darkblue text-light" : "soft text-secondary"} d-flex justify-content-around align-items-center font-weight-bold py-3`}>
-                                    <a href="/api/export/xlsx" onClick={this.onClick} className="px-2 export text-decoration-none text-reset"><FontAwesomeIcon icon={faFileExcel} className={`text-${dark ? "white" : "darkblue"} mr-2`} />{excel}</a>
-                                    <a href="/api/export/pdf" onClick={this.onClick} className="px-2 export text-decoration-none text-reset"><FontAwesomeIcon icon={faFilePdf} className="text-danger mr-2" />{pdf}</a>
-                                    <a href="/api/export/csv" onClick={this.onClick} className="px-2 export text-decoration-none text-reset"><FontAwesomeIcon icon={faFileCsv} className="text-green mr-2" />{csv}</a>
-                                    <a href="/api/export/pdf" onClick={this.onClick} className="px-2 export text-decoration-none text-reset"><FontAwesomeIcon icon={faPrint} className="text-primary mr-2" />{print}</a>
+                                    {loading && <Col xs={12} className="text-center">
+                                        <div className="text-center py-3">{loading_}...</div>
+                                    </Col>}
+                                </div>
+
+                                <div>
+                                    {children}
+                                </div>
+
+                                <div>
+                                    <div>{showing} {((+page !== pageNumber) && (+page > 1)) ? show : entries} {from} {total} {total > 1 ? plural : singular}.</div>
+
+                                    <div className="pt-2 d-flex justify-content-end">
+                                        {show !== "All" && <ul className="pagination btn-group">
+                                            {page !== 1 && <>
+                                                <li className="btn btn-yellow" onClick={this.firstPageHandler}><FontAwesomeIcon icon={faAngleDoubleLeft} className="mr-2" />{first}</li>
+                                                <li className="btn btn-darkblue text-secondary" onClick={this.previousPageHandler}><FontAwesomeIcon icon={faChevronLeft} /></li>
+                                            </>}
+
+                                            <li className={"btn btn-darkblue " + (page === pageFirst ? 'text-700 active' : 'secondary')} onClick={() => this.pageChangeHandler(pageFirst)}>{pageFirst}</li>
+
+                                            {pageNumber > 1 && <>
+                                                <li className={"btn btn-darkblue " + (page === pageSecond ? 'text-700 active' : 'secondary')} onClick={() => this.pageChangeHandler(pageSecond)}>{pageSecond}</li>
+
+                                                {pageNumber > 2 && <li className={"btn btn-darkblue " + (page === pageLast ? 'text-700 active' : 'secondary')} onClick={() => this.pageChangeHandler(pageLast)}>{pageLast}</li>}
+
+                                                {page !== pageNumber && <>
+                                                    <li className="btn btn-darkblue text-secondary" onClick={this.nextPageHandler}><FontAwesomeIcon icon={faChevronRight} /></li>
+                                                    <li className="btn btn-primary" onClick={this.lastPageHandler}>{last}<FontAwesomeIcon icon={faAngleDoubleRight} className="ml-2" /></li>
+                                                </>}
+                                            </>}
+                                        </ul>}
+                                    </div>
                                 </div>
                             </div>
-
-                            <div className="col-lg-2 d-none d-lg-block">
-                                <Input type="search" name="search" onChange={this.inputChangedHandler} className={`bg-${dark ? "darkblue" : "soft text-secondary"} border-0 rounded-2`} placeholder={`${search_}...`} />
-                            </div>
-                        </Row>
-                    </div>
-
-                    <div className={"flex-fill d-flex flex-column " + (!p0 ? "p-4" : "p-0")}>
-                        <div className="table-responsive flex-fill">
-                            <Table dark={dark} bordered={bordered} hover borderless={borderless} className={`bg-"${dark ? "darkblue" : ""}" ${innerClassName}`}>
-                                <thead className={dark ? "text-light" : "bg-soft text-secondary"}><tr>{titles}</tr></thead>
-                                <tbody className={dark ? "bg-darklight-50 text-light" : "bg-soft-50 text-secondary"}>{!loading && content}</tbody>
-                            </Table>
-                        </div>
-
-                        {loading && <Col xs={12} className="text-center">
-                            <div className="text-center py-3">{loading_}...</div>
-                        </Col>}
-
-                        <div>
-                            {children}
-                        </div>
-
-                        <div>
-                            <div>{showing} {((+page !== pageNumber) && (+page > 1)) ? show : entries} {from} {total} {total > 1 ? plural : singular}.</div>
-
-                            <div className="pt-2 d-flex justify-content-end">
-                                {show !== "All" && <ul className="pagination btn-group">
-                                    {page !== 1 && <>
-                                        <li className="btn btn-yellow" onClick={this.firstPageHandler}><FontAwesomeIcon icon={faAngleDoubleLeft} className="mr-2" />{first}</li>
-                                        <li className="btn btn-darkblue text-secondary" onClick={this.previousPageHandler}><FontAwesomeIcon icon={faChevronLeft} /></li>
-                                    </>}
-
-                                    <li className={"btn btn-darkblue " + (page === pageFirst ? 'text-700 active' : 'secondary')} onClick={() => this.pageChangeHandler(pageFirst)}>{pageFirst}</li>
-
-                                    {pageNumber > 1 && <>
-                                        <li className={"btn btn-darkblue " + (page === pageSecond ? 'text-700 active' : 'secondary')} onClick={() => this.pageChangeHandler(pageSecond)}>{pageSecond}</li>
-
-                                        {pageNumber > 2 && <li className={"btn btn-darkblue " + (page === pageLast ? 'text-700 active' : 'secondary')} onClick={() => this.pageChangeHandler(pageLast)}>{pageLast}</li>}
-
-                                        {page !== pageNumber && <>
-                                            <li className="btn btn-darkblue text-secondary" onClick={this.nextPageHandler}><FontAwesomeIcon icon={faChevronRight} /></li>
-                                            <li className="btn btn-primary" onClick={this.lastPageHandler}>{last}<FontAwesomeIcon icon={faAngleDoubleRight} className="ml-2" /></li>
-                                        </>}
-                                    </>}
-                                </ul>}
-                            </div>
                         </div>
                     </div>
+
+                    {addon}
                 </div>
             </Col>
         );

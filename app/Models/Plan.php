@@ -11,7 +11,11 @@ class Plan extends Model
     use HasFactory, Sluggable;
 
     protected $fillable = [
-        'name', 'slug', 'price', 'meals', 'actions', 'support', 'banners', 'reviews',
+        'name', 'slug', 'price', 'meals', 'actions', 'support', 'banners', 'reviews', 'months'
+    ];
+
+    protected $appends = [
+        'type',
     ];
 
     public function sluggable()
@@ -21,6 +25,10 @@ class Plan extends Model
                 'source' => 'name'
             ]
         ];
+    }
+
+    public function getTypeAttribute() {
+        return $this->months === 1 ? 'Monthly' : 'Yearly';
     }
 
     public function restaurants()

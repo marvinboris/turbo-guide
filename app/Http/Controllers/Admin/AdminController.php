@@ -97,8 +97,7 @@ class AdminController extends Controller
         $input['password'] = Hash::make($input['password']);
 
         if ($file = $request->file('photo')) {
-            $fileName = time() . $file->getClientOriginalName();
-            $file->move('admins', $fileName);
+            $fileName = UtilController::resize($file, 'admins');
             $input['photo'] = htmlspecialchars($fileName);
         }
 
@@ -129,9 +128,8 @@ class AdminController extends Controller
         if ($request->password) $input['password'] = Hash::make($request->password);
 
         if ($file = $request->file('photo')) {
-            if ($admin->photo) unlink(public_path($admin->photo));
-            $fileName = time() . $file->getClientOriginalName();
-            $file->move('admins', $fileName);
+            if ($admin->photo && is_file(public_path($admin->photo))) unlink(public_path($admin->photo));
+            $fileName = UtilController::resize($file, 'admins');
             $input['photo'] = htmlspecialchars($fileName);
         }
 

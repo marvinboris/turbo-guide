@@ -45,8 +45,8 @@ const SideDrawerItem = ({ children, dropdown, icon, href = '', items, path = '',
     else {
         const itemEls = items.map(({ link = '', text }) => (
             <li className="nav-item text-300" key={text}>
-                <NavLink onClick={sideDrawerToggle} exact className={`nav-link d-sm-none text-${dark ? "light" : "secondary"}`} to={path + link}><span className="position-relative" style={{ left: -8 }}>-</span> {text}</NavLink>
-                <NavLink exact className={`nav-link d-none d-sm-block text-${dark ? "light" : "secondary"}`} to={path + link}><span className="position-relative" style={{ left: -8 }}>-</span> {text}</NavLink>
+                <NavLink onClick={sideDrawerToggle} exact className={`nav-link d-sm-none text-${dark ? "light" : "secondary"}`} activeClassName="text-700" to={path + link}><span className="position-relative text-300" style={{ left: -8 }}>-</span> {text}</NavLink>
+                <NavLink exact className={`nav-link d-none d-sm-block text-${dark ? "light" : "secondary"}`} activeClassName="text-700" to={path + link}><span className="position-relative text-300" style={{ left: -8 }}>-</span> {text}</NavLink>
             </li>
         ));
 
@@ -62,8 +62,8 @@ const SideDrawerItem = ({ children, dropdown, icon, href = '', items, path = '',
                     <FontAwesomeIcon fixedWidth icon={faAngleDown} className={`position-absolute angle-down text-${dark ? "light" : "orange"} ${isSelected ? 'open' : ''}`} style={{ right: 16, top: '50%' }} />
                 </Button>
 
-                <Collapse isOpen={isSelected} className={`pl-3 bg-${dark ? "darkblue-20" : "gray-10"}`}>
-                    <ul className={`nav flex-column border-left ml-3 border-${dark ? "white" : "orange"}-20`}>
+                <Collapse isOpen={isSelected} className={`pl-3 bg-${dark ? "darkblue-20" : "gray-0"}`}>
+                    <ul className={`nav flex-column border-left ml-3 border-${dark ? "white" : "border"}-20`}>
                         {itemEls}
                     </ul>
                 </Collapse>

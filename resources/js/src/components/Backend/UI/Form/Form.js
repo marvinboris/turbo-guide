@@ -4,21 +4,35 @@ import { Col, Form, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTasks } from '@fortawesome/free-solid-svg-icons';
 
-export default ({ onSubmit, xs = 12, sm = 12, md = 12, lg = 12, xl = 12, icon, title, className = '', dark = false, innerClassName = '', outerClassName = '', p0, children, style, id, list, link }) => {
+export default ({ onSubmit, xs = 12, sm = 12, md = 12, lg = 12, xl = 12, icon, title, className = '', dark = false, innerClassName = '', outerClassName = '', children, style, id, list, link, disabled }) => {
     return (
         <Col xs={xs} sm={sm} md={md} lg={lg} xl={xl} className={outerClassName}>
-            <div className={`rounded-4 d-flex justify-content-between align-items-center mb-5 mt-3 py-4 px-4 text-large bg-${dark ? "grayblue" : "yellow-10"} ${className}`}>
-                <span className={`d-inline-flex align-items-center text-700 text-${dark ? "light" : "dark"}`}>{icon ? <FontAwesomeIcon fixedWidth className={`mr-2 text-${dark ? "blue" : "brown"}`} icon={icon} size="lg" /> : null}{title}</span>
+            <div className={`rounded-4 d-flex align-items-center mb-4 mb-sm-5 py-3 py-sm-4 px-4 px-sm-5 bg-${dark ? "grayblue" : "orange-10"} ${className}`}>
+                <div className="d-flex align-items-center">{
+                    icon ? <FontAwesomeIcon fixedWidth className="mr-3 mr-sm-4 text-30 text-orange-20" icon={icon} size="lg" /> : null}
 
-                {list ? <Link to={link}><Button color={dark ? "blue" : "yellow"} size="lg" className="rounded-2"><FontAwesomeIcon fixedWidth className="mr-2" icon={faTasks} />{list}</Button></Link> : null}
+                    <div>
+                        <div className={`text-${dark ? "light" : "orange"} text-700 text-20`}>{title}</div>
+                    </div>
+                </div>
+
+                {list && <Link to={link} className="ml-auto d-none d-md-inline">
+                    <Button color="green" className="rounded-2 py-2 text-16 text-500 px-3 px-sm-4">
+                        <FontAwesomeIcon icon={faTasks} fixedWidth className="mr-3" />
+
+                        {list}
+                    </Button>
+                </Link>}
             </div>
 
             <div className={`d-flex flex-column ${dark ? "text-light bg-grayblue" : ""} ${className}`} style={style}>
-                <div className={`flex-fill d-flex flex-column ${!p0 ? "p-4" : "p-0"}`}>
+                <div className={`flex-fill d-flex flex-column`}>
                     <div className="flex-fill">
-                        <Form onSubmit={onSubmit} id={id} className={innerClassName} encType="multipart/form-data">
+                        {disabled ? <div id={id} className={innerClassName} encType="multipart/form-data">
                             {children}
-                        </Form>
+                        </div> : <Form onSubmit={onSubmit} id={id} className={innerClassName} encType="multipart/form-data">
+                            {children}
+                        </Form>}
                     </div>
                 </div>
             </div>

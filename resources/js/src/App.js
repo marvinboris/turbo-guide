@@ -70,6 +70,13 @@ const asyncUserUsers = asyncComponent(() => import('./containers/Backend/User/Us
 const asyncUserUsersAdd = asyncComponent(() => import('./containers/Backend/User/Users/Add'));
 const asyncUserUsersEdit = asyncComponent(() => import('./containers/Backend/User/Users/Edit'));
 
+const asyncUserMethods = asyncComponent(() => import('./containers/Backend/User/Methods'));
+const asyncUserMethodsAdd = asyncComponent(() => import('./containers/Backend/User/Methods/Add'));
+const asyncUserMethodsEdit = asyncComponent(() => import('./containers/Backend/User/Methods/Edit'));
+
+const asyncUserRecharges = asyncComponent(() => import('./containers/Backend/User/Recharges'));
+const asyncUserRechargesAdd = asyncComponent(() => import('./containers/Backend/User/Recharges/Add'));
+
 // Admin routes
 const asyncAdminAdmins = asyncComponent(() => import('./containers/Backend/Admin/Admins'));
 const asyncAdminAdminsAdd = asyncComponent(() => import('./containers/Backend/Admin/Admins/Add'));
@@ -220,6 +227,13 @@ class App extends Component {
                     <Route path="/user/users/:id/edit" component={asyncUserUsersEdit} />
                     <Route path="/user/users/add" component={asyncUserUsersAdd} />
                     <Route path="/user/users" component={asyncUserUsers} />
+
+                    <Route path="/user/methods/:id/edit" component={asyncUserMethodsEdit} />
+                    <Route path="/user/methods/add" component={asyncUserMethodsAdd} />
+                    <Route path="/user/methods" component={asyncUserMethods} />
+
+                    <Route path="/user/recharges/add" component={asyncUserRechargesAdd} />
+                    <Route path="/user/recharges" component={asyncUserRecharges} />
 
 
 

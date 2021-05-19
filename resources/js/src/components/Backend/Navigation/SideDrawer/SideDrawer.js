@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Col, Badge, Modal, ModalHeader, ModalBody, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTachometerAlt, faCog, faUserTag, faTools, faUser, faUserCog, faLanguage, faBell, faWrench, faComment, faDrumstickBite, faListAlt, faCookie, faList, faArrowLeft, faPowerOff, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTachometerAlt, faCog, faUserTag, faTools, faUser, faUserCog, faLanguage, faBell, faWrench, faArrowLeft, faPowerOff, faTimes, faHome, faBox, faMoneyBillWaveAlt, faThList } from '@fortawesome/free-solid-svg-icons';
 import { faCircle } from '@fortawesome/free-regular-svg-icons';
 
 import SideDrawerItem from './SideDrawerItem/SideDrawerItem';
@@ -28,7 +28,8 @@ export default ({ data, role = 'user', logoutHandler, toggle, selectItem, select
                     user, admin,
                     menu: {
                         dashboard, admins, users, roles, features, languages, cms: cms_, notifications, settings,
-                        meals, categories, addons, comments, history }
+                        restaurants, plans, recharges, methods
+                    }
                 }
             }
         }
@@ -96,12 +97,12 @@ export default ({ data, role = 'user', logoutHandler, toggle, selectItem, select
                 {sideDrawerItem(false, null, languages, faLanguage, "/user/languages")}
 
                 <div className="text-border text-16 px-3 py-2 mb-1 mt-4">RESOURCES</div>
-                {sideDrawerItem(false, null, meals, faDrumstickBite, "/user/meals")}
-                {sideDrawerItem(false, null, categories, faListAlt, "/user/categories")}
-                {sideDrawerItem(false, null, addons, faCookie, "/user/addons")}
-                {sideDrawerItem(false, comments, null, faComment, "/user/comments")}
-                {sideDrawerItem(false, history, null, faList, "/user/history")}
+                {sideDrawerItem(false, null, restaurants, faHome, "/user/restaurants")}
+                {sideDrawerItem(false, null, plans, faBox, "/user/plans")}
+                {sideDrawerItem(false, null, recharges, faMoneyBillWaveAlt, "/user/recharges")}
+                {sideDrawerItem(false, null, methods, faThList, "/user/methods")}
 
+                <div className="text-border text-16 px-3 py-2 mb-1 mt-4">OTHERS</div>
                 {sideDrawerItem(false, null, cms_, faWrench, "/user/cms", [
                     { link: '/global', text: cms_.global },
                     { link: '/general', text: cms_.general },
@@ -137,18 +138,19 @@ export default ({ data, role = 'user', logoutHandler, toggle, selectItem, select
             sideDrawerItems = <>
                 <div className="text-border text-16 px-3 py-2 mb-1">MENU</div>
                 {sideDrawerItem(true, dashboard, null, faTachometerAlt, "/admin/dashboard")}
+                {sideDrawerItem(true, null, admins, faUserCog, "/admin/admins")}
                 {sideDrawerItem(true, null, users, faUser, "/admin/users")}
                 {sideDrawerItem(true, null, roles, faUserTag, "/admin/roles")}
                 {sideDrawerItem(true, null, features, faTools, "/admin/features")}
                 {sideDrawerItem(true, null, languages, faLanguage, "/admin/languages")}
 
                 <div className="text-border text-16 px-3 py-2 mb-1 mt-4">RESOURCES</div>
-                {sideDrawerItem(true, null, meals, faDrumstickBite, "/admin/meals")}
-                {sideDrawerItem(true, null, categories, faListAlt, "/admin/categories")}
-                {sideDrawerItem(true, null, addons, faCookie, "/admin/addons")}
-                {sideDrawerItem(true, comments, null, faComment, "/admin/comments")}
-                {sideDrawerItem(true, history, null, faList, "/admin/history")}
+                {sideDrawerItem(true, null, restaurants, faHome, "/admin/restaurants")}
+                {sideDrawerItem(true, null, plans, faBox, "/admin/plans")}
+                {sideDrawerItem(true, null, recharges, faMoneyBillWaveAlt, "/admin/recharges")}
+                {sideDrawerItem(false, null, methods, faThList, "/admin/methods")}
 
+                <div className="text-border text-16 px-3 py-2 mb-1 mt-4">OTHERS</div>
                 {sideDrawerItem(true, null, cms_, faWrench, "/admin/cms", [
                     { link: '/global', text: cms_.global },
                     { link: '/general', text: cms_.general },

@@ -140,13 +140,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             htmlFor: id ? id : name,
             children: placeholder
           })]
-        }), append ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_8__.default, {
+        }), append && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_8__.default, {
           addonType: "append",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_9__.default, {
             className: "bg-transparent border-0 text-secondary text-small px-4",
             children: append
           })
-        }) : null]
+        })]
       })
     }), bonus]
   });

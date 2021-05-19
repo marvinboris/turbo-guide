@@ -12,7 +12,7 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
 
-    protected $directory = '/users/';
+    protected $directory = '/images/users/';
 
     /**
      * The attributes that are mass assignable.

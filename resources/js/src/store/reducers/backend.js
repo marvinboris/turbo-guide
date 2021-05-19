@@ -34,6 +34,10 @@ const initialState = {
         loading: false,
         error: null
     },
+    methods: {
+        loading: false,
+        error: null
+    },
 
     
     restaurants: {
@@ -113,6 +117,11 @@ const usersReset = (state) => updateObject(state, { users: initialState.users })
 const usersStart = (state) => updateObject(state, { users: updateObject(state.users, { loading: true, message: null }) });
 const usersSuccess = (state, action) => updateObject(state, { users: updateObject(state.users, { loading: false, error: null, ...action }) });
 const usersFail = (state, action) => updateObject(state, { users: updateObject(state.users, { loading: false, ...action }) });
+
+const methodsReset = (state) => updateObject(state, { methods: initialState.methods });
+const methodsStart = (state) => updateObject(state, { methods: updateObject(state.methods, { loading: true, message: null }) });
+const methodsSuccess = (state, action) => updateObject(state, { methods: updateObject(state.methods, { loading: false, error: null, ...action }) });
+const methodsFail = (state, action) => updateObject(state, { methods: updateObject(state.methods, { loading: false, ...action }) });
 
 
 
@@ -202,6 +211,11 @@ export default (state = initialState, action) => {
         case actionTypes.USERS_START: return usersStart(state, action);
         case actionTypes.USERS_SUCCESS: return usersSuccess(state, action);
         case actionTypes.USERS_FAIL: return usersFail(state, action);
+
+        case actionTypes.METHODS_RESET: return methodsReset(state, action);
+        case actionTypes.METHODS_START: return methodsStart(state, action);
+        case actionTypes.METHODS_SUCCESS: return methodsSuccess(state, action);
+        case actionTypes.METHODS_FAIL: return methodsFail(state, action);
 
         
 

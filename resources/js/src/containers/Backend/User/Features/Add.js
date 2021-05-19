@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
-import { Col, Row, FormGroup, CustomInput } from 'reactstrap';
-import { faUserTie, faUser, faMoneyBillWave, faPlusCircle, faUsers, faLock, faEnvelope, faCity, faPhone, faUserTag, faCheckCircle, faEdit, faAnchor, faTools } from '@fortawesome/free-solid-svg-icons';
-import { faBuilding, faSave, faCalendar } from '@fortawesome/free-regular-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Col, Row } from 'reactstrap';
+import { faAnchor, faTools } from '@fortawesome/free-solid-svg-icons';
 
 // Components
 import Breadcrumb from '../../../../components/Backend/UI/Breadcrumb/Breadcrumb';
@@ -13,42 +11,72 @@ import Subtitle from '../../../../components/UI/Titles/Subtitle/Subtitle';
 import Error from '../../../../components/Error/Error';
 import CustomSpinner from '../../../../components/UI/CustomSpinner/CustomSpinner';
 import Form from '../../../../components/Backend/UI/Form/Form';
+import Save from '../../../../components/Backend/UI/Food/Form/Save';
 import FormInput from '../../../../components/Backend/UI/Input/Input';
-import FormButton from '../../../../components/UI/Button/BetweenButton/BetweenButton';
 import TitleWrapper from '../../../../components/Backend/UI/TitleWrapper';
 import Feedback from '../../../../components/Feedback/Feedback';
 
-import * as actions from '../../../../store/actions';
+import * as actions from '../../../../store/actions/backend';
+
+const initialState = {
+    name: '',
+    prefix: '',
+
+    add: false,
+}
 
 class Add extends Component {
-    state = {
-        name: '',
-        prefix: '',
+    state = { ...initialState }
+
+
+
+    // Component methods
+    saveHandler = e => {
+        e.preventDefault();
+        if (this.props.edit) this.props.patch(this.props.match.params.id, e.target);
+        else this.props.post(e.target);
     }
 
-    async componentDidMount() {
+    saveAddHandler = () => this.setState({ add: true }, () => this.props.post(document.querySelector('form')))
+
+    inputChangeHandler = e => {
+        const { name, value, files } = e.target;
+        this.setState({ [name]: files ? files[0] : value });
+    }
+
+
+
+    // Lifecycle methods
+    componentDidMount() {
         this.props.reset();
+        if (this.props.edit) this.props.get(this.props.match.params.id);
+    }
+
+    componentDidUpdate(prevProps) {
+        if (!prevProps.backend.features.message && this.props.backend.features.message && this.props.backend.features.message.type === 'success' && !this.props.edit) {
+            if (this.state.add) this.setState({ ...initialState });
+            else this.props.history.push({
+                pathname: '/user/features',
+                state: {
+                    message: this.props.backend.features.message,
+                },
+            });
+        }
+        if (!prevProps.backend.features.feature && this.props.backend.features.feature) {
+            const { backend: { features: { feature } } } = this.props;
+            this.setState({ ...feature });
+        }
     }
 
     componentWillUnmount() {
         this.props.reset();
     }
 
-    submitHandler = async e => {
-        e.preventDefault();
-        await this.props.post(e.target);
-    }
-
-    inputChangeHandler = e => {
-        const { name, value, checked, files } = e.target;
-        this.setState({ [name]: files ? files[0] : value });
-    }
-
     render() {
         let {
             content: {
                 cms: {
-                    pages: { components: { form: { save } }, backend: { pages: { features: { title, add, index, form } } } }
+                    pages: { backend: { pages: { features: { title, add, edit, index, form } } } }
                 }
             },
             backend: { features: { loading, error, message } },
@@ -59,7 +87,7 @@ class Add extends Component {
         let errors = null;
 
         const feature = features.find(f => f.prefix === 'features');
-        const redirect = !(feature && JSON.parse(feature.permissions).includes('c')) && <Redirect to="/user/dashboard" />;
+        const redirect = !(feature && JSON.parse(feature.permissions).includes(this.props.edit ? 'u' : 'c')) && <Redirect to="/user/dashboard" />;
 
         if (loading) content = <Col xs={12}>
             <CustomSpinner />
@@ -70,21 +98,24 @@ class Add extends Component {
             </>;
             content = (
                 <>
-                    <Row>
-                        <Form onSubmit={this.submitHandler} icon={faTools} title={add} list={index} link="/user/features" innerClassName="row" className="shadow-sm">
-                            <Col lg={8}>
-                                <Feedback message={message} />
-                                <Row>
-                                    <FormInput type="text" className="col-md-6" icon={faTools} onChange={this.inputChangeHandler} value={name} name="name" required placeholder={form.name} />
-                                    <FormInput type="text" className="col-md-6" icon={faAnchor} onChange={this.inputChangeHandler} value={prefix} name="prefix" required placeholder={form.prefix} />
+                    <Col xl={9}>
+                        <Feedback message={message} />
 
-                                    <div className="col-12">
-                                        <FormButton color="green" icon={faSave}>{save}</FormButton>
-                                    </div>
-                                </Row>
-                            </Col>
-                        </Form>
-                    </Row>
+                        {this.props.edit && <input type="hidden" name="_method" defaultValue="PATCH" />}
+
+                        <div className="shadow-lg rounded-8 bg-white px-4 px-sm-5 py-3 py-sm-4">
+                            <Row className="my-2 my-sm-3">
+                                <div className="col-lg-9">
+                                    <Row>
+                                        <FormInput type="text" className="col-md-6" icon={faTools} onChange={this.inputChangeHandler} value={name} name="name" required placeholder={form.name} />
+                                        <FormInput type="text" className="col-md-6" icon={faAnchor} onChange={this.inputChangeHandler} value={prefix} name="prefix" required placeholder={form.prefix} />
+                                    </Row>
+                                </div>
+
+                                <Save edit={this.props.edit} saveAddHandler={this.saveAddHandler} />
+                            </Row>
+                        </div>
+                    </Col>
                 </>
             );
         }
@@ -92,14 +123,18 @@ class Add extends Component {
         return (
             <>
                 <TitleWrapper>
-                    <Breadcrumb main={add} icon={faTools} />
-                    <SpecialTitle user icon={faTools}>{title}</SpecialTitle>
-                    <Subtitle user>{add}</Subtitle>
+                    <Breadcrumb items={this.props.edit && [{ to: '/user/features', content: index }]} main={this.props.edit ? edit : add} icon={faTools} />
+                    <SpecialTitle>{title}</SpecialTitle>
+                    <Subtitle>{this.props.edit ? edit : add}</Subtitle>
                 </TitleWrapper>
-                <div className="p-4 pb-0">
+                <div>
                     {redirect}
                     {errors}
-                    {content}
+                    <Row>
+                        <Form onSubmit={this.saveHandler} icon={faTools} title={this.props.edit ? edit : add} list={index} link="/user/features" innerClassName="row justify-content-center">
+                            {content}
+                        </Form>
+                    </Row>
                 </div>
             </>
         );
@@ -109,7 +144,9 @@ class Add extends Component {
 const mapStateToProps = state => ({ ...state });
 
 const mapDispatchToProps = dispatch => ({
+    get: id => dispatch(actions.getFeature(id)),
     post: data => dispatch(actions.postFeatures(data)),
+    patch: (id, data) => dispatch(actions.patchFeatures(id, data)),
     reset: () => dispatch(actions.resetFeatures()),
 });
 

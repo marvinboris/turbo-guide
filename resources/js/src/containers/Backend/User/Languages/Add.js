@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
 import { Col, Row } from 'reactstrap';
 import { faLanguage } from '@fortawesome/free-solid-svg-icons';
-import { faSave } from '@fortawesome/free-regular-svg-icons';
 
 // Components
 import Breadcrumb from '../../../../components/Backend/UI/Breadcrumb/Breadcrumb';
@@ -12,43 +11,73 @@ import Subtitle from '../../../../components/UI/Titles/Subtitle/Subtitle';
 import Error from '../../../../components/Error/Error';
 import CustomSpinner from '../../../../components/UI/CustomSpinner/CustomSpinner';
 import Form from '../../../../components/Backend/UI/Form/Form';
+import Save from '../../../../components/Backend/UI/Food/Form/Save';
 import FormInput from '../../../../components/Backend/UI/Input/Input';
-import FormButton from '../../../../components/UI/Button/BetweenButton/BetweenButton';
 import TitleWrapper from '../../../../components/Backend/UI/TitleWrapper';
 import Feedback from '../../../../components/Feedback/Feedback';
 
-import * as actions from '../../../../store/actions';
+import * as actions from '../../../../store/actions/backend';
+
+const initialState = {
+    name: '',
+    abbr: '',
+    flag: '',
+
+    add: false,
+}
 
 class Add extends Component {
-    state = {
-        name: '',
-        abbr: '',
-        flag: '',
-    }
+    state = { ...initialState }
 
-    async componentDidMount() {
-        this.props.reset();
-    }
 
-    componentWillUnmount() {
-        this.props.reset();
-    }
 
-    submitHandler = async e => {
+    // Component methods
+    saveHandler = e => {
         e.preventDefault();
-        await this.props.post(e.target);
+        if (this.props.edit) this.props.patch(this.props.match.params.id, e.target);
+        else this.props.post(e.target);
     }
+
+    saveAddHandler = () => this.setState({ add: true }, () => this.props.post(document.querySelector('form')))
 
     inputChangeHandler = e => {
         const { name, value, files } = e.target;
         this.setState({ [name]: files ? files[0] : value });
     }
 
+
+
+    // Lifecycle methods
+    componentDidMount() {
+        this.props.reset();
+        if (this.props.edit) this.props.get(this.props.match.params.id);
+    }
+
+    componentDidUpdate(prevProps) {
+        if (!prevProps.backend.languages.message && this.props.backend.languages.message && this.props.backend.languages.message.type === 'success' && !this.props.edit) {
+            if (this.state.add) this.setState({ ...initialState });
+            else this.props.history.push({
+                pathname: '/user/languages',
+                state: {
+                    message: this.props.backend.languages.message,
+                },
+            });
+        }
+        if (!prevProps.backend.languages.language && this.props.backend.languages.language) {
+            const { backend: { languages: { language } } } = this.props;
+            this.setState({ ...language });
+        }
+    }
+
+    componentWillUnmount() {
+        this.props.reset();
+    }
+
     render() {
         let {
             content: {
                 cms: {
-                    pages: { components: { form: { save } }, backend: { pages: { languages: { title, add, index, form } } } }
+                    pages: { backend: { pages: { languages: { title, add, edit, index, form } } } }
                 },
                 countries,
             },
@@ -60,7 +89,7 @@ class Add extends Component {
         let errors = null;
 
         const feature = features.find(f => f.prefix === 'languages');
-        const redirect = !(feature && JSON.parse(feature.permissions).includes('c')) && <Redirect to="/user/dashboard" />;
+        const redirect = !(feature && JSON.parse(feature.permissions).includes(this.props.edit ? 'u' : 'c')) && <Redirect to="/user/dashboard" />;
 
         const countriesOptions = countries.map(({ country, code, name }) => <option key={country} value={country} code={code}>{name}</option>);
 
@@ -73,30 +102,32 @@ class Add extends Component {
             </>;
             content = (
                 <>
-                    <Row>
-                        <Form onSubmit={this.submitHandler} icon={faLanguage} title={add} list={index} link="/user/languages" innerClassName="row" className="shadow-sm">
-                            <Col lg={8}>
-                                <Feedback message={message} />
-                                <Row>
-                                    <FormInput type="text" className="col-md-6" icon={faLanguage} onChange={this.inputChangeHandler} value={name} name="name" required placeholder={form.name} />
-                                    <FormInput type="text" className="col-md-6" icon={faLanguage} onChange={this.inputChangeHandler} value={abbr} name="abbr" required placeholder={form.abbr} />
-                                    <FormInput className="col-md-6" type="select" addon={<span className="text-secondary text-small d-inline-flex">
-                                        <div className="rounded-circle overflow-hidden position-relative d-flex justify-content-center align-items-center" style={{ width: 30, height: 30 }}>
-                                            <span className={`flag-icon text-xx-large position-absolute flag-icon-${flag.toLowerCase()}`} />
-                                        </div>
-                                    </span>} onChange={this.inputChangeHandler} value={flag} validation={{ required: true }} name="flag" required placeholder={form.select_flag}>
-                                        <option>{form.select_flag}</option>
-                                        {countriesOptions}
-                                    </FormInput>
+                    <Col xl={9}>
+                        <Feedback message={message} />
 
+                        {this.props.edit && <input type="hidden" name="_method" defaultValue="PATCH" />}
 
-                                    <div className="col-12">
-                                        <FormButton color="green" icon={faSave}>{save}</FormButton>
-                                    </div>
-                                </Row>
-                            </Col>
-                        </Form>
-                    </Row>
+                        <div className="shadow-lg rounded-8 bg-white px-4 px-sm-5 py-3 py-sm-4">
+                            <Row className="my-2 my-sm-3">
+                                <div className="col-lg-9">
+                                    <Row>
+                                        <FormInput type="text" className="col-md-6" icon={faLanguage} onChange={this.inputChangeHandler} value={name} name="name" required placeholder={form.name} />
+                                        <FormInput type="text" className="col-md-6" icon={faLanguage} onChange={this.inputChangeHandler} value={abbr} name="abbr" required placeholder={form.abbr} />
+                                        <FormInput className="col-md-6" type="select" addon={<span className="text-secondary text-small d-inline-flex">
+                                            <div className="rounded-circle overflow-hidden position-relative d-flex justify-content-center align-items-center" style={{ width: 30, height: 30 }}>
+                                                <span className={`flag-icon text-xx-large position-absolute flag-icon-${flag.toLowerCase()}`} />
+                                            </div>
+                                        </span>} onChange={this.inputChangeHandler} value={flag} validation={{ required: true }} name="flag" required placeholder={form.select_flag}>
+                                            <option>{form.select_flag}</option>
+                                            {countriesOptions}
+                                        </FormInput>
+                                    </Row>
+                                </div>
+
+                                <Save edit={this.props.edit} saveAddHandler={this.saveAddHandler} />
+                            </Row>
+                        </div>
+                    </Col>
                 </>
             );
         }
@@ -104,14 +135,18 @@ class Add extends Component {
         return (
             <>
                 <TitleWrapper>
-                    <Breadcrumb main={add} icon={faLanguage} />
-                    <SpecialTitle user icon={faLanguage}>{title}</SpecialTitle>
-                    <Subtitle user>{add}</Subtitle>
+                    <Breadcrumb items={this.props.edit && [{ to: '/user/languages', content: index }]} main={this.props.edit ? edit : add} icon={faLanguage} />
+                    <SpecialTitle>{title}</SpecialTitle>
+                    <Subtitle>{this.props.edit ? edit : add}</Subtitle>
                 </TitleWrapper>
-                <div className="p-4 pb-0">
+                <div>
                     {redirect}
                     {errors}
-                    {content}
+                    <Row>
+                        <Form onSubmit={this.saveHandler} icon={faLanguage} title={this.props.edit ? edit : add} list={index} link="/user/languages" innerClassName="row justify-content-center">
+                            {content}
+                        </Form>
+                    </Row>
                 </div>
             </>
         );
@@ -121,7 +156,9 @@ class Add extends Component {
 const mapStateToProps = state => ({ ...state });
 
 const mapDispatchToProps = dispatch => ({
+    get: id => dispatch(actions.getLanguage(id)),
     post: data => dispatch(actions.postLanguages(data)),
+    patch: (id, data) => dispatch(actions.patchLanguages(id, data)),
     reset: () => dispatch(actions.resetLanguages()),
 });
 

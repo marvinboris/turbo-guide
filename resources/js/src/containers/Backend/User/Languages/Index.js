@@ -15,7 +15,7 @@ import Feedback from '../../../../components/Feedback/Feedback';
 import TitleWrapper from '../../../../components/Backend/UI/TitleWrapper';
 import Delete from '../../../../components/Backend/UI/Delete/Delete';
 
-import * as actions from '../../../../store/actions';
+import * as actions from '../../../../store/actions/backend';
 import { updateObject, convertDate } from '../../../../shared/utility';
 
 class Index extends Component {
@@ -31,7 +31,7 @@ class Index extends Component {
         let {
             content: {
                 cms: {
-                    pages: { components: { list: { action } }, backend: { pages: { languages: { title, add, index, form: { name, abbr, flag, created_at } } } } }
+                    pages: { components: { list: { action } }, backend: { pages: { languages: { title, add, index, form } } } }
                 }
             },
             backend: { languages: { loading, error, message, languages, total } },
@@ -44,6 +44,7 @@ class Index extends Component {
         const errors = <>
             <Error err={error} />
         </>;
+        const flash = this.props.location.state ? <Feedback time={5000} message={this.props.location.state.message} /> : null;
         const feedback = <Feedback message={message} />;
 
         if (!languages) languages = [];
@@ -70,11 +71,11 @@ class Index extends Component {
                 <Row>
                     <List array={data} loading={loading} data={JSON.stringify(languages)} get={this.props.get} total={total} bordered add={add} link="/user/languages/add" icon={faLanguage} title={index} className="shadow-sm"
                         fields={[
-                            { name, key: 'name' },
-                            { name: abbr, key: 'abbr' },
-                            { name: flag, key: 'flag' },
-                            { name: created_at, key: 'created_at' },
-                            { name: action, key: 'action', fixed: true }
+                            { name: form.name, key: 'name' },
+                            { name: form.abbr, key: 'abbr' },
+                            { name: form.flag, key: 'flag' },
+                            { name: form.created_at, key: 'created_at' },
+                            { name: action, key: 'action' }
                         ]} />
                 </Row>
             </>
@@ -84,12 +85,13 @@ class Index extends Component {
             <>
                 <TitleWrapper>
                     <Breadcrumb main={index} icon={faLanguage} />
-                    <SpecialTitle user icon={faLanguage}>{title}</SpecialTitle>
-                    <Subtitle user>{index}</Subtitle>
+                    <SpecialTitle>{title}</SpecialTitle>
+                    <Subtitle>{index}</Subtitle>
                 </TitleWrapper>
-                <div className="p-4 pb-0">
+                <div>
                     {redirect}
                     {errors}
+                    {flash}
                     {feedback}
                     {content}
                 </div>

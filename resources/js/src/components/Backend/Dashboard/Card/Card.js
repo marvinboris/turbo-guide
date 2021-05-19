@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 
-export default ({ children, icon, link, color, details }) => <div className="col-xxl-2 col-xl-4 col-6 pb-3 pb-xxl-0">
+export default ({ children, icon, link, color, details }) => <div className="col-xxl-3 col-6 pb-3 pb-xxl-0">
     <Link to={link} className={`bg-${color}-10 rounded-8 text-decoration-none text-${color} px-4 py-4 d-flex align-items-center`}>
         <div className="mr-4 d-none d-sm-block">
             <FontAwesomeIcon icon={icon} className={`text-33 text-${color}-50`} />

@@ -35,11 +35,11 @@ export default ({ id, icon, addon, onChange, className = '', name, type = 'text'
                     </>
                 }
 
-                {append ? <InputGroupAddon addonType="append">
+                {append && <InputGroupAddon addonType="append">
                     <InputGroupText className="bg-transparent border-0 text-secondary text-small px-4">
                         {append}
                     </InputGroupText>
-                </InputGroupAddon> : null}
+                </InputGroupAddon>}
             </InputGroup>
         </WithTooltip>
 

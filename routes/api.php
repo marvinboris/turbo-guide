@@ -125,6 +125,16 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
                 Route::get('{user}', 'UserController@show')->name('show');
             });
 
+            Route::prefix('methods')->name('methods.')->group(function () {
+                Route::get('info', 'MethodController@info')->name('info');
+                Route::get('{method}', 'MethodController@show')->name('show');
+            });
+
+            Route::prefix('recharges')->name('recharges.')->group(function () {
+                Route::get('info', 'RechargeController@info')->name('info');
+                Route::get('{recharge}', 'RechargeController@show')->name('show');
+            });
+
 
 
             Route::apiResources([
@@ -133,7 +143,8 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
                 'features' => 'FeatureController',
                 'languages' => 'LanguageController',
 
-
+                'methods' => 'MethodController',
+                'recharges' => 'RechargeController',
             ]);
         });
     });

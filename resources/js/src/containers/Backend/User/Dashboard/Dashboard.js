@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { Col, Row } from 'reactstrap';
-import { faTachometerAlt, faTasks, faEye, faEdit, faTrash, faCircleNotch, faUserGraduate, faBook, faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { faTachometerAlt, faEye, faEdit, faHome, faBox, faMoneyBillWaveAlt, faMoneyBillAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // Components
@@ -14,6 +14,7 @@ import Card from '../../../../components/Backend/Dashboard/Card/Card';
 import TitleWrapper from '../../../../components/Backend/UI/TitleWrapper';
 import Error from '../../../../components/Error/Error';
 import CustomSpinner from '../../../../components/UI/CustomSpinner/CustomSpinner';
+import FinanceTracker from './FinanceTracker/FinanceTracker';
 
 import * as actions from '../../../../store/actions';
 import { updateObject } from '../../../../shared/utility';
@@ -32,10 +33,10 @@ class Dashboard extends Component {
         let {
             content: {
                 cms: {
-                    pages: { backend: { pages: { dashboard: { user: { title, subtitle, blocks: { total_cycles, total_years, total_subjects, total_students } } } } } }
+                    pages: { backend: { pages: { dashboard: { user: { title, subtitle, blocks: { total_restaurants, total_plans, total_plans_amount, total_recharges } } } } } }
                 }
             },
-            backend: { dashboard: { loading, error, blocksData, totalCycles, totalYears, totalSubjects, totalStudents } },
+            backend: { dashboard: { loading, error, blocksData, totalRestaurants, totalPlans, totalRecharges, financeTrackerData } },
         } = this.props;
 
         let content = null;
@@ -51,123 +52,108 @@ class Dashboard extends Component {
             if (blocksData) {
                 const data = [
                     {
-                        title: total_cycles.title,
-                        children: blocksData.totalCycles,
-                        icon: faCircleNotch,
-                        link: '/user/cycles/',
-                        color: 'yellow',
-                        details: total_cycles.description,
-                        titleColor: 'white',
+                        children: blocksData.totalRestaurants,
+                        icon: faHome,
+                        link: '/user/restaurants/',
+                        color: 'red',
+                        details: total_restaurants,
                     },
                     {
-                        title: total_years.title,
-                        children: blocksData.totalYears,
-                        icon: faCalendar,
-                        link: '/user/years/',
-                        color: 'brown',
-                        details: total_years.description,
-                        titleColor: 'white',
+                        children: blocksData.totalPlans,
+                        icon: faBox,
+                        link: '/user/plans/',
+                        color: 'green',
+                        details: total_plans,
                     },
                     {
-                        title: total_subjects.title,
-                        children: blocksData.totalSubjects,
-                        icon: faBook,
-                        link: '/user/subjects/',
-                        color: 'lightyellow',
-                        details: total_subjects.description,
-                        titleColor: 'white',
+                        children: blocksData.totalPlansAmount,
+                        icon: faMoneyBillWaveAlt,
+                        link: '/user/plans/',
+                        color: 'blue',
+                        details: total_plans_amount,
                     },
                     {
-                        title: total_students.title,
-                        children: blocksData.totalStudents,
-                        icon: faUserGraduate,
-                        link: '/user/students/',
-                        color: 'darkhead',
-                        details: total_students.description,
-                        titleColor: 'white',
-                    }
+                        children: blocksData.totalRecharges,
+                        icon: faMoneyBillAlt,
+                        link: '/user/recharges/',
+                        color: 'orange',
+                        details: total_recharges,
+                    },
                 ];
 
-                const cards = data.map(({ title, titleColor, icon, link, color, children, details, circleBorder, circleColor, light }, index) => <Card color={color} key={index} title={title} titleColor={titleColor} details={details} circleBorder={circleBorder} circleColor={circleColor} icon={icon} link={link} light={light}>{children}</Card>);
+                const cards = data.map(({ title, titleColor, icon, link, color, details, children, circleBorder, circleColor, light }, index) => <Card color={color} details={details} key={index} title={title} titleColor={titleColor} circleBorder={circleBorder} circleColor={circleColor} icon={icon} link={link} light={light}>{children}</Card>);
 
-                const cyclesData = totalCycles.map(cycle => updateObject(cycle, {
+                const restaurantsData = totalRestaurants.map(restaurant => updateObject(restaurant, {
                     action: <div className="text-center">
-                        <Link className="text-blue mr-2" to={`/user/cycles/${cycle.id}`}><FontAwesomeIcon icon={faEye} fixedWidth /></Link>
-                        <Link className="text-green mr-2" to={`/user/cycles/${cycle.id}/edit`}><FontAwesomeIcon icon={faEdit} fixedWidth /></Link>
-                        <a className="text-red" href="#" onClick={() => this.props.deletecycles(cycle.id)}><FontAwesomeIcon icon={faTrash} fixedWidth /></a>
+                        <Link className="text-blue mr-2" to={`/user/restaurants/${restaurant.id}`}><FontAwesomeIcon icon={faEye} fixedWidth /></Link>
+                        <Link className="text-green mr-2" to={`/user/restaurants/${restaurant.id}/edit`}><FontAwesomeIcon icon={faEdit} fixedWidth /></Link>
                     </div>
                 }));
 
-                const yearsData = totalYears.map(year => updateObject(year, {
+                const plansData = totalPlans.map(restaurant => updateObject(restaurant, {
                     action: <div className="text-center">
-                        <Link className="text-blue mr-2" to={`/user/years/${year.id}`}><FontAwesomeIcon icon={faEye} fixedWidth /></Link>
-                        <Link className="text-green mr-2" to={`/user/years/${year.id}/edit`}><FontAwesomeIcon icon={faEdit} fixedWidth /></Link>
-                        <a className="text-red" href="#" onClick={() => this.props.deleteyears(year.id)}><FontAwesomeIcon icon={faTrash} fixedWidth /></a>
+                        <Link className="text-blue mr-2" to={`/user/plans/${restaurant.id}`}><FontAwesomeIcon icon={faEye} fixedWidth /></Link>
+                        <Link className="text-green mr-2" to={`/user/plans/${restaurant.id}/edit`}><FontAwesomeIcon icon={faEdit} fixedWidth /></Link>
                     </div>
                 }));
 
-                const subjectsData = totalSubjects.map(subject => updateObject(subject, {
+                const rechargesData = totalRecharges.map(restaurant => updateObject(restaurant, {
                     action: <div className="text-center">
-                        <Link className="text-blue mr-2" to={`/user/subjects/${subject.id}`}><FontAwesomeIcon icon={faEye} fixedWidth /></Link>
-                        <Link className="text-green mr-2" to={`/user/subjects/${subject.id}/edit`}><FontAwesomeIcon icon={faEdit} fixedWidth /></Link>
-                        <a className="text-red" href="#" onClick={() => this.props.deletesubjects(subject.id)}><FontAwesomeIcon icon={faTrash} fixedWidth /></a>
-                    </div>
-                }));
-
-                const studentsData = totalStudents.map(student => updateObject(student, {
-                    action: <div className="text-center">
-                        <Link className="text-blue mr-2" to={`/user/students/${student.id}`}><FontAwesomeIcon icon={faEye} fixedWidth /></Link>
-                        <Link className="text-green mr-2" to={`/user/students/${student.id}/edit`}><FontAwesomeIcon icon={faEdit} fixedWidth /></Link>
-                        <a className="text-red" href="#" onClick={() => this.props.deletestudents(student.id)}><FontAwesomeIcon icon={faTrash} fixedWidth /></a>
+                        <Link className="text-blue mr-2" to={`/user/recharges/${restaurant.id}`}><FontAwesomeIcon icon={faEye} fixedWidth /></Link>
+                        <Link className="text-green mr-2" to={`/user/recharges/${restaurant.id}/edit`}><FontAwesomeIcon icon={faEdit} fixedWidth /></Link>
                     </div>
                 }));
 
                 content = (
                     <>
-                        <div className="pt-4 px-4 pb-3 bg-yellow-10">
-                            <Row>
-                                {cards}
-                            </Row>
-                        </div>
+                        <Row>
+                            {cards}
+                        </Row>
 
                         <Row className="mt-5">
-                            <Table array={cyclesData} searchable draggable closable title="Total Cycles" icon={faTasks} bordered limit={5} lg={6}
+                            <Table array={restaurantsData} title="Total Restaurants" icon={faHome} bordered limit={5} lg={6}
                                 fields={[
                                     { name: 'Name', key: 'name' },
-                                    { name: 'Slug', key: 'slug' },
+                                    { name: 'Token', key: 'token' },
+                                    { name: 'Owner', key: 'owner' },
+                                    { name: 'E-Mail Address', key: 'email' },
                                     { name: 'Action', key: 'action' }
                                 ]}>
-                                <Link to="/user/cycles" className="text-reset">{'View full cycle list | >'}</Link>
+                                <Link to="/user/restaurants" className="text-reset">{'View full restaurant list | >'}</Link>
                             </Table>
 
-                            <Table array={yearsData} searchable draggable closable title="Total Years" icon={faTasks} bordered limit={5} lg={6}
+                            <Col lg={6} className="pb-4">
+                                <div className="bg-soft shadow-sm text-secondary h-100 d-flex flex-column">
+                                    <div className="p-3 border-bottom border-border-50 text-700 position-relative d-flex">
+                                        <span className="d-inline-flex align-items-center"><FontAwesomeIcon size="lg" className="mr-2" fixedWidth icon={faMoneyBillWaveAlt} />{"Finance Tracker"}</span>
+                                    </div>
+
+                                    <Row className="p-3 flex-fill">
+                                        <Col xs={12} lg={11}>
+                                            <FinanceTracker data={financeTrackerData} />
+                                        </Col>
+                                    </Row>
+                                </div>
+                            </Col>
+
+                            <Table array={plansData} title="Total Plans" icon={faBox} bordered limit={5} lg={6}
                                 fields={[
-                                    { name: 'Name', key: 'name' },
-                                    { name: 'Slug', key: 'slug' },
+                                    { name: 'Restaurant Name', key: 'restaurant' },
+                                    { name: 'Plan Name', key: 'plan' },
+                                    { name: 'Subscription Type', key: 'type' },
                                     { name: 'Action', key: 'action' }
                                 ]}>
-                                <Link to="/user/years" className="text-reset">{'View full year list | >'}</Link>
+                                <Link to="/user/plans" className="text-reset">{'View full plan list | >'}</Link>
                             </Table>
 
-                            <Table array={subjectsData} searchable draggable closable title="Total Subjects" icon={faTasks} bordered limit={5} lg={6}
+                            <Table array={rechargesData} title="Total Recharges" icon={faMoneyBillAlt} bordered limit={5} lg={6}
                                 fields={[
-                                    { name: 'Name', key: 'name' },
-                                    { name: 'Slug', key: 'slug' },
+                                    { name: 'Restaurant Name', key: 'restaurant' },
+                                    { name: 'Payment Method', key: 'method' },
+                                    { name: 'Amount', key: 'amount' },
                                     { name: 'Action', key: 'action' }
                                 ]}>
-                                <Link to="/user/subjects" className="text-reset">{'View full subject list | >'}</Link>
-                            </Table>
-
-                            <Table array={studentsData} searchable draggable closable title="Total Students" icon={faTasks} bordered limit={5} lg={6}
-                                fields={[
-                                    { name: 'First name', key: 'first_name' },
-                                    { name: 'Last name', key: 'last_name' },
-                                    { name: 'Birth date', key: 'birth_date' },
-                                    { name: 'Birth place', key: 'birth_place' },
-                                    { name: 'Matricule', key: 'matricule' },
-                                    { name: 'Action', key: 'action' }
-                                ]}>
-                                <Link to="/user/students" className="text-reset">{'View full student list | >'}</Link>
+                                <Link to="/user/recharges" className="text-reset">{'View full recharge list | >'}</Link>
                             </Table>
                         </Row>
                     </>
@@ -179,10 +165,10 @@ class Dashboard extends Component {
             <>
                 <TitleWrapper>
                     <Breadcrumb main={subtitle} icon={faTachometerAlt} />
-                    <SpecialTitle user icon={faTachometerAlt}>{title}</SpecialTitle>
-                    <Subtitle user>{subtitle}</Subtitle>
+                    <SpecialTitle>{title}</SpecialTitle>
+                    <Subtitle>{subtitle}</Subtitle>
                 </TitleWrapper>
-                <div className="p-4 pb-0">
+                <div>
                     {errors}
                     {content}
                 </div>

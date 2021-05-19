@@ -29,10 +29,13 @@ export const getContent = () => async (dispatch, getState) => {
             const phone = await phoneRes.json();
             const names = await namesRes.json();
 
-            countries = Object.keys(phone).map(key => ({ country: key, code: phone[key], name: names[key] })).sort((a, b) => a.country > b.country);
+            countries = Object.keys(phone).map(key => ({ country: key, code: phone[key], name: names[key] }));
+
+            currencies = currencies.sort((a, b) => a.name.localeCompare(b.name));
+            countries = countries.sort((a, b) => a.name.localeCompare(b.name));
 
             return dispatch(contentSuccess({ ...resData, currencies, countries }));
-        } 
+        }
 
         dispatch(contentSuccess(resData));
     } catch (error) {

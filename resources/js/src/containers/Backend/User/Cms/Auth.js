@@ -17,7 +17,7 @@ import FormButton from '../../../../components/UI/Button/BetweenButton/BetweenBu
 import TitleWrapper from '../../../../components/Backend/UI/TitleWrapper';
 import Feedback from '../../../../components/Feedback/Feedback';
 
-import * as actions from '../../../../store/actions';
+import * as actions from '../../../../store/actions/backend';
 import { updateObject } from '../../../../shared/utility';
 import AUTH from '../../../../components/Content/Auth';
 

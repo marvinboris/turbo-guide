@@ -551,12 +551,12 @@ var Table = /*#__PURE__*/function (_Component) {
           className: "rounded-4 d-flex align-items-center mb-4 mb-sm-5 py-3 py-sm-4 px-4 px-sm-5 bg-".concat(dark ? "grayblue" : "orange-10"),
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
             className: "d-flex align-items-center",
-            children: [icon ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+            children: [icon && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
               fixedWidth: true,
               className: "mr-3 mr-sm-4 text-30 text-orange-20",
               icon: icon,
               size: "lg"
-            }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
                 className: "text-".concat(dark ? "light" : "orange", " text-700 text-20 mb-1"),
                 children: title
@@ -1011,13 +1011,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             htmlFor: id ? id : name,
             children: placeholder
           })]
-        }), append ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_8__.default, {
+        }), append && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_8__.default, {
           addonType: "append",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_9__.default, {
             className: "bg-transparent border-0 text-secondary text-small px-4",
             children: append
           })
-        }) : null]
+        })]
       })
     }), bonus]
   });
@@ -1386,7 +1386,7 @@ var Index = /*#__PURE__*/function (_Component) {
         });
       });
       var methodsOptions = methods.sort(function (a, b) {
-        return a.name > b.name;
+        return a.name.localeCompare(b.name);
       }).map(function (method) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("option", {
           value: method.id,

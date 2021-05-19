@@ -10,7 +10,7 @@ class Admin extends Authenticatable
 {
     use Notifiable, HasApiTokens;
 
-    protected $directory = '/admins/';
+    protected $directory = '/images/admins/';
 
     protected $fillable = [
         'name', 'email', 'password', 'phone', 'photo', 'language_id',

@@ -102,6 +102,10 @@ class RechargeController extends Controller
 
         $request->validate($this->rules);
 
+        if ($request->amount <= 0) return response()->json([
+            'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['recharges']['amount'], 'danger'),
+        ]);
+
         $method = Method::find($request->method_id);
         $link = null;
         switch ($method->name) {

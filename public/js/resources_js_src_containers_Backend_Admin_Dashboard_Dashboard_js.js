@@ -27,7 +27,7 @@ __webpack_require__.r(__webpack_exports__);
       color = _ref.color,
       details = _ref.details;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    className: "col-xxl-2 col-xl-4 col-6 pb-3 pb-xxl-0",
+    className: "col-xxl-3 col-6 pb-3 pb-xxl-0",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
       to: link,
       className: "bg-".concat(color, "-10 rounded-8 text-decoration-none text-").concat(color, " px-4 py-4 d-flex align-items-center"),

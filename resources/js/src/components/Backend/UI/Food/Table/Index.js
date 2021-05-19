@@ -167,8 +167,8 @@ class Table extends Component {
                 <input type="hidden" id="table-search" value={search} />
 
                 <div className={`rounded-4 d-flex align-items-center mb-4 mb-sm-5 py-3 py-sm-4 px-4 px-sm-5 bg-${dark ? "grayblue" : "orange-10"}`}>
-                    <div className="d-flex align-items-center">{
-                        icon ? <FontAwesomeIcon fixedWidth className="mr-3 mr-sm-4 text-30 text-orange-20" icon={icon} size="lg" /> : null}
+                    <div className="d-flex align-items-center">
+                        {icon && <FontAwesomeIcon fixedWidth className="mr-3 mr-sm-4 text-30 text-orange-20" icon={icon} size="lg" />}
 
                         <div>
                             <div className={`text-${dark ? "light" : "orange"} text-700 text-20 mb-1`}>{title}</div>

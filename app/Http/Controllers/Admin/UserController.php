@@ -125,8 +125,7 @@ class UserController extends Controller
         $input['language_id'] = 1;
 
         if ($file = $request->file('photo')) {
-            $fileName = time() . $file->getClientOriginalName();
-            $file->move('users', $fileName);
+            $fileName = UtilController::resize($file, 'users');
             $input['photo'] = htmlspecialchars($fileName);
         }
 
@@ -157,9 +156,8 @@ class UserController extends Controller
         if ($request->password) $input['password'] = Hash::make($request->password);
 
         if ($file = $request->file('photo')) {
-            if ($user->photo) unlink(public_path($user->photo));
-            $fileName = time() . $file->getClientOriginalName();
-            $file->move('users', $fileName);
+            if ($user->photo && is_file(public_path($user->photo))) unlink(public_path($user->photo));
+            $fileName = UtilController::resize($file, 'users');
             $input['photo'] = htmlspecialchars($fileName);
         }
 

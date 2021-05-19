@@ -589,13 +589,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             htmlFor: id ? id : name,
             children: placeholder
           })]
-        }), append ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_8__.default, {
+        }), append && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_8__.default, {
           addonType: "append",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_9__.default, {
             className: "bg-transparent border-0 text-secondary text-small px-4",
             children: append
           })
-        }) : null]
+        })]
       })
     }), bonus]
   });
@@ -1060,7 +1060,7 @@ var Add = /*#__PURE__*/function (_Component) {
       });
       if (!categories) categories = [];
       var categoriesOptions = categories.sort(function (a, b) {
-        return a.name[lang] > b.name[lang];
+        return a.name[lang].localeCompare(b.name[lang]);
       }).map(function (category) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("option", {
           value: category.id,
@@ -1068,7 +1068,7 @@ var Add = /*#__PURE__*/function (_Component) {
         }, JSON.stringify(category));
       });
       var addonsOptions = allAddons.sort(function (a, b) {
-        return a.name[lang] > b.name[lang];
+        return a.name[lang].localeCompare(b.name[lang]);
       }).filter(function (addon) {
         return !addons.map(function (a) {
           return a.id;

@@ -71,6 +71,11 @@ export const USERS_START = 'USERS_START';
 export const USERS_SUCCESS = 'USERS_SUCCESS';
 export const USERS_FAIL = 'USERS_FAIL';
 
+export const METHODS_RESET = 'METHODS_RESET';
+export const METHODS_START = 'METHODS_START';
+export const METHODS_SUCCESS = 'METHODS_SUCCESS';
+export const METHODS_FAIL = 'METHODS_FAIL';
+
 
 
 export const RESTAURANTS_RESET = 'RESTAURANTS_RESET';

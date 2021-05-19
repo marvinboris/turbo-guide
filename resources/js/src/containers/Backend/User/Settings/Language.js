@@ -17,7 +17,8 @@ import FormButton from '../../../../components/UI/Button/BetweenButton/BetweenBu
 import TitleWrapper from '../../../../components/Backend/UI/TitleWrapper';
 import Feedback from '../../../../components/Feedback/Feedback';
 
-import * as actions from '../../../../store/actions';
+import * as backendActions from '../../../../store/actions/backend';
+import * as contentActions from '../../../../store/actions/content';
 
 class Edit extends Component {
     state = {
@@ -110,8 +111,8 @@ class Edit extends Component {
 const mapStateToProps = state => ({ ...state });
 
 const mapDispatchToProps = dispatch => ({
-    get: () => dispatch(actions.getLanguages()),
-    post: id => dispatch(actions.setLanguage(id)),
+    get: () => dispatch(backendActions.getLanguages()),
+    post: id => dispatch(contentActions.setLanguage(id)),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Edit));

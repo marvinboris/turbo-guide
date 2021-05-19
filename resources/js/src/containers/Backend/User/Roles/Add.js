@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
 import { Col, Row, FormGroup, CustomInput } from 'reactstrap';
 import { faUserTag, faEdit } from '@fortawesome/free-solid-svg-icons';
-import { faSave } from '@fortawesome/free-regular-svg-icons';
 
 // Components
 import Breadcrumb from '../../../../components/Backend/UI/Breadcrumb/Breadcrumb';
@@ -12,33 +11,34 @@ import Subtitle from '../../../../components/UI/Titles/Subtitle/Subtitle';
 import Error from '../../../../components/Error/Error';
 import CustomSpinner from '../../../../components/UI/CustomSpinner/CustomSpinner';
 import Form from '../../../../components/Backend/UI/Form/Form';
+import Save from '../../../../components/Backend/UI/Food/Form/Save';
 import FormInput from '../../../../components/Backend/UI/Input/Input';
-import FormButton from '../../../../components/UI/Button/BetweenButton/BetweenButton';
 import TitleWrapper from '../../../../components/Backend/UI/TitleWrapper';
 import Feedback from '../../../../components/Feedback/Feedback';
 
-import * as actions from '../../../../store/actions';
+import * as actions from '../../../../store/actions/backend';
+
+const initialState = {
+    name: '',
+    description: '',
+    features: [],
+
+    add: false,
+}
 
 class Add extends Component {
-    state = {
-        name: '',
-        description: '',
-        features: []
-    }
+    state = { ...initialState }
 
-    async componentDidMount() {
-        this.props.reset();
-        this.props.get();
-    }
 
-    componentWillUnmount() {
-        this.props.reset();
-    }
 
-    submitHandler = async e => {
+    // Component methods
+    saveHandler = e => {
         e.preventDefault();
-        await this.props.post(e.target);
+        if (this.props.edit) this.props.patch(this.props.match.params.id, e.target);
+        else this.props.post(e.target);
     }
+
+    saveAddHandler = () => this.setState({ add: true }, () => this.props.post(document.querySelector('form')))
 
     inputChangeHandler = e => {
         const { id, name, value, checked, files } = e.target;
@@ -70,11 +70,40 @@ class Add extends Component {
         this.setState({ [name]: files ? files[0] : value });
     }
 
+
+
+    // Lifecycle methods
+    componentDidMount() {
+        this.props.reset();
+        if (this.props.edit) this.props.get(this.props.match.params.id);
+        else this.props.info();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (!prevProps.backend.roles.message && this.props.backend.roles.message && this.props.backend.roles.message.type === 'success' && !this.props.edit) {
+            if (this.state.add) this.setState({ ...initialState });
+            else this.props.history.push({
+                pathname: '/user/roles',
+                state: {
+                    message: this.props.backend.roles.message,
+                },
+            });
+        }
+        if (!prevProps.backend.roles.role && this.props.backend.roles.role) {
+            const { backend: { roles: { role } } } = this.props;
+            this.setState({ ...role });
+        }
+    }
+
+    componentWillUnmount() {
+        this.props.reset();
+    }
+
     render() {
         let {
             content: {
                 cms: {
-                    pages: { components: { form: { save } }, backend: { pages: { roles: { title, add, index, form } } } }
+                    pages: { backend: { pages: { roles: { title, add, edit, index, form } } } }
                 }
             },
             backend: { roles: { loading, error, message, features } },
@@ -85,7 +114,7 @@ class Add extends Component {
         let errors = null;
 
         const feature = features_.find(f => f.prefix === 'roles');
-        const redirect = !(feature && JSON.parse(feature.permissions).includes('c')) && <Redirect to="/user/dashboard" />;
+        const redirect = !(feature && JSON.parse(feature.permissions).includes(this.props.edit ? 'u' : 'c')) && <Redirect to="/user/dashboard" />;
 
         if (!features) features = [];
 
@@ -120,26 +149,29 @@ class Add extends Component {
             </>;
             content = (
                 <>
-                    <Row>
-                        <Form onSubmit={this.submitHandler} icon={faUserTag} title={add} list={index} link="/user/roles" innerClassName="row" className="shadow-sm">
-                            <Col lg={8}>
-                                <Feedback message={message} />
-                                <Row>
-                                    <FormInput type="text" className="col-md-6" icon={faUserTag} onChange={this.inputChangeHandler} value={name} name="name" required placeholder={form.name} />
-                                    <FormInput type="text" className="col-md-6" icon={faEdit} onChange={this.inputChangeHandler} value={description} name="description" required placeholder={form.description} />
+                    <Col xl={9}>
+                        <Feedback message={message} />
 
-                                    <Col xs={12} className="pb-2 text-large text-700">{form.features}</Col>
-                                    <FormGroup className="col-12">
-                                        {featuresItems}
-                                    </FormGroup>
+                        {this.props.edit && <input type="hidden" name="_method" defaultValue="PATCH" />}
 
-                                    <div className="col-12">
-                                        <FormButton color="green" icon={faSave}>{save}</FormButton>
-                                    </div>
-                                </Row>
-                            </Col>
-                        </Form>
-                    </Row>
+                        <div className="shadow-lg rounded-8 bg-white px-4 px-sm-5 py-3 py-sm-4">
+                            <Row className="my-2 my-sm-3">
+                                <div className="col-lg-9">
+                                    <Row>
+                                        <FormInput type="text" className="col-md-6" icon={faUserTag} onChange={this.inputChangeHandler} value={name} name="name" required placeholder={form.name} />
+                                        <FormInput type="text" className="col-md-6" icon={faEdit} onChange={this.inputChangeHandler} value={description} name="description" required placeholder={form.description} />
+
+                                        <Col xs={12} className="pb-2 text-large text-700">{form.features}</Col>
+                                        <FormGroup className="col-12">
+                                            {featuresItems}
+                                        </FormGroup>
+                                    </Row>
+                                </div>
+
+                                <Save edit={this.props.edit} saveAddHandler={this.saveAddHandler} />
+                            </Row>
+                        </div>
+                    </Col>
                 </>
             );
         }
@@ -147,14 +179,18 @@ class Add extends Component {
         return (
             <>
                 <TitleWrapper>
-                    <Breadcrumb main={add} icon={faUserTag} />
-                    <SpecialTitle user icon={faUserTag}>{title}</SpecialTitle>
-                    <Subtitle user>{add}</Subtitle>
+                    <Breadcrumb items={this.props.edit && [{ to: '/user/roles', content: index }]} main={this.props.edit ? edit : add} icon={faUserTag} />
+                    <SpecialTitle>{title}</SpecialTitle>
+                    <Subtitle>{this.props.edit ? edit : add}</Subtitle>
                 </TitleWrapper>
-                <div className="p-4 pb-0">
+                <div>
                     {redirect}
                     {errors}
-                    {content}
+                    <Row>
+                        <Form onSubmit={this.saveHandler} icon={faUserTag} title={this.props.edit ? edit : add} list={index} link="/user/roles" innerClassName="row justify-content-center">
+                            {content}
+                        </Form>
+                    </Row>
                 </div>
             </>
         );
@@ -164,8 +200,10 @@ class Add extends Component {
 const mapStateToProps = state => ({ ...state });
 
 const mapDispatchToProps = dispatch => ({
-    get: () => dispatch(actions.getRolesInfo()),
+    get: id => dispatch(actions.getRole(id)),
+    info: () => dispatch(actions.getRolesInfo()),
     post: data => dispatch(actions.postRoles(data)),
+    patch: (id, data) => dispatch(actions.patchRoles(id, data)),
     reset: () => dispatch(actions.resetRoles()),
 });
 

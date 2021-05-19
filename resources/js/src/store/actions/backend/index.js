@@ -64,6 +64,15 @@ export {
     resetUsers
 } from './users';
 
+export {
+    deleteMethods,
+    getMethod,
+    getMethods,
+    patchMethods,
+    postMethods,
+    resetMethods
+} from './methods';
+
 
 
 

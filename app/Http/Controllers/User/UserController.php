@@ -14,7 +14,6 @@ class UserController extends Controller
     private $rules = [
         'role_id' => 'required|exists:roles,id',
         'name' => 'required|string',
-        'email' => 'required|string|email|unique:users',
         'password' => 'required|string|confirmed',
         'photo' => 'nullable|image',
         'phone' => 'required|string',
@@ -116,7 +115,9 @@ class UserController extends Controller
         $cms = UtilController::cms();
         $user = UtilController::get(request());
 
-        $request->validate($this->rules);
+        $request->validate($this->rules + [
+            'email' => 'required|string|email|unique:users',
+        ]);
 
         $input = $request->except('photo');
 
@@ -125,8 +126,7 @@ class UserController extends Controller
         $input['language_id'] = 1;
 
         if ($file = $request->file('photo')) {
-            $fileName = time() . $file->getClientOriginalName();
-            $file->move('users', $fileName);
+            $fileName = UtilController::resize($file, 'users');
             $input['photo'] = htmlspecialchars($fileName);
         }
 
@@ -157,9 +157,8 @@ class UserController extends Controller
         if ($request->password) $input['password'] = Hash::make($request->password);
 
         if ($file = $request->file('photo')) {
-            if ($user_->photo) unlink(public_path($user_->photo));
-            $fileName = time() . $file->getClientOriginalName();
-            $file->move('users', $fileName);
+            if ($user_->photo && is_file(public_path($user_->photo))) unlink(public_path($user_->photo));
+            $fileName = UtilController::resize($file, 'users');
             $input['photo'] = htmlspecialchars($fileName);
         }
 

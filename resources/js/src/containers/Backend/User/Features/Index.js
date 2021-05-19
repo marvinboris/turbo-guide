@@ -15,7 +15,7 @@ import Feedback from '../../../../components/Feedback/Feedback';
 import TitleWrapper from '../../../../components/Backend/UI/TitleWrapper';
 import Delete from '../../../../components/Backend/UI/Delete/Delete';
 
-import * as actions from '../../../../store/actions';
+import * as actions from '../../../../store/actions/backend';
 import { updateObject, convertDate } from '../../../../shared/utility';
 
 class Index extends Component {
@@ -31,7 +31,7 @@ class Index extends Component {
         let {
             content: {
                 cms: {
-                    pages: { components: { list: { action } }, backend: { pages: { features: { title, add, index, form: { name, prefix, created_at } } } } }
+                    pages: { components: { list: { action } }, backend: { pages: { features: { title, add, index, form } } } }
                 }
             },
             backend: { features: { loading, error, message, features, total } },
@@ -44,6 +44,7 @@ class Index extends Component {
         const errors = <>
             <Error err={error} />
         </>;
+        const flash = this.props.location.state ? <Feedback time={5000} message={this.props.location.state.message} /> : null;
         const feedback = <Feedback message={message} />;
 
         if (!features) features = [];
@@ -67,9 +68,9 @@ class Index extends Component {
                 <Row>
                     <List array={data} loading={loading} data={JSON.stringify(features)} get={this.props.get} total={total} bordered add={add} link="/user/features/add" icon={faTools} title={index} className="shadow-sm"
                         fields={[
-                            { name, key: 'name' },
-                            { name: prefix, key: 'prefix' },
-                            { name: created_at, key: 'created_at' },
+                            { name: form.name, key: 'name' },
+                            { name: form.prefix, key: 'prefix' },
+                            { name: form.created_at, key: 'created_at' },
                             { name: action, key: 'action', fixed: true }
                         ]} />
                 </Row>
@@ -80,12 +81,13 @@ class Index extends Component {
             <>
                 <TitleWrapper>
                     <Breadcrumb main={index} icon={faTools} />
-                    <SpecialTitle user icon={faTools}>{title}</SpecialTitle>
-                    <Subtitle user>{index}</Subtitle>
+                    <SpecialTitle>{title}</SpecialTitle>
+                    <Subtitle>{index}</Subtitle>
                 </TitleWrapper>
-                <div className="p-4 pb-0">
+                <div>
                     {redirect}
                     {errors}
+                    {flash}
                     {feedback}
                     {content}
                 </div>

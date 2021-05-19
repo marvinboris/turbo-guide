@@ -105,7 +105,7 @@ class Index extends Component {
             });
         });
 
-        const methodsOptions = methods.sort((a, b) => a.name > b.name).map(method => <option key={JSON.stringify(method)} value={method.id}>{method.name}</option>);
+        const methodsOptions = methods.sort((a, b) => a.name.localeCompare(b.name)).map(method => <option key={JSON.stringify(method)} value={method.id}>{method.name}</option>);
 
         const content = (
             <>

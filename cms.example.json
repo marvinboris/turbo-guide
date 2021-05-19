@@ -223,6 +223,11 @@
                     "created": "Plan successfully created.",
                     "updated": "Plan successfully updated.",
                     "deleted": "Plan successfully deleted."
+                },
+                "recharges": {
+                    "not_found": "Recharge not found.",
+                    "amount": "Invalid amount.",
+                    "created": "Recharge successfully created."
                 }
             },
             "backend": {
@@ -291,6 +296,11 @@
                             "cms": "CMS",
                             "language": "Language settings"
                         },
+                        "restaurants": {
+                            "title": "Restaurants",
+                            "add": "Add restaurant",
+                            "index": "Restaurant list"
+                        },
                         "categories": {
                             "title": "Categories",
                             "add": "Add category",
@@ -309,11 +319,22 @@
                         "comments": "Customer Review",
                         "history": "Order History",
                         "plans": {
-                            "title": "Subscription Plan",
-                            "purchase": "Purchase Plan"
+                            "title": "Plans",
+                            "add": "Deposit plan",
+                            "subscription": "Subscription Plan",
+                            "purchase": "Purchase Plan",
+                            "index": "Plan list"
                         },
                         "recharges": {
-                            "title": "Recharge Balance"
+                            "title": "Recharges",
+                            "add": "Add recharge",
+                            "balance": "Recharge Balance",
+                            "index": "Recharge list"
+                        },
+                        "methods": {
+                            "title": "Methods",
+                            "add": "Add method",
+                            "index": "Method list"
                         }
                     }
                 },
@@ -323,44 +344,20 @@
                             "title": "Admin panel",
                             "subtitle": "Dashboard",
                             "blocks": {
-                                "total_categories": {
-                                    "title": "Total Categories",
-                                    "description": "Total Categories"
-                                },
-                                "total_drinks": {
-                                    "title": "Total Drinks",
-                                    "description": "Total Drinks"
-                                },
-                                "total_meals": {
-                                    "title": "Total Meals",
-                                    "description": "Total Meals"
-                                },
-                                "total_addons": {
-                                    "title": "Total Addons",
-                                    "description": "Total Addons"
-                                }
+                                "total_restaurants": "Total Restaurants",
+                                "total_plans": "Total Plans",
+                                "total_plans_amount": "Total Plans Amount",
+                                "total_recharges": "Total Recharges Amount"
                             }
                         },
                         "user": {
                             "title": "User panel",
                             "subtitle": "Dashboard",
                             "blocks": {
-                                "total_categories": {
-                                    "title": "Total Categories",
-                                    "description": "Total Categories"
-                                },
-                                "total_drinks": {
-                                    "title": "Total Drinks",
-                                    "description": "Total Drinks"
-                                },
-                                "total_meals": {
-                                    "title": "Total Meals",
-                                    "description": "Total Meals"
-                                },
-                                "total_addons": {
-                                    "title": "Total Addons",
-                                    "description": "Total Addons"
-                                }
+                                "total_restaurants": "Total Restaurants",
+                                "total_plans": "Total Plans",
+                                "total_plans_amount": "Total Plans Amount",
+                                "total_recharges": "Total Recharges Amount"
                             }
                         },
                         "restaurant": {
@@ -492,7 +489,7 @@
                             "restaurant_settings": "RESTAURANT SETTINGS",
                             "account_settings": "ACCOUNT SETTINGS",
                             "cms_settings": "CMS SETTINGS",
-                            "calendar_settings": "CALENDAR SETTINGS",
+                            "translatable_settings": "TRANSLATABLE SETTINGS",
                             "language_settings": "LANGUAGE SETTINGS",
                             "name": "Restaurant's Name",
                             "owner": "Restaurant Owner's Name",
@@ -628,9 +625,8 @@
                         "title": "Recharge Balance",
                         "subtitle": "Deposit funds in your E-menu account to purchase plans",
                         "instructions": "Please fill the form below to recharge balance",
-                        "add": "Purchase Plan",
-                        "edit": "Edit meal",
-                        "index": "Recharge",
+                        "add": "Add recharge",
+                        "index": "Recharge list",
                         "form": {
                             "process": "Process Payment",
                             "amount": "Amount",
@@ -638,7 +634,20 @@
                             "method": "Payment Gateway",
                             "terms": "Accept terms and conditions & Privacy policies",
                             "created_at": "Date",
-                            "select_method": "Select payment gateway"
+                            "select_method": "Select payment gateway",
+                            "token": "Restaurant Token",
+                            "restaurant": "Restaurant Name"
+                        }
+                    },
+                    "methods": {
+                        "title": "Methods",
+                        "add": "Add method",
+                        "edit": "Edit method",
+                        "index": "Method list",
+                        "form": {
+                            "name": "Method name",
+                            "text": "Method description",
+                            "select_status": "Select status"
                         }
                     }
                 }
@@ -888,6 +897,11 @@
                     "created": "Plan successfully created.",
                     "updated": "Plan successfully updated.",
                     "deleted": "Plan successfully deleted."
+                },
+                "recharges": {
+                    "not_found": "Recharge not found.",
+                    "amount": "Invalid amount.",
+                    "created": "Recharge successfully created."
                 }
             },
             "backend": {
@@ -956,6 +970,11 @@
                             "cms": "CMS",
                             "language": "Language settings"
                         },
+                        "restaurants": {
+                            "title": "Restaurants",
+                            "add": "Add restaurant",
+                            "index": "Restaurant list"
+                        },
                         "categories": {
                             "title": "Categories",
                             "add": "Add category",
@@ -974,11 +993,22 @@
                         "comments": "Customer Review",
                         "history": "Order History",
                         "plans": {
-                            "title": "Subscription Plan",
-                            "purchase": "Purchase Plan"
+                            "title": "Plans",
+                            "add": "Deposit plan",
+                            "subscription": "Subscription Plan",
+                            "purchase": "Purchase Plan",
+                            "index": "Plan list"
                         },
                         "recharges": {
-                            "title": "Recharge Balance"
+                            "title": "Recharges",
+                            "add": "Add recharge",
+                            "balance": "Recharge Balance",
+                            "index": "Recharge list"
+                        },
+                        "methods": {
+                            "title": "Methods",
+                            "add": "Add method",
+                            "index": "Method list"
                         }
                     }
                 },
@@ -988,44 +1018,20 @@
                             "title": "Admin panel",
                             "subtitle": "Dashboard",
                             "blocks": {
-                                "total_categories": {
-                                    "title": "Total Categories",
-                                    "description": "Total Categories"
-                                },
-                                "total_drinks": {
-                                    "title": "Total Drinks",
-                                    "description": "Total Drinks"
-                                },
-                                "total_meals": {
-                                    "title": "Total Meals",
-                                    "description": "Total Meals"
-                                },
-                                "total_addons": {
-                                    "title": "Total Addons",
-                                    "description": "Total Addons"
-                                }
+                                "total_restaurants": "Total Restaurants",
+                                "total_plans": "Total Plans",
+                                "total_plans_amount": "Total Plans Amount",
+                                "total_recharges": "Total Recharges Amount"
                             }
                         },
                         "user": {
                             "title": "User panel",
                             "subtitle": "Dashboard",
                             "blocks": {
-                                "total_categories": {
-                                    "title": "Total Categories",
-                                    "description": "Total Categories"
-                                },
-                                "total_drinks": {
-                                    "title": "Total Drinks",
-                                    "description": "Total Drinks"
-                                },
-                                "total_meals": {
-                                    "title": "Total Meals",
-                                    "description": "Total Meals"
-                                },
-                                "total_addons": {
-                                    "title": "Total Addons",
-                                    "description": "Total Addons"
-                                }
+                                "total_restaurants": "Total Restaurants",
+                                "total_plans": "Total Plans",
+                                "total_plans_amount": "Total Plans Amount",
+                                "total_recharges": "Total Recharges Amount"
                             }
                         },
                         "restaurant": {
@@ -1157,7 +1163,7 @@
                             "restaurant_settings": "RESTAURANT SETTINGS",
                             "account_settings": "ACCOUNT SETTINGS",
                             "cms_settings": "CMS SETTINGS",
-                            "calendar_settings": "CALENDAR SETTINGS",
+                            "translatable_settings": "TRANSLATABLE SETTINGS",
                             "language_settings": "LANGUAGE SETTINGS",
                             "name": "Restaurant's Name",
                             "owner": "Restaurant Owner's Name",
@@ -1293,9 +1299,8 @@
                         "title": "Recharge Balance",
                         "subtitle": "Deposit funds in your E-menu account to purchase plans",
                         "instructions": "Please fill the form below to recharge balance",
-                        "add": "Purchase Plan",
-                        "edit": "Edit meal",
-                        "index": "Recharge",
+                        "add": "Add recharge",
+                        "index": "Recharge list",
                         "form": {
                             "process": "Process Payment",
                             "amount": "Amount",
@@ -1303,7 +1308,20 @@
                             "method": "Payment Gateway",
                             "terms": "Accept terms and conditions & Privacy policies",
                             "created_at": "Date",
-                            "select_method": "Select payment gateway"
+                            "select_method": "Select payment gateway",
+                            "token": "Restaurant Token",
+                            "restaurant": "Restaurant Name"
+                        }
+                    },
+                    "methods": {
+                        "title": "Methods",
+                        "add": "Add method",
+                        "edit": "Edit method",
+                        "index": "Method list",
+                        "form": {
+                            "name": "Method name",
+                            "text": "Method description",
+                            "select_status": "Select status"
                         }
                     }
                 }

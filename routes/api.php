@@ -137,6 +137,7 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
 
             Route::prefix('plans')->name('plans.')->group(function () {
                 Route::get('info', 'PlanController@info')->name('info');
+                Route::get('bought', 'PlanController@bought')->name('bought');
                 Route::get('{plan}', 'PlanController@show')->name('show');
             });
 

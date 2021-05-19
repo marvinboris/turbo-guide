@@ -53,6 +53,7 @@ class PlanController extends Controller
             foreach ($filteredData as $plan_restaurant) {
                 $plans[] = array_merge($plan_restaurant->toArray(), [
                     'plan' => $plan_restaurant->plan->name,
+                    'type' => $plan_restaurant->plan->type,
                     'restaurant' => $plan_restaurant->restaurant->name,
                 ]);
             }
@@ -85,6 +86,26 @@ class PlanController extends Controller
         ];
     }
 
+    private function information()
+    {
+        $types = [
+            [
+                'months' => 1,
+                'name' => 'Monthly',
+                'plans' => Plan::whereMonths(1)->get(),
+            ],
+            [
+                'months' => 12,
+                'name' => 'Yearly',
+                'plans' => Plan::whereMonths(12)->get(),
+            ],
+        ];
+
+        return [
+            'types' => $types,
+        ];
+    }
+
 
 
     public function index()
@@ -98,6 +119,13 @@ class PlanController extends Controller
             'plans' => $plans,
             'total' => $total,
         ]);
+    }
+
+    public function info()
+    {
+        $information = $this->information();
+
+        return response()->json($information);
     }
 
     public function bought()

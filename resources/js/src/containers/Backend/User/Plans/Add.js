@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
 import { Col, Row } from 'reactstrap';
-import { faBox, faHome, faMoneyBillWaveAlt } from '@fortawesome/free-solid-svg-icons';
+import { faBox, faHome, faMoneyBillWaveAlt, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
 // Components
 import Breadcrumb from '../../../../components/Backend/UI/Breadcrumb/Breadcrumb';
@@ -20,6 +20,7 @@ import * as actions from '../../../../store/actions/backend';
 
 const initialState = {
     token: '',
+    type: '',
     plan_id: '',
 
     add: false,
@@ -48,6 +49,7 @@ class Add extends Component {
     // Lifecycle methods
     componentDidMount() {
         this.props.reset();
+        this.props.info();
     }
 
     componentDidUpdate(prevProps) {
@@ -77,18 +79,20 @@ class Add extends Component {
                     pages: { backend: { pages: { plans: { title, add, edit, index, form } } } }
                 }
             },
-            backend: { plans: { loading, error, message, plans } },
+            backend: { plans: { loading, error, message, types = [] } },
             auth: { data: { role: { features } } }
         } = this.props;
-        let { token, plan_id } = this.state;
+        let { type, token, plan_id } = this.state;
         let content = null;
         let errors = null;
 
         const feature = features.find(f => f.prefix === 'plans');
         const redirect = !(feature && JSON.parse(feature.permissions).includes(this.props.edit ? 'u' : 'c')) && <Redirect to="/user/dashboard" />;
 
-        if (!plans) plans = [];
-        const plansOptions = plans.sort((a, b) => a.name.localeCompare(b.name)).map(plan => <option key={JSON.stringify(plan)} value={plan.id}>{plan.name}</option>);
+        const typesOptions = types.sort((a, b) => a.name.localeCompare(b.name)).map(type => <option key={JSON.stringify(type)} value={type.months}>{type.name}</option>);
+
+        let plansOptions = [];
+        if (type !== '') plansOptions = types.find(t => +t.months === +type).plans.sort((a, b) => a.name.localeCompare(b.name)).map(plan => <option key={JSON.stringify(plan)} value={plan.id}>{plan.name}</option>);
 
         if (loading) content = <Col xs={12}>
             <CustomSpinner />
@@ -109,6 +113,10 @@ class Add extends Component {
                                 <div className="col-lg-9">
                                     <Row>
                                         <FormInput type="text" className="col-md-6" icon={faHome} onChange={this.inputChangeHandler} value={token} name="token" required placeholder={form.token} />
+                                        <FormInput type="select" className="col-md-6" icon={faPencilAlt} onChange={this.inputChangeHandler} value={type} name="type" required>
+                                            <option>{form.select_type}</option>
+                                            {typesOptions}
+                                        </FormInput>
                                         <FormInput className="col-lg-6" type="select" name="plan_id" placeholder={form.plan} onChange={this.inputChangeHandler} icon={faBox} required value={plan_id}>
                                             <option>{form.select_plan}</option>
                                             {plansOptions}
@@ -148,6 +156,7 @@ class Add extends Component {
 const mapStateToProps = state => ({ ...state });
 
 const mapDispatchToProps = dispatch => ({
+    info: () => dispatch(actions.getPlansInfo()),
     post: data => dispatch(actions.postPlans(data)),
     reset: () => dispatch(actions.resetPlans()),
 });

@@ -96,10 +96,10 @@ class Purchase extends Component {
 
         // if (message && message.type === 'success') window.location.reload();
 
-        const typesOptions = types.sort((a, b) => a.name > b.name).map(type => <option key={JSON.stringify(type)} value={type.months}>{type.name}</option>);
+        const typesOptions = types.sort((a, b) => a.name.localeCompare(b.name)).map(type => <option key={JSON.stringify(type)} value={type.months}>{type.name}</option>);
 
         let plansOptions = [];
-        if (type !== '') plansOptions = types.find(t => +t.months === +type).plans.sort((a, b) => a.name > b.name).map(plan => <option key={JSON.stringify(plan)} value={plan.id}>{plan.name}</option>);
+        if (type !== '') plansOptions = types.find(t => +t.months === +type).plans.sort((a, b) => a.name.localeCompare(b.name)).map(plan => <option key={JSON.stringify(plan)} value={plan.id}>{plan.name}</option>);
 
         if (loading) content = <Col xs={12}>
             <CustomSpinner />

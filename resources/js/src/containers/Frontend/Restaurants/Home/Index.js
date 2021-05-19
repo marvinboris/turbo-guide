@@ -203,8 +203,8 @@ class Home extends Component {
         if (restaurant.banner3) items.push(restaurant.banner3);
 
         const basic = restaurant.plan;
-        const standard = restaurant.plan && restaurant.plan.slug === 'standard';
-        const premium = restaurant.plan && restaurant.plan.slug === 'premium';
+        const standard = restaurant.plan && restaurant.plan.slug.includes('standard');
+        const premium = restaurant.plan && restaurant.plan.slug.includes('premium');
 
         return <div className="Home">
             {loading && Object.keys(restaurant).length === 0 && <Spinner />}

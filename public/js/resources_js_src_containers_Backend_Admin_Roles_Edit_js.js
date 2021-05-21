@@ -420,7 +420,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.default, {
         className: "bg-".concat(dark ? "grayblue" : "white border border-soft", " rounded-6 d-flex align-items-center"),
         size: "lg",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_8__.default, {
+        children: [icon || addon && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_8__.default, {
           addonType: "prepend",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_9__.default, {
             className: "bg-transparent d-block border-0 px-4 py-0 my-1 text-center text-16",
@@ -445,7 +445,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           disabled: disabled,
           defaultValue: defaultValue,
           value: value,
-          className: "bg-".concat(dark ? "grayblue" : "", " border-top-0 border-right-0 border-bottom-0 border-soft rounded-right-6 text-small text-secondary h-100 px-4 py-3"),
+          className: "bg-".concat(dark ? "grayblue" : "", " ").concat(icon || addon ? "border-top-0 border-right-0 border-bottom-0 border-soft" : "", " rounded-right-6 text-small text-secondary h-100 px-4 py-3"),
           children: children
         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_11__.default, {
@@ -460,7 +460,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             disabled: disabled,
             defaultValue: defaultValue,
             value: value,
-            className: "border-top-0 border-right-0 border-bottom-0 border-soft rounded-right-6 text-small text-secondary h-100 px-4 py-3"
+            className: (icon || addon ? "border-top-0 border-right-0 border-bottom-0 border-soft" : "border-0") + " rounded-right-6 text-small text-secondary h-100 px-4 py-3"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
             className: "text-small text-light text-truncate m-0",
             htmlFor: id ? id : name,

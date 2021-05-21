@@ -7,7 +7,7 @@
 }
 
 .App.SideDrawer .navbar-nav {
-	height: calc(100vh - 400px);
+	height: calc(100vh - 310px);
 	width: calc(100% + 1rem);
 	overflow: auto;
 }
@@ -50,6 +50,6 @@
 	}
 
 	.App.SideDrawer .navbar-nav {
-		height: calc(100vh - 500px);
+		height: calc(100vh - 440px);
 	}
 }

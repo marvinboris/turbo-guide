@@ -58,6 +58,7 @@ const SubNavLinks = ({ components, language }) => {
     const recursiveDeepness = (paramItem, paramName, paramValue, paramDeepness, paramPrepends = [], paramAppends = []) => Object.keys(paramItem).map(item => {
         const mainItem = paramItem[item];
         const mainName = `${paramName}[${item}]`;
+        const mainId = `${paramName}-${item}`;
         const mainValue = paramValue[item];
         const mainDeepness = paramDeepness.concat(item);
 
@@ -73,7 +74,7 @@ const SubNavLinks = ({ components, language }) => {
             {prepend}
             <FormGroup className="col-md-6 col-lg-4 align-self-end">
                 <Label className="text-small text-500">{mainItem}</Label>
-                <Input type="text" name={mainName} placeholder={mainItem} onChange={e => onChange(e, ...mainDeepness)} value={mainValue} />
+                <Input type="text" name={mainName} id={mainId} placeholder={mainItem} onChange={e => onChange(e, ...mainDeepness)} value={mainValue} />
             </FormGroup>
             {append}
         </> : recursiveDeepness(mainItem, mainName, mainValue, mainDeepness, paramPrepends, paramAppends);

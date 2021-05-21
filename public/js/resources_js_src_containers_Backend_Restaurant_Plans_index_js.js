@@ -1043,9 +1043,9 @@ var Index = /*#__PURE__*/function (_Component) {
           _this$props$content$c = _this$props.content.cms.pages,
           action = _this$props$content$c.components.list.action,
           _this$props$content$c2 = _this$props$content$c.backend.pages.plans,
-          title = _this$props$content$c2.title,
+          subscription = _this$props$content$c2.subscription,
           subtitle = _this$props$content$c2.subtitle,
-          index = _this$props$content$c2.index,
+          bought = _this$props$content$c2.bought,
           form = _this$props$content$c2.form,
           _this$props$backend$p = _this$props.backend.plans,
           loading = _this$props$backend$p.loading,
@@ -1098,7 +1098,7 @@ var Index = /*#__PURE__*/function (_Component) {
             total: total,
             bordered: true,
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_14__.faBox,
-            title: index,
+            title: bought,
             subtitle: subtitle,
             className: "shadow-sm",
             fields: [{
@@ -1116,8 +1116,7 @@ var Index = /*#__PURE__*/function (_Component) {
             }, {
               name: form.type,
               key: 'type'
-            }, // { name: form.status, key: 'status' },
-            {
+            }, {
               name: action,
               key: 'action'
             }]
@@ -1128,12 +1127,12 @@ var Index = /*#__PURE__*/function (_Component) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.Fragment, {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(_components_Backend_UI_TitleWrapper__WEBPACK_IMPORTED_MODULE_4__.default, {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_components_Backend_UI_Breadcrumb_Breadcrumb__WEBPACK_IMPORTED_MODULE_3__.default, {
-            main: index,
+            main: bought,
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_14__.faBox
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_components_UI_Titles_SpecialTitle_SpecialTitle__WEBPACK_IMPORTED_MODULE_5__.default, {
-            children: title
+            children: subscription
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_components_UI_Titles_Subtitle_Subtitle__WEBPACK_IMPORTED_MODULE_6__.default, {
-            children: index
+            children: bought
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
           children: [errors, feedback, content]

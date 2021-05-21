@@ -118,7 +118,7 @@ class Add extends Component {
                                             {typesOptions}
                                         </FormInput>
                                         <FormInput className="col-lg-6" type="select" name="plan_id" placeholder={form.plan} onChange={this.inputChangeHandler} icon={faBox} required value={plan_id}>
-                                            <option>{form.select_plan}</option>
+                                            <option>{form.select_plan_id}</option>
                                             {plansOptions}
                                         </FormInput>
                                     </Row>

@@ -30,7 +30,7 @@ class Index extends Component {
         let {
             content: {
                 cms: {
-                    pages: { components: { list: { action } }, backend: { pages: { plans: { title, subtitle, index, form } } } }
+                    pages: { components: { list: { action } }, backend: { pages: { plans: { subscription, subtitle, bought, form } } } }
                 }
             },
             backend: { plans: { loading, error, message, plans, total } },
@@ -58,14 +58,13 @@ class Index extends Component {
         const content = (
             <>
                 <Row>
-                    <Table array={data} loading={loading} data={JSON.stringify(plans)} get={this.props.get} total={total} bordered icon={faBox} title={index} subtitle={subtitle} className="shadow-sm"
+                    <Table array={data} loading={loading} data={JSON.stringify(plans)} get={this.props.get} total={total} bordered icon={faBox} title={bought} subtitle={subtitle} className="shadow-sm"
                         fields={[
                             { name: form.created_at, key: 'created_at' },
                             { name: form.expiry_date, key: 'expiry_date' },
                             { name: form.name, key: 'name' },
                             { name: form.amount, key: 'price' },
                             { name: form.type, key: 'type' },
-                            // { name: form.status, key: 'status' },
                             { name: action, key: 'action' }
                         ]} />
                 </Row>
@@ -75,9 +74,9 @@ class Index extends Component {
         return (
             <>
                 <TitleWrapper>
-                    <Breadcrumb main={index} icon={faBox} />
-                    <SpecialTitle>{title}</SpecialTitle>
-                    <Subtitle>{index}</Subtitle>
+                    <Breadcrumb main={bought} icon={faBox} />
+                    <SpecialTitle>{subscription}</SpecialTitle>
+                    <Subtitle>{bought}</Subtitle>
                 </TitleWrapper>
                 <div>
                     {errors}

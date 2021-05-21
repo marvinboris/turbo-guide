@@ -292,7 +292,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.default, {
         className: "bg-".concat(dark ? "grayblue" : "white border border-soft", " rounded-6 d-flex align-items-center"),
         size: "lg",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_8__.default, {
+        children: [icon || addon && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_8__.default, {
           addonType: "prepend",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_9__.default, {
             className: "bg-transparent d-block border-0 px-4 py-0 my-1 text-center text-16",
@@ -317,7 +317,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           disabled: disabled,
           defaultValue: defaultValue,
           value: value,
-          className: "bg-".concat(dark ? "grayblue" : "", " border-top-0 border-right-0 border-bottom-0 border-soft rounded-right-6 text-small text-secondary h-100 px-4 py-3"),
+          className: "bg-".concat(dark ? "grayblue" : "", " ").concat(icon || addon ? "border-top-0 border-right-0 border-bottom-0 border-soft" : "", " rounded-right-6 text-small text-secondary h-100 px-4 py-3"),
           children: children
         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_11__.default, {
@@ -332,7 +332,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             disabled: disabled,
             defaultValue: defaultValue,
             value: value,
-            className: "border-top-0 border-right-0 border-bottom-0 border-soft rounded-right-6 text-small text-secondary h-100 px-4 py-3"
+            className: (icon || addon ? "border-top-0 border-right-0 border-bottom-0 border-soft" : "border-0") + " rounded-right-6 text-small text-secondary h-100 px-4 py-3"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
             className: "text-small text-light text-truncate m-0",
             htmlFor: id ? id : name,
@@ -644,11 +644,11 @@ var Purchase = /*#__PURE__*/function (_Component) {
 
       var _this$props = this.props,
           _this$props$content$c = _this$props.content.cms.pages.backend.pages.plans,
-          title = _this$props$content$c.title,
+          subscription = _this$props$content$c.subscription,
           subtitle = _this$props$content$c.subtitle,
           instructions = _this$props$content$c.instructions,
-          add = _this$props$content$c.add,
-          index = _this$props$content$c.index,
+          purchase = _this$props$content$c.purchase,
+          bought = _this$props$content$c.bought,
           form = _this$props$content$c.form,
           _this$props$backend$p = _this$props.backend.plans,
           loading = _this$props$backend$p.loading,
@@ -668,7 +668,7 @@ var Purchase = /*#__PURE__*/function (_Component) {
       var errors = null; // if (message && message.type === 'success') window.location.reload();
 
       var typesOptions = types.sort(function (a, b) {
-        return a.name > b.name;
+        return a.name.localeCompare(b.name);
       }).map(function (type) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("option", {
           value: type.months,
@@ -679,7 +679,7 @@ var Purchase = /*#__PURE__*/function (_Component) {
       if (type !== '') plansOptions = types.find(function (t) {
         return +t.months === +type;
       }).plans.sort(function (a, b) {
-        return a.name > b.name;
+        return a.name.localeCompare(b.name);
       }).map(function (plan) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("option", {
           value: plan.id,
@@ -786,9 +786,9 @@ var Purchase = /*#__PURE__*/function (_Component) {
             className: "d-flex align-items-center",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_components_UI_Titles_SpecialTitle_SpecialTitle__WEBPACK_IMPORTED_MODULE_5__.default, {
-                children: title
+                children: subscription
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_components_UI_Titles_Subtitle_Subtitle__WEBPACK_IMPORTED_MODULE_6__.default, {
-                children: add
+                children: purchase
               })]
             }), plan && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)("div", {
               className: "ml-4 pl-2",
@@ -836,9 +836,9 @@ var Purchase = /*#__PURE__*/function (_Component) {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_components_Backend_UI_Food_Form__WEBPACK_IMPORTED_MODULE_9__.default, {
               onSubmit: this.submitHandler,
               icon: icon,
-              title: add,
+              title: purchase,
               subtitle: subtitle,
-              list: index,
+              list: bought,
               link: "/restaurant/plans",
               innerClassName: "row justify-content-center",
               children: content

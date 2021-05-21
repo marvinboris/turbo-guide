@@ -28,6 +28,7 @@ export default {
             "welcome": "Sign Up today and start using E-menu !",
             "owner": "Restaurant Owner's Name",
             "email": "Enter Email",
+            "phone": "Enter Phone Number",
             "select_country": "Select country",
             "sign_in": "Sign in",
             "terms": "Accept terms and conditions & Privacy policies",

@@ -965,7 +965,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.default, {
         className: "bg-".concat(dark ? "grayblue" : "white border border-soft", " rounded-6 d-flex align-items-center"),
         size: "lg",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_8__.default, {
+        children: [icon || addon && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_8__.default, {
           addonType: "prepend",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_9__.default, {
             className: "bg-transparent d-block border-0 px-4 py-0 my-1 text-center text-16",
@@ -990,7 +990,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           disabled: disabled,
           defaultValue: defaultValue,
           value: value,
-          className: "bg-".concat(dark ? "grayblue" : "", " border-top-0 border-right-0 border-bottom-0 border-soft rounded-right-6 text-small text-secondary h-100 px-4 py-3"),
+          className: "bg-".concat(dark ? "grayblue" : "", " ").concat(icon || addon ? "border-top-0 border-right-0 border-bottom-0 border-soft" : "", " rounded-right-6 text-small text-secondary h-100 px-4 py-3"),
           children: children
         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_11__.default, {
@@ -1005,7 +1005,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             disabled: disabled,
             defaultValue: defaultValue,
             value: value,
-            className: "border-top-0 border-right-0 border-bottom-0 border-soft rounded-right-6 text-small text-secondary h-100 px-4 py-3"
+            className: (icon || addon ? "border-top-0 border-right-0 border-bottom-0 border-soft" : "border-0") + " rounded-right-6 text-small text-secondary h-100 px-4 py-3"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
             className: "text-small text-light text-truncate m-0",
             htmlFor: id ? id : name,
@@ -1326,7 +1326,7 @@ var Index = /*#__PURE__*/function (_Component) {
           title = _this$props$content$c2.title,
           subtitle = _this$props$content$c2.subtitle,
           instructions = _this$props$content$c2.instructions,
-          index = _this$props$content$c2.index,
+          recharge = _this$props$content$c2.recharge,
           form = _this$props$content$c2.form,
           _this$props$backend$r = _this$props.backend.recharges,
           loading = _this$props$backend$r.loading,
@@ -1404,7 +1404,7 @@ var Index = /*#__PURE__*/function (_Component) {
             total: total,
             bordered: true,
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_14__.faMoneyBillWaveAlt,
-            title: index,
+            title: recharge,
             subtitle: subtitle,
             className: "shadow-sm",
             fields: [{
@@ -1492,12 +1492,12 @@ var Index = /*#__PURE__*/function (_Component) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.Fragment, {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(_components_Backend_UI_TitleWrapper__WEBPACK_IMPORTED_MODULE_4__.default, {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_Backend_UI_Breadcrumb_Breadcrumb__WEBPACK_IMPORTED_MODULE_3__.default, {
-            main: index,
+            main: recharge,
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_14__.faMoneyBillWaveAlt
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_UI_Titles_SpecialTitle_SpecialTitle__WEBPACK_IMPORTED_MODULE_5__.default, {
             children: title
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_UI_Titles_Subtitle_Subtitle__WEBPACK_IMPORTED_MODULE_6__.default, {
-            children: index
+            children: recharge
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
           children: [errors, flash, feedback, content]

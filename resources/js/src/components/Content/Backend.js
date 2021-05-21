@@ -9,7 +9,8 @@ export default {
         "you_have": "You have",
         "messages": "messages",
         "view_all_messages": "View all messages",
-        "notifications": "notifications",
+        "unread_notification": "unread notification",
+        "unread_notifications": "unread notifications",
         "view_all_notifications": "View all notifications"
     },
     "footer": {
@@ -63,6 +64,11 @@ export default {
                 "cms": "CMS",
                 "language": "Language settings"
             },
+            "restaurants": {
+                "title": "Restaurants",
+                "add": "Add restaurant",
+                "index": "Restaurant list"
+            },
             "categories": {
                 "title": "Categories",
                 "add": "Add category",
@@ -78,13 +84,27 @@ export default {
                 "add": "Add addon",
                 "index": "Addon list"
             },
-            "drinks": {
-                "title": "Drinks",
-                "add": "Add drink",
-                "index": "Drink list"
-            },
             "comments": "Customer Review",
-            "history": "Order History"
+            "history": "Order History",
+            "plans": {
+                "title": "Plans",
+                "add": "Deposit plan",
+                "subscription": "Subscription plan",
+                "purchase": "Purchase plan",
+                "index": "Plan list",
+                "bought": "Purchase list"
+            },
+            "recharges": {
+                "title": "Recharges",
+                "add": "Add recharge",
+                "balance": "Recharge Balance",
+                "index": "Recharge list"
+            },
+            "methods": {
+                "title": "Methods",
+                "add": "Add method",
+                "index": "Method list"
+            }
         }
     },
     "pages": {
@@ -93,44 +113,20 @@ export default {
                 "title": "Admin panel",
                 "subtitle": "Dashboard",
                 "blocks": {
-                    "total_categories": {
-                        "title": "Total Categories",
-                        "description": "Total Categories"
-                    },
-                    "total_drinks": {
-                        "title": "Total Drinks",
-                        "description": "Total Drinks"
-                    },
-                    "total_meals": {
-                        "title": "Total Meals",
-                        "description": "Total Meals"
-                    },
-                    "total_addons": {
-                        "title": "Total Addons",
-                        "description": "Total Addons"
-                    }
+                    "total_restaurants": "Total Restaurants",
+                    "total_plans": "Total Plans",
+                    "total_plans_amount": "Total Plans Amount",
+                    "total_recharges": "Total Recharges Amount"
                 }
             },
             "user": {
                 "title": "User panel",
                 "subtitle": "Dashboard",
                 "blocks": {
-                    "total_categories": {
-                        "title": "Total Categories",
-                        "description": "Total Categories"
-                    },
-                    "total_drinks": {
-                        "title": "Total Drinks",
-                        "description": "Total Drinks"
-                    },
-                    "total_meals": {
-                        "title": "Total Meals",
-                        "description": "Total Meals"
-                    },
-                    "total_addons": {
-                        "title": "Total Addons",
-                        "description": "Total Addons"
-                    }
+                    "total_restaurants": "Total Restaurants",
+                    "total_plans": "Total Plans",
+                    "total_plans_amount": "Total Plans Amount",
+                    "total_recharges": "Total Recharges Amount"
                 }
             },
             "restaurant": {
@@ -248,21 +244,36 @@ export default {
                 "created_at": "Created at"
             }
         },
+        "notifications": {
+            "title": "Notifications",
+            "show": "Notification details",
+            "index": "Notification list",
+            "form": {
+                "you_have_no_notification": "You have no notification."
+            }
+        },
         "settings": {
             "title": "Settings",
             "form": {
                 "restaurant_settings": "RESTAURANT SETTINGS",
                 "account_settings": "ACCOUNT SETTINGS",
                 "cms_settings": "CMS SETTINGS",
-                "calendar_settings": "CALENDAR SETTINGS",
+                "translatable_settings": "TRANSLATABLE SETTINGS",
+                "language_settings": "LANGUAGE SETTINGS",
                 "name": "Restaurant's Name",
                 "owner": "Restaurant Owner's Name",
                 "phone": "Restaurant's Phone Number",
                 "whatsapp": "Restaurant's WhatsApp NO",
                 "location": "Restaurant's Location (Gmaps)",
                 "address": "Restaurant's Address",
+                "caution": "Restaurant's Addon Intro Text",
+                "must_read": "Restaurant's Must Read",
+                "disclaimer": "Restaurant's Additional Info",
                 "currency": "Restaurant's Currency",
+                "select_currency": "Select currency ",
                 "select_position": "Select currency position",
+                "select_language": "Select language",
+                "languages": "Languages",
                 "left": "Left",
                 "right": "Right",
                 "email": "Email Address",
@@ -273,6 +284,9 @@ export default {
                 "new_password_confirmation": "Confirm New Password",
                 "upload": "Upload Profile Image",
                 "size": "Max Size : 3 MB Format : 250 x 250",
+                "locked_banner1": "Buy a plan to have access.",
+                "locked_banner2": "Upgrade the standard plan to have access.",
+                "locked_banner3": "Upgrade the premium plan to have access.",
                 "days": "Opening Days",
                 "hours": "Opening Hours"
             },
@@ -343,22 +357,6 @@ export default {
                 "select_status": "Please select addon status"
             }
         },
-        "drinks": {
-            "title": "Drinks",
-            "subtitle": "Please follow the instructions carefully",
-            "add": "Add drink",
-            "edit": "Edit drink",
-            "index": "Drink list",
-            "form": {
-                "name": "Drink's Name",
-                "description": "Drink's Description",
-                "price": "Drink's Price",
-                "reference": "Drink's ID Number",
-                "upload": "Upload Drink Image",
-                "size": "Max Size : 3 MB Format : 250 x 250",
-                "select_status": "Please select drink status"
-            }
-        },
         "comments": {
             "title": "Customer Review",
             "subtitle": "Here are your customers comments",
@@ -372,32 +370,44 @@ export default {
             }
         },
         "plans": {
-            "title": "Subscription Plan",
-            "subtitle": "Purchase Plan",
+            "title": "Plans",
+            "subscription": "Subscription plan",
+            "subtitle": "Purchase plan",
             "instructions": "Please fill the form below to purchase or upgrade plan",
-            "add": "Purchase Plan",
-            "edit": "Edit meal",
-            "index": "Purchase List",
+            "add": "Deposit plan",
+            "edit": "Edit plan",
+            "purchase": "Purchase plan",
+            "index": "Plan list",
+            "bought": "Purchase list",
             "form": {
                 "purchase": "Purchase Plan",
                 "name": "Plan Name",
+                "plan": "Plan Name",
+                "restaurant": "Restaurant Name",
                 "amount": "Amount",
                 "status": "Status",
                 "type": "Purchase Type",
                 "terms": "Accept terms and conditions & Privacy policies",
                 "price": "Cost",
+                "token": "Restaurant Token",
+                "expiry_date": "Expiry Date",
                 "created_at": "Purchase Date",
                 "select_plan_id": "Select plan",
-                "select_type": "Purchase Type"
+                "select_type": "Purchase Type",
+                "meals": "Meals",
+                "actions": "Actions",
+                "support": "Support",
+                "banners": "Banners",
+                "reviews": "Reviews"
             }
         },
         "recharges": {
             "title": "Recharge Balance",
             "subtitle": "Deposit funds in your E-menu account to purchase plans",
             "instructions": "Please fill the form below to recharge balance",
-            "add": "Purchase Plan",
-            "edit": "Edit meal",
-            "index": "Recharge",
+            "add": "Add recharge",
+            "index": "Recharge list",
+            "recharge": "Recharge",
             "form": {
                 "process": "Process Payment",
                 "amount": "Amount",
@@ -405,7 +415,36 @@ export default {
                 "method": "Payment Gateway",
                 "terms": "Accept terms and conditions & Privacy policies",
                 "created_at": "Date",
-                "select_method": "Select payment gateway"
+                "select_method": "Select payment gateway",
+                "token": "Restaurant Token",
+                "restaurant": "Restaurant Name"
+            }
+        },
+        "restaurants": {
+            "title": "Restaurants",
+            "add": "Add restaurant",
+            "index": "Restaurant list",
+            "form": {
+                "name": "Restaurant's Name",
+                "owner": "Restaurant Owner's Name",
+                "email": "E-mail address",
+                "phone": "Restaurant's Phone Number",
+                "token": "Restaurant Token",
+                "country": "Country",
+                "created_at": "Created at"
+            }
+        },
+        "methods": {
+            "title": "Methods",
+            "add": "Add method",
+            "edit": "Edit method",
+            "index": "Method list",
+            "form": {
+                "name": "Method name",
+                "text": "Method description",
+                "select_status": "Select status",
+                "is_active": "Status",
+                "created_at": "Created at"
             }
         }
     }

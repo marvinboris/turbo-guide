@@ -75,7 +75,7 @@ class Index extends Component {
         let {
             content: {
                 cms: {
-                    pages: { components: { list: { action } }, backend: { pages: { recharges: { title, subtitle, instructions, index, form } } } }
+                    pages: { components: { list: { action } }, backend: { pages: { recharges: { title, subtitle, instructions, recharge, form } } } }
                 }
             },
             backend: { recharges: { loading, error, message, recharges, total, methods = [] } },
@@ -110,7 +110,7 @@ class Index extends Component {
         const content = (
             <>
                 <Row>
-                    <Table array={data} loading={loading} data={JSON.stringify(recharges)} get={this.props.get} total={total} bordered icon={faMoneyBillWaveAlt} title={index} subtitle={subtitle} className="shadow-sm"
+                    <Table array={data} loading={loading} data={JSON.stringify(recharges)} get={this.props.get} total={total} bordered icon={faMoneyBillWaveAlt} title={recharge} subtitle={subtitle} className="shadow-sm"
                         fields={[
                             { name: form.created_at, key: 'created_at' },
                             { name: form.method, key: 'method' },
@@ -157,9 +157,9 @@ class Index extends Component {
         return (
             <>
                 <TitleWrapper>
-                    <Breadcrumb main={index} icon={faMoneyBillWaveAlt} />
+                    <Breadcrumb main={recharge} icon={faMoneyBillWaveAlt} />
                     <SpecialTitle>{title}</SpecialTitle>
-                    <Subtitle>{index}</Subtitle>
+                    <Subtitle>{recharge}</Subtitle>
                 </TitleWrapper>
                 <div>
                     {errors}

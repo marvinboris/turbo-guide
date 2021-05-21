@@ -215,7 +215,7 @@ class Settings extends Component {
         }
         if (!prevProps.backend.settings.restaurant && this.props.backend.settings.restaurant) {
             const { backend: { settings: { restaurant } } } = this.props;
-            if (!restaurant.name) Swal.fire({
+            if (!restaurant.name || restaurant.languages.length === 0) Swal.fire({
                 title: 'Missing restaurant\'s name or languages',
                 text: "Please set your restaurant\'s name and languages",
                 icon: 'warning',

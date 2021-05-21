@@ -321,10 +321,10 @@
                         "plans": {
                             "title": "Plans",
                             "add": "Deposit plan",
-                            "subscription": "Subscription Plan",
-                            "purchase": "Purchase Plan",
+                            "subscription": "Subscription plan",
+                            "purchase": "Purchase plan",
                             "index": "Plan list",
-                            "bought": "Bought plans"
+                            "bought": "Purchase list"
                         },
                         "recharges": {
                             "title": "Recharges",
@@ -602,13 +602,15 @@
                         }
                     },
                     "plans": {
-                        "title": "Subscription Plan",
-                        "subtitle": "Purchase Plan",
+                        "title": "Plans",
+                        "subscription": "Subscription plan",
+                        "subtitle": "Purchase plan",
                         "instructions": "Please fill the form below to purchase or upgrade plan",
-                        "add": "Purchase Plan",
-                        "edit": "Edit meal",
-                        "index": "Purchase List",
-                        "bought": "Bought plans",
+                        "add": "Deposit plan",
+                        "edit": "Edit plan",
+                        "purchase": "Purchase plan",
+                        "index": "Plan list",
+                        "bought": "Purchase list",
                         "form": {
                             "purchase": "Purchase Plan",
                             "name": "Plan Name",
@@ -623,7 +625,12 @@
                             "expiry_date": "Expiry Date",
                             "created_at": "Purchase Date",
                             "select_plan_id": "Select plan",
-                            "select_type": "Purchase Type"
+                            "select_type": "Purchase Type",
+                            "meals": "Meals",
+                            "actions": "Actions",
+                            "support": "Support",
+                            "banners": "Banners",
+                            "reviews": "Reviews"
                         }
                     },
                     "recharges": {
@@ -632,6 +639,7 @@
                         "instructions": "Please fill the form below to recharge balance",
                         "add": "Add recharge",
                         "index": "Recharge list",
+                        "recharge": "Recharge",
                         "form": {
                             "process": "Process Payment",
                             "amount": "Amount",
@@ -642,6 +650,20 @@
                             "select_method": "Select payment gateway",
                             "token": "Restaurant Token",
                             "restaurant": "Restaurant Name"
+                        }
+                    },
+                    "restaurants": {
+                        "title": "Restaurants",
+                        "add": "Add restaurant",
+                        "index": "Restaurant list",
+                        "form": {
+                            "name": "Restaurant's Name",
+                            "owner": "Restaurant Owner's Name",
+                            "email": "E-mail address",
+                            "phone": "Restaurant's Phone Number",
+                            "token": "Restaurant Token",
+                            "country": "Country",
+                            "created_at": "Created at"
                         }
                     },
                     "methods": {
@@ -1002,10 +1024,10 @@
                         "plans": {
                             "title": "Plans",
                             "add": "Deposit plan",
-                            "subscription": "Subscription Plan",
-                            "purchase": "Purchase Plan",
+                            "subscription": "Subscription plan",
+                            "purchase": "Purchase plan",
                             "index": "Plan list",
-                            "bought": "Bought plans"
+                            "bought": "Purchase list"
                         },
                         "recharges": {
                             "title": "Recharges",
@@ -1283,13 +1305,15 @@
                         }
                     },
                     "plans": {
-                        "title": "Subscription Plan",
-                        "subtitle": "Purchase Plan",
+                        "title": "Plans",
+                        "subscription": "Subscription plan",
+                        "subtitle": "Purchase plan",
                         "instructions": "Please fill the form below to purchase or upgrade plan",
-                        "add": "Purchase Plan",
-                        "edit": "Edit meal",
-                        "index": "Purchase List",
-                        "bought": "Bought plans",
+                        "add": "Deposit plan",
+                        "edit": "Edit plan",
+                        "purchase": "Purchase plan",
+                        "index": "Plan list",
+                        "bought": "Purchase list",
                         "form": {
                             "purchase": "Purchase Plan",
                             "name": "Plan Name",
@@ -1304,7 +1328,12 @@
                             "expiry_date": "Expiry Date",
                             "created_at": "Purchase Date",
                             "select_plan_id": "Select plan",
-                            "select_type": "Purchase Type"
+                            "select_type": "Purchase Type",
+                            "meals": "Meals",
+                            "actions": "Actions",
+                            "support": "Support",
+                            "banners": "Banners",
+                            "reviews": "Reviews"
                         }
                     },
                     "recharges": {
@@ -1313,6 +1342,7 @@
                         "instructions": "Please fill the form below to recharge balance",
                         "add": "Add recharge",
                         "index": "Recharge list",
+                        "recharge": "Recharge",
                         "form": {
                             "process": "Process Payment",
                             "amount": "Amount",
@@ -1323,6 +1353,20 @@
                             "select_method": "Select payment gateway",
                             "token": "Restaurant Token",
                             "restaurant": "Restaurant Name"
+                        }
+                    },
+                    "restaurants": {
+                        "title": "Restaurants",
+                        "add": "Add restaurant",
+                        "index": "Restaurant list",
+                        "form": {
+                            "name": "Restaurant's Name",
+                            "owner": "Restaurant Owner's Name",
+                            "email": "E-mail address",
+                            "phone": "Restaurant's Phone Number",
+                            "token": "Restaurant Token",
+                            "country": "Country",
+                            "created_at": "Created at"
                         }
                     },
                     "methods": {

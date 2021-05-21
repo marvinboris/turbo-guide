@@ -544,7 +544,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.default, {
         className: "bg-".concat(dark ? "grayblue" : "white border border-soft", " rounded-6 d-flex align-items-center"),
         size: "lg",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_8__.default, {
+        children: [icon || addon && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_8__.default, {
           addonType: "prepend",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_9__.default, {
             className: "bg-transparent d-block border-0 px-4 py-0 my-1 text-center text-16",
@@ -569,7 +569,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           disabled: disabled,
           defaultValue: defaultValue,
           value: value,
-          className: "bg-".concat(dark ? "grayblue" : "", " border-top-0 border-right-0 border-bottom-0 border-soft rounded-right-6 text-small text-secondary h-100 px-4 py-3"),
+          className: "bg-".concat(dark ? "grayblue" : "", " ").concat(icon || addon ? "border-top-0 border-right-0 border-bottom-0 border-soft" : "", " rounded-right-6 text-small text-secondary h-100 px-4 py-3"),
           children: children
         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_11__.default, {
@@ -584,7 +584,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             disabled: disabled,
             defaultValue: defaultValue,
             value: value,
-            className: "border-top-0 border-right-0 border-bottom-0 border-soft rounded-right-6 text-small text-secondary h-100 px-4 py-3"
+            className: (icon || addon ? "border-top-0 border-right-0 border-bottom-0 border-soft" : "border-0") + " rounded-right-6 text-small text-secondary h-100 px-4 py-3"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
             className: "text-small text-light text-truncate m-0",
             htmlFor: id ? id : name,
@@ -892,6 +892,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var initialState = {
   token: '',
+  type: '',
   plan_id: '',
   add: false
 };
@@ -945,6 +946,7 @@ var Add = /*#__PURE__*/function (_Component) {
     value: // Lifecycle methods
     function componentDidMount() {
       this.props.reset();
+      this.props.info();
     }
   }, {
     key: "componentDidUpdate",
@@ -982,9 +984,11 @@ var Add = /*#__PURE__*/function (_Component) {
           loading = _this$props$backend$p.loading,
           error = _this$props$backend$p.error,
           message = _this$props$backend$p.message,
-          plans = _this$props$backend$p.plans,
+          _this$props$backend$p2 = _this$props$backend$p.types,
+          types = _this$props$backend$p2 === void 0 ? [] : _this$props$backend$p2,
           features = _this$props.auth.data.role.features;
       var _this$state = this.state,
+          type = _this$state.type,
           token = _this$state.token,
           plan_id = _this$state.plan_id;
       var content = null;
@@ -997,8 +1001,18 @@ var Add = /*#__PURE__*/function (_Component) {
         to: "/user/dashboard"
       });
 
-      if (!plans) plans = [];
-      var plansOptions = plans.sort(function (a, b) {
+      var typesOptions = types.sort(function (a, b) {
+        return a.name.localeCompare(b.name);
+      }).map(function (type) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("option", {
+          value: type.months,
+          children: type.name
+        }, JSON.stringify(type));
+      });
+      var plansOptions = [];
+      if (type !== '') plansOptions = types.find(function (t) {
+        return +t.months === +type;
+      }).plans.sort(function (a, b) {
         return a.name.localeCompare(b.name);
       }).map(function (plan) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("option", {
@@ -1041,6 +1055,17 @@ var Add = /*#__PURE__*/function (_Component) {
                       required: true,
                       placeholder: form.token
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(_components_Backend_UI_Input_Input__WEBPACK_IMPORTED_MODULE_9__.default, {
+                      type: "select",
+                      className: "col-md-6",
+                      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_17__.faPencilAlt,
+                      onChange: this.inputChangeHandler,
+                      value: type,
+                      name: "type",
+                      required: true,
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("option", {
+                        children: form.select_type
+                      }), typesOptions]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(_components_Backend_UI_Input_Input__WEBPACK_IMPORTED_MODULE_9__.default, {
                       className: "col-lg-6",
                       type: "select",
                       name: "plan_id",
@@ -1050,7 +1075,7 @@ var Add = /*#__PURE__*/function (_Component) {
                       required: true,
                       value: plan_id,
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("option", {
-                        children: form.select_plan
+                        children: form.select_plan_id
                       }), plansOptions]
                     })]
                   })
@@ -1103,6 +1128,9 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
+    info: function info() {
+      return dispatch(_store_actions_backend__WEBPACK_IMPORTED_MODULE_12__.getPlansInfo());
+    },
     post: function post(data) {
       return dispatch(_store_actions_backend__WEBPACK_IMPORTED_MODULE_12__.postPlans(data));
     },

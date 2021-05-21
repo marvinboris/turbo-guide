@@ -1,7 +1,7 @@
 import React, { Component, useState } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Col, Nav, NavItem, NavLink, Row, TabContent, TabPane } from 'reactstrap';
+import { Col, FormGroup, Input, Label, Row } from 'reactstrap';
 import { faWrench } from '@fortawesome/free-solid-svg-icons';
 import { faSave } from '@fortawesome/free-regular-svg-icons';
 
@@ -12,6 +12,7 @@ import Subtitle from '../../../../components/UI/Titles/Subtitle/Subtitle';
 import Error from '../../../../components/Error/Error';
 import CustomSpinner from '../../../../components/UI/CustomSpinner/CustomSpinner';
 import Form from '../../../../components/Backend/UI/Form/Form';
+import Save from '../../../../components/Backend/UI/Food/Form/Save';
 import FormInput from '../../../../components/Backend/UI/Input/Input';
 import FormButton from '../../../../components/UI/Button/BetweenButton/BetweenButton';
 import TitleWrapper from '../../../../components/Backend/UI/TitleWrapper';
@@ -22,7 +23,7 @@ import { updateObject } from '../../../../shared/utility';
 
 const Separator = ({ sm }) => <Col xs={12} className={`mb-${sm ? 2 : 3}`} />
 
-const SubNavLinks = ({ general, language }) => {
+const Language = ({ general, language }) => {
     const [value, setValue] = useState(general);
 
     const onChange = (e, ...deepness) => {
@@ -52,9 +53,10 @@ const SubNavLinks = ({ general, language }) => {
     }
 
     const prefix = `${language.abbr}[general]`;
-    const global = ['Date', 'Time', 'Home'].map(item => <FormInput key={Math.random()} type="text" className="col-md-6 col-lg-4" name={`${prefix}[${item.toLowerCase()}]`} placeholder={item} addon={<span className="text-small text-700">{item}</span>} onChange={e => onChange(e, item.toLowerCase())} value={value[item.toLowerCase()]} />);
-    const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].map((item, index) => <FormInput key={Math.random()} type="text" className="col-md-6 col-lg-4" name={`${prefix}[days][]`} placeholder={item} addon={<span className="text-small text-700">{item}</span>} onChange={e => onChange(e, 'days', index)} value={value.days[index]} />);
-    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].map((item, index) => <FormInput key={Math.random()} type="text" className="col-md-6 col-lg-4" name={`${prefix}[months][]`} placeholder={item} addon={<span className="text-small text-700">{item}</span>} onChange={e => onChange(e, 'months', index)} value={value.months[index]} />);
+    const prefixId = `${language.abbr}-general`;
+    const global = ['Date', 'Time', 'Home'].map(item => <FormInput key={Math.random()} type="text" className="col-md-6 col-lg-4" id={`${prefixId}-${item.toLowerCase()}`} name={`${prefix}[${item.toLowerCase()}]`} placeholder={item} onChange={e => onChange(e, item.toLowerCase())} value={value[item.toLowerCase()]} />);
+    const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].map((item, index) => <FormInput key={Math.random()} type="text" className="col-md-6 col-lg-4" id={`${prefixId}-date-${index}`} name={`${prefix}[days][]`} placeholder={item} onChange={e => onChange(e, 'days', index)} value={value.days[index]} />);
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].map((item, index) => <FormInput key={Math.random()} type="text" className="col-md-6 col-lg-4" id={`${prefixId}-months-${index}`} name={`${prefix}[months][]`} placeholder={item} onChange={e => onChange(e, 'months', index)} value={value.months[index]} />);
 
     return <>
         <Row>
@@ -79,7 +81,7 @@ const SubNavLinks = ({ general, language }) => {
 
 class General extends Component {
     state = {
-        activeTab: process.env.MIX_DEFAULT_LANG
+        abbr: process.env.MIX_DEFAULT_LANG
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
@@ -112,7 +114,7 @@ class General extends Component {
     fileUpload = () => document.getElementById('logo').click()
 
     toggle = tab => {
-        if (this.state.activeTab !== tab) this.setState({ activeTab: tab });
+        if (this.state.abbr !== tab) this.setState({ abbr: tab });
     }
 
     render() {
@@ -125,7 +127,7 @@ class General extends Component {
             backend: { cms: { loading, error, message, cms, languages } },
             auth: { data: { role: { features } } }
         } = this.props;
-        const { activeTab } = this.state;
+        const { abbr } = this.state;
         let content = null;
         let errors = null;
 
@@ -141,40 +143,34 @@ class General extends Component {
             </>;
 
             if (!languages) languages = [];
-            const nav = languages.map(language => <NavItem key={Math.random()}>
-                <NavLink className={(activeTab === language.abbr) && 'active'} onClick={() => this.toggle(language.abbr)}>
-                    {language.name}
-                </NavLink>
-            </NavItem>);
+            const languagesOptions = languages.map(language => <option key={Math.random() + JSON.stringify(language)} value={language.abbr}>{language.name}</option>);
 
-            const tabContent = languages.map(language => <TabPane key={Math.random()} tabId={language.abbr}>
-                <SubNavLinks general={cms.pages[language.abbr].general} language={language} />
-            </TabPane>);
+            const mainContent = languages.map(language => <div key={Math.random()} className={language.abbr === abbr ? "" : "d-none"}>
+                <Language general={cms.pages[language.abbr].general} language={language} />
+            </div>);
 
             content = (
                 <>
-                    <Row>
-                        <Form onSubmit={this.submitHandler} icon={faWrench} title={general} link="/admin/cms" innerClassName="row" className="shadow-sm">
-                            <Col lg={12}>
-                                <Feedback message={message} />
-                                <Row>
-                                    <input type="hidden" name="_method" defaultValue="PATCH" />
+                    <Col xl={9}>
+                        <Feedback message={message} />
+                        <Row>
+                            <input type="hidden" name="_method" defaultValue="PATCH" />
 
-                                    <Col lg={2}>
-                                        <Nav tabs vertical pills>{nav}</Nav>
-                                    </Col>
+                            <div className="col-12 d-flex">
+                                <FormGroup>
+                                    <Input type="select" name="abbr" onChange={this.inputChangeHandler} value={abbr}>
+                                        {languagesOptions}
+                                    </Input>
+                                </FormGroup>
+                            </div>
 
-                                    <Col lg={10}>
-                                        <TabContent activeTab={activeTab}>{tabContent}</TabContent>
-                                    </Col>
+                            <Col lg={12}>{mainContent}</Col>
 
-                                    <div className="col-12">
-                                        <FormButton color="green" icon={faSave}>{save}</FormButton>
-                                    </div>
-                                </Row>
-                            </Col>
-                        </Form>
-                    </Row>
+                            <div className="col-12">
+                                <FormButton color="green" icon={faSave}>{save}</FormButton>
+                            </div>
+                        </Row>
+                    </Col>
                 </>
             );
         }
@@ -186,10 +182,14 @@ class General extends Component {
                     <SpecialTitle user icon={faWrench}>{title}</SpecialTitle>
                     <Subtitle user>{general}</Subtitle>
                 </TitleWrapper>
-                <div className="p-4 pb-0">
+                <div>
                     {redirect}
                     {errors}
-                    {content}
+                    <Row>
+                        <Form onSubmit={this.submitHandler} icon={faWrench} title={general} innerClassName="row justify-content-center">
+                            {content}
+                        </Form>
+                    </Row>
                 </div>
             </>
         );

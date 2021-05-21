@@ -420,7 +420,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.default, {
         className: "bg-".concat(dark ? "grayblue" : "white border border-soft", " rounded-6 d-flex align-items-center"),
         size: "lg",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_8__.default, {
+        children: [icon || addon && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_8__.default, {
           addonType: "prepend",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_9__.default, {
             className: "bg-transparent d-block border-0 px-4 py-0 my-1 text-center text-16",
@@ -445,7 +445,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           disabled: disabled,
           defaultValue: defaultValue,
           value: value,
-          className: "bg-".concat(dark ? "grayblue" : "", " border-top-0 border-right-0 border-bottom-0 border-soft rounded-right-6 text-small text-secondary h-100 px-4 py-3"),
+          className: "bg-".concat(dark ? "grayblue" : "", " ").concat(icon || addon ? "border-top-0 border-right-0 border-bottom-0 border-soft" : "", " rounded-right-6 text-small text-secondary h-100 px-4 py-3"),
           children: children
         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_11__.default, {
@@ -460,7 +460,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             disabled: disabled,
             defaultValue: defaultValue,
             value: value,
-            className: "border-top-0 border-right-0 border-bottom-0 border-soft rounded-right-6 text-small text-secondary h-100 px-4 py-3"
+            className: (icon || addon ? "border-top-0 border-right-0 border-bottom-0 border-soft" : "border-0") + " rounded-right-6 text-small text-secondary h-100 px-4 py-3"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
             className: "text-small text-light text-truncate m-0",
             htmlFor: id ? id : name,
@@ -592,6 +592,7 @@ __webpack_require__.r(__webpack_exports__);
     "deleted": "Category successfully deleted."
   },
   "meals": {
+    "reference": "Meal with this reference already exists.",
     "not_found": "Meal not found.",
     "created": "Meal successfully created.",
     "updated": "Meal successfully updated.",
@@ -599,16 +600,11 @@ __webpack_require__.r(__webpack_exports__);
     "reached": "Maximum number of meals reached"
   },
   "addons": {
+    "reference": "Addon with this reference already exists.",
     "not_found": "Addon not found.",
     "created": "Addon successfully created.",
     "updated": "Addon successfully updated.",
     "deleted": "Addon successfully deleted."
-  },
-  "drinks": {
-    "not_found": "Drink not found.",
-    "created": "Drink successfully created.",
-    "updated": "Drink successfully updated.",
-    "deleted": "Drink successfully deleted."
   },
   "plans": {
     "not_found": "Plan not found.",
@@ -617,6 +613,11 @@ __webpack_require__.r(__webpack_exports__);
     "created": "Plan successfully created.",
     "updated": "Plan successfully updated.",
     "deleted": "Plan successfully deleted."
+  },
+  "recharges": {
+    "not_found": "Recharge not found.",
+    "amount": "Invalid amount.",
+    "created": "Recharge successfully created."
   }
 });
 
@@ -1033,6 +1034,7 @@ var SubNavLinks = function SubNavLinks(_ref2) {
     return Object.keys(paramItem).map(function (item) {
       var mainItem = paramItem[item];
       var mainName = "".concat(paramName, "[").concat(item, "]");
+      var mainId = "".concat(paramName, "-").concat(item);
       var mainValue = paramValue[item];
       var mainDeepness = paramDeepness.concat(item);
       var prepend;
@@ -1054,6 +1056,7 @@ var SubNavLinks = function SubNavLinks(_ref2) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_20__.default, {
             type: "text",
             name: mainName,
+            id: mainId,
             placeholder: mainItem,
             onChange: function onChange(e) {
               return _onChange.apply(void 0, [e].concat(_toConsumableArray(mainDeepness)));

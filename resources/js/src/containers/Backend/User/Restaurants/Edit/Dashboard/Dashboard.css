@@ -1,0 +1,11 @@
+.Restaurant.Dashboard .go-live {
+    top: 24px;
+    right: 183px;
+    z-index: 1030;
+}
+
+@media screen and (min-width: 1000px) {
+    .Restaurant.Dashboard .go-live {
+        right: 215px;
+    }
+}

@@ -73,7 +73,7 @@ class Layout extends Component {
         } = this.props;
         let redirect, footerContent;
 
-        if (!data.name) redirect = <Redirect to="/restaurant/settings" />;
+        if (!data.name || data.languages.length === 0) redirect = <Redirect to="/restaurant/settings" />;
 
         const {
             global: { app_name, company_logo },

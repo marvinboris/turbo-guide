@@ -621,7 +621,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               })
             })]
           }), categories.filter(function (category) {
-            return category.name.toLowerCase().includes(search.toLowerCase());
+            return (category.name || '').toLowerCase().includes(search.toLowerCase());
           }).map(function (category) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_9__.default, {
               active: +category.id === +id,
@@ -1090,8 +1090,8 @@ var Home = /*#__PURE__*/function (_Component) {
       if (restaurant.banner2) items.push(restaurant.banner2);
       if (restaurant.banner3) items.push(restaurant.banner3);
       var basic = restaurant.plan;
-      var standard = restaurant.plan && restaurant.plan.slug === 'standard';
-      var premium = restaurant.plan && restaurant.plan.slug === 'premium';
+      var standard = restaurant.plan && restaurant.plan.slug.includes('standard');
+      var premium = restaurant.plan && restaurant.plan.slug.includes('premium');
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
         className: "Home",
         children: [loading && Object.keys(restaurant).length === 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_UI_Spinner__WEBPACK_IMPORTED_MODULE_5__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {

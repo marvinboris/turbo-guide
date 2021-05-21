@@ -68,6 +68,7 @@ export default {
         "deleted": "Category successfully deleted."
     },
     "meals": {
+        "reference": "Meal with this reference already exists.",
         "not_found": "Meal not found.",
         "created": "Meal successfully created.",
         "updated": "Meal successfully updated.",
@@ -75,16 +76,11 @@ export default {
         "reached": "Maximum number of meals reached"
     },
     "addons": {
+        "reference": "Addon with this reference already exists.",
         "not_found": "Addon not found.",
         "created": "Addon successfully created.",
         "updated": "Addon successfully updated.",
         "deleted": "Addon successfully deleted."
-    },
-    "drinks": {
-        "not_found": "Drink not found.",
-        "created": "Drink successfully created.",
-        "updated": "Drink successfully updated.",
-        "deleted": "Drink successfully deleted."
     },
     "plans": {
         "not_found": "Plan not found.",
@@ -93,5 +89,10 @@ export default {
         "created": "Plan successfully created.",
         "updated": "Plan successfully updated.",
         "deleted": "Plan successfully deleted."
+    },
+    "recharges": {
+        "not_found": "Recharge not found.",
+        "amount": "Invalid amount.",
+        "created": "Recharge successfully created."
     }
 };

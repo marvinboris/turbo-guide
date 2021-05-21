@@ -1,11 +1,11 @@
-import * as actionTypes from '../actionTypes';
+import * as actionTypes from '../../actionTypes';
 
 const prefix = '/api/';
 
 export const resetRestaurants = () => ({ type: actionTypes.RESTAURANTS_RESET });
-const restaurantsStart = () => ({ type: actionTypes.RESTAURANTS_START });
-const restaurantsSuccess = data => ({ type: actionTypes.RESTAURANTS_SUCCESS, ...data });
-const restaurantsFail = error => ({ type: actionTypes.RESTAURANTS_FAIL, error });
+export const restaurantsStart = () => ({ type: actionTypes.RESTAURANTS_START });
+export const restaurantsSuccess = data => ({ type: actionTypes.RESTAURANTS_SUCCESS, ...data });
+export const restaurantsFail = error => ({ type: actionTypes.RESTAURANTS_FAIL, error });
 export const getRestaurants = (page = 1, show = 10, search = '') => async (dispatch, getState) => {
     dispatch(restaurantsStart());
     const { role } = getState().auth;
@@ -115,3 +115,12 @@ export const deleteRestaurants = id => async (dispatch, getState) => {
         dispatch(restaurantsFail(error));
     }
 };
+
+export {
+    getRestaurantsEdit,
+    showRestaurantsEdit,
+    infoRestaurantsEdit,
+    postRestaurantsEdit,
+    patchRestaurantsEdit,
+    deleteRestaurantsEdit
+} from './edit';

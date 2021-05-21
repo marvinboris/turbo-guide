@@ -84,7 +84,7 @@ class Purchase extends Component {
         let {
             content: {
                 cms: {
-                    pages: { backend: { pages: { plans: { title, subtitle, instructions, add, index, form } } } }
+                    pages: { backend: { pages: { plans: { subscription, subtitle, instructions, purchase, bought, form } } } }
                 }
             },
             backend: { plans: { loading, error, message, types = [], amount } },
@@ -164,8 +164,8 @@ class Purchase extends Component {
                 <TitleWrapper>
                     <div className="d-flex align-items-center">
                         <div>
-                            <SpecialTitle>{title}</SpecialTitle>
-                            <Subtitle>{add}</Subtitle>
+                            <SpecialTitle>{subscription}</SpecialTitle>
+                            <Subtitle>{purchase}</Subtitle>
                         </div>
 
                         {plan && <div className="ml-4 pl-2">
@@ -199,7 +199,7 @@ class Purchase extends Component {
                 <div>
                     {errors}
                     <Row>
-                        <Form onSubmit={this.submitHandler} icon={icon} title={add} subtitle={subtitle} list={index} link="/restaurant/plans" innerClassName="row justify-content-center">
+                        <Form onSubmit={this.submitHandler} icon={icon} title={purchase} subtitle={subtitle} list={bought} link="/restaurant/plans" innerClassName="row justify-content-center">
                             {content}
                         </Form>
                     </Row>

@@ -46,7 +46,7 @@ class PlanImminentExpiration extends Notification implements ShouldQueue
 
     public function dontSend($notifiable)
     {
-        return ($this->plan->pivot->created_at->timestamp !== $this->plan->pivot->updated_at->timestamp) || ($notifiable->auto_renew === 1 && $notifiable->balance > $this->plan->price);
+        return $this->plan->pivot && (($this->plan->pivot->created_at->timestamp !== $this->plan->pivot->updated_at->timestamp) || ($notifiable->auto_renew === 1 && $notifiable->balance > $this->plan->price));
     }
 
     /**

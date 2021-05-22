@@ -204,8 +204,8 @@ class App extends Component {
                             <Route path="/auth/admin/login" component={asyncAdminLogin} />
                         </Switch>
                     </AuthAdmin>
-                    <Redirect path="/admin" to="/auth/admin/login" />
                 </Route>
+                <Redirect path="/admin" to="/auth/admin/login" />
 
                 <Route path="/auth/user">
                     <AuthUser>
@@ -213,8 +213,8 @@ class App extends Component {
                             <Route path="/auth/user/login" component={asyncUserLogin} />
                         </Switch>
                     </AuthUser>
-                    <Redirect path="/user" to="/auth/user/login" />
                 </Route>
+                <Redirect path="/user" to="/auth/user/login" />
 
                 <Route path="/auth">
                     <AuthRestaurant>
@@ -225,9 +225,9 @@ class App extends Component {
                             <Route path="/auth/login" component={asyncRestaurantLogin} />
                         </Switch>
                     </AuthRestaurant>
-                    <Redirect path="/restaurant" to="/auth/login" />
-                    <Redirect path="/auth" to="/auth/login" />
                 </Route>
+                <Redirect path="/restaurant" to="/auth/login" />
+                <Redirect path="/auth" to="/auth/login" />
 
                 <Route path="/">
                     <Frontend>
@@ -242,8 +242,8 @@ class App extends Component {
                         </Route>
                         <Route path="/restaurants/:slug" exact component={asyncRestaurantsHome} />
                     </Frontend>
-                    <Redirect path="/" to="/auth" />
                 </Route>
+                <Redirect path="/" to="/auth" />
             </Switch>
         );
 
@@ -420,7 +420,7 @@ class App extends Component {
                             <Route path="/restaurants/:slug" exact component={asyncRestaurantsHome} />
                         </Frontend>
                     </Route>
-
+                    <Redirect path="/" to="/auth" />
                 </Switch>
             );
         }

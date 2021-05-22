@@ -81,7 +81,7 @@ class Layout extends Component {
             </View>
 
             <Wrapper className="bg-orange-10 position-relative">
-                <div className="text-500 text-17 text-orange mb-2">
+                <div className="text-500 text-17 text-orange mb-2 meal-name">
                     {meal.name[lang]}
                 </div>
 

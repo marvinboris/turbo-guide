@@ -203,18 +203,17 @@ class Settings extends Component {
 
     // Lifecycle methods
     componentDidMount() {
-        this.props.reset();
         this.props.get();
-        this.setState({ translate: this.props.auth.data.main_language });
+        this.setState({ translate: this.props.backend.restaurants.data.main_language });
     }
 
     componentDidUpdate(prevProps) {
-        if (!prevProps.backend.settings.message && this.props.backend.settings.message && this.props.backend.settings.message.type === 'success') {
-            const { logo, photo, banner1, banner2, banner3 } = this.props.backend.settings.restaurant;
+        if (!prevProps.backend.restaurants.message && this.props.backend.restaurants.message && this.props.backend.restaurants.message.type === 'success') {
+            const { logo, photo, banner1, banner2, banner3 } = this.props.backend.restaurants.restaurant;
             this.setState({ logo, photo, banner1, banner2, banner3 });
         }
-        if (!prevProps.backend.settings.restaurant && this.props.backend.settings.restaurant) {
-            const { backend: { settings: { restaurant } } } = this.props;
+        if (!prevProps.backend.restaurants.restaurant && this.props.backend.restaurants.restaurant) {
+            const { backend: { restaurants: { restaurant } } } = this.props;
             if (!restaurant.name || restaurant.languages.length === 0) Swal.fire({
                 title: 'Missing restaurant\'s name or languages',
                 text: "Please set your restaurant\'s name and languages",
@@ -228,10 +227,6 @@ class Settings extends Component {
         }
     }
 
-    componentWillUnmount() {
-        if (!this.props.backend.restaurants.restaurant.name || this.props.backend.restaurants.restaurant.languages.length === 0) return this.props.history.push('/user/restaurants/' + this.props.match.params.restaurant + '/edit/settings');
-    }
-
     render() {
         let {
             content: {
@@ -240,7 +235,7 @@ class Settings extends Component {
                 },
                 currencies, countries,
             },
-            backend: { settings: { data: { plan, languages: restaurantLanguages }, loading, error, message, restaurant, allLanguages = [] } },
+            backend: { restaurants: { data: { plan, languages: restaurantLanguages }, loading, error, message, restaurant, allLanguages = [] } },
         } = this.props;
         let {
             name, owner, phone, logo, whatsapp, location, currency, position,

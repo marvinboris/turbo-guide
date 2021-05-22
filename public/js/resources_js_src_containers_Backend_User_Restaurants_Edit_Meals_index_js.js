@@ -619,11 +619,6 @@ var Index = /*#__PURE__*/function (_Component) {
       this.props.get();
     }
   }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.props.reset();
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -873,7 +868,7 @@ var mapStateToProps = function mapStateToProps(state) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     get: function get(id) {
-      return dispatch(_store_actions_backend_restaurants__WEBPACK_IMPORTED_MODULE_9__.showRestaurantsEdit('meals', id));
+      return dispatch(_store_actions_backend_restaurants__WEBPACK_IMPORTED_MODULE_9__.getRestaurantsEdit('meals', id));
     }
   };
 };

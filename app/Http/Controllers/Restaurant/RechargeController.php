@@ -28,11 +28,13 @@ class RechargeController extends Controller
         $filteredData = $restaurant->recharges()->latest();
 
         $filteredData = $filteredData
+            ->join('methods', 'methods.id', '=', 'recharges.method_id')
             ->select('recharges.*')
             ->when($search, function ($query, $search) {
                 if ($search !== "")
                     $query
-                        ->where('name', 'LIKE', "%$search%");
+                        ->where('amount', 'LIKE', "%$search%")
+                        ->orWhere('methods.name', 'LIKE', "%$search%");
             });
 
         $total = $filteredData->count();

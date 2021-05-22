@@ -21,6 +21,10 @@
     background-color: white;
 }
 
+.Layout .meal-name {
+    max-width: calc(100% - 150px);
+}
+
 .Layout .price-block {
     position: absolute;
     right: 11px;
@@ -34,7 +38,6 @@
 .Layout .price-block > div {
     z-index: 1;
 }
-
 
 .Layout .price-block .quantity {
     position: relative;

@@ -873,7 +873,7 @@ var mapStateToProps = function mapStateToProps(state) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     info: function info() {
-      return dispatch(_store_actions_backend_restaurants__WEBPACK_IMPORTED_MODULE_11__.infoRestaurantsEdit());
+      return dispatch(_store_actions_backend_restaurants__WEBPACK_IMPORTED_MODULE_11__.infoRestaurantsEdit('plans'));
     },
     purchase: function purchase(data) {
       return dispatch(_store_actions_backend_restaurants__WEBPACK_IMPORTED_MODULE_11__.postRestaurantsEdit('plans', data));

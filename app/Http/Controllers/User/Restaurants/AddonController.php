@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Restaurant;
+namespace App\Http\Controllers\User\Restaurants;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\UtilController;
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
 
 class AddonController extends Controller
@@ -17,9 +18,9 @@ class AddonController extends Controller
         'is_active' => 'required|integer',
     ];
 
-    private function data()
+    private function data($restaurantId)
     {
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $search = request()->search;
 
@@ -54,9 +55,9 @@ class AddonController extends Controller
 
 
 
-    public function  index()
+    public function index($restaurantId)
     {
-        $data = $this->data();
+        $data = $this->data($restaurantId);
 
         $addons = $data['addons'];
         $total = $data['total'];
@@ -67,10 +68,10 @@ class AddonController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function show($restaurantId, $id)
     {
         $cms = UtilController::cms();
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $addon = $restaurant->addons()->find($id);
         if (!$addon) return response()->json([
@@ -84,10 +85,10 @@ class AddonController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $restaurantId)
     {
         $cms = UtilController::cms();
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $request->validate($this->rules);
 
@@ -113,10 +114,10 @@ class AddonController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $restaurantId, $id)
     {
         $cms = UtilController::cms();
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $addon = $restaurant->addons()->find($id);
         if (!$addon) return response()->json([
@@ -152,10 +153,10 @@ class AddonController extends Controller
         ]);
     }
 
-    public function destroy($id)
+    public function destroy($restaurantId, $id)
     {
         $cms = UtilController::cms();
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $addon = $restaurant->addons()->find($id);
         if (!$addon) return response()->json([
@@ -165,7 +166,7 @@ class AddonController extends Controller
         if ($addon->photo && is_file(public_path($addon->photo))) unlink(public_path($addon->photo));
         $addon->delete();
 
-        $data = $this->data();
+        $data = $this->data($restaurantId);
 
         $addons = $data['addons'];
         $total = $data['total'];

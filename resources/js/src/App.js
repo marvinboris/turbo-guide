@@ -120,9 +120,6 @@ const asyncUserRestaurantsEditRecharges = asyncComponent(() => import('./contain
 
 const asyncUserRestaurantsEditSettings = asyncComponent(() => import('./containers/Backend/User/Restaurants/Edit/Settings'));
 
-const asyncUserRestaurantsEditNotificationsShow = asyncComponent(() => import('./containers/Backend/User/Restaurants/Edit/Notifications/Show'));
-const asyncUserRestaurantsEditNotifications = asyncComponent(() => import('./containers/Backend/User/Restaurants/Edit/Notifications'));
-
 const asyncUserRestaurantsEditDashboard = asyncComponent(() => import('./containers/Backend/User/Restaurants/Edit/Dashboard/Dashboard'));
 
 // Admin routes
@@ -243,7 +240,7 @@ class App extends Component {
                                 </Switch>
                             </FrontendMeals>
                         </Route>
-                        <Route path="/restaurants/:slug" component={asyncRestaurantsHome} />
+                        <Route path="/restaurants/:slug" exact component={asyncRestaurantsHome} />
                     </Frontend>
                     <Redirect path="/" to="/auth" />
                 </Route>
@@ -286,85 +283,88 @@ class App extends Component {
                     </Route>
 
                     <Route path="/user">
-                        <Route path="/user/restaurants/:restaurant/edit">
-                            <BackendUserRestaurantsEdit>
-                                <Switch>
-                                    <Route path="/user/restaurants/:restaurant/edit/categories/:id/edit" component={asyncUserRestaurantsEditCategoriesEdit} />
-                                    <Route path="/user/restaurants/:restaurant/edit/categories/add" component={asyncUserRestaurantsEditCategoriesAdd} />
-                                    <Route path="/user/restaurants/:restaurant/edit/categories" component={asyncUserRestaurantsEditCategories} />
+                        <Switch>
+                            <Route path="/user/restaurants/:restaurant/edit">
+                                <BackendUserRestaurantsEdit>
+                                    <Switch>
+                                        <Route path="/user/restaurants/:restaurant/edit/categories/:id/edit" component={asyncUserRestaurantsEditCategoriesEdit} />
+                                        <Route path="/user/restaurants/:restaurant/edit/categories/add" component={asyncUserRestaurantsEditCategoriesAdd} />
+                                        <Route path="/user/restaurants/:restaurant/edit/categories" component={asyncUserRestaurantsEditCategories} />
 
-                                    <Route path="/user/restaurants/:restaurant/edit/meals/:id/edit" component={asyncUserRestaurantsEditMealsEdit} />
-                                    <Route path="/user/restaurants/:restaurant/edit/meals/add" component={asyncUserRestaurantsEditMealsAdd} />
-                                    <Route path="/user/restaurants/:restaurant/edit/meals" component={asyncUserRestaurantsEditMeals} />
+                                        <Route path="/user/restaurants/:restaurant/edit/meals/:id/edit" component={asyncUserRestaurantsEditMealsEdit} />
+                                        <Route path="/user/restaurants/:restaurant/edit/meals/add" component={asyncUserRestaurantsEditMealsAdd} />
+                                        <Route path="/user/restaurants/:restaurant/edit/meals" component={asyncUserRestaurantsEditMeals} />
 
-                                    <Route path="/user/restaurants/:restaurant/edit/addons/:id/edit" component={asyncUserRestaurantsEditAddonsEdit} />
-                                    <Route path="/user/restaurants/:restaurant/edit/addons/add" component={asyncUserRestaurantsEditAddonsAdd} />
-                                    <Route path="/user/restaurants/:restaurant/edit/addons" component={asyncUserRestaurantsEditAddons} />
+                                        <Route path="/user/restaurants/:restaurant/edit/addons/:id/edit" component={asyncUserRestaurantsEditAddonsEdit} />
+                                        <Route path="/user/restaurants/:restaurant/edit/addons/add" component={asyncUserRestaurantsEditAddonsAdd} />
+                                        <Route path="/user/restaurants/:restaurant/edit/addons" component={asyncUserRestaurantsEditAddons} />
 
-                                    <Route path="/user/restaurants/:restaurant/edit/settings" component={asyncUserRestaurantsEditSettings} />
+                                        <Route path="/user/restaurants/:restaurant/edit/settings" component={asyncUserRestaurantsEditSettings} />
 
-                                    <Route path="/user/restaurants/:restaurant/edit/comments" component={asyncUserRestaurantsEditComments} />
+                                        <Route path="/user/restaurants/:restaurant/edit/comments" component={asyncUserRestaurantsEditComments} />
 
-                                    <Route path="/user/restaurants/:restaurant/edit/plans/purchase" component={asyncUserRestaurantsEditPlansPurchase} />
-                                    <Route path="/user/restaurants/:restaurant/edit/plans" component={asyncUserRestaurantsEditPlans} />
+                                        <Route path="/user/restaurants/:restaurant/edit/plans/purchase" component={asyncUserRestaurantsEditPlansPurchase} />
+                                        <Route path="/user/restaurants/:restaurant/edit/plans" component={asyncUserRestaurantsEditPlans} />
 
-                                    <Route path="/user/restaurants/:restaurant/edit/recharges" component={asyncUserRestaurantsEditRecharges} />
+                                        <Route path="/user/restaurants/:restaurant/edit/recharges" component={asyncUserRestaurantsEditRecharges} />
 
-                                    <Route path="/user/restaurants/:restaurant/edit/notifications/:id" component={asyncUserRestaurantsEditNotificationsShow} />
-                                    <Route path="/user/restaurants/:restaurant/edit/notifications" component={asyncUserRestaurantsEditNotifications} />
+                                        <Route path="/user/restaurants/:restaurant/edit/dashboard" component={asyncUserRestaurantsEditDashboard} />
+                                    </Switch>
+                                </BackendUserRestaurantsEdit>
+                            </Route>
 
-                                    <Route path="/user/restaurants/:restaurant/edit/dashboard" component={asyncUserRestaurantsEditDashboard} />
-                                </Switch>
-                            </BackendUserRestaurantsEdit>
-                        </Route>
+                            <Route path="/user">
+                                <Backend>
+                                    <Switch>
+                                        <Route path="/user/cms/global" component={asyncUserCmsGlobal} />
+                                        <Route path="/user/cms/general" component={asyncUserCmsGeneral} />
+                                        <Route path="/user/cms/messages" component={asyncUserCmsMessages} />
+                                        <Route path="/user/cms/components" component={asyncUserCmsComponents} />
+                                        <Route path="/user/cms/auth" component={asyncUserCmsAuth} />
+                                        <Route path="/user/cms/backend" component={asyncUserCmsBackend} />
+                                        <Route path="/user/cms/frontend" component={asyncUserCmsFrontend} />
 
-                        <Backend>
-                            <Switch>
-                                <Route path="/user/cms/global" component={asyncUserCmsGlobal} />
-                                <Route path="/user/cms/general" component={asyncUserCmsGeneral} />
-                                <Route path="/user/cms/messages" component={asyncUserCmsMessages} />
-                                <Route path="/user/cms/components" component={asyncUserCmsComponents} />
-                                <Route path="/user/cms/auth" component={asyncUserCmsAuth} />
-                                <Route path="/user/cms/backend" component={asyncUserCmsBackend} />
-                                <Route path="/user/cms/frontend" component={asyncUserCmsFrontend} />
+                                        <Route path="/user/dashboard" component={asyncUserDashboard} />
 
-                                <Route path="/user/dashboard" component={asyncUserDashboard} />
+                                        <Route path="/user/features/:id/edit" component={asyncUserFeaturesEdit} />
+                                        <Route path="/user/features/add" component={asyncUserFeaturesAdd} />
+                                        <Route path="/user/features" component={asyncUserFeatures} />
 
-                                <Route path="/user/features/:id/edit" component={asyncUserFeaturesEdit} />
-                                <Route path="/user/features/add" component={asyncUserFeaturesAdd} />
-                                <Route path="/user/features" component={asyncUserFeatures} />
+                                        <Route path="/user/languages/:id/edit" component={asyncUserLanguagesEdit} />
+                                        <Route path="/user/languages/add" component={asyncUserLanguagesAdd} />
+                                        <Route path="/user/languages" component={asyncUserLanguages} />
 
-                                <Route path="/user/languages/:id/edit" component={asyncUserLanguagesEdit} />
-                                <Route path="/user/languages/add" component={asyncUserLanguagesAdd} />
-                                <Route path="/user/languages" component={asyncUserLanguages} />
+                                        <Route path="/user/roles/:id/edit" component={asyncUserRolesEdit} />
+                                        <Route path="/user/roles/add" component={asyncUserRolesAdd} />
+                                        <Route path="/user/roles" component={asyncUserRoles} />
 
-                                <Route path="/user/roles/:id/edit" component={asyncUserRolesEdit} />
-                                <Route path="/user/roles/add" component={asyncUserRolesAdd} />
-                                <Route path="/user/roles" component={asyncUserRoles} />
+                                        <Route path="/user/settings/language" component={asyncUserSettingsLanguage} />
 
-                                <Route path="/user/settings/language" component={asyncUserSettingsLanguage} />
+                                        <Route path="/user/users/:id/edit" component={asyncUserUsersEdit} />
+                                        <Route path="/user/users/add" component={asyncUserUsersAdd} />
+                                        <Route path="/user/users" component={asyncUserUsers} />
 
-                                <Route path="/user/users/:id/edit" component={asyncUserUsersEdit} />
-                                <Route path="/user/users/add" component={asyncUserUsersAdd} />
-                                <Route path="/user/users" component={asyncUserUsers} />
+                                        <Route path="/user/methods/:id/edit" component={asyncUserMethodsEdit} />
+                                        <Route path="/user/methods/add" component={asyncUserMethodsAdd} />
+                                        <Route path="/user/methods" component={asyncUserMethods} />
 
-                                <Route path="/user/methods/:id/edit" component={asyncUserMethodsEdit} />
-                                <Route path="/user/methods/add" component={asyncUserMethodsAdd} />
-                                <Route path="/user/methods" component={asyncUserMethods} />
+                                        <Route path="/user/recharges/add" component={asyncUserRechargesAdd} />
+                                        <Route path="/user/recharges" component={asyncUserRecharges} />
 
-                                <Route path="/user/recharges/add" component={asyncUserRechargesAdd} />
-                                <Route path="/user/recharges" component={asyncUserRecharges} />
-
-                                <Route path="/user/plans/bought" component={asyncUserPlansBought} />
-                                <Route path="/user/plans/add" component={asyncUserPlansAdd} />
-                                <Route path="/user/plans" component={asyncUserPlans} />
+                                        <Route path="/user/plans/bought" component={asyncUserPlansBought} />
+                                        <Route path="/user/plans/add" component={asyncUserPlansAdd} />
+                                        <Route path="/user/plans" component={asyncUserPlans} />
 
 
-                                <Route path="/user/restaurants/add" component={asyncUserRestaurantsAdd} />
-                                <Route path="/user/restaurants" component={asyncUserRestaurants} />
-                            </Switch>
-                        </Backend>
+                                        <Route path="/user/restaurants/add" component={asyncUserRestaurantsAdd} />
+                                        <Route path="/user/restaurants" exact component={asyncUserRestaurants} />
+                                    </Switch>
+                                </Backend>
+                            </Route>
+                        </Switch>
                     </Route>
+
+
 
                     <Route path="/admin">
                         <Backend>
@@ -417,9 +417,8 @@ class App extends Component {
                                     </Switch>
                                 </FrontendMeals>
                             </Route>
-                            <Route path="/restaurants/:slug" component={asyncRestaurantsHome} />
+                            <Route path="/restaurants/:slug" exact component={asyncRestaurantsHome} />
                         </Frontend>
-                        <Redirect path="/" to="/auth" />
                     </Route>
 
                 </Switch>

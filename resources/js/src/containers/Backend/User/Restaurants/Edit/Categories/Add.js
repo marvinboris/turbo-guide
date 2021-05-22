@@ -78,9 +78,8 @@ class Add extends Component {
 
     // Lifecycle methods
     componentDidMount() {
-        this.props.reset();
         if (this.props.edit) this.props.get(this.props.match.params.id);
-        this.setState({ translate: this.props.backend.restaurants.restaurant.main_language });
+        this.setState({ translate: this.props.backend.restaurants.data.main_language });
     }
 
     componentDidUpdate(prevProps) {

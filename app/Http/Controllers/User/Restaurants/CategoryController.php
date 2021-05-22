@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Restaurant;
+namespace App\Http\Controllers\User\Restaurants;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\UtilController;
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -15,9 +16,9 @@ class CategoryController extends Controller
         'is_active' => 'required|integer',
     ];
 
-    private function data()
+    private function data($restaurantId)
     {
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $search = request()->search;
 
@@ -50,9 +51,9 @@ class CategoryController extends Controller
 
 
 
-    public function  index()
+    public function  index($restaurantId)
     {
-        $data = $this->data();
+        $data = $this->data($restaurantId);
 
         $categories = $data['categories'];
         $total = $data['total'];
@@ -63,10 +64,10 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function show($restaurantId, $id)
     {
         $cms = UtilController::cms();
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $category = $restaurant->categories()->find($id);
         if (!$category) return response()->json([
@@ -80,10 +81,10 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $restaurantId)
     {
         $cms = UtilController::cms();
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $request->validate($this->rules);
 
@@ -105,10 +106,10 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $restaurantId, $id)
     {
         $cms = UtilController::cms();
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $category = $restaurant->categories()->find($id);
         if (!$category) return response()->json([
@@ -139,10 +140,10 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function destroy($id)
+    public function destroy($restaurantId, $id)
     {
         $cms = UtilController::cms();
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $category = $restaurant->categories()->find($id);
         if (!$category) return response()->json([
@@ -152,7 +153,7 @@ class CategoryController extends Controller
         if ($category->photo && is_file(public_path($category->photo))) unlink(public_path($category->photo));
         $category->delete();
 
-        $data = $this->data();
+        $data = $this->data($restaurantId);
 
         $categories = $data['categories'];
         $total = $data['total'];

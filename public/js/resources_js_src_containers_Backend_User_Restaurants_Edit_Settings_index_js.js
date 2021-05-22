@@ -1041,22 +1041,21 @@ var Settings = /*#__PURE__*/function (_Component) {
     key: "componentDidMount",
     value: // Lifecycle methods
     function componentDidMount() {
-      this.props.reset();
       this.props.get();
       this.setState({
-        translate: this.props.auth.data.main_language
+        translate: this.props.backend.restaurants.data.main_language
       });
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      if (!prevProps.backend.settings.message && this.props.backend.settings.message && this.props.backend.settings.message.type === 'success') {
-        var _this$props$backend$s = this.props.backend.settings.restaurant,
-            logo = _this$props$backend$s.logo,
-            photo = _this$props$backend$s.photo,
-            banner1 = _this$props$backend$s.banner1,
-            banner2 = _this$props$backend$s.banner2,
-            banner3 = _this$props$backend$s.banner3;
+      if (!prevProps.backend.restaurants.message && this.props.backend.restaurants.message && this.props.backend.restaurants.message.type === 'success') {
+        var _this$props$backend$r = this.props.backend.restaurants.restaurant,
+            logo = _this$props$backend$r.logo,
+            photo = _this$props$backend$r.photo,
+            banner1 = _this$props$backend$r.banner1,
+            banner2 = _this$props$backend$r.banner2,
+            banner3 = _this$props$backend$r.banner3;
         this.setState({
           logo: logo,
           photo: photo,
@@ -1066,8 +1065,8 @@ var Settings = /*#__PURE__*/function (_Component) {
         });
       }
 
-      if (!prevProps.backend.settings.restaurant && this.props.backend.settings.restaurant) {
-        var restaurant = this.props.backend.settings.restaurant;
+      if (!prevProps.backend.restaurants.restaurant && this.props.backend.restaurants.restaurant) {
+        var restaurant = this.props.backend.restaurants.restaurant;
         if (!restaurant.name || restaurant.languages.length === 0) sweetalert2__WEBPACK_IMPORTED_MODULE_3___default().fire({
           title: 'Missing restaurant\'s name or languages',
           text: "Please set your restaurant\'s name and languages",
@@ -1079,11 +1078,6 @@ var Settings = /*#__PURE__*/function (_Component) {
         });
         this.setState(_objectSpread({}, restaurant));
       }
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      if (!this.props.backend.restaurants.restaurant.name || this.props.backend.restaurants.restaurant.languages.length === 0) return this.props.history.push('/user/restaurants/' + this.props.match.params.restaurant + '/edit/settings');
     }
   }, {
     key: "render",
@@ -1100,16 +1094,16 @@ var Settings = /*#__PURE__*/function (_Component) {
           form = _this$props$content$c2.form,
           currencies = _this$props$content.currencies,
           countries = _this$props$content.countries,
-          _this$props$backend$s2 = _this$props.backend.settings,
-          _this$props$backend$s3 = _this$props$backend$s2.data,
-          plan = _this$props$backend$s3.plan,
-          restaurantLanguages = _this$props$backend$s3.languages,
-          loading = _this$props$backend$s2.loading,
-          error = _this$props$backend$s2.error,
-          message = _this$props$backend$s2.message,
-          restaurant = _this$props$backend$s2.restaurant,
-          _this$props$backend$s4 = _this$props$backend$s2.allLanguages,
-          allLanguages = _this$props$backend$s4 === void 0 ? [] : _this$props$backend$s4;
+          _this$props$backend$r2 = _this$props.backend.restaurants,
+          _this$props$backend$r3 = _this$props$backend$r2.data,
+          plan = _this$props$backend$r3.plan,
+          restaurantLanguages = _this$props$backend$r3.languages,
+          loading = _this$props$backend$r2.loading,
+          error = _this$props$backend$r2.error,
+          message = _this$props$backend$r2.message,
+          restaurant = _this$props$backend$r2.restaurant,
+          _this$props$backend$r4 = _this$props$backend$r2.allLanguages,
+          allLanguages = _this$props$backend$r4 === void 0 ? [] : _this$props$backend$r4;
       var _this$state = this.state,
           name = _this$state.name,
           owner = _this$state.owner,

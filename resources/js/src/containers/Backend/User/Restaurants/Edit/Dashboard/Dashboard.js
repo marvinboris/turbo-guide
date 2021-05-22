@@ -60,6 +60,8 @@ class Dashboard extends Component {
         let errors = null;
         const lang = localStorage.getItem('lang');
 
+        if (!comments || typeof comments !== "number") comments = 0;
+
         if (loading) content = <Col xs={12}>
             <CustomSpinner />
         </Col>;
@@ -72,28 +74,28 @@ class Dashboard extends Component {
                     {
                         children: blocksData.totalMeals,
                         icon: faDrumstickBite,
-                        link: '/user/restaurants/' + this.props.math.params.restaurant + '/edit/meals/',
+                        link: '/user/restaurants/' + this.props.match.params.restaurant + '/edit/meals/',
                         color: 'red',
                         details: total_meals,
                     },
                     {
                         children: blocksData.totalAddons,
                         icon: faCookie,
-                        link: '/user/restaurants/' + this.props.math.params.restaurant + '/edit/addons/',
+                        link: '/user/restaurants/' + this.props.match.params.restaurant + '/edit/addons/',
                         color: 'green',
                         details: total_addons,
                     },
                     {
                         children: blocksData.totalCategories,
                         icon: faListAlt,
-                        link: '/user/restaurants/' + this.props.math.params.restaurant + '/edit/categories/',
+                        link: '/user/restaurants/' + this.props.match.params.restaurant + '/edit/categories/',
                         color: 'blue',
                         details: total_categories,
                     },
                     {
                         children: blocksData.customerReview,
                         icon: faStar,
-                        link: '/user/restaurants/' + this.props.math.params.restaurant + '/edit/comments/',
+                        link: '/user/restaurants/' + this.props.match.params.restaurant + '/edit/comments/',
                         color: 'orange',
                         details: customer_review,
                     },
@@ -169,10 +171,10 @@ class Dashboard extends Component {
                                     </div>
 
                                     <div>
-                                        <Link to={"/user/restaurants/" + this.props.math.params.restaurant + "/edit/recharges"} className="btn btn-white text-20 d-none d-sm-inline text-decoration-none text-green py-2 px-3">
+                                        <Link to={"/user/restaurants/" + this.props.match.params.restaurant + "/edit/recharges"} className="btn btn-white text-20 d-none d-sm-inline text-decoration-none text-green py-2 px-3">
                                             <FontAwesomeIcon icon={faMoneyBillWave} className="mr-3" />{recharge}
                                         </Link>
-                                        <Link to={"/user/restaurants/" + this.props.math.params.restaurant + "/edit/recharges"} className="btn btn-white text-14 d-sm-none text-decoration-none text-green py-2 px-3">
+                                        <Link to={"/user/restaurants/" + this.props.match.params.restaurant + "/edit/recharges"} className="btn btn-white text-14 d-sm-none text-decoration-none text-green py-2 px-3">
                                             <FontAwesomeIcon icon={faMoneyBillWave} className="mr-3" />{recharge}
                                         </Link>
                                     </div>

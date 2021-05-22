@@ -896,10 +896,9 @@ var Add = /*#__PURE__*/function (_Component) {
     key: "componentDidMount",
     value: // Lifecycle methods
     function componentDidMount() {
-      this.props.reset();
       if (this.props.edit) this.props.get(this.props.match.params.id);
       this.setState({
-        translate: this.props.backend.restaurants.restaurant.main_language
+        translate: this.props.backend.restaurants.data.main_language
       });
     }
   }, {

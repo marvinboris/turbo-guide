@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Restaurant;
+namespace App\Http\Controllers\User\Restaurants;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Method\MonetbilController;
 use App\Http\Controllers\UtilController;
 use App\Models\Method;
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
 
 class RechargeController extends Controller
@@ -16,9 +17,9 @@ class RechargeController extends Controller
         'amount' => 'required|numeric',
     ];
 
-    private function data()
+    private function data($restaurantId)
     {
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $search = request()->search;
 
@@ -28,11 +29,13 @@ class RechargeController extends Controller
         $filteredData = $restaurant->recharges()->latest();
 
         $filteredData = $filteredData
+            ->join('methods', 'methods.id', '=', 'recharges.method_id')
             ->select('recharges.*')
             ->when($search, function ($query, $search) {
                 if ($search !== "")
                     $query
-                        ->where('name', 'LIKE', "%$search%");
+                        ->where('amount', 'LIKE', "%$search%")
+                        ->orWhere('methods.name', 'LIKE', "%$search%");
             });
 
         $total = $filteredData->count();
@@ -65,9 +68,9 @@ class RechargeController extends Controller
 
 
 
-    public function  index()
+    public function  index($restaurantId)
     {
-        $data = $this->data();
+        $data = $this->data($restaurantId);
 
         $recharges = $data['recharges'];
         $total = $data['total'];
@@ -78,10 +81,10 @@ class RechargeController extends Controller
         ] + $this->information());
     }
 
-    public function show($id)
+    public function show($restaurantId, $id)
     {
         $cms = UtilController::cms();
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $recharge = $restaurant->recharges()->find($id);
         if (!$recharge) return response()->json([
@@ -95,10 +98,10 @@ class RechargeController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $restaurantId)
     {
         $cms = UtilController::cms();
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $request->validate($this->rules);
 

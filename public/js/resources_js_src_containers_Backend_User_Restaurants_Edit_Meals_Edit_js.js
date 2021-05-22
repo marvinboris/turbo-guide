@@ -942,10 +942,9 @@ var Add = /*#__PURE__*/function (_Component) {
     key: "componentDidMount",
     value: // Lifecycle methods
     function componentDidMount() {
-      this.props.reset();
       if (this.props.edit) this.props.get(this.props.match.params.id);else this.props.info();
       this.setState({
-        translate: this.props.auth.data.main_language
+        translate: this.props.backend.restaurants.data.main_language
       });
     }
   }, {
@@ -976,7 +975,7 @@ var Add = /*#__PURE__*/function (_Component) {
           cancelButtonColor: '#D14529'
         };
 
-        if (this.props.backend.meals.categories.length > 0) {
+        if (this.props.backend.restaurants.categories.length > 0) {
           settings.title = 'Missing addons';
           settings.text = 'Before creating meals, make sure you have added addons.';
           settings.showDenyButton = false;

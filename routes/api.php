@@ -142,6 +142,52 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
             });
 
             Route::prefix('restaurants')->name('restaurants.')->group(function () {
+                Route::namespace('Restaurants')->prefix('{restaurant}/edit')->name('edit.')->group(function () {
+                    Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+
+                    Route::prefix('meals')->name('meals.')->group(function () {
+                        Route::get('info', 'MealController@info')->name('info');
+                        Route::get('{meal}', 'MealController@show')->name('show');
+                    });
+
+                    Route::prefix('addons')->name('addons.')->group(function () {
+                        Route::get('{addon}', 'AddonController@show')->name('show');
+                    });
+
+                    Route::prefix('categories')->name('categories.')->group(function () {
+                        Route::get('{category}', 'CategoryController@show')->name('show');
+                    });
+
+                    Route::prefix('settings')->name('settings.')->group(function () {
+                        Route::patch('restaurant', 'SettingsController@restaurant')->name('restaurant');
+                        Route::patch('account', 'SettingsController@account')->name('account');
+                        Route::patch('cms', 'SettingsController@cms')->name('cms');
+                        Route::patch('translatable', 'SettingsController@translatable')->name('translatable');
+                        Route::patch('language', 'SettingsController@language')->name('language');
+                        Route::get('', 'SettingsController@index')->name('index');
+                    });
+
+                    Route::prefix('plans')->name('plans.')->group(function () {
+                        Route::post('auto-renew', 'PlanController@autoRenew')->name('auto-renew');
+                        Route::get('info', 'PlanController@info')->name('info');
+                    });
+
+                    Route::prefix('recharges')->name('recharges.')->group(function () {
+                        Route::get('info', 'RechargeController@info')->name('info');
+                    });
+
+
+
+                    Route::apiResources([
+                        'categories' => 'CategoryController',
+                        'addons' => 'AddonController',
+                        'meals' => 'MealController',
+                        'comments' => 'CommentController',
+                        'plans' => 'PlanController',
+                        'recharges' => 'RechargeController',
+                    ]);
+                });
+
                 Route::get('info', 'RestaurantController@info')->name('info');
                 Route::get('{restaurant}', 'RestaurantController@show')->name('show');
             });

@@ -1,0 +1,33 @@
+.Restaurant.SideDrawerItem .angle-down {
+    transform: translateY(-50%) rotate(0);
+    transition: all 0.25s;
+}
+
+.Restaurant.SideDrawerItem.active .angle-down {
+    color: #fff !important;
+}
+
+.Restaurant.SideDrawerItem .angle-down.open {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.Restaurant.SideDrawerItem>div {
+    background-color: transparent;
+    box-shadow: 1px 2px 7px transparent;
+    transition: all .25s;
+}
+
+.Restaurant.SideDrawerItem.active>div {
+    background-color: var(--orange-20);
+    box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%);
+    left: 0;
+}
+
+.Restaurant.SideDrawerItem>div .text {
+    color: var(--secondary) !important;
+}
+
+.Restaurant.SideDrawerItem.active>div .text {
+    color: var(--orange) !important;
+    font-size: 500;
+}

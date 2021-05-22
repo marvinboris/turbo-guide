@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Restaurant;
+namespace App\Http\Controllers\User\Restaurants;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\UtilController;
 use App\Models\Plan;
+use App\Models\Restaurant;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index($restaurantId)
     {
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $totalMealsNumber = $restaurant->meals()->count();
         $totalAddonsNumber = $restaurant->addons()->count();

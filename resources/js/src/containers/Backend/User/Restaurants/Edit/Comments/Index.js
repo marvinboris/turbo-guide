@@ -32,15 +32,14 @@ class Index extends Component {
             },
             backend: { restaurants: { data: { plan }, loading, error, message, comments = [], total } },
         } = this.props;
-
-        const redirect = (!plan || (plan && !plan.reviews)) && <Redirect to={"/user/restaurants/" + this.props.match.params.restaurant + "/edit/dashboard"} />
+        
         const errors = <>
             <Error err={error} />
         </>;
         const feedback = <Feedback message={message} />;
         const lang = localStorage.getItem('lang');
 
-        if (!comments) comments = [];
+        if (!comments || typeof comments !== "object") comments = [];
         const data = comments.map(comment => {
             return updateObject(comment, {
                 meal: comment.meal[lang],
@@ -72,7 +71,6 @@ class Index extends Component {
 
         return (
             <>
-                {redirect}
                 <TitleWrapper>
                     <Breadcrumb main={index} icon={faComment} />
                     <SpecialTitle>{title}</SpecialTitle>

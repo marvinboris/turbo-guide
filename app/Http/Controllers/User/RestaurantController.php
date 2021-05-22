@@ -83,7 +83,11 @@ class RestaurantController extends Controller
         ]);
 
         return response()->json([
-            'restaurant' => $restaurant,
+            'data' => $restaurant->toArray() + [
+                'notifications' => $restaurant->notifications()->latest()->limit(5)->get(),
+                'language' => $restaurant->language->abbr,
+                'languages' => $restaurant->languages,
+            ]
         ]);
     }
 

@@ -202,7 +202,7 @@ class Purchase extends Component {
 const mapStateToProps = state => ({ ...state });
 
 const mapDispatchToProps = dispatch => ({
-    info: () => dispatch(backendActions.infoRestaurantsEdit()),
+    info: () => dispatch(backendActions.infoRestaurantsEdit('plans')),
     purchase: data => dispatch(backendActions.postRestaurantsEdit('plans', data)),
 
     autoRenew: () => dispatch(backendActions.postRestaurantsEdit('plans/auto-renew')),

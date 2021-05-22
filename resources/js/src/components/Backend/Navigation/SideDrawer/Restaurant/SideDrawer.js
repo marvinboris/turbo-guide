@@ -65,7 +65,7 @@ export default ({ data, toggle, logoutHandler, selectItem, selectedItem, cms, da
         {sideDrawerItem(addons.title, null, faCookie, "/restaurant/addons")}
 
         <div className="text-border text-16 px-3 py-2 mb-1 mt-4">OTHERS</div>
-        {plan && plan.slug.includes('premium') && sideDrawerItem(comments, null, faComment, "/restaurant/comments")}
+        {plan && !!plan.reviews && sideDrawerItem(comments, null, faComment, "/restaurant/comments")}
         {sideDrawerItem(history, null, faList, "/restaurant/history")}
         <SideDrawerItem id={notifications} sideDrawerToggle={toggle} select={selectItem} selected={selectedItem} icon={faBell} href="/restaurant/notifications">
             {notifications}{' '}

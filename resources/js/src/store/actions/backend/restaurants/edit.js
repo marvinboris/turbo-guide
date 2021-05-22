@@ -1,15 +1,16 @@
-import { restaurantsStart } from './';
+import { restaurantsStart, restaurantsSuccess, restaurantsFail } from './';
 
 const prefix = '/api/';
 
 export const getRestaurantsEdit = (resource, page = 1, show = 10, search) => async (dispatch, getState) => {
     dispatch(restaurantsStart());
-    const { auth: { role }, backend: { restaurants: { restaurant } } } = getState();
+    const { auth: { role }, backend: { restaurants: { data: restaurant } } } = getState();
 
     try {
         const token = localStorage.getItem('token');
         let url;
         if (['addons', 'categories', 'meals'].includes(resource)) url = `${prefix + role}/restaurants/${restaurant.id}/edit/${resource}?search=${page !== 1 ? page : ""}`;
+        else if (resource === 'meals') url = `${prefix + role}/restaurants/${restaurant.id}/edit/${resource}?category_id=${page !== 1 ? page : ""}`;
         else url = `${prefix + role}/restaurants/${restaurant.id}/edit/${resource}?page=${page}&show=${show}&search=${search}`;
         const res = await fetch(url, {
             headers: {
@@ -26,7 +27,7 @@ export const getRestaurantsEdit = (resource, page = 1, show = 10, search) => asy
 
 export const infoRestaurantsEdit = resource => async (dispatch, getState) => {
     dispatch(restaurantsStart());
-    const { auth: { role }, backend: { restaurants: { restaurant } } } = getState();
+    const { auth: { role }, backend: { restaurants: { data: restaurant } } } = getState();
 
     try {
         const token = localStorage.getItem('token');
@@ -46,7 +47,7 @@ export const infoRestaurantsEdit = resource => async (dispatch, getState) => {
 
 export const showRestaurantsEdit = (resource, id) => async (dispatch, getState) => {
     dispatch(restaurantsStart());
-    const { auth: { role }, backend: { restaurants: { restaurant } } } = getState();
+    const { auth: { role }, backend: { restaurants: { data: restaurant } } } = getState();
 
     try {
         const token = localStorage.getItem('token');
@@ -66,7 +67,7 @@ export const showRestaurantsEdit = (resource, id) => async (dispatch, getState) 
 
 export const postRestaurantsEdit = (resource, data) => async (dispatch, getState) => {
     dispatch(restaurantsStart());
-    const { auth: { role }, backend: { restaurants: { restaurant } } } = getState();
+    const { auth: { role }, backend: { restaurants: { data: restaurant } } } = getState();
 
     try {
         const token = localStorage.getItem('token');
@@ -90,7 +91,7 @@ export const postRestaurantsEdit = (resource, data) => async (dispatch, getState
 
 export const patchRestaurantsEdit = (resource, id, data) => async (dispatch, getState) => {
     dispatch(restaurantsStart());
-    const { auth: { role }, backend: { restaurants: { restaurant } } } = getState();
+    const { auth: { role }, backend: { restaurants: { data: restaurant } } } = getState();
 
     try {
         const token = localStorage.getItem('token');
@@ -114,7 +115,7 @@ export const patchRestaurantsEdit = (resource, id, data) => async (dispatch, get
 
 export const deleteRestaurantsEdit = (resource, id) => async (dispatch, getState) => {
     dispatch(restaurantsStart());
-    const { auth: { role }, backend: { restaurants: { restaurant } } } = getState();
+    const { auth: { role }, backend: { restaurants: { data: restaurant } } } = getState();
 
     try {
         let page, show, search;

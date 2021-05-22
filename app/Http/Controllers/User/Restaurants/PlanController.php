@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Restaurant;
+namespace App\Http\Controllers\User\Restaurants;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\UtilController;
 use App\Models\Plan;
+use App\Models\Restaurant;
 use App\Notifications\PlanExpired;
 use App\Notifications\PlanImminentExpiration;
 use App\Notifications\PlanPurchase;
@@ -18,9 +19,9 @@ class PlanController extends Controller
         'terms' => 'accepted',
     ];
 
-    private function data()
+    private function data($restaurantId)
     {
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $page = +request()->page;
         $show = request()->show;
@@ -81,9 +82,9 @@ class PlanController extends Controller
 
 
 
-    public function  index()
+    public function  index($restaurantId)
     {
-        $data = $this->data();
+        $data = $this->data($restaurantId);
 
         $plans = $data['plans'];
         $total = $data['total'];
@@ -101,10 +102,10 @@ class PlanController extends Controller
         return response()->json($information);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $restaurantId)
     {
         $cms = UtilController::cms();
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $request->validate($this->rules);
 
@@ -144,6 +145,17 @@ class PlanController extends Controller
         return response()->json([
             'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['plans']['balance'], 'danger'),
             'amount' => $plan->price - $restaurant->balance,
+        ]);
+    }
+
+    public function autoRenew($restaurantId)
+    {
+        $restaurant = Restaurant::find($restaurantId);
+
+        $restaurant->update(['auto_renew' => $restaurant->auto_renew === 0 ? 1 : 0]);
+
+        return response()->json([
+            'data' => $restaurant,
         ]);
     }
 }

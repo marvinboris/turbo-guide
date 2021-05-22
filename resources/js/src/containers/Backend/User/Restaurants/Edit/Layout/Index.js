@@ -5,13 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import Settings from './Settings';
-import Notifications from './Notifications';
 import Languages from './Languages';
 
-import SideDrawer from '../../../../../../components/Backend/Navigation/SideDrawer/Restaurant/SideDrawer';
+import SideDrawer from './Restaurant/SideDrawer';
 import CustomSpinner from '../../../../../../components/UI/CustomSpinner/CustomSpinner';
 
-import { authLogout, setLanguage } from '../../../../../../store/actions';
+import { getRestaurant, setLanguage } from '../../../../../../store/actions';
 import { updateObject } from '../../../../../../shared/utility';
 
 import './Layout.css';
@@ -25,8 +24,8 @@ class Layout extends Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
-        if (nextProps.backend.restaurants.restaurant.notifications && !prevState.notifications) {
-            const { notifications } = nextProps.backend.restaurants.restaurant;
+        if (nextProps.backend.restaurants.data && nextProps.backend.restaurants.data.notifications && !prevState.notifications) {
+            const { notifications } = nextProps.backend.restaurants.data;
             return updateObject(prevState, { notifications });
         }
         return null;
@@ -39,11 +38,6 @@ class Layout extends Component {
 
     componentDidUpdate(prevProps) {
         if (JSON.stringify(prevProps.content.cms) !== JSON.stringify(this.props.content.cms)) this.setState({ language: this.props.content.languages.find(l => l.abbr === localStorage.getItem('lang')) });
-    }
-
-    logoutHandler = () => {
-        const { logout } = this.props;
-        logout();
     }
 
     toggle = () => {
@@ -67,7 +61,7 @@ class Layout extends Component {
     render() {
         const { selectedItem, language } = this.state;
         const {
-            backend: { restaurants: { loading, restaurant } },
+            backend: { restaurants: { loading, data } },
             content: { cms, languages },
             children,
             dark = false
@@ -83,8 +77,10 @@ class Layout extends Component {
             {copyright} {new Date().getFullYear()} <span className={`text-500 text-${dark ? "orange" : "orange"}`}>{app_name}</span>. {all_rights} <img src={company_logo} style={{ height: 47 }} />.
         </>;
 
+        if (location.pathname === '/user/restaurants/' + this.props.match.params.restaurant + '/edit') this.props.history.push('/user/restaurants/' + this.props.match.params.restaurant + '/edit/dashboard');
+
         return <div className="Layout text-left text-secondary">
-            {isAuthenticated && <SideDrawer data={restaurant} toggle={this.toggle} selectItem={this.selectItem} logoutHandler={this.logoutHandler} selectedItem={selectedItem} cms={cms} />}
+            {data && <SideDrawer data={data} toggle={this.toggle} selectItem={this.selectItem} selectedItem={selectedItem} cms={cms} />}
 
             <main className={`bg-${dark ? 'darkblue' : 'white'} position-relative min-vh-100 pb-4 pb-sm-5`}>
                 <div style={{ height: 90 }} className="d-flex align-items-center px-3 px-lg-5 border-bottom border-light sticky-top bg-white">
@@ -102,17 +98,13 @@ class Layout extends Component {
                         <Languages languages={languages} set={this.setLanguage} language={language} />
                     </div>
 
-                    <div className="mr-3 text-24 text-orange">
-                        <Notifications cms={{ header }} notifications={restaurant.notifications} />
-                    </div>
-
                     <div className="text-24 text-secondary">
-                        <Settings cms={{ header, menu }} logoutHandler={this.logoutHandler} />
+                        <Settings cms={{ header, menu }} prefix={"/user/restaurants/" + this.props.match.params.restaurant + "/edit"} />
                     </div>
                 </div>
 
                 <div className="main mb-4 mb-sm-5 pb-4 pb-sm-5 mt-3 mt-sm-4 pt-3 px-3 px-lg-5">
-                    {loading && !restaurant ? <div className="h-100 d-flex justify-content-center align-items-center"><CustomSpinner /></div> : children}
+                    {loading && !data ? <div className="h-100 d-flex justify-content-center align-items-center"><CustomSpinner /></div> : children}
                 </div>
 
                 <footer className={`position-absolute d-none d-sm-block w-100 py-3 px-4 bg-${dark ? "grayblue" : "soft"}`} style={{ bottom: 0 }}>
@@ -126,7 +118,7 @@ class Layout extends Component {
 const mapStateToProps = state => ({ ...state });
 
 const mapDispatchToProps = dispatch => ({
-    logout: () => dispatch(authLogout()),
+    get: id => dispatch(getRestaurant(id)),
     set: id => dispatch(setLanguage(id))
 });
 

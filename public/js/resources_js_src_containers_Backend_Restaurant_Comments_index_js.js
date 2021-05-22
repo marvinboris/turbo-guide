@@ -1160,7 +1160,7 @@ var Index = /*#__PURE__*/function (_Component) {
           total = _this$props$backend$c.total,
           plan = _this$props.auth.data.plan;
 
-      var redirect = (!plan || plan && !plan.slug.includes('premium')) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Redirect, {
+      var redirect = (!plan || plan && !plan.reviews) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Redirect, {
         to: "/restaurant/dashboard"
       });
 

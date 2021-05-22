@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Restaurant;
+namespace App\Http\Controllers\User\Restaurants;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\UtilController;
 use App\Models\Category;
 use App\Models\Meal;
+use App\Models\Restaurant;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -23,9 +24,9 @@ class MealController extends Controller
         'addons' => 'array|exists:addons,id',
     ];
 
-    private function data()
+    private function data($restaurantId)
     {
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $category_id = request()->category_id;
 
@@ -75,9 +76,9 @@ class MealController extends Controller
         ];
     }
 
-    private function information()
+    private function information($restaurantId)
     {
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $categories = [];
         foreach ($restaurant->categories as $category) {
@@ -95,10 +96,10 @@ class MealController extends Controller
         ];
     }
 
-    private function validation($request, $id = null)
+    private function validation($restaurantId, $request, $id = null)
     {
         $cms = UtilController::cms();
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $category = null;
         if ($id) {
@@ -117,16 +118,16 @@ class MealController extends Controller
 
 
 
-    public function  index()
+    public function  index($restaurantId)
     {
-        $data = $this->data();
+        $data = $this->data($restaurantId);
 
         $meals = $data['meals'];
         $mostLiked = $data['mostLiked'];
         $countedMeals = $data['countedMeals'];
         $total = $data['total'];
 
-        $information = $this->information();
+        $information = $this->information($restaurantId);
 
         return response()->json([
             'meals' => $meals,
@@ -136,17 +137,17 @@ class MealController extends Controller
         ] + $information);
     }
 
-    public function info()
+    public function info($restaurantId)
     {
-        $information = $this->information();
+        $information = $this->information($restaurantId);
 
         return response()->json($information);
     }
 
-    public function show($id)
+    public function show($restaurantId, $id)
     {
         $cms = UtilController::cms();
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $meal = $restaurant->meals()->find($id);
         if (!$meal) return response()->json([
@@ -165,19 +166,19 @@ class MealController extends Controller
             'addons' => $meal_addons,
         ];
 
-        $information = $this->information();
+        $information = $this->information($restaurantId);
 
         return response()->json([
             'meal' => $meal,
         ] + $information);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $restaurantId)
     {
         $cms = UtilController::cms();
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
-        $category = $this->validation($request);
+        $category = $this->validation($restaurantId, $request);
         if ($category instanceof JsonResponse) return $category;
 
         if ($restaurant->plan && ($restaurant->plan->meals === 0 || $restaurant->meals()->count() < $restaurant->plan->meals)) {
@@ -211,12 +212,12 @@ class MealController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $restaurantId, $id)
     {
         $cms = UtilController::cms();
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
-        $category = $this->validation($request, $id);
+        $category = $this->validation($restaurantId, $request, $id);
         if ($category instanceof JsonResponse) return $category;
 
         $meal = $category->meals()->find($id);
@@ -252,10 +253,10 @@ class MealController extends Controller
         ]);
     }
 
-    public function destroy($id)
+    public function destroy($restaurantId, $id)
     {
         $cms = UtilController::cms();
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $meal = $restaurant->meals()->find($id);
         if (!$meal) return response()->json([
@@ -265,7 +266,7 @@ class MealController extends Controller
         if ($meal->photo && is_file(public_path($meal->photo))) unlink(public_path($meal->photo));
         $meal->delete();
 
-        $data = $this->data();
+        $data = $this->data($restaurantId);
 
         $meals = $data['meals'];
         $total = $data['total'];

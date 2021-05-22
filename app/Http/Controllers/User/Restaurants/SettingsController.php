@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Restaurant;
+namespace App\Http\Controllers\User\Restaurants;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\UtilController;
@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\Hash;
 
 class SettingsController extends Controller
 {
-    public function information()
+    public function information($restaurantId)
     {
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $restaurant_languages = [];
         foreach ($restaurant->languages as $language) {
@@ -37,17 +37,17 @@ class SettingsController extends Controller
         ];
     }
 
-    public function index()
+    public function index($restaurantId)
     {
-        $information = $this->information();
+        $information = $this->information($restaurantId);
 
         return response()->json($information);
     }
 
-    public function restaurant(Request $request)
+    public function restaurant(Request $request, $restaurantId)
     {
         $cms = UtilController::cms();
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $input = $request->validate([
             'name' => 'required|string',
@@ -74,13 +74,13 @@ class SettingsController extends Controller
 
         return response()->json([
             'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['settings']['restaurant'], 'success'),
-        ] + $this->information());
+        ] + $this->information($restaurantId));
     }
 
-    public function account(Request $request)
+    public function account(Request $request, $restaurantId)
     {
         $cms = UtilController::cms();
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $request->validate([
             'email' => 'required|string|email',
@@ -108,13 +108,13 @@ class SettingsController extends Controller
 
         return response()->json([
             'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['settings']['account'], 'success'),
-        ] + $this->information());
+        ] + $this->information($restaurantId));
     }
 
-    public function cms(Request $request)
+    public function cms(Request $request, $restaurantId)
     {
         $cms = UtilController::cms();
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $input = $request->validate([
             'banner1' => 'required|file|image',
@@ -144,13 +144,13 @@ class SettingsController extends Controller
 
         return response()->json([
             'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['settings']['cms'], 'success'),
-        ] + $this->information());
+        ] + $this->information($restaurantId));
     }
 
-    public function translatable(Request $request)
+    public function translatable(Request $request, $restaurantId)
     {
         $cms = UtilController::cms();
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $request->validate([
             'address' => 'array|nullable',
@@ -172,13 +172,13 @@ class SettingsController extends Controller
 
         return response()->json([
             'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['settings']['cms'], 'success'),
-        ] + $this->information());
+        ] + $this->information($restaurantId));
     }
 
-    public function language(Request $request)
+    public function language(Request $request, $restaurantId)
     {
         $cms = UtilController::cms();
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $request->validate([
             'languages' => 'array|exists:languages,id',
@@ -196,6 +196,6 @@ class SettingsController extends Controller
 
         return response()->json([
             'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['settings']['cms'], 'success'),
-        ] + $this->information());
+        ] + $this->information($restaurantId));
     }
 }

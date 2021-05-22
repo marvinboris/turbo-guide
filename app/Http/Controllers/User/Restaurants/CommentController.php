@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Restaurant;
+namespace App\Http\Controllers\User\Restaurants;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\UtilController;
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    private function data()
+    private function data($restaurantId)
     {
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $page = +request()->page;
         $show = request()->show;
@@ -62,9 +63,9 @@ class CommentController extends Controller
 
 
 
-    public function  index()
+    public function  index($restaurantId)
     {
-        $data = $this->data();
+        $data = $this->data($restaurantId);
 
         $comments = $data['comments'];
         $total = $data['total'];
@@ -75,10 +76,10 @@ class CommentController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function show($restaurantId, $id)
     {
         $cms = UtilController::cms();
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $comment = $restaurant->comments()->find($id);
         if (!$comment) return response()->json([
@@ -92,10 +93,10 @@ class CommentController extends Controller
         ]);
     }
 
-    public function destroy($id)
+    public function destroy($restaurantId, $id)
     {
         $cms = UtilController::cms();
-        $restaurant = UtilController::get(request());
+        $restaurant = Restaurant::find($restaurantId);
 
         $comment = $restaurant->comments()->find($id);
         if (!$comment) return response()->json([
@@ -104,7 +105,7 @@ class CommentController extends Controller
 
         $comment->delete();
 
-        $data = $this->data();
+        $data = $this->data($restaurantId);
 
         $comments = $data['comments'];
         $total = $data['total'];

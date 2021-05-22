@@ -38,10 +38,6 @@ class Index extends Component {
         this.props.get();
     }
 
-    componentWillUnmount() {
-        this.props.reset();
-    }
-
     render() {
         let {
             content: {
@@ -178,7 +174,7 @@ class Index extends Component {
 const mapStateToProps = state => ({ ...state });
 
 const mapDispatchToProps = dispatch => ({
-    get: id => dispatch(actions.showRestaurantsEdit('meals', id)),
+    get: id => dispatch(actions.getRestaurantsEdit('meals', id)),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Index));

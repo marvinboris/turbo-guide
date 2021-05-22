@@ -954,6 +954,7 @@ var Dashboard = /*#__PURE__*/function (_Component) {
       var content = null;
       var errors = null;
       var lang = localStorage.getItem('lang');
+      if (!comments || typeof comments !== "number") comments = 0;
       if (loading) content = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_17__.default, {
         xs: 12,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_components_UI_CustomSpinner_CustomSpinner__WEBPACK_IMPORTED_MODULE_10__.default, {})
@@ -968,25 +969,25 @@ var Dashboard = /*#__PURE__*/function (_Component) {
           var data = [{
             children: blocksData.totalMeals,
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faDrumstickBite,
-            link: '/user/restaurants/' + this.props.math.params.restaurant + '/edit/meals/',
+            link: '/user/restaurants/' + this.props.match.params.restaurant + '/edit/meals/',
             color: 'red',
             details: total_meals
           }, {
             children: blocksData.totalAddons,
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faCookie,
-            link: '/user/restaurants/' + this.props.math.params.restaurant + '/edit/addons/',
+            link: '/user/restaurants/' + this.props.match.params.restaurant + '/edit/addons/',
             color: 'green',
             details: total_addons
           }, {
             children: blocksData.totalCategories,
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faListAlt,
-            link: '/user/restaurants/' + this.props.math.params.restaurant + '/edit/categories/',
+            link: '/user/restaurants/' + this.props.match.params.restaurant + '/edit/categories/',
             color: 'blue',
             details: total_categories
           }, {
             children: blocksData.customerReview,
             icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faStar,
-            link: '/user/restaurants/' + this.props.math.params.restaurant + '/edit/comments/',
+            link: '/user/restaurants/' + this.props.match.params.restaurant + '/edit/comments/',
             color: 'orange',
             details: customer_review
           }];
@@ -1144,14 +1145,14 @@ var Dashboard = /*#__PURE__*/function (_Component) {
                     })]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)("div", {
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Link, {
-                      to: "/user/restaurants/" + this.props.math.params.restaurant + "/edit/recharges",
+                      to: "/user/restaurants/" + this.props.match.params.restaurant + "/edit/recharges",
                       className: "btn btn-white text-20 d-none d-sm-inline text-decoration-none text-green py-2 px-3",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
                         icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faMoneyBillWave,
                         className: "mr-3"
                       }), recharge]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_19__.Link, {
-                      to: "/user/restaurants/" + this.props.math.params.restaurant + "/edit/recharges",
+                      to: "/user/restaurants/" + this.props.match.params.restaurant + "/edit/recharges",
                       className: "btn btn-white text-14 d-sm-none text-decoration-none text-green py-2 px-3",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_16__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
                         icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faMoneyBillWave,

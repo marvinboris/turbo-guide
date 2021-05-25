@@ -994,7 +994,7 @@ var Settings = /*#__PURE__*/function (_Component) {
       if (name === 'select_language') {
         var languages = _toConsumableArray(_this.state.languages);
 
-        var language = _this.props.backend.settings.allLanguages.find(function (a) {
+        var language = _this.props.backend.restaurants.allLanguages.find(function (a) {
           return +a.id === +value;
         });
 

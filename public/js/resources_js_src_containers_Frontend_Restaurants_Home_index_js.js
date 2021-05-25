@@ -441,16 +441,13 @@ __webpack_require__.r(__webpack_exports__);
 
 var CategoryTitle = function CategoryTitle(_ref) {
   var children = _ref.children,
-      onClick = _ref.onClick,
-      active = _ref.active;
+      id = _ref.id;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    className: "CategoryTitle pr-2 text-truncate d-inline-block",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      style: {
-        cursor: 'pointer'
-      },
-      onClick: onClick,
-      className: "rounded-pill d-block border border-orange text-decoration-none text-10 text-truncate ".concat(active ? "active" : ""),
+    className: "CategoryTitle pr-2 text-truncate d-inline-block nav-item",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+      href: "#category-" + id,
+      id: "nav-category-" + id,
+      className: "rounded-pill nav-category d-block border border-orange text-decoration-none text-10 text-truncate nav-link",
       children: children
     })
   });
@@ -458,18 +455,13 @@ var CategoryTitle = function CategoryTitle(_ref) {
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (_ref2) {
   var _ref2$categories = _ref2.categories,
-      categories = _ref2$categories === void 0 ? [] : _ref2$categories,
-      _onClick = _ref2.onClick;
+      categories = _ref2$categories === void 0 ? [] : _ref2$categories;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
     children: categories.map(function (_ref3) {
-      var name = _ref3.name,
-          id = _ref3.id,
-          active = _ref3.active;
+      var id = _ref3.id,
+          name = _ref3.name;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(CategoryTitle, {
-        onClick: function onClick() {
-          return _onClick(id);
-        },
-        active: active,
+        id: id,
         children: name
       }, name + Math.random());
     })
@@ -522,8 +514,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (_ref) {
   var categories = _ref.categories,
-      id = _ref.id,
-      onClick = _ref.onClick,
       cms = _ref.cms;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
@@ -540,8 +530,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     return setModal(!modal);
   };
 
-  var click = function click(id) {
-    onClick(id);
+  var click = function click() {
     toggle();
     setSearch('');
   };
@@ -561,9 +550,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         className: "d-flex mx-1",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "text-truncate",
-          children: categories.length > 0 && categories.find(function (category) {
-            return +category.id === +id;
-          }).name
+          id: "selected-category"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "position-relative",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
@@ -623,11 +610,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           }), categories.filter(function (category) {
             return (category.name || '').toLowerCase().includes(search.toLowerCase());
           }).map(function (category) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_9__.default, {
-              active: +category.id === +id,
-              onClick: function onClick() {
-                return click(category.id);
-              },
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("a", {
+              href: "#category-" + category.id,
+              id: "select-category-" + category.id,
+              className: "list-group-item select-category text-reset text-decoration-none" + ($('#nav-category-' + category.id).hasClass('activated') ? " active" : ""),
+              onClick: click,
               style: {
                 cursor: 'pointer'
               },
@@ -682,12 +669,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Home_css__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Home.css */ "./resources/js/src/containers/Frontend/Restaurants/Home/Home.css");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -757,9 +738,10 @@ var Category = function Category(_ref2) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
     id: "category-".concat(id),
     className: "category",
-    style: {
-      padding: '15px 0px'
-    },
+    style: index === 0 ? {
+      paddingTop: 220.5,
+      marginTop: -205.5
+    } : {},
     children: [index > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
       className: "mb-3 d-flex justify-content-end",
       style: {
@@ -868,86 +850,7 @@ var Home = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "state", {
       id: '',
-      categoryOffsets: [],
       modal: false
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "scrollProcess", function () {
-      var stickyBlockHeight = document.querySelector(".sticky-top").offsetHeight;
-      var scrollTop = window.scrollY;
-      var _this$state = _this.state,
-          categoryOffsets = _this$state.categoryOffsets,
-          id = _this$state.id;
-      var activeCategory = categoryOffsets.find(function (el) {
-        return el.top - stickyBlockHeight + 51.5 < scrollTop && scrollTop <= el.top + el.height - stickyBlockHeight + 51.5;
-      });
-
-      if (activeCategory && activeCategory.id !== id) {
-        _this.setState({
-          id: activeCategory.id
-        }, function () {
-          var index = _this.props.frontend.restaurants.categories.findIndex(function (category) {
-            return category.id == _this.state.id;
-          });
-
-          document.querySelector('.navigation').scroll({
-            left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11,
-            behavior: 'smooth'
-          });
-        });
-      } else if (!activeCategory && id !== categoryOffsets[0].id) {
-        _this.setState({
-          id: categoryOffsets[0].id
-        }, function () {
-          var index = _this.props.frontend.restaurants.categories.findIndex(function (category) {
-            return category.id === _this.state.id;
-          });
-
-          document.querySelector('.navigation').scroll({
-            left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11,
-            behavior: 'smooth'
-          });
-        });
-      }
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "scrollHandler", function () {
-      if (timeout) clearTimeout(timeout);
-      timeout = setTimeout(function () {
-        _this.scrollProcess();
-
-        clearTimeout(timeout);
-      }, 25);
-    });
-
-    _defineProperty(_assertThisInitialized(_this), "onClick", function (id) {
-      document.removeEventListener('scroll', _this.scrollHandler);
-      var stickyBlockHeight = document.querySelector(".sticky-top").offsetHeight;
-      var categoryOffsets = _this.state.categoryOffsets;
-      var index = 0;
-      var category = categoryOffsets.find(function (el, i) {
-        index = i;
-        return el.id === id;
-      });
-
-      if (category) {
-        window.scroll({
-          top: category.top - stickyBlockHeight + (index === 0 ? 0 : 53),
-          behavior: 'smooth'
-        });
-
-        _this.setState({
-          id: id
-        }, function () {
-          return setTimeout(function () {
-            document.querySelector('.navigation').scroll({
-              left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11,
-              behavior: 'smooth'
-            });
-            document.addEventListener('scroll', _this.scrollHandler);
-          }, 1500);
-        });
-      }
     });
 
     _defineProperty(_assertThisInitialized(_this), "setLanguage", function (lang) {
@@ -958,89 +861,70 @@ var Home = /*#__PURE__*/function (_Component) {
       }
     });
 
+    _defineProperty(_assertThisInitialized(_this), "init", function () {
+      var lang = localStorage.getItem('lang');
+      $('#nav-category-' + _this.state.id).addClass('activated');
+      $('#selected-category').html(_this.props.frontend.restaurants.categories.find(function (category) {
+        return +category.id === +_this.state.id;
+      }).name[lang]);
+      $('body').scrollspy({
+        target: '#categories'
+      });
+      $(window).on('activate.bs.scrollspy', function (e, obj) {
+        if (timeout) clearTimeout(timeout);
+        timeout = setTimeout(function () {
+          var lang = localStorage.getItem('lang');
+          var id = obj.relatedTarget.split('category-')[1];
+          $('.nav-category').removeClass('activated');
+          $("#nav-category-" + id).addClass('activated');
+          $('.navigation').animate({
+            scrollLeft: document.getElementById('nav-category-' + id).offsetLeft - 11
+          });
+          $('#selected-category').html(_this.props.frontend.restaurants.categories.find(function (category) {
+            return +category.id === +id;
+          }).name[lang]);
+          clearTimeout(timeout);
+        }, 250);
+      });
+    });
+
     return _this;
   }
 
   _createClass(Home, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      if (!this.props.frontend.restaurants.restaurant) this.props.get(this.props.match.params.slug);else {
-        var categoryElts = document.getElementsByClassName("category");
-        var categoryOffsets = [];
-        var i = 0;
-
-        var _iterator = _createForOfIteratorHelper(categoryElts),
-            _step;
-
-        try {
-          for (_iterator.s(); !(_step = _iterator.n()).done;) {
-            var categoryElt = _step.value;
-            categoryOffsets.push({
-              id: this.props.frontend.restaurants.categories[i].id,
-              top: categoryElt.offsetTop,
-              height: categoryElt.offsetHeight
-            });
-            i++;
-          }
-        } catch (err) {
-          _iterator.e(err);
-        } finally {
-          _iterator.f();
-        }
-
-        this.setState({
-          categoryOffsets: categoryOffsets
-        });
-      }
-      document.addEventListener('scroll', this.scrollHandler);
+      if (!this.props.frontend.restaurants.restaurant) this.props.get(this.props.match.params.slug);else this.init();
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
-      if (this.state.id !== '' && prevState.categoryOffsets.length === 0) {
-        var categoryElts = document.getElementsByClassName("category");
-        var categoryOffsets = [];
-        var i = 0;
-
-        var _iterator2 = _createForOfIteratorHelper(categoryElts),
-            _step2;
-
-        try {
-          for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-            var categoryElt = _step2.value;
-            categoryOffsets.push({
-              id: this.props.frontend.restaurants.categories[i].id,
-              top: categoryElt.offsetTop,
-              height: categoryElt.offsetHeight
-            });
-            i++;
-          }
-        } catch (err) {
-          _iterator2.e(err);
-        } finally {
-          _iterator2.f();
-        }
-
-        this.setState({
-          categoryOffsets: categoryOffsets
-        });
-      }
+      var _this2 = this;
 
       if (!prevProps.frontend.restaurants.languages && this.props.frontend.restaurants.languages && !this.props.frontend.restaurants.languages.map(function (l) {
         return l.abbr;
       }).includes(localStorage.getItem('lang'))) this.setLanguage(this.props.frontend.restaurants.languages.find(function (l) {
         return l.pivot.main === 1;
       }).abbr);
+      if (prevState.id === '' && this.state.id !== prevState.id) $(this.init);
+
+      if (this.props.frontend.restaurants.categories && prevProps.content.loading && !this.props.content.loading) {
+        var lang = localStorage.getItem('lang');
+        $('#nav-category-' + this.state.id).addClass('activated');
+        $('#selected-category').html(this.props.frontend.restaurants.categories.find(function (category) {
+          return +category.id === +_this2.state.id;
+        }).name[lang]);
+      }
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      document.removeEventListener('scroll', this.scrollHandler);
+      $('body').scrollspy('dispose');
     }
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       var _this$props = this.props,
           _this$props$content = _this$props.content,
@@ -1080,7 +964,7 @@ var Home = /*#__PURE__*/function (_Component) {
               name: meal.name[lang],
               description: meal.description[lang]
             })), {}, {
-              slug: _this2.props.match.params.slug
+              slug: _this3.props.match.params.slug
             }), JSON.stringify(meal) + Math.random());
           })
         }, JSON.stringify(category) + Math.random());
@@ -1094,7 +978,11 @@ var Home = /*#__PURE__*/function (_Component) {
       var premium = restaurant.plan && restaurant.plan.slug.includes('premium');
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
         className: "Home",
-        children: [loading && Object.keys(restaurant).length === 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_UI_Spinner__WEBPACK_IMPORTED_MODULE_5__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
+        children: [loading && !this.props.frontend.restaurants.restaurant && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_UI_Spinner__WEBPACK_IMPORTED_MODULE_5__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("input", {
+          type: "hidden",
+          id: "id",
+          defaultValue: id
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
           className: "embed-responsive embed-responsive-16by9 position-relative",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
             className: "position-absolute w-100 h-100",
@@ -1214,7 +1102,8 @@ var Home = /*#__PURE__*/function (_Component) {
               paddingTop: 18
             },
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
-              className: "text-truncate",
+              className: "nav text-truncate flex-nowrap d-inline-flex",
+              id: "categories",
               style: {
                 overflow: 'visible'
               },
@@ -1223,11 +1112,8 @@ var Home = /*#__PURE__*/function (_Component) {
                   return (0,_shared_utility__WEBPACK_IMPORTED_MODULE_11__.updateObject)(_objectSpread(_objectSpread({}, c), {}, {
                     name: c.name[lang],
                     description: c.description[lang]
-                  }), {
-                    active: id === c.id
-                  });
-                }),
-                onClick: this.onClick
+                  }));
+                })
               })
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(Wrapper, {
@@ -1251,14 +1137,14 @@ var Home = /*#__PURE__*/function (_Component) {
                   name: c.name[lang],
                   description: c.description[lang]
                 });
-              }),
-              id: id,
-              onClick: this.onClick
+              })
             })]
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
-          className: "categories bg-white",
-          children: categoriesContent
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
+            className: "categories position-relative bg-white",
+            children: categoriesContent
+          })
         })]
       });
     }
@@ -1350,7 +1236,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".Home .categories {\r\n    padding-bottom: calc(100vh - 280px);\r\n}\r\n\r\n.Home .carousel-inner {\r\n    height: 100% !important;\r\n}\r\n\r\n.Home .Languages .dropdown-toggle {\r\n    left: 40px;\r\n    transition: all 0.25s;\r\n}\r\n\r\n.Home .Languages:hover .dropdown-toggle {\r\n    left: 0px;\r\n}\r\n\r\n.Home .language-flag {\r\n    overflow: hidden;\r\n    border-radius: 50%;\r\n    width: 20px;\r\n    height: 20px;\r\n    border: 3px solid #fff;\r\n}\r\n\r\n.Home .navigation {\r\n    overflow-x: auto;\r\n}\r\n\r\n.Home #banner {\r\n    position: relative;\r\n    z-index: 10;\r\n}\r\n\r\n.Home .category-select {\r\n    max-width: calc(var(--app-width) - 178px);\r\n}\r\n\r\n@media (max-width: 412px) {\r\n    .Home .category-select {\r\n        max-width: calc(100vw - 178px);\r\n    }\r\n}\r\n\r\n.Home .carousel-indicators li {\r\n    width: 8px;\r\n    height: 8px;\r\n    border-radius: 100%;\r\n    background-color: var(--white-50);\r\n    transition: all 0.25s;\r\n}\r\n\r\n.Home .carousel-indicators li.active {\r\n    background-color: var(--white-80);\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".Home .categories {\r\n    padding-bottom: calc(100vh - 280px);\r\n}\r\n\r\n.Home .category {\r\n    padding: calc(153px + 15px) 0 15px 0;\r\n    margin-top: -153px;\r\n}\r\n\r\n.Home .carousel-inner {\r\n    height: 100% !important;\r\n}\r\n\r\n.Home .Languages .dropdown-toggle {\r\n    left: 40px;\r\n    transition: all 0.25s;\r\n}\r\n\r\n.Home .Languages:hover .dropdown-toggle {\r\n    left: 0px;\r\n}\r\n\r\n.Home .language-flag {\r\n    overflow: hidden;\r\n    border-radius: 50%;\r\n    width: 20px;\r\n    height: 20px;\r\n    border: 3px solid #fff;\r\n}\r\n\r\n.Home .navigation {\r\n    overflow-x: auto;\r\n}\r\n\r\n.Home #banner {\r\n    position: relative;\r\n    z-index: 10;\r\n}\r\n\r\n.Home .category-select {\r\n    max-width: calc(var(--app-width) - 178px);\r\n}\r\n\r\n@media (max-width: 412px) {\r\n    .Home .category-select {\r\n        max-width: calc(100vw - 178px);\r\n    }\r\n}\r\n\r\n.Home .carousel-indicators li {\r\n    width: 8px;\r\n    height: 8px;\r\n    border-radius: 100%;\r\n    background-color: var(--white-50);\r\n    transition: all 0.25s;\r\n}\r\n\r\n.Home .carousel-indicators li.active {\r\n    background-color: var(--white-80);\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1374,7 +1260,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".CategoryTitle div {\r\n    color: var(--secondary);\r\n    background-color: white;\r\n    padding: 9px 18px;\r\n    transition: all .25s;\r\n}\r\n\r\n.CategoryTitle div:hover,\r\n.CategoryTitle div.active {\r\n    color: white;\r\n    background-color: var(--orange);\r\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".CategoryTitle a {\r\n    color: var(--secondary);\r\n    background-color: white;\r\n    padding: 9px 18px;\r\n    transition: all .25s;\r\n}\r\n\r\n.CategoryTitle a:hover,\r\n.CategoryTitle a.activated {\r\n    color: white;\r\n    background-color: var(--orange);\r\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1398,7 +1284,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".SelectCategory .list-group-item.active {\r\n    background-color: var(--orange);\r\n    border-color: var(--orange);\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".SelectCategory .list-group-item.active {\r\n    background-color: var(--orange);\r\n    border-color: var(--orange);\r\n    color: white !important;\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -85,8 +85,6 @@ class Home extends Component {
         }
     }
 
-    onClick = id => setTimeout(() => this.setState({ id }), 50)
-
     init = () => {
         const lang = localStorage.getItem('lang');
         $('#nav-category-' + this.state.id).addClass('activated');
@@ -107,7 +105,7 @@ class Home extends Component {
                 $('#selected-category').html(this.props.frontend.restaurants.categories.find(category => +category.id === +id).name[lang]);
 
                 clearTimeout(timeout);
-            }, 50);
+            }, 250);
         });
     }
 
@@ -248,7 +246,7 @@ class Home extends Component {
 
                 <Wrapper className="navigation scrollbar-orange" style={{ paddingTop: 18 }}>
                     <div className="nav text-truncate flex-nowrap d-inline-flex" id="categories" style={{ overflow: 'visible' }}>
-                        <Navigation categories={categories.map(c => updateObject({ ...c, name: c.name[lang], description: c.description[lang] }))} onClick={this.onClick} />
+                        <Navigation categories={categories.map(c => updateObject({ ...c, name: c.name[lang], description: c.description[lang] }))} />
                     </div>
                 </Wrapper>
 

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Modal, ModalHeader, ModalBody, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText, Input } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import './SelectCategory.css';
 
-export default ({ categories, id, cms }) => {
+export default ({ categories, cms }) => {
     const [modal, setModal] = useState(false);
     const [search, setSearch] = useState('');
 

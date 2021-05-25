@@ -158,7 +158,7 @@ __webpack_require__.r(__webpack_exports__);
           })]
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "flex-fill",
+        className: "flex-fill d-flex flex-column",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "pb-1 position-relative",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -171,7 +171,7 @@ __webpack_require__.r(__webpack_exports__);
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
                 icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faExclamationCircle
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            }), reference && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                 className: "px-1 bg-green text-white text-5 rounded-pill",
                 style: {
@@ -248,7 +248,7 @@ __webpack_require__.r(__webpack_exports__);
           className: "text-10 text-300 text-ellipsis-2 mb-1",
           children: description
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          className: "text-montserrat",
+          className: "text-montserrat mt-auto",
           children: children
         })]
       })]
@@ -279,10 +279,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ Carousel)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/CarouselItem.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Carousel.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/CarouselIndicators.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/CarouselItem.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Carousel.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/CarouselIndicators.js");
+/* harmony import */ var _components_Backend_UI_View_View__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../components/Backend/UI/View/View */ "./resources/js/src/components/Backend/UI/View/View.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -306,6 +307,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -369,7 +371,7 @@ var Carousel = /*#__PURE__*/function (_Component) {
 
       var items = this.props.items;
       var slides = items.map(function (item) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_2__.default, {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_3__.default, {
           onExiting: function onExiting() {
             return _this2.setState({
               animating: true
@@ -381,22 +383,28 @@ var Carousel = /*#__PURE__*/function (_Component) {
             });
           },
           className: "h-100",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-            className: "h-100",
-            style: {
-              background: "url(\"".concat(item, "\") no-repeat top center"),
-              backgroundSize: 'cover'
-            }
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_Backend_UI_View_View__WEBPACK_IMPORTED_MODULE_1__.default, {
+            content: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+              src: item,
+              className: "img-fluid w-100"
+            }),
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+              className: "h-100",
+              style: {
+                background: "url(\"".concat(item, "\") no-repeat top center"),
+                backgroundSize: 'cover'
+              }
+            })
           })
         }, item);
       });
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_3__.default, {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_4__.default, {
         id: "carousel",
         activeIndex: this.state.activeIndex,
         next: this.next,
         previous: this.previous,
         className: "h-100 carousel-fade Carousel",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_4__.default, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_5__.default, {
           items: items,
           activeIndex: this.state.activeIndex,
           onClickHandler: this.goToIndex
@@ -433,18 +441,17 @@ __webpack_require__.r(__webpack_exports__);
 
 var CategoryTitle = function CategoryTitle(_ref) {
   var children = _ref.children,
-      onClick = _ref.onClick,
       id = _ref.id,
-      index = _ref.index;
+      _onClick = _ref.onClick;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    className: "CategoryTitle pr-2 text-truncate d-inline-block",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      id: "category-nav-".concat(id),
-      style: {
-        cursor: 'pointer'
+    className: "CategoryTitle pr-2 text-truncate d-inline-block nav-item",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+      href: "#category-" + id,
+      id: "nav-category-" + id,
+      onClick: function onClick() {
+        return _onClick(id);
       },
-      onClick: onClick,
-      className: "rounded-pill d-block border border-orange text-decoration-none text-10 text-truncate ".concat(index === 0 ? 'active' : ''),
+      className: "rounded-pill nav-category d-block border border-orange text-decoration-none text-10 text-truncate nav-link",
       children: children
     })
   });
@@ -453,17 +460,14 @@ var CategoryTitle = function CategoryTitle(_ref) {
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (_ref2) {
   var _ref2$categories = _ref2.categories,
       categories = _ref2$categories === void 0 ? [] : _ref2$categories,
-      _onClick = _ref2.onClick;
+      onClick = _ref2.onClick;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-    children: categories.map(function (_ref3, index) {
-      var name = _ref3.name,
-          id = _ref3.id;
+    children: categories.map(function (_ref3) {
+      var id = _ref3.id,
+          name = _ref3.name;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(CategoryTitle, {
-        index: index,
+        onClick: onClick,
         id: id,
-        onClick: function onClick() {
-          return _onClick(id);
-        },
         children: name
       }, name + Math.random());
     })
@@ -517,9 +521,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (_ref) {
   var categories = _ref.categories,
       id = _ref.id,
-      onClick = _ref.onClick,
-      cms = _ref.cms,
-      categoryId = _ref.categoryId;
+      cms = _ref.cms;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -535,12 +537,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     return setModal(!modal);
   };
 
-  var click = function click(id) {
-    onClick(id);
+  var click = function click() {
     toggle();
     setSearch('');
-    document.querySelector('.list-group-item.active').classList.remove('active');
-    document.getElementById("category-list-group-item-".concat(categoryId)).classList.add('active');
   };
 
   var searchChangeHandler = function searchChangeHandler(e) {
@@ -558,9 +557,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         className: "d-flex mx-1",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "text-truncate",
-          children: categories.length > 0 && categories.find(function (category) {
-            return category.id == id;
-          }).name
+          id: "selected-category"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "position-relative",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
@@ -618,14 +615,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               })
             })]
           }), categories.filter(function (category) {
-            return category.name.toLowerCase().includes(search.toLowerCase());
-          }).map(function (category, index) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_9__.default, {
-              active: index === 0,
-              id: "category-list-group-item-".concat(category.id),
-              onClick: function onClick() {
-                return click(category.id);
-              },
+            return (category.name || '').toLowerCase().includes(search.toLowerCase());
+          }).map(function (category) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("a", {
+              href: "#category-" + category.id,
+              id: "select-category-" + category.id,
+              className: "list-group-item select-category text-reset text-decoration-none" + ($('#nav-category-' + category.id).hasClass('activated') ? " active" : ""),
+              onClick: click,
               style: {
                 cursor: 'pointer'
               },
@@ -680,12 +676,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Home_css__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Home.css */ "./resources/js/src/containers/Frontend/Restaurants/Test/Home.css");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -754,10 +744,11 @@ var Category = function Category(_ref2) {
       index = _ref2.index;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
     id: "category-".concat(id),
-    className: "category ".concat(index === 0 ? 'active' : ''),
-    style: {
-      padding: '15px 0px'
-    },
+    className: "category",
+    style: index === 0 ? {
+      paddingTop: 220.5,
+      marginTop: -205.5
+    } : {},
     children: [index > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
       className: "mb-3 d-flex justify-content-end",
       style: {
@@ -821,31 +812,21 @@ var Languages = function Languages(_ref5) {
     }, JSON.stringify(l));
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_16__.default, {
+    className: "Languages",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_17__.default, {
-      className: "d-flex justify-content-around align-items-center bg-transparent border-0 p-0 m-0",
+      className: "position-relative d-flex justify-content-around align-items-center bg-black-50 rounded-pill rounded-right-0 border-0 p-2 m-0",
       style: {
         boxShadow: 'none'
       },
       caret: true,
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("span", {
-        className: "language-flag shadow-lg mr-2 overflow-hidden d-none d-lg-inline-flex justify-content-center align-items-center position-relative",
+        className: "language-flag shadow-lg mr-2 overflow-hidden d-inline-flex justify-content-center align-items-center position-relative",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("span", {
           className: "flag-icon position-absolute flag-icon-".concat(language && language.flag.toLowerCase())
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("span", {
-        className: "pl-2 border-left border-dark-20 position-relative",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("span", {
-          className: "text-700",
-          children: language && language.abbr.toUpperCase()
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-          icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_14__.faCircle,
-          className: "text-orange text-6 position-absolute",
-          style: {
-            left: 0,
-            transform: 'translate(-50%, -50%)',
-            top: '50%'
-          }
-        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("span", {
+        className: "text-700",
+        children: language && language.abbr.toUpperCase()
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_18__.default, {
       style: {
@@ -856,7 +837,7 @@ var Languages = function Languages(_ref5) {
   });
 };
 
-var categoryId;
+var timeout;
 
 var Home = /*#__PURE__*/function (_Component) {
   _inherits(Home, _Component);
@@ -876,61 +857,47 @@ var Home = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "state", {
       id: '',
-      categoryOffsets: [],
       modal: false
     });
 
-    _defineProperty(_assertThisInitialized(_this), "scrollHandler", function () {
-      var stickyBlockHeight = document.querySelector(".sticky-top").offsetHeight;
-      var scrollTop = window.scrollY;
-      var categoryOffsets = _this.state.categoryOffsets;
-      var activeCategory = categoryOffsets.find(function (el) {
-        return el.top - stickyBlockHeight + 51.5 < scrollTop && scrollTop <= el.top + el.height - stickyBlockHeight + 51.5;
-      });
+    _defineProperty(_assertThisInitialized(_this), "setLanguage", function (lang) {
+      if (lang !== localStorage.getItem('lang')) {
+        localStorage.setItem('lang', lang);
 
-      if (activeCategory && activeCategory.id !== categoryId) {
-        categoryId = activeCategory.id;
-        document.querySelector('.category.active').classList.remove('active');
-        document.getElementById("category-".concat(categoryId)).classList.add('active');
-        document.querySelector('.CategoryTitle div.active').classList.remove('active');
-        document.getElementById("category-nav-".concat(categoryId)).classList.add('active');
-      } else if (!activeCategory && categoryId !== categoryOffsets[0].id) {
-        categoryId = categoryOffsets[0].id;
-        document.querySelector('.category.active').classList.remove('active');
-        document.getElementById("category-".concat(categoryId)).classList.add('active');
-        document.querySelector('.CategoryTitle div.active').classList.remove('active');
-        document.getElementById("category-nav-".concat(categoryId)).classList.add('active');
+        _this.props.getContent();
       }
     });
 
     _defineProperty(_assertThisInitialized(_this), "onClick", function (id) {
-      var stickyBlockHeight = document.querySelector(".sticky-top").offsetHeight;
-      var categoryOffsets = _this.state.categoryOffsets;
-      var index = 0;
-      var category = categoryOffsets.find(function (el, i) {
-        index = i;
-        return el.id === id;
-      });
-
-      if (category) {
-        document.removeEventListener('scroll', _this.scrollHandler);
-        categoryId = id;
-        document.querySelector('.category.active').classList.remove('active');
-        document.getElementById("category-".concat(categoryId)).classList.add('active');
-        document.querySelector('.CategoryTitle div.active').classList.remove('active');
-        document.getElementById("category-nav-".concat(categoryId)).classList.add('active');
-        window.scroll({
-          top: category.top - stickyBlockHeight + (index === 0 ? 0 : 53),
-          behavior: 'smooth'
+      return setTimeout(function () {
+        return _this.setState({
+          id: id
         });
-        document.addEventListener('scroll', _this.scrollHandler);
-      }
+      }, 50);
     });
 
-    _defineProperty(_assertThisInitialized(_this), "setLanguage", function (lang) {
-      localStorage.setItem('lang', lang);
-
-      _this.props.getContent();
+    _defineProperty(_assertThisInitialized(_this), "init", function () {
+      var lang = localStorage.getItem('lang');
+      $('#nav-category-' + _this.state.id).addClass('activated');
+      $('#selected-category').html(_this.props.frontend.restaurants.categories.find(function (category) {
+        return +category.id === +_this.state.id;
+      }).name[lang]);
+      $('body').scrollspy({
+        target: '#categories'
+      });
+      $(window).on('activate.bs.scrollspy', function (e, obj) {
+        if (timeout) clearTimeout(timeout);
+        timeout = setTimeout(function () {
+          var lang = localStorage.getItem('lang');
+          var id = obj.relatedTarget.split('category-')[1];
+          $('.nav-category').removeClass('activated');
+          $("#nav-category-" + id).addClass('activated');
+          $('#selected-category').html(_this.props.frontend.restaurants.categories.find(function (category) {
+            return +category.id === +id;
+          }).name[lang]);
+          clearTimeout(timeout);
+        }, 50);
+      });
     });
 
     return _this;
@@ -939,48 +906,32 @@ var Home = /*#__PURE__*/function (_Component) {
   _createClass(Home, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.get(this.props.match.params.slug);
+      if (!this.props.frontend.restaurants.restaurant) this.props.get(this.props.match.params.slug);else this.init();
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
       var _this2 = this;
 
-      if (prevState.id === '' && this.state.id !== '') {
-        var categoryElts = document.getElementsByClassName("category");
-        var categoryOffsets = [];
-        var i = 0;
+      if (!prevProps.frontend.restaurants.languages && this.props.frontend.restaurants.languages && !this.props.frontend.restaurants.languages.map(function (l) {
+        return l.abbr;
+      }).includes(localStorage.getItem('lang'))) this.setLanguage(this.props.frontend.restaurants.languages.find(function (l) {
+        return l.pivot.main === 1;
+      }).abbr);
+      if (prevState.id === '' && this.state.id !== prevState.id) $(this.init);
 
-        var _iterator = _createForOfIteratorHelper(categoryElts),
-            _step;
-
-        try {
-          for (_iterator.s(); !(_step = _iterator.n()).done;) {
-            var categoryElt = _step.value;
-            categoryOffsets.push({
-              id: this.props.frontend.restaurants.categories[i].id,
-              top: categoryElt.offsetTop,
-              height: categoryElt.offsetHeight
-            });
-            i++;
-          }
-        } catch (err) {
-          _iterator.e(err);
-        } finally {
-          _iterator.f();
-        }
-
-        this.setState({
-          categoryOffsets: categoryOffsets
-        }, function () {
-          return document.addEventListener('scroll', _this2.scrollHandler);
-        });
+      if (this.props.frontend.restaurants.categories && prevProps.content.loading && !this.props.content.loading) {
+        var lang = localStorage.getItem('lang');
+        $('#nav-category-' + this.state.id).addClass('activated');
+        $('#selected-category').html(this.props.frontend.restaurants.categories.find(function (category) {
+          return +category.id === +_this2.state.id;
+        }).name[lang]);
       }
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      document.removeEventListener('scroll', this.scrollHandler);
+      $('body').scrollspy('dispose');
     }
   }, {
     key: "render",
@@ -993,15 +944,22 @@ var Home = /*#__PURE__*/function (_Component) {
           food = _this$props$content$c.components.food,
           home = _this$props$content$c.frontend.restaurants.home,
           currencies = _this$props$content.currencies,
-          languages = _this$props$content.languages,
           _this$props$frontend$ = _this$props.frontend.restaurants,
           loading = _this$props$frontend$.loading,
           _this$props$frontend$2 = _this$props$frontend$.restaurant,
-          restaurant = _this$props$frontend$2 === void 0 ? {} : _this$props$frontend$2,
+          restaurant = _this$props$frontend$2 === void 0 ? {
+        days: {},
+        hours: {},
+        address: {}
+      } : _this$props$frontend$2,
           _this$props$frontend$3 = _this$props$frontend$.categories,
           categories = _this$props$frontend$3 === void 0 ? [] : _this$props$frontend$3,
           currency = _this$props$frontend$.currency,
+          _this$props$frontend$4 = _this$props$frontend$.languages,
+          languages = _this$props$frontend$4 === void 0 ? [] : _this$props$frontend$4,
           position = _this$props$frontend$.position;
+      var id = this.state.id;
+      var lang = localStorage.getItem('lang');
       var currencyObj = currencies.find(function (c) {
         return c.cc === currency;
       });
@@ -1009,12 +967,15 @@ var Home = /*#__PURE__*/function (_Component) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(Category, {
           id: category.id,
           index: index,
-          name: category.name,
+          name: category.name[lang],
           children: category.meals && category.meals.map(function (meal) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_UI_Food_Meal__WEBPACK_IMPORTED_MODULE_3__.default, _objectSpread(_objectSpread({
               symbol: currencyObj && currencyObj.symbol,
               position: position
-            }, meal), {}, {
+            }, _objectSpread(_objectSpread({}, meal), {}, {
+              name: meal.name[lang],
+              description: meal.description[lang]
+            })), {}, {
               slug: _this3.props.match.params.slug
             }), JSON.stringify(meal) + Math.random());
           })
@@ -1025,11 +986,15 @@ var Home = /*#__PURE__*/function (_Component) {
       if (restaurant.banner2) items.push(restaurant.banner2);
       if (restaurant.banner3) items.push(restaurant.banner3);
       var basic = restaurant.plan;
-      var standard = restaurant.plan && restaurant.plan.slug === 'standard';
-      var premium = restaurant.plan && restaurant.plan.slug === 'premium';
+      var standard = restaurant.plan && restaurant.plan.slug.includes('standard');
+      var premium = restaurant.plan && restaurant.plan.slug.includes('premium');
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
-        className: "Restaurants Home",
-        children: [loading && Object.keys(restaurant).length === 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_UI_Spinner__WEBPACK_IMPORTED_MODULE_5__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
+        className: "Home",
+        children: [loading && Object.keys(restaurant).length === 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_UI_Spinner__WEBPACK_IMPORTED_MODULE_5__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("input", {
+          type: "hidden",
+          id: "id",
+          defaultValue: id
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
           className: "embed-responsive embed-responsive-16by9 position-relative",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
             className: "position-absolute w-100 h-100",
@@ -1050,7 +1015,7 @@ var Home = /*#__PURE__*/function (_Component) {
                 backgroundSize: 'cover'
               }
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
-              className: "position-absolute pt-4 pr-4",
+              className: "position-absolute pt-4",
               style: {
                 top: 0,
                 right: 0,
@@ -1106,7 +1071,7 @@ var Home = /*#__PURE__*/function (_Component) {
                     className: "text-6 text-orange"
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("span", {
-                  children: restaurant.days
+                  children: restaurant.days[lang]
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
                 className: "d-flex align-items-center",
@@ -1117,14 +1082,14 @@ var Home = /*#__PURE__*/function (_Component) {
                     className: "text-6 text-orange"
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("span", {
-                  children: restaurant.hours
+                  children: restaurant.hours[lang]
                 })]
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
               className: "d-flex justify-content-between align-items-center",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
                 className: "text-300 text-8",
-                children: restaurant.address
+                children: restaurant.address[lang]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
                 className: "d-flex align-items-center",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
@@ -1149,15 +1114,17 @@ var Home = /*#__PURE__*/function (_Component) {
               paddingTop: 18
             },
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
-              className: "text-truncate",
+              className: "nav text-truncate",
+              id: "categories",
               style: {
                 overflow: 'visible'
               },
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_Navigation__WEBPACK_IMPORTED_MODULE_6__.default, {
                 categories: categories.map(function (c) {
-                  return (0,_shared_utility__WEBPACK_IMPORTED_MODULE_11__.updateObject)(c, {
-                    active: categoryId == c.id
-                  });
+                  return (0,_shared_utility__WEBPACK_IMPORTED_MODULE_11__.updateObject)(_objectSpread(_objectSpread({}, c), {}, {
+                    name: c.name[lang],
+                    description: c.description[lang]
+                  }));
                 }),
                 onClick: this.onClick
               })
@@ -1178,15 +1145,19 @@ var Home = /*#__PURE__*/function (_Component) {
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_SelectCategory__WEBPACK_IMPORTED_MODULE_8__.default, {
               cms: home,
-              categories: categories,
-              id: categoryId,
-              onClick: this.onClick,
-              categoryId: categoryId
+              categories: categories.map(function (c) {
+                return _objectSpread(_objectSpread({}, c), {}, {
+                  name: c.name[lang],
+                  description: c.description[lang]
+                });
+              })
             })]
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
-          className: "categories bg-white",
-          children: categoriesContent
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
+            className: "categories position-relative bg-white",
+            children: categoriesContent
+          })
         })]
       });
     }
@@ -1195,14 +1166,23 @@ var Home = /*#__PURE__*/function (_Component) {
     value: // Lifecycle methods
     function getDerivedStateFromProps(nextProps, prevState) {
       if (nextProps.frontend.restaurants.restaurant && prevState.id === '') {
-        var categories = nextProps.frontend.restaurants.categories;
-        categoryId = categories[0].id;
+        var _nextProps$frontend$r = nextProps.frontend.restaurants,
+            categories = _nextProps$frontend$r.categories,
+            _nextProps$frontend$r2 = _nextProps$frontend$r.restaurant,
+            name = _nextProps$frontend$r2.name,
+            logo = _nextProps$frontend$r2.logo;
+
+        if (!document.title.includes("".concat(name, " - "))) {
+          document.title = "".concat(name, " - ").concat(document.title);
+          if (logo) document.getElementById('favicon').setAttribute('href', logo);
+        }
+
         if (categories.length > 0) return (0,_shared_utility__WEBPACK_IMPORTED_MODULE_11__.updateObject)(prevState, {
           id: categories[0].id
         });
       }
 
-      return prevState;
+      return null;
     }
   }]);
 
@@ -1269,7 +1249,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".Restaurants.Home .categories {\r\n    padding-bottom: calc(100vh - 280px);\r\n}\r\n\r\n.Restaurants.Home .carousel-inner {\r\n    height: 100% !important;\r\n}\r\n\r\n.Restaurants.Home .language-flag {\r\n    overflow: hidden;\r\n    border-radius: 50%;\r\n    width: 20px;\r\n    height: 20px;\r\n    border: 3px solid #fff;\r\n}\r\n\r\n.Restaurants.Home .navigation {\r\n    overflow-x: auto;\r\n}\r\n\r\n.Restaurants.Home #banner {\r\n    position: relative;\r\n    z-index: 10;\r\n}\r\n\r\n.Restaurants.Home .category-select {\r\n    max-width: calc(var(--app-width) - 178px);\r\n}\r\n\r\n@media (max-width: 412px) {\r\n    .Restaurants.Home .category-select {\r\n        max-width: calc(100vw - 178px);\r\n    }\r\n}\r\n\r\n.Restaurants.Home .carousel-indicators li {\r\n    width: 8px;\r\n    height: 8px;\r\n    border-radius: 100%;\r\n    background-color: var(--white-50);\r\n    transition: all 0.25s;\r\n}\r\n\r\n.Restaurants.Home .carousel-indicators li.active {\r\n    background-color: var(--white-80);\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".Home .categories {\r\n    padding-bottom: calc(100vh - 280px);\r\n}\r\n\r\n.Home .category {\r\n    padding: calc(153px + 15px) 0 15px 0;\r\n    margin-top: -153px;\r\n}\r\n\r\n.Home .carousel-inner {\r\n    height: 100% !important;\r\n}\r\n\r\n.Home .Languages .dropdown-toggle {\r\n    left: 40px;\r\n    transition: all 0.25s;\r\n}\r\n\r\n.Home .Languages:hover .dropdown-toggle {\r\n    left: 0px;\r\n}\r\n\r\n.Home .language-flag {\r\n    overflow: hidden;\r\n    border-radius: 50%;\r\n    width: 20px;\r\n    height: 20px;\r\n    border: 3px solid #fff;\r\n}\r\n\r\n.Home .navigation {\r\n    overflow-x: auto;\r\n}\r\n\r\n.Home #banner {\r\n    position: relative;\r\n    z-index: 10;\r\n}\r\n\r\n.Home .category-select {\r\n    max-width: calc(var(--app-width) - 178px);\r\n}\r\n\r\n@media (max-width: 412px) {\r\n    .Home .category-select {\r\n        max-width: calc(100vw - 178px);\r\n    }\r\n}\r\n\r\n.Home .carousel-indicators li {\r\n    width: 8px;\r\n    height: 8px;\r\n    border-radius: 100%;\r\n    background-color: var(--white-50);\r\n    transition: all 0.25s;\r\n}\r\n\r\n.Home .carousel-indicators li.active {\r\n    background-color: var(--white-80);\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1293,7 +1273,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".CategoryTitle div {\r\n    color: var(--secondary);\r\n    background-color: white;\r\n    padding: 9px 18px;\r\n    transition: all .25s;\r\n}\r\n\r\n.CategoryTitle div:hover,\r\n.CategoryTitle div.active {\r\n    color: white;\r\n    background-color: var(--orange);\r\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".CategoryTitle a {\r\n    color: var(--secondary);\r\n    background-color: white;\r\n    padding: 9px 18px;\r\n    transition: all .25s;\r\n}\r\n\r\n.CategoryTitle a:hover,\r\n.CategoryTitle a.activated {\r\n    color: white;\r\n    background-color: var(--orange);\r\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1317,7 +1297,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".SelectCategory .list-group-item.active {\r\n    background-color: var(--orange);\r\n    border-color: var(--orange);\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".SelectCategory .list-group-item.activated {\r\n    background-color: var(--orange);\r\n    border-color: var(--orange);\r\n    color: white !important;\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

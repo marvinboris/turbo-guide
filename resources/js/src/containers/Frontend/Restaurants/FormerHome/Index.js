@@ -25,7 +25,7 @@ const Wrapper = ({ children, className, style }) => <div className={className} s
     {children}
 </div>;
 
-const Category = ({ children, name, id, index }) => <div id={`category-${id}`} className="category" style={index === 0 ? { paddingTop: 220.5, marginTop: -205.5 } : {}}>
+const Category = ({ children, name, id, index }) => <div id={`category-${id}`} className="category" style={{ padding: '15px 0px' }}>
     {index > 0 && <div className="mb-3 d-flex justify-content-end" style={{ paddingRight: 11 }}>
         <div className="text-13 text-500 px-4 py-2 bg-orange-30 text-orange rounded-pill">
             <div className="px-1">{name}</div>
@@ -72,42 +72,64 @@ let timeout;
 class Home extends Component {
     state = {
         id: '',
+        categoryOffsets: [],
         modal: false,
     }
 
 
 
     // Component methods
+    scrollProcess = () => {
+        const stickyBlockHeight = document.querySelector(".sticky-top").offsetHeight;
+        const scrollTop = window.scrollY;
+
+        const { categoryOffsets, id } = this.state;
+        const activeCategory = categoryOffsets.find(el => el.top - stickyBlockHeight + 51.5 < scrollTop && scrollTop <= el.top + el.height - stickyBlockHeight + 51.5);
+
+        if (activeCategory && activeCategory.id !== id) {
+            this.setState({ id: activeCategory.id }, () => {
+                const index = this.props.frontend.restaurants.categories.findIndex(category => category.id == this.state.id);
+                document.querySelector('.navigation').scroll({ left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11, behavior: 'smooth' });
+            });
+        } else if (!activeCategory && id !== categoryOffsets[0].id) {
+            this.setState({ id: categoryOffsets[0].id }, () => {
+                const index = this.props.frontend.restaurants.categories.findIndex(category => category.id === this.state.id);
+                document.querySelector('.navigation').scroll({ left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11, behavior: 'smooth' });
+            });
+        }
+    }
+
+    scrollHandler = () => {
+        if (timeout) clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            this.scrollProcess();
+            clearTimeout(timeout);
+        }, 25);
+    }
+
+    onClick = id => {
+        document.removeEventListener('scroll', this.scrollHandler)
+        const stickyBlockHeight = document.querySelector(".sticky-top").offsetHeight;
+        const { categoryOffsets } = this.state;
+        let index = 0;
+        const category = categoryOffsets.find((el, i) => {
+            index = i;
+            return el.id === id;
+        });
+        if (category) {
+            window.scroll({ top: category.top - stickyBlockHeight + (index === 0 ? 0 : 53), behavior: 'smooth' });
+            this.setState({ id }, () => setTimeout(() => {
+                document.querySelector('.navigation').scroll({ left: document.getElementsByClassName('CategoryTitle')[index].offsetLeft - 11, behavior: 'smooth' });
+                document.addEventListener('scroll', this.scrollHandler);
+            }, 1500));
+        }
+    }
+
     setLanguage = lang => {
         if (lang !== localStorage.getItem('lang')) {
             localStorage.setItem('lang', lang);
             this.props.getContent();
         }
-    }
-
-    onClick = id => setTimeout(() => this.setState({ id }), 50)
-
-    init = () => {
-        const lang = localStorage.getItem('lang');
-        $('#nav-category-' + this.state.id).addClass('activated');
-        $('#selected-category').html(this.props.frontend.restaurants.categories.find(category => +category.id === +this.state.id).name[lang]);
-
-        $('body').scrollspy({ target: '#categories' });
-
-        $(window).on('activate.bs.scrollspy', (e, obj) => {
-            if (timeout) clearTimeout(timeout);
-            timeout = setTimeout(() => {
-                const lang = localStorage.getItem('lang');
-                const id = obj.relatedTarget.split('category-')[1];
-
-                $('.nav-category').removeClass('activated');
-                $("#nav-category-" + id).addClass('activated');
-
-                $('#selected-category').html(this.props.frontend.restaurants.categories.find(category => +category.id === +id).name[lang]);
-
-                clearTimeout(timeout);
-            }, 50);
-        });
     }
 
 
@@ -127,21 +149,35 @@ class Home extends Component {
 
     componentDidMount() {
         if (!this.props.frontend.restaurants.restaurant) this.props.get(this.props.match.params.slug);
-        else this.init();
+        else {
+            const categoryElts = document.getElementsByClassName("category");
+            const categoryOffsets = [];
+            let i = 0;
+            for (const categoryElt of categoryElts) {
+                categoryOffsets.push({ id: this.props.frontend.restaurants.categories[i].id, top: categoryElt.offsetTop, height: categoryElt.offsetHeight });
+                i++;
+            }
+            this.setState({ categoryOffsets });
+        }
+        document.addEventListener('scroll', this.scrollHandler);
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (!prevProps.frontend.restaurants.languages && this.props.frontend.restaurants.languages && !this.props.frontend.restaurants.languages.map(l => l.abbr).includes(localStorage.getItem('lang'))) this.setLanguage(this.props.frontend.restaurants.languages.find(l => l.pivot.main === 1).abbr);
-        if (prevState.id === '' && this.state.id !== prevState.id) $(this.init);
-        if (this.props.frontend.restaurants.categories && prevProps.content.loading && !this.props.content.loading) {
-            const lang = localStorage.getItem('lang');
-            $('#nav-category-' + this.state.id).addClass('activated');
-            $('#selected-category').html(this.props.frontend.restaurants.categories.find(category => +category.id === +this.state.id).name[lang]);
+        if (this.state.id !== '' && prevState.categoryOffsets.length === 0) {
+            const categoryElts = document.getElementsByClassName("category");
+            const categoryOffsets = [];
+            let i = 0;
+            for (const categoryElt of categoryElts) {
+                categoryOffsets.push({ id: this.props.frontend.restaurants.categories[i].id, top: categoryElt.offsetTop, height: categoryElt.offsetHeight });
+                i++;
+            }
+            this.setState({ categoryOffsets });
         }
+        if (!prevProps.frontend.restaurants.languages && this.props.frontend.restaurants.languages && !this.props.frontend.restaurants.languages.map(l => l.abbr).includes(localStorage.getItem('lang'))) this.setLanguage(this.props.frontend.restaurants.languages.find(l => l.pivot.main === 1).abbr);
     }
 
     componentWillUnmount() {
-        $('body').scrollspy('dispose');
+        document.removeEventListener('scroll', this.scrollHandler);
     }
 
     render() {
@@ -172,7 +208,6 @@ class Home extends Component {
 
         return <div className="Home">
             {loading && Object.keys(restaurant).length === 0 && <Spinner />}
-            <input type="hidden" id="id" defaultValue={id} />
 
             <div className="embed-responsive embed-responsive-16by9 position-relative">
                 <div className="position-absolute w-100 h-100" style={{ top: 0, left: 0 }}>
@@ -246,8 +281,8 @@ class Home extends Component {
                 </Wrapper>
 
                 <Wrapper className="navigation scrollbar-orange" style={{ paddingTop: 18 }}>
-                    <div className="nav text-truncate" id="categories" style={{ overflow: 'visible' }}>
-                        <Navigation categories={categories.map(c => updateObject({ ...c, name: c.name[lang], description: c.description[lang] }))} onClick={this.onClick} />
+                    <div className="text-truncate" style={{ overflow: 'visible' }}>
+                        <Navigation categories={categories.map(c => updateObject({ ...c, name: c.name[lang], description: c.description[lang] }, { active: id === c.id }))} onClick={this.onClick} />
                     </div>
                 </Wrapper>
 
@@ -260,14 +295,12 @@ class Home extends Component {
                         <div className="rounded-pill bg-orange" style={{ height: 5, width: 18 }} />
                     </div>
 
-                    <SelectCategory cms={home} categories={categories.map(c => ({ ...c, name: c.name[lang], description: c.description[lang] }))} />
+                    <SelectCategory cms={home} categories={categories.map(c => ({ ...c, name: c.name[lang], description: c.description[lang] }))} id={id} onClick={this.onClick} />
                 </Wrapper>
             </div>
 
-            <div>
-                <div className="categories position-relative bg-white">
-                    {categoriesContent}
-                </div>
+            <div className="categories bg-white">
+                {categoriesContent}
             </div>
         </div>;
     }

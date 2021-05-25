@@ -5,13 +5,14 @@ import { faFilter, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import './SelectCategory.css';
 
-export default ({ categories, id, cms }) => {
+export default ({ categories, id, onClick, cms }) => {
     const [modal, setModal] = useState(false);
     const [search, setSearch] = useState('');
 
     const toggle = () => setModal(!modal);
 
-    const click = () => {
+    const click = id => {
+        onClick(id);
         toggle();
         setSearch('');
     }
@@ -24,7 +25,9 @@ export default ({ categories, id, cms }) => {
         <div>
             <div style={{ cursor: 'pointer' }} onClick={toggle} className="bg-orange-30 rounded-pill py-2 px-2 text-500 text-orange text-13 position-relative category-select">
                 <div className="d-flex mx-1">
-                    <div className="text-truncate" id="selected-category" />
+                    <div className="text-truncate">
+                        {categories.length > 0 && categories.find(category => +category.id === +id).name}
+                    </div>
 
                     <div className="position-relative">
                         <div style={{ width: .5, height: 21 }} className="mx-2 bg-orange" />
@@ -51,13 +54,13 @@ export default ({ categories, id, cms }) => {
                             </div>
                         </ListGroupItem>
 
-                        {categories.filter(category => (category.name || '').toLowerCase().includes(search.toLowerCase())).map(category => <a key={`ListGroupItem-${category.id}`} href={"#category-" + category.id} id={"select-category-" + category.id} className={"list-group-item select-category text-reset text-decoration-none" + ($('#nav-category-' + category.id).hasClass('activated') ? " active" : "")} onClick={click} style={{ cursor: 'pointer' }}>
+                        {categories.filter(category => (category.name || '').toLowerCase().includes(search.toLowerCase())).map(category => <ListGroupItem key={`ListGroupItem-${category.id}`} active={+category.id === +id} onClick={() => click(category.id)} style={{ cursor: 'pointer' }}>
                             <ListGroupItemHeading className="text-13 text-500">{category.name}</ListGroupItemHeading>
 
                             <ListGroupItemText className="text-10 text-300 m-0">
                                 {category.description}
                             </ListGroupItemText>
-                        </a>)}
+                        </ListGroupItem>)}
                     </ListGroup>
                 </ModalBody>
             </Modal>

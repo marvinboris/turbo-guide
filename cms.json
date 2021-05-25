@@ -195,6 +195,12 @@
                     "updated": "Setting successfully updated.",
                     "deleted": "Setting successfully deleted."
                 },
+                "restaurants": {
+                    "not_found": "Restaurant not found.",
+                    "created": "Restaurant succesfully created.",
+                    "updated": "Restaurant successfully updated.",
+                    "deleted": "Restaurant successfully deleted."
+                },
                 "categories": {
                     "not_found": "Category not found.",
                     "created": "Category successfully created.",
@@ -897,6 +903,12 @@
                     "created": "Setting successfully created.",
                     "updated": "Setting successfully updated.",
                     "deleted": "Setting successfully deleted."
+                },
+                "restaurants": {
+                    "not_found": "Restaurant not found.",
+                    "created": "Restaurant succesfully created.",
+                    "updated": "Restaurant successfully updated.",
+                    "deleted": "Restaurant successfully deleted."
                 },
                 "categories": {
                     "not_found": "Category not found.",

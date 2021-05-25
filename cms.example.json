@@ -195,6 +195,12 @@
                     "updated": "Setting successfully updated.",
                     "deleted": "Setting successfully deleted."
                 },
+                "restaurants": {
+                    "not_found": "Restaurant not found.",
+                    "created": "Restaurant succesfully created.",
+                    "updated": "Restaurant successfully updated.",
+                    "deleted": "Restaurant successfully deleted."
+                },
                 "categories": {
                     "not_found": "Category not found.",
                     "created": "Category successfully created.",
@@ -321,9 +327,10 @@
                         "plans": {
                             "title": "Plans",
                             "add": "Deposit plan",
-                            "subscription": "Subscription Plan",
-                            "purchase": "Purchase Plan",
-                            "index": "Plan list"
+                            "subscription": "Subscription plan",
+                            "purchase": "Purchase plan",
+                            "index": "Plan list",
+                            "bought": "Purchase list"
                         },
                         "recharges": {
                             "title": "Recharges",
@@ -601,24 +608,35 @@
                         }
                     },
                     "plans": {
-                        "title": "Subscription Plan",
-                        "subtitle": "Purchase Plan",
+                        "title": "Plans",
+                        "subscription": "Subscription plan",
+                        "subtitle": "Purchase plan",
                         "instructions": "Please fill the form below to purchase or upgrade plan",
-                        "add": "Purchase Plan",
-                        "edit": "Edit meal",
-                        "index": "Purchase List",
+                        "add": "Deposit plan",
+                        "edit": "Edit plan",
+                        "purchase": "Purchase plan",
+                        "index": "Plan list",
+                        "bought": "Purchase list",
                         "form": {
                             "purchase": "Purchase Plan",
                             "name": "Plan Name",
+                            "plan": "Plan Name",
+                            "restaurant": "Restaurant Name",
                             "amount": "Amount",
                             "status": "Status",
                             "type": "Purchase Type",
                             "terms": "Accept terms and conditions & Privacy policies",
                             "price": "Cost",
+                            "token": "Restaurant Token",
                             "expiry_date": "Expiry Date",
                             "created_at": "Purchase Date",
                             "select_plan_id": "Select plan",
-                            "select_type": "Purchase Type"
+                            "select_type": "Purchase Type",
+                            "meals": "Meals",
+                            "actions": "Actions",
+                            "support": "Support",
+                            "banners": "Banners",
+                            "reviews": "Reviews"
                         }
                     },
                     "recharges": {
@@ -627,6 +645,7 @@
                         "instructions": "Please fill the form below to recharge balance",
                         "add": "Add recharge",
                         "index": "Recharge list",
+                        "recharge": "Recharge",
                         "form": {
                             "process": "Process Payment",
                             "amount": "Amount",
@@ -639,6 +658,20 @@
                             "restaurant": "Restaurant Name"
                         }
                     },
+                    "restaurants": {
+                        "title": "Restaurants",
+                        "add": "Add restaurant",
+                        "index": "Restaurant list",
+                        "form": {
+                            "name": "Restaurant's Name",
+                            "owner": "Restaurant Owner's Name",
+                            "email": "E-mail address",
+                            "phone": "Restaurant's Phone Number",
+                            "token": "Restaurant Token",
+                            "country": "Country",
+                            "created_at": "Created at"
+                        }
+                    },
                     "methods": {
                         "title": "Methods",
                         "add": "Add method",
@@ -647,7 +680,9 @@
                         "form": {
                             "name": "Method name",
                             "text": "Method description",
-                            "select_status": "Select status"
+                            "select_status": "Select status",
+                            "is_active": "Status",
+                            "created_at": "Created at"
                         }
                     }
                 }
@@ -869,6 +904,12 @@
                     "updated": "Setting successfully updated.",
                     "deleted": "Setting successfully deleted."
                 },
+                "restaurants": {
+                    "not_found": "Restaurant not found.",
+                    "created": "Restaurant succesfully created.",
+                    "updated": "Restaurant successfully updated.",
+                    "deleted": "Restaurant successfully deleted."
+                },
                 "categories": {
                     "not_found": "Category not found.",
                     "created": "Category successfully created.",
@@ -995,9 +1036,10 @@
                         "plans": {
                             "title": "Plans",
                             "add": "Deposit plan",
-                            "subscription": "Subscription Plan",
-                            "purchase": "Purchase Plan",
-                            "index": "Plan list"
+                            "subscription": "Subscription plan",
+                            "purchase": "Purchase plan",
+                            "index": "Plan list",
+                            "bought": "Purchase list"
                         },
                         "recharges": {
                             "title": "Recharges",
@@ -1275,24 +1317,35 @@
                         }
                     },
                     "plans": {
-                        "title": "Subscription Plan",
-                        "subtitle": "Purchase Plan",
+                        "title": "Plans",
+                        "subscription": "Subscription plan",
+                        "subtitle": "Purchase plan",
                         "instructions": "Please fill the form below to purchase or upgrade plan",
-                        "add": "Purchase Plan",
-                        "edit": "Edit meal",
-                        "index": "Purchase List",
+                        "add": "Deposit plan",
+                        "edit": "Edit plan",
+                        "purchase": "Purchase plan",
+                        "index": "Plan list",
+                        "bought": "Purchase list",
                         "form": {
                             "purchase": "Purchase Plan",
                             "name": "Plan Name",
+                            "plan": "Plan Name",
+                            "restaurant": "Restaurant Name",
                             "amount": "Amount",
                             "status": "Status",
                             "type": "Purchase Type",
                             "terms": "Accept terms and conditions & Privacy policies",
                             "price": "Cost",
+                            "token": "Restaurant Token",
                             "expiry_date": "Expiry Date",
                             "created_at": "Purchase Date",
                             "select_plan_id": "Select plan",
-                            "select_type": "Purchase Type"
+                            "select_type": "Purchase Type",
+                            "meals": "Meals",
+                            "actions": "Actions",
+                            "support": "Support",
+                            "banners": "Banners",
+                            "reviews": "Reviews"
                         }
                     },
                     "recharges": {
@@ -1301,6 +1354,7 @@
                         "instructions": "Please fill the form below to recharge balance",
                         "add": "Add recharge",
                         "index": "Recharge list",
+                        "recharge": "Recharge",
                         "form": {
                             "process": "Process Payment",
                             "amount": "Amount",
@@ -1313,6 +1367,20 @@
                             "restaurant": "Restaurant Name"
                         }
                     },
+                    "restaurants": {
+                        "title": "Restaurants",
+                        "add": "Add restaurant",
+                        "index": "Restaurant list",
+                        "form": {
+                            "name": "Restaurant's Name",
+                            "owner": "Restaurant Owner's Name",
+                            "email": "E-mail address",
+                            "phone": "Restaurant's Phone Number",
+                            "token": "Restaurant Token",
+                            "country": "Country",
+                            "created_at": "Created at"
+                        }
+                    },
                     "methods": {
                         "title": "Methods",
                         "add": "Add method",
@@ -1321,7 +1389,9 @@
                         "form": {
                             "name": "Method name",
                             "text": "Method description",
-                            "select_status": "Select status"
+                            "select_status": "Select status",
+                            "is_active": "Status",
+                            "created_at": "Created at"
                         }
                     }
                 }

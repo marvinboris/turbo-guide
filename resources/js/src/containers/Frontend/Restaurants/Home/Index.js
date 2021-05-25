@@ -103,6 +103,7 @@ class Home extends Component {
                 $('.nav-category').removeClass('activated');
                 $("#nav-category-" + id).addClass('activated');
 
+                $('.navigation').animate({ scrollLeft: document.getElementById('nav-category-' + id).offsetLeft - 11 });
                 $('#selected-category').html(this.props.frontend.restaurants.categories.find(category => +category.id === +id).name[lang]);
 
                 clearTimeout(timeout);
@@ -246,7 +247,7 @@ class Home extends Component {
                 </Wrapper>
 
                 <Wrapper className="navigation scrollbar-orange" style={{ paddingTop: 18 }}>
-                    <div className="nav text-truncate" id="categories" style={{ overflow: 'visible' }}>
+                    <div className="nav text-truncate flex-nowrap d-inline-flex" id="categories" style={{ overflow: 'visible' }}>
                         <Navigation categories={categories.map(c => updateObject({ ...c, name: c.name[lang], description: c.description[lang] }))} onClick={this.onClick} />
                     </div>
                 </Wrapper>

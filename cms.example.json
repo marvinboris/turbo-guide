@@ -201,6 +201,12 @@
                     "updated": "Restaurant successfully updated.",
                     "deleted": "Restaurant successfully deleted."
                 },
+                "methods": {
+                    "not_found": "Method not found.",
+                    "created": "Method successfully created.",
+                    "updated": "Method successfully updated.",
+                    "deleted": "Method successfully deleted."
+                },
                 "categories": {
                     "not_found": "Category not found.",
                     "created": "Category successfully created.",
@@ -909,6 +915,12 @@
                     "created": "Restaurant succesfully created.",
                     "updated": "Restaurant successfully updated.",
                     "deleted": "Restaurant successfully deleted."
+                },
+                "methods": {
+                    "not_found": "Method not found.",
+                    "created": "Method successfully created.",
+                    "updated": "Method successfully updated.",
+                    "deleted": "Method successfully deleted."
                 },
                 "categories": {
                     "not_found": "Category not found.",

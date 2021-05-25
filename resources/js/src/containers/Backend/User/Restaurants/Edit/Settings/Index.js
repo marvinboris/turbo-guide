@@ -168,7 +168,7 @@ class Settings extends Component {
         if (files) this.readURL(e.target);
         if (name === 'select_language') {
             const languages = [...this.state.languages];
-            const language = this.props.backend.settings.allLanguages.find(a => +a.id === +value);
+            const language = this.props.backend.restaurants.allLanguages.find(a => +a.id === +value);
             languages.push(language);
             return this.setState({ languages });
         }

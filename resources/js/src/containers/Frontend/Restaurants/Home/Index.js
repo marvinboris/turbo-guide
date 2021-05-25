@@ -171,7 +171,7 @@ class Home extends Component {
         const premium = restaurant.plan && restaurant.plan.slug.includes('premium');
 
         return <div className="Home">
-            {loading && Object.keys(restaurant).length === 0 && <Spinner />}
+            {loading && !this.props.frontend.restaurants.restaurant && <Spinner />}
             <input type="hidden" id="id" defaultValue={id} />
 
             <div className="embed-responsive embed-responsive-16by9 position-relative">

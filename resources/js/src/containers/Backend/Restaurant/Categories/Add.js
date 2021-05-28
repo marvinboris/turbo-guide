@@ -86,7 +86,7 @@ class Add extends Component {
 
     componentDidUpdate(prevProps) {
         if (!prevProps.backend.categories.message && this.props.backend.categories.message && this.props.backend.categories.message.type === 'success' && !this.props.edit) {
-            if (this.state.add) this.setState({ ...initialState });
+            if (this.state.add) this.setState({ ...initialState, translate: this.props.auth.data.main_language });
             else this.props.history.push({
                 pathname: '/restaurant/categories',
                 state: {

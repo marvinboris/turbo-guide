@@ -102,7 +102,7 @@ class Add extends Component {
 
     componentDidUpdate(prevProps) {
         if (!prevProps.backend.restaurants.message && this.props.backend.restaurants.message && this.props.backend.restaurants.message.type === 'success' && !this.props.edit) {
-            if (this.state.add) this.setState({ ...initialState });
+            if (this.state.add) this.setState({ ...initialState, translate: this.props.backend.restaurants.data.main_language });
             else this.props.history.push({
                 pathname: '/user/restaurants/' + this.props.match.params.restaurant + '/edit/meals',
                 state: {

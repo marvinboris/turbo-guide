@@ -907,7 +907,9 @@ var Add = /*#__PURE__*/function (_Component) {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
       if (!prevProps.backend.restaurants.message && this.props.backend.restaurants.message && this.props.backend.restaurants.message.type === 'success' && !this.props.edit) {
-        if (this.state.add) this.setState(_objectSpread({}, initialState));else this.props.history.push({
+        if (this.state.add) this.setState(_objectSpread(_objectSpread({}, initialState), {}, {
+          translate: this.props.backend.restaurants.data.main_language
+        }));else this.props.history.push({
           pathname: '/user/restaurants/' + this.props.match.params.restaurant + '/edit/addons',
           state: {
             message: this.props.backend.restaurants.message

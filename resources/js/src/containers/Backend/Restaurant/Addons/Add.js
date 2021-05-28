@@ -88,7 +88,7 @@ class Add extends Component {
 
     componentDidUpdate(prevProps) {
         if (!prevProps.backend.addons.message && this.props.backend.addons.message && this.props.backend.addons.message.type === 'success' && !this.props.edit) {
-            if (this.state.add) this.setState({ ...initialState });
+            if (this.state.add) this.setState({ ...initialState, translate: this.props.auth.data.main_language });
             else this.props.history.push({
                 pathname: '/restaurant/addons',
                 state: {

@@ -954,7 +954,9 @@ var Add = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       if (!prevProps.backend.meals.message && this.props.backend.meals.message && this.props.backend.meals.message.type === 'success' && !this.props.edit) {
-        if (this.state.add) this.setState(_objectSpread({}, initialState));else this.props.history.push({
+        if (this.state.add) this.setState(_objectSpread(_objectSpread({}, initialState), {}, {
+          translate: this.props.auth.data.main_language
+        }));else this.props.history.push({
           pathname: '/restaurant/meals',
           state: {
             message: this.props.backend.meals.message

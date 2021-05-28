@@ -105,7 +105,7 @@ class Home extends Component {
                 $('#selected-category').html(this.props.frontend.restaurants.categories.find(category => +category.id === +id).name[lang]);
 
                 clearTimeout(timeout);
-            }, 250);
+            }, 600);
         });
     }
 

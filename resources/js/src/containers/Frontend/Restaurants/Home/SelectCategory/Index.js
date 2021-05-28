@@ -11,12 +11,8 @@ export default ({ categories, cms }) => {
 
     const toggle = () => setModal(!modal);
 
-    const click = (e, id) => {
+    const click = () => {
         toggle();
-
-        e.preventDefault();
-        $('html, body').animate({ scrollTop: document.querySelector('.Home .embed-responsive').offsetHeight + document.getElementById('category-' + id).offsetTop }, 200);
-
         setSearch('');
     }
 
@@ -55,7 +51,7 @@ export default ({ categories, cms }) => {
                             </div>
                         </ListGroupItem>
 
-                        {categories.filter(category => (category.name || '').toLowerCase().includes(search.toLowerCase())).map(category => <a key={`ListGroupItem-${category.id}`} href={"#category-" + category.id} id={"select-category-" + category.id} className={"list-group-item select-category text-reset text-decoration-none" + ($('#nav-category-' + category.id).hasClass('activated') ? " active" : "")} onClick={e => click(e, category.id)} style={{ cursor: 'pointer' }}>
+                        {categories.filter(category => (category.name || '').toLowerCase().includes(search.toLowerCase())).map(category => <a key={`ListGroupItem-${category.id}`} href={"#category-" + category.id} id={"select-category-" + category.id} className={"list-group-item select-category text-reset text-decoration-none" + ($('#nav-category-' + category.id).hasClass('activated') ? " active" : "")} onClick={click} style={{ cursor: 'pointer' }}>
                             <ListGroupItemHeading className="text-13 text-500">{category.name}</ListGroupItemHeading>
 
                             <ListGroupItemText className="text-10 text-300 m-0">

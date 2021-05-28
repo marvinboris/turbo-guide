@@ -447,12 +447,6 @@ var CategoryTitle = function CategoryTitle(_ref) {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
       href: "#category-" + id,
       id: "nav-category-" + id,
-      onClick: function onClick(e) {
-        e.preventDefault();
-        $('html, body').animate({
-          scrollTop: document.querySelector('.Home .embed-responsive').offsetHeight + document.getElementById('category-' + id).offsetTop
-        }, 200);
-      },
       className: "rounded-pill nav-category d-block border border-orange text-decoration-none text-10 text-truncate nav-link",
       children: children
     })
@@ -536,12 +530,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     return setModal(!modal);
   };
 
-  var click = function click(e, id) {
+  var click = function click() {
     toggle();
-    e.preventDefault();
-    $('html, body').animate({
-      scrollTop: document.querySelector('.Home .embed-responsive').offsetHeight + document.getElementById('category-' + id).offsetTop
-    }, 200);
     setSearch('');
   };
 
@@ -624,9 +614,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
               href: "#category-" + category.id,
               id: "select-category-" + category.id,
               className: "list-group-item select-category text-reset text-decoration-none" + ($('#nav-category-' + category.id).hasClass('activated') ? " active" : ""),
-              onClick: function onClick(e) {
-                return click(e, category.id);
-              },
+              onClick: click,
               style: {
                 cursor: 'pointer'
               },
@@ -896,7 +884,7 @@ var Home = /*#__PURE__*/function (_Component) {
             return +category.id === +id;
           }).name[lang]);
           clearTimeout(timeout);
-        }, 250);
+        }, 600);
       });
     });
 

@@ -91,6 +91,7 @@ class Home extends Component {
         $('#selected-category').html(this.props.frontend.restaurants.categories.find(category => +category.id === +this.state.id).name[lang]);
 
         $('body').scrollspy({ target: '#categories' });
+        $('.CategoryTitle a:empty').parent().remove();
 
         $(window).on('activate.bs.scrollspy', (e, obj) => {
             if (timeout) clearTimeout(timeout);

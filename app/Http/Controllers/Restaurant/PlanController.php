@@ -144,6 +144,11 @@ class PlanController extends Controller
         return response()->json([
             'message' => UtilController::message($cms['pages'][$restaurant->language->abbr]['messages']['plans']['balance'], 'danger'),
             'amount' => $plan->price - $restaurant->balance,
+            'data' => array_merge($restaurant->toArray(), [
+                'notifications' => $restaurant->notifications()->latest()->limit(5)->get(),
+                'language' => $restaurant->language->abbr,
+                'languages' => $restaurant->languages,
+            ]),
         ]);
     }
 }

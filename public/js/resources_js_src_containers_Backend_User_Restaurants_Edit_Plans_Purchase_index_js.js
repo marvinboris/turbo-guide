@@ -604,7 +604,7 @@ var Purchase = /*#__PURE__*/function (_Component) {
 
         var plan = _this.props.backend.restaurants.types.find(function (type) {
           return +type.months === +_this.state.type;
-        }).restaurants.find(function (plan) {
+        }).plans.find(function (plan) {
           return +plan.id === +value;
         });
 

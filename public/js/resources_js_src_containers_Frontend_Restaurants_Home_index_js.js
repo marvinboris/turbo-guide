@@ -870,6 +870,7 @@ var Home = /*#__PURE__*/function (_Component) {
       $('body').scrollspy({
         target: '#categories'
       });
+      $('.CategoryTitle a:empty').parent().remove();
       $(window).on('activate.bs.scrollspy', function (e, obj) {
         if (timeout) clearTimeout(timeout);
         timeout = setTimeout(function () {
@@ -884,7 +885,7 @@ var Home = /*#__PURE__*/function (_Component) {
             return +category.id === +id;
           }).name[lang]);
           clearTimeout(timeout);
-        }, 600);
+        }, 400);
       });
     });
 

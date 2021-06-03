@@ -42,7 +42,7 @@ class Purchase extends Component {
     inputChangeHandler = e => {
         const { name, value, files } = e.target;
         if (name === 'plan_id') {
-            const plan = this.props.backend.restaurants.types.find(type => +type.months === +this.state.type).restaurants.find(plan => +plan.id === +value);
+            const plan = this.props.backend.restaurants.types.find(type => +type.months === +this.state.type).plans.find(plan => +plan.id === +value);
             return this.setState({ [name]: value, price: plan.price });
         }
         this.setState({ [name]: files ? files[0] : value });

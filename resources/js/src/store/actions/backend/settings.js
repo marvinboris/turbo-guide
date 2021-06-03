@@ -44,7 +44,7 @@ export const restaurantSettings = data => async (dispatch, getState) => {
         const resData = await res.json();
         if (res.status === 422) throw new Error(Object.values(resData.errors).join('\n'));
         dispatch(settingsSuccess(resData));
-        dispatch(authDataUpdateSuccess(resData.data));
+        if (resData.data) dispatch(authDataUpdateSuccess(resData.data));
     } catch (error) {
         console.log(error);
         dispatch(settingsFail(error));
@@ -68,7 +68,7 @@ export const accountSettings = data => async (dispatch, getState) => {
         const resData = await res.json();
         if (res.status === 422) throw new Error(Object.values(resData.errors).join('\n'));
         dispatch(settingsSuccess(resData));
-        dispatch(authDataUpdateSuccess(resData.data));
+        if (resData.data) dispatch(authDataUpdateSuccess(resData.data));
     } catch (error) {
         console.log(error);
         dispatch(settingsFail(error));
@@ -92,7 +92,7 @@ export const cmsSettings = data => async (dispatch, getState) => {
         const resData = await res.json();
         if (res.status === 422) throw new Error(Object.values(resData.errors).join('\n'));
         dispatch(settingsSuccess(resData));
-        dispatch(authDataUpdateSuccess(resData.data));
+        if (resData.data) dispatch(authDataUpdateSuccess(resData.data));
     } catch (error) {
         console.log(error);
         dispatch(settingsFail(error));
@@ -116,7 +116,7 @@ export const translatableSettings = data => async (dispatch, getState) => {
         const resData = await res.json();
         if (res.status === 422) throw new Error(Object.values(resData.errors).join('\n'));
         dispatch(settingsSuccess(resData));
-        dispatch(authDataUpdateSuccess(resData.data));
+        if (resData.data) dispatch(authDataUpdateSuccess(resData.data));
     } catch (error) {
         console.log(error);
         dispatch(settingsFail(error));
@@ -140,7 +140,7 @@ export const languageSettings = data => async (dispatch, getState) => {
         const resData = await res.json();
         if (res.status === 422) throw new Error(Object.values(resData.errors).join('\n'));
         dispatch(settingsSuccess(resData));
-        dispatch(authDataUpdateSuccess(resData.data));
+        if (resData.data) dispatch(authDataUpdateSuccess(resData.data));
     } catch (error) {
         console.log(error);
         dispatch(settingsFail(error));

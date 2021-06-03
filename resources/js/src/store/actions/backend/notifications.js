@@ -39,7 +39,7 @@ export const getNotification = id => async (dispatch, getState) => {
         });
         const resData = await res.json();
         dispatch(notificationsSuccess(resData));
-        dispatch(authDataUpdateSuccess(resData.data));
+        if (resData.data) dispatch(authDataUpdateSuccess(resData.data));
     } catch (err) {
         console.log(err);
         dispatch(notificationsFail(err));

@@ -1,0 +1,3 @@
+.Frontend.Restaurants .content {
+    max-width: var(--app-width);
+}

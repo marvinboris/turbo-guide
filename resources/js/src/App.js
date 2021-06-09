@@ -9,7 +9,8 @@ import AuthUser from './containers/Auth/User/Layout';
 import AuthAdmin from './containers/Auth/Admin/Layout';
 import AuthRestaurant from './containers/Auth/Restaurant/Layout';
 import Frontend from './containers/Frontend/Layout';
-import FrontendMeals from './containers/Frontend/Restaurants/Meals/Layout';
+import FrontendRestaurants from './containers/Frontend/Restaurants/Layout';
+import FrontendRestaurantsMeals from './containers/Frontend/Restaurants/Meals/Layout';
 import Backend from './containers/Backend/Layout';
 import BackendRestaurant from './containers/Backend/Restaurant/Layout';
 import BackendUserRestaurantsEdit from './containers/Backend/User/Restaurants/Edit/Layout';
@@ -183,6 +184,9 @@ const asyncRestaurantsMealsComments = asyncComponent(() => import('./containers/
 
 const asyncRestaurantsHome = asyncComponent(() => import('./containers/Frontend/Restaurants/Home'));
 
+
+const asyncHome = asyncComponent(() => import('./containers/Frontend/Home'));
+
 class App extends Component {
     componentDidMount() {
         const { onTryAuthSignup, onGetContent } = this.props;
@@ -229,21 +233,28 @@ class App extends Component {
                 <Redirect path="/restaurant" to="/auth/login" />
                 <Redirect path="/auth" to="/auth/login" />
 
-                <Route path="/">
-                    <Frontend>
+                <Route path="/restaurants">
+                    <FrontendRestaurants>
                         <Route path="/restaurants/:slug/meals/:id">
-                            <FrontendMeals>
+                            <FrontendRestaurantsMeals>
                                 <Switch>
                                     <Route path="/restaurants/:slug/meals/:id/addons" component={asyncRestaurantsMealsAddons} />
                                     <Route path="/restaurants/:slug/meals/:id/description" component={asyncRestaurantsMealsDescription} />
                                     <Route path="/restaurants/:slug/meals/:id/comments" component={asyncRestaurantsMealsComments} />
                                 </Switch>
-                            </FrontendMeals>
+                            </FrontendRestaurantsMeals>
                         </Route>
                         <Route path="/restaurants/:slug" exact component={asyncRestaurantsHome} />
+                    </FrontendRestaurants>
+                </Route>
+
+                <Route path="/">
+                    <Frontend>
+                        <Switch>
+                            <Route path="/" component={asyncHome} />
+                        </Switch>
                     </Frontend>
                 </Route>
-                <Redirect path="/" to="/auth" />
             </Switch>
         );
 
@@ -406,21 +417,28 @@ class App extends Component {
                     <Redirect path="/dashboard" to={`/${role}/dashboard`} />
                     <Redirect path="/auth" to={`/${role}/dashboard`} />
 
-                    <Route path="/">
-                        <Frontend>
+                    <Route path="/restaurants">
+                        <FrontendRestaurants>
                             <Route path="/restaurants/:slug/meals/:id">
-                                <FrontendMeals>
+                                <FrontendRestaurantsMeals>
                                     <Switch>
                                         <Route path="/restaurants/:slug/meals/:id/addons" component={asyncRestaurantsMealsAddons} />
                                         <Route path="/restaurants/:slug/meals/:id/description" component={asyncRestaurantsMealsDescription} />
                                         <Route path="/restaurants/:slug/meals/:id/comments" component={asyncRestaurantsMealsComments} />
                                     </Switch>
-                                </FrontendMeals>
+                                </FrontendRestaurantsMeals>
                             </Route>
                             <Route path="/restaurants/:slug" exact component={asyncRestaurantsHome} />
+                        </FrontendRestaurants>
+                    </Route>
+
+                    <Route path="/">
+                        <Frontend>
+                            <Switch>
+                                <Route path="/" component={asyncHome} />
+                            </Switch>
                         </Frontend>
                     </Route>
-                    <Redirect path="/" to="/auth" />
                 </Switch>
             );
         }

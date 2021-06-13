@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -86,7 +86,9 @@ class Auth extends Component {
             <div className={`border-bottom border-${dark ? "yellow" : "dark"}-50 py-4`}>
                 <Container className="d-flex justify-content-between align-items-center">
                     <div>
-                        <Logo dark />
+                        <Link to="/" className="text-decoration-none text-reset">
+                            <Logo dark />
+                        </Link>
                     </div>
 
                     {headerContent}

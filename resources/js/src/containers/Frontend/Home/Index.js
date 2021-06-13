@@ -499,7 +499,7 @@ class Home extends Component {
                             <span className="slider_control_item slider_control_item_left">
                                 <i className="far fa-chevron-left"></i>
                             </span>
-
+                            {' '}
                             <span className="slider_control_item slider_control_item_right slider_control_item_active">
                                 <i className="far fa-chevron-right"></i>
                             </span>
@@ -1070,8 +1070,8 @@ class Home extends Component {
                             data-slide="prev">
                             <i className="far fa-chevron-left" aria-hidden="true"></i>
                         </span>
-
-                        <span className="slider_control_item slider_control_item_active" className="carousel-control-next"
+                        {' '}
+                        <span className="slider_control_item slider_control_item_right slider_control_item_active"
                             href="#carouselExampleControls" role="button" data-slide="next">
                             <i className="far fa-chevron-right" aria-hidden="true"></i>
                         </span>

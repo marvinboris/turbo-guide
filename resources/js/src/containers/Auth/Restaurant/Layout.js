@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Container } from 'reactstrap';
 
 import Logo from '../../../components/UI/Logo/Logo';
@@ -28,7 +28,9 @@ class Layout extends Component {
                 <div className="rounded-8 bg-white shadow px-4 px-sm-5 py-3 py-sm-4" style={{ maxWidth: 500 }}>
                     <div className="mx-2 mx-sm-3 my-1 my-sm-2">
                         <div className="text-center mb-3 mb-sm-4">
-                            <Logo />
+                            <Link to="/" className="text-decoration-none text-reset">
+                                <Logo />
+                            </Link>
                         </div>
 
                         <div>{children}</div>

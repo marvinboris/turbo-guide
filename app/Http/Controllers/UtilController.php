@@ -220,7 +220,9 @@ class UtilController extends Controller
             ];
         } else if ($type === 'admin') $data = array_merge($data, []);
         else if ($type === 'restaurant') {
-            $data = array_merge($data, []);
+            $data = array_merge($data, [
+                'languages' => $user->languages,
+            ]);
             if (!$user->qr && $user->name) $user->qrCode();
         }
 

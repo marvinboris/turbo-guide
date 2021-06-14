@@ -79,7 +79,7 @@ class RestaurantController extends Controller
 
         $restaurant = Restaurant::find($id);
         if (!$restaurant) return response()->json([
-            'message' => UtilController::message($cms['pages'][$user->restaurant->abbr]['messages']['restaurants']['not_found'], 'danger'),
+            'message' => UtilController::message($cms['pages'][$user->language->abbr]['messages']['restaurants']['not_found'], 'danger'),
         ]);
 
         return response()->json([
@@ -118,7 +118,7 @@ class RestaurantController extends Controller
         ]));
 
         return response()->json([
-            'message' => UtilController::message($cms['pages'][$user->restaurant->abbr]['messages']['restaurants']['created'], 'success'),
+            'message' => UtilController::message($cms['pages'][$user->language->abbr]['messages']['restaurants']['created'], 'success'),
         ]);
     }
 
@@ -129,7 +129,7 @@ class RestaurantController extends Controller
 
         $restaurant = Restaurant::find($id);
         if (!$restaurant) return response()->json([
-            'message' => UtilController::message($cms['pages'][$user->restaurant->abbr]['messages']['restaurants']['not_found'], 'danger'),
+            'message' => UtilController::message($cms['pages'][$user->language->abbr]['messages']['restaurants']['not_found'], 'danger'),
         ]);
 
         $rules = UtilController::rules($this->rules, $restaurant);
@@ -140,7 +140,7 @@ class RestaurantController extends Controller
         $restaurant->update($input);
 
         return response()->json([
-            'message' => UtilController::message($cms['pages'][$user->restaurant->abbr]['messages']['restaurants']['updated'], 'success'),
+            'message' => UtilController::message($cms['pages'][$user->language->abbr]['messages']['restaurants']['updated'], 'success'),
             'restaurant' => $restaurant,
         ]);
     }
@@ -152,7 +152,7 @@ class RestaurantController extends Controller
 
         $restaurant = Restaurant::find($id);
         if (!$restaurant) return response()->json([
-            'message' => UtilController::message($cms['pages'][$user->restaurant->abbr]['messages']['restaurants']['not_found'], 'danger'),
+            'message' => UtilController::message($cms['pages'][$user->language->abbr]['messages']['restaurants']['not_found'], 'danger'),
         ]);
 
         $restaurant->delete();
@@ -163,7 +163,7 @@ class RestaurantController extends Controller
         $total = $data['total'];
 
         return response()->json([
-            'message' => UtilController::message($cms['pages'][$user->restaurant->abbr]['messages']['restaurants']['deleted'], 'success'),
+            'message' => UtilController::message($cms['pages'][$user->language->abbr]['messages']['restaurants']['deleted'], 'success'),
             'restaurants' => $restaurants,
             'total' => $total,
         ]);

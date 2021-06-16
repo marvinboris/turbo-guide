@@ -43,11 +43,11 @@ class Category extends Component {
 
                 <div className="d-flex justify-content-end">
                     <div className="text-10 d-flex action">
-                        <Link to={`/restaurant/categories/${id}`} className="text-decoration-none view">
+                        <Link to={`categories`} className="text-decoration-none view">
                             <Circle color="green" icon={faEye} />
                         </Link>
 
-                        <Link to={`/restaurant/categories/${id}/edit`} className="text-decoration-none mr-2 edit">
+                        <Link to={`categories/${id}/edit`} className="text-decoration-none mr-2 edit">
                             <Circle color="orange" icon={faEdit} />
                         </Link>
 

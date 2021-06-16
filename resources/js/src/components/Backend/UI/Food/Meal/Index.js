@@ -19,9 +19,18 @@ class Meal extends Component {
     render() {
         const {
             id, name, photo, price, is_active, description, mark, comments, className = '',
-            auth: { data: { currency, position } },
-            content: { currencies }
-        } = this.props
+            auth: { role },
+            content: { currencies },
+        } = this.props;
+        let data, currency, position;
+
+        if (role === 'restaurant') {
+            data = this.props.auth.data;
+        } else {
+            data = this.props.backend.restaurants.data;
+        }
+        currency = data.currency;
+        position = data.position;
 
         const currencyObj = currencies.find(c => c.cc === currency);
         const symbol = currencyObj && currencyObj.cc;
@@ -31,13 +40,13 @@ class Meal extends Component {
                 <div>
                     <div className="embed-responsive embed-responsive-4by3 w-100 rounded-top-4 shadow-sm position-relative overflow-hidden">
                         <div className="bg position-absolute w-100 h-100" style={{ backgroundImage: `url('${photo}')` }} />
-                        
+
                         <div className="actions text-10 d-flex justify-content-center align-items-center position-absolute w-100 h-100 bg-black-30">
-                            <Link to={`/restaurant/meals/${id}`} className="text-decoration-none mr-2">
+                            <Link to={`meals`} className="text-decoration-none mr-2">
                                 <Circle color="green" icon={faEye} />
                             </Link>
 
-                            <Link to={`/restaurant/meals/${id}/edit`} className="text-decoration-none mr-2">
+                            <Link to={`meals/${id}/edit`} className="text-decoration-none mr-2">
                                 <Circle color="primary" icon={faEdit} />
                             </Link>
 
@@ -69,7 +78,7 @@ class Meal extends Component {
 
                             <div className="text-orange text-8 text-700">
                                 ({(mark).toFixed(1)})
-                        </div>
+                            </div>
 
                             <div className="ml-auto">
                                 <div className="text-green bg-green-10 text-8 px-1 rounded-pill">
@@ -82,9 +91,9 @@ class Meal extends Component {
                     </div>
 
                     <div className="text-12 text-700 d-flex align-items-center text-truncate">
-                        {position == 0 && <div className="text-6 text-300 mr-1">{symbol}</div>}
+                        {position == 0 && <div className="text-6 text-300 mr-1">{currency}</div>}
                         <div>{price}</div>
-                        {position == 1 && <div className="text-6 text-300 ml-1">{symbol}</div>}
+                        {position == 1 && <div className="text-6 text-300 ml-1">{currency}</div>}
                     </div>
                 </div>
             </div>

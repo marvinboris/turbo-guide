@@ -329,14 +329,22 @@ var Addon = /*#__PURE__*/function (_Component) {
           price = _this$props.price,
           description = _this$props.description,
           is_active = _this$props.is_active,
-          _this$props$auth$data = _this$props.auth.data,
-          currency = _this$props$auth$data.currency,
-          position = _this$props$auth$data.position,
+          role = _this$props.auth.role,
           currencies = _this$props.content.currencies;
+      var data, currency, position;
+
+      if (role === 'restaurant') {
+        data = this.props.auth.data;
+      } else {
+        data = this.props.backend.restaurants.data;
+      }
+
+      currency = data.currency;
+      position = data.position;
       var currencyObj = currencies.find(function (c) {
         return c.cc === currency;
       });
-      var symbol = currencyObj && currencyObj.symbol;
+      var symbol = currencyObj && currencyObj.cc;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
         className: "Addon d-flex rounded-4 bg-white position-relative",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
@@ -385,25 +393,25 @@ var Addon = /*#__PURE__*/function (_Component) {
               className: "text-18 text-700 d-flex align-items-center text-truncate",
               children: [position == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
                 className: "text-10 text-300 mr-1",
-                children: symbol
+                children: currency
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
                 children: price
               }), position == 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
                 className: "text-10 text-300 ml-1",
-                children: symbol
+                children: currency
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
                 className: "action text-10 d-flex position-relative",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Link, {
-                  to: "/restaurant/addons/".concat(id),
+                  to: "addons",
                   className: "text-decoration-none view",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(Circle, {
                     color: "green",
                     icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faEye
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Link, {
-                  to: "/restaurant/addons/".concat(id, "/edit"),
+                  to: "addons/".concat(id, "/edit"),
                   className: "text-decoration-none edit",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(Circle, {
                     color: "orange",

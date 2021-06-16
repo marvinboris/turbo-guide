@@ -959,7 +959,7 @@ var Home = /*#__PURE__*/function (_Component) {
           name: category.name[lang],
           children: category.meals && category.meals.map(function (meal) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_UI_Food_Meal__WEBPACK_IMPORTED_MODULE_3__.default, _objectSpread(_objectSpread({
-              symbol: currencyObj && currencyObj.symbol,
+              symbol: currencyObj && currencyObj.cc,
               position: position
             }, _objectSpread(_objectSpread({}, meal), {}, {
               name: meal.name[lang],

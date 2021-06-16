@@ -5,13 +5,11 @@ import '../../../assets/css/star-rating-svg.css';
 export default class Stars extends Component {
     stars = () => {
         $(".ranking-stars").starRating({
-            totalStars: 5,
-            starShape: 'rounded',
-            starSize: 40,
-            emptyColor: 'transparent',
-            hoverColor: 'salmon',
-            activeColor: 'orange',
-            useGradient: false,
+            strokeColor: '#894A00',
+            strokeWidth: 10,
+            starSize: 25,
+            useFullStars: true,
+            disableAfterRate: false,
             callback: function (currentRating) {
                 $('input[name="mark"]').val(currentRating);
             }

@@ -21,9 +21,18 @@ class Addon extends Component {
     render() {
         const {
             id, name, photo, price, description, is_active,
-            auth: { data: { currency, position } },
+            auth: { role },
             content: { currencies },
-        } = this.props
+        } = this.props;
+        let data, currency, position;
+
+        if (role === 'restaurant') {
+            data = this.props.auth.data;
+        } else {
+            data = this.props.backend.restaurants.data;
+        }
+        currency = data.currency;
+        position = data.position;
 
         const currencyObj = currencies.find(c => c.cc === currency);
         const symbol = currencyObj && currencyObj.cc;
@@ -50,18 +59,18 @@ class Addon extends Component {
 
                 <div className="d-flex justify-content-between">
                     <div className="text-18 text-700 d-flex align-items-center text-truncate">
-                        {position == 0 && <div className="text-10 text-300 mr-1">{symbol}</div>}
+                        {position == 0 && <div className="text-10 text-300 mr-1">{currency}</div>}
                         <div>{price}</div>
-                        {position == 1 && <div className="text-10 text-300 ml-1">{symbol}</div>}
+                        {position == 1 && <div className="text-10 text-300 ml-1">{currency}</div>}
                     </div>
 
                     <div>
                         <div className="action text-10 d-flex position-relative">
-                            <Link to={`/restaurant/addons/${id}`} className="text-decoration-none view">
+                            <Link to={`addons`} className="text-decoration-none view">
                                 <Circle color="green" icon={faEye} />
                             </Link>
 
-                            <Link to={`/restaurant/addons/${id}/edit`} className="text-decoration-none edit">
+                            <Link to={`addons/${id}/edit`} className="text-decoration-none edit">
                                 <Circle color="orange" icon={faEdit} />
                             </Link>
 

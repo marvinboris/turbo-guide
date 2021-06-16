@@ -355,7 +355,7 @@ var Addons = /*#__PURE__*/function (_Component) {
       var currencyObj = currencies.find(function (c) {
         return c.cc === currency;
       });
-      var symbol = currencyObj && currencyObj.symbol;
+      var symbol = currencyObj && currencyObj.cc;
       var lang = localStorage.getItem('lang');
       var addonsContent = addons.map(function (addon) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_UI_Food_Addon__WEBPACK_IMPORTED_MODULE_5__.default, _objectSpread(_objectSpread({

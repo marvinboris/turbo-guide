@@ -204,14 +204,22 @@ var Meal = /*#__PURE__*/function (_Component) {
           comments = _this$props.comments,
           _this$props$className = _this$props.className,
           className = _this$props$className === void 0 ? '' : _this$props$className,
-          _this$props$auth$data = _this$props.auth.data,
-          currency = _this$props$auth$data.currency,
-          position = _this$props$auth$data.position,
+          role = _this$props.auth.role,
           currencies = _this$props.content.currencies;
+      var data, currency, position;
+
+      if (role === 'restaurant') {
+        data = this.props.auth.data;
+      } else {
+        data = this.props.backend.restaurants.data;
+      }
+
+      currency = data.currency;
+      position = data.position;
       var currencyObj = currencies.find(function (c) {
         return c.cc === currency;
       });
-      var symbol = currencyObj && currencyObj.symbol;
+      var symbol = currencyObj && currencyObj.cc;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
         className: "Meal ".concat(className),
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
@@ -227,14 +235,14 @@ var Meal = /*#__PURE__*/function (_Component) {
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
                 className: "actions text-10 d-flex justify-content-center align-items-center position-absolute w-100 h-100 bg-black-30",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
-                  to: "/restaurant/meals/".concat(id),
+                  to: "meals",
                   className: "text-decoration-none mr-2",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(Circle, {
                     color: "green",
                     icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_9__.faEye
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
-                  to: "/restaurant/meals/".concat(id, "/edit"),
+                  to: "meals/".concat(id, "/edit"),
                   className: "text-decoration-none mr-2",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(Circle, {
                     color: "primary",
@@ -301,12 +309,12 @@ var Meal = /*#__PURE__*/function (_Component) {
               className: "text-12 text-700 d-flex align-items-center text-truncate",
               children: [position == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
                 className: "text-6 text-300 mr-1",
-                children: symbol
+                children: currency
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
                 children: price
               }), position == 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
                 className: "text-6 text-300 ml-1",
-                children: symbol
+                children: currency
               })]
             })]
           })]

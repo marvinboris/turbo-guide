@@ -1159,12 +1159,6 @@ var Home = /*#__PURE__*/function (_Component) {
             _nextProps$frontend$r2 = _nextProps$frontend$r.restaurant,
             name = _nextProps$frontend$r2.name,
             logo = _nextProps$frontend$r2.logo;
-
-        if (!document.title.includes("".concat(name, " - "))) {
-          document.title = "".concat(name, " - ").concat(document.title);
-          if (logo) document.getElementById('favicon').setAttribute('href', logo);
-        }
-
         if (categories.length > 0) return (0,_shared_utility__WEBPACK_IMPORTED_MODULE_11__.updateObject)(prevState, {
           id: categories[0].id
         });

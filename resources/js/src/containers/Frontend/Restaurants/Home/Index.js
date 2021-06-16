@@ -116,10 +116,6 @@ class Home extends Component {
     static getDerivedStateFromProps(nextProps, prevState) {
         if (nextProps.frontend.restaurants.restaurant && prevState.id === '') {
             const { categories, restaurant: { name, logo } } = nextProps.frontend.restaurants;
-            if (!document.title.includes(`${name} - `)) {
-                document.title = `${name} - ${document.title}`;
-                if (logo) document.getElementById('favicon').setAttribute('href', logo);
-            }
             if (categories.length > 0) return updateObject(prevState, { id: categories[0].id });
         }
         return null;

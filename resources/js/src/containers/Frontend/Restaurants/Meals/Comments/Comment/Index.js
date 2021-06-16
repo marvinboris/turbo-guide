@@ -5,13 +5,13 @@ import React from 'react';
 import Stars from '../../../../../../components/UI/Stars';
 
 const appreciations = [
-    { color: 'green', lt: 5, text: 'Positive' },
-    { color: 'orange', lt: 3.5, text: 'Average' },
-    { color: 'red', lt: 2.5, text: 'Negative' },
+    { color: 'green', gt: 4, text: 'Positive' },
+    { color: 'orange', gt: 3, text: 'Average' },
+    { color: 'red', gt: 0, text: 'Negative' },
 ];
 
 export default ({ name, mark = 0, body }) => {
-    const appreciation = appreciations.find(c => c.lt >= mark);
+    const appreciation = appreciations.find(c => c.gt <= mark);
 
     return <div className="mb-3 pb-2 border-bottom border-soft">
         <div className="mb-2 pb-1 position-relative">

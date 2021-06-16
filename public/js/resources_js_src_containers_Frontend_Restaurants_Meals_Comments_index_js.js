@@ -238,15 +238,15 @@ __webpack_require__.r(__webpack_exports__);
 
 var appreciations = [{
   color: 'green',
-  lt: 5,
+  gt: 4,
   text: 'Positive'
 }, {
   color: 'orange',
-  lt: 3.5,
+  gt: 3,
   text: 'Average'
 }, {
   color: 'red',
-  lt: 2.5,
+  gt: 0,
   text: 'Negative'
 }];
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (_ref) {
@@ -255,7 +255,7 @@ var appreciations = [{
       mark = _ref$mark === void 0 ? 0 : _ref$mark,
       body = _ref.body;
   var appreciation = appreciations.find(function (c) {
-    return c.lt >= mark;
+    return c.gt <= mark;
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "mb-3 pb-2 border-bottom border-soft",

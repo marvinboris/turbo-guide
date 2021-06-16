@@ -24,7 +24,7 @@ class Meal extends Component {
         } = this.props
 
         const currencyObj = currencies.find(c => c.cc === currency);
-        const symbol = currencyObj && currencyObj.symbol;
+        const symbol = currencyObj && currencyObj.cc;
 
         return <div className={`Meal ${className}`}>
             <div className={`rounded-4 bg-white shadow-sm`}>

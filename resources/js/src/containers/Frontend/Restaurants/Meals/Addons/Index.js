@@ -25,7 +25,7 @@ class Addons extends Component {
         } = this.props;
 
         const currencyObj = currencies.find(c => c.cc === currency);
-        const symbol = currencyObj && currencyObj.symbol;
+        const symbol = currencyObj && currencyObj.cc;
         const lang = localStorage.getItem('lang');
 
         const addonsContent = addons.map(addon => <Addon key={addon.id + Math.random()} symbol={symbol} position={position} {...{ ...addon, name: addon.name[lang], description: addon.description[lang] }} add={() => this.props.add(addon.id)} sub={() => this.props.sub(addon.id)} />);

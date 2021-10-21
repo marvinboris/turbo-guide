@@ -126,13 +126,13 @@ class MonetbilController extends Controller
         if ($request->phone) $transaction->address = $input['phone'];
         if ($request->amount) $transaction->amount = round(+$request->item_ref * 604);
 
-        if ('success' === $input['status']) {
+        if ('success' === $input['status'] && $recharge->status !== 2) {
             $recharge->update([
                 'status' => 2,
             ]);
             $restaurant->notify(new RestaurantRecharge($recharge));
             $restaurant->update([
-                'balance' => $restaurant->balance + $transaction->amount
+                'balance' => $restaurant->balance + $recharge->amount
             ]);
             $transaction->status = 'completed';
         } else {

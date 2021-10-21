@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Restaurant;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Method\CinetpayController;
 use App\Http\Controllers\Method\MonetbilController;
 use App\Http\Controllers\UtilController;
 use App\Models\Method;
@@ -109,19 +110,18 @@ class RechargeController extends Controller
         ]);
 
         $method = Method::find($request->method_id);
-        $link = null;
+        $payload = null;
         switch ($method->name) {
             case 'Mobile payment':
-                new MonetbilController();
-                $monetbil = MonetbilController::generateWidgetData([
+                new CinetpayController();
+                $monetbil = CinetpayController::generateWidgetData([
                     'amount' => $request->amount,
+                    'description' => $method->name . ' - ' . $request->amount,
                 ]);
-                $link = $monetbil['link'];
+                $payload = $monetbil;
                 break;
         }
 
-        return response()->json([
-            'link' => $link,
-        ]);
+        return response()->json($payload);
     }
 }

@@ -54,7 +54,7 @@ class CinetpayController extends Controller
             'customer_name' => $restaurant->name,
             'notify_url' => route('cinetpay.notify.post'),
             'return_url' => route('cinetpay.notify.post'),
-            'channels' => 'MOBILE_MONEY',
+            'channels' => 'ALL',
             'lang' => !in_array($restaurant->language->abbr, ['fr', 'en']) ? $restaurant->language->abbr : 'en',
             'metadata' => json_encode([
                 'restaurant_id' => $restaurant->id,

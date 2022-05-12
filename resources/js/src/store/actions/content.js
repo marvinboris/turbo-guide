@@ -17,24 +17,33 @@ export const getContent = () => async (dispatch, getState) => {
         const res = await fetch(`${prefix}content/${lang}`);
         const resData = await res.json();
 
-        let { currencies, countries } = getState().content;
+        try {
+            let { currencies, countries } = getState().content;
 
-        if (!currencies || !countries) {
-            const currenciesRes = await fetch(CORS + 'https://raw.githubusercontent.com/mhs/world-currencies/master/currencies.json', { method: 'GET', mode: 'cors' });
-            currencies = await currenciesRes.json();
+            if (!countries || !currencies) {
+                const currenciesRes = await fetch(CORS + 'https://raw.githubusercontent.com/mhs/world-currencies/master/currencies.json', { method: 'GET', mode: 'cors' });
+                currencies = await currenciesRes.json();
 
-            const phoneRes = await fetch(CORS + 'http://country.io/phone.json', { method: 'GET', mode: 'cors' });
-            const namesRes = await fetch(CORS + 'http://country.io/names.json', { method: 'GET', mode: 'cors' });
+                const phoneRes = await fetch(CORS + 'http://country.io/phone.json', { method: 'GET', mode: 'cors' });
+                const namesRes = await fetch(CORS + 'http://country.io/names.json', { method: 'GET', mode: 'cors' });
 
-            const phone = await phoneRes.json();
-            const names = await namesRes.json();
+                let phone = await phoneRes.json();
+                let names = await namesRes.json();
 
-            countries = Object.keys(phone).map(key => ({ country: key, code: phone[key], name: names[key] }));
+                currencies = JSON.parse(currencies.contents);
+                phone = JSON.parse(phone.contents);
+                names = JSON.parse(names.contents);
 
-            currencies = currencies.sort((a, b) => a.name.localeCompare(b.name));
-            countries = countries.sort((a, b) => a.name.localeCompare(b.name));
+                countries = Object.keys(phone).map(key => ({ country: key, code: phone[key], name: names[key] }));
 
-            return dispatch(contentSuccess({ ...resData, currencies, countries }));
+                currencies = currencies.sort((a, b) => a.name.localeCompare(b.name));
+                countries = countries.sort((a, b) => a.name.localeCompare(b.name));
+
+                return dispatch(contentSuccess({ ...resData, currencies, countries }));
+            }
+        } catch (error) {
+            console.log(error);
+            return dispatch(contentSuccess({ ...resData, countries: [], currencies: [] }));
         }
 
         dispatch(contentSuccess(resData));

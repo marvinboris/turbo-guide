@@ -1,0 +1,130 @@
+.Frontend.Restaurants .Page.Cart {
+    padding: 78px 16px 106px 16px;
+
+    section {
+        .title {
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 25.88px;
+        }
+
+        &.items {
+            padding-top: 19px;
+            padding-bottom: 12px;
+        }
+
+        &.note {
+            margin-bottom: 36px;
+
+            .form-group {
+                border-radius: 20px;
+                padding: 13px 18px 27px 18px;
+                background-color: var(--orange-20);
+
+                label {
+                    font-weight: 500;
+                    line-height: 15.53px;
+                    margin-bottom: 11.42px;
+
+                    i {
+                        margin-right: 10.5px;
+                        color: var(--color-primary);
+                    }
+                }
+
+                input {
+                    border: none;
+                    height: 44px;
+                    display: flex;
+                    font-size: 12px;
+                    border-radius: 8px;
+                    padding-left: 18px;
+                    align-items: center;
+                    padding-right: 18px;
+                    line-height: 15.53px;
+                }
+            }
+        }
+
+        &.options {
+            margin-bottom: 39px;
+
+            .body {
+                display: flex;
+                margin-top: 17px;
+
+                div {
+                    height: 40px;
+                    display: flex;
+                    cursor: pointer;
+                    font-size: 12px;
+                    border-radius: 8px;
+                    padding-left: 20px;
+                    align-items: center;
+                    padding-right: 20px;
+                    line-height: 15.53px;
+                    color: var(--color-secondary);
+                    background-color: var(--black-10);
+
+                    i {
+                        opacity: 0;
+                        max-width: 0;
+                        font-size: 16px;
+                        margin-left: 5px;
+                        transition: var(--transition);
+                    }
+
+                    &.active {
+                        color: var(--white);
+                        text-decoration: none;
+                        background-color: var(--green);
+
+                        i {
+                            opacity: 1;
+                            max-width: 16px;
+                        }
+                    }
+
+                    &:not(:last-child) {
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+
+        &.payment {
+            padding-bottom: 50px;
+
+            .body {
+                margin-top: 7px;
+
+                .line {
+                    display: flex;
+                    font-size: 14px;
+                    align-items: center;
+                    margin-bottom: 12px;
+                    line-height: 18.12px;
+                    justify-content: space-between;
+
+                    .value {
+                        font-weight: 500;
+
+                        span {
+                            font-weight: 400;
+                        }
+                    }
+                }
+
+                .table-footer {
+                    margin-top: 12px;
+                    padding-top: 12px;
+                    border-top: 1px solid var(--black-20);
+
+                    .line .label {
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -13,22 +13,25 @@ export const getRestaurant = slug => async dispatch => {
         const res = await fetch(`${prefix}restaurants/${slug}`);
         const resData = await res.json();
 
+        let cart = localStorage.getItem(`cart_${slug}`);
+        if (!cart) {
+            cart = { items: [], total: 0 };
+            localStorage.setItem(`cart_${slug}`, JSON.stringify(cart));
+        } else cart = JSON.parse(cart);
+        resData.restaurant.cart = cart;
+
         dispatch(restaurantsSuccess(resData));
     } catch (error) {
-
+        dispatch(restaurantsFail(error));
     }
 }
 
-export const getRestaurantsMeal = (slug, id, restaurant) => async dispatch => {
+export const getRestaurantsMeal = (slug, id) => async dispatch => {
     dispatch(restaurantsStart());
 
     try {
-        const res = await fetch(`${prefix}restaurants/${slug}/meals/${id}?restaurant=${restaurant ? 1 : 0}`);
+        const res = await fetch(`${prefix}restaurants/${slug}/meals/${id}`);
         const resData = await res.json();
-
-        resData.addons = resData.addons.map(a => ({ ...a, qty: 0 }))
-        resData.qty = 1;
-        resData.total = resData.meal.price;
 
         dispatch(restaurantsSuccess(resData));
     } catch (error) {
@@ -56,51 +59,30 @@ export const postComment = (slug, id, data) => async dispatch => {
     }
 }
 
-export const addMeal = () => async (dispatch, getState) => {
-    let { restaurants: { meal, qty, total } } = getState().frontend;
-    qty++;
-    total += meal.price;
+export const addItem = (slug, type, item) => async (dispatch, getState) => {
+    const { restaurants: { restaurant } } = getState().frontend;
 
-    dispatch(restaurantsSuccess({ qty, total }));
+    const newRestaurant = { ...restaurant };
+    const existingItem = newRestaurant.cart.items.find(exItem => exItem.type === type && exItem.id === item.id);
+    if (existingItem) existingItem.qty++;
+    else newRestaurant.cart.items.push({ type, id: item.id, qty: 1, price: item.price, name: item.name, photo: item.photo });
+    newRestaurant.cart.total += existingItem ? existingItem.price : item.price;
+    localStorage.setItem(`cart_${slug}`, JSON.stringify(newRestaurant.cart));
+
+    dispatch(restaurantsSuccess({ restaurant: newRestaurant }));
 }
 
-export const subMeal = () => async (dispatch, getState) => {
-    let { restaurants: { meal, qty, total } } = getState().frontend;
-    if (qty > 1) {
-        qty--;
-        total -= meal.price;
+export const subItem = (slug, type, item) => async (dispatch, getState) => {
+    const { restaurants: { restaurant } } = getState().frontend;
+
+    const newRestaurant = { ...restaurant };
+    const existingItem = newRestaurant.cart.items.find(exItem => exItem.type === type && exItem.id === item.id);
+    if (existingItem && existingItem.qty >= 1) {
+        existingItem.qty--;
+        newRestaurant.cart.total -= existingItem.price;
     }
+    if (existingItem.qty === 0) newRestaurant.cart.items = newRestaurant.cart.items.filter(exItem => !(exItem.type === item.type && exItem.id === item.id));
+    localStorage.setItem(`cart_${slug}`, JSON.stringify(newRestaurant.cart));
 
-    dispatch(restaurantsSuccess({ qty, total }));
-}
-
-export const addAddon = id => async (dispatch, getState) => {
-    let { restaurants: { addons, total } } = getState().frontend;
-    const addonIndex = addons.findIndex(a => +a.id === +id);
-    const newAddons = [...addons];
-
-    if (addonIndex >= 0) {
-        const addon = newAddons[addonIndex];
-        newAddons[addonIndex].qty = addon.qty + 1;
-        total += addon.price;
-    }
-
-    dispatch(restaurantsSuccess({ addons: newAddons, total }));
-}
-
-export const subAddon = id => async (dispatch, getState) => {
-    let { restaurants: { addons, total } } = getState().frontend;
-    const addonIndex = addons.findIndex(a => +a.id === +id);
-    const newAddons = [...addons];
-
-    if (addonIndex >= 0) {
-        const addon = newAddons[addonIndex];
-
-        if (addon.qty > 0) {
-            newAddons[addonIndex].qty = addon.qty - 1;
-            total -= addon.price;
-        }
-    }
-
-    dispatch(restaurantsSuccess({ addons: newAddons, total }));
+    dispatch(restaurantsSuccess({ restaurant: newRestaurant }));
 }

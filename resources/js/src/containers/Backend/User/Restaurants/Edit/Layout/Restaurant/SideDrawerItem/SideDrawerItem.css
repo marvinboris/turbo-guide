@@ -14,7 +14,7 @@
 .Restaurant.SideDrawerItem>div {
     background-color: transparent;
     box-shadow: 1px 2px 7px transparent;
-    transition: all .25s;
+    transition: var(--transition);
 }
 
 .Restaurant.SideDrawerItem.active>div {

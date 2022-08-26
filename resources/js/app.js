@@ -2,7 +2,10 @@ require('./bootstrap');
 
 $(function () {
     $.getScript('/js/jquery.star-rating-svg.js');
+    $.getScript("https://kit.fontawesome.com/132ff047cd.js");
 });
+
+window.COLOR_PRIMARY = 'orange';
 
 window.CORS = "https://api.allorigins.win/get?url=";
 

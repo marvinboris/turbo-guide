@@ -1,0 +1,37 @@
+.Frontend.Restaurants .UI.Header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 46px;
+
+    .back {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        cursor: pointer;
+        font-size: 11px;
+        border-radius: 50%;
+        margin-right: 30px;
+        align-items: center;
+        color: var(--white);
+        text-decoration: none;
+        justify-content: center;
+        background-color: var(--color-primary);
+    }
+
+    .meal-name {
+        flex: 1;
+        margin-right: 18px;
+        position: relative;
+
+        div {
+            top: 0;
+            left: 0;
+            width: 100%;
+            font-size: 25px;
+            font-weight: 700;
+            position: absolute;
+            line-height: 32.35px;
+            transform: translateY(-50%);
+        }
+    }
+}

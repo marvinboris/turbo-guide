@@ -1,0 +1,48 @@
+.Frontend.Restaurants .UI.Meal {
+    display: inline-block;
+
+    a {
+        height: 100%;
+        color: inherit;
+        display: block;
+        text-decoration: none;
+    }
+
+    .time {
+        z-index: 1;
+        height: 23px;
+        display: inline-flex;
+        overflow: hidden;
+        padding: 5px 8px;
+        position: relative;
+        align-items: center;
+        border-radius: 50rem;
+        background-color: var(--color-bg);
+
+        &::after {
+            top: 0;
+            left: 0;
+            content: "";
+            opacity: .2;
+            width: 100%;
+            z-index: -1;
+            height: 100%;
+            position: absolute;
+            background-color: var(--color-primary);
+        }
+
+        .icon {
+            font-size: 10px;
+            margin-right: 6px;
+            color: var(--color-primary);
+        }
+
+        .value {
+            font-size: 10px;
+
+            span {
+                font-weight: 700;
+            }
+        }
+    }
+}

@@ -23,6 +23,7 @@
         @endphp
 
         <title>{{ $restaurant->name . ' - ' . config('app.name', 'Laravel') }}</title>
+        <meta name="restaurant-name" content="{{ $restaurant->name }}" />
         @if ($restaurant->logo)
             <link id="favicon" rel="icon" href="{{ asset($restaurant->logo) }}">
         @else

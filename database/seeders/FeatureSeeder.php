@@ -17,52 +17,20 @@ class FeatureSeeder extends Seeder
     {
         $features = [
             [
-                'name' => "Cycles",
-                'prefix' => 'cycles',
+                'name' => "Restaurants",
+                'prefix' => 'restaurants',
             ],
             [
-                'name' => "Levels",
-                'prefix' => 'levels',
+                'name' => "Plans",
+                'prefix' => 'plans',
             ],
             [
-                'name' => "Classrooms",
-                'prefix' => 'classrooms',
+                'name' => "Recharges",
+                'prefix' => 'recharges',
             ],
             [
-                'name' => "Years",
-                'prefix' => 'years',
-            ],
-            [
-                'name' => "Students",
-                'prefix' => 'students',
-            ],
-            [
-                'name' => "Subjects",
-                'prefix' => 'subjects',
-            ],
-            [
-                'name' => "Sessions",
-                'prefix' => 'sessions',
-            ],
-            [
-                'name' => "Trimesters",
-                'prefix' => 'trimesters',
-            ],
-            [
-                'name' => "Sequences",
-                'prefix' => 'sequences',
-            ],
-            [
-                'name' => "Exam Types",
-                'prefix' => 'exam-types',
-            ],
-            [
-                'name' => "Exams",
-                'prefix' => 'exams',
-            ],
-            [
-                'name' => "Marks",
-                'prefix' => 'marks',
+                'name' => "Methods",
+                'prefix' => 'methods',
             ],
             [
                 'name' => "CMS",

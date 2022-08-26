@@ -20,16 +20,6 @@ export {
 } from './content';
 
 export {
-    addAddon,
-    addMeal,
-    getRestaurant as getRestaurantData,
-    getRestaurantsMeal,
-    resetRestaurants as resetFrontendRestaurants,
-    subAddon,
-    subMeal,
-} from './frontend';
-
-export {
     resetAdmins,
     getAdmins,
     getAdmin,

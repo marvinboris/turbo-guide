@@ -10,7 +10,7 @@ import Comment from './Comment';
 import FormInput from '../../../../../components/UI/Input/Input';
 import Stars from '../../../../../components/UI/Stars';
 
-import * as actions from '../../../../../store/actions/frontend';
+import { postComment } from '../../../../../store/actions/frontend/restaurants';
 
 class Comments extends Component {
     state = {
@@ -99,7 +99,7 @@ class Comments extends Component {
 const mapStateToProps = state => ({ ...state });
 
 const mapDispatchToProps = dispatch => ({
-    post: (slug, id, data) => dispatch(actions.postComment(slug, id, data)),
+    post: (slug, id, data) => dispatch(postComment(slug, id, data)),
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Comments));

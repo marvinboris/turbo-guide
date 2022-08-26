@@ -2,7 +2,7 @@
     color: var(--secondary);
     background-color: white;
     padding: 9px 18px;
-    transition: all .25s;
+    transition: var(--transition);
 }
 
 .CategoryTitle a:hover,

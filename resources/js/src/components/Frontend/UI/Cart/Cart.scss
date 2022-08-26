@@ -1,0 +1,27 @@
+.UI.Cart {
+    position: relative;
+    text-decoration: none;
+    color: var(--color-primary);
+
+    i {
+        font-size: 20px;
+    }
+
+    .qty {
+        top: 0;
+        right: 0;
+        width: 18px;
+        height: 18px;
+        display: flex;
+        font-size: 12px;
+        font-weight: 700;
+        border-radius: 50%;
+        position: absolute;
+        align-items: center;
+        color: var(--white);
+        line-height: 15.53px;
+        justify-content: center;
+        background-color: var(--green);
+        transform: translate(50%, -50%);
+    }
+}

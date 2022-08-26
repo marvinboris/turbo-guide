@@ -1,0 +1,24 @@
+.Frontend.Restaurants .UI.Category {
+    &>.name {
+        font-size: 20px;
+        font-weight: 700;
+        padding-left: 16px;
+        margin-bottom: 13px;
+        line-height: 25.88px;
+
+        &+div {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: scroll;
+            align-items: stretch;
+            padding-bottom: 30px;
+            scrollbar-width: none;
+            box-sizing: content-box;
+            -ms-overflow-style: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+    }
+}

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UtilController;
 use App\Models\Language;
+use App\Models\Method;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -324,10 +325,12 @@ Route::prefix('content')->name('content.')->group(function () {
             'pages' => $cmsFile['pages'][$abbr],
         ];
         $languages = Language::all();
+        $payment_methods = Method::all();
 
         return response()->json([
             'cms' => $cms,
             'languages' => $languages,
+            'payment_methods' => $payment_methods,
         ]);
     })->name('cms');
 });

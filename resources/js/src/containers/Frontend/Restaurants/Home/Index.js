@@ -1,48 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircle, faMapMarkerAlt, faPhone } from '@fortawesome/free-solid-svg-icons';
-import { faCalendar, faClock } from '@fortawesome/free-regular-svg-icons';
-import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
-import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from 'reactstrap';
+import { CustomInput, DropdownItem, DropdownMenu, DropdownToggle, Input, UncontrolledDropdown } from 'reactstrap';
 
-import Meal from '../../../../components/UI/Food/Meal';
-import Stars from '../../../../components/UI/Stars';
+import Cart from '../../../../components/Frontend/UI/Cart';
+import Meal from '../../../../components/Frontend/UI/Food/Meal';
+import Category from '../../../../components/Frontend/UI/Category';
+
 import Spinner from '../../../../components/UI/Spinner';
 
-import Navigation from './Navigation';
 import Carousel from './Carousel';
 import SelectCategory from './SelectCategory';
 
-import * as frontendActions from '../../../../store/actions/frontend';
-import * as contentActions from '../../../../store/actions/content';
 import { updateObject } from '../../../../shared/utility';
 
-import './Home.css';
+import { getRestaurant } from '../../../../store/actions/frontend/restaurants';
+import { getContent } from '../../../../store/actions/content';
 
-const Wrapper = ({ children, className, style }) => <div className={className} style={{ padding: '12px 11px', ...style }}>
-    {children}
-</div>;
-
-const Category = ({ children, name, id, index }) => <div id={`category-${id}`} className="category" style={index === 0 ? { paddingTop: 220.5, marginTop: -205.5 } : {}}>
-    {index > 0 && <div className="mb-3 d-flex justify-content-end" style={{ paddingRight: 11 }}>
-        <div className="text-13 text-500 px-4 py-2 bg-orange-30 text-orange rounded-pill">
-            <div className="px-1">{name}</div>
-        </div>
-    </div>}
-
-    <div>
-        {children}
-    </div>
-</div>;
-
-const Stack = ({ icon, color, link, className = '' }) => <a href={link} target="_blank" className={`fa-stack fa-2x text-${color} text-10 ${className}`}>
-    <FontAwesomeIcon icon={faCircle} className="fa-stack-2x" />
-    <FontAwesomeIcon icon={icon} className="fa-stack-1x fa-inverse" />
-</a>;
-
-const Conditional = ({ condition, children }) => condition ? children : null;
+import './Home.scss';
 
 const Languages = ({ languages, set }) => {
     const lang = localStorage.getItem('lang');
@@ -53,12 +28,12 @@ const Languages = ({ languages, set }) => {
     </DropdownItem>);
 
     return <UncontrolledDropdown className="Languages">
-        <DropdownToggle className="position-relative d-flex justify-content-around align-items-center bg-black-50 rounded-pill rounded-right-0 border-0 p-2 m-0" style={{ boxShadow: 'none' }} caret>
-            <span className="language-flag shadow-lg mr-2 overflow-hidden d-inline-flex justify-content-center align-items-center position-relative">
-                <span className={`flag-icon position-absolute flag-icon-${language && language.flag.toLowerCase()}`} />
-            </span>
+        <DropdownToggle>
+            <span className="text">{language && language.abbr}</span>
 
-            <span className="text-700">{language && language.abbr.toUpperCase()}</span>
+            <span className="language-flag">
+                <span className={`flag-icon flag-icon-${language && language.flag.toLowerCase()}`} />
+            </span>
         </DropdownToggle>
 
         <DropdownMenu style={{ minWidth: '5rem' }}>
@@ -115,15 +90,14 @@ class Home extends Component {
     // Lifecycle methods
     static getDerivedStateFromProps(nextProps, prevState) {
         if (nextProps.frontend.restaurants.restaurant && prevState.id === '') {
-            const { categories, restaurant: { name, logo } } = nextProps.frontend.restaurants;
+            const { categories } = nextProps.frontend.restaurants;
             if (categories.length > 0) return updateObject(prevState, { id: categories[0].id });
         }
         return null;
     }
 
     componentDidMount() {
-        if (!this.props.frontend.restaurants.restaurant) this.props.get(this.props.match.params.slug);
-        else this.init();
+        this.init();
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -143,7 +117,7 @@ class Home extends Component {
     render() {
         const {
             content: {
-                cms: { pages: { components: { food }, frontend: { restaurants: { home } } } },
+                cms: { pages: { frontend: { restaurants: { home } } } },
                 currencies,
             },
             frontend: { restaurants: { loading, restaurant = { days: {}, hours: {}, address: {} }, categories = [], currency, languages = [], position } }
@@ -162,108 +136,76 @@ class Home extends Component {
         if (restaurant.banner2) items.push(restaurant.banner2);
         if (restaurant.banner3) items.push(restaurant.banner3);
 
-        const basic = restaurant.plan;
-        const standard = restaurant.plan && restaurant.plan.slug.includes('standard');
-        const premium = restaurant.plan && restaurant.plan.slug.includes('premium');
-
         return <div className="Home">
             {loading && !this.props.frontend.restaurants.restaurant && <Spinner />}
             <input type="hidden" id="id" defaultValue={id} />
 
-            <div className="embed-responsive embed-responsive-16by9 position-relative">
-                <div className="position-absolute w-100 h-100" style={{ top: 0, left: 0 }}>
-                    {items.length > 1 ? <Carousel items={items} /> : <div className="h-100" style={{
-                        top: 0, left: 0,
-                        backgroundImage: `url('${restaurant.banner1}')`,
-                        backgroundRepeat: 'no-repeat',
-                        backgroundPosition: 'center',
-                        backgroundSize: 'cover',
-                    }} />}
+            <div className='header'>
+                <div className='welcome'>
+                    <div className='text'>
+                        <span>{home.welcome_to}</span>
+                    </div>
 
-                    <div className="position-absolute pt-4" style={{ top: 0, right: 0, zIndex: 1040 }}>
+                    <div className={`status ${restaurant.status ? 'open' : 'closed'}`}>
+                        <div className='icon'>
+                            <i className={`fas fa-door-${restaurant.status ? 'open' : 'closed'}`} />
+                        </div>
+
+                        <div className='circle'>
+                            <i className='fas fa-circle' />
+                        </div>
+
+                        <div className='value'>{restaurant.status ? home.open : home.closed}</div>
+                    </div>
+
+                    <div>
+                        <Cart />
+                    </div>
+                </div>
+
+                <div className='restaurant'>
+                    <div className='text'>{restaurant.name}</div>
+
+                    <div>
                         <Languages languages={languages} set={this.setLanguage} />
                     </div>
                 </div>
-            </div>
 
-            <div className="sticky-top border-bottom border-soft bg-white">
-                <Wrapper className="bg-orange-10">
-                    <div className="d-flex justify-content-between align-items-end">
-                        <div className="text-500 text-17 text-orange">
-                            {restaurant.name}
-                        </div>
-
-                        <div>
-                            <Conditional condition={(premium || standard || basic) && restaurant.phone}><Stack link={`tel:+${restaurant.phone}`} icon={faPhone} color="primary" /></Conditional>
-                            <Conditional condition={(premium || standard) && restaurant.whatsapp}><Stack link={`//wa.me/${restaurant.whatsapp}`} icon={faWhatsapp} color="green" /></Conditional>
-                            <Conditional condition={premium && restaurant.location}><Stack link={restaurant.location} icon={faMapMarkerAlt} color="yellow" /></Conditional>
-                        </div>
+                <div className="embed-responsive embed-responsive-16by9 banner">
+                    <div className="img-container">
+                        {items.length > 1 ? <Carousel items={items} /> : <div className="img" style={{ backgroundImage: `url('${restaurant.banner1}')` }} />}
                     </div>
 
-                    <div className="d-flex align-items-center text-8 text-500">
-                        <div className="mr-2 pr-2 border-right border-lg border-orange d-flex align-items-center">
-                            <div className="mr-1">
-                                <FontAwesomeIcon icon={faCalendar} className="text-6 text-orange" />
-                            </div>
+                    <div className='location'>
+                        <div className='icon'><i className='fas fa-map-marker-alt' /></div>
 
-                            <span>
-                                {restaurant.days[lang]}
-                            </span>
-                        </div>
-
-                        <div className="d-flex align-items-center">
-                            <div className="mr-1">
-                                <FontAwesomeIcon icon={faClock} className="text-6 text-orange" />
-                            </div>
-
-                            <span>
-                                {restaurant.hours[lang]}
-                            </span>
-                        </div>
+                        <div className='text'>{restaurant.address[lang]}</div>
                     </div>
 
-                    <div className="d-flex justify-content-between align-items-center">
-                        <div className="text-300 text-8">
-                            {restaurant.address[lang]}
-                        </div>
-
-                        <div className="d-flex align-items-center">
-                            <div className="text-8">{food.ratings}</div>
-
-                            <div className="mx-1">
-                                {restaurant.mark && <Stars readOnly lg mark={+restaurant.mark} />}
-                            </div>
-
-                            <div className="text-orange text-6 text-700">
-                                ({restaurant.mark})
-                            </div>
-                        </div>
+                    <div className='phone'>
+                        <a href={`tel:${restaurant.phone}`} className='btn btn-green fas fa-phone' />
                     </div>
-                </Wrapper>
-
-                <Wrapper className="navigation scrollbar-orange" style={{ paddingTop: 18 }}>
-                    <div className="nav text-truncate flex-nowrap d-inline-flex" id="categories" style={{ overflow: 'visible' }}>
-                        <Navigation categories={categories.map(c => updateObject({ ...c, name: c.name[lang], description: c.description[lang] }))} />
-                    </div>
-                </Wrapper>
-
-                <Wrapper className="bg-orange-10 d-flex justify-content-end align-items-center">
-                    <div className="text-12 mr-auto">
-                        {home.you_are_on_category}
-                    </div>
-
-                    <div className="mx-2">
-                        <div className="rounded-pill bg-orange" style={{ height: 5, width: 18 }} />
-                    </div>
-
-                    <SelectCategory cms={home} categories={categories.map(c => ({ ...c, name: c.name[lang], description: c.description[lang] }))} />
-                </Wrapper>
-            </div>
-
-            <div>
-                <div className="categories position-relative bg-white">
-                    {categoriesContent}
                 </div>
+            </div>
+
+            <div className='select-search-filter'>
+                <div className="select">
+                    <CustomInput type='select' id='select-category' name='category' defaultValue={id}>
+                        {categories.map(category => <option key={`select-category-${JSON.stringify(category)}`} value={category.id}>{category.name[lang]}</option>)}
+                    </CustomInput>
+                </div>
+
+                <div className="search">
+                    <Input type='search' name='meal' placeholder={home.search_meal} />
+                </div>
+
+                <div className='filter'>
+                    <SelectCategory cms={home} categories={categories.map(c => ({ ...c, name: c.name[lang], description: c.description[lang] }))} />
+                </div>
+            </div>
+
+            <div className="categories">
+                {categoriesContent}
             </div>
         </div>;
     }
@@ -272,8 +214,8 @@ class Home extends Component {
 const mapStateToProps = state => ({ ...state });
 
 const mapDispatchToProps = dispatch => ({
-    get: slug => dispatch(frontendActions.getRestaurant(slug)),
-    getContent: () => dispatch(contentActions.getContent()),
+    get: slug => dispatch(getRestaurant(slug)),
+    getContent: () => dispatch(getContent()),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));

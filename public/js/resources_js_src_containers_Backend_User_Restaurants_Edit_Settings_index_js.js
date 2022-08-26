@@ -12,12 +12,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/BreadcrumbItem.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Breadcrumb.js");
-/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -77,15 +76,15 @@ var Breadcrumb = /*#__PURE__*/function (_Component) {
           dark = _this$props$dark === void 0 ? false : _this$props$dark;
       var itemsComponent = null;
       if (items) itemsComponent = items.map(function (item, i) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_4__.default, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.NavLink, {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_2__.BreadcrumbItem, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.NavLink, {
             className: "text-".concat(dark ? "light" : "secondary"),
             to: item.to,
             children: item.content
           })
         }, i);
       });
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.default, {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_2__.Breadcrumb, {
         className: "d-none d-sm-flex align-items-center",
         color: dark ? "light" : "secondary",
         listClassName: "bg-transparent rounded-0 justify-content-end text-large",
@@ -96,18 +95,18 @@ var Breadcrumb = /*#__PURE__*/function (_Component) {
           position: 'absolute',
           zIndex: 1000
         },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_4__.default, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.NavLink, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_2__.BreadcrumbItem, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.NavLink, {
             className: "text-".concat(dark ? "light" : "secondary"),
             to: "/",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
               icon: icon,
               className: "mr-1"
-            }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("strong", {
+            }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("strong", {
               children: home
             })]
           })
-        }), itemsComponent, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_4__.default, {
+        }), itemsComponent, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_2__.BreadcrumbItem, {
           className: "text-".concat(dark ? "light" : "secondary", " text-decoration-none"),
           active: true,
           children: main
@@ -123,7 +122,7 @@ var mapStateToProps = function mapStateToProps(state) {
   return _objectSpread({}, state);
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_2__.connect)(mapStateToProps)(Breadcrumb));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_4__.connect)(mapStateToProps)(Breadcrumb));
 
 /***/ }),
 
@@ -139,13 +138,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Col.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Button.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Form.js");
-/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
@@ -183,57 +180,57 @@ __webpack_require__.r(__webpack_exports__);
       list = _ref.list,
       link = _ref.link,
       disabled = _ref.disabled;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_3__.default, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_2__.Col, {
     xs: xs,
     sm: sm,
     md: md,
     lg: lg,
     xl: xl,
     className: outerClassName,
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       className: "rounded-4 d-flex align-items-center mb-4 mb-sm-5 py-3 py-sm-4 px-4 px-sm-5 bg-".concat(dark ? "grayblue" : "orange-10", " ").concat(className),
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
         className: "d-flex align-items-center",
-        children: [icon ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
+        children: [icon ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
           fixedWidth: true,
           className: "mr-3 mr-sm-4 text-30 text-orange-20",
           icon: icon,
           size: "lg"
-        }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
             className: "text-".concat(dark ? "light" : "orange", " text-700 text-20 mb-1"),
             children: title
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
             className: "text-10",
             children: subtitle
           })]
         })]
-      }), list && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+      }), list && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
         to: link,
         className: "ml-auto d-none d-md-inline",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_5__.default, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_2__.Button, {
           color: "green",
           className: "rounded-2 py-2 text-16 text-500 px-3 px-sm-4",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_6__.faTasks,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_3__.FontAwesomeIcon, {
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faTasks,
             fixedWidth: true,
             className: "mr-3"
           }), list]
         })
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
       className: "d-flex flex-column ".concat(dark ? "text-light bg-grayblue" : "", " ").concat(className),
       style: style,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
         className: "flex-fill d-flex flex-column",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
           className: "flex-fill",
-          children: disabled ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          children: disabled ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
             id: id,
             className: innerClassName,
             encType: "multipart/form-data",
             children: children
-          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.default, {
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_2__.Form, {
             onSubmit: onSubmit,
             id: id,
             className: innerClassName,
@@ -275,6 +272,34 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/src/components/Error/Error.js":
+/*!****************************************************!*\
+  !*** ./resources/js/src/components/Error/Error.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+var error = function error(_ref) {
+  var err = _ref.err;
+  return err ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    className: "alert alert-danger",
+    children: err.message ? err.message : err
+  }) : null;
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (error);
+
+/***/ }),
+
 /***/ "./resources/js/src/components/Feedback/Feedback.js":
 /*!**********************************************************!*\
   !*** ./resources/js/src/components/Feedback/Feedback.js ***!
@@ -287,8 +312,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Alert.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -316,7 +341,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   if (time) setTimeout(function () {
     setVisible(false);
   }, time);
-  return message ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_2__.default, {
+  return message ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_1__.Alert, {
     color: message.type,
     isOpen: visible,
     children: message.content
@@ -337,17 +362,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/FormGroup.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/InputGroup.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/InputGroupAddon.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/InputGroupText.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/CustomInput.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Input.js");
-/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-/* harmony import */ var _shared_utility__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../shared/utility */ "./resources/js/src/shared/utility.js");
-/* harmony import */ var _WithTooltip_WithTooltip__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../WithTooltip/WithTooltip */ "./resources/js/src/components/UI/WithTooltip/WithTooltip.js");
-/* harmony import */ var _Input_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Input.css */ "./resources/js/src/components/UI/Input/Input.css");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
+/* harmony import */ var _shared_utility__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../shared/utility */ "./resources/js/src/shared/utility.js");
+/* harmony import */ var _WithTooltip_WithTooltip__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../WithTooltip/WithTooltip */ "./resources/js/src/components/UI/WithTooltip/WithTooltip.js");
+/* harmony import */ var _Input_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Input.css */ "./resources/js/src/components/UI/Input/Input.css");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -406,35 +426,35 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
   };
 
   if (required) validation.required = true;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_6__.default, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_1__.FormGroup, {
     className: "Input ".concat(className),
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_WithTooltip_WithTooltip__WEBPACK_IMPORTED_MODULE_3__.default, {
-      content: placeholder && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-        children: [placeholder, required && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_WithTooltip_WithTooltip__WEBPACK_IMPORTED_MODULE_4__.default, {
+      content: placeholder && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+        children: [placeholder, required && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
           className: "text-red",
           children: "*"
         })]
       }),
       id: 'tooltip-' + (id ? id : name),
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_7__.default, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_1__.InputGroup, {
         className: "bg-".concat(dark ? "grayblue" : "white border border-soft", " rounded-6 d-flex align-items-center"),
         size: "lg",
-        children: [(icon || addon) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_8__.default, {
+        children: [(icon || addon) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_1__.InputGroupAddon, {
           addonType: "prepend",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_9__.default, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_1__.InputGroupText, {
             className: "bg-transparent d-block border-0 px-4 py-0 my-1 text-center text-16",
             style: {
               width: 77
             },
-            children: icon ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
+            children: icon ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
               className: "text-light mx-1",
               fixedWidth: true,
               icon: icon
             }) : addon
           })
-        }), children ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_10__.default, {
-          valid: touched && value && (0,_shared_utility__WEBPACK_IMPORTED_MODULE_2__.checkValidity)(value, validation),
-          invalid: touched && !(0,_shared_utility__WEBPACK_IMPORTED_MODULE_2__.checkValidity)(value, validation),
+        }), children ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_1__.CustomInput, {
+          valid: touched && value && (0,_shared_utility__WEBPACK_IMPORTED_MODULE_3__.checkValidity)(value, validation),
+          invalid: touched && !(0,_shared_utility__WEBPACK_IMPORTED_MODULE_3__.checkValidity)(value, validation),
           onChange: inputChangedHandler,
           type: type,
           id: name,
@@ -446,10 +466,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           value: value,
           className: "bg-".concat(dark ? "grayblue" : "", " ").concat(icon || addon ? "border-top-0 border-right-0 border-bottom-0 border-soft" : "", " rounded-right-6 text-small text-secondary h-100 px-4 py-3"),
           children: children
-        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_11__.default, {
-            valid: touched && value && (0,_shared_utility__WEBPACK_IMPORTED_MODULE_2__.checkValidity)(value, validation),
-            invalid: touched && !(0,_shared_utility__WEBPACK_IMPORTED_MODULE_2__.checkValidity)(value, validation),
+        }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_1__.Input, {
+            valid: touched && value && (0,_shared_utility__WEBPACK_IMPORTED_MODULE_3__.checkValidity)(value, validation),
+            invalid: touched && !(0,_shared_utility__WEBPACK_IMPORTED_MODULE_3__.checkValidity)(value, validation),
             onChange: inputChangedHandler,
             id: id ? id : name,
             type: type,
@@ -460,14 +480,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
             defaultValue: defaultValue,
             value: value,
             className: (icon || addon ? "border-top-0 border-right-0 border-bottom-0 border-soft" : "border-0") + " rounded-right-6 text-small text-secondary h-100 px-4 py-3"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
             className: "text-small text-light text-truncate m-0",
             htmlFor: id ? id : name,
             children: placeholder
           })]
-        }), append && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_8__.default, {
+        }), append && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_1__.InputGroupAddon, {
           addonType: "append",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_9__.default, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_1__.InputGroupText, {
             className: "bg-transparent border-0 text-secondary text-small px-4",
             children: append
           })
@@ -559,8 +579,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Tooltip.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -592,11 +612,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     return setTooltipOpen(!tooltipOpen);
   };
 
-  return content ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+  return content ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
       id: id,
       children: children
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_2__.default, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_1__.Tooltip, {
       isOpen: tooltipOpen,
       target: id,
       toggle: toggle,
@@ -620,30 +640,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Button.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/FormGroup.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Col.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Input.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Label.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Row.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
-/* harmony import */ var _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @fortawesome/free-regular-svg-icons */ "./node_modules/@fortawesome/free-regular-svg-icons/index.es.js");
-/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-/* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "./node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _components_Backend_UI_Breadcrumb_Breadcrumb__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../../components/Backend/UI/Breadcrumb/Breadcrumb */ "./resources/js/src/components/Backend/UI/Breadcrumb/Breadcrumb.js");
-/* harmony import */ var _components_Backend_UI_TitleWrapper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../../../components/Backend/UI/TitleWrapper */ "./resources/js/src/components/Backend/UI/TitleWrapper/index.js");
-/* harmony import */ var _components_UI_Titles_SpecialTitle_SpecialTitle__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../../components/UI/Titles/SpecialTitle/SpecialTitle */ "./resources/js/src/components/UI/Titles/SpecialTitle/SpecialTitle.js");
-/* harmony import */ var _components_UI_Titles_Subtitle_Subtitle__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../../components/UI/Titles/Subtitle/Subtitle */ "./resources/js/src/components/UI/Titles/Subtitle/Subtitle.js");
-/* harmony import */ var _components_Error_Error__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../../../components/Error/Error */ "./resources/js/src/components/Error/Error.js");
-/* harmony import */ var _components_UI_CustomSpinner_CustomSpinner__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../../../components/UI/CustomSpinner/CustomSpinner */ "./resources/js/src/components/UI/CustomSpinner/CustomSpinner.js");
-/* harmony import */ var _components_Backend_UI_Food_Form__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../../../../components/Backend/UI/Food/Form */ "./resources/js/src/components/Backend/UI/Food/Form/index.js");
-/* harmony import */ var _components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../../../../components/UI/Input/Input */ "./resources/js/src/components/UI/Input/Input.js");
-/* harmony import */ var _components_Feedback_Feedback__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../../../../components/Feedback/Feedback */ "./resources/js/src/components/Feedback/Feedback.js");
-/* harmony import */ var _store_actions_backend_restaurants__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../../../../store/actions/backend/restaurants */ "./resources/js/src/store/actions/backend/restaurants/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/free-regular-svg-icons */ "./node_modules/@fortawesome/free-regular-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
+/* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "./node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _components_Backend_UI_Breadcrumb_Breadcrumb__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../../../components/Backend/UI/Breadcrumb/Breadcrumb */ "./resources/js/src/components/Backend/UI/Breadcrumb/Breadcrumb.js");
+/* harmony import */ var _components_Backend_UI_TitleWrapper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../../../components/Backend/UI/TitleWrapper */ "./resources/js/src/components/Backend/UI/TitleWrapper/index.js");
+/* harmony import */ var _components_UI_Titles_SpecialTitle_SpecialTitle__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../../../../components/UI/Titles/SpecialTitle/SpecialTitle */ "./resources/js/src/components/UI/Titles/SpecialTitle/SpecialTitle.js");
+/* harmony import */ var _components_UI_Titles_Subtitle_Subtitle__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../../../../components/UI/Titles/Subtitle/Subtitle */ "./resources/js/src/components/UI/Titles/Subtitle/Subtitle.js");
+/* harmony import */ var _components_Error_Error__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../../../../components/Error/Error */ "./resources/js/src/components/Error/Error.js");
+/* harmony import */ var _components_UI_CustomSpinner_CustomSpinner__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../../../../components/UI/CustomSpinner/CustomSpinner */ "./resources/js/src/components/UI/CustomSpinner/CustomSpinner.js");
+/* harmony import */ var _components_Backend_UI_Food_Form__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../../../../../components/Backend/UI/Food/Form */ "./resources/js/src/components/Backend/UI/Food/Form/index.js");
+/* harmony import */ var _components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../../../../../components/UI/Input/Input */ "./resources/js/src/components/UI/Input/Input.js");
+/* harmony import */ var _components_Feedback_Feedback__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../../../../../components/Feedback/Feedback */ "./resources/js/src/components/Feedback/Feedback.js");
+/* harmony import */ var _store_actions_backend_restaurants__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../../../../../store/actions/backend/restaurants */ "./resources/js/src/store/actions/backend/restaurants/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -717,7 +732,7 @@ var Block = function Block(_ref) {
       onSubmit = _ref.onSubmit,
       updatable = _ref.updatable,
       toggle = _ref.toggle;
-  return children ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("form", {
+  return children ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)("form", {
     className: "col-xxl-3 col-xl-4 col-lg-6 pb-4",
     style: hidden ? {
       visibility: 'hidden'
@@ -725,44 +740,44 @@ var Block = function Block(_ref) {
       visibility: 'visible'
     },
     onSubmit: onSubmit,
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("input", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("input", {
       type: "hidden",
       name: "_method",
       defaultValue: "PATCH"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
       className: "h-100 bg-white rounded-8 shadow py-3 py-sm-4 px-4 px-sm-5",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)("div", {
         className: "py-2 d-flex flex-column h-100",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)("div", {
           className: "mb-3 mb-sm-4 pb-3 pb-sm-4 border-bottom border-orange-50 d-flex align-items-center justify-content-between",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)("div", {
             className: "text-14",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_6__.FontAwesomeIcon, {
               icon: icon,
               className: "mr-3 text-orange text-21"
             }), title]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
             className: "text-27 text-orange",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-              icon: updatable ? _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faLockOpen : _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faLock,
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_6__.FontAwesomeIcon, {
+              icon: updatable ? _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faLockOpen : _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faLock,
               onClick: toggle,
               style: {
                 cursor: 'pointer'
               }
             })
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
           className: "mb-2 mb-sm-3 pb-1",
           children: children
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
           className: "mt-auto",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_16__.default, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_3__.Button, {
             color: "orange",
             className: "text-20 rounded-4 py-3 px-4",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)("div", {
               className: "mx-3",
-              children: [save, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-                icon: _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_17__.faSave,
+              children: [save, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_6__.FontAwesomeIcon, {
+                icon: _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faSave,
                 className: "ml-4"
               })]
             })
@@ -781,8 +796,8 @@ var CmsItem = function CmsItem(_ref2) {
       disabled = _ref2.disabled,
       restaurant = _ref2.restaurant,
       fileUpload = _ref2.fileUpload;
-  return condition ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_18__.default, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+  return condition ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_3__.FormGroup, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
       id: "embed-".concat(attr),
       className: "embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center",
       style: {
@@ -796,21 +811,21 @@ var CmsItem = function CmsItem(_ref2) {
       onClick: function onClick() {
         return fileUpload(attr);
       },
-      children: banner && banner !== restaurant[attr] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+      children: banner && banner !== restaurant[attr] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)("div", {
         className: "text-center text-green w-100 px-3",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
           className: "position-absolute",
           style: {
             top: 0,
             right: 0,
             transform: 'translate(50%,-50%)'
           },
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faCheckCircle,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_6__.FontAwesomeIcon, {
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faCheckCircle,
             fixedWidth: true,
             size: "2x"
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
           className: "position-absolute file-selected text-truncate w-100 pt-3",
           style: {
             top: '100%',
@@ -819,21 +834,21 @@ var CmsItem = function CmsItem(_ref2) {
         })]
       })
     })
-  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_18__.default, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_3__.FormGroup, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
       style: {
         cursor: 'not-allowed'
       },
       className: "embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)("div", {
         className: "text-center text-light w-100 px-3",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faLock,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_6__.FontAwesomeIcon, {
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faLock,
             fixedWidth: true,
             size: "5x"
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
           className: "mt-3 text-12 text-center text-truncate",
           children: locked
         })]
@@ -1067,7 +1082,7 @@ var Settings = /*#__PURE__*/function (_Component) {
 
       if (!prevProps.backend.restaurants.restaurant && this.props.backend.restaurants.restaurant) {
         var restaurant = this.props.backend.restaurants.restaurant;
-        if (!restaurant.name || restaurant.languages.length === 0) sweetalert2__WEBPACK_IMPORTED_MODULE_3___default().fire({
+        if (!restaurant.name || restaurant.languages.length === 0) sweetalert2__WEBPACK_IMPORTED_MODULE_7___default().fire({
           title: 'Missing restaurant\'s name or languages',
           text: "Please set your restaurant\'s name and languages",
           icon: 'warning',
@@ -1142,7 +1157,7 @@ var Settings = /*#__PURE__*/function (_Component) {
       var restaurantLanguagesOptions = restaurantLanguages.sort(function (a, b) {
         return a.name.localeCompare(b.name);
       }).map(function (language) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("option", {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("option", {
           value: language.abbr,
           children: language.name
         }, JSON.stringify(language));
@@ -1154,7 +1169,7 @@ var Settings = /*#__PURE__*/function (_Component) {
         var country = _ref4.country,
             code = _ref4.code,
             name = _ref4.name;
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("option", {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("option", {
           value: country,
           code: code,
           children: name
@@ -1164,7 +1179,7 @@ var Settings = /*#__PURE__*/function (_Component) {
         var cc = _ref5.cc,
             symbol = _ref5.symbol,
             name = _ref5.name;
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("option", {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("option", {
           value: cc,
           symbol: symbol,
           children: name
@@ -1180,17 +1195,17 @@ var Settings = /*#__PURE__*/function (_Component) {
       }).map(function (_ref7) {
         var id = _ref7.id,
             name = _ref7.name;
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("option", {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("option", {
           value: id,
           children: name
         }, id);
       });
-      if (loading) spinnerContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_19__.default, {
+      if (loading) spinnerContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_3__.Col, {
         xs: 12,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_UI_CustomSpinner_CustomSpinner__WEBPACK_IMPORTED_MODULE_9__.default, {})
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_components_UI_CustomSpinner_CustomSpinner__WEBPACK_IMPORTED_MODULE_13__.default, {})
       });else {
-        errors = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.Fragment, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_Error_Error__WEBPACK_IMPORTED_MODULE_8__.default, {
+        errors = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.Fragment, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_components_Error_Error__WEBPACK_IMPORTED_MODULE_12__.default, {
             err: error
           })
         });
@@ -1199,30 +1214,30 @@ var Settings = /*#__PURE__*/function (_Component) {
           return c.cc === currency;
         });
         if (selectedCurrency) symbol = selectedCurrency.symbol;
-        restaurantContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.Fragment, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+        restaurantContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_15__.default, {
             type: "text",
-            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faHome,
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faHome,
             onChange: this.inputChangeHandler,
             value: name,
             disabled: !restaurantUpdatable,
             name: "name",
             required: true,
             placeholder: form.name
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_15__.default, {
             type: "text",
-            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faUserTie,
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faUserTie,
             onChange: this.inputChangeHandler,
             value: owner,
             disabled: !restaurantUpdatable,
             name: "owner",
             required: true,
             placeholder: form.owner
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(Conditional, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(Conditional, {
             condition: basic,
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_15__.default, {
               type: "tel",
-              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faPhone,
+              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faPhone,
               onChange: this.inputChangeHandler,
               value: phone,
               disabled: !restaurantUpdatable,
@@ -1230,31 +1245,31 @@ var Settings = /*#__PURE__*/function (_Component) {
               required: true,
               placeholder: form.phone
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(Conditional, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(Conditional, {
             condition: standard || premium,
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_15__.default, {
               type: "tel",
-              icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_20__.faWhatsapp,
+              icon: _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_19__.faWhatsapp,
               onChange: this.inputChangeHandler,
               value: whatsapp,
               disabled: !restaurantUpdatable,
               name: "whatsapp",
               placeholder: form.whatsapp
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(Conditional, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(Conditional, {
             condition: premium,
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_15__.default, {
               type: "text",
-              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faLocationArrow,
+              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faLocationArrow,
               onChange: this.inputChangeHandler,
               value: location,
               disabled: !restaurantUpdatable,
               name: "location",
               placeholder: form.location
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_15__.default, {
             type: "select",
-            addon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+            addon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
               className: "text-center text-light",
               style: {
                 margin: '0 -10px'
@@ -1267,33 +1282,33 @@ var Settings = /*#__PURE__*/function (_Component) {
             name: "currency",
             placeholder: form.select_currency,
             required: true,
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("option", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("option", {
               children: form.select_currency
             }), currenciesOptions]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_15__.default, {
             type: "select",
-            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faArrowsAltH,
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faArrowsAltH,
             onChange: this.inputChangeHandler,
             value: position,
             disabled: !restaurantUpdatable,
             name: "position",
             placeholder: form.select_position,
             required: true,
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("option", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("option", {
               children: form.select_position
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("option", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("option", {
               value: 0,
               children: form.left
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("option", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("option", {
               value: 1,
               children: form.right
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_18__.default, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_3__.FormGroup, {
             row: true,
             className: "justify-content-center",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
               className: "col-12 col-sm-10",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
                 id: "embed-logo",
                 className: "embed-responsive embed-responsive-1by1 bg-soft rounded-8 d-flex justify-content-center align-items-center",
                 style: {
@@ -1307,36 +1322,36 @@ var Settings = /*#__PURE__*/function (_Component) {
                 onClick: !restaurantUpdatable ? null : function () {
                   return _this2.fileUpload("logo");
                 },
-                children: !logo ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+                children: !logo ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)("div", {
                   className: "text-center text-light w-100 overflow-hidden px-3",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-                      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faFileImage,
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_6__.FontAwesomeIcon, {
+                      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faFileImage,
                       fixedWidth: true,
                       size: "5x"
                     })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
                     className: "mt-3 mb-1 text-center text-12 text-truncate",
                     children: form.upload
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
                     className: "text-center text-12 text-truncate",
                     children: form.size
                   })]
-                }) : logo && logo !== restaurant.logo && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+                }) : logo && logo !== restaurant.logo && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)("div", {
                   className: "text-center text-green w-100 px-3",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
                     className: "position-absolute",
                     style: {
                       top: 0,
                       right: 0,
                       transform: 'translate(50%,-50%)'
                     },
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-                      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faCheckCircle,
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_6__.FontAwesomeIcon, {
+                      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faCheckCircle,
                       fixedWidth: true,
                       size: "2x"
                     })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
                     className: "position-absolute file-selected text-truncate w-100 pt-3",
                     style: {
                       top: '100%',
@@ -1348,26 +1363,26 @@ var Settings = /*#__PURE__*/function (_Component) {
             })
           })]
         });
-        accountContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.Fragment, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+        accountContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_15__.default, {
             type: "email",
-            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faEnvelope,
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faEnvelope,
             onChange: this.inputChangeHandler,
             value: email,
             disabled: !accountUpdatable,
             name: "email",
             required: true,
             placeholder: form.email
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_15__.default, {
             type: "select",
-            addon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+            addon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
                 className: "rounded-circle mx-auto overflow-hidden position-relative d-flex justify-content-center align-items-center",
                 style: {
                   width: 18,
                   height: 18
                 },
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("span", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("span", {
                   className: "flag-icon text-large position-absolute flag-icon-".concat(country.toLowerCase())
                 })
               })
@@ -1378,44 +1393,44 @@ var Settings = /*#__PURE__*/function (_Component) {
             name: "country",
             placeholder: form.select_country,
             required: true,
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("option", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("option", {
               children: form.select_country
             }), countriesOptions]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_15__.default, {
             type: "text",
-            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faEdit,
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faEdit,
             onChange: this.inputChangeHandler,
             value: token,
             disabled: !accountUpdatable,
             name: "token",
             readonly: true,
             placeholder: form.token
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_15__.default, {
             type: "password",
-            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faLock,
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faLock,
             onChange: this.inputChangeHandler,
             value: password,
             disabled: !accountUpdatable,
             name: "password",
             placeholder: form.password
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_15__.default, {
             type: "password",
-            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faLock,
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faLock,
             onChange: this.inputChangeHandler,
             value: new_password,
             disabled: !accountUpdatable,
             name: "new_password",
             placeholder: form.new_password
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_15__.default, {
             type: "password",
-            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faLock,
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faLock,
             onChange: this.inputChangeHandler,
             value: new_password_confirmation,
             disabled: !accountUpdatable,
             name: "new_password_confirmation",
             placeholder: form.new_password_confirmation
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_18__.default, {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_3__.FormGroup, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
               id: "embed-photo",
               className: "embed-responsive embed-responsive-16by9 bg-soft rounded-8 d-flex justify-content-center align-items-center position-relative",
               style: {
@@ -1429,36 +1444,36 @@ var Settings = /*#__PURE__*/function (_Component) {
               onClick: !accountUpdatable ? null : function () {
                 return _this2.fileUpload("photo");
               },
-              children: !photo ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+              children: !photo ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)("div", {
                 className: "text-center text-light w-100 overflow-hidden px-3",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-                    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faFileImage,
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_6__.FontAwesomeIcon, {
+                    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faFileImage,
                     fixedWidth: true,
                     size: "4x"
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
                   className: "mt-3 mb-1 text-center text-12 text-truncate",
                   children: form.upload
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
                   className: "text-center text-12 text-truncate",
                   children: form.size
                 })]
-              }) : photo && photo !== restaurant.photo && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
+              }) : photo && photo !== restaurant.photo && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)("div", {
                 className: "text-center text-green w-100 px-3",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
                   className: "position-absolute",
                   style: {
                     top: 0,
                     right: 0,
                     transform: 'translate(50%,-50%)'
                   },
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-                    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faCheckCircle,
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_6__.FontAwesomeIcon, {
+                    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faCheckCircle,
                     fixedWidth: true,
                     size: "2x"
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
                   className: "position-absolute file-selected text-truncate w-100 pt-3",
                   style: {
                     top: '100%',
@@ -1469,7 +1484,7 @@ var Settings = /*#__PURE__*/function (_Component) {
             })
           })]
         });
-        cmsContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.Fragment, {
+        cmsContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.Fragment, {
           children: [{
             condition: basic,
             banner: banner1,
@@ -1486,16 +1501,16 @@ var Settings = /*#__PURE__*/function (_Component) {
             attr: 'banner3',
             locked: form.locked_banner3
           }].map(function (item) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(CmsItem, _objectSpread(_objectSpread({}, item), {}, {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(CmsItem, _objectSpread(_objectSpread({}, item), {}, {
               disabled: !cmsUpdatable,
               restaurant: restaurant,
               fileUpload: !cmsUpdatable ? null : _this2.fileUpload
             }), JSON.stringify(item));
           })
         });
-        translatableContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.Fragment, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_18__.default, {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_21__.default, {
+        translatableContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_3__.FormGroup, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_3__.Input, {
               type: "select",
               name: "translate",
               onChange: this.inputChangeHandler,
@@ -1504,10 +1519,10 @@ var Settings = /*#__PURE__*/function (_Component) {
               children: restaurantLanguagesOptions
             })
           }), restaurantLanguages.map(function (l) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_15__.default, {
                 type: "text",
-                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faMapMarkerAlt,
+                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faMapMarkerAlt,
                 id: "address-" + l.abbr,
                 className: l.abbr === translate ? "" : "d-none",
                 onChange: _this2.inputChangeHandler,
@@ -1515,9 +1530,9 @@ var Settings = /*#__PURE__*/function (_Component) {
                 disabled: !translatableUpdatable,
                 name: "address[" + l.abbr + "]",
                 placeholder: form.address
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_15__.default, {
                 type: "textarea",
-                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faInfoCircle,
+                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faInfoCircle,
                 id: "caution-" + l.abbr,
                 className: l.abbr === translate ? "" : "d-none",
                 onChange: _this2.inputChangeHandler,
@@ -1525,9 +1540,9 @@ var Settings = /*#__PURE__*/function (_Component) {
                 disabled: !translatableUpdatable,
                 name: "caution[" + l.abbr + "]",
                 placeholder: form.caution
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_15__.default, {
                 type: "textarea",
-                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faExclamationCircle,
+                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faExclamationCircle,
                 id: "must_read-" + l.abbr,
                 className: l.abbr === translate ? "" : "d-none",
                 onChange: _this2.inputChangeHandler,
@@ -1535,9 +1550,9 @@ var Settings = /*#__PURE__*/function (_Component) {
                 disabled: !translatableUpdatable,
                 name: "must_read[" + l.abbr + "]",
                 placeholder: form.must_read
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_15__.default, {
                 type: "textarea",
-                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faInfoCircle,
+                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faInfoCircle,
                 id: "disclaimer-" + l.abbr,
                 className: l.abbr === translate ? "" : "d-none",
                 onChange: _this2.inputChangeHandler,
@@ -1545,9 +1560,9 @@ var Settings = /*#__PURE__*/function (_Component) {
                 disabled: !translatableUpdatable,
                 name: "disclaimer[" + l.abbr + "]",
                 placeholder: form.disclaimer
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_15__.default, {
                 type: "text",
-                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faCalendar,
+                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faCalendar,
                 id: "days-" + l.abbr,
                 className: l.abbr === translate ? "" : "d-none",
                 onChange: _this2.inputChangeHandler,
@@ -1556,9 +1571,9 @@ var Settings = /*#__PURE__*/function (_Component) {
                 name: "days[" + l.abbr + "]",
                 required: true,
                 placeholder: form.days
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_15__.default, {
                 type: "text",
-                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faClock,
+                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faClock,
                 id: "hours-" + l.abbr,
                 className: l.abbr === translate ? "" : "d-none",
                 onChange: _this2.inputChangeHandler,
@@ -1571,45 +1586,45 @@ var Settings = /*#__PURE__*/function (_Component) {
             }, 'language-' + l.abbr);
           })]
         });
-        languageContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.Fragment, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_11__.default, {
+        languageContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(_components_UI_Input_Input__WEBPACK_IMPORTED_MODULE_15__.default, {
             type: "select",
-            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faFlag,
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faFlag,
             onChange: this.inputChangeHandler,
             disabled: !languageUpdatable,
             name: "select_language",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("option", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("option", {
               children: form.select_language
             }), languagesOptions]
-          }), languages.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_18__.default, {
+          }), languages.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_3__.FormGroup, {
             disabled: !languageUpdatable,
             tag: "fieldset",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("legend", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("legend", {
               className: "text-14 text-500",
               children: form.languages
             }), languages.map(function (l) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_18__.default, {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_3__.FormGroup, {
                 check: true,
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_22__.default, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_3__.Label, {
                   disabled: !languageUpdatable,
                   check: true,
                   className: "text-14",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_21__.default, {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_3__.Input, {
                     type: "radio",
                     disabled: !languageUpdatable,
                     required: true,
                     name: "language",
                     defaultValue: l.id,
                     defaultChecked: l.id === language
-                  }), ' ' + l.name + ' ', languageUpdatable && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-                    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faMinusSquare,
+                  }), ' ' + l.name + ' ', languageUpdatable && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_6__.FontAwesomeIcon, {
+                    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faMinusSquare,
                     className: "text-red",
                     cursor: "pointer",
                     onClick: function onClick() {
                       return _this2.removeLanguage(l.id);
                     }
                   })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("input", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("input", {
                   type: "hidden",
                   disabled: !languageUpdatable,
                   name: "languages[]",
@@ -1620,38 +1635,38 @@ var Settings = /*#__PURE__*/function (_Component) {
           })]
         });
       }
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.Fragment, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(_components_Backend_UI_TitleWrapper__WEBPACK_IMPORTED_MODULE_5__.default, {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_Backend_UI_Breadcrumb_Breadcrumb__WEBPACK_IMPORTED_MODULE_4__.default, {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.Fragment, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(_components_Backend_UI_TitleWrapper__WEBPACK_IMPORTED_MODULE_9__.default, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_components_Backend_UI_Breadcrumb_Breadcrumb__WEBPACK_IMPORTED_MODULE_8__.default, {
             main: title,
-            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faCog
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_UI_Titles_SpecialTitle_SpecialTitle__WEBPACK_IMPORTED_MODULE_6__.default, {
+            icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faCog
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_components_UI_Titles_SpecialTitle_SpecialTitle__WEBPACK_IMPORTED_MODULE_10__.default, {
             children: title
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_UI_Titles_Subtitle_Subtitle__WEBPACK_IMPORTED_MODULE_7__.default, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_components_UI_Titles_Subtitle_Subtitle__WEBPACK_IMPORTED_MODULE_11__.default, {
             children: title
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)("div", {
-          children: [errors, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_23__.default, {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(_components_Backend_UI_Food_Form__WEBPACK_IMPORTED_MODULE_10__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)("div", {
+          children: [errors, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_3__.Row, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(_components_Backend_UI_Food_Form__WEBPACK_IMPORTED_MODULE_14__.default, {
               disabled: true,
-              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faCog,
+              icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faCog,
               title: title,
               subtitle: subtitle,
               innerClassName: "row",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("div", {
                 className: "col-12",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(_components_Feedback_Feedback__WEBPACK_IMPORTED_MODULE_12__.default, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(_components_Feedback_Feedback__WEBPACK_IMPORTED_MODULE_16__.default, {
                   message: message
                 })
-              }), spinnerContent, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(Block, {
+              }), spinnerContent, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(Block, {
                 hidden: loading,
-                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faHome,
+                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faHome,
                 save: save,
                 onSubmit: this.restaurantSettingsSubmitHandler,
                 title: form.restaurant_settings,
                 updatable: restaurantUpdatable,
                 toggle: this.restaurantToggle,
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("input", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("input", {
                   type: "file",
                   id: "logo",
                   name: "logo",
@@ -1659,24 +1674,24 @@ var Settings = /*#__PURE__*/function (_Component) {
                   onChange: this.inputChangeHandler,
                   accept: ".png,.jpg,.jpeg"
                 }), restaurantContent]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(Block, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(Block, {
                 hidden: loading,
-                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faBook,
+                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faBook,
                 save: save,
                 onSubmit: this.translatableSettingsSubmitHandler,
                 title: form.translatable_settings,
                 updatable: translatableUpdatable,
                 toggle: this.translatableToggle,
                 children: translatableContent
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(Block, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(Block, {
                 hidden: loading,
-                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faUser,
+                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faUser,
                 save: save,
                 onSubmit: this.accountSettingsSubmitHandler,
                 title: form.account_settings,
                 updatable: accountUpdatable,
                 toggle: this.accountToggle,
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("input", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("input", {
                   type: "file",
                   id: "photo",
                   name: "photo",
@@ -1684,17 +1699,17 @@ var Settings = /*#__PURE__*/function (_Component) {
                   onChange: this.inputChangeHandler,
                   accept: ".png,.jpg,.jpeg"
                 }), accountContent]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsxs)(Block, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsxs)(Block, {
                 hidden: loading,
-                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faCog,
+                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faCog,
                 save: save,
                 onSubmit: this.cmsSettingsSubmitHandler,
                 title: form.cms_settings,
                 updatable: cmsUpdatable,
                 toggle: this.cmsToggle,
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(Conditional, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(Conditional, {
                   condition: basic,
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("input", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("input", {
                     type: "file",
                     id: "banner1",
                     name: "banner1",
@@ -1702,9 +1717,9 @@ var Settings = /*#__PURE__*/function (_Component) {
                     onChange: this.inputChangeHandler,
                     accept: ".png,.jpg,.jpeg"
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(Conditional, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(Conditional, {
                   condition: standard || premium,
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("input", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("input", {
                     type: "file",
                     id: "banner2",
                     name: "banner2",
@@ -1712,9 +1727,9 @@ var Settings = /*#__PURE__*/function (_Component) {
                     onChange: this.inputChangeHandler,
                     accept: ".png,.jpg,.jpeg"
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(Conditional, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(Conditional, {
                   condition: premium,
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)("input", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)("input", {
                     type: "file",
                     id: "banner3",
                     name: "banner3",
@@ -1723,9 +1738,9 @@ var Settings = /*#__PURE__*/function (_Component) {
                     accept: ".png,.jpg,.jpeg"
                   })
                 }), cmsContent]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_14__.jsx)(Block, {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_18__.jsx)(Block, {
                 hidden: loading,
-                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_15__.faFlag,
+                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faFlag,
                 save: save,
                 onSubmit: this.languageSettingsSubmitHandler,
                 title: form.language_settings,
@@ -1750,27 +1765,27 @@ var mapStateToProps = function mapStateToProps(state) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     get: function get() {
-      return dispatch(_store_actions_backend_restaurants__WEBPACK_IMPORTED_MODULE_13__.getRestaurantsEdit('settings'));
+      return dispatch(_store_actions_backend_restaurants__WEBPACK_IMPORTED_MODULE_17__.getRestaurantsEdit('settings'));
     },
     restaurant: function restaurant(data) {
-      return dispatch(_store_actions_backend_restaurants__WEBPACK_IMPORTED_MODULE_13__.postRestaurantsEdit('settings/restaurant', data));
+      return dispatch(_store_actions_backend_restaurants__WEBPACK_IMPORTED_MODULE_17__.postRestaurantsEdit('settings/restaurant', data));
     },
     account: function account(data) {
-      return dispatch(_store_actions_backend_restaurants__WEBPACK_IMPORTED_MODULE_13__.postRestaurantsEdit('settings/account', data));
+      return dispatch(_store_actions_backend_restaurants__WEBPACK_IMPORTED_MODULE_17__.postRestaurantsEdit('settings/account', data));
     },
     cms: function cms(data) {
-      return dispatch(_store_actions_backend_restaurants__WEBPACK_IMPORTED_MODULE_13__.postRestaurantsEdit('settings/cms', data));
+      return dispatch(_store_actions_backend_restaurants__WEBPACK_IMPORTED_MODULE_17__.postRestaurantsEdit('settings/cms', data));
     },
     translatable: function translatable(data) {
-      return dispatch(_store_actions_backend_restaurants__WEBPACK_IMPORTED_MODULE_13__.postRestaurantsEdit('settings/translatable', data));
+      return dispatch(_store_actions_backend_restaurants__WEBPACK_IMPORTED_MODULE_17__.postRestaurantsEdit('settings/translatable', data));
     },
     language: function language(data) {
-      return dispatch(_store_actions_backend_restaurants__WEBPACK_IMPORTED_MODULE_13__.postRestaurantsEdit('settings/language', data));
+      return dispatch(_store_actions_backend_restaurants__WEBPACK_IMPORTED_MODULE_17__.postRestaurantsEdit('settings/language', data));
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_24__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(Settings)));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(Settings)));
 
 /***/ }),
 
@@ -1795,1765 +1810,6 @@ ___CSS_LOADER_EXPORT___.push([module.id, ".Input ::-moz-placeholder {\r\n    col
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
-
-/***/ }),
-
-/***/ "./node_modules/reactstrap/es/Alert.js":
-/*!*********************************************!*\
-  !*** ./node_modules/reactstrap/es/Alert.js ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
-/* harmony import */ var _babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/esm/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./utils */ "./node_modules/reactstrap/es/utils.js");
-/* harmony import */ var _Fade__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Fade */ "./node_modules/reactstrap/es/Fade.js");
-
-
-
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0,_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_2__.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-
-
-
-
-
-var propTypes = {
-  children: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().node),
-  className: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string),
-  closeClassName: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string),
-  closeAriaLabel: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string),
-  cssModule: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().object),
-  color: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string),
-  fade: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().bool),
-  isOpen: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().bool),
-  toggle: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().func),
-  tag: _utils__WEBPACK_IMPORTED_MODULE_6__.tagPropType,
-  transition: prop_types__WEBPACK_IMPORTED_MODULE_4___default().shape(_Fade__WEBPACK_IMPORTED_MODULE_7__.default.propTypes),
-  innerRef: prop_types__WEBPACK_IMPORTED_MODULE_4___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_4___default().object), (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string), (prop_types__WEBPACK_IMPORTED_MODULE_4___default().func)])
-};
-var defaultProps = {
-  color: 'success',
-  isOpen: true,
-  tag: 'div',
-  closeAriaLabel: 'Close',
-  fade: true,
-  transition: _objectSpread(_objectSpread({}, _Fade__WEBPACK_IMPORTED_MODULE_7__.default.defaultProps), {}, {
-    unmountOnExit: true
-  })
-};
-
-function Alert(props) {
-  var className = props.className,
-      closeClassName = props.closeClassName,
-      closeAriaLabel = props.closeAriaLabel,
-      cssModule = props.cssModule,
-      Tag = props.tag,
-      color = props.color,
-      isOpen = props.isOpen,
-      toggle = props.toggle,
-      children = props.children,
-      transition = props.transition,
-      fade = props.fade,
-      innerRef = props.innerRef,
-      attributes = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__.default)(props, ["className", "closeClassName", "closeAriaLabel", "cssModule", "tag", "color", "isOpen", "toggle", "children", "transition", "fade", "innerRef"]);
-
-  var classes = (0,_utils__WEBPACK_IMPORTED_MODULE_6__.mapToCssModules)(classnames__WEBPACK_IMPORTED_MODULE_5___default()(className, 'alert', "alert-" + color, {
-    'alert-dismissible': toggle
-  }), cssModule);
-  var closeClasses = (0,_utils__WEBPACK_IMPORTED_MODULE_6__.mapToCssModules)(classnames__WEBPACK_IMPORTED_MODULE_5___default()('close', closeClassName), cssModule);
-
-  var alertTransition = _objectSpread(_objectSpread(_objectSpread({}, _Fade__WEBPACK_IMPORTED_MODULE_7__.default.defaultProps), transition), {}, {
-    baseClass: fade ? transition.baseClass : '',
-    timeout: fade ? transition.timeout : 0
-  });
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(_Fade__WEBPACK_IMPORTED_MODULE_7__.default, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, attributes, alertTransition, {
-    tag: Tag,
-    className: classes,
-    in: isOpen,
-    role: "alert",
-    innerRef: innerRef
-  }), toggle ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement("button", {
-    type: "button",
-    className: closeClasses,
-    "aria-label": closeAriaLabel,
-    onClick: toggle
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement("span", {
-    "aria-hidden": "true"
-  }, "\xD7")) : null, children);
-}
-
-Alert.propTypes = propTypes;
-Alert.defaultProps = defaultProps;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Alert);
-
-/***/ }),
-
-/***/ "./node_modules/reactstrap/es/Breadcrumb.js":
-/*!**************************************************!*\
-  !*** ./node_modules/reactstrap/es/Breadcrumb.js ***!
-  \**************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils */ "./node_modules/reactstrap/es/utils.js");
-
-
-
-
-
-
-var propTypes = {
-  tag: _utils__WEBPACK_IMPORTED_MODULE_5__.tagPropType,
-  listTag: _utils__WEBPACK_IMPORTED_MODULE_5__.tagPropType,
-  className: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
-  listClassName: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
-  cssModule: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object),
-  children: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().node),
-  'aria-label': (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string)
-};
-var defaultProps = {
-  tag: 'nav',
-  listTag: 'ol',
-  'aria-label': 'breadcrumb'
-};
-
-var Breadcrumb = function Breadcrumb(props) {
-  var className = props.className,
-      listClassName = props.listClassName,
-      cssModule = props.cssModule,
-      children = props.children,
-      Tag = props.tag,
-      ListTag = props.listTag,
-      label = props['aria-label'],
-      attributes = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__.default)(props, ["className", "listClassName", "cssModule", "children", "tag", "listTag", "aria-label"]);
-
-  var classes = (0,_utils__WEBPACK_IMPORTED_MODULE_5__.mapToCssModules)(classnames__WEBPACK_IMPORTED_MODULE_4___default()(className), cssModule);
-  var listClasses = (0,_utils__WEBPACK_IMPORTED_MODULE_5__.mapToCssModules)(classnames__WEBPACK_IMPORTED_MODULE_4___default()('breadcrumb', listClassName), cssModule);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(Tag, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, attributes, {
-    className: classes,
-    "aria-label": label
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(ListTag, {
-    className: listClasses
-  }, children));
-};
-
-Breadcrumb.propTypes = propTypes;
-Breadcrumb.defaultProps = defaultProps;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Breadcrumb);
-
-/***/ }),
-
-/***/ "./node_modules/reactstrap/es/BreadcrumbItem.js":
-/*!******************************************************!*\
-  !*** ./node_modules/reactstrap/es/BreadcrumbItem.js ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils */ "./node_modules/reactstrap/es/utils.js");
-
-
-
-
-
-
-var propTypes = {
-  tag: _utils__WEBPACK_IMPORTED_MODULE_5__.tagPropType,
-  active: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool),
-  className: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
-  cssModule: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object)
-};
-var defaultProps = {
-  tag: 'li'
-};
-
-var BreadcrumbItem = function BreadcrumbItem(props) {
-  var className = props.className,
-      cssModule = props.cssModule,
-      active = props.active,
-      Tag = props.tag,
-      attributes = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__.default)(props, ["className", "cssModule", "active", "tag"]);
-
-  var classes = (0,_utils__WEBPACK_IMPORTED_MODULE_5__.mapToCssModules)(classnames__WEBPACK_IMPORTED_MODULE_4___default()(className, active ? 'active' : false, 'breadcrumb-item'), cssModule);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(Tag, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, attributes, {
-    className: classes,
-    "aria-current": active ? 'page' : undefined
-  }));
-};
-
-BreadcrumbItem.propTypes = propTypes;
-BreadcrumbItem.defaultProps = defaultProps;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (BreadcrumbItem);
-
-/***/ }),
-
-/***/ "./node_modules/reactstrap/es/CustomFileInput.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/reactstrap/es/CustomFileInput.js ***!
-  \*******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
-/* harmony import */ var _babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/esm/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js");
-/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./utils */ "./node_modules/reactstrap/es/utils.js");
-
-
-
-
-
-
-
-
-var propTypes = {
-  className: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string),
-  id: prop_types__WEBPACK_IMPORTED_MODULE_5___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_5___default().string), (prop_types__WEBPACK_IMPORTED_MODULE_5___default().number)]).isRequired,
-  label: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().node),
-  valid: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().bool),
-  invalid: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().bool),
-  bsSize: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string),
-  htmlFor: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string),
-  cssModule: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().object),
-  onChange: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().func),
-  children: prop_types__WEBPACK_IMPORTED_MODULE_5___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_5___default().node), (prop_types__WEBPACK_IMPORTED_MODULE_5___default().array), (prop_types__WEBPACK_IMPORTED_MODULE_5___default().func)]),
-  innerRef: prop_types__WEBPACK_IMPORTED_MODULE_5___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_5___default().object), (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string), (prop_types__WEBPACK_IMPORTED_MODULE_5___default().func)])
-};
-
-var CustomFileInput = /*#__PURE__*/function (_React$Component) {
-  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_3__.default)(CustomFileInput, _React$Component);
-
-  function CustomFileInput(props) {
-    var _this;
-
-    _this = _React$Component.call(this, props) || this;
-    _this.state = {
-      files: null
-    };
-    _this.onChange = _this.onChange.bind((0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__.default)(_this));
-    return _this;
-  }
-
-  var _proto = CustomFileInput.prototype;
-
-  _proto.onChange = function onChange(e) {
-    var input = e.target;
-    var onChange = this.props.onChange;
-    var files = this.getSelectedFiles(input);
-
-    if (typeof onChange === "function") {
-      onChange.apply(void 0, arguments);
-    }
-
-    this.setState({
-      files: files
-    });
-  };
-
-  _proto.getSelectedFiles = function getSelectedFiles(input) {
-    var multiple = this.props.multiple;
-
-    if (multiple && input.files) {
-      var files = [].slice.call(input.files);
-      return files.map(function (file) {
-        return file.name;
-      }).join(", ");
-    }
-
-    if (input.value.indexOf("fakepath") !== -1) {
-      var parts = input.value.split("\\");
-      return parts[parts.length - 1];
-    }
-
-    return input.value;
-  };
-
-  _proto.render = function render() {
-    var _this$props = this.props,
-        className = _this$props.className,
-        label = _this$props.label,
-        valid = _this$props.valid,
-        invalid = _this$props.invalid,
-        cssModule = _this$props.cssModule,
-        children = _this$props.children,
-        bsSize = _this$props.bsSize,
-        innerRef = _this$props.innerRef,
-        htmlFor = _this$props.htmlFor,
-        type = _this$props.type,
-        onChange = _this$props.onChange,
-        dataBrowse = _this$props.dataBrowse,
-        hidden = _this$props.hidden,
-        attributes = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__.default)(_this$props, ["className", "label", "valid", "invalid", "cssModule", "children", "bsSize", "innerRef", "htmlFor", "type", "onChange", "dataBrowse", "hidden"]);
-
-    var customClass = (0,_utils__WEBPACK_IMPORTED_MODULE_7__.mapToCssModules)(classnames__WEBPACK_IMPORTED_MODULE_6___default()(className, "custom-file"), cssModule);
-    var validationClassNames = (0,_utils__WEBPACK_IMPORTED_MODULE_7__.mapToCssModules)(classnames__WEBPACK_IMPORTED_MODULE_6___default()(invalid && "is-invalid", valid && "is-valid"), cssModule);
-    var labelHtmlFor = htmlFor || attributes.id;
-    var files = this.state.files;
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4__.createElement("div", {
-      className: customClass,
-      hidden: hidden || false
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4__.createElement("input", (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({
-      type: "file"
-    }, attributes, {
-      ref: innerRef,
-      "aria-invalid": invalid,
-      className: classnames__WEBPACK_IMPORTED_MODULE_6___default()(validationClassNames, (0,_utils__WEBPACK_IMPORTED_MODULE_7__.mapToCssModules)("custom-file-input", cssModule)),
-      onChange: this.onChange
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4__.createElement("label", {
-      className: (0,_utils__WEBPACK_IMPORTED_MODULE_7__.mapToCssModules)("custom-file-label", cssModule),
-      htmlFor: labelHtmlFor,
-      "data-browse": dataBrowse
-    }, files || label || "Choose file"), children);
-  };
-
-  return CustomFileInput;
-}(react__WEBPACK_IMPORTED_MODULE_4__.Component);
-
-CustomFileInput.propTypes = propTypes;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CustomFileInput);
-
-/***/ }),
-
-/***/ "./node_modules/reactstrap/es/CustomInput.js":
-/*!***************************************************!*\
-  !*** ./node_modules/reactstrap/es/CustomInput.js ***!
-  \***************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils */ "./node_modules/reactstrap/es/utils.js");
-/* harmony import */ var _CustomFileInput__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./CustomFileInput */ "./node_modules/reactstrap/es/CustomFileInput.js");
-
-
-
-
-
-
-
-var propTypes = {
-  className: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
-  id: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_3___default().string), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().number)]).isRequired,
-  type: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string.isRequired),
-  label: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().node),
-  inline: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool),
-  valid: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool),
-  invalid: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool),
-  bsSize: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
-  htmlFor: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
-  cssModule: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object),
-  children: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_3___default().node), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().array), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().func)]),
-  innerRef: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_3___default().object), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().func)])
-};
-
-function CustomInput(props) {
-  var className = props.className,
-      label = props.label,
-      inline = props.inline,
-      valid = props.valid,
-      invalid = props.invalid,
-      cssModule = props.cssModule,
-      children = props.children,
-      bsSize = props.bsSize,
-      innerRef = props.innerRef,
-      htmlFor = props.htmlFor,
-      attributes = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__.default)(props, ["className", "label", "inline", "valid", "invalid", "cssModule", "children", "bsSize", "innerRef", "htmlFor"]);
-
-  var type = attributes.type;
-  var customClass = (0,_utils__WEBPACK_IMPORTED_MODULE_5__.mapToCssModules)(classnames__WEBPACK_IMPORTED_MODULE_4___default()(className, "custom-" + type, bsSize ? "custom-" + type + "-" + bsSize : false), cssModule);
-  var validationClassNames = (0,_utils__WEBPACK_IMPORTED_MODULE_5__.mapToCssModules)(classnames__WEBPACK_IMPORTED_MODULE_4___default()(invalid && "is-invalid", valid && "is-valid"), cssModule);
-  var labelHtmlFor = htmlFor || attributes.id;
-
-  if (type === "select") {
-    var _type = attributes.type,
-        _rest = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__.default)(attributes, ["type"]);
-
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("select", (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, _rest, {
-      ref: innerRef,
-      className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(validationClassNames, customClass),
-      "aria-invalid": invalid
-    }), children);
-  }
-
-  if (type === "file") {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_CustomFileInput__WEBPACK_IMPORTED_MODULE_6__.default, props);
-  }
-
-  if (type !== "checkbox" && type !== "radio" && type !== "switch") {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("input", (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, attributes, {
-      ref: innerRef,
-      "aria-invalid": invalid,
-      className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(validationClassNames, customClass)
-    }));
-  }
-
-  var wrapperClasses = classnames__WEBPACK_IMPORTED_MODULE_4___default()(customClass, (0,_utils__WEBPACK_IMPORTED_MODULE_5__.mapToCssModules)(classnames__WEBPACK_IMPORTED_MODULE_4___default()("custom-control", {
-    "custom-control-inline": inline
-  }), cssModule));
-
-  var hidden = attributes.hidden,
-      rest = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__.default)(attributes, ["hidden"]);
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("div", {
-    className: wrapperClasses,
-    hidden: hidden || false
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("input", (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, rest, {
-    type: type === "switch" ? "checkbox" : type,
-    ref: innerRef,
-    "aria-invalid": invalid,
-    className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(validationClassNames, (0,_utils__WEBPACK_IMPORTED_MODULE_5__.mapToCssModules)("custom-control-input", cssModule))
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement("label", {
-    className: (0,_utils__WEBPACK_IMPORTED_MODULE_5__.mapToCssModules)("custom-control-label", cssModule),
-    htmlFor: labelHtmlFor
-  }, label), children);
-}
-
-CustomInput.propTypes = propTypes;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CustomInput);
-
-/***/ }),
-
-/***/ "./node_modules/reactstrap/es/Form.js":
-/*!********************************************!*\
-  !*** ./node_modules/reactstrap/es/Form.js ***!
-  \********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
-/* harmony import */ var _babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/esm/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js");
-/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./utils */ "./node_modules/reactstrap/es/utils.js");
-
-
-
-
-
-
-
-
-var propTypes = {
-  children: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().node),
-  inline: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().bool),
-  tag: _utils__WEBPACK_IMPORTED_MODULE_7__.tagPropType,
-  innerRef: prop_types__WEBPACK_IMPORTED_MODULE_5___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_5___default().object), (prop_types__WEBPACK_IMPORTED_MODULE_5___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string)]),
-  className: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string),
-  cssModule: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().object)
-};
-var defaultProps = {
-  tag: 'form'
-};
-
-var Form = /*#__PURE__*/function (_Component) {
-  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_3__.default)(Form, _Component);
-
-  function Form(props) {
-    var _this;
-
-    _this = _Component.call(this, props) || this;
-    _this.getRef = _this.getRef.bind((0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__.default)(_this));
-    _this.submit = _this.submit.bind((0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__.default)(_this));
-    return _this;
-  }
-
-  var _proto = Form.prototype;
-
-  _proto.getRef = function getRef(ref) {
-    if (this.props.innerRef) {
-      this.props.innerRef(ref);
-    }
-
-    this.ref = ref;
-  };
-
-  _proto.submit = function submit() {
-    if (this.ref) {
-      this.ref.submit();
-    }
-  };
-
-  _proto.render = function render() {
-    var _this$props = this.props,
-        className = _this$props.className,
-        cssModule = _this$props.cssModule,
-        inline = _this$props.inline,
-        Tag = _this$props.tag,
-        innerRef = _this$props.innerRef,
-        attributes = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__.default)(_this$props, ["className", "cssModule", "inline", "tag", "innerRef"]);
-
-    var classes = (0,_utils__WEBPACK_IMPORTED_MODULE_7__.mapToCssModules)(classnames__WEBPACK_IMPORTED_MODULE_6___default()(className, inline ? 'form-inline' : false), cssModule);
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4__.createElement(Tag, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, attributes, {
-      ref: innerRef,
-      className: classes
-    }));
-  };
-
-  return Form;
-}(react__WEBPACK_IMPORTED_MODULE_4__.Component);
-
-Form.propTypes = propTypes;
-Form.defaultProps = defaultProps;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Form);
-
-/***/ }),
-
-/***/ "./node_modules/reactstrap/es/FormGroup.js":
-/*!*************************************************!*\
-  !*** ./node_modules/reactstrap/es/FormGroup.js ***!
-  \*************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils */ "./node_modules/reactstrap/es/utils.js");
-
-
-
-
-
-
-var propTypes = {
-  children: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().node),
-  row: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool),
-  check: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool),
-  inline: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool),
-  disabled: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool),
-  tag: _utils__WEBPACK_IMPORTED_MODULE_5__.tagPropType,
-  className: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
-  cssModule: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object)
-};
-var defaultProps = {
-  tag: 'div'
-};
-
-var FormGroup = function FormGroup(props) {
-  var className = props.className,
-      cssModule = props.cssModule,
-      row = props.row,
-      disabled = props.disabled,
-      check = props.check,
-      inline = props.inline,
-      Tag = props.tag,
-      attributes = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__.default)(props, ["className", "cssModule", "row", "disabled", "check", "inline", "tag"]);
-
-  var classes = (0,_utils__WEBPACK_IMPORTED_MODULE_5__.mapToCssModules)(classnames__WEBPACK_IMPORTED_MODULE_4___default()(className, row ? 'row' : false, check ? 'form-check' : 'form-group', check && inline ? 'form-check-inline' : false, check && disabled ? 'disabled' : false), cssModule);
-
-  if (Tag === 'fieldset') {
-    attributes.disabled = disabled;
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(Tag, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, attributes, {
-    className: classes
-  }));
-};
-
-FormGroup.propTypes = propTypes;
-FormGroup.defaultProps = defaultProps;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FormGroup);
-
-/***/ }),
-
-/***/ "./node_modules/reactstrap/es/Input.js":
-/*!*********************************************!*\
-  !*** ./node_modules/reactstrap/es/Input.js ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
-/* harmony import */ var _babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/esm/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js");
-/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./utils */ "./node_modules/reactstrap/es/utils.js");
-
-
-
-
-
-/* eslint react/prefer-stateless-function: 0 */
-
-
-
-
-var propTypes = {
-  children: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().node),
-  type: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string),
-  size: prop_types__WEBPACK_IMPORTED_MODULE_5___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_5___default().number), (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string)]),
-  bsSize: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string),
-  valid: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().bool),
-  invalid: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().bool),
-  tag: _utils__WEBPACK_IMPORTED_MODULE_7__.tagPropType,
-  innerRef: prop_types__WEBPACK_IMPORTED_MODULE_5___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_5___default().object), (prop_types__WEBPACK_IMPORTED_MODULE_5___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string)]),
-  plaintext: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().bool),
-  addon: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().bool),
-  className: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().string),
-  cssModule: (prop_types__WEBPACK_IMPORTED_MODULE_5___default().object)
-};
-var defaultProps = {
-  type: 'text'
-};
-
-var Input = /*#__PURE__*/function (_React$Component) {
-  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_3__.default)(Input, _React$Component);
-
-  function Input(props) {
-    var _this;
-
-    _this = _React$Component.call(this, props) || this;
-    _this.getRef = _this.getRef.bind((0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__.default)(_this));
-    _this.focus = _this.focus.bind((0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__.default)(_this));
-    return _this;
-  }
-
-  var _proto = Input.prototype;
-
-  _proto.getRef = function getRef(ref) {
-    if (this.props.innerRef) {
-      this.props.innerRef(ref);
-    }
-
-    this.ref = ref;
-  };
-
-  _proto.focus = function focus() {
-    if (this.ref) {
-      this.ref.focus();
-    }
-  };
-
-  _proto.render = function render() {
-    var _this$props = this.props,
-        className = _this$props.className,
-        cssModule = _this$props.cssModule,
-        type = _this$props.type,
-        bsSize = _this$props.bsSize,
-        valid = _this$props.valid,
-        invalid = _this$props.invalid,
-        tag = _this$props.tag,
-        addon = _this$props.addon,
-        plaintext = _this$props.plaintext,
-        innerRef = _this$props.innerRef,
-        attributes = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__.default)(_this$props, ["className", "cssModule", "type", "bsSize", "valid", "invalid", "tag", "addon", "plaintext", "innerRef"]);
-
-    var checkInput = ['radio', 'checkbox'].indexOf(type) > -1;
-    var isNotaNumber = new RegExp('\\D', 'g');
-    var fileInput = type === 'file';
-    var textareaInput = type === 'textarea';
-    var selectInput = type === 'select';
-    var rangeInput = type === 'range';
-    var Tag = tag || (selectInput || textareaInput ? type : 'input');
-    var formControlClass = 'form-control';
-
-    if (plaintext) {
-      formControlClass = formControlClass + "-plaintext";
-      Tag = tag || 'input';
-    } else if (fileInput) {
-      formControlClass = formControlClass + "-file";
-    } else if (rangeInput) {
-      formControlClass = formControlClass + "-range";
-    } else if (checkInput) {
-      if (addon) {
-        formControlClass = null;
-      } else {
-        formControlClass = 'form-check-input';
-      }
-    }
-
-    if (attributes.size && isNotaNumber.test(attributes.size)) {
-      (0,_utils__WEBPACK_IMPORTED_MODULE_7__.warnOnce)('Please use the prop "bsSize" instead of the "size" to bootstrap\'s input sizing.');
-      bsSize = attributes.size;
-      delete attributes.size;
-    }
-
-    var classes = (0,_utils__WEBPACK_IMPORTED_MODULE_7__.mapToCssModules)(classnames__WEBPACK_IMPORTED_MODULE_6___default()(className, invalid && 'is-invalid', valid && 'is-valid', bsSize ? "form-control-" + bsSize : false, formControlClass), cssModule);
-
-    if (Tag === 'input' || tag && typeof tag === 'function') {
-      attributes.type = type;
-    }
-
-    if (attributes.children && !(plaintext || type === 'select' || typeof Tag !== 'string' || Tag === 'select')) {
-      (0,_utils__WEBPACK_IMPORTED_MODULE_7__.warnOnce)("Input with a type of \"" + type + "\" cannot have children. Please use \"value\"/\"defaultValue\" instead.");
-      delete attributes.children;
-    }
-
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4__.createElement(Tag, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, attributes, {
-      ref: innerRef,
-      className: classes,
-      "aria-invalid": invalid
-    }));
-  };
-
-  return Input;
-}(react__WEBPACK_IMPORTED_MODULE_4__.Component);
-
-Input.propTypes = propTypes;
-Input.defaultProps = defaultProps;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Input);
-
-/***/ }),
-
-/***/ "./node_modules/reactstrap/es/InputGroup.js":
-/*!**************************************************!*\
-  !*** ./node_modules/reactstrap/es/InputGroup.js ***!
-  \**************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils */ "./node_modules/reactstrap/es/utils.js");
-
-
-
-
-
-
-var propTypes = {
-  tag: _utils__WEBPACK_IMPORTED_MODULE_5__.tagPropType,
-  size: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
-  className: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
-  cssModule: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object)
-};
-var defaultProps = {
-  tag: 'div'
-};
-
-var InputGroup = function InputGroup(props) {
-  var className = props.className,
-      cssModule = props.cssModule,
-      Tag = props.tag,
-      size = props.size,
-      attributes = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__.default)(props, ["className", "cssModule", "tag", "size"]);
-
-  var classes = (0,_utils__WEBPACK_IMPORTED_MODULE_5__.mapToCssModules)(classnames__WEBPACK_IMPORTED_MODULE_4___default()(className, 'input-group', size ? "input-group-" + size : null), cssModule);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(Tag, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, attributes, {
-    className: classes
-  }));
-};
-
-InputGroup.propTypes = propTypes;
-InputGroup.defaultProps = defaultProps;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (InputGroup);
-
-/***/ }),
-
-/***/ "./node_modules/reactstrap/es/InputGroupAddon.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/reactstrap/es/InputGroupAddon.js ***!
-  \*******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils */ "./node_modules/reactstrap/es/utils.js");
-/* harmony import */ var _InputGroupText__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./InputGroupText */ "./node_modules/reactstrap/es/InputGroupText.js");
-
-
-
-
-
-
-
-var propTypes = {
-  tag: _utils__WEBPACK_IMPORTED_MODULE_5__.tagPropType,
-  addonType: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOf(['prepend', 'append']).isRequired,
-  children: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().node),
-  className: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
-  cssModule: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object)
-};
-var defaultProps = {
-  tag: 'div'
-};
-
-var InputGroupAddon = function InputGroupAddon(props) {
-  var className = props.className,
-      cssModule = props.cssModule,
-      Tag = props.tag,
-      addonType = props.addonType,
-      children = props.children,
-      attributes = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__.default)(props, ["className", "cssModule", "tag", "addonType", "children"]);
-
-  var classes = (0,_utils__WEBPACK_IMPORTED_MODULE_5__.mapToCssModules)(classnames__WEBPACK_IMPORTED_MODULE_4___default()(className, 'input-group-' + addonType), cssModule); // Convenience to assist with transition
-
-  if (typeof children === 'string') {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(Tag, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, attributes, {
-      className: classes
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(_InputGroupText__WEBPACK_IMPORTED_MODULE_6__.default, {
-      children: children
-    }));
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(Tag, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, attributes, {
-    className: classes,
-    children: children
-  }));
-};
-
-InputGroupAddon.propTypes = propTypes;
-InputGroupAddon.defaultProps = defaultProps;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (InputGroupAddon);
-
-/***/ }),
-
-/***/ "./node_modules/reactstrap/es/InputGroupText.js":
-/*!******************************************************!*\
-  !*** ./node_modules/reactstrap/es/InputGroupText.js ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils */ "./node_modules/reactstrap/es/utils.js");
-
-
-
-
-
-
-var propTypes = {
-  tag: _utils__WEBPACK_IMPORTED_MODULE_5__.tagPropType,
-  className: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
-  cssModule: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object)
-};
-var defaultProps = {
-  tag: 'span'
-};
-
-var InputGroupText = function InputGroupText(props) {
-  var className = props.className,
-      cssModule = props.cssModule,
-      Tag = props.tag,
-      attributes = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__.default)(props, ["className", "cssModule", "tag"]);
-
-  var classes = (0,_utils__WEBPACK_IMPORTED_MODULE_5__.mapToCssModules)(classnames__WEBPACK_IMPORTED_MODULE_4___default()(className, 'input-group-text'), cssModule);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(Tag, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, attributes, {
-    className: classes
-  }));
-};
-
-InputGroupText.propTypes = propTypes;
-InputGroupText.defaultProps = defaultProps;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (InputGroupText);
-
-/***/ }),
-
-/***/ "./node_modules/reactstrap/es/Label.js":
-/*!*********************************************!*\
-  !*** ./node_modules/reactstrap/es/Label.js ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils */ "./node_modules/reactstrap/es/utils.js");
-
-
-
-
-
-
-var colWidths = ['xs', 'sm', 'md', 'lg', 'xl'];
-var stringOrNumberProp = prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_3___default().number), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string)]);
-var columnProps = prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().number), prop_types__WEBPACK_IMPORTED_MODULE_3___default().shape({
-  size: stringOrNumberProp,
-  order: stringOrNumberProp,
-  offset: stringOrNumberProp
-})]);
-var propTypes = {
-  children: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().node),
-  hidden: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool),
-  check: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().bool),
-  size: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
-  for: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
-  tag: _utils__WEBPACK_IMPORTED_MODULE_5__.tagPropType,
-  className: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string),
-  cssModule: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object),
-  xs: columnProps,
-  sm: columnProps,
-  md: columnProps,
-  lg: columnProps,
-  xl: columnProps,
-  widths: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().array)
-};
-var defaultProps = {
-  tag: 'label',
-  widths: colWidths
-};
-
-var getColumnSizeClass = function getColumnSizeClass(isXs, colWidth, colSize) {
-  if (colSize === true || colSize === '') {
-    return isXs ? 'col' : "col-" + colWidth;
-  } else if (colSize === 'auto') {
-    return isXs ? 'col-auto' : "col-" + colWidth + "-auto";
-  }
-
-  return isXs ? "col-" + colSize : "col-" + colWidth + "-" + colSize;
-};
-
-var Label = function Label(props) {
-  var className = props.className,
-      cssModule = props.cssModule,
-      hidden = props.hidden,
-      widths = props.widths,
-      Tag = props.tag,
-      check = props.check,
-      size = props.size,
-      htmlFor = props.for,
-      attributes = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__.default)(props, ["className", "cssModule", "hidden", "widths", "tag", "check", "size", "for"]);
-
-  var colClasses = [];
-  widths.forEach(function (colWidth, i) {
-    var columnProp = props[colWidth];
-    delete attributes[colWidth];
-
-    if (!columnProp && columnProp !== '') {
-      return;
-    }
-
-    var isXs = !i;
-    var colClass;
-
-    if ((0,_utils__WEBPACK_IMPORTED_MODULE_5__.isObject)(columnProp)) {
-      var _classNames;
-
-      var colSizeInterfix = isXs ? '-' : "-" + colWidth + "-";
-      colClass = getColumnSizeClass(isXs, colWidth, columnProp.size);
-      colClasses.push((0,_utils__WEBPACK_IMPORTED_MODULE_5__.mapToCssModules)(classnames__WEBPACK_IMPORTED_MODULE_4___default()((_classNames = {}, _classNames[colClass] = columnProp.size || columnProp.size === '', _classNames["order" + colSizeInterfix + columnProp.order] = columnProp.order || columnProp.order === 0, _classNames["offset" + colSizeInterfix + columnProp.offset] = columnProp.offset || columnProp.offset === 0, _classNames))), cssModule);
-    } else {
-      colClass = getColumnSizeClass(isXs, colWidth, columnProp);
-      colClasses.push(colClass);
-    }
-  });
-  var classes = (0,_utils__WEBPACK_IMPORTED_MODULE_5__.mapToCssModules)(classnames__WEBPACK_IMPORTED_MODULE_4___default()(className, hidden ? 'sr-only' : false, check ? 'form-check-label' : false, size ? "col-form-label-" + size : false, colClasses, colClasses.length ? 'col-form-label' : false), cssModule);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.createElement(Tag, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({
-    htmlFor: htmlFor
-  }, attributes, {
-    className: classes
-  }));
-};
-
-Label.propTypes = propTypes;
-Label.defaultProps = defaultProps;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Label);
-
-/***/ }),
-
-/***/ "./node_modules/reactstrap/es/PopperContent.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/reactstrap/es/PopperContent.js ***!
-  \*****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
-/* harmony import */ var _babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/esm/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js");
-/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
-/* harmony import */ var _babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/esm/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var react_popper__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-popper */ "./node_modules/react-popper/lib/esm/Popper.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./utils */ "./node_modules/reactstrap/es/utils.js");
-/* harmony import */ var _Fade__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Fade */ "./node_modules/reactstrap/es/Fade.js");
-
-
-
-
-
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0,_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_4__.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-
-
-
-
-
-
-
-
-function noop() {}
-
-var propTypes = {
-  children: prop_types__WEBPACK_IMPORTED_MODULE_6___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_6___default().node), (prop_types__WEBPACK_IMPORTED_MODULE_6___default().func)]).isRequired,
-  popperClassName: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().string),
-  placement: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().string),
-  placementPrefix: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().string),
-  arrowClassName: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().string),
-  hideArrow: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().bool),
-  tag: _utils__WEBPACK_IMPORTED_MODULE_9__.tagPropType,
-  isOpen: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().bool.isRequired),
-  cssModule: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().object),
-  offset: prop_types__WEBPACK_IMPORTED_MODULE_6___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_6___default().string), (prop_types__WEBPACK_IMPORTED_MODULE_6___default().number)]),
-  fallbackPlacement: prop_types__WEBPACK_IMPORTED_MODULE_6___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_6___default().string), (prop_types__WEBPACK_IMPORTED_MODULE_6___default().array)]),
-  flip: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().bool),
-  container: _utils__WEBPACK_IMPORTED_MODULE_9__.targetPropType,
-  target: _utils__WEBPACK_IMPORTED_MODULE_9__.targetPropType.isRequired,
-  modifiers: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().object),
-  positionFixed: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().bool),
-  boundariesElement: prop_types__WEBPACK_IMPORTED_MODULE_6___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_6___default().string), _utils__WEBPACK_IMPORTED_MODULE_9__.DOMElement]),
-  onClosed: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().func),
-  fade: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().bool),
-  transition: prop_types__WEBPACK_IMPORTED_MODULE_6___default().shape(_Fade__WEBPACK_IMPORTED_MODULE_10__.default.propTypes)
-};
-var defaultProps = {
-  boundariesElement: 'scrollParent',
-  placement: 'auto',
-  hideArrow: false,
-  isOpen: false,
-  offset: 0,
-  fallbackPlacement: 'flip',
-  flip: true,
-  container: 'body',
-  modifiers: {},
-  onClosed: noop,
-  fade: true,
-  transition: _objectSpread({}, _Fade__WEBPACK_IMPORTED_MODULE_10__.default.defaultProps)
-};
-
-var PopperContent = /*#__PURE__*/function (_React$Component) {
-  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_3__.default)(PopperContent, _React$Component);
-
-  function PopperContent(props) {
-    var _this;
-
-    _this = _React$Component.call(this, props) || this;
-    _this.setTargetNode = _this.setTargetNode.bind((0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__.default)(_this));
-    _this.getTargetNode = _this.getTargetNode.bind((0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__.default)(_this));
-    _this.getRef = _this.getRef.bind((0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__.default)(_this));
-    _this.onClosed = _this.onClosed.bind((0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__.default)(_this));
-    _this.state = {
-      isOpen: props.isOpen
-    };
-    return _this;
-  }
-
-  PopperContent.getDerivedStateFromProps = function getDerivedStateFromProps(props, state) {
-    if (props.isOpen && !state.isOpen) {
-      return {
-        isOpen: props.isOpen
-      };
-    } else return null;
-  };
-
-  var _proto = PopperContent.prototype;
-
-  _proto.componentDidUpdate = function componentDidUpdate() {
-    if (this._element && this._element.childNodes && this._element.childNodes[0] && this._element.childNodes[0].focus) {
-      this._element.childNodes[0].focus();
-    }
-  };
-
-  _proto.setTargetNode = function setTargetNode(node) {
-    this.targetNode = typeof node === 'string' ? (0,_utils__WEBPACK_IMPORTED_MODULE_9__.getTarget)(node) : node;
-  };
-
-  _proto.getTargetNode = function getTargetNode() {
-    return this.targetNode;
-  };
-
-  _proto.getContainerNode = function getContainerNode() {
-    return (0,_utils__WEBPACK_IMPORTED_MODULE_9__.getTarget)(this.props.container);
-  };
-
-  _proto.getRef = function getRef(ref) {
-    this._element = ref;
-  };
-
-  _proto.onClosed = function onClosed() {
-    this.props.onClosed();
-    this.setState({
-      isOpen: false
-    });
-  };
-
-  _proto.renderChildren = function renderChildren() {
-    var _this$props = this.props,
-        cssModule = _this$props.cssModule,
-        children = _this$props.children,
-        isOpen = _this$props.isOpen,
-        flip = _this$props.flip,
-        target = _this$props.target,
-        offset = _this$props.offset,
-        fallbackPlacement = _this$props.fallbackPlacement,
-        placementPrefix = _this$props.placementPrefix,
-        _arrowClassName = _this$props.arrowClassName,
-        hideArrow = _this$props.hideArrow,
-        _popperClassName = _this$props.popperClassName,
-        tag = _this$props.tag,
-        container = _this$props.container,
-        modifiers = _this$props.modifiers,
-        positionFixed = _this$props.positionFixed,
-        boundariesElement = _this$props.boundariesElement,
-        onClosed = _this$props.onClosed,
-        fade = _this$props.fade,
-        transition = _this$props.transition,
-        placement = _this$props.placement,
-        attrs = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__.default)(_this$props, ["cssModule", "children", "isOpen", "flip", "target", "offset", "fallbackPlacement", "placementPrefix", "arrowClassName", "hideArrow", "popperClassName", "tag", "container", "modifiers", "positionFixed", "boundariesElement", "onClosed", "fade", "transition", "placement"]);
-
-    var arrowClassName = (0,_utils__WEBPACK_IMPORTED_MODULE_9__.mapToCssModules)(classnames__WEBPACK_IMPORTED_MODULE_8___default()('arrow', _arrowClassName), cssModule);
-    var popperClassName = (0,_utils__WEBPACK_IMPORTED_MODULE_9__.mapToCssModules)(classnames__WEBPACK_IMPORTED_MODULE_8___default()(_popperClassName, placementPrefix ? placementPrefix + "-auto" : ''), this.props.cssModule);
-
-    var extendedModifiers = _objectSpread({
-      offset: {
-        offset: offset
-      },
-      flip: {
-        enabled: flip,
-        behavior: fallbackPlacement
-      },
-      preventOverflow: {
-        boundariesElement: boundariesElement
-      }
-    }, modifiers);
-
-    var popperTransition = _objectSpread(_objectSpread(_objectSpread({}, _Fade__WEBPACK_IMPORTED_MODULE_10__.default.defaultProps), transition), {}, {
-      baseClass: fade ? transition.baseClass : '',
-      timeout: fade ? transition.timeout : 0
-    });
-
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(_Fade__WEBPACK_IMPORTED_MODULE_10__.default, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, popperTransition, attrs, {
-      in: isOpen,
-      onExited: this.onClosed,
-      tag: tag
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(react_popper__WEBPACK_IMPORTED_MODULE_11__.default, {
-      referenceElement: this.targetNode,
-      modifiers: extendedModifiers,
-      placement: placement,
-      positionFixed: positionFixed
-    }, function (_ref) {
-      var ref = _ref.ref,
-          style = _ref.style,
-          placement = _ref.placement,
-          outOfBoundaries = _ref.outOfBoundaries,
-          arrowProps = _ref.arrowProps,
-          scheduleUpdate = _ref.scheduleUpdate;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement("div", {
-        ref: ref,
-        style: style,
-        className: popperClassName,
-        "x-placement": placement,
-        "x-out-of-boundaries": outOfBoundaries ? 'true' : undefined
-      }, typeof children === 'function' ? children({
-        scheduleUpdate: scheduleUpdate
-      }) : children, !hideArrow && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement("span", {
-        ref: arrowProps.ref,
-        className: arrowClassName,
-        style: arrowProps.style
-      }));
-    }));
-  };
-
-  _proto.render = function render() {
-    this.setTargetNode(this.props.target);
-
-    if (this.state.isOpen) {
-      return this.props.container === 'inline' ? this.renderChildren() : /*#__PURE__*/react_dom__WEBPACK_IMPORTED_MODULE_7__.createPortal( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement("div", {
-        ref: this.getRef
-      }, this.renderChildren()), this.getContainerNode());
-    }
-
-    return null;
-  };
-
-  return PopperContent;
-}(react__WEBPACK_IMPORTED_MODULE_5__.Component);
-
-PopperContent.propTypes = propTypes;
-PopperContent.defaultProps = defaultProps;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PopperContent);
-
-/***/ }),
-
-/***/ "./node_modules/reactstrap/es/Tooltip.js":
-/*!***********************************************!*\
-  !*** ./node_modules/reactstrap/es/Tooltip.js ***!
-  \***********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _TooltipPopoverWrapper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./TooltipPopoverWrapper */ "./node_modules/reactstrap/es/TooltipPopoverWrapper.js");
-
-
-
-
-var defaultProps = {
-  placement: 'top',
-  autohide: true,
-  placementPrefix: 'bs-tooltip',
-  trigger: 'hover focus'
-};
-
-var Tooltip = function Tooltip(props) {
-  var popperClasses = classnames__WEBPACK_IMPORTED_MODULE_2___default()('tooltip', 'show', props.popperClassName);
-  var classes = classnames__WEBPACK_IMPORTED_MODULE_2___default()('tooltip-inner', props.innerClassName);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_TooltipPopoverWrapper__WEBPACK_IMPORTED_MODULE_3__.default, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, props, {
-    popperClassName: popperClasses,
-    innerClassName: classes
-  }));
-};
-
-Tooltip.propTypes = _TooltipPopoverWrapper__WEBPACK_IMPORTED_MODULE_3__.propTypes;
-Tooltip.defaultProps = defaultProps;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Tooltip);
-
-/***/ }),
-
-/***/ "./node_modules/reactstrap/es/TooltipPopoverWrapper.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/reactstrap/es/TooltipPopoverWrapper.js ***!
-  \*************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "propTypes": () => (/* binding */ propTypes),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js");
-/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _PopperContent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./PopperContent */ "./node_modules/reactstrap/es/PopperContent.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils */ "./node_modules/reactstrap/es/utils.js");
-
-
-
-
-
-
-
-var propTypes = {
-  children: prop_types__WEBPACK_IMPORTED_MODULE_4___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_4___default().node), (prop_types__WEBPACK_IMPORTED_MODULE_4___default().func)]),
-  placement: prop_types__WEBPACK_IMPORTED_MODULE_4___default().oneOf(_utils__WEBPACK_IMPORTED_MODULE_5__.PopperPlacements),
-  target: _utils__WEBPACK_IMPORTED_MODULE_5__.targetPropType.isRequired,
-  container: _utils__WEBPACK_IMPORTED_MODULE_5__.targetPropType,
-  isOpen: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().bool),
-  disabled: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().bool),
-  hideArrow: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().bool),
-  boundariesElement: prop_types__WEBPACK_IMPORTED_MODULE_4___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_4___default().string), _utils__WEBPACK_IMPORTED_MODULE_5__.DOMElement]),
-  className: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string),
-  innerClassName: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string),
-  arrowClassName: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string),
-  popperClassName: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string),
-  cssModule: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().object),
-  toggle: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().func),
-  autohide: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().bool),
-  placementPrefix: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string),
-  delay: prop_types__WEBPACK_IMPORTED_MODULE_4___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_4___default().shape({
-    show: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().number),
-    hide: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().number)
-  }), (prop_types__WEBPACK_IMPORTED_MODULE_4___default().number)]),
-  modifiers: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().object),
-  positionFixed: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().bool),
-  offset: prop_types__WEBPACK_IMPORTED_MODULE_4___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_4___default().string), (prop_types__WEBPACK_IMPORTED_MODULE_4___default().number)]),
-  innerRef: prop_types__WEBPACK_IMPORTED_MODULE_4___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_4___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string), (prop_types__WEBPACK_IMPORTED_MODULE_4___default().object)]),
-  trigger: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().string),
-  fade: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().bool),
-  flip: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().bool)
-};
-var DEFAULT_DELAYS = {
-  show: 0,
-  hide: 50
-};
-var defaultProps = {
-  isOpen: false,
-  hideArrow: false,
-  autohide: false,
-  delay: DEFAULT_DELAYS,
-  toggle: function toggle() {},
-  trigger: 'click',
-  fade: true
-};
-
-function isInDOMSubtree(element, subtreeRoot) {
-  return subtreeRoot && (element === subtreeRoot || subtreeRoot.contains(element));
-}
-
-function isInDOMSubtrees(element, subtreeRoots) {
-  if (subtreeRoots === void 0) {
-    subtreeRoots = [];
-  }
-
-  return subtreeRoots && subtreeRoots.length && subtreeRoots.filter(function (subTreeRoot) {
-    return isInDOMSubtree(element, subTreeRoot);
-  })[0];
-}
-
-var TooltipPopoverWrapper = /*#__PURE__*/function (_React$Component) {
-  (0,_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_2__.default)(TooltipPopoverWrapper, _React$Component);
-
-  function TooltipPopoverWrapper(props) {
-    var _this;
-
-    _this = _React$Component.call(this, props) || this;
-    _this._targets = [];
-    _this.currentTargetElement = null;
-    _this.addTargetEvents = _this.addTargetEvents.bind((0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__.default)(_this));
-    _this.handleDocumentClick = _this.handleDocumentClick.bind((0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__.default)(_this));
-    _this.removeTargetEvents = _this.removeTargetEvents.bind((0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__.default)(_this));
-    _this.toggle = _this.toggle.bind((0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__.default)(_this));
-    _this.showWithDelay = _this.showWithDelay.bind((0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__.default)(_this));
-    _this.hideWithDelay = _this.hideWithDelay.bind((0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__.default)(_this));
-    _this.onMouseOverTooltipContent = _this.onMouseOverTooltipContent.bind((0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__.default)(_this));
-    _this.onMouseLeaveTooltipContent = _this.onMouseLeaveTooltipContent.bind((0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__.default)(_this));
-    _this.show = _this.show.bind((0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__.default)(_this));
-    _this.hide = _this.hide.bind((0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__.default)(_this));
-    _this.onEscKeyDown = _this.onEscKeyDown.bind((0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__.default)(_this));
-    _this.getRef = _this.getRef.bind((0,_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__.default)(_this));
-    _this.state = {
-      isOpen: props.isOpen
-    };
-    _this._isMounted = false;
-    return _this;
-  }
-
-  var _proto = TooltipPopoverWrapper.prototype;
-
-  _proto.componentDidMount = function componentDidMount() {
-    this._isMounted = true;
-    this.updateTarget();
-  };
-
-  _proto.componentWillUnmount = function componentWillUnmount() {
-    this._isMounted = false;
-    this.removeTargetEvents();
-    this._targets = null;
-    this.clearShowTimeout();
-    this.clearHideTimeout();
-  };
-
-  TooltipPopoverWrapper.getDerivedStateFromProps = function getDerivedStateFromProps(props, state) {
-    if (props.isOpen && !state.isOpen) {
-      return {
-        isOpen: props.isOpen
-      };
-    } else return null;
-  };
-
-  _proto.onMouseOverTooltipContent = function onMouseOverTooltipContent() {
-    if (this.props.trigger.indexOf('hover') > -1 && !this.props.autohide) {
-      if (this._hideTimeout) {
-        this.clearHideTimeout();
-      }
-
-      if (this.state.isOpen && !this.props.isOpen) {
-        this.toggle();
-      }
-    }
-  };
-
-  _proto.onMouseLeaveTooltipContent = function onMouseLeaveTooltipContent(e) {
-    if (this.props.trigger.indexOf('hover') > -1 && !this.props.autohide) {
-      if (this._showTimeout) {
-        this.clearShowTimeout();
-      }
-
-      e.persist();
-      this._hideTimeout = setTimeout(this.hide.bind(this, e), this.getDelay('hide'));
-    }
-  };
-
-  _proto.onEscKeyDown = function onEscKeyDown(e) {
-    if (e.key === 'Escape') {
-      this.hide(e);
-    }
-  };
-
-  _proto.getRef = function getRef(ref) {
-    var innerRef = this.props.innerRef;
-
-    if (innerRef) {
-      if (typeof innerRef === 'function') {
-        innerRef(ref);
-      } else if (typeof innerRef === 'object') {
-        innerRef.current = ref;
-      }
-    }
-
-    this._popover = ref;
-  };
-
-  _proto.getDelay = function getDelay(key) {
-    var delay = this.props.delay;
-
-    if (typeof delay === 'object') {
-      return isNaN(delay[key]) ? DEFAULT_DELAYS[key] : delay[key];
-    }
-
-    return delay;
-  };
-
-  _proto.getCurrentTarget = function getCurrentTarget(target) {
-    if (!target) return null;
-
-    var index = this._targets.indexOf(target);
-
-    if (index >= 0) return this._targets[index];
-    return this.getCurrentTarget(target.parentElement);
-  };
-
-  _proto.show = function show(e) {
-    if (!this.props.isOpen) {
-      this.clearShowTimeout();
-      this.currentTargetElement = e ? e.currentTarget || this.getCurrentTarget(e.target) : null;
-
-      if (e && e.composedPath && typeof e.composedPath === 'function') {
-        var path = e.composedPath();
-        this.currentTargetElement = path && path[0] || this.currentTargetElement;
-      }
-
-      this.toggle(e);
-    }
-  };
-
-  _proto.showWithDelay = function showWithDelay(e) {
-    if (this._hideTimeout) {
-      this.clearHideTimeout();
-    }
-
-    this._showTimeout = setTimeout(this.show.bind(this, e), this.getDelay('show'));
-  };
-
-  _proto.hide = function hide(e) {
-    if (this.props.isOpen) {
-      this.clearHideTimeout();
-      this.currentTargetElement = null;
-      this.toggle(e);
-    }
-  };
-
-  _proto.hideWithDelay = function hideWithDelay(e) {
-    if (this._showTimeout) {
-      this.clearShowTimeout();
-    }
-
-    this._hideTimeout = setTimeout(this.hide.bind(this, e), this.getDelay('hide'));
-  };
-
-  _proto.clearShowTimeout = function clearShowTimeout() {
-    clearTimeout(this._showTimeout);
-    this._showTimeout = undefined;
-  };
-
-  _proto.clearHideTimeout = function clearHideTimeout() {
-    clearTimeout(this._hideTimeout);
-    this._hideTimeout = undefined;
-  };
-
-  _proto.handleDocumentClick = function handleDocumentClick(e) {
-    var triggers = this.props.trigger.split(' ');
-
-    if (triggers.indexOf('legacy') > -1 && (this.props.isOpen || isInDOMSubtrees(e.target, this._targets))) {
-      if (this._hideTimeout) {
-        this.clearHideTimeout();
-      }
-
-      if (this.props.isOpen && !isInDOMSubtree(e.target, this._popover)) {
-        this.hideWithDelay(e);
-      } else if (!this.props.isOpen) {
-        this.showWithDelay(e);
-      }
-    } else if (triggers.indexOf('click') > -1 && isInDOMSubtrees(e.target, this._targets)) {
-      if (this._hideTimeout) {
-        this.clearHideTimeout();
-      }
-
-      if (!this.props.isOpen) {
-        this.showWithDelay(e);
-      } else {
-        this.hideWithDelay(e);
-      }
-    }
-  };
-
-  _proto.addEventOnTargets = function addEventOnTargets(type, handler, isBubble) {
-    this._targets.forEach(function (target) {
-      target.addEventListener(type, handler, isBubble);
-    });
-  };
-
-  _proto.removeEventOnTargets = function removeEventOnTargets(type, handler, isBubble) {
-    this._targets.forEach(function (target) {
-      target.removeEventListener(type, handler, isBubble);
-    });
-  };
-
-  _proto.addTargetEvents = function addTargetEvents() {
-    if (this.props.trigger) {
-      var triggers = this.props.trigger.split(' ');
-
-      if (triggers.indexOf('manual') === -1) {
-        if (triggers.indexOf('click') > -1 || triggers.indexOf('legacy') > -1) {
-          document.addEventListener('click', this.handleDocumentClick, true);
-        }
-
-        if (this._targets && this._targets.length) {
-          if (triggers.indexOf('hover') > -1) {
-            this.addEventOnTargets('mouseover', this.showWithDelay, true);
-            this.addEventOnTargets('mouseout', this.hideWithDelay, true);
-          }
-
-          if (triggers.indexOf('focus') > -1) {
-            this.addEventOnTargets('focusin', this.show, true);
-            this.addEventOnTargets('focusout', this.hide, true);
-          }
-
-          this.addEventOnTargets('keydown', this.onEscKeyDown, true);
-        }
-      }
-    }
-  };
-
-  _proto.removeTargetEvents = function removeTargetEvents() {
-    if (this._targets) {
-      this.removeEventOnTargets('mouseover', this.showWithDelay, true);
-      this.removeEventOnTargets('mouseout', this.hideWithDelay, true);
-      this.removeEventOnTargets('keydown', this.onEscKeyDown, true);
-      this.removeEventOnTargets('focusin', this.show, true);
-      this.removeEventOnTargets('focusout', this.hide, true);
-    }
-
-    document.removeEventListener('click', this.handleDocumentClick, true);
-  };
-
-  _proto.updateTarget = function updateTarget() {
-    var newTarget = (0,_utils__WEBPACK_IMPORTED_MODULE_5__.getTarget)(this.props.target, true);
-
-    if (newTarget !== this._targets) {
-      this.removeTargetEvents();
-      this._targets = newTarget ? Array.from(newTarget) : [];
-      this.currentTargetElement = this.currentTargetElement || this._targets[0];
-      this.addTargetEvents();
-    }
-  };
-
-  _proto.toggle = function toggle(e) {
-    if (this.props.disabled || !this._isMounted) {
-      return e && e.preventDefault();
-    }
-
-    return this.props.toggle(e);
-  };
-
-  _proto.render = function render() {
-    var _this2 = this;
-
-    if (this.props.isOpen) {
-      this.updateTarget();
-    }
-
-    var target = this.currentTargetElement || this._targets[0];
-
-    if (!target) {
-      return null;
-    }
-
-    var _this$props = this.props,
-        className = _this$props.className,
-        cssModule = _this$props.cssModule,
-        innerClassName = _this$props.innerClassName,
-        isOpen = _this$props.isOpen,
-        hideArrow = _this$props.hideArrow,
-        boundariesElement = _this$props.boundariesElement,
-        placement = _this$props.placement,
-        placementPrefix = _this$props.placementPrefix,
-        arrowClassName = _this$props.arrowClassName,
-        popperClassName = _this$props.popperClassName,
-        container = _this$props.container,
-        modifiers = _this$props.modifiers,
-        positionFixed = _this$props.positionFixed,
-        offset = _this$props.offset,
-        fade = _this$props.fade,
-        flip = _this$props.flip,
-        children = _this$props.children;
-    var attributes = (0,_utils__WEBPACK_IMPORTED_MODULE_5__.omit)(this.props, Object.keys(propTypes));
-    var popperClasses = (0,_utils__WEBPACK_IMPORTED_MODULE_5__.mapToCssModules)(popperClassName, cssModule);
-    var classes = (0,_utils__WEBPACK_IMPORTED_MODULE_5__.mapToCssModules)(innerClassName, cssModule);
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement(_PopperContent__WEBPACK_IMPORTED_MODULE_6__.default, {
-      className: className,
-      target: target,
-      isOpen: isOpen,
-      hideArrow: hideArrow,
-      boundariesElement: boundariesElement,
-      placement: placement,
-      placementPrefix: placementPrefix,
-      arrowClassName: arrowClassName,
-      popperClassName: popperClasses,
-      container: container,
-      modifiers: modifiers,
-      positionFixed: positionFixed,
-      offset: offset,
-      cssModule: cssModule,
-      fade: fade,
-      flip: flip
-    }, function (_ref) {
-      var scheduleUpdate = _ref.scheduleUpdate;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_3__.createElement("div", (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, attributes, {
-        ref: _this2.getRef,
-        className: classes,
-        role: "tooltip",
-        onMouseOver: _this2.onMouseOverTooltipContent,
-        onMouseLeave: _this2.onMouseLeaveTooltipContent,
-        onKeyDown: _this2.onEscKeyDown
-      }), typeof children === 'function' ? children({
-        scheduleUpdate: scheduleUpdate
-      }) : children);
-    });
-  };
-
-  return TooltipPopoverWrapper;
-}(react__WEBPACK_IMPORTED_MODULE_3__.Component);
-
-TooltipPopoverWrapper.propTypes = propTypes;
-TooltipPopoverWrapper.defaultProps = defaultProps;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TooltipPopoverWrapper);
 
 /***/ }),
 

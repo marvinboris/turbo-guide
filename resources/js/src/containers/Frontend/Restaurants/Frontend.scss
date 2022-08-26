@@ -1,0 +1,14 @@
+.Frontend.Restaurants .content {
+    margin: auto;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    max-width: var(--app-width);
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-image: url('/images/bg4.png'), url('/images/bg5.png');
+
+    main {
+        flex-grow: 1;
+    }
+}

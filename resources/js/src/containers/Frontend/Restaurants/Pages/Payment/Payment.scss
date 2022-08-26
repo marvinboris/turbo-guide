@@ -1,0 +1,250 @@
+.Frontend.Restaurants .Page.Payment {
+    padding: 78px 16px 106px 16px;
+
+    section {
+        .title {
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 25.88px;
+        }
+
+        &.banner {
+            overflow: hidden;
+            position: relative;
+            border-radius: 25px;
+            margin-bottom: 26px;
+
+            .form-group {
+                opacity: 0;
+                max-height: 0;
+                margin-bottom: 0;
+                overflow: hidden;
+                transition: var(--transition);
+            }
+
+            button {
+                height: 30px;
+                font-size: 12px;
+                font-weight: 500;
+                padding-left: 11px;
+                align-items: center;
+                padding-right: 11px;
+                border-radius: 50rem;
+                display: inline-flex;
+                line-height: 15.53px;
+            }
+
+            .top {
+                height: 142px;
+                background-color: var(--soft);
+
+                iframe {
+                    width: 100%;
+                    border: none;
+                    height: 100%;
+                }
+
+                .change {
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    padding: 19px 27px;
+                    position: absolute;
+
+                    button {
+                        border: none;
+                        outline: none;
+                        color: var(--white);
+                        background-color: var(--black-60);
+
+                        i {
+                            opacity: .8;
+                            font-size: 11px;
+                            margin-left: 9px;
+                        }
+                    }
+                }
+
+                &.changing .form-group {
+                    opacity: 1;
+                    max-height: 70px;
+                    margin-bottom: 8px;
+                }
+            }
+
+            .bottom {
+                padding: 12px;
+                position: relative;
+                background-color: var(--black-5);
+
+                .title {
+                    display: flex;
+                    margin-bottom: 8px;
+                    align-items: center;
+
+                    i {
+                        margin-right: 7px;
+                        color: var(--color-primary);
+                    }
+
+                    span {
+                        display: block;
+
+                        &::after {
+                            content: "";
+                            width: 9px;
+                            height: 2px;
+                            display: block;
+                            border-radius: 2px;
+                            background-color: var(--color-primary);
+                        }
+                    }
+                }
+
+                .value {
+                    opacity: 1;
+                    font-size: 12px;
+                    overflow: hidden;
+                    position: static;
+                    max-height: 100px;
+                    margin-bottom: 8px;
+                    line-height: 15.53px;
+                    transition: var(--transition);
+                }
+
+
+                .address,
+                .phone {
+                    width: 70%;
+                    padding-left: 27px;
+                }
+
+                .phone .value {
+                    padding: 5px;
+                    border-radius: 8px;
+                    align-items: center;
+                    display: inline-flex;
+                    color: var(--color-primary);
+                    background-color: var(--orange-20);
+
+                    i {
+                        opacity: .7;
+                        font-size: 13px;
+                        margin-right: 5px;
+                    }
+                }
+
+                .edit {
+                    top: 10px;
+                    right: 11px;
+                    position: absolute;
+
+                    button i {
+                        font-size: 10px;
+                        margin-right: 9px;
+                    }
+                }
+
+                &.editing {
+                    .value {
+                        opacity: 0;
+                        padding: 0;
+                        max-height: 0;
+                        margin-bottom: 0;
+                        position: absolute;
+                    }
+
+                    .form-group {
+                        opacity: 1;
+                        max-height: 100px;
+                        margin-bottom: 8px;
+                    }
+                }
+            }
+        }
+
+        &.methods {
+            border-radius: 25px;
+            margin-bottom: 39px;
+            padding: 22px 24px 31px 24px;
+            background-color: var(--black-5);
+
+            .body {
+                display: flex;
+                margin-top: 17px;
+
+                div {
+                    height: 40px;
+                    display: flex;
+                    cursor: pointer;
+                    font-size: 12px;
+                    border-radius: 8px;
+                    padding-left: 20px;
+                    align-items: center;
+                    padding-right: 20px;
+                    line-height: 15.53px;
+                    color: var(--color-secondary);
+                    background-color: var(--black-10);
+
+                    i {
+                        opacity: 0;
+                        max-width: 0;
+                        font-size: 16px;
+                        margin-left: 5px;
+                        transition: var(--transition);
+                    }
+
+                    &.active {
+                        color: var(--white);
+                        text-decoration: none;
+                        background-color: var(--green);
+
+                        i {
+                            opacity: 1;
+                            max-width: 16px;
+                        }
+                    }
+
+                    &:not(:last-child) {
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+
+        &.payment {
+            padding-bottom: 50px;
+
+            .body {
+                margin-top: 7px;
+
+                .line {
+                    display: flex;
+                    font-size: 14px;
+                    align-items: center;
+                    margin-bottom: 12px;
+                    line-height: 18.12px;
+                    justify-content: space-between;
+
+                    .value {
+                        font-weight: 500;
+
+                        span {
+                            font-weight: 400;
+                        }
+                    }
+                }
+
+                .table-footer {
+                    margin-top: 12px;
+                    padding-top: 12px;
+                    border-top: 1px solid var(--black-20);
+
+                    .line .label {
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    }
+}

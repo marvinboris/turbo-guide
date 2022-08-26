@@ -1,6 +1,6 @@
 .Toolbar>.fixed-top {
     top: 0px;
-    /* transition: all .25s; */
+    /* transition: var(--transition); */
 }
 
 @media screen and (min-width: 992px) {

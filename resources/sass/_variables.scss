@@ -2,9 +2,13 @@
 $body-bg: #f8fafc;
 
 // Typography
-$font-family-sans-serif: Poppins, Montserrat, Comfortaa, "Montserrat Alternates", sans-serif;
+$font-family-sans-serif: 'Plus Jakarta Display', "Montserrat Alternates", sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
+
+:root {
+    --family-sans: $font-family-sans-serif;
+}
 
 // Colors
 $blue: #3490dc;

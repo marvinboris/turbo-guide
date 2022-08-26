@@ -1,7 +1,7 @@
 {
     "global": {
-        "app_name": "E-menu",
-        "company_name": "Briluce Services",
+        "app_name": "E-menu Redesigned",
+        "company_name": "Briluce Services LLC",
         "company_logo": "\/images\/company-logo.png",
         "logo": "\/images\/logo.png"
     },
@@ -698,24 +698,77 @@
                     "home": {
                         "you_are_on_category": "You are on category",
                         "select_category": "Select category",
-                        "search": "Search"
+                        "search": "Search",
+                        "welcome_to": "Welcome to",
+                        "category": "Category",
+                        "search_meal": "Search meal",
+                        "open": "Open",
+                        "closed": "Closed",
+                        "digital_menu": "Digital Menu",
+                        "loading_menu": "Loading Menu"
                     },
-                    "meals": {
-                        "price": "Price",
-                        "compose": "Compose your meal to know the cost",
-                        "addons": {
-                            "title": "Food Addons",
-                            "dear_customers": "Dear customers, this item comes with an addon of your choice. If you would like extra addon, please select below",
-                            "your_cart_cost_is": "Your cart cost is"
+                    "meal": {
+                        "no": "No",
+                        "min": "min",
+                        "add": "Add",
+                        "add_to_cart": "Add to Cart",
+                        "addons": "Addons",
+                        "drinks": "Drinks",
+                        "cart": {
+                            "go_to_cart": "Go to Cart",
+                            "total_items": "Total of Items"
+                        }
+                    },
+                    "cart": {
+                        "your_cart": "Your Cart",
+                        "note": {
+                            "add": "Add Note",
+                            "type": "Type note here"
                         },
-                        "description": "Description",
-                        "must_read": "Must Read",
-                        "dear_customers": "Dear customers, we would love to make available more food items but unfortunately kindly note that some of the addons mentioned below might not be available. For special request, please contact us. Thanks for understanding.",
-                        "comments": {
-                            "title": "Comments",
-                            "post_comment": "Post comment",
-                            "name": "Full name",
-                            "body": "Type something here"
+                        "options": {
+                            "select": "Select an option",
+                            "list": {
+                                "delivery": "Delivery",
+                                "dine_in": "Dine In",
+                                "pick_up": "Pick Up"
+                            }
+                        },
+                        "payment": {
+                            "title": "Payment",
+                            "cart_total": "Cart Total",
+                            "delivery_fee": "Delivery Fee",
+                            "service_charge": "Service Charge",
+                            "total_due": "Total Due"
+                        },
+                        "cart": {
+                            "due_amount": "Due Amount",
+                            "proceed": "Proceed"
+                        }
+                    },
+                    "payment": {
+                        "title": "Payment",
+                        "banner": {
+                            "location": "Location",
+                            "change": "Change",
+                            "save": "Save",
+                            "address": "Address",
+                            "current_location": "Current Location",
+                            "phone": "Phone number",
+                            "edit": "Edit"
+                        },
+                        "methods": {
+                            "select": "Select Payment Method"
+                        },
+                        "payment": {
+                            "title": "Payment Summary",
+                            "cart_total": "Cart Total",
+                            "delivery_fee": "Delivery Fee",
+                            "service_charge": "Service Charge",
+                            "total_due": "Total Due"
+                        },
+                        "cart": {
+                            "due_amount": "Due Amount",
+                            "pay_now": "Pay Now"
                         }
                     }
                 }
@@ -1411,26 +1464,79 @@
             "frontend": {
                 "restaurants": {
                     "home": {
-                        "you_are_on_category": "Vous \u00eates dans la cat\u00e9gorie",
-                        "select_category": "Choisir une cat\u00e9gorie",
-                        "search": "Rechercher"
+                        "you_are_on_category": "You are on category",
+                        "select_category": "Select category",
+                        "search": "Search",
+                        "welcome_to": "Welcome to",
+                        "category": "Category",
+                        "search_meal": "Search meal",
+                        "open": "Open",
+                        "closed": "Closed",
+                        "digital_menu": "Digital Menu",
+                        "loading_menu": "Loading Menu"
                     },
-                    "meals": {
-                        "price": "Prix",
-                        "compose": "Composez votre repas pour conna\u00eetre le co\u00fbt",
-                        "addons": {
-                            "title": "Accompagnements",
-                            "dear_customers": "Chers clients, cet article est livr\u00e9 avec un addon de votre choix. Si vous souhaitez un compl\u00e9ment suppl\u00e9mentaire, veuillez s\u00e9lectionner ci-dessous",
-                            "your_cart_cost_is": "Le co\u00fbt de votre panier est"
+                    "meal": {
+                        "no": "No",
+                        "min": "min",
+                        "add": "Add",
+                        "add_to_cart": "Add to Cart",
+                        "addons": "Addons",
+                        "drinks": "Drinks",
+                        "cart": {
+                            "go_to_cart": "Go to Cart",
+                            "total_items": "Total of Items"
+                        }
+                    },
+                    "cart": {
+                        "your_cart": "Your Cart",
+                        "note": {
+                            "add": "Add Note",
+                            "type": "Type note here"
                         },
-                        "description": "Description",
-                        "must_read": "A Lire",
-                        "dear_customers": "Chers clients, nous serions ravis de rendre disponibles plus de produits alimentaires, mais malheureusement, veuillez noter que certains des addons mentionn\u00e9s ci-dessous pourraient ne pas \u00eatre disponibles. Pour toute demande sp\u00e9ciale, veuillez nous contacter. Merci de votre compr\u00e9hension.",
-                        "comments": {
-                            "title": "Commentaires",
-                            "post_comment": "Poster un commentaire",
-                            "name": "Nom et pr\u00e9nom",
-                            "body": "Tapez quelque chose ici"
+                        "options": {
+                            "select": "Select an option",
+                            "list": {
+                                "delivery": "Delivery",
+                                "dine_in": "Dine In",
+                                "pick_up": "Pick Up"
+                            }
+                        },
+                        "payment": {
+                            "title": "Payment",
+                            "cart_total": "Cart Total",
+                            "delivery_fee": "Delivery Fee",
+                            "service_charge": "Service Charge",
+                            "total_due": "Total Due"
+                        },
+                        "cart": {
+                            "due_amount": "Due Amount",
+                            "proceed": "Proceed"
+                        }
+                    },
+                    "payment": {
+                        "title": "Payment",
+                        "banner": {
+                            "location": "Location",
+                            "change": "Change",
+                            "save": "Save",
+                            "address": "Address",
+                            "current_location": "Current Location",
+                            "phone": "Phone number",
+                            "edit": "Edit"
+                        },
+                        "methods": {
+                            "select": "Select Payment Method"
+                        },
+                        "payment": {
+                            "title": "Payment Summary",
+                            "cart_total": "Cart Total",
+                            "delivery_fee": "Delivery Fee",
+                            "service_charge": "Service Charge",
+                            "total_due": "Total Due"
+                        },
+                        "cart": {
+                            "due_amount": "Due Amount",
+                            "pay_now": "Pay Now"
                         }
                     }
                 }

@@ -1,16 +1,27 @@
+:root {
+  --app-width: 390px;
+  --app-sidebar-width: 335px;
+  --restaurant-sidebar-width: 335px;
+  --flex-container-height: 650px;
+
+  --color-primary: var(--orange);
+  --color-secondary: #525252;
+  --color-text: #525252;
+  --color-bg: var(--white);
+  --color-input-bg: var(--soft);
+
+  --family-poppins: Poppins, var(--family-sans);
+
+  --transition: all .25s;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  font-weight: 400;
-}
-
-:root {
-  --app-width: 412px;
-  --app-sidebar-width: 335px;
-  --restaurant-sidebar-width: 335px;
-  --flex-container-height: 650px;
+  color: var(--color-text);
+  background-color: var(--color-bg);
 }
 
 .badge-block {
@@ -38,6 +49,7 @@ body {
 }
 
 @media (min-width: 1600px) {
+
   .container-xl,
   .container-lg,
   .container-md,

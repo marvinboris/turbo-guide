@@ -1,0 +1,240 @@
+.Frontend.Restaurants .MenuLoading {
+    width: 100vw;
+    display: flex;
+    height: 100vh;
+    padding: 47px;
+    z-index: 10000;
+    position: fixed;
+    flex-direction: column;
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    background-image: url('/images/bg-menu-loading.png');
+
+    .restaurant-name {
+        margin-top: 75px;
+        position: relative;
+        margin-bottom: 12px;
+        display: inline-block;
+
+        .text {
+            font-size: 35px;
+            font-weight: 700;
+            line-height: 45.29px;
+        }
+
+        .image {
+            top: 0;
+            right: 0;
+            position: absolute;
+            transform: translate(30px, -60px);
+        }
+    }
+
+    .digital-menu {
+        display: flex;
+        align-items: center;
+        margin-bottom: 75px;
+
+        .text {
+            font-size: 20px;
+            margin-right: 10px;
+            line-height: 25.88px;
+        }
+    }
+
+    .loading-wrapper {
+        padding: 10px;
+        position: relative;
+
+        .pie-parent {
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            margin-top: -34.5px;
+            transform: translate(-50%, -50%);
+
+            // -- vars
+            $default-size: 268px;
+
+            // -- mixins
+            @mixin size($width, $height) {
+                height: $height;
+                width: $width;
+            }
+
+            @mixin draw-progress($progress, $color) {
+                .pie {
+                    .half-circle {
+                        border-color: $color;
+                    }
+
+                    .left-side {
+                        transform: rotate($progress * 3.6deg);
+                    }
+
+                    @if $progress <=50 {
+                        .right-side {
+                            display: none;
+                        }
+                    }
+
+                    @else {
+                        clip: rect(auto, auto, auto, auto);
+
+                        .right-side {
+                            transform: rotate(180deg);
+                        }
+                    }
+                }
+            }
+
+            .pie-wrapper {
+                @include size($default-size, $default-size);
+                float: left;
+                position: relative;
+
+                &:nth-child(3n + 1) {
+                    clear: both;
+                }
+
+                .pie {
+                    @include size(100%, 100%);
+                    clip: rect(0, $default-size, $default-size, $default-size / 2);
+                    left: 0;
+                    position: absolute;
+                    top: 0;
+
+                    .half-circle {
+                        @include size(100%, 100%);
+                        border: 6px solid #3498db;
+                        border-radius: 50%;
+                        clip: rect(0, $default-size / 2, $default-size, 0);
+                        left: 0;
+                        position: absolute;
+                        top: 0;
+                    }
+                }
+
+                .shadow {
+                    @include size(100%, 100%);
+                    border: $default-size / 10 solid #bdc3c7;
+                    border-radius: 50%;
+                }
+
+                @for $i from 1 to 1001 {
+                    &.progress-#{$i} {
+                        @include draw-progress($i / 10, var(--orange));
+                    }
+                }
+            }
+        }
+
+        .loading {
+            margin: auto;
+            width: 248px;
+            height: 248px;
+            overflow: hidden;
+            border-radius: 50%;
+            position: relative;
+            margin-bottom: 68.96px;
+            background-color: var(--orange-10);
+
+            @keyframes wave-front {
+                100% {
+                    transform: translate(-50%, 0);
+                }
+            }
+
+            @keyframes wave-back {
+                100% {
+                    transform: translate(50%, 0);
+                }
+            }
+
+            @keyframes wave-fill {
+                0% {
+                    top: 0px
+                }
+
+                100% {
+                    top: -248px;
+                }
+            }
+
+            .loading-screen {
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: block;
+                position: absolute;
+
+                .box {
+                    top: 50%;
+                    left: 50%;
+                    width: 100%;
+                    height: 100%;
+                    overflow: hidden;
+                    position: absolute;
+                    transform: translate(-50%, -50%);
+
+                    .percentage {
+                        top: 0;
+                        left: 0;
+                        z-index: 3;
+                        width: 100%;
+                        opacity: .5;
+                        height: 100%;
+                        font-size: 35px;
+                        font-weight: 700;
+                        position: absolute;
+                        align-items: center;
+                        display: -webkit-flex;
+                        display: flex;
+                        justify-content: center;
+                    }
+
+                    .water {
+                        top: 0;
+                        left: 0;
+                        z-index: 2;
+                        width: 100%;
+                        height: 100%;
+                        position: absolute;
+                        transition: var(--transition);
+                        background: var(--orange);
+                        transform: translate(0, 100%);
+                    }
+
+                    .water_wave {
+                        width: 200%;
+                        position: absolute;
+                        bottom: 98%;
+                        height: 25px;
+                    }
+
+                    .water_wave_back {
+                        right: 0;
+                        fill: var(--orange-20);
+                        animation: wave-back 1.4s infinite linear;
+                    }
+
+                    .water_wave_front {
+                        left: 0;
+                        fill: var(--orange);
+                        margin-bottom: -1px;
+                        animation: wave-front .7s infinite linear;
+                    }
+                }
+            }
+        }
+    }
+
+    .loading-menu {
+        text-align: center;
+    }
+
+    footer {
+        margin-top: auto;
+    }
+}

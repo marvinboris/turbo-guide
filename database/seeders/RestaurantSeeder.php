@@ -20,7 +20,6 @@ class RestaurantSeeder extends Seeder
                 'name' => 'KFC Restaurant',
                 'owner' => 'Boris Marvin NDOUMA',
                 'token' => 'BORIS',
-                'md5' => md5('BORIS'),
                 'email' => 'jaris.ultio.21@gmail.com',
                 'phone' => '237671191585',
                 'country' => 'CM',

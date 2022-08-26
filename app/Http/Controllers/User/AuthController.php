@@ -54,6 +54,11 @@ class AuthController extends Controller
         $token->expires_at = Carbon::now()->addWeeks(1);
         $token->save();
 
+        $data = array_merge($user->toArray(), [
+            'notifications' => $user->notifications()->latest()->limit(5)->get(),
+            'language' => $user->language->abbr
+        ]);
+
         $role = $user->role;
 
         $role_features = [];
@@ -68,17 +73,17 @@ class AuthController extends Controller
         $role = $role->toArray();
         $role['features'] = $role_features;
 
+        $data = $data + [
+            'role' => $role
+        ];
+
         return response()->json([
             'access_token' => $tokenResult->accessToken,
             'token_type' => 'Bearer',
             'expires_at' => Carbon::parse(
                 $tokenResult->token->expires_at
             )->toDateTimeString(),
-            'userData' => $user->toArray() + [
-                'notifications' => $user->unreadNotifications()->latest()->limit(5)->get(),
-                'language' => $user->language->abbr,
-                'role' => $role,
-            ]
+            'userData' => $data,
         ]);
     }
 

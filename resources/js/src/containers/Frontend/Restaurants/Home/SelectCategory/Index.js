@@ -22,20 +22,8 @@ export default ({ categories, cms }) => {
 
     return (
         <div>
-            <div style={{ cursor: 'pointer' }} onClick={toggle} className="bg-orange-30 rounded-pill py-2 px-2 text-500 text-orange text-13 position-relative category-select">
-                <div className="d-flex mx-1">
-                    <div className="text-truncate" id="selected-category" />
-
-                    <div className="position-relative">
-                        <div style={{ width: .5, height: 21 }} className="mx-2 bg-orange" />
-
-                        <div className="embed-responsive embed-responsive-1by1 rounded-circle border border-orange bg-white position-absolute" style={{ width: 4, top: '50%', left: '50%', transform: 'translate(-50%,-50%)' }} />
-                    </div>
-
-                    <div>
-                        <FontAwesomeIcon icon={faFilter} />
-                    </div>
-                </div>
+            <div onClick={toggle} className="category-filter">
+                <i className='fas fa-filter' />
             </div>
 
             <Modal isOpen={modal} toggle={toggle} className="SelectCategory">

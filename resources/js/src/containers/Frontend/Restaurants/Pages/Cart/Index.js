@@ -39,12 +39,7 @@ class Cart extends Component {
 
     // Lifecycle methods
     componentDidMount() {
-        const { list } = this.props.content.cms.pages.frontend.restaurants.cart.options;
-        this.setState({ option: list[Object.keys(list)[0]] });
-    }
-
-    componentWillUnmount() {
-        this.props.reset();
+        this.setState({ option: Object.keys(this.props.content.cms.pages.frontend.restaurants.cart.options.list)[0] });
     }
 
     render() {
@@ -53,7 +48,7 @@ class Cart extends Component {
                 cms: { pages: { frontend: { restaurants: { cart: cms } } } },
                 currencies
             },
-            frontend: { restaurants: { loading, error, restaurant: { cart: { items, total }, delivery_fee = 0, service_charge = 0 }, currency, position } },
+            frontend: { restaurants: { error, restaurant: { cart: { items, total }, delivery_fee, service_charge }, currency, position } },
             match: { params: { slug } }
         } = this.props;
         const lang = localStorage.getItem('lang');
@@ -121,7 +116,6 @@ const mapStateToProps = state => ({ ...state });
 const mapDispatchToProps = dispatch => ({
     addItem: (slug, type, item) => dispatch(addItem(slug, type, item)),
     subItem: (slug, type, item) => dispatch(subItem(slug, type, item)),
-    reset: () => dispatch(resetRestaurants(true)),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Cart));

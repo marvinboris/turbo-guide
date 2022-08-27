@@ -306,10 +306,11 @@ Route::middleware('auth:admin,restaurant,api')->group(function () {
     });
 });
 
-Route::prefix('restaurants')->name('restaurants.')->group(function () {
-    Route::post('{restaurant}/meals/{meal}/comment', 'FrontendController@comment')->name('comment');
-    Route::get('{restaurant}/meals/{meal}', 'FrontendController@meal')->name('meal');
-    Route::get('{restaurant}', 'FrontendController@show')->name('show');
+Route::prefix('restaurants/{restaurant}')->name('restaurants.')->group(function () {
+    Route::prefix('orders')->name('orders.')->group(function () {
+        Route::post('', 'FrontendController@payment')->name('create');
+    });
+    Route::get('', 'FrontendController@show')->name('show');
 });
 
 Route::prefix('content')->name('content.')->group(function () {
@@ -325,7 +326,7 @@ Route::prefix('content')->name('content.')->group(function () {
             'pages' => $cmsFile['pages'][$abbr],
         ];
         $languages = Language::all();
-        $payment_methods = Method::all();
+        $payment_methods = Method::where('name', 'NOT LIKE', '%admin%')->get();
 
         return response()->json([
             'cms' => $cms,
@@ -338,7 +339,7 @@ Route::prefix('content')->name('content.')->group(function () {
 Route::namespace('Method')->group(function () {
     Route::get('monetbil/notify', 'MonetbilController@notify')->name('monetbil.notify.get');
     Route::post('monetbil/notify', 'MonetbilController@notify')->name('monetbil.notify.post');
-    
+
     Route::get('cinetpay/notify', 'CinetpayController@notify')->name('cinetpay.notify.get');
     Route::post('cinetpay/notify', 'CinetpayController@notify')->name('cinetpay.notify.post');
 });

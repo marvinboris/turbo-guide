@@ -10,7 +10,7 @@ import Category from '../../../../../components/Frontend/UI/Category';
 
 import Error from '../../../../../components/Error/Error';
 
-import { addItem, resetRestaurants, getRestaurantsMeal } from '../../../../../store/actions/frontend/restaurants';
+import { addItem } from '../../../../../store/actions/frontend/restaurants';
 
 import './Meal.scss';
 
@@ -19,30 +19,25 @@ const Wrapper = ({ children, className, style }) => <div className={className} s
 </div>;
 
 class Meal extends Component {
-    componentDidMount() {
-        this.props.get(this.props.match.params.slug, this.props.match.params.id);
-    }
-
-    componentWillUnmount() {
-        this.props.reset();
-    }
-
     render() {
-        let {
+        const {
             content: {
                 cms: { pages: { general, frontend: { restaurants: { meal: cms } } } },
                 currencies
             },
-            frontend: { restaurants: { loading, error, meal, restaurant = {}, addons = [], drinks = [], currency, position } },
-            match: { params: { slug } }
+            frontend: { restaurants: { loading, error, restaurant, meal_addon, addons, currency, position } },
+            match: { params: { slug, id } }
         } = this.props;
         const lang = localStorage.getItem('lang');
-        if (!meal || (meal && Object.keys(meal).length === 0)) meal = { name: {} };
+
+        const meal = restaurant.meals.find(meal => +meal.id === +id);
+        const meal_addons = meal_addon.filter(m => m.meal_id === meal.id).map(m => addons.find(addon => addon.id === m.addon_id));
+        const drinks = restaurant.drinks;
 
         const currencyObj = currencies.find(c => c.cc === currency);
         const symbol = currencyObj && currencyObj.cc;
 
-        const addonsContent = addons.map(item => <Addon key={item.id + Math.random()} symbol={symbol} position={position} {...{ ...item, name: item.name[lang] }} add={() => this.props.addItem(slug, 'addon', item)} />);
+        const addonsContent = meal_addons.map(item => <Addon key={item.id + Math.random()} symbol={symbol} position={position} {...{ ...item, name: item.name[lang] }} add={() => this.props.addItem(slug, 'addon', item)} />);
         const drinksContent = drinks.map(item => <Addon key={item.id + Math.random()} symbol={symbol} position={position} {...{ ...item, name: item.name[lang] }} add={() => this.props.addItem(slug, 'drink', item)} />);
 
         const errors = <>
@@ -106,9 +101,7 @@ class Meal extends Component {
 const mapStateToProps = state => ({ ...state });
 
 const mapDispatchToProps = dispatch => ({
-    get: (slug, id) => dispatch(getRestaurantsMeal(slug, id)),
     addItem: (slug, type, item) => dispatch(addItem(slug, type, item)),
-    reset: () => dispatch(resetRestaurants(true)),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Meal));

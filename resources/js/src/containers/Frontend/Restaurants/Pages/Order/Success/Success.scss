@@ -1,0 +1,59 @@
+.Frontend.Restaurants .Page.Success {
+    background-position: top;
+    background-repeat: no-repeat;
+    background-image: url('/images/bg-order-success.png');
+
+    &>main {
+        display: flex;
+        margin-left: 0;
+        flex: 1 1 auto;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+
+        .title {
+            font-size: 30px;
+            font-weight: 700;
+            max-width: 220px;
+            text-align: center;
+            line-height: 38.82px;
+            margin-bottom: 53.33px;
+        }
+
+        .icon {
+            font-size: 58px;
+            color: var(--green);
+            margin-bottom: 85.7px;
+        }
+
+        .actions {
+            .btn {
+                height: 50px;
+                width: 178px;
+                display: flex;
+                font-size: 14px;
+                font-weight: 700;
+                line-height: 21px;
+                align-items: center;
+                border-radius: 50rem;
+                letter-spacing: -.41px;
+                justify-content: center;
+
+                &.btn-white {
+                    margin-bottom: 23px;
+                    color: var(--color-primary);
+                    border: 2px solid var(--color-primary);
+                }
+
+                &.btn-orange {
+                    border-color: transparent;
+                    background: linear-gradient(87.17deg, var(--color-primary) 9.54%, #EEA20F 94.26%);
+
+                    i {
+                        margin-right: 16px;
+                    }
+                }
+            }
+        }
+    }
+}

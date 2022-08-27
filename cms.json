@@ -770,6 +770,13 @@
                             "due_amount": "Due Amount",
                             "pay_now": "Pay Now"
                         }
+                    },
+                    "order": {
+                        "success": {
+                            "title": "We’ve received your payment.",
+                            "track_order": "Track Order",
+                            "go_home": "Go Home"
+                        }
                     }
                 }
             }

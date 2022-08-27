@@ -320,15 +320,9 @@ var Cart = /*#__PURE__*/function (_Component) {
     key: "componentDidMount",
     value: // Lifecycle methods
     function componentDidMount() {
-      var list = this.props.content.cms.pages.frontend.restaurants.cart.options.list;
       this.setState({
-        option: list[Object.keys(list)[0]]
+        option: Object.keys(this.props.content.cms.pages.frontend.restaurants.cart.options.list)[0]
       });
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.props.reset();
     }
   }, {
     key: "render",
@@ -340,16 +334,13 @@ var Cart = /*#__PURE__*/function (_Component) {
           cms = _this$props$content.cms.pages.frontend.restaurants.cart,
           currencies = _this$props$content.currencies,
           _this$props$frontend$ = _this$props.frontend.restaurants,
-          loading = _this$props$frontend$.loading,
           error = _this$props$frontend$.error,
           _this$props$frontend$2 = _this$props$frontend$.restaurant,
           _this$props$frontend$3 = _this$props$frontend$2.cart,
           items = _this$props$frontend$3.items,
           total = _this$props$frontend$3.total,
-          _this$props$frontend$4 = _this$props$frontend$2.delivery_fee,
-          delivery_fee = _this$props$frontend$4 === void 0 ? 0 : _this$props$frontend$4,
-          _this$props$frontend$5 = _this$props$frontend$2.service_charge,
-          service_charge = _this$props$frontend$5 === void 0 ? 0 : _this$props$frontend$5,
+          delivery_fee = _this$props$frontend$2.delivery_fee,
+          service_charge = _this$props$frontend$2.service_charge,
           currency = _this$props$frontend$.currency,
           position = _this$props$frontend$.position,
           slug = _this$props.match.params.slug;
@@ -497,9 +488,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     subItem: function subItem(slug, type, item) {
       return dispatch((0,_store_actions_frontend_restaurants__WEBPACK_IMPORTED_MODULE_7__.subItem)(slug, type, item));
-    },
-    reset: function reset() {
-      return dispatch((0,_store_actions_frontend_restaurants__WEBPACK_IMPORTED_MODULE_7__.resetRestaurants)(true));
     }
   };
 };

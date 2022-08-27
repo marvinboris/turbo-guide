@@ -425,16 +425,6 @@ var Meal = /*#__PURE__*/function (_Component) {
   }
 
   _createClass(Meal, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.get(this.props.match.params.slug, this.props.match.params.id);
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.props.reset();
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this = this;
@@ -448,25 +438,31 @@ var Meal = /*#__PURE__*/function (_Component) {
           _this$props$frontend$ = _this$props.frontend.restaurants,
           loading = _this$props$frontend$.loading,
           error = _this$props$frontend$.error,
-          meal = _this$props$frontend$.meal,
-          _this$props$frontend$2 = _this$props$frontend$.restaurant,
-          restaurant = _this$props$frontend$2 === void 0 ? {} : _this$props$frontend$2,
-          _this$props$frontend$3 = _this$props$frontend$.addons,
-          addons = _this$props$frontend$3 === void 0 ? [] : _this$props$frontend$3,
-          _this$props$frontend$4 = _this$props$frontend$.drinks,
-          drinks = _this$props$frontend$4 === void 0 ? [] : _this$props$frontend$4,
+          restaurant = _this$props$frontend$.restaurant,
+          meal_addon = _this$props$frontend$.meal_addon,
+          addons = _this$props$frontend$.addons,
           currency = _this$props$frontend$.currency,
           position = _this$props$frontend$.position,
-          slug = _this$props.match.params.slug;
+          _this$props$match$par = _this$props.match.params,
+          slug = _this$props$match$par.slug,
+          id = _this$props$match$par.id;
       var lang = localStorage.getItem('lang');
-      if (!meal || meal && Object.keys(meal).length === 0) meal = {
-        name: {}
-      };
+      var meal = restaurant.meals.find(function (meal) {
+        return +meal.id === +id;
+      });
+      var meal_addons = meal_addon.filter(function (m) {
+        return m.meal_id === meal.id;
+      }).map(function (m) {
+        return addons.find(function (addon) {
+          return addon.id === m.addon_id;
+        });
+      });
+      var drinks = restaurant.drinks;
       var currencyObj = currencies.find(function (c) {
         return c.cc === currency;
       });
       var symbol = currencyObj && currencyObj.cc;
-      var addonsContent = addons.map(function (item) {
+      var addonsContent = meal_addons.map(function (item) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_components_Frontend_UI_Food_Addon__WEBPACK_IMPORTED_MODULE_5__.default, _objectSpread(_objectSpread({
           symbol: symbol,
           position: position
@@ -595,14 +591,8 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    get: function get(slug, id) {
-      return dispatch((0,_store_actions_frontend_restaurants__WEBPACK_IMPORTED_MODULE_8__.getRestaurantsMeal)(slug, id));
-    },
     addItem: function addItem(slug, type, item) {
       return dispatch((0,_store_actions_frontend_restaurants__WEBPACK_IMPORTED_MODULE_8__.addItem)(slug, type, item));
-    },
-    reset: function reset() {
-      return dispatch((0,_store_actions_frontend_restaurants__WEBPACK_IMPORTED_MODULE_8__.resetRestaurants)(true));
     }
   };
 };

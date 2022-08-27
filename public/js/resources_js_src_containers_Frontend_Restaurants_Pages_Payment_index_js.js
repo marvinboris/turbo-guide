@@ -236,9 +236,9 @@ var Payment = /*#__PURE__*/function (_Component) {
       _this.setState(_defineProperty({}, name, value));
     });
 
-    _defineProperty(_assertThisInitialized(_this), "selectMethod", function (method) {
+    _defineProperty(_assertThisInitialized(_this), "selectMethod", function (method_id) {
       _this.setState({
-        method: method
+        method_id: method_id
       });
     });
 
@@ -295,31 +295,44 @@ var Payment = /*#__PURE__*/function (_Component) {
       if (!info) localStorage.setItem('client_info', JSON.stringify(this.getInfo()));else this.setState(_objectSpread({}, JSON.parse(info)));
     }
   }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.props.reset();
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      var _this$props = this.props,
+          _this$props$frontend$ = _this$props.frontend.restaurants,
+          message = _this$props$frontend$.message,
+          order_no = _this$props$frontend$.order_no,
+          slug = _this$props.match.params.slug;
+      if (message && message.type === 'success' && order_no) this.props.history.push({
+        pathname: "/restaurants/".concat(slug, "/order/success"),
+        state: {
+          order_no: order_no
+        }
+      });
     }
   }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
-      var _this$props = this.props,
-          _this$props$content = _this$props.content,
-          cms = _this$props$content.cms.pages.frontend.restaurants.payment,
-          currencies = _this$props$content.currencies,
-          payment_methods = _this$props$content.payment_methods,
-          _this$props$frontend$ = _this$props.frontend.restaurants,
-          loading = _this$props$frontend$.loading,
-          error = _this$props$frontend$.error,
-          _this$props$frontend$2 = _this$props$frontend$.restaurant,
-          total = _this$props$frontend$2.cart.total,
-          delivery_fee = _this$props$frontend$2.delivery_fee,
-          service_charge = _this$props$frontend$2.service_charge,
-          currency = _this$props$frontend$.currency,
-          position = _this$props$frontend$.position,
-          slug = _this$props.match.params.slug,
-          due_amount = _this$props.location.state.due_amount;
+      var _this$props2 = this.props,
+          _this$props2$content = _this$props2.content,
+          _this$props2$content$ = _this$props2$content.cms.pages.frontend.restaurants,
+          list = _this$props2$content$.cart.options.list,
+          cms = _this$props2$content$.payment,
+          currencies = _this$props2$content.currencies,
+          payment_methods = _this$props2$content.payment_methods,
+          _this$props2$frontend = _this$props2.frontend.restaurants,
+          error = _this$props2$frontend.error,
+          _this$props2$frontend2 = _this$props2$frontend.restaurant,
+          total = _this$props2$frontend2.cart.total,
+          delivery_fee = _this$props2$frontend2.delivery_fee,
+          service_charge = _this$props2$frontend2.service_charge,
+          currency = _this$props2$frontend.currency,
+          position = _this$props2$frontend.position,
+          slug = _this$props2.match.params.slug,
+          _this$props2$location = _this$props2.location.state,
+          due_amount = _this$props2$location.due_amount,
+          option = _this$props2$location.option;
       var _this$state2 = this.state,
           location = _this$state2.location,
           address = _this$state2.address,
@@ -327,14 +340,13 @@ var Payment = /*#__PURE__*/function (_Component) {
           method_id = _this$state2.method_id,
           editing = _this$state2.editing,
           changing = _this$state2.changing;
-      var lang = localStorage.getItem('lang');
       var currencyObj = currencies.find(function (c) {
         return c.cc === currency;
       });
       var symbol = currencyObj && currencyObj.cc;
       var methodsContent = payment_methods.map(function (method) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
-          className: "methods".concat(method.id === method_id ? ' active' : ''),
+          className: "method".concat(+method.id === +method_id ? ' active' : ''),
           onClick: function onClick() {
             return _this2.selectMethod(method.id);
           },
@@ -355,7 +367,7 @@ var Payment = /*#__PURE__*/function (_Component) {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_UI_Header__WEBPACK_IMPORTED_MODULE_3__.default, {
           name: cms.title
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("main", {
-          children: [errors, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("section", {
+          children: [errors, option === Object.keys(list)[0] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("section", {
             className: "banner",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
               className: "top".concat(changing ? ' changing' : ''),
@@ -486,9 +498,7 @@ var Payment = /*#__PURE__*/function (_Component) {
           label: cms.cart.pay_now,
           value: due_amount,
           onClick: function onClick() {
-            return _this2.props.payment(_objectSpread(_objectSpread(_objectSpread({}, _this2.state), _this2.props.location.state), {}, {
-              slug: slug
-            }));
+            return _this2.props.payment(slug, _objectSpread(_objectSpread({}, _this2.state), _this2.props.location.state));
           }
         })]
       });
@@ -504,8 +514,8 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    reset: function reset() {
-      return dispatch((0,_store_actions_frontend_restaurants__WEBPACK_IMPORTED_MODULE_6__.resetRestaurants)(true));
+    payment: function payment(slug, data) {
+      return dispatch((0,_store_actions_frontend_restaurants__WEBPACK_IMPORTED_MODULE_6__.postPayment)(slug, data));
     }
   };
 };
@@ -733,7 +743,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".Frontend.Restaurants .Page.Payment {\n  padding: 78px 16px 106px 16px;\n}\n.Frontend.Restaurants .Page.Payment section .title {\n  font-size: 20px;\n  font-weight: 500;\n  line-height: 25.88px;\n}\n.Frontend.Restaurants .Page.Payment section.banner {\n  overflow: hidden;\n  position: relative;\n  border-radius: 25px;\n  margin-bottom: 26px;\n}\n.Frontend.Restaurants .Page.Payment section.banner .form-group {\n  opacity: 0;\n  max-height: 0;\n  margin-bottom: 0;\n  overflow: hidden;\n  transition: var(--transition);\n}\n.Frontend.Restaurants .Page.Payment section.banner button {\n  height: 30px;\n  font-size: 12px;\n  font-weight: 500;\n  padding-left: 11px;\n  align-items: center;\n  padding-right: 11px;\n  border-radius: 50rem;\n  display: inline-flex;\n  line-height: 15.53px;\n}\n.Frontend.Restaurants .Page.Payment section.banner .top {\n  height: 142px;\n  background-color: var(--soft);\n}\n.Frontend.Restaurants .Page.Payment section.banner .top iframe {\n  width: 100%;\n  border: none;\n  height: 100%;\n}\n.Frontend.Restaurants .Page.Payment section.banner .top .change {\n  top: 0;\n  left: 0;\n  width: 100%;\n  padding: 19px 27px;\n  position: absolute;\n}\n.Frontend.Restaurants .Page.Payment section.banner .top .change button {\n  border: none;\n  outline: none;\n  color: var(--white);\n  background-color: var(--black-60);\n}\n.Frontend.Restaurants .Page.Payment section.banner .top .change button i {\n  opacity: 0.8;\n  font-size: 11px;\n  margin-left: 9px;\n}\n.Frontend.Restaurants .Page.Payment section.banner .top.changing .form-group {\n  opacity: 1;\n  max-height: 70px;\n  margin-bottom: 8px;\n}\n.Frontend.Restaurants .Page.Payment section.banner .bottom {\n  padding: 12px;\n  position: relative;\n  background-color: var(--black-5);\n}\n.Frontend.Restaurants .Page.Payment section.banner .bottom .title {\n  display: flex;\n  margin-bottom: 8px;\n  align-items: center;\n}\n.Frontend.Restaurants .Page.Payment section.banner .bottom .title i {\n  margin-right: 7px;\n  color: var(--color-primary);\n}\n.Frontend.Restaurants .Page.Payment section.banner .bottom .title span {\n  display: block;\n}\n.Frontend.Restaurants .Page.Payment section.banner .bottom .title span::after {\n  content: \"\";\n  width: 9px;\n  height: 2px;\n  display: block;\n  border-radius: 2px;\n  background-color: var(--color-primary);\n}\n.Frontend.Restaurants .Page.Payment section.banner .bottom .value {\n  opacity: 1;\n  font-size: 12px;\n  overflow: hidden;\n  position: static;\n  max-height: 100px;\n  margin-bottom: 8px;\n  line-height: 15.53px;\n  transition: var(--transition);\n}\n.Frontend.Restaurants .Page.Payment section.banner .bottom .address,\n.Frontend.Restaurants .Page.Payment section.banner .bottom .phone {\n  width: 70%;\n  padding-left: 27px;\n}\n.Frontend.Restaurants .Page.Payment section.banner .bottom .phone .value {\n  padding: 5px;\n  border-radius: 8px;\n  align-items: center;\n  display: inline-flex;\n  color: var(--color-primary);\n  background-color: var(--orange-20);\n}\n.Frontend.Restaurants .Page.Payment section.banner .bottom .phone .value i {\n  opacity: 0.7;\n  font-size: 13px;\n  margin-right: 5px;\n}\n.Frontend.Restaurants .Page.Payment section.banner .bottom .edit {\n  top: 10px;\n  right: 11px;\n  position: absolute;\n}\n.Frontend.Restaurants .Page.Payment section.banner .bottom .edit button i {\n  font-size: 10px;\n  margin-right: 9px;\n}\n.Frontend.Restaurants .Page.Payment section.banner .bottom.editing .value {\n  opacity: 0;\n  padding: 0;\n  max-height: 0;\n  margin-bottom: 0;\n  position: absolute;\n}\n.Frontend.Restaurants .Page.Payment section.banner .bottom.editing .form-group {\n  opacity: 1;\n  max-height: 100px;\n  margin-bottom: 8px;\n}\n.Frontend.Restaurants .Page.Payment section.methods {\n  border-radius: 25px;\n  margin-bottom: 39px;\n  padding: 22px 24px 31px 24px;\n  background-color: var(--black-5);\n}\n.Frontend.Restaurants .Page.Payment section.methods .body {\n  display: flex;\n  margin-top: 17px;\n}\n.Frontend.Restaurants .Page.Payment section.methods .body div {\n  height: 40px;\n  display: flex;\n  cursor: pointer;\n  font-size: 12px;\n  border-radius: 8px;\n  padding-left: 20px;\n  align-items: center;\n  padding-right: 20px;\n  line-height: 15.53px;\n  color: var(--color-secondary);\n  background-color: var(--black-10);\n}\n.Frontend.Restaurants .Page.Payment section.methods .body div i {\n  opacity: 0;\n  max-width: 0;\n  font-size: 16px;\n  margin-left: 5px;\n  transition: var(--transition);\n}\n.Frontend.Restaurants .Page.Payment section.methods .body div.active {\n  color: var(--white);\n  text-decoration: none;\n  background-color: var(--green);\n}\n.Frontend.Restaurants .Page.Payment section.methods .body div.active i {\n  opacity: 1;\n  max-width: 16px;\n}\n.Frontend.Restaurants .Page.Payment section.methods .body div:not(:last-child) {\n  margin-right: 10px;\n}\n.Frontend.Restaurants .Page.Payment section.payment {\n  padding-bottom: 50px;\n}\n.Frontend.Restaurants .Page.Payment section.payment .body {\n  margin-top: 7px;\n}\n.Frontend.Restaurants .Page.Payment section.payment .body .line {\n  display: flex;\n  font-size: 14px;\n  align-items: center;\n  margin-bottom: 12px;\n  line-height: 18.12px;\n  justify-content: space-between;\n}\n.Frontend.Restaurants .Page.Payment section.payment .body .line .value {\n  font-weight: 500;\n}\n.Frontend.Restaurants .Page.Payment section.payment .body .line .value span {\n  font-weight: 400;\n}\n.Frontend.Restaurants .Page.Payment section.payment .body .table-footer {\n  margin-top: 12px;\n  padding-top: 12px;\n  border-top: 1px solid var(--black-20);\n}\n.Frontend.Restaurants .Page.Payment section.payment .body .table-footer .line .label {\n  font-weight: 500;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".Frontend.Restaurants .Page.Payment {\n  padding: 78px 16px 106px 16px;\n}\n.Frontend.Restaurants .Page.Payment section .title {\n  font-size: 20px;\n  font-weight: 500;\n  line-height: 25.88px;\n}\n.Frontend.Restaurants .Page.Payment section.banner {\n  overflow: hidden;\n  position: relative;\n  border-radius: 25px;\n  margin-bottom: 26px;\n}\n.Frontend.Restaurants .Page.Payment section.banner .form-group {\n  opacity: 0;\n  max-height: 0;\n  margin-bottom: 0;\n  overflow: hidden;\n  transition: var(--transition);\n}\n.Frontend.Restaurants .Page.Payment section.banner .form-group .form-control {\n  z-index: 1;\n  border: none;\n  height: 40px;\n  margin: 0.2rem;\n  outline: none;\n  font-size: 12px;\n  overflow: hidden;\n  position: relative;\n  padding: 12px 16px;\n  border-radius: 20px;\n  line-height: 15.53px;\n  width: calc(100% - .4rem);\n  background-color: var(--color-bg);\n}\n.Frontend.Restaurants .Page.Payment section.banner .form-group textarea {\n  min-height: 80px;\n}\n.Frontend.Restaurants .Page.Payment section.banner button {\n  height: 30px;\n  font-size: 12px;\n  font-weight: 500;\n  padding-left: 11px;\n  align-items: center;\n  padding-right: 11px;\n  border-radius: 50rem;\n  display: inline-flex;\n  line-height: 15.53px;\n}\n.Frontend.Restaurants .Page.Payment section.banner .top {\n  height: 142px;\n  background-color: var(--soft);\n}\n.Frontend.Restaurants .Page.Payment section.banner .top iframe {\n  width: 100%;\n  border: none;\n  height: 100%;\n}\n.Frontend.Restaurants .Page.Payment section.banner .top .change {\n  top: 0;\n  left: 0;\n  display: flex;\n  padding: 14px 27px;\n  position: absolute;\n  align-items: center;\n}\n.Frontend.Restaurants .Page.Payment section.banner .top .change .form-group {\n  flex-grow: 1;\n  max-width: 0;\n  padding-right: 0;\n  max-height: unset;\n}\n.Frontend.Restaurants .Page.Payment section.banner .top .change button {\n  border: none;\n  outline: none;\n  color: var(--white);\n  background-color: var(--black-60);\n}\n.Frontend.Restaurants .Page.Payment section.banner .top .change button i {\n  opacity: 0.8;\n  font-size: 11px;\n  margin-left: 9px;\n}\n.Frontend.Restaurants .Page.Payment section.banner .top.changing .form-group {\n  opacity: 1;\n  max-width: 100%;\n  margin-bottom: 0;\n  padding-right: 8px;\n}\n.Frontend.Restaurants .Page.Payment section.banner .bottom {\n  padding: 12px;\n  position: relative;\n  background-color: var(--black-5);\n}\n.Frontend.Restaurants .Page.Payment section.banner .bottom .title {\n  display: flex;\n  margin-bottom: 8px;\n  align-items: center;\n}\n.Frontend.Restaurants .Page.Payment section.banner .bottom .title i {\n  margin-right: 7px;\n  color: var(--color-primary);\n}\n.Frontend.Restaurants .Page.Payment section.banner .bottom .title span {\n  display: block;\n}\n.Frontend.Restaurants .Page.Payment section.banner .bottom .title span::after {\n  content: \"\";\n  width: 9px;\n  height: 2px;\n  display: block;\n  border-radius: 2px;\n  background-color: var(--color-primary);\n}\n.Frontend.Restaurants .Page.Payment section.banner .bottom .value {\n  opacity: 1;\n  font-size: 12px;\n  overflow: hidden;\n  position: static;\n  max-height: 100px;\n  margin-bottom: 8px;\n  line-height: 15.53px;\n  transition: var(--transition);\n}\n.Frontend.Restaurants .Page.Payment section.banner .bottom .address,\n.Frontend.Restaurants .Page.Payment section.banner .bottom .phone {\n  width: 70%;\n  padding-left: 27px;\n}\n.Frontend.Restaurants .Page.Payment section.banner .bottom .phone .value {\n  padding: 5px;\n  border-radius: 8px;\n  align-items: center;\n  display: inline-flex;\n  color: var(--color-primary);\n  background-color: var(--orange-20);\n}\n.Frontend.Restaurants .Page.Payment section.banner .bottom .phone .value i {\n  opacity: 0.7;\n  font-size: 13px;\n  margin-right: 5px;\n}\n.Frontend.Restaurants .Page.Payment section.banner .bottom .edit {\n  top: 10px;\n  right: 11px;\n  position: absolute;\n}\n.Frontend.Restaurants .Page.Payment section.banner .bottom .edit button i {\n  font-size: 10px;\n  margin-right: 9px;\n}\n.Frontend.Restaurants .Page.Payment section.banner .bottom.editing .value {\n  opacity: 0;\n  padding: 0;\n  max-height: 0;\n  margin-bottom: 0;\n  position: absolute;\n}\n.Frontend.Restaurants .Page.Payment section.banner .bottom.editing .form-group {\n  opacity: 1;\n  margin: -0.2rem;\n  max-height: 100px;\n  margin-bottom: calc(8px + .2rem);\n}\n.Frontend.Restaurants .Page.Payment section.methods {\n  border-radius: 25px;\n  margin-bottom: 39px;\n  padding: 22px 24px 31px 24px;\n  background-color: var(--black-5);\n}\n.Frontend.Restaurants .Page.Payment section.methods .body {\n  display: flex;\n  margin-top: 17px;\n}\n.Frontend.Restaurants .Page.Payment section.methods .body div {\n  height: 40px;\n  display: flex;\n  cursor: pointer;\n  font-size: 12px;\n  border-radius: 8px;\n  padding-left: 20px;\n  position: relative;\n  align-items: center;\n  padding-right: 20px;\n  line-height: 15.53px;\n  color: var(--color-secondary);\n  background-color: var(--color-bg);\n}\n.Frontend.Restaurants .Page.Payment section.methods .body div i {\n  top: -8px;\n  opacity: 0;\n  right: 8px;\n  max-width: 0;\n  font-size: 16px;\n  position: absolute;\n  color: var(--green);\n  transition: var(--transition);\n}\n.Frontend.Restaurants .Page.Payment section.methods .body div.active {\n  text-decoration: none;\n}\n.Frontend.Restaurants .Page.Payment section.methods .body div.active i {\n  opacity: 1;\n}\n.Frontend.Restaurants .Page.Payment section.methods .body div:not(:last-child) {\n  margin-right: 10px;\n}\n.Frontend.Restaurants .Page.Payment section.payment {\n  padding-bottom: 50px;\n}\n.Frontend.Restaurants .Page.Payment section.payment .body {\n  margin-top: 7px;\n}\n.Frontend.Restaurants .Page.Payment section.payment .body .line {\n  display: flex;\n  font-size: 14px;\n  align-items: center;\n  margin-bottom: 12px;\n  line-height: 18.12px;\n  justify-content: space-between;\n}\n.Frontend.Restaurants .Page.Payment section.payment .body .line .value {\n  font-weight: 500;\n}\n.Frontend.Restaurants .Page.Payment section.payment .body .line .value span {\n  font-weight: 400;\n}\n.Frontend.Restaurants .Page.Payment section.payment .body .table-footer {\n  margin-top: 12px;\n  padding-top: 12px;\n  border-top: 1px solid var(--black-20);\n}\n.Frontend.Restaurants .Page.Payment section.payment .body .table-footer .line .label {\n  font-weight: 500;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import Header from '../UI/Header';
 import Checkout from '../UI/Checkout';
 
 import Error from '../../../../../components/Error/Error';
 
-import { resetRestaurants } from '../../../../../store/actions/frontend/restaurants';
+import { postPayment } from '../../../../../store/actions/frontend/restaurants';
 
 import './Payment.scss';
 
@@ -35,8 +35,8 @@ class Payment extends Component {
         this.setState({ [name]: value });
     }
 
-    selectMethod = method => {
-        this.setState({ method });
+    selectMethod = method_id => {
+        this.setState({ method_id });
     }
 
     change = () => this.setState({ changing: true })
@@ -56,32 +56,34 @@ class Payment extends Component {
 
     // Lifecycle methods
     componentDidMount() {
+        const { payment_methods } = this.props.content;
         const info = localStorage.getItem('client_info');
         if (!info) localStorage.setItem('client_info', JSON.stringify(this.getInfo()));
         else this.setState({ ...JSON.parse(info) });
+        this.setState({ method_id: payment_methods.length > 0 && payment_methods[0].id });
     }
 
-    componentWillUnmount() {
-        this.props.reset();
+    componentDidUpdate() {
+        const { frontend: { restaurants: { message, order_no } }, match: { params: { slug } } } = this.props;
+        if (message && message.type === 'success' && order_no) this.props.history.push({ pathname: `/restaurants/${slug}/order/success`, state: { order_no } })
     }
 
     render() {
-        let {
+        const {
             content: {
-                cms: { pages: { frontend: { restaurants: { payment: cms } } } },
+                cms: { pages: { frontend: { restaurants: { cart: { options: { list } }, payment: cms } } } },
                 currencies, payment_methods
             },
-            frontend: { restaurants: { loading, error, restaurant: { cart: { total }, delivery_fee, service_charge }, currency, position } },
+            frontend: { restaurants: { error, restaurant: { cart: { total }, delivery_fee, service_charge }, currency, position } },
             match: { params: { slug } },
-            location: { state: { due_amount } }
+            location: { state: { due_amount, option } }
         } = this.props;
         const { location, address, phone, method_id, editing, changing } = this.state;
-        const lang = localStorage.getItem('lang');
 
         const currencyObj = currencies.find(c => c.cc === currency);
         const symbol = currencyObj && currencyObj.cc;
 
-        const methodsContent = payment_methods.map(method => <div key={JSON.stringify(method)} className={`methods${method.id === method_id ? ' active' : ''}`} onClick={() => this.selectMethod(method.id)}>{method.name}<i className='fas fa-check-circle' /></div>);
+        const methodsContent = payment_methods.map(method => <div key={JSON.stringify(method)} className={`method${+method.id === +method_id ? ' active' : ''}`} onClick={() => this.selectMethod(method.id)}>{method.name}<i className='fas fa-check-circle' /></div>);
 
         const errors = <>
             <Error err={error} />
@@ -93,7 +95,7 @@ class Payment extends Component {
             <main>
                 {errors}
 
-                <section className='banner'>
+                {option === Object.keys(list)[0] && <section className='banner'>
                     <div className={`top${changing ? ' changing' : ''}`}>
                         <iframe src={location} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
 
@@ -133,7 +135,7 @@ class Payment extends Component {
                             </button>
                         </div>
                     </div>
-                </section>
+                </section>}
 
                 <section className='methods'>
                     <div className='title'>{cms.methods.select}</div>
@@ -160,7 +162,7 @@ class Payment extends Component {
                 </section>
             </main>
 
-            <Checkout title={cms.cart.due_amount} label={cms.cart.pay_now} value={due_amount} onClick={() => this.props.payment({ ...this.state, ...this.props.location.state, slug })} />
+            <Checkout title={cms.cart.due_amount} label={cms.cart.pay_now} value={due_amount} onClick={() => this.props.payment(slug, { ...this.state, ...this.props.location.state })} />
         </div>;
     }
 }
@@ -168,7 +170,7 @@ class Payment extends Component {
 const mapStateToProps = state => ({ ...state });
 
 const mapDispatchToProps = dispatch => ({
-    reset: () => dispatch(resetRestaurants(true)),
+    payment: (slug, data) => dispatch(postPayment(slug, data)),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Payment));

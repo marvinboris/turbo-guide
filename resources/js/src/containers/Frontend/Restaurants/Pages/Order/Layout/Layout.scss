@@ -1,0 +1,15 @@
+.Frontend.Restaurants .Layout.Order {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-repeat: no-repeat;
+    padding: 78px 16px 106px 16px;
+    background-position: bottom left;
+    background-image: url('/images/bg-layout-order.png');
+
+    .Page {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+    }
+}

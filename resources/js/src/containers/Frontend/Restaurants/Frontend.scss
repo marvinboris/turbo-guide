@@ -2,13 +2,19 @@
     margin: auto;
     display: flex;
     position: relative;
+    border: 0 solid var(--soft);
+    border-width: 0 1px;
     flex-direction: column;
     max-width: var(--app-width);
     background-repeat: no-repeat;
     background-position: top left;
     background-image: url('/images/bg4.png'), url('/images/bg5.png');
 
-    main {
+    &>main {
         flex-grow: 1;
+
+        .body {
+            font-family: var(--family-sans);
+        }
     }
 }

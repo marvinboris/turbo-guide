@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Language;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FrontendController extends Controller
 {
@@ -28,6 +29,8 @@ class FrontendController extends Controller
                 ]);
             }
         }
+
+        $meal_addon = DB::table('meal_addon')->get();
 
         $languages = [];
         foreach ($restaurant->languages as $language) {
@@ -58,11 +61,16 @@ class FrontendController extends Controller
                 'caution' => $restaurant->caution,
                 'must_read' => $restaurant->must_read,
                 'disclaimer' => $restaurant->disclaimer,
+                'drinks' => [],
+                'delivery_fee' => 0,
+                'service_charge' => 0,
             ],
             'categories' => $categories,
             'currency' => $restaurant->currency,
             'position' => $restaurant->position,
             'languages' => $languages,
+            'meal_addon' => $meal_addon,
+            'addons' => $restaurant->addons,
         ];
     }
 
@@ -78,64 +86,28 @@ class FrontendController extends Controller
         return response()->json($information);
     }
 
-    public function meal($slug, $id)
+    public function payment(Request $request, $slug)
     {
         $restaurant = Restaurant::whereSlug($slug)->first();
         if (!$restaurant) return response()->json([
             'message' => UtilController::message('Restaurant not found.', 'danger'),
-        ]);
-
-        $meal = $restaurant->meals()->find($id);
-        if (!$meal) return response()->json([
-            'message' => UtilController::message('Meal not found.', 'danger'),
-        ]);
-
-        $meal->update(['views' => $meal->views + 1]);
-
-        $addons = [];
-        foreach ($meal->addons()->whereIsActive(1)->get() as $addon) {
-            $addons[] = $addon->toArray() + [
-                'formattedPrice' => number_format($addon->price, 2),
-            ];
-        }
-
-        $data = [
-            'meal' => $meal->toArray(),
-            'addons' => $addons,
-            'comments' => $meal->comments,
-            'currency' => $restaurant->currency,
-            'position' => $restaurant->position,
-        ];
-
-        if (request()->restaurant == 1) $data += $this->information($slug);
-
-        return response()->json($data);
-    }
-
-    public function comment(Request $request, $slug, $id)
-    {
-        $restaurant = Restaurant::whereSlug($slug)->first();
-        if (!$restaurant) return response()->json([
-            'message' => UtilController::message('Restaurant not found.', 'danger'),
-        ]);
-
-        $meal = $restaurant->meals()->find($id);
-        if (!$meal) return response()->json([
-            'message' => UtilController::message('Meal not found.', 'danger'),
         ]);
 
         $input = $request->validate([
-            'name' => 'required|string',
-            'mark' => 'required|integer',
-            'body' => 'required|string',
-            'country' => 'required|string',
+            'location' => 'nullable|string',
+            'address' => 'nullable|string',
+            'phone' => 'nullable|string',
+            'method_id' => 'required|exists:methods,id',
+            'option' => 'required|in:dine_in,delivery,pick_up',
+            'note' => 'nullable|string',
+            'due_amount' => 'required|numeric',
         ]);
-
-        $meal->comments()->create($input);
+        
+        $order_no = 'Test';
 
         return response()->json([
-            'message' => UtilController::message('Comment successfully posted.', 'success'),
-            'comments' => $meal->comments,
+            'message' => UtilController::message('Payment successfully received.', 'success'),
+            'order_no' => $order_no,
         ]);
     }
 }

@@ -12,6 +12,7 @@ import AuthAdmin from './containers/Auth/Admin/Layout';
 import AuthRestaurant from './containers/Auth/Restaurant/Layout';
 import Frontend from './containers/Frontend/Layout';
 import FrontendRestaurants from './containers/Frontend/Restaurants/Layout';
+import FrontendRestaurantsOrder from './containers/Frontend/Restaurants/Pages/Order/Layout';
 import Backend from './containers/Backend/Layout';
 import BackendRestaurant from './containers/Backend/Restaurant/Layout';
 import BackendUserRestaurantsEdit from './containers/Backend/User/Restaurants/Edit/Layout';
@@ -178,6 +179,8 @@ const asyncAdminVerify = lazy(() => import('./containers/Auth/Admin/Verify/Verif
 
 
 // Frontend routes
+const asyncRestaurantsOrderSuccess = lazy(() => import('./containers/Frontend/Restaurants/Pages/Order/Success'));
+
 const asyncRestaurantsPayment = lazy(() => import('./containers/Frontend/Restaurants/Pages/Payment'));
 const asyncRestaurantsCart = lazy(() => import('./containers/Frontend/Restaurants/Pages/Cart'));
 const asyncRestaurantsMeal = lazy(() => import('./containers/Frontend/Restaurants/Pages/Meal'));
@@ -200,6 +203,11 @@ class App extends Component {
         const frontendRoutes = <Switch>
             <Route path="/restaurants/:slug">
                 <FrontendRestaurants>
+                    <Route path="/restaurants/:slug/order">
+                        <FrontendRestaurantsOrder>
+                            <Route path="/restaurants/:slug/order/success" component={asyncRestaurantsOrderSuccess} />
+                        </FrontendRestaurantsOrder>
+                    </Route>
                     <Route path="/restaurants/:slug/payment" component={asyncRestaurantsPayment} />
                     <Route path="/restaurants/:slug/cart" component={asyncRestaurantsCart} />
                     <Route path="/restaurants/:slug/meals/:id" component={asyncRestaurantsMeal} />

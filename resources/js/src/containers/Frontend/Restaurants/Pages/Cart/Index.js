@@ -51,14 +51,17 @@ class Cart extends Component {
             frontend: { restaurants: { error, restaurant: { cart: { items, total }, delivery_fee, service_charge }, currency, position } },
             match: { params: { slug } }
         } = this.props;
+        const { option, note } = this.state;
         const lang = localStorage.getItem('lang');
-        const due_amount = total + delivery_fee + service_charge;
 
         const currencyObj = currencies.find(c => c.cc === currency);
         const symbol = currencyObj && currencyObj.cc;
 
         const itemsContent = items.map(item => <Item key={item.id + Math.random()} symbol={symbol} position={position} item={{ ...item, name: item.name[lang] }} add={() => this.props.addItem(slug, item.type, item)} sub={() => this.props.subItem(slug, item.type, item)} />);
-        const optionsContent = Object.keys(cms.options.list).map(key => ({ key, name: cms.options.list[key] })).map(option => <div key={JSON.stringify(option)} className={`options${option.key === this.state.option ? ' active' : ''}`} onClick={() => this.selectOption(option.key)}>{option.name}<i className='fas fa-check-circle' /></div>);
+        const optionsContent = Object.keys(cms.options.list).map(key => ({ key, name: cms.options.list[key] })).map(item => <div key={JSON.stringify(item)} className={`options${item.key === option ? ' active' : ''}`} onClick={() => this.selectOption(item.key)}>{item.name}<i className='fas fa-check-circle' /></div>);
+
+        const [delivery_option] = Object.keys(cms.options.list);
+        const due_amount = total + (option === delivery_option ? delivery_fee : 0) + service_charge;
 
         const errors = <>
             <Error err={error} />
@@ -77,7 +80,7 @@ class Cart extends Component {
                 <section className='note'>
                     <div className='form-group'>
                         <label><i className='fas fa-file' />{cms.note.add}</label>
-                        <input type='text' name='note' className='form-control' placeholder={cms.note.type} onChange={this.inputChangedHandler} />
+                        <input type='text' name='note' className='form-control' placeholder={cms.note.type} value={note} onChange={this.inputChangedHandler} />
                     </div>
                 </section>
 
@@ -95,7 +98,7 @@ class Cart extends Component {
                     <div className='body'>
                         <div className='table-body'>
                             <Line label={cms.payment.cart_total} value={total} position={position} symbol={symbol} />
-                            <Line label={cms.payment.delivery_fee} value={delivery_fee} position={position} symbol={symbol} />
+                            {option === delivery_option && <Line label={cms.payment.delivery_fee} value={delivery_fee} position={position} symbol={symbol} />}
                             <Line label={cms.payment.service_charge} value={service_charge} position={position} symbol={symbol} />
                         </div>
 
@@ -106,7 +109,7 @@ class Cart extends Component {
                 </section>
             </main>
 
-            <Checkout title={cms.cart.due_amount} label={cms.cart.proceed} value={due_amount} onClick={() => this.props.history.push({ pathname: `/restaurants/${slug}/payment`, state: { ...this.state, due_amount } })} />
+            <Checkout title={cms.cart.due_amount} label={cms.cart.proceed} value={due_amount} onClick={() => this.props.history.push({ pathname: `/restaurants/${slug}/payment`, state: { ...this.state, items, due_amount } })} />
         </div>;
     }
 }

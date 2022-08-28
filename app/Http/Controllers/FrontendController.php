@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Language;
+use App\Models\Order;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -98,12 +99,17 @@ class FrontendController extends Controller
             'address' => 'nullable|string',
             'phone' => 'nullable|string',
             'method_id' => 'required|exists:methods,id',
-            'option' => 'required|in:dine_in,delivery,pick_up',
+            'option' => 'required|in:delivery,dine_in,pick_up',
             'note' => 'nullable|string',
             'due_amount' => 'required|numeric',
+            'items' => 'required',
         ]);
-        
-        $order_no = 'Test';
+
+        $order_no = Order::generateNo();
+        $restaurant->orders()->create(array_merge($input, [
+            'order_no' => $order_no,
+            'items' => json_encode($request->items),
+        ]));
 
         return response()->json([
             'message' => UtilController::message('Payment successfully received.', 'success'),

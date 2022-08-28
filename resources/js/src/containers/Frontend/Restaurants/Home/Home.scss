@@ -232,7 +232,8 @@
         }
 
         .search {
-            width: 151px;
+            flex: 1 1 auto;
+            margin: 0 18px;
             color: var(--light);
 
             input {

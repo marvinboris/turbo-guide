@@ -21,8 +21,6 @@ export default class Loading extends Component {
                     <img src={'/images/logo.png'} />
                 </div>
 
-                <div className='marvinboris'><span className='marvin'>M</span>arvin <span className='boris'>B</span>oris</div>
-
                 <div className='loading'>
                     <div className='bar-wrapper'>
                         <div className='bar' />

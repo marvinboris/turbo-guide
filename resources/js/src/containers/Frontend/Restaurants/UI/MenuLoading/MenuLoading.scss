@@ -8,6 +8,7 @@
     z-index: 10000;
     position: fixed;
     flex-direction: column;
+    background-size: contain;
     max-width: var(--app-width);
     transform: translateX(-50%);
     background-repeat: no-repeat;

@@ -85,6 +85,8 @@ class Payment extends Component {
 
         const methodsContent = payment_methods.map(method => <div key={JSON.stringify(method)} className={`method${+method.id === +method_id ? ' active' : ''}`} onClick={() => this.selectMethod(method.id)}>{method.name}<i className='fas fa-check-circle' /></div>);
 
+        const [delivery_option, dine_in_option] = Object.keys(list);
+
         const errors = <>
             <Error err={error} />
         </>;
@@ -95,8 +97,8 @@ class Payment extends Component {
             <main>
                 {errors}
 
-                {option === Object.keys(list)[0] && <section className='banner'>
-                    <div className={`top${changing ? ' changing' : ''}`}>
+                {option !== dine_in_option && <section className='banner'>
+                    {option === delivery_option && <div className={`top${changing ? ' changing' : ''}`}>
                         <iframe src={location} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
 
                         <div className='change'>
@@ -108,7 +110,7 @@ class Payment extends Component {
                                 {changing ? cms.banner.save : cms.banner.change}<i className='fas fa-map-marker-alt' />
                             </button>
                         </div>
-                    </div>
+                    </div>}
 
                     <div className={`bottom${editing ? ' editing' : ''}`}>
                         <div className='title'><i className='fas fa-compass' /><span>{cms.banner.current_location}</span></div>
@@ -151,7 +153,7 @@ class Payment extends Component {
                     <div className='body'>
                         <div className='table-body'>
                             <Line label={cms.payment.cart_total} value={total} position={position} symbol={symbol} />
-                            <Line label={cms.payment.delivery_fee} value={delivery_fee} position={position} symbol={symbol} />
+                            {option === delivery_option && <Line label={cms.payment.delivery_fee} value={delivery_fee} position={position} symbol={symbol} />}
                             <Line label={cms.payment.service_charge} value={service_charge} position={position} symbol={symbol} />
                         </div>
 

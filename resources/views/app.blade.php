@@ -60,7 +60,7 @@
             const string_manifest = JSON.stringify(manifest);
             const link = document.createElement('link');
             link.rel = 'manifest';
-            link.setAttribute('href', 'data:application/json;charset=8' + string_manifest);
+            link.setAttribute('href', 'data:application/json;charset=8' + encodeURIComponent(string_manifest));
             document.head.appendChild(link);
         </script>
     @else

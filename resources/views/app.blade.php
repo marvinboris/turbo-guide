@@ -43,8 +43,8 @@
             const restaurant_name = document.head.querySelector('meta[name=restaurant-name]').content
             const restaurant_slug = document.head.querySelector('meta[name=restaurant-slug]').content
             const manifest = {
-                "name": title,
-                "short_name": title,
+                "name": app_name,
+                "short_name": app_name,
                 "start_url": "/restaurants/" + restaurant_slug,
                 "background_color": "#6777ef",
                 "description": restaurant_name + " - Digital Restaurant Menu",
@@ -62,10 +62,6 @@
             const blob = new Blob([string_manifest], { type: 'application/json' });
             const manifest_url = URL.createObjectURL(blob);
             document.head.getElementById('manifest-placeholder').setAttribute('href', manifest_url);
-
-            const link = document.createElement('Link');
-            link.rel = 'manifest';
-            link.setAttribute('href', 'data:application/json;charset=8' + string_manifest);
         </script>
     @else
         <title>{{ config('app.name', 'Laravel') }}</title>

@@ -17,6 +17,11 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <!-- PWA  -->
+    <meta name="theme-color" content="#6777ef" />
+    <link rel="apple-touch-icon" href="{{ asset('images/favicon.png') }}">
+    <link rel="manifest" href="{{ asset('/manifest.json') }}">
+
     @if (Request::segment(1) === 'restaurants')
         @php
             $restaurant = \App\Models\Restaurant::whereSlug(Request::segment(2))->first();
@@ -38,6 +43,15 @@
 <body class="scrollbar-orange">
     <div id="app">
     </div>
+
+    <script src="{{ asset('/sw.js') }}"></script>
+    <script>
+        if (!navigator.serviceWorker.controller) {
+            navigator.serviceWorker.register("/sw.js").then(function(reg) {
+                console.log("Service worker has been registered for scope: " + reg.scope);
+            });
+        }
+    </script>
 </body>
 
 </html>

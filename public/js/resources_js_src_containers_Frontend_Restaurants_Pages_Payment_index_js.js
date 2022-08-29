@@ -288,15 +288,12 @@ var Payment = /*#__PURE__*/function (_Component) {
       var _this$props = this.props,
           _this$props$frontend$ = _this$props.frontend.restaurants,
           error = _this$props$frontend$.error,
-          message = _this$props$frontend$.message,
-          order_no = _this$props$frontend$.order_no,
           tracking_code = _this$props$frontend$.tracking_code,
           slug = _this$props.match.params.slug;
       if (error) return (0,_shared_utility__WEBPACK_IMPORTED_MODULE_5__.errorAlert)(error);
-      if (message && message.type === 'success' && order_no) this.props.history.push({
+      if (tracking_code) this.props.history.push({
         pathname: "/restaurants/".concat(slug, "/order/success"),
         state: {
-          order_no: order_no,
           tracking_code: tracking_code
         }
       });

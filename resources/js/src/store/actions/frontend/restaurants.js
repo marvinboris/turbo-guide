@@ -70,7 +70,7 @@ export const postPayment = (slug, data) => async (dispatch, getState) => {
         if (res.status === 422) throw new Error(Object.values(resData.errors).join('\n'));
         else if (res.status !== 200 && res.status !== 201) throw new Error(resData.error.message);
 
-        if (resData.message.type === 'success') {
+        if (resData.tracking_code) {
             const cart = { items: [], total: 0 };
             localStorage.setItem(`cart_${slug}`, JSON.stringify(cart));
             const restaurant = { ...getState().frontend.restaurants.restaurant, cart };

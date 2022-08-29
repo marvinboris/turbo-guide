@@ -24,7 +24,6 @@
 
         <!-- PWA  -->
         <meta name="theme-color" content="#6777ef" />
-        <link rel="manifest" id="manifest-placeholder">
 
         <title>{{ $restaurant->name . ' - ' . config('app.name', 'Laravel') }}</title>
         <meta name="restaurant-name" content="{{ $restaurant->name }}" />
@@ -59,13 +58,10 @@
             };
 
             const string_manifest = JSON.stringify(manifest);
-            const blob = new Blob([string_manifest], { type: 'application/json' });
-            const manifest_url = URL.createObjectURL(blob);
-            document.getElementById('manifest-placeholder').setAttribute('href', manifest_url);
-            
-            const link = document.createElement('Link');
+            const link = document.createElement('link');
             link.rel = 'manifest';
             link.setAttribute('href', 'data:application/json;charset=8' + string_manifest);
+            document.head.appendChild(link);
         </script>
     @else
         <title>{{ config('app.name', 'Laravel') }}</title>

@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 export const updateObject = (oldObject, updatedProps) => ({
     ...oldObject, ...updatedProps
 });
@@ -53,3 +55,9 @@ export const checkValidity = (value = '', rules) => {
 
     return isValid;
 };
+
+export const errorAlert = err => Swal.fire({
+    text: err.message || err,
+    icon: 'warning',
+    confirmButtonColor: '#3085d6',
+});

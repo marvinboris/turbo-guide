@@ -701,7 +701,7 @@
                         "search": "Search",
                         "welcome_to": "Welcome to",
                         "category": "Category",
-                        "search_meal": "Search meal",
+                        "search_meal": "Search meal or drink",
                         "open": "Open",
                         "closed": "Closed",
                         "digital_menu": "Digital Menu",
@@ -776,6 +776,21 @@
                             "title": "We’ve received your payment.",
                             "track_order": "Track Order",
                             "go_home": "Go Home"
+                        },
+                        "tracking": {
+                            "page_title": "Order Tracking",
+                            "title": "Your food has been delivered",
+                            "go_home": "Go Home",
+                            "order_no": "Order No.",
+                            "process": {
+                                "left": "left",
+                                "out_for_delivery": "Out for delivery",
+                                "list": [
+                                    "Order Received",
+                                    "Preparing your order",
+                                    "Food is ready. Out for delivery"
+                                ]
+                            }
                         }
                     }
                 }
@@ -1471,79 +1486,101 @@
             "frontend": {
                 "restaurants": {
                     "home": {
-                        "you_are_on_category": "You are on category",
-                        "select_category": "Select category",
-                        "search": "Search",
-                        "welcome_to": "Welcome to",
-                        "category": "Category",
-                        "search_meal": "Search meal",
-                        "open": "Open",
-                        "closed": "Closed",
-                        "digital_menu": "Digital Menu",
-                        "loading_menu": "Loading Menu"
+                        "you_are_on_category": "Vous êtes dans la catégorie",
+                        "select_category": "Sélectionner une catégorie",
+                        "search": "Rechercher",
+                        "welcome_to": "Bienvenue à",
+                        "category": "Catégorie",
+                        "search_meal": "Rechercher un plat ou une boisson",
+                        "open": "Ouvert",
+                        "closed": "Fermé",
+                        "digital_menu": "Menu Digital",
+                        "loading_menu": "Chargement du menu en cours"
                     },
                     "meal": {
                         "no": "No",
                         "min": "min",
-                        "add": "Add",
-                        "add_to_cart": "Add to Cart",
-                        "addons": "Addons",
-                        "drinks": "Drinks",
+                        "add": "Ajouter",
+                        "add_to_cart": "Ajouter au Panier",
+                        "addons": "Suppléments",
+                        "drinks": "Boissons",
                         "cart": {
-                            "go_to_cart": "Go to Cart",
-                            "total_items": "Total of Items"
+                            "go_to_cart": "Aller au Panier",
+                            "total_items": "Total"
                         }
                     },
                     "cart": {
-                        "your_cart": "Your Cart",
+                        "your_cart": "Votre Panier",
                         "note": {
-                            "add": "Add Note",
-                            "type": "Type note here"
+                            "add": "Ajouter une Note",
+                            "type": "Entrez votre note ici"
                         },
                         "options": {
-                            "select": "Select an option",
+                            "select": "Sélectionner une option",
                             "list": {
-                                "delivery": "Delivery",
-                                "dine_in": "Dine In",
-                                "pick_up": "Pick Up"
+                                "delivery": "Livraison",
+                                "dine_in": "Surplace",
+                                "pick_up": "A emporter"
                             }
                         },
                         "payment": {
-                            "title": "Payment",
-                            "cart_total": "Cart Total",
-                            "delivery_fee": "Delivery Fee",
-                            "service_charge": "Service Charge",
-                            "total_due": "Total Due"
+                            "title": "Paiement",
+                            "cart_total": "Total du Panier",
+                            "delivery_fee": "Frais de Livraison",
+                            "service_charge": "Frais du Service",
+                            "total_due": "Total Dû"
                         },
                         "cart": {
-                            "due_amount": "Due Amount",
-                            "proceed": "Proceed"
+                            "due_amount": "Montant Dû",
+                            "proceed": "Procéder"
                         }
                     },
                     "payment": {
-                        "title": "Payment",
+                        "title": "Paiement",
                         "banner": {
-                            "location": "Location",
-                            "change": "Change",
-                            "save": "Save",
-                            "address": "Address",
-                            "current_location": "Current Location",
-                            "phone": "Phone number",
-                            "edit": "Edit"
+                            "location": "Localisation",
+                            "change": "Changer",
+                            "save": "Sauvegarder",
+                            "address": "Adresse",
+                            "current_location": "Localisation actuelle",
+                            "phone": "Numéro de téléphone",
+                            "edit": "Modifier"
                         },
                         "methods": {
-                            "select": "Select Payment Method"
+                            "select": "Sélectionner une Méthode de Paiement"
                         },
                         "payment": {
-                            "title": "Payment Summary",
-                            "cart_total": "Cart Total",
-                            "delivery_fee": "Delivery Fee",
-                            "service_charge": "Service Charge",
-                            "total_due": "Total Due"
+                            "title": "Paiement",
+                            "cart_total": "Total du Panier",
+                            "delivery_fee": "Frais de Livraison",
+                            "service_charge": "Frais du Service",
+                            "total_due": "Total Dû"
                         },
                         "cart": {
-                            "due_amount": "Due Amount",
-                            "pay_now": "Pay Now"
+                            "due_amount": "Montant Dû",
+                            "pay_now": "Payer"
+                        }
+                    },
+                    "order": {
+                        "success": {
+                            "title": "Nous avons bien reçu votre paiement.",
+                            "track_order": "Suivre la Commande",
+                            "go_home": "Retour à l'Accueil"
+                        },
+                        "tracking": {
+                            "page_title": "Suivi de la Commande",
+                            "title": "Votre plat a été livré.",
+                            "go_home": "Retour à l'Accueil",
+                            "order_no": "Commande No.",
+                            "process": {
+                                "left": "left",
+                                "out_for_delivery": "Livraison en cours",
+                                "list": [
+                                    "Commande Reçue",
+                                    "Commande en cours de Préparation",
+                                    "Commande prête. Livraison en cours"
+                                ]
+                            }
                         }
                     }
                 }

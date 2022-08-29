@@ -47,6 +47,7 @@ let timeout;
 class Home extends Component {
     state = {
         id: '',
+        search: '',
         modal: false,
     }
 
@@ -122,14 +123,14 @@ class Home extends Component {
             },
             frontend: { restaurants: { loading, restaurant = { days: {}, hours: {}, address: {} }, categories = [], currency, languages = [], position } }
         } = this.props;
-        const { id } = this.state;
+        const { id, search } = this.state;
         const lang = localStorage.getItem('lang');
 
         const currencyObj = currencies.find(c => c.cc === currency);
 
         const categoriesContent = categories.map((category, index) => <Category id={category.id} index={index} key={JSON.stringify(category) + Math.random()} name={category.name[lang]}>
-            {category.meals && category.meals.map(meal => <Meal symbol={currencyObj && currencyObj.cc} position={position} key={JSON.stringify(meal) + Math.random()} {...{ ...meal, name: meal.name[lang], description: meal.description[lang] }} slug={this.props.match.params.slug} />)}
-        </Category>);
+            {category.meals && category.meals.filter(meal => meal.name[lang].toLowerCase().includes(search) || meal.description[lang].toLowerCase().includes(search)).map(meal => <Meal symbol={currencyObj && currencyObj.cc} position={position} key={JSON.stringify(meal) + Math.random()} {...{ ...meal, name: meal.name[lang], description: meal.description[lang] }} slug={this.props.match.params.slug} />)}
+        </Category>).filter(category => category.props.children.length > 0);
 
         const items = [];
         if (restaurant.banner1) items.push(restaurant.banner1);
@@ -196,7 +197,7 @@ class Home extends Component {
                 </div>
 
                 <div className="search">
-                    <Input type='search' name='meal' placeholder={home.search_meal} />
+                    <Input type='search' name='search' onChange={e => this.setState({ search: e.target.value })} value={search} placeholder={home.search_meal} />
                 </div>
 
                 <div className='filter'>

@@ -308,6 +308,7 @@ Route::middleware('auth:admin,restaurant,api')->group(function () {
 
 Route::prefix('restaurants/{restaurant}')->name('restaurants.')->group(function () {
     Route::prefix('orders')->name('orders.')->group(function () {
+        Route::get('{md5}', 'FrontendController@tracking')->name('tracking');
         Route::post('', 'FrontendController@payment')->name('create');
     });
     Route::get('', 'FrontendController@show')->name('show');

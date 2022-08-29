@@ -303,6 +303,15 @@ class Restaurant extends Authenticatable
         }
     }
 
+    public function generateOrderNo()
+    {
+        $last_order = $this->orders()->orderBy('id', 'DESC')->first();
+        $order_no = 10000;
+        if ($last_order) $order_no = $last_order->order_no + 1;
+
+        return $order_no;
+    }
+
     public function orders()
     {
         return $this->hasMany(Order::class);

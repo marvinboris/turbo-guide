@@ -89,10 +89,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var _Cart_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Cart.scss */ "./resources/js/src/components/Frontend/UI/Cart/Cart.scss");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _Cart_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Cart.scss */ "./resources/js/src/components/Frontend/UI/Cart/Cart.scss");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -145,12 +144,12 @@ var Cart = /*#__PURE__*/function (_Component) {
       var _this$props = this.props,
           cart = _this$props.frontend.restaurants.restaurant.cart,
           slug = _this$props.match.params.slug;
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
         to: "/restaurants/".concat(slug, "/cart"),
         className: "UI Cart",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
           className: "fas fa-shopping-cart"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
           className: "qty",
           children: cart.items.reduce(function (a, b) {
             return a + b.qty;
@@ -167,7 +166,7 @@ var mapStateToProps = function mapStateToProps(state) {
   return _objectSpread({}, state);
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps)(Cart)));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps)(Cart)));
 
 /***/ }),
 
@@ -269,9 +268,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _Food_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Food.scss */ "./resources/js/src/components/Frontend/UI/Food/Food.scss");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _Food_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Food.scss */ "./resources/js/src/components/Frontend/UI/Food/Food.scss");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
@@ -295,43 +294,43 @@ function Food(_ref) {
       slug = _ref.slug,
       children = _ref.children;
 
-  var content = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+  var content = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     className: "wrapper",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
       className: "img",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         className: "embed-responsive embed-responsive-4by3",
         style: {
           backgroundImage: "url(\"".concat(photo, "\")")
         }
-      }), meal && reference && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      }), meal && reference && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         className: "reference",
         children: reference
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       className: "name",
       children: name
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
       className: "details",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         className: "price",
-        children: [position == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+        children: [position == 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
           children: [symbol, ' ']
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
           className: "value",
           children: price
-        }), position == 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+        }), position == 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
           children: [' ', symbol]
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         children: children
       })]
     })]
   });
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
     className: "UI Food".concat(meal ? " Meal" : "").concat(addon ? " Addon" : ""),
-    children: meal ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+    children: meal ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
       to: "/restaurants/".concat(slug, "/meals/").concat(id),
       children: content
     }) : content
@@ -643,24 +642,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/DropdownItem.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/UncontrolledDropdown.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/DropdownToggle.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/DropdownMenu.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/CustomInput.js");
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Input.js");
-/* harmony import */ var _components_Frontend_UI_Cart__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../components/Frontend/UI/Cart */ "./resources/js/src/components/Frontend/UI/Cart/index.js");
-/* harmony import */ var _components_Frontend_UI_Food_Meal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../components/Frontend/UI/Food/Meal */ "./resources/js/src/components/Frontend/UI/Food/Meal/index.js");
-/* harmony import */ var _components_Frontend_UI_Category__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../components/Frontend/UI/Category */ "./resources/js/src/components/Frontend/UI/Category/index.js");
-/* harmony import */ var _components_UI_Spinner__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../components/UI/Spinner */ "./resources/js/src/components/UI/Spinner/index.js");
-/* harmony import */ var _Carousel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Carousel */ "./resources/js/src/containers/Frontend/Restaurants/Home/Carousel/index.js");
-/* harmony import */ var _SelectCategory__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./SelectCategory */ "./resources/js/src/containers/Frontend/Restaurants/Home/SelectCategory/index.js");
-/* harmony import */ var _shared_utility__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../shared/utility */ "./resources/js/src/shared/utility.js");
-/* harmony import */ var _store_actions_frontend_restaurants__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../store/actions/frontend/restaurants */ "./resources/js/src/store/actions/frontend/restaurants.js");
-/* harmony import */ var _store_actions_content__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../../store/actions/content */ "./resources/js/src/store/actions/content.js");
-/* harmony import */ var _Home_scss__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Home.scss */ "./resources/js/src/containers/Frontend/Restaurants/Home/Home.scss");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/DropdownItem.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/UncontrolledDropdown.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/DropdownToggle.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/DropdownMenu.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/CustomInput.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Input.js");
+/* harmony import */ var _components_Frontend_UI_Cart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../components/Frontend/UI/Cart */ "./resources/js/src/components/Frontend/UI/Cart/index.js");
+/* harmony import */ var _components_Frontend_UI_Food_Meal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../components/Frontend/UI/Food/Meal */ "./resources/js/src/components/Frontend/UI/Food/Meal/index.js");
+/* harmony import */ var _components_Frontend_UI_Category__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../components/Frontend/UI/Category */ "./resources/js/src/components/Frontend/UI/Category/index.js");
+/* harmony import */ var _components_UI_Spinner__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../components/UI/Spinner */ "./resources/js/src/components/UI/Spinner/index.js");
+/* harmony import */ var _Carousel__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Carousel */ "./resources/js/src/containers/Frontend/Restaurants/Home/Carousel/index.js");
+/* harmony import */ var _SelectCategory__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./SelectCategory */ "./resources/js/src/containers/Frontend/Restaurants/Home/SelectCategory/index.js");
+/* harmony import */ var _shared_utility__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../shared/utility */ "./resources/js/src/shared/utility.js");
+/* harmony import */ var _store_actions_frontend_restaurants__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../../store/actions/frontend/restaurants */ "./resources/js/src/store/actions/frontend/restaurants.js");
+/* harmony import */ var _store_actions_content__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../../store/actions/content */ "./resources/js/src/store/actions/content.js");
+/* harmony import */ var _Home_scss__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Home.scss */ "./resources/js/src/containers/Frontend/Restaurants/Home/Home.scss");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -714,29 +713,29 @@ var Languages = function Languages(_ref) {
     return l.abbr === lang;
   });
   var dropdownItems = languages.map(function (l) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_13__.default, {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_14__.default, {
       onClick: function onClick() {
         return set(l.abbr);
       },
       className: "px-3",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("span", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("span", {
         className: "flag-icon flag-icon-".concat(l.flag.toLowerCase())
       }), " ", l.abbr.toUpperCase()]
     }, JSON.stringify(l));
   });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_14__.default, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_15__.default, {
     className: "Languages",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_15__.default, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("span", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_16__.default, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("span", {
         className: "text",
         children: language && language.abbr
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("span", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("span", {
         className: "language-flag",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("span", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("span", {
           className: "flag-icon flag-icon-".concat(language && language.flag.toLowerCase())
         })
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_16__.default, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_17__.default, {
       style: {
         minWidth: '5rem'
       },
@@ -765,6 +764,7 @@ var Home = /*#__PURE__*/function (_Component) {
 
     _defineProperty(_assertThisInitialized(_this), "state", {
       id: '',
+      search: '',
       modal: false
     });
 
@@ -860,18 +860,22 @@ var Home = /*#__PURE__*/function (_Component) {
           _this$props$frontend$4 = _this$props$frontend$.languages,
           languages = _this$props$frontend$4 === void 0 ? [] : _this$props$frontend$4,
           position = _this$props$frontend$.position;
-      var id = this.state.id;
+      var _this$state = this.state,
+          id = _this$state.id,
+          search = _this$state.search;
       var lang = localStorage.getItem('lang');
       var currencyObj = currencies.find(function (c) {
         return c.cc === currency;
       });
       var categoriesContent = categories.map(function (category, index) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_components_Frontend_UI_Category__WEBPACK_IMPORTED_MODULE_4__.default, {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_Frontend_UI_Category__WEBPACK_IMPORTED_MODULE_5__.default, {
           id: category.id,
           index: index,
           name: category.name[lang],
-          children: category.meals && category.meals.map(function (meal) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_components_Frontend_UI_Food_Meal__WEBPACK_IMPORTED_MODULE_3__.default, _objectSpread(_objectSpread({
+          children: category.meals && category.meals.filter(function (meal) {
+            return meal.name[lang].toLowerCase().includes(search) || meal.description[lang].toLowerCase().includes(search);
+          }).map(function (meal) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_Frontend_UI_Food_Meal__WEBPACK_IMPORTED_MODULE_4__.default, _objectSpread(_objectSpread({
               symbol: currencyObj && currencyObj.cc,
               position: position
             }, _objectSpread(_objectSpread({}, meal), {}, {
@@ -882,113 +886,121 @@ var Home = /*#__PURE__*/function (_Component) {
             }), JSON.stringify(meal) + Math.random());
           })
         }, JSON.stringify(category) + Math.random());
+      }).filter(function (category) {
+        return category.props.children.length > 0;
       });
       var items = [];
       if (restaurant.banner1) items.push(restaurant.banner1);
       if (restaurant.banner2) items.push(restaurant.banner2);
       if (restaurant.banner3) items.push(restaurant.banner3);
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
         className: "Home",
-        children: [loading && !this.props.frontend.restaurants.restaurant && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_components_UI_Spinner__WEBPACK_IMPORTED_MODULE_5__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("input", {
+        children: [loading && !this.props.frontend.restaurants.restaurant && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_UI_Spinner__WEBPACK_IMPORTED_MODULE_6__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("input", {
           type: "hidden",
           id: "id",
           defaultValue: id
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
           className: "header",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
             className: "welcome",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
               className: "text",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("span", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("span", {
                 children: home.welcome_to
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
               className: "status ".concat(restaurant.status ? 'open' : 'closed'),
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
                 className: "icon",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("i", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("i", {
                   className: "fas fa-door-".concat(restaurant.status ? 'open' : 'closed')
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
                 className: "circle",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("i", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("i", {
                   className: "fas fa-circle"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
                 className: "value",
                 children: restaurant.status ? home.open : home.closed
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_components_Frontend_UI_Cart__WEBPACK_IMPORTED_MODULE_2__.default, {})
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_components_Frontend_UI_Cart__WEBPACK_IMPORTED_MODULE_3__.default, {})
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
             className: "restaurant",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
               className: "text",
               children: restaurant.name
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(Languages, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(Languages, {
                 languages: languages,
                 set: this.setLanguage
               })
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
             className: "embed-responsive embed-responsive-16by9 banner",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
               className: "img-container",
-              children: items.length > 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_Carousel__WEBPACK_IMPORTED_MODULE_6__.default, {
+              children: items.length > 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_Carousel__WEBPACK_IMPORTED_MODULE_7__.default, {
                 items: items
-              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
                 className: "img",
                 style: {
                   backgroundImage: "url('".concat(restaurant.banner1, "')")
                 }
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
               className: "location",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
                 className: "icon",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("i", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("i", {
                   className: "fas fa-map-marker-alt"
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
                 className: "text",
                 children: restaurant.address[lang]
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
               className: "phone",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("a", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("a", {
                 href: "tel:".concat(restaurant.phone),
                 className: "btn btn-green fas fa-phone"
               })
             })]
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsxs)("div", {
           className: "select-search-filter",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
             className: "select",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_17__.default, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_18__.default, {
               type: "select",
               id: "select-category",
               name: "category",
               defaultValue: id,
               children: categories.map(function (category) {
-                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("option", {
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("option", {
                   value: category.id,
                   children: category.name[lang]
                 }, "select-category-".concat(JSON.stringify(category)));
               })
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
             className: "search",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_18__.default, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(reactstrap__WEBPACK_IMPORTED_MODULE_19__.default, {
               type: "search",
-              name: "meal",
+              name: "search",
+              onChange: function onChange(e) {
+                return _this3.setState({
+                  search: e.target.value
+                });
+              },
+              value: search,
               placeholder: home.search_meal
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
             className: "filter",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_SelectCategory__WEBPACK_IMPORTED_MODULE_7__.default, {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)(_SelectCategory__WEBPACK_IMPORTED_MODULE_8__.default, {
               cms: home,
               categories: categories.map(function (c) {
                 return _objectSpread(_objectSpread({}, c), {}, {
@@ -998,7 +1010,7 @@ var Home = /*#__PURE__*/function (_Component) {
               })
             })
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_13__.jsx)("div", {
           className: "categories",
           children: categoriesContent
         })]
@@ -1010,7 +1022,7 @@ var Home = /*#__PURE__*/function (_Component) {
     function getDerivedStateFromProps(nextProps, prevState) {
       if (nextProps.frontend.restaurants.restaurant && prevState.id === '') {
         var categories = nextProps.frontend.restaurants.categories;
-        if (categories.length > 0) return (0,_shared_utility__WEBPACK_IMPORTED_MODULE_8__.updateObject)(prevState, {
+        if (categories.length > 0) return (0,_shared_utility__WEBPACK_IMPORTED_MODULE_9__.updateObject)(prevState, {
           id: categories[0].id
         });
       }
@@ -1029,15 +1041,15 @@ var mapStateToProps = function mapStateToProps(state) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     get: function get(slug) {
-      return dispatch((0,_store_actions_frontend_restaurants__WEBPACK_IMPORTED_MODULE_9__.getRestaurant)(slug));
+      return dispatch((0,_store_actions_frontend_restaurants__WEBPACK_IMPORTED_MODULE_10__.getRestaurant)(slug));
     },
     getContent: function getContent() {
-      return dispatch((0,_store_actions_content__WEBPACK_IMPORTED_MODULE_10__.getContent)());
+      return dispatch((0,_store_actions_content__WEBPACK_IMPORTED_MODULE_11__.getContent)());
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_19__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(Home)));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_2__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(Home)));
 
 /***/ }),
 
@@ -1130,7 +1142,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".Frontend.Restaurants .UI.Food {\n  --food-card-width: 155px;\n  margin-right: 14px;\n  border-radius: 30px;\n  background: var(--color-bg);\n  padding: 16px 14px 20px 14px;\n  flex: 0 0 var(--food-card-width);\n  max-width: var(--food-card-width);\n  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1), inset 8px 4px 8px rgba(0, 0, 0, 0.05);\n}\n.Frontend.Restaurants .UI.Food:first-child {\n  margin-left: 16px;\n}\n.Frontend.Restaurants .UI.Food:last-child {\n  margin-right: 16px;\n}\n.Frontend.Restaurants .UI.Food .wrapper {\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n}\n.Frontend.Restaurants .UI.Food .wrapper .img {\n  overflow: hidden;\n  margin-bottom: 9px;\n  position: relative;\n  border-radius: 15px;\n}\n.Frontend.Restaurants .UI.Food .wrapper .img .embed-responsive {\n  width: 100%;\n  background-size: cover;\n  background-position: center;\n  background-repeat: no-repeat;\n}\n.Frontend.Restaurants .UI.Food .wrapper .img .embed-responsive::after {\n  top: 0;\n  left: 0;\n  content: \"\";\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  background-color: var(--black-30);\n}\n.Frontend.Restaurants .UI.Food .wrapper .img .reference {\n  top: 5px;\n  left: 8px;\n  opacity: 0.3;\n  font-size: 20px;\n  font-weight: 700;\n  position: absolute;\n  color: var(--white);\n  line-height: 25.88px;\n}\n.Frontend.Restaurants .UI.Food .wrapper .name {\n  font-size: 14px;\n  padding-left: 0;\n  font-weight: 500;\n  margin-bottom: 10px;\n  line-height: 18.12px;\n}\n.Frontend.Restaurants .UI.Food .wrapper .name::after {\n  content: \"\";\n  width: 21px;\n  height: 3px;\n  display: block;\n  margin-top: 8px;\n  border-radius: 50rem;\n  background-color: var(--light);\n}\n.Frontend.Restaurants .UI.Food .wrapper .details {\n  display: flex;\n  flex-wrap: wrap;\n  margin-top: auto;\n  align-items: center;\n  justify-content: space-between;\n}\n.Frontend.Restaurants .UI.Food .wrapper .details .price span {\n  font-size: 12px;\n  line-height: 15.53px;\n}\n.Frontend.Restaurants .UI.Food .wrapper .details .price span.value {\n  font-size: 25px;\n  font-weight: 700;\n  line-height: 32.35px;\n  color: var(--color-primary);\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".Frontend.Restaurants .UI.Food {\n  margin-right: 14px;\n  border-radius: 30px;\n  background: var(--color-bg);\n  padding: 16px 14px 20px 14px;\n  flex: 0 0 var(--food-item-card-width);\n  max-width: var(--food-item-card-width);\n  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1), inset 8px 4px 8px rgba(0, 0, 0, 0.05);\n}\n.Frontend.Restaurants .UI.Food:first-child {\n  margin-left: 16px;\n}\n.Frontend.Restaurants .UI.Food:last-child {\n  margin-right: 16px;\n}\n.Frontend.Restaurants .UI.Food .wrapper {\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n}\n.Frontend.Restaurants .UI.Food .wrapper .img {\n  overflow: hidden;\n  margin-bottom: 9px;\n  position: relative;\n  border-radius: 15px;\n}\n.Frontend.Restaurants .UI.Food .wrapper .img .embed-responsive {\n  width: 100%;\n  background-size: cover;\n  background-position: center;\n  background-repeat: no-repeat;\n}\n.Frontend.Restaurants .UI.Food .wrapper .img .embed-responsive::after {\n  top: 0;\n  left: 0;\n  content: \"\";\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  background-color: var(--black-30);\n}\n.Frontend.Restaurants .UI.Food .wrapper .img .reference {\n  top: 5px;\n  left: 8px;\n  opacity: 0.3;\n  font-size: 20px;\n  font-weight: 700;\n  position: absolute;\n  color: var(--white);\n  line-height: 25.88px;\n}\n.Frontend.Restaurants .UI.Food .wrapper .name {\n  font-size: 14px;\n  padding-left: 0;\n  font-weight: 500;\n  margin-bottom: 10px;\n  line-height: 18.12px;\n}\n.Frontend.Restaurants .UI.Food .wrapper .name::after {\n  content: \"\";\n  width: 21px;\n  height: 3px;\n  display: block;\n  margin-top: 8px;\n  border-radius: 50rem;\n  background-color: var(--light);\n}\n.Frontend.Restaurants .UI.Food .wrapper .details {\n  display: flex;\n  flex-wrap: wrap;\n  margin-top: auto;\n  align-items: center;\n  justify-content: space-between;\n}\n.Frontend.Restaurants .UI.Food .wrapper .details .price span {\n  font-size: 12px;\n  line-height: 15.53px;\n}\n.Frontend.Restaurants .UI.Food .wrapper .details .price span.value {\n  font-size: 25px;\n  font-weight: 700;\n  line-height: 32.35px;\n  color: var(--color-primary);\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -105,15 +105,37 @@ class FrontendController extends Controller
             'items' => 'required',
         ]);
 
-        $order_no = Order::generateNo();
+        $order_no = $restaurant->generateOrderNo();
         $restaurant->orders()->create(array_merge($input, [
             'order_no' => $order_no,
             'items' => json_encode($request->items),
         ]));
+        $tracking_code = Order::encryptIt($order_no);
 
         return response()->json([
-            'message' => UtilController::message('Payment successfully received.', 'success'),
             'order_no' => $order_no,
+            'tracking_code' => $tracking_code,
+        ]);
+    }
+
+    public function tracking($slug, $md5)
+    {
+        $restaurant = Restaurant::whereSlug($slug)->first();
+        if (!$restaurant) return response()->json([
+            'message' => UtilController::message('Restaurant not found.', 'danger'),
+        ]);
+
+        $order_no = Order::decryptIt($md5);
+        $order = $restaurant->orders()->whereOrderNo($order_no)->first();
+        if (!$order) return response()->json([
+            'message' => UtilController::message('Order not found.', 'danger'),
+        ]);
+        $order = array_merge($order->toArray(), [
+            'delivery_man' => $order->delivery_man,
+        ]);
+
+        return response()->json([
+            'order' => $order,
         ]);
     }
 }

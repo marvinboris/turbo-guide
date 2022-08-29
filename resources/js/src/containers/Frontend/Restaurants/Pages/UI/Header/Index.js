@@ -5,7 +5,7 @@ import Cart from '../../../../../../components/Frontend/UI/Cart';
 
 import './Header.scss';
 
-export default function Header({ name }) {
+export default function Header({ name, children }) {
     return <header className='UI Header'>
         <span onClick={useHistory().goBack} className='back'>
             <i className='fas fa-angle-left' />
@@ -16,7 +16,7 @@ export default function Header({ name }) {
         </div>
 
         <div>
-            <Cart />
+            {children || <Cart />}
         </div>
     </header>;
 }

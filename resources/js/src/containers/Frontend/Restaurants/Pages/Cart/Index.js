@@ -8,7 +8,7 @@ import Checkout from '../UI/Checkout';
 
 import Error from '../../../../../components/Error/Error';
 
-import { addItem, resetRestaurants, subItem } from '../../../../../store/actions/frontend/restaurants';
+import { addItem, subItem } from '../../../../../store/actions/frontend/restaurants';
 
 import './Cart.scss';
 

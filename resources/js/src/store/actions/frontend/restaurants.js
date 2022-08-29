@@ -84,3 +84,18 @@ export const postPayment = (slug, data) => async (dispatch, getState) => {
         dispatch(restaurantsFail(error));
     }
 }
+
+export const getOrderTracking = (slug, md5) => async dispatch => {
+    dispatch(restaurantsStart());
+
+    try {
+        const res = await fetch(`${prefix}restaurants/${slug}/orders/${md5}`);
+        const resData = await res.json();
+        if (res.status === 422) throw new Error(Object.values(resData.errors).join('\n'));
+        else if (res.status !== 200 && res.status !== 201) throw new Error(resData.error.message);
+
+        dispatch(restaurantsSuccess(resData));
+    } catch (error) {
+        dispatch(restaurantsFail(error));
+    }
+}

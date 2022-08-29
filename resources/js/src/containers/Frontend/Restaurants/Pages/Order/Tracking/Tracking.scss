@@ -1,0 +1,199 @@
+.Frontend.Restaurants .Page.Tracking {
+    background-position: top;
+    background-repeat: no-repeat;
+
+    header {
+        margin-bottom: 11px;
+
+        .search {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--soft);
+        }
+    }
+
+    &>main {
+        display: flex;
+        margin-left: 0;
+        flex: 1 1 auto;
+        align-items: center;
+        flex-direction: column;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: 81px left;
+
+        .title {
+            font-size: 30px;
+            font-weight: 700;
+            max-width: 220px;
+            margin-top: 190px;
+            text-align: center;
+            line-height: 38.82px;
+            margin-bottom: 53.33px;
+        }
+
+        .order-no {
+            padding: 5px;
+            display: flex;
+            font-size: 12px;
+            border-radius: 8px;
+            align-items: center;
+            color: var(--orange);
+            line-height: 15.53px;
+            background-color: var(--orange-15);
+
+            &::before {
+                width: 6px;
+                content: "";
+                height: 6px;
+                margin-right: 3px;
+                border-radius: 50%;
+                background-color: var(--black-10);
+            }
+
+            &.success {
+                color: var(--green);
+                background-color: var(--green-15);
+            }
+        }
+
+        .icon {
+            font-size: 58px;
+            color: var(--green);
+            margin-bottom: 85.7px;
+        }
+
+        .actions {
+            .btn {
+                height: 50px;
+                width: 178px;
+                display: flex;
+                font-size: 14px;
+                font-weight: 700;
+                line-height: 21px;
+                align-items: center;
+                border-radius: 50rem;
+                letter-spacing: -.41px;
+                justify-content: center;
+
+                &.btn-orange {
+                    border-color: transparent;
+                    background: linear-gradient(87.17deg, var(--color-primary) 9.54%, #EEA20F 94.26%);
+
+                    i {
+                        margin-right: 16px;
+                    }
+                }
+            }
+        }
+
+        .process {
+            padding-left: 4px;
+            align-self: stretch;
+            margin-bottom: 81px;
+
+            .line {
+                display: flex;
+                align-items: center;
+                margin-bottom: 21px;
+
+                .icon {
+                    height: 22px;
+                    display: flex;
+                    flex: 0 0 22px;
+                    font-size: 9px;
+                    margin-bottom: 0;
+                    border-radius: 50%;
+                    margin-right: 12px;
+                    position: relative;
+                    align-items: center;
+                    color: var(--white);
+                    justify-content: center;
+                    background-color: var(--soft);
+                }
+
+                .text {
+                    font-size: 12px;
+                    font-weight: 500;
+                    line-height: 15.53px;
+                    text-decoration: none;
+                }
+
+                .counter {
+                    font-size: 10px;
+                    padding: 5px 9px;
+                    margin-left: 16px;
+                    align-items: center;
+                    border-radius: 50rem;
+                    display: inline-flex;
+                    line-height: 12.94px;
+                    background-color: var(--orange-20);
+
+                    i {
+                        font-size: 10.5px;
+                        margin-right: 6.5px;
+                        color: var(--color-primary);
+                    }
+
+                    .time {
+                        font-weight: 700;
+                        margin-right: 3.5px;
+                    }
+                }
+
+                &:first-child .icon {
+                    background-color: var(--color-primary);
+                }
+
+                &:not(:last-child) .icon::after {
+                    left: 50%;
+                    top: 100%;
+                    width: 1px;
+                    content: "";
+                    height: 18px;
+                    position: absolute;
+                    background-color: var(--soft);
+                    transform: translate(-50%, 1px);
+                }
+            }
+
+            &.received .line {
+                &:first-child {
+                    .icon {
+                        background-color: var(--green);
+                    }
+
+                    .text {
+                        font-weight: 400;
+                    }
+                }
+
+                &:nth-child(2) .icon {
+                    background-color: var(--color-primary);
+                }
+            }
+
+            &.preparing .line {
+
+                &:first-child,
+                &:nth-child(2) {
+                    .icon {
+                        background-color: var(--green);
+                    }
+
+                    .text {
+                        font-weight: 400;
+                    }
+                }
+
+                &:nth-child(3) .icon {
+                    background-color: var(--color-primary);
+                }
+            }
+        }
+    }
+}

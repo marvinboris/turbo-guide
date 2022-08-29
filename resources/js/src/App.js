@@ -179,6 +179,7 @@ const asyncAdminVerify = lazy(() => import('./containers/Auth/Admin/Verify/Verif
 
 
 // Frontend routes
+const asyncRestaurantsOrderTracking = lazy(() => import('./containers/Frontend/Restaurants/Pages/Order/Tracking'));
 const asyncRestaurantsOrderSuccess = lazy(() => import('./containers/Frontend/Restaurants/Pages/Order/Success'));
 
 const asyncRestaurantsPayment = lazy(() => import('./containers/Frontend/Restaurants/Pages/Payment'));
@@ -205,6 +206,7 @@ class App extends Component {
                 <FrontendRestaurants>
                     <Route path="/restaurants/:slug/order">
                         <FrontendRestaurantsOrder>
+                            <Route path="/restaurants/:slug/order/tracking/:md5" component={asyncRestaurantsOrderTracking} />
                             <Route path="/restaurants/:slug/order/success" component={asyncRestaurantsOrderSuccess} />
                         </FrontendRestaurantsOrder>
                     </Route>

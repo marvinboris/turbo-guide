@@ -5,9 +5,8 @@ import { withRouter } from 'react-router-dom';
 import Header from '../UI/Header';
 import Checkout from '../UI/Checkout';
 
-import Error from '../../../../../components/Error/Error';
-
-import { postPayment } from '../../../../../store/actions/frontend/restaurants';
+import { postPayment, resetRestaurants } from '../../../../../store/actions/frontend/restaurants';
+import { errorAlert } from '../../../../../shared/utility';
 
 import './Payment.scss';
 
@@ -64,8 +63,9 @@ class Payment extends Component {
     }
 
     componentDidUpdate() {
-        const { frontend: { restaurants: { message, order_no } }, match: { params: { slug } } } = this.props;
-        if (message && message.type === 'success' && order_no) this.props.history.push({ pathname: `/restaurants/${slug}/order/success`, state: { order_no } })
+        const { frontend: { restaurants: { error, message, order_no, tracking_code } }, match: { params: { slug } } } = this.props;
+        if (error) return errorAlert(error);
+        if (message && message.type === 'success' && order_no) this.props.history.push({ pathname: `/restaurants/${slug}/order/success`, state: { order_no, tracking_code } })
     }
 
     render() {
@@ -74,7 +74,7 @@ class Payment extends Component {
                 cms: { pages: { frontend: { restaurants: { cart: { options: { list } }, payment: cms } } } },
                 currencies, payment_methods
             },
-            frontend: { restaurants: { error, restaurant: { cart: { total }, delivery_fee, service_charge }, currency, position } },
+            frontend: { restaurants: { restaurant: { cart: { total }, delivery_fee, service_charge }, currency, position } },
             match: { params: { slug } },
             location: { state: { due_amount, option } }
         } = this.props;
@@ -85,19 +85,14 @@ class Payment extends Component {
 
         const methodsContent = payment_methods.map(method => <div key={JSON.stringify(method)} className={`method${+method.id === +method_id ? ' active' : ''}`} onClick={() => this.selectMethod(method.id)}>{method.name}<i className='fas fa-check-circle' /></div>);
 
-        const [delivery_option, dine_in_option] = Object.keys(list);
+        const [delivery_option] = Object.keys(list);
 
-        const errors = <>
-            <Error err={error} />
-        </>;
 
         return <div className="Page Payment">
             <Header name={cms.title} />
 
             <main>
-                {errors}
-
-                {option !== dine_in_option && <section className='banner'>
+                <section className='banner'>
                     {option === delivery_option && <div className={`top${changing ? ' changing' : ''}`}>
                         <iframe src={location} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
 
@@ -115,13 +110,13 @@ class Payment extends Component {
                     <div className={`bottom${editing ? ' editing' : ''}`}>
                         <div className='title'><i className='fas fa-compass' /><span>{cms.banner.current_location}</span></div>
 
-                        <div className='address'>
+                        {option === delivery_option && <div className='address'>
                             {address && <div className='value'>{address}</div>}
 
                             <div className='form-group'>
                                 <textarea name='address' className='form-control' onChange={this.inputChangedHandler} value={address} placeholder={cms.banner.address} />
                             </div>
-                        </div>
+                        </div>}
 
                         <div className='phone'>
                             {phone && <div className='value'><i className='fas fa-mobile-alt' />{phone}</div>}
@@ -137,7 +132,7 @@ class Payment extends Component {
                             </button>
                         </div>
                     </div>
-                </section>}
+                </section>
 
                 <section className='methods'>
                     <div className='title'>{cms.methods.select}</div>
@@ -173,6 +168,7 @@ const mapStateToProps = state => ({ ...state });
 
 const mapDispatchToProps = dispatch => ({
     payment: (slug, data) => dispatch(postPayment(slug, data)),
+    reset: () => dispatch(resetRestaurants(true)),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Payment));

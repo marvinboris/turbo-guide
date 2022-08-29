@@ -4,9 +4,15 @@ import { Link, withRouter } from 'react-router-dom';
 
 import Error from '../../../../../../components/Error/Error';
 
+import { resetRestaurants } from '../../../../../../store/actions/frontend/restaurants';
+
 import './Success.scss';
 
 class Success extends Component {
+    componentWillUnmount() {
+        this.props.reset();
+    }
+
     render() {
         const {
             content: {
@@ -14,7 +20,7 @@ class Success extends Component {
             },
             frontend: { restaurants: { error } },
             match: { params: { slug } },
-            location: { state: { order_no } }
+            location: { state: { order_no, tracking_code } }
         } = this.props;
 
         const errors = <>
@@ -32,7 +38,7 @@ class Success extends Component {
                 </div>
 
                 <div className='actions'>
-                    <button onClick={() => this.props.history.push({ pathname: `/restaurants/${slug}/order/tracking`, state: { order_no } })} className='btn btn-white'>{cms.track_order}</button>
+                    <button onClick={() => this.props.history.push({ pathname: `/restaurants/${slug}/order/tracking/${tracking_code}`, state: { order_no } })} className='btn btn-white'>{cms.track_order}</button>
 
                     <Link to={`/restaurants/${slug}`} className='btn btn-orange'><i className='fas fa-arrow-left' />{cms.go_home}</Link>
                 </div>
@@ -43,4 +49,8 @@ class Success extends Component {
 
 const mapStateToProps = state => ({ ...state });
 
-export default withRouter(connect(mapStateToProps)(Success));
+const mapDispatchToProps = dispatch => ({
+    reset: () => dispatch(resetRestaurants(true)),
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Success));

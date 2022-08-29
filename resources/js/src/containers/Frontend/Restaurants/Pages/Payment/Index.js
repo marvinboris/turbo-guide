@@ -63,9 +63,9 @@ class Payment extends Component {
     }
 
     componentDidUpdate() {
-        const { frontend: { restaurants: { error, message, order_no, tracking_code } }, match: { params: { slug } } } = this.props;
+        const { frontend: { restaurants: { error, tracking_code } }, match: { params: { slug } } } = this.props;
         if (error) return errorAlert(error);
-        if (message && message.type === 'success' && order_no) this.props.history.push({ pathname: `/restaurants/${slug}/order/success`, state: { order_no, tracking_code } })
+        if (tracking_code) this.props.history.push({ pathname: `/restaurants/${slug}/order/success`, state: { tracking_code } })
     }
 
     render() {

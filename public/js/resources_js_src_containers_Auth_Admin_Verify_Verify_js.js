@@ -1489,9 +1489,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var react_popper__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-popper */ "./node_modules/react-popper/lib/esm/index.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./utils */ "./node_modules/reactstrap/es/utils.js");
-/* harmony import */ var _Fade__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Fade */ "./node_modules/reactstrap/es/Fade.js");
+/* harmony import */ var react_popper__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-popper */ "./node_modules/react-popper/lib/esm/Popper.js");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./utils */ "./node_modules/reactstrap/es/utils.js");
+/* harmony import */ var _Fade__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Fade */ "./node_modules/reactstrap/es/Fade.js");
 
 
 
@@ -1519,20 +1519,20 @@ var propTypes = {
   placementPrefix: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().string),
   arrowClassName: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().string),
   hideArrow: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().bool),
-  tag: _utils__WEBPACK_IMPORTED_MODULE_10__.tagPropType,
+  tag: _utils__WEBPACK_IMPORTED_MODULE_9__.tagPropType,
   isOpen: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().bool.isRequired),
   cssModule: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().object),
   offset: prop_types__WEBPACK_IMPORTED_MODULE_6___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_6___default().string), (prop_types__WEBPACK_IMPORTED_MODULE_6___default().number)]),
   fallbackPlacement: prop_types__WEBPACK_IMPORTED_MODULE_6___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_6___default().string), (prop_types__WEBPACK_IMPORTED_MODULE_6___default().array)]),
   flip: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().bool),
-  container: _utils__WEBPACK_IMPORTED_MODULE_10__.targetPropType,
-  target: _utils__WEBPACK_IMPORTED_MODULE_10__.targetPropType.isRequired,
+  container: _utils__WEBPACK_IMPORTED_MODULE_9__.targetPropType,
+  target: _utils__WEBPACK_IMPORTED_MODULE_9__.targetPropType.isRequired,
   modifiers: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().object),
   positionFixed: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().bool),
-  boundariesElement: prop_types__WEBPACK_IMPORTED_MODULE_6___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_6___default().string), _utils__WEBPACK_IMPORTED_MODULE_10__.DOMElement]),
+  boundariesElement: prop_types__WEBPACK_IMPORTED_MODULE_6___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_6___default().string), _utils__WEBPACK_IMPORTED_MODULE_9__.DOMElement]),
   onClosed: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().func),
   fade: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().bool),
-  transition: prop_types__WEBPACK_IMPORTED_MODULE_6___default().shape(_Fade__WEBPACK_IMPORTED_MODULE_11__.default.propTypes)
+  transition: prop_types__WEBPACK_IMPORTED_MODULE_6___default().shape(_Fade__WEBPACK_IMPORTED_MODULE_10__.default.propTypes)
 };
 var defaultProps = {
   boundariesElement: 'scrollParent',
@@ -1546,7 +1546,7 @@ var defaultProps = {
   modifiers: {},
   onClosed: noop,
   fade: true,
-  transition: _objectSpread({}, _Fade__WEBPACK_IMPORTED_MODULE_11__.default.defaultProps)
+  transition: _objectSpread({}, _Fade__WEBPACK_IMPORTED_MODULE_10__.default.defaultProps)
 };
 
 var PopperContent = /*#__PURE__*/function (_React$Component) {
@@ -1583,7 +1583,7 @@ var PopperContent = /*#__PURE__*/function (_React$Component) {
   };
 
   _proto.setTargetNode = function setTargetNode(node) {
-    this.targetNode = typeof node === 'string' ? (0,_utils__WEBPACK_IMPORTED_MODULE_10__.getTarget)(node) : node;
+    this.targetNode = typeof node === 'string' ? (0,_utils__WEBPACK_IMPORTED_MODULE_9__.getTarget)(node) : node;
   };
 
   _proto.getTargetNode = function getTargetNode() {
@@ -1591,7 +1591,7 @@ var PopperContent = /*#__PURE__*/function (_React$Component) {
   };
 
   _proto.getContainerNode = function getContainerNode() {
-    return (0,_utils__WEBPACK_IMPORTED_MODULE_10__.getTarget)(this.props.container);
+    return (0,_utils__WEBPACK_IMPORTED_MODULE_9__.getTarget)(this.props.container);
   };
 
   _proto.getRef = function getRef(ref) {
@@ -1629,8 +1629,8 @@ var PopperContent = /*#__PURE__*/function (_React$Component) {
         placement = _this$props.placement,
         attrs = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__.default)(_this$props, ["cssModule", "children", "isOpen", "flip", "target", "offset", "fallbackPlacement", "placementPrefix", "arrowClassName", "hideArrow", "popperClassName", "tag", "container", "modifiers", "positionFixed", "boundariesElement", "onClosed", "fade", "transition", "placement"]);
 
-    var arrowClassName = (0,_utils__WEBPACK_IMPORTED_MODULE_10__.mapToCssModules)(classnames__WEBPACK_IMPORTED_MODULE_8___default()('arrow', _arrowClassName), cssModule);
-    var popperClassName = (0,_utils__WEBPACK_IMPORTED_MODULE_10__.mapToCssModules)(classnames__WEBPACK_IMPORTED_MODULE_8___default()(_popperClassName, placementPrefix ? placementPrefix + "-auto" : ''), this.props.cssModule);
+    var arrowClassName = (0,_utils__WEBPACK_IMPORTED_MODULE_9__.mapToCssModules)(classnames__WEBPACK_IMPORTED_MODULE_8___default()('arrow', _arrowClassName), cssModule);
+    var popperClassName = (0,_utils__WEBPACK_IMPORTED_MODULE_9__.mapToCssModules)(classnames__WEBPACK_IMPORTED_MODULE_8___default()(_popperClassName, placementPrefix ? placementPrefix + "-auto" : ''), this.props.cssModule);
 
     var extendedModifiers = _objectSpread({
       offset: {
@@ -1645,16 +1645,16 @@ var PopperContent = /*#__PURE__*/function (_React$Component) {
       }
     }, modifiers);
 
-    var popperTransition = _objectSpread(_objectSpread(_objectSpread({}, _Fade__WEBPACK_IMPORTED_MODULE_11__.default.defaultProps), transition), {}, {
+    var popperTransition = _objectSpread(_objectSpread(_objectSpread({}, _Fade__WEBPACK_IMPORTED_MODULE_10__.default.defaultProps), transition), {}, {
       baseClass: fade ? transition.baseClass : '',
       timeout: fade ? transition.timeout : 0
     });
 
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(_Fade__WEBPACK_IMPORTED_MODULE_11__.default, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, popperTransition, attrs, {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(_Fade__WEBPACK_IMPORTED_MODULE_10__.default, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, popperTransition, attrs, {
       in: isOpen,
       onExited: this.onClosed,
       tag: tag
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(react_popper__WEBPACK_IMPORTED_MODULE_9__.Popper, {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5__.createElement(react_popper__WEBPACK_IMPORTED_MODULE_11__.default, {
       referenceElement: this.targetNode,
       modifiers: extendedModifiers,
       placement: placement,

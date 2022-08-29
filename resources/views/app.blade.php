@@ -61,7 +61,7 @@
             const string_manifest = JSON.stringify(manifest);
             const blob = new Blob([string_manifest], { type: 'application/json' });
             const manifest_url = URL.createObjectURL(blob);
-            document.head.getElementById('manifest-placeholder').setAttribute('href', manifest_url);
+            document.getElementById('manifest-placeholder').setAttribute('href', manifest_url);
         </script>
     @else
         <title>{{ config('app.name', 'Laravel') }}</title>

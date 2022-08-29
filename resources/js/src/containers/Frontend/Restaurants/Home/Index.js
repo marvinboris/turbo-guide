@@ -129,7 +129,7 @@ class Home extends Component {
         const currencyObj = currencies.find(c => c.cc === currency);
 
         const categoriesContent = categories.map((category, index) => <Category id={category.id} index={index} key={JSON.stringify(category) + Math.random()} name={category.name[lang]}>
-            {category.meals && category.meals.filter(meal => meal.name[lang].toLowerCase().includes(search) || meal.description[lang].toLowerCase().includes(search)).map(meal => <Meal symbol={currencyObj && currencyObj.cc} position={position} key={JSON.stringify(meal) + Math.random()} {...{ ...meal, name: meal.name[lang], description: meal.description[lang] }} slug={this.props.match.params.slug} />)}
+            {category.meals && category.meals.filter(meal => (meal.name && meal.name[lang] && meal.name[lang].toLowerCase().includes(search)) || (meal.description && meal.description[lang] && meal.description[lang].toLowerCase().includes(search))).map(meal => <Meal symbol={currencyObj && currencyObj.cc} position={position} key={JSON.stringify(meal) + Math.random()} {...{ ...meal, name: meal.name[lang], description: meal.description[lang] }} slug={this.props.match.params.slug} />)}
         </Category>).filter(category => category.props.children.length > 0);
 
         const items = [];

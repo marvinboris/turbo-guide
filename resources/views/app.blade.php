@@ -17,25 +17,59 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <!-- PWA  -->
-    <meta name="theme-color" content="#6777ef" />
-    <link rel="apple-touch-icon" href="{{ asset('images/favicon.png') }}">
-    <link rel="manifest" href="{{ asset('/manifest.json') }}">
-
     @if (Request::segment(1) === 'restaurants')
         @php
             $restaurant = \App\Models\Restaurant::whereSlug(Request::segment(2))->first();
         @endphp
 
+        <!-- PWA  -->
+        <meta name="theme-color" content="#6777ef" />
+        <link rel="manifest" id="manifest-placeholder">
+
         <title>{{ $restaurant->name . ' - ' . config('app.name', 'Laravel') }}</title>
         <meta name="restaurant-name" content="{{ $restaurant->name }}" />
+        <meta name="restaurant-slug" content="{{ $restaurant->slug }}" />
+
         @if ($restaurant->logo)
+            <link rel="apple-touch-icon" href="{{ asset($restaurant->logo) }}">
             <link id="favicon" rel="icon" href="{{ asset($restaurant->logo) }}">
         @else
+            <link rel="apple-touch-icon" href="{{ asset('images/favicon.png') }}">
             <link id="favicon" rel="icon" href="{{ asset('images/favicon.png') }}">
         @endif
+
+        <script>
+            const app_name = document.title;
+            const restaurant_name = document.head.querySelector('meta[name=restaurant-name]').content
+            const restaurant_slug = document.head.querySelector('meta[name=restaurant-slug]').content
+            const manifest = {
+                "name": title,
+                "short_name": title,
+                "start_url": "/restaurants/" + restaurant_slug,
+                "background_color": "#6777ef",
+                "description": restaurant_name + " - Digital Restaurant Menu",
+                "display": "fullscreen",
+                "theme_color": "#6777ef",
+                "icons": [{
+                    "src": "images/icon-512x512.png",
+                    "sizes": "512x512",
+                    "type": "image/png",
+                    "purpose": "any maskable"
+                }]
+            };
+
+            const string_manifest = JSON.stringify(manifest);
+            const blob = new Blob([string_manifest], { type: 'application/json' });
+            const manifest_url = URL.createObjectURL(blob);
+            document.head.getElementById('manifest-placeholder').setAttribute('href', manifest_url);
+
+            const link = document.createElement('Link');
+            link.rel = 'manifest';
+            link.setAttribute('href', 'data:application/json;charset=8' + string_manifest);
+        </script>
     @else
         <title>{{ config('app.name', 'Laravel') }}</title>
+        <link rel="apple-touch-icon" href="{{ asset('images/favicon.png') }}">
         <link id="favicon" rel="icon" href="{{ asset('images/favicon.png') }}">
     @endif
 </head>

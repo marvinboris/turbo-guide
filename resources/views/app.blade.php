@@ -44,7 +44,7 @@
             const manifest = {
                 "name": app_name,
                 "short_name": app_name,
-                "start_url": "/restaurants/" + restaurant_slug,
+                "start_url": location.origin + "/restaurants/" + restaurant_slug,
                 "background_color": "#6777ef",
                 "description": restaurant_name + " - Digital Restaurant Menu",
                 "display": "fullscreen",

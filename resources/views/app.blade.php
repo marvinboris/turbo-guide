@@ -27,6 +27,7 @@
 
         <title>{{ $restaurant->name . ' - ' . config('app.name', 'Laravel') }}</title>
         <meta name="app-name" content="{{ config('app.name', 'Laravel') }}" />
+        <meta name="restaurant-name" content="{{ $restaurant->name }}" />
         <meta name="restaurant-slug" content="{{ $restaurant->slug }}" />
 
         @if ($restaurant->logo)

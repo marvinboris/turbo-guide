@@ -26,7 +26,7 @@
         <meta name="theme-color" content="#6777ef" />
 
         <title>{{ $restaurant->name . ' - ' . config('app.name', 'Laravel') }}</title>
-        <meta name="restaurant-name" content="{{ $restaurant->name }}" />
+        <meta name="app-name" content="{{ config('app.name', 'Laravel') }}" />
         <meta name="restaurant-slug" content="{{ $restaurant->slug }}" />
 
         @if ($restaurant->logo)
@@ -38,17 +38,16 @@
         @endif
 
         <script>
-            const app_name = document.title;
-            const restaurant_name = document.head.querySelector('meta[name=restaurant-name]').content
+            const app_name = document.head.querySelector('meta[name=app-name]').content
             const restaurant_slug = document.head.querySelector('meta[name=restaurant-slug]').content
             const manifest = {
                 "name": app_name,
                 "short_name": app_name,
                 "start_url": location.origin + "/restaurants/" + restaurant_slug,
-                "background_color": "#6777ef",
-                "description": restaurant_name + " - Digital Restaurant Menu",
+                "background_color": "#e98809",
+                "description": "Digital Restaurant Menu",
                 "display": "fullscreen",
-                "theme_color": "#6777ef",
+                "theme_color": "#e98809",
                 "icons": [{
                     "src": location.origin + "/images/icon-512x512.png",
                     "sizes": "512x512",

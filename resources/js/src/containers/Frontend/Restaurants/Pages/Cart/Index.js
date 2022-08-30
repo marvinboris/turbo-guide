@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import Item from './UI/Item';
 import Header from '../UI/Header';
 import Checkout from '../UI/Checkout';
 
-import Error from '../../../../../components/Error/Error';
+import Loading from '../../../../../components/UI/Preloaders/Loading';
 
+import { errorAlert } from '../../../../../shared/utility';
 import { addItem, subItem } from '../../../../../store/actions/frontend/restaurants';
 
 import './Cart.scss';
@@ -21,6 +22,9 @@ class Cart extends Component {
     state = {
         option: '',
         note: '',
+
+        isMounted: false,
+        componentLoading: false
     }
 
 
@@ -39,7 +43,18 @@ class Cart extends Component {
 
     // Lifecycle methods
     componentDidMount() {
-        this.setState({ option: Object.keys(this.props.content.cms.pages.frontend.restaurants.cart.options.list)[0] });
+        this.setState({
+            option: Object.keys(this.props.content.cms.pages.frontend.restaurants.cart.options.list)[0],
+            isMounted: true,
+            componentLoading: true,
+        }, () => setTimeout(() => {
+            this.setState({ componentLoading: false });
+        }, 250));
+    }
+
+    componentDidUpdate() {
+        const { frontend: { restaurants: { error } } } = this.props;
+        if (error) errorAlert(error);
     }
 
     render() {
@@ -63,16 +78,10 @@ class Cart extends Component {
         const [delivery_option] = Object.keys(cms.options.list);
         const due_amount = total + (option === delivery_option ? delivery_fee : 0) + service_charge;
 
-        const errors = <>
-            <Error err={error} />
-        </>;
-
-        return <div className="Page Cart">
+        const content = <div className="Page Cart">
             <Header name={cms.your_cart} />
 
             <main>
-                {errors}
-
                 <section className='items'>
                     {itemsContent}
                 </section>
@@ -111,6 +120,10 @@ class Cart extends Component {
 
             <Checkout title={cms.cart.due_amount} label={cms.cart.proceed} value={due_amount} onClick={() => this.props.history.push({ pathname: `/restaurants/${slug}/payment`, state: { ...this.state, items, due_amount } })} />
         </div>;
+
+        return <Loading loading={this.state.isMounted && this.state.componentLoading}>
+            {content}
+        </Loading>;
     }
 }
 

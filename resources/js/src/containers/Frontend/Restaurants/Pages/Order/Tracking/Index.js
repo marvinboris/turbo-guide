@@ -5,20 +5,23 @@ import { Link, withRouter } from 'react-router-dom';
 
 import Header from '../../UI/Header';
 
-import { getOrderTracking } from '../../../../../../store/actions/frontend/restaurants';
+import Loading from '../../../../../../components/UI/Preloaders/Loading';
 
+import { getOrderTracking } from '../../../../../../store/actions/frontend/restaurants';
 import { errorAlert } from '../../../../../../shared/utility';
 
 import './Tracking.scss';
 
 class Tracking extends Component {
     state = {
-        time: '00:00'
+        time: '00:00',
+
+        isMounted: false,
     }
 
     componentDidMount() {
         const { slug, md5 } = this.props.match.params;
-        this.props.tracking(slug, md5);
+        this.setState({ isMounted: true }, () => this.props.tracking(slug, md5));
     }
 
     componentDidUpdate() {
@@ -29,12 +32,12 @@ class Tracking extends Component {
     render() {
         const {
             content: { cms: { pages: { frontend: { restaurants: { order: { tracking: cms } } } } } },
-            frontend: { restaurants: { order = {} } },
+            frontend: { restaurants: { loading, order = {} } },
             match: { params: { slug } }
         } = this.props;
         const { time } = this.state;
 
-        return <div className='Page Tracking'>
+        const content = <div className='Page Tracking'>
             <Header name={cms.page_title}>
                 <div className='search'>
                     <i className='fas fa-search' />
@@ -99,6 +102,10 @@ class Tracking extends Component {
                 </>)}
             </main>
         </div>;
+
+        return <Loading loading={this.state.isMounted && loading}>
+            {content}
+        </Loading>
     }
 }
 

@@ -158,11 +158,12 @@
                 display: flex;
                 position: absolute;
                 align-items: center;
+                max-width: calc(50% - 20px);
 
                 .icon {
-                    width: 30px;
                     height: 30px;
                     display: flex;
+                    flex: 0 0 30px;
                     font-size: 11px;
                     margin-right: 9px;
                     border-radius: 50%;
@@ -175,13 +176,60 @@
 
                 .text {
                     font-size: 12px;
-                    max-width: 75px;
                     font-weight: 500;
                     overflow: hidden;
                     white-space: nowrap;
                     line-height: 15.53px;
                     text-overflow: ellipsis;
                 }
+            }
+
+            .about {
+                top: 14px;
+                right: 24px;
+                z-index: 20;
+                position: absolute;
+
+                button {
+                    width: 93px;
+                    height: 30px;
+                    display: flex;
+                    border-radius: 8px;
+                    align-items: center;
+                    color: var(--white);
+                    justify-content: center;
+                    border: 1px solid var(--white);
+                    background-color: var(--black-45);
+
+                    .icon {
+                        font-size: 9px;
+                        line-height: 9px;
+                    }
+
+                    .circle {
+                        margin: 0 5px;
+                        font-size: 3px;
+                        color: var(--color-primary);
+                    }
+
+                    .text {
+                        font-size: 11px;
+                        line-height: 14.23px;
+                    }
+                }
+            }
+
+            .info {
+                top: 50%;
+                left: 20px;
+                z-index: 20;
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 26px;
+                position: absolute;
+                width: calc(100% - 137px);
+                transform: translateY(-50%);
+
             }
 
             .phone {

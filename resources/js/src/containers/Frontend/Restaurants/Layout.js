@@ -7,6 +7,8 @@ import SplashScreen from './UI/SplashScreen';
 
 import { getRestaurant } from '../../../store/actions/frontend/restaurants';
 
+import Loading from '../../../components/UI/Preloaders/Loading';
+
 import './Frontend.scss';
 
 class Layout extends Component {
@@ -15,11 +17,7 @@ class Layout extends Component {
     }
 
     componentDidMount() {
-        setTimeout(() => {
-            this.setState({ isMounted: true }, () => setTimeout(() => {
-                this.props.get(this.props.match.params.slug);
-            }, 1000));
-        }, 1000);
+        this.setState({ isMounted: true }, () => this.props.get(this.props.match.params.slug));
     }
 
     render() {
@@ -30,11 +28,11 @@ class Layout extends Component {
 
         return <div className="Frontend Restaurants">
             <div className="content">
-                {!this.state.isMounted ? <SplashScreen /> : <MenuLoading loading={loading}>
+                <Loading loading={this.state.isMounted && loading}>
                     {restaurant && <main>
                         {children}
                     </main>}
-                </MenuLoading>}
+                </Loading>
             </div>
         </div>;
     }

@@ -115,7 +115,7 @@ class FrontendController extends Controller
         return response()->json([
             'order_no' => $order_no,
             'tracking_code' => $tracking_code,
-        ]);
+        ] + $this->information($slug));
     }
 
     public function tracking($slug, $md5)
@@ -136,6 +136,6 @@ class FrontendController extends Controller
 
         return response()->json([
             'order' => $order,
-        ]);
+        ] + $this->information($slug));
     }
 }

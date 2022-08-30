@@ -5,10 +5,12 @@ import { Link, withRouter } from 'react-router-dom';
 import Header from '../UI/Header';
 import Checkout from '../UI/Checkout';
 
+import Loading from '../../../../../components/UI/Preloaders/Loading';
+
 import Addon from '../../../../../components/Frontend/UI/Food/Addon';
 import Category from '../../../../../components/Frontend/UI/Category';
 
-import Error from '../../../../../components/Error/Error';
+import { errorAlert } from '../../../../../shared/utility';
 
 import { addItem } from '../../../../../store/actions/frontend/restaurants';
 
@@ -19,13 +21,27 @@ const Wrapper = ({ children, className, style }) => <div className={className} s
 </div>;
 
 class Meal extends Component {
+    state = { isMounted: false, componentLoading: false }
+
+    // Lifecycle methods
+    componentDidMount() {
+        this.setState({ isMounted: true, componentLoading: true }, () => setTimeout(() => {
+            this.setState({ componentLoading: false });
+        }, 250));
+    }
+
+    componentDidUpdate() {
+        const { frontend: { restaurants: { error } } } = this.props;
+        if (error) errorAlert(error);
+    }
+
     render() {
         const {
             content: {
-                cms: { pages: { general, frontend: { restaurants: { meal: cms } } } },
+                cms: { pages: { frontend: { restaurants: { meal: cms } } } },
                 currencies
             },
-            frontend: { restaurants: { loading, error, restaurant, meal_addon, addons, currency, position } },
+            frontend: { restaurants: { restaurant, meal_addon, addons, currency, position } },
             match: { params: { slug, id } }
         } = this.props;
         const lang = localStorage.getItem('lang');
@@ -40,11 +56,7 @@ class Meal extends Component {
         const addonsContent = meal_addons.map(item => <Addon key={item.id + Math.random()} symbol={symbol} position={position} {...{ ...item, name: item.name[lang] }} add={() => this.props.addItem(slug, 'addon', item)} />);
         const drinksContent = drinks.map(item => <Addon key={item.id + Math.random()} symbol={symbol} position={position} {...{ ...item, name: item.name[lang] }} add={() => this.props.addItem(slug, 'drink', item)} />);
 
-        const errors = <>
-            <Error err={error} />
-        </>;
-
-        return <div className="Page Meal">
+        const content = <div className="Page Meal">
             <Header name={meal.name[lang]} />
 
             <main>
@@ -68,10 +80,8 @@ class Meal extends Component {
                     </div>
                 </section>
 
-                {errors}
-
                 <section>
-                    {loading ? <div className="text-center">{general.loading}...</div> : <div className="AddonsDrinks">
+                    <div className="AddonsDrinks">
                         {restaurant.caution[lang] && <Wrapper className="pb-4 mb-2">
                             <div className="rounded-8 bg-soft py-2 px-3 text-10">
                                 {restaurant.caution[lang]}
@@ -89,12 +99,16 @@ class Meal extends Component {
                                 {drinksContent}
                             </Category>
                         </div>
-                    </div>}
+                    </div>
                 </section>
             </main>
 
             <Checkout title={cms.cart.total_items} label={cms.cart.go_to_cart} value={restaurant.cart.total} onClick={() => this.props.history.push(`/restaurants/${slug}/cart`)} />
         </div>;
+
+        return <Loading loading={this.state.isMounted && this.state.componentLoading}>
+            {content}
+        </Loading>;
     }
 }
 

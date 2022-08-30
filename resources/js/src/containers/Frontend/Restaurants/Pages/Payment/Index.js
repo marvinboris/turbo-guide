@@ -5,6 +5,8 @@ import { withRouter } from 'react-router-dom';
 import Header from '../UI/Header';
 import Checkout from '../UI/Checkout';
 
+import Loading from '../../../../../components/UI/Preloaders/Loading';
+
 import { postPayment, resetRestaurants } from '../../../../../store/actions/frontend/restaurants';
 import { errorAlert } from '../../../../../shared/utility';
 
@@ -24,6 +26,9 @@ class Payment extends Component {
 
         changing: false,
         editing: false,
+
+        isMounted: false,
+        componentLoading: false
     }
 
 
@@ -59,13 +64,19 @@ class Payment extends Component {
         const info = localStorage.getItem('client_info');
         if (!info) localStorage.setItem('client_info', JSON.stringify(this.getInfo()));
         else this.setState({ ...JSON.parse(info) });
-        this.setState({ method_id: payment_methods.length > 0 && payment_methods[0].id });
+        this.setState({
+            method_id: payment_methods.length > 0 && payment_methods[0].id,
+            isMounted: true,
+            componentLoading: true,
+        }, () => setTimeout(() => {
+            this.setState({ componentLoading: false })
+        }, 250));
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
         const { frontend: { restaurants: { error, tracking_code } }, match: { params: { slug } } } = this.props;
         if (error) return errorAlert(error);
-        if (tracking_code) this.props.history.push({ pathname: `/restaurants/${slug}/order/success`, state: { tracking_code } })
+        if (prevProps.frontend.restaurants.tracking_code !== tracking_code) this.props.history.push({ pathname: `/restaurants/${slug}/order/success`, state: { tracking_code } })
     }
 
     render() {
@@ -88,7 +99,7 @@ class Payment extends Component {
         const [delivery_option] = Object.keys(list);
 
 
-        return <div className="Page Payment">
+        const content = <div className="Page Payment">
             <Header name={cms.title} />
 
             <main>
@@ -161,6 +172,10 @@ class Payment extends Component {
 
             <Checkout title={cms.cart.due_amount} label={cms.cart.pay_now} value={due_amount} onClick={() => this.props.payment(slug, { ...this.state, ...this.props.location.state })} />
         </div>;
+
+        return <Loading loading={this.state.isMounted && this.state.componentLoading}>
+            {content}
+        </Loading>;
     }
 }
 

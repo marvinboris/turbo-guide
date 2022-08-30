@@ -7,12 +7,12 @@ import Cart from '../../../../components/Frontend/UI/Cart';
 import Meal from '../../../../components/Frontend/UI/Food/Meal';
 import Category from '../../../../components/Frontend/UI/Category';
 
-import Spinner from '../../../../components/UI/Spinner';
+import Loading from '../../../../components/UI/Preloaders/Loading';
 
 import Carousel from './Carousel';
 import SelectCategory from './SelectCategory';
 
-import { updateObject } from '../../../../shared/utility';
+import { errorAlert, updateObject } from '../../../../shared/utility';
 
 import { getRestaurant } from '../../../../store/actions/frontend/restaurants';
 import { getContent } from '../../../../store/actions/content';
@@ -49,6 +49,9 @@ class Home extends Component {
         id: '',
         search: '',
         modal: false,
+
+        isMounted: false,
+        componentLoading: false,
     }
 
 
@@ -86,6 +89,13 @@ class Home extends Component {
         });
     }
 
+    selectCategoryHandler = e => {
+        const { value } = e.target;
+        this.setState({ id: value })
+        location.href = `#category-${value}`;
+        document.getElementById(`category-${value}`).scrollIntoView();
+    }
+
 
 
     // Lifecycle methods
@@ -98,6 +108,9 @@ class Home extends Component {
     }
 
     componentDidMount() {
+        this.setState({ isMounted: true, componentLoading: true }, () => setTimeout(() => {
+            this.setState({ componentLoading: false });
+        }, 250))
         this.init();
     }
 
@@ -109,6 +122,8 @@ class Home extends Component {
             $('#nav-category-' + this.state.id).addClass('activated');
             $('#selected-category').html(this.props.frontend.restaurants.categories.find(category => +category.id === +this.state.id).name[lang]);
         }
+        const { frontend: { restaurants: { error } } } = this.props;
+        if (error) errorAlert(error);
     }
 
     componentWillUnmount() {
@@ -118,7 +133,7 @@ class Home extends Component {
     render() {
         const {
             content: {
-                cms: { pages: { frontend: { restaurants: { home } } } },
+                cms: { pages: { frontend: { restaurants: { home: cms } } } },
                 currencies,
             },
             frontend: { restaurants: { loading, restaurant = { days: {}, hours: {}, address: {} }, categories = [], currency, languages = [], position } }
@@ -137,14 +152,13 @@ class Home extends Component {
         if (restaurant.banner2) items.push(restaurant.banner2);
         if (restaurant.banner3) items.push(restaurant.banner3);
 
-        return <div className="Home">
-            {loading && !this.props.frontend.restaurants.restaurant && <Spinner />}
+        const content = <div className="Home">
             <input type="hidden" id="id" defaultValue={id} />
 
             <div className='header'>
                 <div className='welcome'>
                     <div className='text'>
-                        <span>{home.welcome_to}</span>
+                        <span>{cms.welcome_to}</span>
                     </div>
 
                     <div className={`status ${restaurant.status ? 'open' : 'closed'}`}>
@@ -156,7 +170,7 @@ class Home extends Component {
                             <i className='fas fa-circle' />
                         </div>
 
-                        <div className='value'>{restaurant.status ? home.open : home.closed}</div>
+                        <div className='value'>{restaurant.status ? cms.open : cms.closed}</div>
                     </div>
 
                     <div>
@@ -183,6 +197,18 @@ class Home extends Component {
                         <div className='text'>{restaurant.address[lang]}</div>
                     </div>
 
+                    <div className='about'>
+                        <button className='btn'>
+                            <div className='icon'><i className='fas fa-address-card' /></div>
+
+                            <div className='circle'><i className='fas fa-circle' /></div>
+
+                            <div className='text'>{cms.about}</div>
+                        </button>
+                    </div>
+
+                    <div className='info'>{cms.promo}</div>
+
                     <div className='phone'>
                         <a href={`tel:${restaurant.phone}`} className='btn btn-green fas fa-phone' />
                     </div>
@@ -191,24 +217,28 @@ class Home extends Component {
 
             <div className='select-search-filter'>
                 <div className="select">
-                    <CustomInput type='select' id='select-category' name='category' defaultValue={id}>
+                    <CustomInput type='select' id='select-category' name='category' onChange={this.selectCategoryHandler} defaultValue={id}>
                         {categories.map(category => <option key={`select-category-${JSON.stringify(category)}`} value={category.id}>{category.name[lang]}</option>)}
                     </CustomInput>
                 </div>
 
                 <div className="search">
-                    <Input type='search' name='search' onChange={e => this.setState({ search: e.target.value })} value={search} placeholder={home.search_meal} />
+                    <Input type='search' name='search' onChange={e => this.setState({ search: e.target.value })} value={search} placeholder={cms.search_meal} />
                 </div>
 
                 <div className='filter'>
-                    <SelectCategory cms={home} categories={categories.map(c => ({ ...c, name: c.name[lang], description: c.description[lang] }))} />
+                    <SelectCategory cms={cms} categories={categories.map(c => ({ ...c, name: c.name[lang], description: c.description[lang] }))} />
                 </div>
             </div>
 
-            <div className="categories">
+            <div id='categories' className="categories">
                 {categoriesContent}
             </div>
         </div>;
+
+        return <Loading loading={this.state.isMounted && this.state.componentLoading}>
+            {content}
+        </Loading>;
     }
 }
 

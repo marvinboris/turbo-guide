@@ -704,6 +704,8 @@
                         "search_meal": "Search meal or drink",
                         "open": "Open",
                         "closed": "Closed",
+                        "about": "About",
+                        "promo": "Get 5% discount for orders above 100 AED",
                         "digital_menu": "Digital Menu",
                         "loading_menu": "Loading Menu"
                     },
@@ -1493,7 +1495,9 @@
                         "category": "Catégorie",
                         "search_meal": "Rechercher un plat ou une boisson",
                         "open": "Ouvert",
+                        "about": "A propos",
                         "closed": "Fermé",
+                        "promo": "Get 5% discount for orders above 100 AED",
                         "digital_menu": "Menu Digital",
                         "loading_menu": "Chargement du menu en cours"
                     },

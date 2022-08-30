@@ -653,7 +653,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Frontend_UI_Cart__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../components/Frontend/UI/Cart */ "./resources/js/src/components/Frontend/UI/Cart/index.js");
 /* harmony import */ var _components_Frontend_UI_Food_Meal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../components/Frontend/UI/Food/Meal */ "./resources/js/src/components/Frontend/UI/Food/Meal/index.js");
 /* harmony import */ var _components_Frontend_UI_Category__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../components/Frontend/UI/Category */ "./resources/js/src/components/Frontend/UI/Category/index.js");
-/* harmony import */ var _components_UI_Spinner__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../components/UI/Spinner */ "./resources/js/src/components/UI/Spinner/index.js");
+/* harmony import */ var _components_UI_Preloaders_Loading__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../components/UI/Preloaders/Loading */ "./resources/js/src/components/UI/Preloaders/Loading/index.js");
 /* harmony import */ var _Carousel__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Carousel */ "./resources/js/src/containers/Frontend/Restaurants/Home/Carousel/index.js");
 /* harmony import */ var _SelectCategory__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./SelectCategory */ "./resources/js/src/containers/Frontend/Restaurants/Home/SelectCategory/index.js");
 /* harmony import */ var _shared_utility__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../shared/utility */ "./resources/js/src/shared/utility.js");
@@ -766,7 +766,9 @@ var Home = /*#__PURE__*/function (_Component) {
     _defineProperty(_assertThisInitialized(_this), "state", {
       id: '',
       search: '',
-      modal: false
+      modal: false,
+      isMounted: false,
+      componentLoading: false
     });
 
     _defineProperty(_assertThisInitialized(_this), "setLanguage", function (lang) {
@@ -805,18 +807,41 @@ var Home = /*#__PURE__*/function (_Component) {
       });
     });
 
+    _defineProperty(_assertThisInitialized(_this), "selectCategoryHandler", function (e) {
+      var value = e.target.value;
+
+      _this.setState({
+        id: value
+      });
+
+      location.href = "#category-".concat(value);
+      document.getElementById("category-".concat(value)).scrollIntoView();
+    });
+
     return _this;
   }
 
   _createClass(Home, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this2 = this;
+
+      this.setState({
+        isMounted: true,
+        componentLoading: true
+      }, function () {
+        return setTimeout(function () {
+          _this2.setState({
+            componentLoading: false
+          });
+        }, 250);
+      });
       this.init();
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
-      var _this2 = this;
+      var _this3 = this;
 
       if (!prevProps.frontend.restaurants.languages && this.props.frontend.restaurants.languages && !this.props.frontend.restaurants.languages.map(function (l) {
         return l.abbr;
@@ -829,9 +854,12 @@ var Home = /*#__PURE__*/function (_Component) {
         var lang = localStorage.getItem('lang');
         $('#nav-category-' + this.state.id).addClass('activated');
         $('#selected-category').html(this.props.frontend.restaurants.categories.find(function (category) {
-          return +category.id === +_this2.state.id;
+          return +category.id === +_this3.state.id;
         }).name[lang]);
       }
+
+      var error = this.props.frontend.restaurants.error;
+      if (error) (0,_shared_utility__WEBPACK_IMPORTED_MODULE_8__.errorAlert)(error);
     }
   }, {
     key: "componentWillUnmount",
@@ -841,11 +869,11 @@ var Home = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var _this$props = this.props,
           _this$props$content = _this$props.content,
-          home = _this$props$content.cms.pages.frontend.restaurants.home,
+          cms = _this$props$content.cms.pages.frontend.restaurants.home,
           currencies = _this$props$content.currencies,
           _this$props$frontend$ = _this$props.frontend.restaurants,
           loading = _this$props$frontend$.loading,
@@ -883,7 +911,7 @@ var Home = /*#__PURE__*/function (_Component) {
               name: meal.name[lang],
               description: meal.description[lang]
             })), {}, {
-              slug: _this3.props.match.params.slug
+              slug: _this4.props.match.params.slug
             }), JSON.stringify(meal) + Math.random());
           })
         }, JSON.stringify(category) + Math.random());
@@ -894,9 +922,10 @@ var Home = /*#__PURE__*/function (_Component) {
       if (restaurant.banner1) items.push(restaurant.banner1);
       if (restaurant.banner2) items.push(restaurant.banner2);
       if (restaurant.banner3) items.push(restaurant.banner3);
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
+
+      var content = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
         className: "Home",
-        children: [loading && !this.props.frontend.restaurants.restaurant && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_components_UI_Spinner__WEBPACK_IMPORTED_MODULE_5__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("input", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("input", {
           type: "hidden",
           id: "id",
           defaultValue: id
@@ -907,7 +936,7 @@ var Home = /*#__PURE__*/function (_Component) {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
               className: "text",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("span", {
-                children: home.welcome_to
+                children: cms.welcome_to
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("div", {
               className: "status ".concat(restaurant.status ? 'open' : 'closed'),
@@ -923,7 +952,7 @@ var Home = /*#__PURE__*/function (_Component) {
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
                 className: "value",
-                children: restaurant.status ? home.open : home.closed
+                children: restaurant.status ? cms.open : cms.closed
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_components_Frontend_UI_Cart__WEBPACK_IMPORTED_MODULE_2__.default, {})
@@ -963,6 +992,28 @@ var Home = /*#__PURE__*/function (_Component) {
                 children: restaurant.address[lang]
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+              className: "about",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxs)("button", {
+                className: "btn",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+                  className: "icon",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("i", {
+                    className: "fas fa-address-card"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+                  className: "circle",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("i", {
+                    className: "fas fa-circle"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+                  className: "text",
+                  children: cms.about
+                })]
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+              className: "info",
+              children: cms.promo
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
               className: "phone",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("a", {
                 href: "tel:".concat(restaurant.phone),
@@ -978,6 +1029,7 @@ var Home = /*#__PURE__*/function (_Component) {
               type: "select",
               id: "select-category",
               name: "category",
+              onChange: this.selectCategoryHandler,
               defaultValue: id,
               children: categories.map(function (category) {
                 return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("option", {
@@ -992,17 +1044,17 @@ var Home = /*#__PURE__*/function (_Component) {
               type: "search",
               name: "search",
               onChange: function onChange(e) {
-                return _this3.setState({
+                return _this4.setState({
                   search: e.target.value
                 });
               },
               value: search,
-              placeholder: home.search_meal
+              placeholder: cms.search_meal
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
             className: "filter",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_SelectCategory__WEBPACK_IMPORTED_MODULE_7__.default, {
-              cms: home,
+              cms: cms,
               categories: categories.map(function (c) {
                 return _objectSpread(_objectSpread({}, c), {}, {
                   name: c.name[lang],
@@ -1012,9 +1064,15 @@ var Home = /*#__PURE__*/function (_Component) {
             })
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)("div", {
+          id: "categories",
           className: "categories",
           children: categoriesContent
         })]
+      });
+
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__.jsx)(_components_UI_Preloaders_Loading__WEBPACK_IMPORTED_MODULE_5__.default, {
+        loading: this.state.isMounted && this.state.componentLoading,
+        children: content
       });
     }
   }], [{
@@ -1191,7 +1249,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".Home {\n  padding: 78px 16px 106px 16px;\n}\n.Home .header .welcome {\n  display: flex;\n  position: relative;\n  margin-bottom: 17px;\n  justify-content: space-between;\n}\n.Home .header .welcome > .text {\n  font-size: 24px;\n  font-weight: 700;\n  line-height: 31.06px;\n}\n.Home .header .welcome .status {\n  top: 5px;\n  left: 163px;\n  width: 91px;\n  height: 30px;\n  display: flex;\n  border-radius: 8px;\n  padding-left: 12px;\n  position: absolute;\n  align-items: center;\n  padding-right: 12px;\n  justify-content: space-between;\n}\n.Home .header .welcome .status .icon {\n  font-size: 10px;\n}\n.Home .header .welcome .status .circle {\n  font-size: 6px;\n  color: var(--border-10);\n}\n.Home .header .welcome .status .value {\n  font-size: 12px;\n  font-weight: 500;\n  line-height: 15.53px;\n}\n.Home .header .welcome .status.open {\n  color: var(--green);\n  background-color: var(--green-10);\n}\n.Home .header .welcome .status.closed {\n  color: var(--red);\n  background-color: var(--red-10);\n}\n.Home .header .restaurant {\n  display: flex;\n  align-items: center;\n  margin-bottom: 18px;\n}\n.Home .header .restaurant > .text {\n  flex-grow: 1;\n  font-size: 30px;\n  font-weight: 700;\n  padding-right: 13px;\n  line-height: 38.82px;\n  color: var(--color-primary);\n}\n.Home .header .restaurant .Languages > button {\n  margin: 0;\n  border: none;\n  display: flex;\n  box-shadow: none;\n  padding: 2px 4px;\n  color: var(--dark);\n  position: relative;\n  align-items: center;\n  border-radius: 50rem;\n  justify-content: space-around;\n  background-color: var(--orange-10);\n}\n.Home .header .restaurant .Languages > button .language-flag {\n  width: 30px;\n  height: 30px;\n  font-size: 30px;\n  margin-left: 7px;\n  overflow: hidden;\n  border-radius: 50%;\n  position: relative;\n  align-items: center;\n  display: inline-flex;\n  justify-content: center;\n}\n.Home .header .restaurant .Languages > button .language-flag .flag-icon {\n  position: absolute;\n}\n.Home .header .restaurant .Languages > button > .text {\n  font-size: 16px;\n  font-weight: 400;\n  margin-left: 8px;\n  line-height: 20.7px;\n}\n.Home .header .banner {\n  overflow: hidden;\n  position: relative;\n  color: var(--white);\n  border-radius: 25px;\n  margin-bottom: 39px;\n}\n.Home .header .banner .img-container {\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  position: absolute;\n}\n.Home .header .banner .img-container::after {\n  top: 0;\n  left: 0;\n  content: \"\";\n  width: 100%;\n  z-index: 10;\n  height: 100%;\n  position: absolute;\n  background-color: var(--black-40);\n}\n.Home .header .banner .img-container .carousel-indicators li {\n  width: 15px;\n  height: 5px;\n  border: none;\n  display: inline-block;\n  border-radius: 50rem;\n  transition: all 0.25s;\n  background-color: var(--white-50);\n}\n.Home .header .banner .img-container .carousel-indicators li.active {\n  width: 28px;\n  background-color: var(--white);\n}\n.Home .header .banner .location {\n  top: 14px;\n  left: 20px;\n  z-index: 20;\n  display: flex;\n  position: absolute;\n  align-items: center;\n}\n.Home .header .banner .location .icon {\n  width: 30px;\n  height: 30px;\n  display: flex;\n  font-size: 11px;\n  margin-right: 9px;\n  border-radius: 50%;\n  color: var(--white);\n  align-items: center;\n  justify-content: center;\n  border: 1px solid var(--white);\n  background-color: var(--black-40);\n}\n.Home .header .banner .location .text {\n  font-size: 12px;\n  max-width: 75px;\n  font-weight: 500;\n  overflow: hidden;\n  white-space: nowrap;\n  line-height: 15.53px;\n  text-overflow: ellipsis;\n}\n.Home .header .banner .phone {\n  right: 24px;\n  z-index: 20;\n  bottom: 17px;\n  position: absolute;\n}\n.Home .header .banner .phone a {\n  display: flex;\n  width: 43.71px;\n  height: 43.71px;\n  align-items: center;\n  border-radius: 100%;\n  justify-content: center;\n  box-shadow: 0 0 0 5.14px var(--green-60);\n}\n.Home .select-search-filter {\n  display: flex;\n  align-items: center;\n  margin-bottom: 27px;\n  justify-content: space-between;\n}\n.Home .select-search-filter input,\n.Home .select-search-filter select {\n  z-index: 1;\n  border: none;\n  height: 40px;\n  outline: none;\n  font-size: 12px;\n  overflow: hidden;\n  position: relative;\n  padding: 12px 16px;\n  border-radius: 50rem;\n  line-height: 15.53px;\n  background-color: var(--color-bg);\n}\n.Home .select-search-filter .select select {\n  width: 121px;\n  background-color: var(--orange-20);\n}\n.Home .select-search-filter .search {\n  flex: 1 1 auto;\n  margin: 0 18px;\n  color: var(--light);\n}\n.Home .select-search-filter .search input {\n  background-color: var(--soft-30);\n}\n.Home .select-search-filter .filter .category-filter {\n  width: 40px;\n  height: 40px;\n  display: flex;\n  cursor: pointer;\n  font-size: 13px;\n  border-radius: 50%;\n  align-items: center;\n  color: var(--white);\n  justify-content: center;\n  background-color: var(--color-primary);\n}\n.Home .categories {\n  margin-left: -16px;\n  position: relative;\n  margin-right: -16px;\n}\n.Home .carousel-inner {\n  height: 100% !important;\n}\n.Home .navigation {\n  overflow-x: auto;\n}\n.Home #banner {\n  position: relative;\n  z-index: 10;\n}\n.Home .category-select {\n  max-width: calc(var(--app-width) - 178px);\n}\n\n@media (max-width: 412px) {\n  .Home .category-select {\n    max-width: calc(100vw - 178px);\n  }\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".Home {\n  padding: 78px 16px 106px 16px;\n}\n.Home .header .welcome {\n  display: flex;\n  position: relative;\n  margin-bottom: 17px;\n  justify-content: space-between;\n}\n.Home .header .welcome > .text {\n  font-size: 24px;\n  font-weight: 700;\n  line-height: 31.06px;\n}\n.Home .header .welcome .status {\n  top: 5px;\n  left: 163px;\n  width: 91px;\n  height: 30px;\n  display: flex;\n  border-radius: 8px;\n  padding-left: 12px;\n  position: absolute;\n  align-items: center;\n  padding-right: 12px;\n  justify-content: space-between;\n}\n.Home .header .welcome .status .icon {\n  font-size: 10px;\n}\n.Home .header .welcome .status .circle {\n  font-size: 6px;\n  color: var(--border-10);\n}\n.Home .header .welcome .status .value {\n  font-size: 12px;\n  font-weight: 500;\n  line-height: 15.53px;\n}\n.Home .header .welcome .status.open {\n  color: var(--green);\n  background-color: var(--green-10);\n}\n.Home .header .welcome .status.closed {\n  color: var(--red);\n  background-color: var(--red-10);\n}\n.Home .header .restaurant {\n  display: flex;\n  align-items: center;\n  margin-bottom: 18px;\n}\n.Home .header .restaurant > .text {\n  flex-grow: 1;\n  font-size: 30px;\n  font-weight: 700;\n  padding-right: 13px;\n  line-height: 38.82px;\n  color: var(--color-primary);\n}\n.Home .header .restaurant .Languages > button {\n  margin: 0;\n  border: none;\n  display: flex;\n  box-shadow: none;\n  padding: 2px 4px;\n  color: var(--dark);\n  position: relative;\n  align-items: center;\n  border-radius: 50rem;\n  justify-content: space-around;\n  background-color: var(--orange-10);\n}\n.Home .header .restaurant .Languages > button .language-flag {\n  width: 30px;\n  height: 30px;\n  font-size: 30px;\n  margin-left: 7px;\n  overflow: hidden;\n  border-radius: 50%;\n  position: relative;\n  align-items: center;\n  display: inline-flex;\n  justify-content: center;\n}\n.Home .header .restaurant .Languages > button .language-flag .flag-icon {\n  position: absolute;\n}\n.Home .header .restaurant .Languages > button > .text {\n  font-size: 16px;\n  font-weight: 400;\n  margin-left: 8px;\n  line-height: 20.7px;\n}\n.Home .header .banner {\n  overflow: hidden;\n  position: relative;\n  color: var(--white);\n  border-radius: 25px;\n  margin-bottom: 39px;\n}\n.Home .header .banner .img-container {\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  position: absolute;\n}\n.Home .header .banner .img-container::after {\n  top: 0;\n  left: 0;\n  content: \"\";\n  width: 100%;\n  z-index: 10;\n  height: 100%;\n  position: absolute;\n  background-color: var(--black-40);\n}\n.Home .header .banner .img-container .carousel-indicators li {\n  width: 15px;\n  height: 5px;\n  border: none;\n  display: inline-block;\n  border-radius: 50rem;\n  transition: all 0.25s;\n  background-color: var(--white-50);\n}\n.Home .header .banner .img-container .carousel-indicators li.active {\n  width: 28px;\n  background-color: var(--white);\n}\n.Home .header .banner .location {\n  top: 14px;\n  left: 20px;\n  z-index: 20;\n  display: flex;\n  position: absolute;\n  align-items: center;\n  max-width: calc(50% - 20px);\n}\n.Home .header .banner .location .icon {\n  height: 30px;\n  display: flex;\n  flex: 0 0 30px;\n  font-size: 11px;\n  margin-right: 9px;\n  border-radius: 50%;\n  color: var(--white);\n  align-items: center;\n  justify-content: center;\n  border: 1px solid var(--white);\n  background-color: var(--black-40);\n}\n.Home .header .banner .location .text {\n  font-size: 12px;\n  font-weight: 500;\n  overflow: hidden;\n  white-space: nowrap;\n  line-height: 15.53px;\n  text-overflow: ellipsis;\n}\n.Home .header .banner .about {\n  top: 14px;\n  right: 24px;\n  z-index: 20;\n  position: absolute;\n}\n.Home .header .banner .about button {\n  width: 93px;\n  height: 30px;\n  display: flex;\n  border-radius: 8px;\n  align-items: center;\n  color: var(--white);\n  justify-content: center;\n  border: 1px solid var(--white);\n  background-color: var(--black-45);\n}\n.Home .header .banner .about button .icon {\n  font-size: 9px;\n  line-height: 9px;\n}\n.Home .header .banner .about button .circle {\n  margin: 0 5px;\n  font-size: 3px;\n  color: var(--color-primary);\n}\n.Home .header .banner .about button .text {\n  font-size: 11px;\n  line-height: 14.23px;\n}\n.Home .header .banner .info {\n  top: 50%;\n  left: 20px;\n  z-index: 20;\n  font-size: 20px;\n  font-weight: 700;\n  line-height: 26px;\n  position: absolute;\n  width: calc(100% - 137px);\n  transform: translateY(-50%);\n}\n.Home .header .banner .phone {\n  right: 24px;\n  z-index: 20;\n  bottom: 17px;\n  position: absolute;\n}\n.Home .header .banner .phone a {\n  display: flex;\n  width: 43.71px;\n  height: 43.71px;\n  align-items: center;\n  border-radius: 100%;\n  justify-content: center;\n  box-shadow: 0 0 0 5.14px var(--green-60);\n}\n.Home .select-search-filter {\n  display: flex;\n  align-items: center;\n  margin-bottom: 27px;\n  justify-content: space-between;\n}\n.Home .select-search-filter input,\n.Home .select-search-filter select {\n  z-index: 1;\n  border: none;\n  height: 40px;\n  outline: none;\n  font-size: 12px;\n  overflow: hidden;\n  position: relative;\n  padding: 12px 16px;\n  border-radius: 50rem;\n  line-height: 15.53px;\n  background-color: var(--color-bg);\n}\n.Home .select-search-filter .select select {\n  width: 121px;\n  background-color: var(--orange-20);\n}\n.Home .select-search-filter .search {\n  flex: 1 1 auto;\n  margin: 0 18px;\n  color: var(--light);\n}\n.Home .select-search-filter .search input {\n  background-color: var(--soft-30);\n}\n.Home .select-search-filter .filter .category-filter {\n  width: 40px;\n  height: 40px;\n  display: flex;\n  cursor: pointer;\n  font-size: 13px;\n  border-radius: 50%;\n  align-items: center;\n  color: var(--white);\n  justify-content: center;\n  background-color: var(--color-primary);\n}\n.Home .categories {\n  margin-left: -16px;\n  position: relative;\n  margin-right: -16px;\n}\n.Home .carousel-inner {\n  height: 100% !important;\n}\n.Home .navigation {\n  overflow-x: auto;\n}\n.Home #banner {\n  position: relative;\n  z-index: 10;\n}\n.Home .category-select {\n  max-width: calc(var(--app-width) - 178px);\n}\n\n@media (max-width: 412px) {\n  .Home .category-select {\n    max-width: calc(100vw - 178px);\n  }\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

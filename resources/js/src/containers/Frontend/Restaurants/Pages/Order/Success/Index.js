@@ -2,15 +2,27 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 
-import Error from '../../../../../../components/Error/Error';
+import Loading from '../../../../../../components/UI/Preloaders/Loading';
 
-import { resetRestaurants } from '../../../../../../store/actions/frontend/restaurants';
+import { errorAlert } from '../../../../../../shared/utility';
 
 import './Success.scss';
 
 class Success extends Component {
-    componentWillUnmount() {
-        this.props.reset();
+    state = {
+        isMounted: false,
+        componentLoading: false
+    }
+
+    componentDidMount() {
+        this.setState({ isMounted: true, componentLoading: true }, () => setTimeout(() => {
+            this.setState({ componentLoading: false });
+        }, 250))
+    }
+
+    componentDidUpdate() {
+        const { frontend: { restaurants: { error } } } = this.props;
+        if (error) errorAlert(error);
     }
 
     render() {
@@ -18,19 +30,12 @@ class Success extends Component {
             content: {
                 cms: { pages: { frontend: { restaurants: { order: { success: cms } } } } },
             },
-            frontend: { restaurants: { error } },
             match: { params: { slug } },
             location: { state: { order_no, tracking_code } }
         } = this.props;
 
-        const errors = <>
-            <Error err={error} />
-        </>;
-
-        return <div className="Page Success">
+        const content = <div className="Page Success">
             <main>
-                {errors}
-
                 <div className='title'>{cms.title}</div>
 
                 <div className='icon'>
@@ -44,13 +49,13 @@ class Success extends Component {
                 </div>
             </main>
         </div>;
+
+        return <Loading loading={this.state.isMounted && this.state.componentLoading}>
+            {content}
+        </Loading>;
     }
 }
 
 const mapStateToProps = state => ({ ...state });
 
-const mapDispatchToProps = dispatch => ({
-    reset: () => dispatch(resetRestaurants(true)),
-});
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Success));
+export default withRouter(connect(mapStateToProps)(Success));

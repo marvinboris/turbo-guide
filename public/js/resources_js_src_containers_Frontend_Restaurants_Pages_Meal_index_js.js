@@ -1,45 +1,5 @@
 (self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_src_containers_Frontend_Restaurants_Pages_Meal_index_js"],{
 
-/***/ "./resources/js/src/components/Error/Error.js":
-/*!****************************************************!*\
-  !*** ./resources/js/src/components/Error/Error.js ***!
-  \****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Error)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-
-
-var error = function error(_ref) {
-  var err = _ref.err;
-  return err ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    className: "alert alert-danger",
-    children: err.message ? err.message : err
-  }) : null;
-};
-
-function Error(_ref2) {
-  var err = _ref2.err;
-  return err ? sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({
-    // title: err.message || err,
-    text: err.message || err,
-    icon: 'warning',
-    confirmButtonColor: '#3085d6' // confirmButtonText: 'Yes'
-
-  }) : null;
-}
-
-/***/ }),
-
 /***/ "./resources/js/src/components/Frontend/UI/Cart/index.js":
 /*!***************************************************************!*\
   !*** ./resources/js/src/components/Frontend/UI/Cart/index.js ***!
@@ -362,15 +322,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _UI_Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../UI/Header */ "./resources/js/src/containers/Frontend/Restaurants/Pages/UI/Header/index.js");
 /* harmony import */ var _UI_Checkout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../UI/Checkout */ "./resources/js/src/containers/Frontend/Restaurants/Pages/UI/Checkout/index.js");
-/* harmony import */ var _components_Frontend_UI_Food_Addon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../components/Frontend/UI/Food/Addon */ "./resources/js/src/components/Frontend/UI/Food/Addon/index.js");
-/* harmony import */ var _components_Frontend_UI_Category__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../../components/Frontend/UI/Category */ "./resources/js/src/components/Frontend/UI/Category/index.js");
-/* harmony import */ var _components_Error_Error__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../components/Error/Error */ "./resources/js/src/components/Error/Error.js");
-/* harmony import */ var _store_actions_frontend_restaurants__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../store/actions/frontend/restaurants */ "./resources/js/src/store/actions/frontend/restaurants.js");
-/* harmony import */ var _Meal_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Meal.scss */ "./resources/js/src/containers/Frontend/Restaurants/Pages/Meal/Meal.scss");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _components_UI_Preloaders_Loading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../components/UI/Preloaders/Loading */ "./resources/js/src/components/UI/Preloaders/Loading/index.js");
+/* harmony import */ var _components_Frontend_UI_Food_Addon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../../components/Frontend/UI/Food/Addon */ "./resources/js/src/components/Frontend/UI/Food/Addon/index.js");
+/* harmony import */ var _components_Frontend_UI_Category__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../components/Frontend/UI/Category */ "./resources/js/src/components/Frontend/UI/Category/index.js");
+/* harmony import */ var _shared_utility__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../../shared/utility */ "./resources/js/src/shared/utility.js");
+/* harmony import */ var _store_actions_frontend_restaurants__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../../store/actions/frontend/restaurants */ "./resources/js/src/store/actions/frontend/restaurants.js");
+/* harmony import */ var _Meal_scss__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Meal.scss */ "./resources/js/src/containers/Frontend/Restaurants/Pages/Meal/Meal.scss");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -417,7 +378,7 @@ var Wrapper = function Wrapper(_ref) {
   var children = _ref.children,
       className = _ref.className,
       style = _ref.style;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
     className: className,
     style: _objectSpread({
       padding: '12px 11px'
@@ -432,25 +393,57 @@ var Meal = /*#__PURE__*/function (_Component) {
   var _super = _createSuper(Meal);
 
   function Meal() {
+    var _this;
+
     _classCallCheck(this, Meal);
 
-    return _super.apply(this, arguments);
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    _defineProperty(_assertThisInitialized(_this), "state", {
+      isMounted: false,
+      componentLoading: false
+    });
+
+    return _this;
   }
 
   _createClass(Meal, [{
+    key: "componentDidMount",
+    value: // Lifecycle methods
+    function componentDidMount() {
+      var _this2 = this;
+
+      this.setState({
+        isMounted: true,
+        componentLoading: true
+      }, function () {
+        return setTimeout(function () {
+          _this2.setState({
+            componentLoading: false
+          });
+        }, 250);
+      });
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      var error = this.props.frontend.restaurants.error;
+      if (error) (0,_shared_utility__WEBPACK_IMPORTED_MODULE_7__.errorAlert)(error);
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this = this;
+      var _this3 = this;
 
       var _this$props = this.props,
           _this$props$content = _this$props.content,
-          _this$props$content$c = _this$props$content.cms.pages,
-          general = _this$props$content$c.general,
-          cms = _this$props$content$c.frontend.restaurants.meal,
+          cms = _this$props$content.cms.pages.frontend.restaurants.meal,
           currencies = _this$props$content.currencies,
           _this$props$frontend$ = _this$props.frontend.restaurants,
-          loading = _this$props$frontend$.loading,
-          error = _this$props$frontend$.error,
           restaurant = _this$props$frontend$.restaurant,
           meal_addon = _this$props$frontend$.meal_addon,
           addons = _this$props$frontend$.addons,
@@ -476,106 +469,97 @@ var Meal = /*#__PURE__*/function (_Component) {
       });
       var symbol = currencyObj && currencyObj.cc;
       var addonsContent = meal_addons.map(function (item) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_components_Frontend_UI_Food_Addon__WEBPACK_IMPORTED_MODULE_4__.default, _objectSpread(_objectSpread({
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_components_Frontend_UI_Food_Addon__WEBPACK_IMPORTED_MODULE_5__.default, _objectSpread(_objectSpread({
           symbol: symbol,
           position: position
         }, _objectSpread(_objectSpread({}, item), {}, {
           name: item.name[lang]
         })), {}, {
           add: function add() {
-            return _this.props.addItem(slug, 'addon', item);
+            return _this3.props.addItem(slug, 'addon', item);
           }
         }), item.id + Math.random());
       });
       var drinksContent = drinks.map(function (item) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_components_Frontend_UI_Food_Addon__WEBPACK_IMPORTED_MODULE_4__.default, _objectSpread(_objectSpread({
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_components_Frontend_UI_Food_Addon__WEBPACK_IMPORTED_MODULE_5__.default, _objectSpread(_objectSpread({
           symbol: symbol,
           position: position
         }, _objectSpread(_objectSpread({}, item), {}, {
           name: item.name[lang]
         })), {}, {
           add: function add() {
-            return _this.props.addItem(slug, 'drink', item);
+            return _this3.props.addItem(slug, 'drink', item);
           }
         }), item.id + Math.random());
       });
 
-      var errors = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_components_Error_Error__WEBPACK_IMPORTED_MODULE_6__.default, {
-          err: error
-        })
-      });
-
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+      var content = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
         className: "Page Meal",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_UI_Header__WEBPACK_IMPORTED_MODULE_2__.default, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_UI_Header__WEBPACK_IMPORTED_MODULE_2__.default, {
           name: meal.name[lang]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("main", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("section", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("main", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("section", {
             className: "banner",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
               className: "embed-responsive embed-responsive-16by9",
               style: {
                 backgroundImage: "url('".concat(meal.photo, "')")
               },
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
                 className: "wrapper",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
                   className: "time",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("i", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("i", {
                     className: "fas fa-clock"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("span", {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("strong", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("span", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("strong", {
                       children: meal.time
                     }), " ", cms.min]
                   })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
                   className: "reference",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("span", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("span", {
                     children: [cms.no, ". ", meal.reference]
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
                   className: "add-to-cart",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("button", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("button", {
                     className: "btn btn-white",
                     onClick: function onClick() {
-                      return _this.props.addItem(slug, 'meal', meal);
+                      return _this3.props.addItem(slug, 'meal', meal);
                     },
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("i", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("i", {
                       className: "fas fa-plus"
                     }), cms.add_to_cart]
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
                   className: "price",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("span", {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("strong", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("span", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("strong", {
                       children: meal.price
                     }), currency]
                   })
                 })]
               })
             })
-          }), errors, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("section", {
-            children: loading ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
-              className: "text-center",
-              children: [general.loading, "..."]
-            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("section", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
               className: "AddonsDrinks",
-              children: [restaurant.caution[lang] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(Wrapper, {
+              children: [restaurant.caution[lang] && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(Wrapper, {
                 className: "pb-4 mb-2",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("div", {
                   className: "rounded-8 bg-soft py-2 px-3 text-10",
                   children: restaurant.caution[lang]
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("p", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("p", {
                 children: restaurant.extra_addon ? restaurant.extra_addon[lang] : cms.extra
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("div", {
                 className: "categories",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_components_Frontend_UI_Category__WEBPACK_IMPORTED_MODULE_5__.default, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_components_Frontend_UI_Category__WEBPACK_IMPORTED_MODULE_6__.default, {
                   name: cms.addons,
                   id: "addons",
                   children: addonsContent
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_components_Frontend_UI_Category__WEBPACK_IMPORTED_MODULE_5__.default, {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_components_Frontend_UI_Category__WEBPACK_IMPORTED_MODULE_6__.default, {
                   name: cms.drinks,
                   id: "drinks",
                   children: drinksContent
@@ -583,14 +567,19 @@ var Meal = /*#__PURE__*/function (_Component) {
               })]
             })
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_UI_Checkout__WEBPACK_IMPORTED_MODULE_3__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_UI_Checkout__WEBPACK_IMPORTED_MODULE_3__.default, {
           title: cms.cart.total_items,
           label: cms.cart.go_to_cart,
           value: restaurant.cart.total,
           onClick: function onClick() {
-            return _this.props.history.push("/restaurants/".concat(slug, "/cart"));
+            return _this3.props.history.push("/restaurants/".concat(slug, "/cart"));
           }
         })]
+      });
+
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_components_UI_Preloaders_Loading__WEBPACK_IMPORTED_MODULE_4__.default, {
+        loading: this.state.isMounted && this.state.componentLoading,
+        children: content
       });
     }
   }]);
@@ -605,12 +594,12 @@ var mapStateToProps = function mapStateToProps(state) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     addItem: function addItem(slug, type, item) {
-      return dispatch((0,_store_actions_frontend_restaurants__WEBPACK_IMPORTED_MODULE_7__.addItem)(slug, type, item));
+      return dispatch((0,_store_actions_frontend_restaurants__WEBPACK_IMPORTED_MODULE_8__.addItem)(slug, type, item));
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_10__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(Meal)));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_11__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(Meal)));
 
 /***/ }),
 

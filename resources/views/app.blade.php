@@ -76,11 +76,13 @@
 
     <script src="{{ asset('/sw.js') }}"></script>
     <script>
-        if (!navigator.serviceWorker.controller) {
-            navigator.serviceWorker.register("/sw.js").then(function(reg) {
-                console.log("Service worker has been registered for scope: " + reg.scope);
-            });
-        }
+        if ('serviceWorker' in navigator) {
+            if (!navigator.serviceWorker.controller) {
+                navigator.serviceWorker.register("/sw.js").then(function(reg) {
+                    console.log("Service worker has been registered for scope: " + reg.scope);
+                });
+            }
+        } else console.log('No service worker');
     </script>
 </body>
 

@@ -46,7 +46,7 @@
                 "name": document.title,
                 "short_name": document.title,
                 "start_url": location.origin + "/restaurants/" + restaurant_slug,
-                "background_color": "#e98809",
+                "background_color": "#6777ef",
                 "description": restaurant_name + " - Digital Restaurant Menu",
                 "display": "fullscreen",
                 "theme_color": "#e98809",

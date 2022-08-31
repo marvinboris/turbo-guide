@@ -69,7 +69,7 @@ class UtilController extends Controller
         return $rules;
     }
 
-    public static function resize($file, $folder)
+    public static function resize($file, $folder, $maxHeight = 640, $maxWidth = 640)
     {
         $name = $file->getClientOriginalName();
         $path = $file->getRealPath();
@@ -77,9 +77,6 @@ class UtilController extends Controller
 
         $destinationPath = public_path('/images/' . $folder);
         $destination = time() . $name;
-
-        $maxHeight = 640;
-        $maxWidth = 640;
 
         $actualHeight = $dimensions[1];
         $actualWidth = $dimensions[0];

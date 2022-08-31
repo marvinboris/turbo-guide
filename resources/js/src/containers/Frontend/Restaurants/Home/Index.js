@@ -44,6 +44,9 @@ const Languages = ({ languages, set }) => {
 
 let timeout;
 
+// PWA Button Handler
+let deferredPrompt;
+
 class Home extends Component {
     state = {
         id: '',
@@ -96,6 +99,21 @@ class Home extends Component {
         document.getElementById(`category-${value}`).scrollIntoView();
     }
 
+    windowBeforeInstallPrompt = (e) => {
+        $('.install-app-btn-container').show();
+        deferredPrompt = e;
+    }
+
+    installAppClick = async () => {
+        if (deferredPrompt !== null) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            if (outcome === 'accepted') {
+                deferredPrompt = null;
+            }
+        }
+    }
+
 
 
     // Lifecycle methods
@@ -112,6 +130,7 @@ class Home extends Component {
             this.setState({ componentLoading: false });
         }, 250))
         this.init();
+        window.addEventListener('beforeinstallprompt', this.windowBeforeInstallPrompt);
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -128,6 +147,7 @@ class Home extends Component {
 
     componentWillUnmount() {
         $('body').scrollspy('dispose');
+        window.removeEventListener('beforinstallprompt', this.windowBeforeInstallPrompt);
     }
 
     render() {
@@ -171,6 +191,10 @@ class Home extends Component {
                         </div>
 
                         <div className='value'>{restaurant.status ? cms.open : cms.closed}</div>
+                    </div>
+
+                    <div className='install-app-btn-container'>
+                        <i className='fas fa-fw fa-download' onClick={this.installAppClick} />
                     </div>
 
                     <div>

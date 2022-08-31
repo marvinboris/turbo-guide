@@ -64,7 +64,7 @@ class SettingsController extends Controller
 
         if ($file = $request->file('logo')) {
             if ($restaurant->logo && is_file(public_path($restaurant->logo))) unlink(public_path($restaurant->logo));
-            $fileName = UtilController::resize($file, 'restaurants');
+            $fileName = UtilController::resize($file, 'restaurants', 512, 512);
             $input['logo'] = htmlspecialchars($fileName);
         }
 

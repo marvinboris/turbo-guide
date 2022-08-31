@@ -39,18 +39,19 @@
         @endif
 
         <script>
-            const app_name = document.head.querySelector('meta[name=app-name]').content
-            const restaurant_slug = document.head.querySelector('meta[name=restaurant-slug]').content
+            const restaurant_name = document.head.querySelector('meta[name=restaurant-name]').content;
+            const restaurant_slug = document.head.querySelector('meta[name=restaurant-slug]').content;
+            const logo = document.head.querySelector('link[rel=apple-touch-icon]').href;
             const manifest = {
-                "name": app_name,
-                "short_name": app_name,
+                "name": document.title,
+                "short_name": document.title,
                 "start_url": location.origin + "/restaurants/" + restaurant_slug,
                 "background_color": "#e98809",
-                "description": "Digital Restaurant Menu",
+                "description": restaurant_name + " - Digital Restaurant Menu",
                 "display": "fullscreen",
                 "theme_color": "#e98809",
                 "icons": [{
-                    "src": location.origin + "/images/icon-512x512.png",
+                    "src": logo.includes('/images/favicon.png') ? location.origin + "/images/icon-512x512.png" : logo,
                     "sizes": "512x512",
                     "type": "image/png",
                     "purpose": "any maskable"

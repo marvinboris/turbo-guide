@@ -6,11 +6,11 @@
             display: flex;
             position: relative;
             margin-bottom: 17px;
-            justify-content: space-between;
 
             &>.text {
                 font-size: 24px;
                 font-weight: 700;
+                margin-right: auto;
                 line-height: 31.06px;
             }
 
@@ -51,6 +51,13 @@
                     color: var(--red);
                     background-color: var(--red-10);
                 }
+            }
+
+            .install-app-btn-container {
+                display: none;
+                cursor: pointer;
+                font-size: 20px;
+                margin-right: 10px;
             }
         }
 

@@ -100,11 +100,13 @@ class Home extends Component {
     }
 
     windowBeforeInstallPrompt = (e) => {
+        console.log('windowBeforeInstallPrompt')
         $('.install-app-btn-container').show();
         deferredPrompt = e;
     }
 
     installAppClick = async () => {
+        console.log('installAppClick')
         if (deferredPrompt !== null) {
             deferredPrompt.prompt();
             const { outcome } = await deferredPrompt.userChoice;

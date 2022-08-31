@@ -76,7 +76,7 @@ class Payment extends Component {
     componentDidUpdate(prevProps) {
         const { frontend: { restaurants: { error, tracking_code } }, match: { params: { slug } } } = this.props;
         if (error) return errorAlert(error);
-        if (prevProps.frontend.restaurants.tracking_code !== tracking_code) this.props.history.push({ pathname: `/restaurants/${slug}/order/success`, state: { tracking_code } })
+        if (tracking_code && prevProps.frontend.restaurants.tracking_code !== tracking_code) this.props.history.push({ pathname: `/restaurants/${slug}/order/success`, state: { tracking_code } })
     }
 
     render() {
@@ -85,7 +85,7 @@ class Payment extends Component {
                 cms: { pages: { frontend: { restaurants: { cart: { options: { list } }, payment: cms } } } },
                 currencies, payment_methods
             },
-            frontend: { restaurants: { restaurant: { cart: { total }, delivery_fee, service_charge }, currency, position } },
+            frontend: { restaurants: { loading, restaurant: { cart: { total }, delivery_fee, service_charge }, currency, position } },
             match: { params: { slug } },
             location: { state: { due_amount, option } }
         } = this.props;
@@ -173,7 +173,7 @@ class Payment extends Component {
             <Checkout title={cms.cart.due_amount} label={cms.cart.pay_now} value={due_amount} onClick={() => this.props.payment(slug, { ...this.state, ...this.props.location.state })} />
         </div>;
 
-        return <Loading loading={this.state.isMounted && this.state.componentLoading}>
+        return <Loading loading={this.state.isMounted && (this.state.componentLoading || loading)}>
             {content}
         </Loading>;
     }

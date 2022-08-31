@@ -51,7 +51,8 @@
                 "display": "fullscreen",
                 "theme_color": "#e98809",
                 "icons": [{
-                    "src": logo.includes('/images/favicon.png') ? location.origin + "/images/icon-512x512.png" : logo,
+                    "src": logo.includes('/images/favicon.png') ? location.origin + "/images/icon-512x512.png" :
+                        logo,
                     "sizes": "512x512",
                     "type": "image/png",
                     "purpose": "any maskable"
@@ -63,6 +64,12 @@
             link.rel = 'manifest';
             link.setAttribute('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(string_manifest));
             document.head.appendChild(link);
+
+            window.deferredPrompt = null;
+            const windowBeforeInstallPrompt = (e) => {
+                window.deferredPrompt = e;
+            }
+            window.addEventListener('beforeinstallprompt', windowBeforeInstallPrompt);
         </script>
     @else
         <title>{{ config('app.name', 'Laravel') }}</title>

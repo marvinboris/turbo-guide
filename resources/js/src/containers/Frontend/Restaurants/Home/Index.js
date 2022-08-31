@@ -44,9 +44,6 @@ const Languages = ({ languages, set }) => {
 
 let timeout;
 
-// PWA Button Handler
-let deferredPrompt;
-
 class Home extends Component {
     state = {
         id: '',
@@ -99,19 +96,12 @@ class Home extends Component {
         document.getElementById(`category-${value}`).scrollIntoView();
     }
 
-    windowBeforeInstallPrompt = (e) => {
-        console.log('windowBeforeInstallPrompt')
-        $('.install-app-btn-container').show();
-        deferredPrompt = e;
-    }
-
     installAppClick = async () => {
-        console.log('installAppClick')
-        if (deferredPrompt !== null) {
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
+        if (window.deferredPrompt !== null) {
+            window.deferredPrompt.prompt();
+            const { outcome } = await window.deferredPrompt.userChoice;
             if (outcome === 'accepted') {
-                deferredPrompt = null;
+                window.deferredPrompt = null;
             }
         }
     }
@@ -132,7 +122,7 @@ class Home extends Component {
             this.setState({ componentLoading: false });
         }, 250))
         this.init();
-        window.addEventListener('beforeinstallprompt', this.windowBeforeInstallPrompt);
+        if (window.deferredPrompt) $('.install-app-btn-container').show();
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -149,7 +139,6 @@ class Home extends Component {
 
     componentWillUnmount() {
         $('body').scrollspy('dispose');
-        window.removeEventListener('beforinstallprompt', this.windowBeforeInstallPrompt);
     }
 
     render() {

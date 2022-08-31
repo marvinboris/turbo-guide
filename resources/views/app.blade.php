@@ -67,6 +67,7 @@
 
             window.deferredPrompt = null;
             const windowBeforeInstallPrompt = (e) => {
+                console.log('windowBeforeInstallPrompt');
                 window.deferredPrompt = e;
             }
             window.addEventListener('beforeinstallprompt', windowBeforeInstallPrompt);

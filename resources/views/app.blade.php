@@ -68,9 +68,19 @@
             window.deferredPrompt = null;
             const windowBeforeInstallPrompt = (e) => {
                 console.log('windowBeforeInstallPrompt');
+                e.preventDefault();
                 window.deferredPrompt = e;
             }
             window.addEventListener('beforeinstallprompt', windowBeforeInstallPrompt);
+            window.matchMedia('(display-mode: standalone)').addEventListener('change', ({
+                matches
+            }) => {
+                if (matches) {
+                    $('.install-app-btn-container').hide();
+                } else {
+                    $('.install-app-btn-container').show();
+                }
+            });
         </script>
     @else
         <title>{{ config('app.name', 'Laravel') }}</title>

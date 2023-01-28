@@ -12,6 +12,8 @@ class Category extends Model
 
     protected $directory = '/images/categories/';
 
+    protected $table = "categories";
+
     protected $fillable = [
         'restaurant_id', 'name', 'description', 'photo', 'is_active',
     ];

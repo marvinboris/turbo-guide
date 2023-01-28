@@ -9,6 +9,8 @@ class Recharge extends Model
 {
     use HasFactory;
 
+    protected $table = "recharges";
+
     protected $fillable = [
         'restaurant_id', 'method_id', 'amount', 'fees', 'comments', 'status', 'type', 'data',
     ];

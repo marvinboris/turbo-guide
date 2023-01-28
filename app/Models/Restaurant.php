@@ -13,13 +13,15 @@ class Restaurant extends Authenticatable
 {
     use Notifiable, HasApiTokens, Sluggable;
 
+    protected $table = "restaurants";
+
     protected $directory = '/images/restaurants/';
 
     protected $fillable = [
         'language_id', 'name', 'owner', 'token', 'slug', 'qr', 'logo', 'email', 'photo', 'phone', 'country', 'whatsapp', 'address', 'days', 'hours', 'location', 'balance', 'password', 'is_active', 'currency', 'position', 'banner1', 'banner2', 'banner3', 'auto_renew', 'caution', 'must_read', 'disclaimer',
     ];
 
-    public function sluggable()
+    public function sluggable(): array
     {
         return [
             'slug' => [

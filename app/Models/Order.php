@@ -10,6 +10,8 @@ class Order extends Model
 {
     use HasFactory;
 
+    protected $table = "orders";
+
     protected $fillable = [
         'location', 'address', 'phone', 'restaurant_id', 'method_id', 'option', 'note', 'items', 'due_amount', 'order_no', 'status',
     ];

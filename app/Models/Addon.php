@@ -10,6 +10,8 @@ class Addon extends Model
 {
     use HasFactory;
 
+    protected $table = "addons";
+
     protected $directory = '/images/addons/';
 
     protected $fillable = [

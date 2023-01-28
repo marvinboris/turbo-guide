@@ -10,6 +10,8 @@ class Plan extends Model
 {
     use HasFactory, Sluggable;
 
+    protected $table = "plans";
+
     protected $fillable = [
         'name', 'slug', 'price', 'meals', 'actions', 'support', 'banners', 'reviews', 'months'
     ];
@@ -18,7 +20,7 @@ class Plan extends Model
         'type',
     ];
 
-    public function sluggable()
+    public function sluggable(): array
     {
         return [
             'slug' => [

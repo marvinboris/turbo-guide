@@ -10,6 +10,8 @@ class Admin extends Authenticatable
 {
     use Notifiable, HasApiTokens;
 
+    protected $table = "admins";
+
     protected $directory = '/images/admins/';
 
     protected $fillable = [

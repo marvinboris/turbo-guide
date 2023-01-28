@@ -10,6 +10,8 @@ class Meal extends Model
 {
     use HasFactory;
 
+    protected $table = "meals";
+
     protected $directory = '/images/meals/';
 
     protected $fillable = [

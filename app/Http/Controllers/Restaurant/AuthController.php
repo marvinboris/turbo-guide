@@ -37,7 +37,7 @@ class AuthController extends Controller
 
         $token = Restaurant::ref();
         $password = Restaurant::generatePassword();
-        $restaurant = Restaurant::create([
+        Restaurant::create([
             'owner' => $request->owner,
             'email' => $request->email,
             'phone' => $request->code . $request->phone,
@@ -47,7 +47,7 @@ class AuthController extends Controller
             'language_id' => 1,
             'slug' => 'temp'
         ]);
-        Mail::to($restaurant->email)->send(new VerificationLink([
+        Mail::to($request->email)->send(new VerificationLink([
             'token' => $token,
             'password' => $password,
         ]));

@@ -21,7 +21,7 @@ class PlanImminentExpiration extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Plan $plan, $days)
+    public function __construct(Plan $plan, int $days)
     {
         $this->plan = $plan;
         $this->days = $days;
